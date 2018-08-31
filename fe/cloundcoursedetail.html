@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>云课堂-详情</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+		
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--课程内容-->
+		<section class="fecourse-detail-wrap" id="jcloundCourseDetailApp">
+			<div class="container">
+				<!--头部-->
+				<section class="fecourse-detail-header clearfix">
+					<div class="span5">
+						<div class="feimage">
+							<img v-cloak v-bind:src="courseIcon" alt="" />
+						</div>
+					</div>
+					<div class="span7">
+						<div class="fepanel" v-cloak>
+							<h5 v-cloak>{{courseHeaderArr.courseName}}
+								<a class="correct" v-if='!hasCollected' @click='correctCourse()'></a>
+								<a class="hascorrect" v-else @click='cancelCorrect()'></a>
+							</h5>
+							<p v-cloak class="fepanel-brief">{{courseHeaderArr.note}}</p>
+							<div class="fepanel-price" v-if="!isFreeFlag">
+								<span v-cloak>￥{{courseHeaderArr.preferentialPrice}}</span>
+								<span v-cloak>￥{{courseHeaderArr.price}}</span>
+							</div>
+							<div class="fepanel-price" v-if="isFreeFlag">
+								<span>免费</span>
+							</div>
+							<div class="fecourse-detail-time-plan">
+								<span v-cloak>{{courseHeaderArr.coursePeriod}} 共<span>{{courseHeaderArr.periodCount}}</span>
+								<!--节课-->
+								</span>
+								<span v-cloak style="margin-left: 10px;" >已报<span >{{courseHeaderArr.enrolledCount}}</span>人</span>
+								<a href="#fecourseDetailScheduleInner">查看课程安排</a>
+							</div>
+							<div class="fecourse-detail-server">
+								<span>24H内答疑</span>
+								<span>名师专家</span>
+								<span>配套资料</span>
+							</div>
+							<div class="fecourse-detail-btn-group">
+								<div >
+									<a v-cloak class="fecourse-detail-btn-active" v-if="isFreeFlag && !isEnrolled" @click="enroll">立即报名</a>
+									
+									<a v-cloak class="fecourse-detail-btn-active" id="jgoCourseBuy" @click='gotoPay($event)' v-bind:dataId="courseId" v-if="!isFreeFlag && !isEnrolled" target="_blank"  >立即报名</a>
+									<a v-cloak class="fecourse-detail-btn-active fefreelisten" v-if="!isEnrolled && hasFreeListen && !isFreeFlag" target="_blank" @click="gotoFreeListen(courseId,allowId)">免费试看</a>
+									<div v-if="isEnrolled" v-cloak>
+										<a class="fecourse-detail-btn-active" v-if='!hasliveBeforeFlag && !isLiving'>即将开课</a>
+										<a class="fecourse-detail-btn-active fecourse-detail-btn-enter" v-if='isLiving ' target="_blank" v-bind:href="firstChannelId,firstChannelProgramId | gotoLiveRoom" style="background:#27b76f;border-color:#27b76f">进入直播</a>
+										<a class="fecourse-detail-btn-active" v-if='hasliveBeforeFlag' target="_blank" v-bind:href="courseId,firstBeforeId | gotoCoursePlayer">观看回放</a>
+									</div>
+									<!--<a class="fecourse-detail-btn-active" v-if="isFreeFlag" target="_blank" v-bind:href="courseId,firstId | gotoCoursePlayer">免费试看</a>
+									<a class="fecourse-detail-btn-active" v-if="isFreeFlag" target="_blank" v-bind:href="courseId,vid | gotoCoursePlayer">免费试看</a>-->
+									
+								</div>
+								<!--暂时不用<div v-cloak v-if="liveBeforeFlag">
+									<a class="fecourse-detail-btn-disabled">即将开课</a>
+									<a class="fecourse-detail-btn-disabled">暂无回放</a>
+								</div>
+								<div v-cloak v-if="liveBeforeNextFlag">
+									<a class="fecourse-detail-btn-disabled">即将开课</a>
+									<a class="fecourse-detail-btn-active" target="_blank" v-bind:href="courseId,reviewId | gotoCoursePlayer">观看回放</a>
+								</div>
+								<div v-cloak v-if="livePlayFlag">
+									<a class="fecourse-detail-btn-active" target="_blank" v-bind:href="courseId,liveId | gotoCloundPlayer">进入课堂</a>
+									<a class="fecourse-detail-btn-disabled">暂无回放</a>
+								</div>
+								<div v-cloak v-if="livePlayNextFlag">
+									<a class="fecourse-detail-btn-active" target="_blank" v-bind:href="courseId,liveId | gotoCloundPlayer">进入课堂</a>
+									<a class="fecourse-detail-btn-active" target="_blank" v-bind:href="courseId,reviewId | gotoCoursePlayer">观看回放</a>
+								</div>-->
+							</div>
+						</div>
+					</div>
+				</section>
+				<!--tab 列表-->
+				<div class="fecourse-detail-tab-inner">
+					<a href="#fecourseDetailIntroduceInner" :class={"active":activeStatus==1} @click="changeActiveStatus(1, '#fecourseDetailIntroduceInner')"><span>课程介绍</span></a>
+					<a href="#fecourseDetailInner" :class={"active":activeStatus==2} @click="changeActiveStatus(2,'#fecourseDetailInner')"><span>课程详情</span></a>
+					<a href="#fecourseDetailScheduleInner" :class={"active":activeStatus==3} @click="changeActiveStatus(3,'#fecourseDetailScheduleInner')"><span>课程表</span></a>
+					<a href="#fecourseDetailTeacherInner" :class={"active":activeStatus==4} @click="changeActiveStatus(4,'#fecourseDetailTeacherInner')"><span>名师简介</span></a>
+					<a href="#fecourseDetailCommentInner" :class={"active":activeStatus==5} @click="changeActiveStatus(5,'#fecourseDetailCommentInner')"><span>课程评价</span></a>
+				</div>
+
+				<!--课程介绍-->
+					<div class="fecourse-detail-introduce-inner clearfix" id="fecourseDetailIntroduceInner">
+						<h5 class="fe-course-detail-title ">课程介绍</h5>
+						<template v-for="item in courseReInf">
+							<div class="fecourse-detail-type-box fe-line clearfix">
+								<span v-cloak class="span6">课程总数:{{item.periodCount}}</span>
+								<span v-cloak class="span6">课程形式:{{item.recordTypeName}}</span>
+							</div>
+							<div class="fecourse-detail-source fe-line clearfix">
+								<a v-cloak class="span6" v-bind:href="item.teacherId|gotoTeacher" target="_blank"><span>老师:{{item.teacherName}}</span></a>
+								<a v-cloak class="span6" v-bind:href="item.organId|gotoSchool" target="_blank"><span>来自:{{item.organName}}</span></a>
+							</div>
+							<div class="fecourse-detail-brief">
+								<span v-cloak class="fecourse-detail-brief-title">课程简介:&nbsp;</span>
+								<div v-html="item.introduce" style="margin-top: -24px;"></div>
+							</div>
+						</template>
+					</div>
+
+					<!--课程详情-->
+					<div class="fecourse-detail-inner" id="fecourseDetailInner" v-if='hasCourseReInfFlag'>
+						<h5 class="fe-course-detail-title">课程详情</h5>
+						<div v-for="item in courseReInf" v-cloak v-html="item.detail" style="padding-top: 20px;"></div>
+					</div>
+				
+
+				<!--课程表-->
+				<div class="fecourse-detail-schedule-inner" id="fecourseDetailScheduleInner">
+					<h5 class="fe-course-detail-title">课程表</h5>
+					<ul>
+						
+						<template v-cloak v-if="isEnrolled " v-cloak v-for="item in courseScheduleArr"><!--已报名-->
+							
+							<li class="fe-line" >
+								<a v-if="item.playState == 0" class="fecourse-status-true clearfix">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">未开课</span>
+								</a>
+								<a v-if="item.playState == 1" class="fecourse-status-true clearfix" target="_blank" v-bind:href="channelId,channelProgramId | gotoLiveRoom">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">正在直播</span>
+								</a>
+								<a v-if="item.playState == 2" class="fecourse-status-true clearfix" target="_blank" v-bind:href="courseId,item.videoId | gotoCoursePlayer">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">看回放</span>
+								</a>
+							</li>
+						</template>
+						<template v-cloak v-for="item in courseScheduleArr" v-if="!isEnrolled"><!--未报名-->
+							<li class="fe-line" v-if="item.allowListen==1">
+								<!--未报名允许免费试听-->
+								<a class="fecourse-status-true clearfix fefreelisten" @click="gotoFreeListen(courseId,allowId)" >
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">免费试看</span>
+								</a>
+							</li>
+							
+							<li class="fe-line" v-if="item.allowListen==0 && isFreeFlag">
+								<!--未报名没有免费试听,但是免费-->
+								<a v-if="item.playState == 0" class="fecourse-status-false" @click="enroll">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">未开课</span>
+								</a>
+								<a v-if="item.playState == 1" class="fecourse-status-false"  @click="enroll">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">正在直播</span>
+								</a>
+								<a v-if="item.playState == 2" class="fecourse-status-false" @click="enroll">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">看回放</span>
+								</a>
+							</li>
+							
+							<li class="fe-line" v-if="item.allowListen==0 && !isFreeFlag">
+							<!--未报名没有免费试听且不免费-->
+								<a v-if="item.playState == 0" class="fecourse-status-false" @click='gotoPay($event)' target="_blank">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">未开课</span>
+								</a>
+								<a v-if="item.playState == 1" class="fecourse-status-false" @click='gotoPay($event)' target="_blank">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">正在直播</span>
+								</a>
+								<a v-if="item.playState == 2" class="fecourse-status-false" @click="gotoPay($event)" target="_blank">
+									<span class="">{{item.courseCatalogName}}</span>
+									<span class="">{{item.playDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{item.playBeginTime}}-{{item.playEndTime}}</span>
+									<span class="fecourse-status-brief">看回放</span>
+								</a>
+							</li>
+							
+						</template>
+					</ul>
+				</div>
+
+				<!--名师介绍-->
+				<div class="fecourse-detail-teacher-inner" id="fecourseDetailTeacherInner">
+					<h5 class="fe-course-detail-title">名师简介</h5>
+					<div class="fe-course-detail-teacher-panel" v-for="item in courseReInf">
+						<a v-cloak v-bind:href="item.teacherId|gotoTeacher" target="_blank">
+							<div class="fecourse-icon">
+								<img :src="item.teacherIconPath | addRootFile" />
+							</div>
+							<span v-cloak class="fecourse-teahcer-title">{{item.teacherName}}</span>
+							<p v-cloak class="fecourse-teacher-brief">
+								{{item.introduce1}}
+							</p>
+							<p v-cloak class="fecourse-teaching-type" v-html="item.teacherIntroduce"></p>
+						</a>
+					</div>
+				</div>
+
+				<!--课程评价-->
+				<!--<div class="fecourse-detail-comment-inner clearfix" id="fecourseDetailCommentInner">-->
+					<!--<h5 class="fe-course-detail-title fe-line">课程评论<span>(累计评论<span>{{commentCount}}</span>条)</span></h5>-->
+					<!--<ul class="fecourse-detail-comment-panel">-->
+						<!--<li class="fe-line" v-cloak v-for="item in courseCommentArr">-->
+							<!--<div class="fecourse-icon" :style="{backgroundImage: 'url('+ bgRootFile + item.iconPath + ')'}"></div>-->
+							<!--<div class="fecourse-comment-top">-->
+								<!--<span>{{item.commentator}}</span>-->
+								<!--<span>{{item.evaluationDate}}</span>-->
+							<!--</div>-->
+							<!--<div class="fecourse-comment-content">-->
+								<!--{{item.evaluation}}-->
+							<!--</div>-->
+						<!--</li>-->
+					<!--</ul>-->
+					<!--&lt;!&ndash;枫叶&ndash;&gt;-->
+					<!--<ul class="pagenationbox clearfix">-->
+						<!--<li v-cloak v-show="current != 1" @click="current&#45;&#45; && goto(current&#45;&#45;)">-->
+							<!--<a href="#this">上一页</a>-->
+						<!--</li>-->
+						<!--<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">-->
+							<!--<a href="#this">{{index}}</a>-->
+						<!--</li>-->
+						<!--<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">-->
+							<!--<a href="#this">下一页</a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				<!--</div>-->
+
+
+					<!--枫叶-->
+					<!--<ul class="pagenationbox clearfix">-->
+						<!--<li v-cloak v-show="current != 1" @click="current&#45;&#45; && goto(current&#45;&#45;)">-->
+							<!--<a href="#this">上一页</a>-->
+						<!--</li>-->
+						<!--<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">-->
+							<!--<a href="#this">{{index}}</a>-->
+						<!--</li>-->
+						<!--<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">-->
+							<!--<a href="#this">下一页</a>-->
+						<!--</li>-->
+					<!--</ul>-->
+				</div>
+		</section>
+		<!--评论区-->
+		<section style="padding-bottom:1rem;margin-top:-3rem;background-color: #eee;" id="fecourseDetailCommentInner">
+			<div class="container">
+				<!--课程评论区包含点赞-->
+				<div class="fepinglun-inner clearfix" id="feleaveword">
+					<h5 >课程评论<span>(累计评论<b>{{allCount}}</b>条)</span></h5>
+					<div class="courseScore clearfix">
+						<div class="feleft">
+							<span v-cloak>{{avgScore}}</span>
+							<ul class="clearfix">
+								<!--<li></li>-->
+								<!--<li></li>-->
+								<!--<li></li>-->
+								<!--<li></li>-->
+								<!--<li></li>-->
+							</ul>
+						</div>
+						<div class="feright">
+							<h1>主动评价星级分布</h1>
+							<ul v-if="starScoreList.length>0">
+								<li v-cloak v-for="item in starScoreList">
+									<span>{{item.starCount}}星</span>
+									<h3><b :style="{width:item.starPercent+'px'}"></b></h3>
+									<s>{{item.starPercent}}%</s>
+								</li>
+								<!--<li>-->
+								<!--<span>四星</span>-->
+								<!--<h3><b></b></h3>-->
+								<!--<s>100%</s>-->
+								<!--</li>-->
+								<!--<li>-->
+								<!--<span>三星</span>-->
+								<!--<h3><b></b></h3>-->
+								<!--<s>100%</s>-->
+								<!--</li>-->
+								<!--<li>-->
+								<!--<span>两星</span>-->
+								<!--<h3><b></b></h3>-->
+								<!--<s>100%</s>-->
+								<!--</li>-->
+								<!--<li>-->
+								<!--<span>一星</span>-->
+								<!--<h3><b></b></h3>-->
+								<!--<s>100%</s>-->
+								<!--</li>-->
+							</ul>
+						</div>
+					</div>
+					<div class="fepinglunarea">
+						<!--<div class="feliuyan-parent">-->
+						<!--<input type="text" ><button>评论</button>-->
+						<!--</div>-->
+						<ul class="feleaveword" style="margin: 0">
+							<li v-cloak v-for="list in leavewordList" v-bind:data-courseevaluationid="list.courseEvaluationId" v-bind:data-leveloneevaluationid="list.levelOneEvaluationId">
+								<div class="fetop clearfix">
+									<img v-bind:src="list.iconPath|addRootFile" alt="">
+									<h4><span v-bind:data-id="list.userId">{{list.nickName}}</span></h4>
+									<div class="star">
+										<span :class="list.score>2 ? '':'graystar'"></span>
+										<span :class="list.score>=4 ? '':'graystar'"></span>
+										<span :class="list.score>=6 ? '':'graystar'"></span>
+										<span :class="list.score>=8 ? '':'graystar'"></span>
+										<span :class="list.score>=10 ? '':'graystar'"></span>
+									</div>
+									<s>{{list.evaluationDate}}</s>
+								</div>
+								<div class="febox">
+									<p>{{list.evaluation}}</p>
+									<!--<button>回复</button> -->
+									<span class="dianzang">{{list.thumbUpCount}}</span>
+									<span class="lookup"  @click="getCount(list.children.length,$event)">查看({{list.children.length}})</span>
+								</div>
+								<ul class="feleaveword-chirld" :class="list.children.length<1 ? '':'feleaveword-chirld-border'" style="display: none">
+									<li v-cloak v-for="item in list.children" v-bind:data-courseevaluationid="item.courseEvaluationId" v-bind:data-leveloneevaluationid="item.levelOneEvaluationId">
+										<div class="fetop clearfix">
+											<img v-bind:src="item.iconPath|addRootFile" alt="">
+											<h4><span v-bind:data-id="item.userId">{{item.nickName}}</span><b>回复</b>{{item.respondents}}</h4>
+											<s>{{item.evaluationDate}}</s>
+										</div>
+										<div class="febox">
+											<p>{{item.evaluation}}</p>
+											<!--<button>回复</button> -->
+											<span class="dianzang">{{item.thumbUpCount}}</span>
+										</div>
+										<!--<div class="feliuyan">-->
+										<!--<input type="text"><button>评论</button>-->
+										<!--</div>-->
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<!--枫叶-->
+						<ul class="pagenationbox clearfix">
+							<li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+								<a href="#this">上一页</a>
+							</li>
+							<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+								<a href="#this">{{index}}</a>
+							</li>
+							<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+								<a href="#this">下一页</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script>
+			$(function() {
+				var courseKind = $(this).getUrlParam("courseKind");
+				if(courseKind == undefined || courseKind == 'undefined' || courseKind==null ||courseKind ==""||courseKind =='null'){
+					courseKind = 0;
+				}
+				
+				cloundCourseDetail($(this).getUrlParam("courseId"),courseKind);
+				leaveword($(this).getUrlParam("courseId"),courseKind);
+			})
+		</script>
+
+	</body>
+
+</html>

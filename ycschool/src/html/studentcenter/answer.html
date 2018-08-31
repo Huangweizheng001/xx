@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-办公</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+<section id="answer">
+    <div class="answer">
+        <div class="title">
+            <span :class="state==0 ? 'active':''" data-id="0">我的提问</span>
+            <span :class="state==1 ? 'active':''" data-id="1">我的回答</span>
+        </div>
+        <div class="myquiz" v-if="state==0" v-cloak>
+            <ul class="fenav clearfix">
+                <li>
+                    <span class="active" @click="bindSelect($event,'','')">全部</span>
+                </li>
+                <li>
+                    <span @click="bindSelect($event,'',0)">待解答</span>
+                </li>
+                <li>
+                    <span @click="bindSelect($event,0,'')">未采纳</span>
+                </li>
+                <li>
+                    <span @click="bindSelect($event,1,'')">已采纳</span>
+                </li>
+            </ul>
+            <div class="item" v-cloak v-for="item in quizArr">
+                <a :href="item.KPQuestionId|addRoot" target="_blank" v-html="item.content"></a>
+                <p><span>{{item.insertTime|showTime}}之前 发布</span><b>{{item.offerPoint}}</b></p>
+                <span class="feanswernum">{{item.answerNum}}个回答</span>
+                <span class="festate1" v-if="item.answerNum==0">待解答</span>
+                <span class="festate3" v-if="item.answerNum>0 && item.Qstates==0">未采纳</span>
+                <span class="festate2" v-if="item.answerNum>0 && item.Qstates!=0">已采纳</span>
+                <!--<span class="festate2">已采纳</span>-->
+                <!--<span class="festate3">未采纳</span>-->
+            </div>
+        </div>
+        <div class="myanswer" v-if="state==1" v-cloak>
+            <ul class="fenav clearfix">
+                <li>
+                    <span class="active" @click="bindType($event,'')">全部</span>
+                </li>
+                <li>
+                    <span @click="bindType($event,1)">已采纳</span>
+                </li>
+            </ul>
+            <div class="item" v-cloak v-for="item in answerArr">
+                <a :href="item.KPQuestionId|addRoot" target="_blank" v-html="item.Question"></a>
+                <h3>{{item.Answer}}</h3>
+                <span class="festate2" v-if="item.Qstates==0">未采纳</span>
+                <span class="festate3" v-if="item.Qstates!=0">已采纳</span>
+                <!--<span class="festate2">已采纳</span>-->
+                <!--<span class="festate3">未采纳</span>-->
+            </div>
+        </div>
+        <!--枫叶-->
+        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                <a href="#this">上一页</a>
+            </li>
+            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#this">{{index}}</a>
+            </li>
+            <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                <a href="#this">下一页</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

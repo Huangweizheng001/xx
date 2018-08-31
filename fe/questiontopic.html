@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>试题—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body>
+		<header id="questionheader">
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="fe-questionexercise">
+				<div class="container clearfix">
+					<div class="fe-questionexercise-head">
+						<!--<div class="fe-questionexercise-head-title">
+							<a href="#this">首页</a>>
+							<a href="#this">高中课题</a>>
+							<a href="#this" class="active">一年级</a>>
+							<a href="#this" class="active">数学</a>
+						</div>
+						<div class="fe-questionexercise-head-box">
+							<p>快速查题-高中数学</p>
+							<div class="fe-questionexercise-head-select">
+								<span>年段：</span>
+								<a class="active">不限</a>
+								<a>一年级</a>
+								<a>二年级</a>
+								<a>三年级</a>
+								<a>四年级</a>
+								<a>五年级</a>
+								<a>六年级</a>
+							</div>
+							<div class="fe-questionexercise-head-select">
+								<span>学科：</span>
+								<a class="active">不限</a>
+								<a>语文</a>
+								<a>数学</a>
+								<a>英语</a>
+								<a>美术</a>
+								<a>音乐</a>
+							</div>
+						</div>-->
+					</div>
+					<div class="fe-questiontopic-contain clearfix" id="jQuestionTopic">
+						<div class="span9">
+							
+							<ul class="fe-questiontopic-list clearfix">
+								<p class="nodata" v-if="isNoData==0" class="fe-questionexercise-list-first">该类型没有数据，换个类型试试</p>
+									<h3></h3>
+								<li v-cloak v-for="(item,index) in topicList">
+									<input type="text" v-bind:value="item.rightAnswer" class="fehidden">
+									<p class="fe-questiontopic-list-title">
+										<a class="fe-questiontopic-list-num">{{item.questionNo}}</a>.【单选】 <img v-bind:src="item.title|addRootFile">：（<span class=""></span>）
+									</p>
+									<div class="clearfix">
+										<span class="option">A</span><img v-bind:src="item.A|addRootFile" alt="">
+									</div>
+									<div class="clearfix">
+										<span class="option">B</span><img v-bind:src="item.B|addRootFile" alt="">
+									</div>
+									<div class="clearfix">
+										<span class="option">C</span><img v-bind:src="item.C|addRootFile" alt="">
+									</div>
+									<div class="clearfix">
+										<span class="option">D</span><img v-bind:src="item.D|addRootFile" alt="">
+									</div>
+								</li>
+
+								<div class="fe-questiontopic-more" v-if="isNoData==1">
+									<a @click="questionMore()">查看更多<span><i class="uk-icon-angle-down"></i></span></a>
+								</div>
+							</ul>
+
+						</div>
+						<div class="span3">
+							<div class="fe-questiontopic-card" id="jQuestionCard" v-if="isNoData==1">
+								<p class="fe-questiontopic-card-title">试题卡</p>
+								<div class="fe-questiontopic-card-con">
+									<div class="fe-questiontopic-card-brief">
+										<span class="active"><em></em>已答题</span>
+										<span><em></em>未答题</span></div>
+									<ul class="fe-questiontopic-card-box clearfix">
+										 <li v-cloak v-for="n in totalCount"> {{ n }}</li>
+									</ul>
+									<a @click="questionPost()" class="fe-questiontopic-card-btn">提交</a>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			questionTopic($(this).getUrlParam("examPaperId"));
+		</script>
+	</body>
+
+</html>

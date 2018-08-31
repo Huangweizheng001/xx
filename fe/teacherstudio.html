@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>名师工作室</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--内容模块-->
+		<section class="feteacherdetail clearfix" id="feteacherstudio">
+			<div class="feteacherdetailhead" v-cloak v-for="studio">
+				<div class="feimage">
+					<img v-bind:src="studio.iconPath|addRootFile" alt="">
+				</div>
+				<h1>{{studio.name}}</h1>
+				<h3>创建人: {{studio.creator}}</h3>
+				<p>
+					成员数:
+					<span>{{studio.memberCount}}</span>|&nbsp;&nbsp;
+					课件数:
+					<span>{{studio.resourceCount}}</span>|&nbsp;&nbsp;
+					文章数:
+					<span>{{studio.publishCount}}</span>
+				</p>
+				<div class="feapplybtn">
+					<button v-if="isShow" id="applyStudio">申请加入工作室</button>
+				</div>
+				<!--<div class="fefollow">-->
+					<!--<button><i class="uk-icon-plus"></i>关注</button>-->
+					<!--<button class="cancel">取消关注</button>-->
+				<!--</div>-->
+				<div class="feteacherdetail-news">
+					<h3>工作室介绍</h3>
+					<p>{{studio.introduce}}</p>
+				</div>
+			</div>
+			<div class="container">
+				<!--工作室资讯-->
+				<div class="span9">
+					<div class="festudioinformation clearfix">
+						<h1>工作室资讯<a class="uk-icon-ellipsis-h" target="_blank"></a></h1>
+						<div class="span6" v-show="studioinformationnodata">
+							<div class="fenodata"></div>
+						</div>
+						<div class="span6" v-cloak v-for="(item,index) in studioinformation" v-if="index<1">
+							<a v-bind:href="item.newsId|addRootNews" class="feimage" target="_blank">
+								<img v-bind:src="item.iconPath|addRootFile" alt="">
+								<p>{{item.title}}</p>
+							</a>
+						</div>
+						<div class="span6">
+							<ul>
+								<li class="clearfix" v-cloak v-for="(item,index) in studioinformation" v-if="index>=1">
+									<a v-bind:href="item.newsId|addRootNews" target="_blank">{{item.title}}</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<!--名师课堂-->
+					<div class="feteacherclassroom">
+						<div class="fenav clearfix">
+							<h3>名师课堂</h3>
+							<ul>
+								<li v-cloak v-for="item in teacherclassroomnav" v-bind:data-id="item.courseTypeId">{{item.name}}</li>
+							</ul>
+							<a class="uk-icon-ellipsis-h" href="#this" target="_blank"></a>
+						</div>
+						<div class="fecontent clearfix">
+							<div class="fenodata" v-show="teacherclassroomnodata"></div>
+							<div class="span4" v-cloak v-for="item in teacherclassroom">
+								<div class="fepanel">
+									<a v-bind:href="item.courseId,item.recordType,item.courseKind|addRootCourse" class="feimage" target="_blank" >
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</a>
+									<div class="febox clearfix">
+										<h2>{{item.courseName}}</h2>
+										<div>
+											<b v-if="item.isFree==0" style="color: #ff6c00">¥{{item.preferentialPrice}}</b>
+											<b v-else >免费</b>
+											<div class="fetoggle">
+												<span>{{item.teacherName}}</span>
+												<span><a v-bind:href="item.organId|addRootSchool" target="_blank">{{item.organName}}</a></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!--工作室成员-->
+					<div class="festudiomember">
+						<div class="fenav">
+							<h1>工作室成员</h1>
+							<!--<b class="uk-icon-ellipsis-h"></b>-->
+							<span>换一批</span>
+						</div>
+						<div class="fenodata" v-show="studiomembernodate"></div>
+						<!--<ul class="fecontent clearfix">-->
+							<transition-group tag="ul" class="fecontent clearfix"
+											  enter-active-class="animated slideInUp duration">
+							<li v-cloak v-for="item in studiomember" :key="item">
+								<a v-bind:href="item.teacherId|addTeacherRoot" target="_blank">
+									<div class="feimage">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<div class="febox">
+										<h3>{{item.teacherName}}</h3>
+										<h4><span>{{item.gradeName}}</span><span>{{item.subjectName}}</span></h4>
+									</div>
+								</a>
+							</li>
+							</transition-group>
+						<!--</ul>-->
+					</div>
+					
+					<!--课件资源-->
+					<div class="fecourseresource" style="margin-bottom: 50px">
+						<div class="fenav clearfix">
+							<h1>教学资源</h1>
+							<a class="uk-icon-ellipsis-h" target="_blank"></a>
+							<ul>
+								<li v-cloak v-for="item in courseresourcenav" v-bind:data-id="item.courseWareTypeId">{{item.name}}</li>
+							</ul>
+						</div>
+						<ul class="fecontent">
+							<div class="fenodata" v-show="courseresourcenodata"></div>
+							<li v-cloak v-for="item in courseresource" >
+								<!--课件-->
+								<a @click="addDownloadRecord(item.studioResourceId,item.resourcePath)" class="clearfix" v-if="item.resourceType=='courseware'">
+									<span v-bind:class="item.resourceType|getResourceTypeClass"></span>{{item.title}}<b>{{item.resourceType|getResourceType}}</b>
+								</a>
+								<!--文章-->
+								<a v-bind:href="item.studioResourceId|addArticleRoot" class="clearfix" v-if="item.resourceType=='article'" target="_blank">
+									<span v-bind:class="item.resourceType|getResourceTypeClass"></span>{{item.title}}<b>{{item.resourceType|getResourceType}}</b>
+								</a>
+							</li>
+						</ul>
+						<!--<div class="femessage">-->
+							<!--<h1>留言(555条)</h1>-->
+							<!--<ul class="femessage-list">-->
+								<!--<li v-cloak v-for="item in message">-->
+									<!--<div class="feimage">-->
+										<!--<img v-bind:src="item.imgsrc|addRootFile" alt="">-->
+									<!--</div>-->
+									<!--<div class="febox">-->
+										<!--<h4>{{item.name}}</h4>-->
+										<!--<p>{{item.text}}</p>-->
+										<!--<h5>{{item.time}}</h5>-->
+									<!--</div>-->
+								<!--</li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					</div>
+				</div>
+				
+				<div class="span3">
+					<!--公告-->
+					<div class="fenotice">
+						<h1>公告<a class="uk-icon-ellipsis-h" target="_blank"></a></h1>
+						<ul>
+							<div class="fenodata" v-show="noticenodata"></div>
+							<li v-cloak v-for="(item,index) in notice" v-if="index<8">
+								<a v-bind:data-id="item.activityId">{{item.name}}</a><span>{{item.noticeDate}}</span>
+							</li>
+						</ul>
+					</div>
+					
+					<!--最新动态-->
+					<div class="fenews clearfix">
+						<h1>最新动态</h1>
+						<ul>
+							<li class="fenodata" v-show="newsnodata"></li>
+							<li v-cloak v-for="item in news">
+								<div>
+									<div class="feimage">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<div class="febox">
+										<h2><a v-bind:href="item.operatorId|addTeacherRoot" target="_blank">{{item.operatorName}}</a><span>{{item.operateTime}}</span></h2>
+										<h3>
+											<span>{{item.operateTypeName}}了 :</span>
+											<a v-bind:href="item.studioResourceId|addArticleRoot" v-bind:class="item.resourceType=='courseware'? 'fehidden':''" target="_blank">{{item.title}}</a>
+											<a target="_blank"  v-bind:class="item.resourceType=='courseware'? '':'fehidden'" @click="addDownloadRecord(item.studioResourceId,item.resourcePath)" v-bind:title="item.title">{{item.title}}</a>
+										</h3>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<!--成员排行-->
+					<div class="femember-rank clearfix">
+						<h1>成员排行 <span @click = 'selectRank($event,0)'>周</span><span @click = 'selectRank($event,0)'>月</span><span class="active" @click = 'selectRank($event,0)'>总</span></h1>
+						<ul>
+							<li class="fenodata" v-show="memberranknodata"></li>
+							<li v-cloak v-for="(item,index) in memberRankingArr">
+									<span>{{index+1}}</span>
+									<!--<div class="feimage">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>-->
+									<div class="febox">
+										<span v-bind:style="{background:'url('+item.iconPath+')no-repeat center/cover'}">
+											<b v-bind:style="{backgroundPosition:crown[index]+'px -78px'}" v-if="index<3"></b>
+										</span>
+										<a v-bind:href="item.operatorId|addTeacherRoot" target="_blank">{{item.operatorName}}</a>
+										
+										
+									</div>
+									<h6>111</h6>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				
+			</div>
+		</section>
+		
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.storage.js"></script>
+		<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./js/vue.min.js"></script>
+		<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./js/fetv.js"></script>
+		<script type="text/javascript" src="./js/fetvAppend.js"></script>
+		<script>
+			$(function () {
+				var teachingStudioId=$(this).getUrlParam("teachingStudioId");
+				teacherstudio(teachingStudioId);
+			})
+		</script>
+	</body>
+
+</html>

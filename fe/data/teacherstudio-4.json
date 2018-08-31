@@ -1,0 +1,30 @@
+[
+  {
+    "newsId":"1",
+    "name":"潘玮柏",
+    "imgsrc":"temp/teachernews-1.png",
+    "time":"01-10 09:30",
+    "title":"我不喜欢他..."
+  },
+  {
+    "newsId":"2",
+    "name":"潘玮柏",
+    "imgsrc":"temp/teachernews-1.png",
+    "time":"01-10 09:30",
+    "title":"我不喜欢他.我不喜欢他我不喜欢他我不喜欢他我不喜欢他.."
+  },
+  {
+    "newsId":"3",
+    "name":"潘玮柏",
+    "imgsrc":"temp/teachernews-1.png",
+    "time":"01-10 09:30",
+    "title":"我不喜欢他..."
+  },
+  {
+    "newsId":"4",
+    "name":"潘玮柏",
+    "imgsrc":"temp/teachernews-1.png",
+    "time":"01-10 09:30",
+    "title":"我不喜欢他..."
+  }
+]

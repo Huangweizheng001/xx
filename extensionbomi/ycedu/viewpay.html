@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>观点付款</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style type="text/css">
+			.dyc-success-bg {
+				display: none;
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0px;
+				left: 0;
+				background-color: rgba(0, 0, 0, 0.5);
+				z-index: 1000;
+			}
+			
+			.dyc-success {
+				width: 300px;
+				height: 30px;
+				margin: 20% auto 0;
+				background-color: #fff;
+				font-size: 18px;
+				padding: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="dycsubmitorder-wrap dycpay-wrap" id="jpaybox">
+			<div class="container">
+				<!--购物车头部-->
+				<div class="dycshoppingcart-header">
+					<div class="dycshoppingcartlogo">
+						<img src="images/paylogo.jpg" />
+					</div>
+				</div>
+
+				<div class="dycsubmitorder-inner">
+					<div class="dycsbor-bar">
+						<span>观点信息</span>
+						<span>单价</span>
+						<span>数量</span>
+						<span>小计</span>
+					</div>
+
+					<!--订单列表-->
+					<div class="dycsubmitorder-list" id="jviewlist">
+						<div class="dycsubmitorder-li">
+							<a href="#this" class="ycimage" target="_blank">
+								<img src="item.iconPath | addRoute" alt="课程" />
+							</a>
+							<div class="dycsbcontent">
+								<a class="yctitle" href="#this" target="_blank">课程名字</a>
+								<p class="ycbrief">注释</p>
+							</div>
+							<span class="dycsbprice">价格</span>
+							<span class="dycsbnumber">数量</span>
+							<span class="dycdiscountway">无优惠</span>
+							<span class="dycsbsubtotal">总价</span>
+						</div>
+
+					</div>
+
+					<div class="dycpay-inner">
+						<p class="dycpay-title">支付方式</p>
+						<ul id="jpaymethod">
+							<li class="dycalipay active" data-id="0"></li>
+							<li class="dycwxpay" data-id="1"></li>
+							<li class="dycbmpay" data-id="2"></li>
+						</ul>
+					</div>
+
+					<div class="dycpaysub-box clearfix">
+						<div class="dycpayheader">
+							<i class="uk-icon-exclamation-circle"></i><span>请在 <b id='jtime'>30分钟00秒</b> 以内支付完成，如未完成此订单将自动关闭。需重新购买！</span>
+						</div>
+						<div class="dycpaysub-content">
+							<span>应付金额:</span>
+							<span class="dycsurepaynumber"><em>￥</em><span id="jmoney"></span></span>
+							<a class="dycpaynow-btn clearfix" id="jPayment" href="#this">立即支付</a>
+							<a class="dycfeedback" href="#this">我有疑问,需要反馈?</a>
+						</div>
+
+					</div>
+
+				</div>
+		</section>
+
+		<section>
+			<div class="dyc-success-bg">
+				<div class="dyc-success">付款成功,正在为您跳转到相应的页面......</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				var orderId = $(this).getUrlParam("orderId");
+				var goodsId = $(this).getUrlParam("goodsId");
+				var type = $(this).getUrlParam("type");
+				if(!judgeStatuHref()) { //未登入时跳转
+					window.location.href = "../login.html";
+					return false;
+				}
+
+				//判断登入状态跳转
+				function judgeStatuHref() {
+					if($mid != null && $mid != undefined && $mid != "") {
+						return true;
+					}
+					return false;
+				}
+				
+				$.viewPay(orderId,type); //订单详情  0是购买单条--1专辑的包月
+
+				//选择支付方式
+				var paytypess = 0;
+				$('#jpaymethod li').click(function() {
+					$(this).siblings().removeClass('active');
+					$(this).addClass('active');
+					paytypess = $(this).attr('data-id');
+				});
+
+				$('#jPayment').click(function() {
+					$.imPayment(paytypess, orderId, goodsId);
+				});
+
+				var leftTime = 1799; //29分钟59秒
+				var time = window.setInterval(function() {
+					if(leftTime >= 0) {
+						var minute = Math.floor(leftTime / 60);
+						var second = Math.floor(leftTime % 60);
+						$('#jtime').html(minute + '分钟' + second + '秒');
+						leftTime--;
+					} else {
+						leftTime == 0;
+						clearInterval(time);
+						layer.msg("╮(╯_╰)╭订单未完成，需重新购买~");
+					}
+
+				}, 1000);
+
+			})
+		</script>
+	</body>
+
+</html>

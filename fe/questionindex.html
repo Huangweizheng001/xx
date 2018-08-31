@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>作业—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+		
+		<header id="questionheader">
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="fe-question-banner" id="jQuestionIndexSearch">
+				<div class="fe-search clearfix">
+					<input type="text" name="" value=""  placeholder="请输入搜索关键字" @keyup="if(event.keyCode==13) enterInput($event);" />
+					<a class="fe-question-search-btn" id="jQuestionSearch" href="#this"><i class="uk-icon-search"></i></a>
+					<div class="fe-keywords">热门搜索：
+						<template v-cloak v-for="(item,index) in keywordsList">
+							<a v-bind:href="item.href">{{item.keywords}}</a>，
+						</template>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		<section>
+			<div class="container" id="jQuestionIndex">
+			<div class="fe-question-wrap clearfix">
+					<div class="span4">
+						<div class="fe-question-hot">
+							<div class="fe-question-title">
+								<a class="fe-question-title-head fe-question-hot-title-head"><span>热门试卷</span></a>
+								<p></p>
+							</div>
+							<ul class="fe-question-list">
+								<li v-cloak v-for="item in hotList"><a v-bind:href="item.examPaperId" target="_blank" @click="gettestname(item.name)">[{{item.subject}}]  {{item.name}}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="fe-question-new">
+							<div class="fe-question-title">
+								<a class="fe-question-title-head fe-question-new-title-head"><span>最新试卷</span></a>
+								<p></p>
+							</div>
+							<ul class="fe-question-list">
+								<li v-cloak v-for="item in newList"><a v-bind:href="item.examPaperId" target="_blank" @click="gettestname(item.name)">[{{item.subject}}]  {{item.name}}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="fe-question-down">
+							<div class="fe-question-title">
+								<a class="fe-question-title-head fe-question-down-title-head"><span>下载排行</span></a>
+								<p></p>
+							</div>
+							<ul class="fe-question-list">
+								<li v-cloak v-for="item in downList"><a v-bind:href="item.examPaperId" target="_blank" @click="gettestname(item.name)">[{{item.subject}}]  {{item.name}}</a></li>
+							</ul>
+						</div>
+					</div>
+			</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/feteachercenter.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			questionIndexSearch();//搜索关键字
+			questionIndex();//列表
+			
+		</script>
+
+	</body>
+
+</html>

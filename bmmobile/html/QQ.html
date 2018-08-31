@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>QQ</title>
+
+		<style>
+			body{
+				padding-top: 9rem;
+			}
+			#onlineService {
+				text-align: center;
+				padding: 5rem 2.14rem;
+			}
+			
+			#onlineService a {
+				display: block;
+				padding: 2rem;
+				border-radius: .6rem;
+				font-size: 2.2rem;
+				color: #fff;
+				background-color: #1473e6;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header id="header" class="blue">
+				<span onclick="goBack()">返回</span>
+				<p>客户在线</p>
+			</header>
+			<div id="onlineService">
+				<a target="_blank" href="javascript:void(0)">
+					打开QQ
+				</a>
+				<!--<a target="_blank" href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'>
+				打开QQ
+			</a>-->
+
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/qq.js"></script>
+		<script>
+			$(function() {
+
+				//单个
+				BizQQWPA.addCustom({
+					aty: '0', //指定工号类型,0-自动分流，1-指定工号，2-指定分组
+					nameAccount: SERVERQQ, //营销 QQ 号码
+					selector: 'onlineService' //WPA 被放置的元素
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

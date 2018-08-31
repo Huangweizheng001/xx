@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>新闻列表</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/video-js.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--新闻列表头部列表-->
+		<section class="dycnewslist" id="jnewListHeader">
+			<div class="container clearfix">
+				<div class="dycnewlist-left">
+					<div class="swiper-container dycnewslist-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-for="item in bannerArr">
+								<a v-bind:href="['newsdetail.html?newsId=' + item.newsId]" v-bind:style="{backgroundImage:'url(' +item.src +')'}">
+									<div class="dycdesc-bar">{{item.title}}</div>
+								</a>
+							</div>
+						</div>
+						<!-- Add Pagination -->
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="dycnewlist-right">
+					<a class="span6" href="#this" v-for="item in newsRightArr" v-bind:href="['newsdetail.html?newsId=' + item.newsId]">
+						<div class="dycrightli">
+							<img src="images/newsRightList01.png" v-bind:src="item.iconPath | addRoute" />
+							<p>{{item.title}}</p>
+						</div>
+					</a>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="dycnewlistshow" id="jnewList">
+			<div class="container">
+				<div id="dycnewListType">
+					<template v-for="item in newsTypeArr">
+						<a href="#this" v-bind:data-id="item.newsTypeId">{{item.name}}</a>
+					</template>
+				</div>
+				<div class="dycnewlist-content">
+					
+					<div class="ycpanel clearfix">
+						<div class="span6" v-for="item in newsArr.rows">
+							<a class="ycbox" href="#this" v-bind:href="['newsdetail.html?newsId=' + item.newsId]" target="_blank">
+								<div class="ycimage">
+									<img src="images/newslist01.jpg" v-bind:src="item.iconPath | addRoute" alt="新闻" />
+								</div>
+								<div class="ycright-box">
+									<p class="yctitle">{{item.title}}</p>
+									<p class="ycbrief">{{item.introduce}}</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+					<!--枫叶-->
+					<ul class="pagenationbox clearfix">
+						<li v-show="current != 1" @click="current-- && goto(current--)">
+							<a href="#this">上一页</a>
+						</li>
+						<li v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+							<a href="#this">{{index}}</a>
+						</li>
+						<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+							<a href="#this">下一页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</section>
+
+		<!--视频区-->
+		<section class="ycnew-vidio">
+			<div class="container">
+				<div class="video" id="jnewsPlayer">
+					<object id="WsPlayer" name="WsPlayer" type="application/x-shockwave-flash" data="" width="100%" height="100%" title="Adobe Flash Player">
+					<param name="movie" value="">
+					<param name="quality" value="high">
+					<param name="bgcolor" value="#000000">
+					<param name="devicefont" value="false">
+					<param name="wmode" value="opaque">
+					<param name="allowScriptAccess" value="always">
+					<param name="allowFullscreen" value="true">
+					<param name="allownetworking" value="all">
+					<param name="flashVars" value="">
+			        </object>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/video.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/swfobject.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				$.newListHeader();
+				$.newList();
+				var news = new SWFObject("CuPlayerMiniV4.swf", "CuPlayerV4", "1200", "460", "9", "#000000");
+				news.addVariable("CuPlayerWidth", "1200");
+				news.addVariable("CuPlayerHeight", "460");
+				news.addVariable("CuPlayerFile", "medio/news.mp4");
+				news.addParam("allowfullscreen", "true");
+				news.addParam("allowscriptaccess", "always");
+				news.addParam("wmode", "opaque");
+				news.addParam("quality", "high");
+				news.addParam("salign", "lt");
+				news.addVariable("CuPlayerSetFile", "CuPlayerSetFile.asp"); //播放器配置文件地址,例SetFile.xml、SetFile.asp、SetFile.php、SetFile.aspx
+
+				news.addVariable("CuPlayerAutoPlay", "no");
+				news.addVariable("CuPlayerImage", "images/start.jpg");
+				news.addVariable("CuPlayerPosition", "bottom-right");
+				news.write("jnewsPlayer");
+			})
+		</script>
+	</body>
+
+</html>
+	</body>
+</html>

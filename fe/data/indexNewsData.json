@@ -1,0 +1,43 @@
+[
+	{
+		"newsId": "1",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "2",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿2",
+		"img": "static/loginBg.jpg"
+	}, {
+		"newsId": "3",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿3",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "4",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿4",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "5",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿5",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "6",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿6",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "7",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿7",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "8",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿8",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "9",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿9",
+		"img": "temp/indexBigNewBg.jpg"
+	}, {
+		"newsId": "10",
+		"title": "空中俯瞰美丽新世遗——鼓浪屿10",
+		"img": "temp/indexBigNewBg.jpg"
+	}
+]

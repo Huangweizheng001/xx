@@ -1,0 +1,600 @@
+.layui-m-layershade {
+	background-color: rgba(0, 0, 0, .08) !important;
+}
+
+.layui-m-layer2 .layui-m-layerchild {
+	padding: 10px 10px 0 !important;
+	box-sizing: border-box;
+	max-width: 260px;
+	min-width: 100px !important;
+	height: 80px !important;
+	background-color: #928e87 !important;
+}
+
+.active {
+	background: rgba(0, 0, 0, .2);
+}
+
+.bmmain-container {
+	max-width: 750px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.flex-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+}
+
+.flex-con {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+.flexwrap {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-vertical {
+	-webkit-box-orient: vertical;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+}
+
+
+/*蓝header*/
+
+header.blue {
+	/*position: relative;*/
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 8rem;
+	line-height: 8rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 1.775rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	color: #282828;
+	/*background: #1473e6;*/
+	background-color: #fff;
+}
+
+header.blue span:first-child {
+	font-size: 0;
+	position: absolute;
+	left: 1.4285rem;
+	padding-left: 2.142rem;
+	top: 2.4rem;
+	/*background: url(../images/public/public/goBack2.png) no-repeat center;*/
+	background: url(../images/public/goBackBlack.png) no-repeat center;
+	background-position: 0 center;
+	background-size: 1.285rem 2.285rem;
+}
+
+header.blue span:last-child {
+	position: absolute;
+	right: 1.4285rem;
+	top: 0.4rem;
+}
+
+
+/*灰header*/
+
+header.gray {
+	/*position: relative;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	/*padding-top: 2.42rem;*/
+	/*height: 6rem;*/
+	line-height: 6rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 2.4285rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	color: #282828;
+	background: #f2f2f2;
+}
+
+header.gray span:first-child {
+	position: absolute;
+	left: 1.4285rem;
+	padding-left: 2.142rem;
+	top: 0;
+	background: url(../images/public/goBackBlack.png) no-repeat center;
+	background-position: 0 center;
+	background-size: 1.285rem 2.285rem;
+}
+
+header.gray span:last-child {
+	position: absolute;
+	right: 1.4285rem;
+	top: 2.4rem;
+}
+
+header.grayold {
+	position: relative;
+	padding-top: 2.42rem;
+	height: 9rem;
+	line-height: 6.58rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 1.828rem;
+	text-align: center;
+	color: #fff;
+	border-bottom: 1px solid #eee;
+	background: #fff;
+	/*background: #1473e6;*/
+}
+
+header.grayold span {
+	display: inline-block;
+	padding: 0.2rem 0.9rem;
+	margin: 0 .8rem;
+	/*color: #fff;*/
+	color: #282828;
+	font-weight: bold;
+	line-height: normal;
+	border-radius: 1.0rem;
+}
+
+header.grayold span.selected {
+	color: #065ebf;
+	/*background-color: #fff !important;*/
+}
+
+header.grayold {
+	/*position: relative;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding-top: 1.42rem;
+	height: 7rem;
+	line-height: 4.18rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 1.562rem;
+	text-align: center;
+	color: #fff;
+	border-bottom: 1px solid #eee;
+	background: #fff;
+}
+
+header.grayold span {
+	display: inline-block;
+	padding: 0.2rem 0.9rem;
+	margin: 0 .8rem;
+	color: #282828;
+	font-weight: bold;
+	line-height: normal;
+	border-radius: 1.0rem;
+}
+
+header.grayold span.selected {
+	color: #065ebf;
+}
+
+.flexcenter {
+	/*老版本语法*/
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	/*混合版本语法*/
+	-ms-flex-align: center;
+	/*新版本语法*/
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+
+/*
+ * 主页 indexfooter 部分
+ */
+
+#indexfooter {
+	height: 4.14rem;
+}
+
+#indexfooter .fixedfooter {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding-top: 0.8rem;
+	font-size: 1.857rem;
+	background-color: #f2f2f2;
+	height: 4rem;
+	line-height: 4rem;
+	padding-bottom: 0.35rem;
+}
+
+#indexfooter ul li {
+	padding-top: 0.85rem;
+	padding-bottom: 1rem;
+	background: url() no-repeat center 0.142rem;
+	background-size: auto 1.69rem;
+	text-align: center;
+}
+
+#indexfooter ul li a {
+	/*	padding-top: 2.57rem;*/
+	color: #333;
+	font-size: 1.3rem
+}
+
+#indexfooter ul li.active,
+#indexfooter ul li.active a {
+	padding-top: 0.58rem;
+	color: #1473e6;
+	font-size: 1.3rem;
+}
+
+#indexfooter ul li:nth-of-type(1) {
+	background-image: url(../images/public/bottombtn0101.png);
+}
+
+#indexfooter ul li:nth-of-type(2) {
+	background-image: url(../images/public/bottombtn0201.png);
+}
+
+#indexfooter ul li:nth-of-type(3) {
+	background-image: url(../images/public/bottombtn0301.png);
+}
+
+#indexfooter ul li:nth-of-type(4) {
+	background-image: url(../images/public/bottombtn0401.png);
+}
+
+#indexfooter ul li:nth-of-type(1).active {
+	background-image: url(../images/public/bottombtn0102.png);
+}
+
+#indexfooter ul li:nth-of-type(2).active {
+	background-image: url(../images/public/bottombtn0202.png);
+}
+
+#indexfooter ul li:nth-of-type(3).active {
+	background-image: url(../images/public/bottombtn0302.png);
+}
+
+#indexfooter ul li:nth-of-type(4).active {
+	background-image: url(../images/public/bottombtn0402.png);
+}
+
+#indexfooter span {
+	display: inline-block;
+	margin-top: 0px;
+	width: 3.5rem;
+	height: 3.5rem;
+	line-height: 3.5rem;
+	text-align: center;
+	font-size: 2.57rem;
+	color: #fff;
+	border-radius: 50%;
+	background: #282828 url(../images/public/bottombtn-open.png) no-repeat center;
+	background-size: 46%;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transition: all .1s;
+	transition: all .1s;
+}
+
+#indexfooter span.active {
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
+}
+
+.chat-input-box {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: .5rem;
+	box-sizing: border-box;
+	background-color: #d0d0d0;
+}
+
+.chat-input-box #chatContent {
+	display: inline-block;
+	border: 1px solid #bbb;
+	outline: none;
+	line-height: 1.5;
+	text-indent: 1rem;
+	min-height: 30px;
+	max-height: 60px;
+	width: 60%;
+	overflow: auto;
+	padding-top: 4px;
+	vertical-align: middle;
+	font-size: 14px;
+	width: calc(100% - 145px);
+	border-radius: .3rem;
+	background-color: #fff;
+}
+
+.chat-input-box #chatContent img {
+	display: inline-block;
+	max-width: 120px;
+}
+
+.chat-btns-group {
+	display: inline-block;
+	width: 136px;
+	line-height: 30px;
+}
+
+.chat-input-box .chat-face {
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	background: url(../images/public/face-btn.png) no-repeat;
+	background-size: 640%;
+	background-position: -3px -77px;
+}
+
+.chat-input-box .chat-file {
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	overflow: hidden;
+	cursor: pointer;
+	background: url(../images/public/face-btn.png) no-repeat;
+	background-size: 640%;
+	background-position: -44px -77px;
+}
+
+.chat-input-box .chat-file input {
+	opacity: 0;
+}
+
+.chat-input-box .chat-submit {
+	display: inline-block;
+	float: right;
+	margin-top: 2px;
+	margin-right: 3px;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	background-color: #39ca07;
+}
+
+.quickBoxWrap {
+	display: none;
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+}
+
+.quickBoxWrap.active {
+	display: block;
+}
+
+.quickBox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	position: fixed;
+	width: 100%;
+	height: 9.28rem;
+	bottom: 4rem;
+	z-index: 99;
+	text-align: center;
+}
+
+.quickBox a {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	transform: scale(1, 1);
+	-ms-transform: scale(1, 1);
+	/* IE 9 */
+	-webkit-transform: scale(1, 1);
+	/* Safari 和 Chrome */
+	-o-transform: scale(1, 1);
+	/* Opera */
+	-moz-transform: scale(1, 1);
+	/* Firefox */
+	background: url(../images/public/bottomlistnews.png) no-repeat center;
+	background-size: auto 8.57rem;
+	animation-fill-mode: forwards;
+}
+
+@keyframes myfirst {
+	from {
+		transform: scale(0, 0);
+		-ms-transform: scale(0, 0);
+		/* IE 9 */
+		-webkit-transform: scale(0, 0);
+		/* Safari 和 Chrome */
+		-o-transform: scale(0, 0);
+		/* Opera */
+		-moz-transform: scale(0, 0);
+		/* Firefox */
+	}
+	to {
+		transform: scale(1, 1);
+		-ms-transform: scale(1, 1);
+		/* IE 9 */
+		-webkit-transform: scale(1, 1);
+		/* Safari 和 Chrome */
+		-o-transform: scale(1, 1);
+		/* Opera */
+		-moz-transform: scale(1, 1);
+		/* Firefox */
+	}
+}
+
+.quickBox a:first-child {
+	background: url(../images/public/bottomlistnews.png) no-repeat center;
+	background-size: auto 6rem;
+	/*animation: myfirst 500ms 0.2s;
+	-webkit-animation: myfirst 500ms 0.2s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:nth-child(2) {
+	background: url(../images/public/bottomlistbtn-icon02.png) no-repeat center;
+	background-size: auto 5.57rem;
+	/*animation: myfirst 500ms 0.4s;
+	-webkit-animation: myfirst 500ms 0.4s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:nth-child(3) {
+	background: url(../images/public/bottomlistbtn-icon03.png) no-repeat center;
+	background-size: auto 5.57rem;
+	/*animation: myfirst 900ms 0.4s;
+	-webkit-animation: myfirst 900ms 0.4s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:last-child {
+	background: url(../images/public/bottomlistbtn-icon04.png) no-repeat center;
+	background-size: auto 5.57rem;
+	/*animation: myfirst 1200ms 0.4s;
+	-webkit-animation: myfirst 1200ms 0.4s;
+	animation-fill-mode:forwards;*/
+}
+
+/*课程列表*/
+
+.bmcourseListBox {
+	padding: 0 1.54rem;
+	background: #fff;
+}
+
+.bmcourseListBox li {
+	width: 50%;
+	float: left;
+	padding: 1.5rem 0.85rem 0;
+	box-sizing: border-box;
+}
+
+.bmcourseListBox li a {
+	display: block;
+}
+.bmcourseListBox li .img{
+	height: 200px;
+    overflow: hidden;
+    border-radius: .6rem;
+}
+
+
+
+.bmcourseListBox li img {
+	width: 100%;
+	border-radius: .6rem;
+}
+
+.bmcourseListBox li p {
+	line-height: 1.8;
+}
+
+.bmcourseListBox .title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #282828;
+	font-size: 1.456rem;
+}
+
+.bmcourseListBox .price {
+	color: #d0d0d0;
+	font-size: 1.355rem;
+}
+
+
+/*策略解读列表list*/
+
+.bmstrategylist {
+	padding: 0 0.83rem 1.556rem;
+}
+
+.bmstrategylist li {
+	width: 50%;
+	float: left;
+	box-sizing: border-box;
+	padding: 1.455rem 0.56rem 0;
+}
+
+.bmstrategylist li a {
+	display: block;
+	background: #fff;
+	border-radius: 0.6rem;
+}
+
+.bmstrategylist li .img {
+	height: 270px;
+	overflow: hidden;
+	border-radius: 0.6rem 0.6rem 0 0;
+}
+
+.bmstrategylist li img {
+	width: 100%;
+	height: 100%;
+}
+
+.bmstrategylist li p {
+	line-height: 1.8;
+	padding: 0 0.5rem;
+}
+
+.bmstrategylist .title {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #282828;
+	font-size: 1.556rem;
+}
+
+.bmstrategylist .note {
+	color: #d0d0d0;
+	font-size: 1.455rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+
+@media screen and (max-width: 760px)  {
+	.bmstrategylist li .img,.bmstrategylist li img{
+		height: 100px;
+	}
+	.bmcourseListBox li .img,.bmcourseListBox li img{
+		height:110px;
+	}
+}
+@media screen and (max-width: 476px) {
+	.bmstrategylist li .img,.bmstrategylist li img{
+		height: 85px;
+	}
+	.bmcourseListBox li .img,.bmcourseListBox li img{
+		height: 100px;
+	}
+}

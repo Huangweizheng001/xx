@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>嘉宾列表</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+			
+			#navBox {
+				font-size: 1.662rem;
+				text-align: center;
+				background-color: #fff;
+				overflow: hidden;
+				position: fixed;
+				left: 0;
+				top: 8rem;
+				width: 100%;
+			}
+			
+			#navBox .swiper-slide {
+				position: relative;
+				color: #282828;
+				padding: 1rem 0 .6rem;
+			}
+			
+			#navBox .swiper-slide.slideSelected {
+				color: #065ebf;
+			}
+			
+			#navBox .swiper-slide.slideSelected:after {
+				position: absolute;
+				content: "";
+				width: 9rem;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #065ebf;
+			}
+			
+			.bmteacherListBox li {
+				padding: 1.3rem 1.35rem 1.6rem;
+				border-bottom: 0.6rem solid #eee;
+			}
+			
+			.bmteacherListBox li a {
+				display: block;
+			}
+			
+			.bmteacherListBox li img {
+				width: 100%;
+				border-radius: 0.6rem;
+				max-height: 400px;
+				min-height: 300px;
+				overflow: hidden;
+			}
+			
+			.bmteacherListBox .name {
+				line-height: 1.6;
+				box-sizing: border-box;
+				font-size: 1.662rem;
+				color: #282828;
+			}
+			
+			.bmteacherListBox .brief {
+				box-sizing: border-box;
+				font-size: 1.25rem;
+				color: #777;
+			}
+			
+			.teacherwrap {
+				margin-top: 11.5rem;
+			}
+			
+			@media screen and (max-width: 760px) {
+				.bmteacherListBox li img {
+					max-height: 280px;
+					min-height: 120px;
+				}
+			}
+			
+			@media screen and (max-width: 476px) {
+				.bmteacherListBox li img {
+					max-height:200px;
+					min-height: 100px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header id="header" class="blue flex-con">
+				<span onclick="goBack()" style="display: none">返回</span>
+				<p>嘉宾</p>
+			</header>
+			<div class="swiper-container flex-con" id="navBox">
+				<ul class="swiper-wrapper" id="box">
+					<!--<li class="swiper-slide" onclick="currentType(0,0)">外汇投资</li>-->
+				</ul>
+			</div>
+			<!--名师列表-->
+			<section class="teacherwrap flex-con overAuto">
+				<div id="content">
+					<ul class="bmteacherListBox clearfix"></ul>
+				</div>
+			</section>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/zepto.picLazyLoad.min.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				var itemIndex = 0;
+				var LoadEnd_tab = new Array();
+				var firstParam = LoadEnd_tab[0];
+				firstParam = false;
+
+				var pageCount = new Array();
+				var firstPage = pageCount[0];
+				pageCount[0] = 0;
+
+				// 每页展示6个
+				var num = 3;
+				var nownum = 0; //当前数据在第几条
+				var tabTypeId = ""; //默认类型为1
+
+				getTeacherType();
+
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							console.log(tabTypeId)
+							pageCount[itemIndex]++;
+							exeTeacherlist(me, pageCount[itemIndex], tabTypeId, itemIndex); //默认首页
+						}, 200);
+
+					}
+				});
+
+				function getTeacherType(id) { //获取类型
+					var box = $('#box'),
+						bmBox = $('#content .bmteacherListBox'),
+						bmBoxStr = "",
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseType.ashx?action=getTeacherCourseType',
+						dataType: "json",
+						data: {},
+						success: function(result) {
+							if(result.length < 1) {
+								return false;
+							}
+							tabTypeId = result[0].courseTypeId; //记录第一个数据类型
+							result.forEach(function(value, index) {
+								if(index == 0) {
+									$htmlStr += '<li class="swiper-slide slideSelected" data-index=' + index + ' data-id=' + value.courseTypeId + '>' + value.name + '</li>';
+								} else {
+									$htmlStr += '<li class="swiper-slide" data-index=' + index + ' data-id=' + value.courseTypeId + '>' + value.name + '</li>';
+								}
+
+								bmBoxStr += '<ul class="bmteacherListBox clearfix" style="display:none"></ul>';
+
+								LoadEnd_tab.push(false);
+								pageCount.push(0);
+							});
+							bmBox.after(bmBoxStr);
+							box.html($htmlStr);
+
+							navBar();
+							$($(box.find('.swiper-slide'))[0]).addClass('slideSelected');
+							currentType(); //切换类型
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				function navBar() {
+					navSwiperTeacher = new Swiper('.swiper-container', {
+						slidesPerView: 3,
+					})
+
+					window.navSwiperTeacher = navSwiperTeacher;
+				}
+
+				//change live type
+				function currentType() {
+					$('#box li').click(function() {
+						if($(this).hasClass("slideSelected")) {
+							return false;
+						} else {
+							$(this).addClass("slideSelected");
+							$(this).siblings().removeClass("slideSelected");
+						}
+						var type = $(this).attr('data-id');
+						var index = $(this).attr('data-index');
+						window.navSwiperTeacher.slideTo(index, 300, false);
+
+						var $this = $(this);
+						itemIndex = $this.index();
+						$('#content .bmteacherListBox').eq(itemIndex).show().siblings('.bmteacherListBox').hide();
+
+						tabTypeId = $('.slideSelected').attr('data-id'); //数据类型
+
+						// 如果数据没有加载完
+						if(!LoadEnd_tab[itemIndex]) {
+							// 解锁
+							dropload.unlock();
+							dropload.noData(false);
+						} else {
+							// 锁定
+							dropload.lock('down');
+							dropload.noData();
+						}
+						// 重置
+						dropload.resetload();
+
+					});
+				}
+
+				function exeTeacherlist(me, page, id, numIndex) { //嘉宾列表
+
+					var listbox = $('.bmteacherListBox'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Teacher.ashx?action=getTeacherByCourseType',
+						dataType: "json",
+						data: {
+							"courseTypeId": id,
+							"pageIndex": page,
+							"pageSize": num
+						},
+						success: function(result) {
+
+							if(result.length < 1) {
+								LoadEnd_tab[numIndex] = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+
+								return false;
+							} else {
+								if(page <= result.totalPageCount) {
+
+									result.rows.forEach(function(value, index) {
+										var imgSrc = value.mobileIconPath;
+										if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+											imgSrc = '../images/public/default.png';
+										} else {
+											imgSrc = SERVEROOTFILE + imgSrc;
+										}
+
+										$htmlStr += "<li><a href='teacherdetail.html?teacherId=" + value.teacherId + "'><img class='lazyload' src='../images/public/default.png' data-original=" + imgSrc + " /><p class='name'>" + value.name + "</p><p class='brief'>" + value.note + "</p></a></li>";
+										nownum = (page - 1) * num + index + 1;
+										if((nownum) >= result.totalCount) {
+											console.log('到底啦')
+											LoadEnd_tab[numIndex] = true;
+											// 锁定
+											me.lock();
+											// 无数据
+											me.noData();
+											//break;
+										}
+									});
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										listbox.eq(numIndex).append($htmlStr);
+										$("#content .lazyload").picLazyLoad({
+											threshold: 10
+										});
+										// 每次数据加载完，必须重置
+										me.resetload();
+										
+									}, 1000);
+
+								}
+
+							}
+
+						},
+						error: function(err) {
+							console.log('服务器出错了~');
+							// 加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

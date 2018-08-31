@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>课程播放</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+		<link rel="stylesheet" href="css/fetvcyq.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css" />
+		<!--<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.4.0/aliplayer-min.js"></script>-->
+		
+		<!--<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />-->
+
+		<style>
+			#jcoursePlayer {
+				width: 100%;
+				height: 570px;
+			}
+			
+			.fe-courseplayer-right-box .fe-courseplayer-right-con a:hover {
+				/*color: #ff5d05;*/
+			}
+			
+			.fe-courseplayer-right-box .fe-courseplayer-course-con a:hover>span {
+				background-position: -576px -637px;
+			}
+			
+			.fe-courseplayer-right-box .fe-courseplayer-course-con a.isfree {
+				padding: 0 70px 0 20px;
+			}
+			
+			.fe-courseplayer-right-box .fe-courseplayer-course-con a.isfree:after {
+				content: "免费试听";
+				position: absolute;
+				top: 21px;
+				font-size: 12px;
+				right: 32px;
+				width: 60px;
+				height: 17px;
+				line-height: 17px;
+				text-align: center;
+				color: #04b00f;
+				border: 1px solid #04b00f;
+				border-radius: 8px;
+			}
+			#notePop{
+				padding: 10px;
+			}
+			#notePop h1{
+				color: #333;
+				font-size: 20px;
+			}
+			#notePop h3{
+				color: #999;
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+			#notePop textarea{
+				width: 100%;
+				height: 160px;
+				border-radius: 5px;
+			}
+			#notePop div{
+				text-align: center;
+				padding-top: 20px;
+			}
+			#notePop button:first-child{
+				width: 100px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				background: #ff6c00;
+				color: #FFF;
+				border: 1px solid #ff6c00;
+				outline: none;
+				border-radius: 5px;
+				margin-right: 20px;
+			}
+			#notePop button:last-child{
+				width: 100px;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				background: #fff;
+				color: #333;
+				border: 1px solid #ccc;
+				outline: none;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--视频模块-->
+		<section>
+			<div class="fe-courseplayer" id="jplayerboxApp">
+				<div class="container">
+					<h2 v-for="(item,index) in courseArr" v-if="index==0" v-cloak>{{item.courseName}}</h2>
+					<div class="fe-courseplayer-video clearfix">
+						<a class="fe-courseplayer-right-btn" id="jbtn" style="right: 30%;">></a>
+						<div class="prism-player fe-prism-player" id="jcoursePlayer"></div>
+						<div class="fe-courseplayer-right" style="width: 30%">
+							<div class="fe-courseplayer-right-box">
+								<div class="fe-courseplayer-right-head clearfix">
+									<div class="span4">
+										<a class="active" data-id="0"><span class="course"></span>课程</a>
+									</div>
+									<div class="span4" style="display: block;">
+										<a data-id="1"><span class="note"></span>笔记</a>
+									</div>
+									<div class="span4" style="display: none;">
+										<a data-id="2"><span class="suspect"></span>答疑</a>
+									</div>
+								</div>
+								<div class="fe-courseplayer-right-con fe-courseplayer-course-con" style="display: block;">
+									<template v-for="(item, index) in courseScheduleArr" v-cloak>
+										<!--<a v-if="item.isPurchased == 1 || item.isFree==1" v-bind:class="{active: index ==currentIndex, 'isfree': item.isPurchased !=0 && item.isFree != 0}" :href="cid,item.videoId,courseType|gotoCoursePlayer">{{item.courseCatalogName}}<span></span>
+										</a>-->
+										<a v-if="hasEnrolled" v-bind:class="{active: index ==currentIndex}" :href="cid,item.videoId,courseType|gotoCoursePlayer">{{item.courseCatalogName}}<span></span>
+										</a>
+										<template v-else>
+											<a v-if="item.allowListen == 1" v-bind:class="{active: index ==currentIndex, 'isfree':1}" :href="cid,item.videoId,courseType|gotoCoursePlayer">{{item.courseCatalogName}}<span></span>
+											</a>
+											<a v-else v-bind:class="{active: index ==currentIndex}" :href="cid,item.videoId,courseType|gotoCoursePlayer">{{item.courseCatalogName}}<span></span>
+											</a>
+										</template>
+									</template>
+
+								</div>
+								<div class="fe-courseplayer-right-con fe-courseplayer-note-con" style="display: none;">
+									<textarea class="fe-courseplayer-note" placeholder="记录您此刻的想法..." @keyup="checkLen()" v-model="inputValue" id="notetextarea"></textarea>
+									<div style="margin-left: 20px">您还可以输入 <span id="count">200</span> 个文字</div>
+									<a class="fe-courseplayer-save">保存</a>
+									<ul class="fe-courseplayer-analysis">
+										<li v-cloak v-for="item in noteList">
+											<p>{{item.courseName}}</p>
+											<span>{{item.noteTime}}</span>
+											<div class="delete" v-bind:data-id="item.noteId">
+												<a class="write" @click="edit(item.noteId)">编辑</a>|
+												<a @click="deleteNote(item.noteId)">删除</a>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="fe-courseplayer-right-con fe-courseplayer-suspect-con" style="display: none;">
+									<textarea class="fe-courseplayer-note" placeholder="记录您此刻的想法..." maxlength="1000"></textarea>
+									<a class="fe-courseplayer-save">保存</a>
+									<div class="fe-courseplayer-question">
+										<div class="fe-courseplayer-tab">
+											<a class="active" data-id="0"><span>我的问答</span></a>|
+											<a class="" data-id="1"><span>所有问答</span></a>
+										</div>
+										<ul class="fe-courseplayer-questionlist">
+											<li>
+												<h3>我：<a>第45分钟关于一元二次方程和线性函数例题的另外一种解法。</a></h3>
+												<span>2017-06-15 05:12</span>
+												<a>删除</a>
+											</li>
+											<li>
+												<h3>陈晓可：<a>第45分钟关于一元二次方程和线性函数例题的另外一种解法。</a></h3>
+												<span>2017-06-15 05:12</span>
+											</li>
+										</ul>
+										<ul class="fe-courseplayer-questionlist" style="display: none;">
+											<li>
+												<h3>陈晓可：<a>第45分钟关于一元二次方程和线性函数例题的另外一种解法。</a></h3>
+												<span>2017-06-15 05:12</span>
+												<a>删除</a>
+											</li>
+											<li>
+												<h3>陈晓可：<a>第45分钟关于一元二次方程和线性函数例题的另外一种解法。</a></h3>
+												<span>2017-06-15 05:12</span>
+											</li>
+										</ul>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="notePop" style="display:none;">
+					<h1></h1>
+					<h3></h3>
+					<textarea name="" id="notetext"></textarea>
+					<div>
+						<button id="saveBtn" @click="updateNote($event)">保存</button>
+						<button @click="closePop()">取消</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--附加模块-->
+		<section style="position: relative;margin-top: 88px">
+			<div class="container clearfix">
+				<div class="span9">
+					<div class="courseRecommend" id="courseRecommend">
+						<div class="fetitle">
+							<div class="container">
+								<div class="span9">
+									<h1>课程推荐 <span>换一批</span></h1>
+								</div>
+							</div>
+						</div>
+						<div class="fecontent">
+							<!--<div class="fenodata" v-show="recommendedcoursesnodata"></div>-->
+							<div class="" v-cloak v-for="item in recommendedcourses">
+								<div class="fepanel">
+									<a v-bind:href="item.courseId|addRootCourse" class="feimage" target="_blank" >
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</a>
+									<div class="febox clearfix">
+										<h2>{{item.title}}</h2>
+										<div>
+											<b v-if="item.isFree==0" style="color: #ff6c00">¥{{item.preferentialPrice}}</b>
+											<b v-else >免费</b>
+											<div class="fetoggle">
+												<span>{{item.teacherName}}</span>
+												<span><a v-bind:href="item.organId|addRootSchool" target="_blank">{{item.organName}}</a></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!--评论区-->
+					<section style="">
+						<!--课程评论区包含点赞-->
+						<div class="coursePinglun clearfix" id="feleaveword">
+							<h5 >课程评论<span>（累计评论<b v-cloak>{{allCount}}</b>条）</span></h5>
+							<div class="courseScore clearfix">
+								<div class="feleft">
+									<span v-cloak>{{avgScore}}</span>
+									<ul class="clearfix">
+										<!--<li></li>-->
+										<!--<li></li>-->
+										<!--<li></li>-->
+										<!--<li></li>-->
+										<!--<li></li>-->
+									</ul>
+								</div>
+								<div class="feright">
+									<h1>主动评价星级分布</h1>
+									<ul v-if="starScoreList.length>0">
+										<li v-cloak v-for="item in starScoreList">
+											<span>{{item.starCount}}星</span>
+											<h3><b :style="{width:item.starPercent+'px'}"></b></h3>
+											<s>{{item.starPercent}}%</s>
+										</li>
+										<!--<li>-->
+											<!--<span>四星</span>-->
+											<!--<h3><b></b></h3>-->
+											<!--<s>100%</s>-->
+										<!--</li>-->
+										<!--<li>-->
+											<!--<span>三星</span>-->
+											<!--<h3><b></b></h3>-->
+											<!--<s>100%</s>-->
+										<!--</li>-->
+										<!--<li>-->
+											<!--<span>两星</span>-->
+											<!--<h3><b></b></h3>-->
+											<!--<s>100%</s>-->
+										<!--</li>-->
+										<!--<li>-->
+											<!--<span>一星</span>-->
+											<!--<h3><b></b></h3>-->
+											<!--<s>100%</s>-->
+										<!--</li>-->
+									</ul>
+								</div>
+							</div>
+							<div class="fepinglunarea">
+								<!--<div class="feliuyan-parent">-->
+								<!--<input type="text" ><button>评论</button>-->
+								<!--</div>-->
+								<ul class="feleaveword" style="margin: 0">
+									<li v-cloak v-for="list in leavewordList" v-bind:data-courseevaluationid="list.courseEvaluationId" v-bind:data-leveloneevaluationid="list.levelOneEvaluationId">
+										<div class="fetop clearfix">
+											<img v-bind:src="list.iconPath|addRootFile" alt="">
+											<h4><span v-bind:data-id="list.userId">{{list.nickName}}</span></h4>
+											<div class="star">
+												<span :class="list.score>2 ? '':'graystar'"></span>
+                                                <span :class="list.score>=4 ? '':'graystar'"></span>
+                                                <span :class="list.score>=6 ? '':'graystar'"></span>
+                                                <span :class="list.score>=8 ? '':'graystar'"></span>
+                                                <span :class="list.score>=10 ? '':'graystar'"></span>
+											</div>
+											<s>{{list.evaluationDate}}</s>
+										</div>
+										<div class="febox">
+											<p>{{list.evaluation}}</p>
+											<!--<button>回复</button> -->
+											<span class="dianzang">{{list.thumbUpCount}}</span>
+											<span class="lookup"  @click="getCount(list.children.length,$event)">查看({{list.children.length}})</span>
+										</div>
+										<ul class="feleaveword-chirld" :class="list.children.length<1 ? '':'feleaveword-chirld-border'" style="display: none">
+											<li v-cloak v-for="item in list.children" v-bind:data-courseevaluationid="item.courseEvaluationId" v-bind:data-leveloneevaluationid="item.levelOneEvaluationId">
+												<div class="fetop clearfix">
+													<img v-bind:src="item.iconPath|addRootFile" alt="">
+													<h4><span v-bind:data-id="item.userId">{{item.nickName}}</span><b>回复</b>{{item.respondents}}</h4>
+													<s>{{item.evaluationDate}}</s>
+												</div>
+												<div class="febox">
+													<p>{{item.evaluation}}</p>
+													<!--<button>回复</button> -->
+													<span class="dianzang">{{item.thumbUpCount}}</span>
+												</div>
+												<!--<div class="feliuyan">-->
+												<!--<input type="text"><button>评论</button>-->
+												<!--</div>-->
+											</li>
+										</ul>
+									</li>
+								</ul>
+								<!--枫叶-->
+								<ul class="pagenationbox clearfix">
+									<li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+				</div>
+				<div class="span3">
+					<!--<div style="height: 88px;background: #f4f4f4"></div>-->
+					<div class="fehotclassmodule fehotcourse" style="margin-top: 0" id="rankingList">
+						<div class="fetitle" style="margin-left: 0">热门课程榜</div>
+						<div class="fetabs clearfix" style="margin-left: 0;margin-right: 0">
+							<a href="#this" class="active" data-id="1">免费排行</a>
+							<a href="#this" data-id="0">收费排行</a>
+						</div>
+						<ul style="margin-left: 0;margin-right: 0">
+							<li v-cloak v-for="(item,index) in hotcourse" class="clearfix">
+								<a v-bind:href="item.courseId|addRoot" style="display: block" target="_blank" v-bind:title="item.courseName">
+									<!--<div class="feleft">-->
+									<!--<span v-bind:style="{backgroundPosition:'-584px '+rankingPosition[index]+'px'}"></span>-->
+									<!--</div>-->
+									<span >{{index+1}}</span>
+									<div class="femiddle">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<div class="feright">
+										<h3>{{item.courseName}}</h3>
+										<h4>讲师：{{item.teacherName}}</h4>
+										<h4>本周新增：{{item.buyCount}} 报名</h4>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js?1"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
+		<!--<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>-->
+		
+
+		<script>
+			$(function() {
+				coursePlayBox($(this).getUrlParam("cid"), $(this).getUrlParam("vid"), $(this).getUrlParam("courseType"),$(this).getUrlParam("courseKind"));
+				courseOtherFn($(this).getUrlParam("courseType"));
+				leaveword($(this).getUrlParam("cid"),$(this).getUrlParam("courseKind"));
+			})
+		</script>
+
+	</body>
+
+</html>

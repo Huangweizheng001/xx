@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="./css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/festyle.css">
+		<title>选课分类</title>
+	</head>
+
+	<body>
+		<header id="feHeaderWhiteSearch">
+        	<header-white-search-template title="选课分类"></header-white-search-template>
+    	</header>
+		<div class="feCourseSelectWrap" id="feCourseSelectWrap">
+			<div class="feCourseAdv">
+				<div class="swiper-container feCourseContainer">
+					<div class="swiper-wrapper">
+						<a class="swiper-slide">
+							<img src = 'images/temp/courseselectbanner.png' />
+						</a>	
+						<a class="swiper-slide">
+							<img src = 'images/temp/courseselectbanner1.png' />
+						</a>	
+						<a class="swiper-slide">
+							<img src = 'images/temp/courseselectbanner.png' />
+						</a>	
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="swiper-container feCoursetypeContainer">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" v-cloak v-for="(item,index) in courseType" v-bind:class="{'active-nav':recordType==item.recordType}">
+						<a href="javascript:;" @click="changeSlide(item.recordType,index)">{{item.playTypeName}}</a>
+					</div>
+				</div>
+			</div>
+			<template  v-cloak v-for="(item,index) in courseTypeList">
+				<div class="feGrayLIne16"></div>
+				<div class="feCoursetypeList">
+					<a class="feCoursetypeListTitle" v-bind:class="'feCoursetypeList'+index" v-bind:href="item.eId">{{item.educationalLevelName}}</a>
+					<ul class="clearfix">
+						<li class="span6" v-for="(itemChild,index) in item.children">
+							<a v-bind:href="itemChild.gId">{{itemChild.gradeName}}</a>
+						</li>
+						
+					</ul>
+				</div>
+			</template>
+		</div>
+
+		<footer id="feFooter">
+        	<footer-template></footer-template>
+    	</footer>
+		<script type="text/javascript" src="js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="js/libs/vue.min.js"></script>
+		<script type="text/javascript" src="js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/femoblie.min.js"></script>
+		<script type="text/javascript" src="js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				courseSelectApp();
+			})
+		</script>
+	</body>
+
+</html>

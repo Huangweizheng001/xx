@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>头像</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+				padding-top: 9rem;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			section {
+				margin-top: 3.57rem;
+				padding: 0 2.14rem;
+				text-align: center;
+			}
+			
+			section p {
+				margin-top: 1rem;
+				font-size: 2rem;
+				color: #999;
+			}
+			
+			section img {
+				width: 16rem;
+				height: 16rem;
+				border-radius: 50%;
+			}
+			
+			#mask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, .2);
+			}
+			
+			#mask.show {
+				bottom: 0;
+			}
+			
+			#headerBox {
+				position: fixed;
+				bottom: 1.285rem;
+				width: 100%;
+				left: 0;
+				height: 17.3rem;
+				padding: 0 1.214rem;
+				box-sizing: border-box;
+				text-align: center;
+				z-index: 2;
+				-webkit-transform: translateY(40rem);
+				transform: translateY(40rem);
+				-webkit-transition: all .3s;
+				transition: all .3s
+			}
+			
+			#headerBox.show {
+				-webkit-transform: translateY(0);
+				transform: translateY(0);
+			}
+			
+			#headerBox a {
+				display: block;
+				height: 8.214rem;
+				line-height: 8.214rem;
+				font-size: 2.57rem;
+				color: #1473e6;
+				background-color: #fff;
+			}
+			
+			#headerBox #headerIconBox a:first-child {
+				border-top-left-radius: 1.6rem;
+				border-top-right-radius: 1.6rem;
+			}
+			
+			#headerBox #headerIconBox a:nth-child(2) {
+				border-top: 1px solid #eee;
+				border-bottom: 1px solid #eee;
+			}
+			
+			#headerBox #headerIconBox a:last-child {
+				border-bottom-left-radius: 1.6rem;
+				border-bottom-right-radius: 1.6rem;
+			}
+			
+			#cancel {
+				margin-top: 0.857rem;
+				border-radius: 1.6rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack()">返回</span>
+				<p>个人信息</p>
+				<span id="saveHeader">保存</span>
+			</header>
+			<section id="selectHeader">
+				<img id="headerIcon" src="../images/public/memberIcon.jpg" />
+				<p>点击选择头像</p>
+			</section>
+
+			<div id="mask"></div>
+			<div id="headerBox">
+				<div id="headerIconBox">
+					<a style="position: relative;">
+						<form id="juploadIma">
+							<label>
+								相册<input type=file accept="image/*"  name="iconPath" id="dycupmbicon" onclick="onFileChange()" style="position: absolute;top:0px;left:0px;width: 100%;height: 100%;opacity: 1;">
+							</label>
+						</form>
+
+					</a>
+				</div>
+				<a href="#this" id="cancel">取消</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+
+		<script>
+			function onFileChange() { //头像选择
+				$(this).change(function() {
+				var fileObj = document.getElementById("dycupmbicon").files[0]; // js 获取文件对象
+				/*if(typeof(fileObj) == "undefined" || fileObj.size <= 0) {
+					alert("请选择图片");
+					return;
+				}*/
+				var formFile = new FormData();
+				formFile.append("action", "UploadVMKImagePath");
+				formFile.append("file", fileObj); //加入文件对象
+				$('#mask').toggleClass('show');
+				$('#headerBox').toggleClass('show');
+				var objUrl = getObjectURL(fileObj);
+				$("#headerIcon").attr("src", objUrl);
+				console.log(formFile);
+				});
+			}
+			
+			function getObjectURL(file) { //头像预览
+					var url = null;
+					if(window.createObjectURL != undefined) { // basic
+						url = window.createObjectURL(file);
+					} else if(window.URL != undefined) { // mozilla(firefox)
+						url = window.URL.createObjectURL(file);
+					} else if(window.webkitURL != undefined) { // webkit or chrome
+						url = window.webkitURL.createObjectURL(file);
+					}
+					return url;
+				}
+
+
+			$(function() {
+				
+				
+				//header init
+				function headerInit() {
+					var jmemberHeaderIcon = $('#headerIcon');
+					if(jmemberHeaderIcon != "false") {
+						jmemberHeaderIcon.attr('src', localStorage.getItem('$ycuheader'));
+					}
+				}
+
+				//public
+				var mask = $('#mask'),
+					headerBox = $('#headerBox');
+
+				mask.click(function() {
+					closeSelect();
+				});
+				$('#cancel').click(function() {
+					closeSelect();
+				});
+				saveHeader();
+				selectHeader();
+
+				//选择头像
+				function selectHeader() {
+					$('#selectHeader').click(function() {
+						mask.addClass('show');
+						headerBox.addClass('show');
+					});
+
+				}
+
+				//关闭选择
+				function closeSelect() {
+					mask.removeClass('show');
+					headerBox.removeClass('show');
+				}
+
+				//选择头像
+				var tempIcon = "";
+
+				function selectHeaderVal(val) {
+					var sourceType = 'library';
+					if(0 == val) {
+						sourceType = "album";
+					} else if(1 == val) {
+						sourceType = "camera";
+					}
+
+					closeSelect();
+				}
+
+			
+				var dataChange = false;
+				
+				function saveHeader() {
+					$('#saveHeader').click(function() {
+						var da = new FormData($('#juploadIma')[0]);
+						da.append("memberId", 1);
+						
+						$.ajax({
+							type: "post",
+							url: SERVEROOTDATA + 'Member.ashx?action=updateMemberIcon',
+							dataType: "json",
+							data: {
+								da
+							} ,
+							success: function(result) {
+								localStorage.setItem('$ycuheader', ROOTFILE + result.iconPath);
+								layer.open({
+									content: '更新成功',
+									skin: 'msg',
+									time: 2 //2秒后自动关闭
+								});
+								dataChange = false;
+								setTimeout(function() {
+									//goBack2();
+								}, 1000)
+							},
+							error: function(err) {
+								console.log(err);
+							}
+						});
+					});
+
+				}
+			});
+		</script>
+	</body>
+
+</html>

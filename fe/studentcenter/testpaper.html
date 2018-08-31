@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>试卷</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<div class="container">
+    <div class="testpaper" id="testpaper">
+        <!--选择题-->
+        <div class="fepanel" v-cloak v-for="(list,index) in test" v-if="list.name=='选择题'">
+            <!--大纲-->
+            <h1>{{index+1|toChinese}}、{{list.name}}</h1>
+            <ul v-bind:data-id="list.homeworkTypeId">
+               <li v-cloak v-for="(item,index1) in list.question" v-bind:data-homeworkquestionid="item.homeworkQuestionId" v-bind:data-questionbankid="item.questionBankId" v-bind:data-questiontypeid="item.questionTypeId">
+                   <input type="hidden" v-bind:value="item.rightAnswer" class="rightanswer">
+                   <input type="hidden" v-bind:value="item.point" class="score">
+                   <!--题目-->
+                   <p class="fetitle">
+                       <a class="">{{index1+1}}</a>.
+                       <img v-bind:src="item.title|addRootFile">:（<span class="answer">{{item.studentAnswer}}</span>）
+                       <!--<button>替&nbsp;&nbsp;换</button>-->
+                   </p>
+                   <!--选项-->
+                   <div class="clearfix fecontent" v-cloak v-for="(i,index2) in item.option">
+                       <span class="option">{{index2+1|tostring}}</span><img v-bind:src="i.op|addRootFile" alt="">
+                   </div>
+                   <!--答案-->
+                   <div class="feanswer">
+                       <p class="answer-btn btn-green">正确答案：{{item.rightAnswer}}</p>
+                       <p class="answer-btn btn-orange">考点解析：</p>
+                       <div class="feanalysis">
+                           <img v-bind:src="item.analysis|addRootFile" alt="">
+                       </div>
+                   </div>
+               </li>
+            </ul>
+        </div>
+        <!--填空题-->
+        <div class="fepanel" v-cloak v-for="(list,index) in test" v-if="list.name=='填空题'">
+            <!--大纲-->
+            <h1>{{index+1|toChinese}}、{{list.name}}</h1>
+            <ul v-bind:data-id="list.homeworkTypeId">
+                <li v-cloak v-for="(item,index1) in list.question" v-bind:data-homeworkquestionid="item.homeworkQuestionId" v-bind:data-questionbankid="item.questionBankId" v-bind:data-questiontypeid="item.questionTypeId">
+                    <input type="hidden" v-bind:value="item.rightAnswer" class="rightanswer">
+                    <input type="hidden" v-bind:value="item.point" class="score">
+                    <!--题目-->
+                    <p class="fetitle">
+                        <a class="">{{index1+1}}</a>.
+                        <b style="font-weight: normal">{{item.title}}</b>:（<input type="text" style="padding: 2px 5px" class="answer tk"><b>{{item.studentAnswer}}</b>）
+                        <!--<button>替&nbsp;&nbsp;换</button>-->
+                    </p>
+                    <!--答案-->
+                    <div class="feanswer">
+                        <p class="answer-btn btn-green">正确答案：</p>
+                        <p style="margin-left: 30px">{{item.rightAnswer}}</p>
+                        <p class="answer-btn btn-orange">考点解析：</p>
+                        <div class="feanalysis">
+                            <p>{{item.analysis}}</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="feoperation">
+            <button @click="confirmBtn()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        testpaper($(this).getUrlParam("id"), $(this).getUrlParam("subjectId"), $(this).getUrlParam("gradeId"),$(this).getUrlParam("type"))
+    })
+</script>
+</body>
+
+</html>

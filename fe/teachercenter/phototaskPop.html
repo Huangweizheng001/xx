@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-图片作业弹框</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <!--<div class=""  style="position: relative;width: 880px;margin: auto;background: #fff" >-->
+            <div class="fe-arrangetask-pop" id="photoTask" style="padding-top: 40px">
+                <ul>
+                    <li>
+                        <span>作业名称</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级</span>
+                        <select name="" id="teacherClass">
+                            <option value="0">请选择</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>课&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程</span>
+                        <select name="" id="teacherCourse">
+                            <option value="0">请选择</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>课程大纲</span>
+                        <select name="" id="teacherOutline">
+                            <option value="0">请选择</option>
+                        </select>
+                    </li>
+
+
+                    <li>
+                        <span style="float: left">上传图片</span>
+                        <a id="zwb_upload" style="overflow: hidden">
+                            <input type="file" class="add" multiple>点击上传文件
+                        </a>
+                    </li>
+                    <li>
+                        <span >上交时间</span>
+                        <input type="text" id="endTime">
+                    </li>
+                </ul>
+                <div class="fe-save">
+                    <button>保存</button>
+                </div>
+                <!--<div >-->
+                <!--<button id="hh">测试</button>-->
+                <!--</div>-->
+            </div>
+
+        </div>
+    <!--</div>-->
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/upload.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        photoTask();
+    })
+</script>
+</body>
+
+</html>

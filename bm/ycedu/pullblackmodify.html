@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>拉黑操作--modify</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/jquery.sinaEmotion.css" />
+		<link rel="stylesheet" href="css/Ecalendar.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<style>
+			.bmpullBlackWrap{
+				text-align: center;
+			}
+			
+			.bmpullBlackWrap h4{
+				margin: 15px 0;
+				font-size: 24px;
+			}
+			
+			.bmpullBlackWrap input{
+				outline: none;
+				border:1px solid #ddd;
+				line-height: 32px;
+			}
+			
+			.bmOptBtns{
+				margin: 30px 0;
+			}
+			
+			.bmOptBtns .bmsaveBtn{
+				display: inline-block;
+				padding: 6px 42px;
+				color: #fff;
+				background-color: #0077DD;
+			}
+			.bmOptBtns .bmsaveBtn:hover{
+				background-color: #005599;
+			}
+		</style>
+
+	</head>
+
+	<body style="padding-top: 0;">
+		<section class="bmpullBlackWrap" id="bmpullBlackApp">
+			<div class="container">
+				<h4>拉黑操作--修改</h4>
+				<form action="">
+					<label>
+						<input type="text" placeholder="用户IP地址" v-model="optIp" />
+					</label>
+					<label style="position: relative;">
+						开始时间:<input id="bmsetTime1" type="text" v-model="beginTime" /> 
+					</label>
+					<label style="position: relative;">
+						结束时间:<input id="bmsetTime2" type="text" v-model="endTime" />
+					</label>
+					
+					<div class="bmOptBtns">
+						<a class="bmsaveBtn" href="#this" @click="modifyFunc()">提交</a>
+					</div>
+				</form>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript" src="js/Ecalendar.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script>
+			$(function() {
+				var pid = $(this).getUrlParam("pid");
+				new Vue({
+					el: "#bmpullBlackApp",
+					data: {
+						pullArr:[],
+						beginTime: '',
+						endTime: '',
+						optIp :'',
+						pullId:''
+					},
+					mounted: function mounted() {
+						//1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.getInitData();
+							this.setTime1();
+							this.setTime2();
+						});
+					},
+					methods: {
+						getInitData: function getInitData() {
+							var _this = this;
+							this.$http.post(ROUTE + "Member.ashx?action=getIpBlackByBlacklistId", {
+								blacklistId:pid
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body == 8401){
+									layer.msg("请先登录！");
+									return false;
+								}
+								if(res.body.code == 200){
+									this.pullArr = res.body.rows;
+									this.optIp = this.pullArr[0].ip;
+									this.beginTime = this.pullArr[0].beginTime;
+									this.endTime = this.pullArr[0].endTime;
+									this.pullId = this.pullArr[0].blacklistId;
+								}
+								
+							});
+						},
+						
+						modifyFunc:function(){
+							var _this = this;
+							if($mid =="" || $mid == undefined || $mid == null){
+								layer.msg("请登录后再操作！");
+								return false;
+							}
+							
+							if(_this.beginTime =="" || _this.beginTime == null){
+								layer.msg("请选择开始时间！");
+								return false;
+							}
+							
+							
+							if(_this.endTime =="" || _this.endTime == null){
+								layer.msg("请选择结束时间！");
+								return false;
+							}
+							
+							this.$http.post(ROUTE + "Member.ashx?action=saveIpBlacklist", {
+								ip:_this.optIp,
+								adminId:$mid,
+								saveTag:2,
+								blacklistId:this.pullId,
+								beginTime: _this.beginTime,
+								endTime: _this.endTime
+								
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body.message == 200){
+									layer.msg("更新成功！");
+								}
+							});
+						},
+						setTime1: function() {
+							var _this = this;
+							$("#bmsetTime1").ECalendar({
+								type: "time",
+								offset: [0, 2],
+								 format:"yyyy-mm-dd hh:ii:00",   //时间格式 默认 yyyy-mm-dd hh:ii;
+								callback: function(v, e) {
+									_this.beginTime = $("#bmsetTime1").val();
+								}
+
+							});
+						},
+						setTime2: function() {
+							var _this = this;
+							$("#bmsetTime2").ECalendar({
+								type: "time",
+								offset: [0, 2],
+								format:"yyyy-mm-dd hh:ii:00",   //时间格式 默认 yyyy-mm-dd hh:ii;
+								callback: function(v, e) {
+									_this.endTime = $("#bmsetTime2").val();
+								}
+							});
+						}
+					}
+				});
+			})
+		</script>
+
+	</body>
+
+</html>

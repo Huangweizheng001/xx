@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线教育-播米在线策略解读</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--strategy Banner-->
+		<section>
+			<div class="dycstrategy-banner">
+				<!--<img src="images/strategy-banner.jpg" />-->
+			</div>
+		</section>
+
+		<!--strategy 老肖外汇-->
+		<section>
+			<div class="dycstrategy-second container ">
+				<div class="dycstrategy-second-wrap clearfix" id="jstrategy">
+					<!--<div class="span6">
+						<a class="dycstrategy-second-box" href="strategydetail.html" target="_blank">
+							<img src="images/strategy-second-bg.jpg" />
+							<div class="dycstrategy-second-con">
+								<h3><span>老肖汇事录</span></h3>
+								<p>今日必读财经要闻</p>
+							</div>
+						</a>
+					</div>
+
+					<div class="span6">
+						<a class="dycstrategy-second-box" href="strategydetail.html" target="_blank">
+							<img src="images/strategy-second-bg.jpg" />
+							<div class="dycstrategy-second-con">
+								<h3><span>老肖汇事录</span></h3>
+								<p>今日必读财经要闻</p>
+							</div>
+						</a>
+					</div>-->
+				</div>
+
+			</div>
+		</section>
+
+		<!--strategy 销量排行-->
+		<section>
+			<div class="dycstrategy-top">
+				<div class="container">
+					<div class="dycstrategy-top-head">
+						<img src="images/strategy-top.png" />
+					</div>
+
+					<div class="swiper-container dycstrategy-top-container">
+						<div class="swiper-wrapper" id="jstrategyswiper"></div>
+						<!-- Add Pagination -->
+						<!--<div class="swiper-pagination"></div>-->
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!--strategy 最新-->
+		<section>
+			<div class="container dycstrategy-new" id="jstrategylist">
+				<div class="dycstrategy-new-head">
+					<img src="images/strategy-new.png" />
+				</div>
+				<ul class="dycstdycstrategy-new-wrap clearfix" >
+					<li class="span6" v-for="item in newStrageArr" v-cloak>
+						<a class="dycstdycstrategy-new-list" :href="'strategynewsdetail.html?newsId='+item.newsId +'&newsTypeId='+item.newsTypeId" target="_blank">
+							<div class="dycstdycstrategy-new-img span5">
+								<img v-bind:src="item.iconPath" />
+							</div>
+							<div class="dycstdycstrategy-new-con span7">
+								<h3>{{item.title}}</h3>
+								<p>{{item.introduce}}</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!--<ul class="pagenationbox clearfix" id="jstrategypage"></ul>
+-->			<!--枫叶-->
+				<ul class="pagenationbox clearfix">
+					<li v-show="current != 1" @click="current-- && goto(current--)">
+						<a href="#this">上一页</a>
+					</li>
+					<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+						<a href="#this">{{index}}</a>
+					</li>
+					<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+						<a href="#this">下一页</a>
+					</li>
+				</ul>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		
+		<!--<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script type="text/javascript" src="js/bomi.js?s"></script>
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+		<script>
+			
+			$.strategyTwo();//前面两个专辑
+			$.strategyHot();//销量排行
+			strategyList();//策略解读-最新列表
+			
+
+		</script>
+	</body>
+
+</html>

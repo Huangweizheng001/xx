@@ -1,0 +1,56 @@
+[
+  {
+    "nav":[
+      {
+        "name":"推荐",
+        "typeid":"1"
+      },
+      {
+        "name":"文章",
+        "typeid":"2"
+      },
+      {
+        "name":"课件",
+        "typeid":"3"
+      }
+    ],
+    "list":[
+      {
+        "newsId":"1",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"几何直观与小学数学教学---邱秀天 ",
+        "coursetype":"课件"
+      },
+      {
+        "newsId":"2",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"几何直观与小学数学教学---邱秀天 ",
+        "coursetype":"课件"
+      },
+      {
+        "newsId":"3",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"如何撰写有价值的教学论文和时间案例---邱秀天 ",
+        "coursetype":"课件"
+      },
+      {
+        "newsId":"4",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"如何撰写有价值的教学论文和时间案例---邱秀天 ",
+        "coursetype":"文章"
+      },
+      {
+        "newsId":"5",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"《平面图形的认识整理与复习》几何学---邱秀天 ",
+        "coursetype":"课件"
+      },
+      {
+        "newsId":"6",
+        "imgsrc":"temp/teacherdetail-1.png",
+        "title":"《平面图形的认识整理与复习》几何学---邱秀天 ",
+        "coursetype":"文章"
+      }
+    ]
+  }
+]

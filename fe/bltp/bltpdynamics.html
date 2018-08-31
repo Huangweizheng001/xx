@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>赛事动态</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+    <link rel="stylesheet" href="../css/bltp.css" />
+</head>
+
+<body>
+
+<div class="header">
+    <img src="../images/temp/banner_01.png" alt="" width="100%">
+</div>
+<!--内容模块-->
+<section class="contentWrapper" id="bltpDynamics">
+    <div class="container">
+        <div class="bltpDynamics">
+            <div class="topTip">
+                <img src="../images/temp/news_banner.png" alt="">
+            </div>
+            <div class="dynamicsContent">
+                <a :href="'bltpdyncdetail.html?activityId='+item.activityId" class="listItem" v-cloak v-for="item in dynamicsArr">
+                    {{item.activityName}}
+                    <span>[{{item.updateTime}}]</span>
+                </a>
+            </div>
+            <!--枫叶-->
+            <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                    <a href="#this">上一页</a>
+                </li>
+                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#this">{{index}}</a>
+                </li>
+                <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                    <a href="#this">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/bltp.js"></script>
+
+<script>
+    $(function() {
+        bltpdynamics()
+    })
+
+</script>
+
+</body>
+
+</html>

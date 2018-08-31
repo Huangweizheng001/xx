@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>搜索结果—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--内容模块-->
+		<section id="jsearchBoxApp" class="fesearch-result-wrap">
+			<div class="container">
+				<!--空处理-->
+				<div class="feemptyTips" v-if="searchEmptyFlag">
+					暂无该搜索内容,请换个内容搜索!
+				</div>
+
+				<!--课程类型-->
+				<ul class="fesearchCourseResult" v-if="searchType==0 || searchType =='0'">
+					<li class="span3" v-cloak v-for="item in searchArr">
+						<div class="fesearchLi" v-if="item.recordType == 0">
+							<a class="feimage" :href="item.courseId,item.courseKind | gotoCourse" target="_blank">
+								<img :src="item.iconPath | addRootFile" />
+							</a>
+							<div class="fesearchContent">
+								<h5>{{item.coursename}}</h5>
+								<span v-if="item.isFree==1" >免费</span>
+								<span v-else style="color: #ff6c00;">￥{{item.preferentialPrice}}</span>
+								<a href="#this" class="feteacherName">{{item.teacher}}</a>
+								<a :href="item.organId | gotoSchool" class="feschoolName">{{item.organ}}</a>
+							</div>
+						</div>
+
+						<div class="fesearchLi" v-if="item.recordType == 1">
+							<a class="feimage" :href="item.courseId,item.courseKind | gotoCloundCourse" target="_blank">
+								<img :src="item.iconPath | addRootFile" />
+							</a>
+							<div class="fesearchContent">
+								<h5>{{item.coursename}}</h5>
+								<span v-if="item.isFree==1" >免费</span>
+								<span v-else style="color: #ff6c00;">￥{{item.preferentialPrice}}</span>
+								<a href="#this" class="feteacherName">{{item.teacher}}</a>
+								<a :href="item.organId | gotoSchool" class="feschoolName">{{item.organ}}</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				<!--老师类型-->
+				<ul class="fesearchTeacherResult" v-if="searchType==1 || searchType =='1'">
+					<li v-cloak v-for="item in searchArr">
+						<a class="feimage" :href="item.teacherId | gotoTeacher" target="_blank">
+							<img :src="item.iconPath | addRootFile" />
+						</a>
+						<p class="fename">
+							姓名：<span>
+								<a :href="item.teacherId | gotoTeacher">{{item.teachername}}</a>
+							</span>
+						</p>
+						<p class="feschool" v-if="item.organ">
+
+							学校：<span>
+								<a :href="item.organId | gotoSchool">{{item.organ}}</a>
+							</span>
+						</p>
+						<p class="fecourse" v-if="item.subject">
+							擅长：<span>{{item.subject}}</span>
+						</p>
+						<p class="fenote" v-if="item.note">简介：<span>{{item.note}}</span></p>
+					</li>
+				</ul>
+
+				<!--学校类型-->
+				<ul class="fesearchTeacherResult fesearchOrgResult" v-if="searchType==4 || searchType =='4'">
+					<li v-cloak v-for="item in searchArr">
+						<a class="feimage" :href="item.organId | gotoOrgan" target="_blank">
+							<img :src="item.iconPath | addRootFile" />
+						</a>
+						<p class="fename">
+							机构名称：<span>
+								<a :href="item.organId | gotoSchool">{{item.name}}</a>
+							</span>
+						</p>
+						<p class="feschool" v-if="item.organType">
+
+							机构类型：<span>
+								<a :href="item.organId | gotoSchool">{{item.organType}}</a>
+							</span>
+						</p>
+						<p class="fecourse" v-if="item.address">
+							地址：<span>{{item.address}}</span>
+						</p>
+						<p class="fenote" v-if="item.note">简介：<span>{{item.note}}</span></p>
+					</li>
+				</ul>
+				
+				<!--机构类型-->
+				<ul class="fesearchTeacherResult fesearchOrgResult" v-if="searchType==2 || searchType =='2'">
+					<li v-cloak v-for="item in searchArr">
+						<a class="feimage" :href="item.organId | gotoSchool" target="_blank">
+							<img :src="item.iconPath | addRootFile" />
+						</a>
+						<p class="fename">
+							学校名称：<span>
+								<a :href="item.organId | gotoSchool">{{item.name}}</a>
+							</span>
+						</p>
+						<p class="feschool" v-if="item.organType">
+
+							学校类型：<span>
+								<a :href="item.organId | gotoSchool">{{item.organType}}</a>
+							</span>
+						</p>
+						<p class="fecourse" v-if="item.address">
+							地址：<span>{{item.address}}</span>
+						</p>
+						<p class="fenote" v-if="item.note">简介：<span>{{item.note}}</span></p>
+					</li>
+				</ul>
+
+				<!--课件-->
+				<ul class="fesearchCwResult" v-if="searchType==3 || searchType =='3'">
+					<template v-for="item in searchArr" v-cloak>
+						<li v-if="item.resourceExt == 0 || item.resourceExt ==7"> <!--图片资源-->
+							<p class="fename">
+								资源名称：{{item.Name}}
+							</p>
+							<a class="feimage" href="#this">
+								<img :src="item.iconPath | addRootFile" />
+							</a>
+						</li>
+						<li v-if="item.resourceExt == 2 || item.resourceExt ==3 || item.resourceExt ==4 || item.resourceExt ==5 "> <!--下载资源-->
+							<p class="fename">
+								<a download :href="item.resourcePath | addRootFile" v-bind:title="item.Name">资源名称：{{item.Name}}</a>
+							</p>	
+						</li>
+						<li v-if="item.resourceExt == 6"> <!--视频资源-->
+							<p class="fename">
+								<a @click="player(item.Name,item.videoId)">视频名称：{{item.Name}}</a>
+							</p>
+						</li>
+					</template>
+				</ul>
+
+				<!--枫叶-->
+				<ul class="pagenationbox clearfix">
+					<li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+						<a href="#this">上一页</a>
+					</li>
+					<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+						<a href="#this">{{index}}</a>
+					</li>
+					<li v-show="allpage != current && allpage != 0" @click="current++ && goto(current++)">
+						<a href="#this">下一页</a>
+					</li>
+				</ul>
+
+			</div>
+		</section>
+
+		<footer id="footer" class="clearfix">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<!--<script type="text/javascript" src="js/fetvAppend.js"></script>-->
+
+		<script>
+			$(function() {
+				seachFunc($(this).getUrlParam("searchType"), $(this).getUrlParam("searchValue"));
+			})
+		</script>
+	</body>
+
+</html>

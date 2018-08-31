@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>热门课程—福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body >
+
+<header id="schoolheader">
+    <header-template></header-template>
+</header>
+
+<div style="background: #f4f4f4;padding-top: 20px">
+    <!--广告-->
+    <!--<div class="fecourselistad" style="margin-top: 0">-->
+        <!--<div class="container">-->
+            <!--<span><i class="uk-icon-times"></i></span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--内容模块-->
+    <section id="fecoursedetail">
+        <div class="container">
+            <!--查询栏-->
+            <div class="fecoursedetailselect">
+                <div class="fetitle clearfix">
+                    <span>全部课程 <i class="uk-icon-angle-right"></i></span>
+                    <ul>
+                        <li class="d1"></li>
+                        <li class="d2"></li>
+                        <!--<li class="d3"></li>-->
+                        <!--<li class="d4"></li>-->
+                        <!--<li class="d5"></li>-->
+                    </ul>
+                    <!--<div class="feclearall" @click="clearAll()">清除全部</div>-->
+                </div>
+                <div class="femodule clearfix">
+                    <span>形式:</span>
+                    <ul class="ferecord">
+                        <li data-id="-1" class="active">不限</li>
+                        <li data-id="1">直播课</li>
+                        <li data-id="0">视频课</li>
+                    </ul>
+                </div>
+                <div class="femodule clearfix">
+                    <span>年级:</span>
+                    <ul class="fegrade">
+                        <li data-id="" class="active">不限</li>
+                        <li v-cloak v-for="item in gradeArr" v-bind:data-id="item.gradeId">{{item.gradeName}}</li>
+                    </ul>
+                </div>
+                <div class="femodule clearfix">
+                    <span>学科:</span>
+                    <ul class="fesubject">
+                        <li @click="getsubject('')" data-id="" class="active">不限</li>
+                        <li v-cloak v-for="item in subjectArr" v-bind:data-id="item.subjectId" @click="getsubject(item.subjectId)">{{item.subjectName}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fecoursedetailnav clearfix">
+                <div class="span9">
+                    <a href="#this" class="fesortall">综合</a>
+                    <a href="#this" class="fesortprice">价格 <i class="uk-icon-long-arrow-down"></i></a>
+                    <a href="#this" class="fesortrenqi">人气 <i class="uk-icon-long-arrow-up"></i></a>
+                    <label for="isWeike" >微课</label><input type="checkbox" class='fesortsmallcourse' id="isWeike" />
+                    <div class="febox">
+                        <span v-cloak>{{current}}</span>/
+                        <span v-cloak>{{allpage}}</span>页
+                        <a href="#this" class="fenextpage uk-icon-angle-left" @click="current-- && goto(current--)"></a>
+                        <a href="#this" class="fenextpage uk-icon-angle-right" @click="current++ && goto(current++)"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="fecoursedetailcontent-grid clearfix span9">
+                <div class="fenodata" v-if="courselist.length<1" style="width: 100%"></div>
+                <div  v-cloak v-for="item in courselist">
+                    <div class="fepanel">
+                        <div class="feleft">
+                            <a v-bind:href="item.courseId,item.courseKind|addRoot" target="_blank" v-if='item.recordType==0'> <img v-bind:src="item.iconPath|addRootFile" alt=""></a>
+                              <a v-bind:href="item.courseId|addCloundRoot" target="_blank" v-if='item.recordType==1'> <img v-bind:src="item.iconPath|addRootFile" alt=""></a>
+                        </div>
+                        <div class="fecenter">
+                            <!--<h2 :class="item.isFree==0 ? 'fehidden':''">-->
+                                <!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo"  target="_blank"><i></i>免费试听</a>-->
+                            <!--</h2>-->
+                            <h1>{{item.courseName}}
+                                <!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo" :class="item.isFree==0 ? 'fehidden':''" target="_blank"><i></i>免费试听</a>-->
+                            </h1>
+                            <p>{{item.note}}</p>
+                            <h6 v-if="item.isFree==0"><span style="color: #ff6c00">¥{{item.preferentialPrice}}</span><s>¥{{item.price}}</s></h6>
+                            <h6 v-else><span >免费</span></h6>
+                            <div class="fegrid-teacher">
+                                <span>{{item.teacherName}}</span>
+                                <span><a v-bind:href="item.organId|addSchoolRoot">{{item.organName}}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--右侧-->
+            <div class="span3">
+                <div class="fehotcoursemodule " style="background: rgb(255, 255, 255);box-shadow: rgb(239, 239, 239) 0px 0px 2px 1px;">
+                    <div class="fetitle">热门教程榜</div>
+                    <div class="fetabs clearfix">
+                        <a href="#this" class="active" data-id="1">免费排行</a>
+                        <a href="#this" data-id="0">付费排行</a>
+                    </div>
+                    <!--<transition-group tag="ul" class="fecontent clearfix"-->
+                    <!--enter-active-class="animated slideInRight duration">-->
+                    <ul class="fecontent">
+                        <li v-cloak v-for="(item,index) in hotcourseArr" :key="item">
+                            <!--<span v-bind:style="{backgroundPosition:'-584px '+rankingPosition[index]+'px'}"></span>-->
+                            <h1>{{index+1}}. {{item.courseName}}</h1>
+                            <div class="fepanel">
+                                <a v-bind:href="item.courseId,item.courseKind|addRoot" class="fecontent" target="_blank">
+                                    <div class="feimage">
+                                        <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                    </div>
+                                    <div class="febox">
+                                        <h2>老师: {{item.teacherName}}</h2>
+                                        <h2>报名数:{{item.enrollmentCount}}</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!--</transition-group>-->
+                </div>
+                <div class="fehotcoursemodule ">
+                    <div class="fetitle">推荐课程</div>
+                    <a v-bind:href="item.courseId,item.courseKind|addRoot" class="febox" v-for="item in recommendedcourses" target="_blank">
+                        <div class="feimage">
+                            <img v-bind:src="item.iconPath|addRootFile" alt="">
+                        </div>
+                        <h6>{{item.title}}</h6>
+                    </a>
+                </div>
+            </div>
+            <!--枫叶-->
+            <div class="span12">
+                <ul class="pagenationbox clearfix">
+                    <li v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </section>
+</div>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/distpicker.data.min.js"></script>
+<script type="text/javascript" src="./js/distpicker.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var organId=$(this).getUrlParam("organId");
+        schoolcourse(organId);
+    })
+</script>
+</body>
+
+</html>

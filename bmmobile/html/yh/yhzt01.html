@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+
+		<link rel="stylesheet" href="../../css/bm.css">
+
+		<title>悦华专题</title>
+
+		<style>
+			.bmyhztPart1 {
+				max-width: 960px;
+				margin: auto;
+			}
+			
+			.bmyhztPart1 .bmyhone img {
+				width: 100%;
+			}
+			
+			.bmbookBox {
+				margin-top: -6px;
+				padding: 0px 20px 60px;
+				background: url(../../images/yh/yhbg01.jpg) no-repeat center;
+				background-size: cover;
+			}
+			
+			.bmbookBox h5 {
+				padding: 25px 0;
+				font-size: 24px;
+				color: #fed500;
+				text-align: center;
+			}
+			
+			.bmyhbookInner {
+				padding: 30px 10px;
+				background-color: rgba(0, 0, 0, .6);
+			}
+			
+			.bmyhbookInner .bmbookTips {
+				color: #fff;
+				text-align: center;
+			}
+			
+			.bmyhbookInner form {
+				position: relative;
+				margin-top: 20px;
+			}
+			
+			.bmyhbookInner label {
+				margin-bottom: 15px;
+				line-height: 32px;
+				display: block;
+				position: relative;
+			}
+			
+			.bmyhbookInner label span {
+				display: inline-block;
+				width: 40px;
+				color: #fff;
+			}
+			
+			.bmyhbookInner label input {
+				width: 80%;
+				width: calc(100% - 60px);
+				text-indent: 1rem;
+				line-height: 32px;
+				background-color: #fff;
+			}
+			
+			.bmyhbookInner label:nth-child(2) a {
+				position: absolute;
+				right: 5%;
+				top: 1px;
+				display: inline-block;
+				line-height: 32px;
+				width: 90px;
+				text-align: center;
+				border-radius: 3px;
+				background-color: #FFD200;
+				color: #fff;
+			}
+			
+			.bmyhbookInner label:nth-child(2) input {
+				width: calc(100% - 60px - 100px);
+			}
+			
+			.bmBookBtn {
+				margin: 20px auto;
+				display: block;
+				padding: 8px;
+				width: 140px;
+				border-radius: 3px;
+				text-align: center;
+				font-size: 16px;
+				color: #fff;
+				background-color: #FFD200
+			}
+			
+			#payBox {
+				display: none;
+				width: 100%;
+				height: 100vh;
+				border: none;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<section class="bmyhztPart1">
+			<div class="bmyhone">
+				<img src="../../images/yh/yhzt01.jpg" />
+			</div>
+			<div class="bmbookBox">
+				<h5>讲座预约报名</h5>
+				<div class="bmyhbookInner">
+					<p class="bmbookTips">
+						我们会在讲座开始的半个小时发送短信通知您
+					</p>
+
+					<form action="" method="post">
+						<!--<label>
+							<span>手机:</span>
+							<input type="tel" placeholder="请输入手机" />
+						</label>
+
+						<label>
+							<span>验证码:</span>
+							<input type="text" placeholder="请输入验证码" />
+							<a href="#this">获取验证码</a>
+						</label>-->
+
+						<a class="bmBookBtn">立即报名</a>
+
+					</form>
+				</div>
+			</div>
+
+		</section>
+
+		<script type="text/javascript" src="../../js/zepto.js"></script>
+		<script type="text/javascript" src="../../js/layer.js"></script>
+		<script type="text/javascript" src="../../js/bmmain.js"></script>
+
+		<script>
+			$(function() {
+				var payType = 3;
+				var payPrice = 88.00;
+				var isClick = true; //是否可以点击支付
+
+				var date = new Date();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				var seconds = date.getSeconds();
+				var randnum = "";
+				for(var i = 0; i < 5; i++) {
+					randnum += Math.floor(Math.random() * 10);
+				}
+
+				if(month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if(strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				if(seconds >= 0 && seconds <= 9) {
+					seconds = "0" + seconds;
+				}
+
+				var currentdate = String(date.getFullYear()) + String(month) + String(strDate) + String(date.getHours()) + String(date.getMinutes()) + String(seconds) + String(randnum);
+				var uid = localStorage.getItem('$ycuid');
+
+				$(".bmBookBtn").on("click", function() {
+					if(!isLogined()) {
+						layer.open({
+							content: '非会员用户无法购物哦！',
+							btn: ['登录', '取消'],
+							yes: function(index) {
+								//location.reload();
+								window.location.href = "../login.html"
+								layer.close(index);
+							}
+						});
+					} else {
+						$.ajax({
+							type: "post",
+							url: SERVEROOTDATA + "Member.ashx?action=getSowingCoinByMemberId",
+							dataType: 'json',
+							data: {
+								"memberId": uid
+							},
+							timeout: 600,
+							success: function(res) {
+								if(res[0].isSaLong == 1 || res[0].isSaLong == "1") {
+
+									layer.open({
+										content: '您已报名了该课程！',
+										btn: '我知道了'
+									});
+								} else {
+									if(isWeiXin()) { //如果是是微信登录
+										if(isClick) { //防止多次弹出提示框
+											isClick = false;
+											openWeiXinPay(payPrice, currentdate, uid, 17); //微信支付
+										}
+									} else {
+										openAliPayRUTE(payPrice, currentdate, uid, 17);//支付宝
+									}
+
+								}
+							},
+							error: function(err) {
+								console.log("request error");
+							}
+						});
+					}
+				});
+
+				function openWeiXinPay(rechargeAmount, rechargeList, uid, memberGradeId) { //微信支付
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "MemberGrade.ashx?action=purchaseMemberGrade",
+						data: {
+							"memberId": uid,
+							"memberGradeId": memberGradeId,
+							"purchaseAmount": rechargeAmount,
+							"payTypeId": 1, //支付方式：0-支付宝，1-微信，2-播米币
+							"purchaseList": rechargeList, //订单号
+						},
+						success: function(res) {
+							var json = eval('(' + res + ')');
+							console.log(json.iconPath);
+							layer.open({
+								type: 1,
+								content: "<div class='dycweixin-img' style='text-align:center;width:50%;height:50%;line-height:1;margin:20px auto 0'><img src=" + SERVEROOTFILE + json.iconPath + " /></div><p style='text-align:center;margin-top:2rem'>应付金额：<span style='color: #df5e3f;font-size: 2rem;'>￥" + rechargeAmount + "</span></p><p style='text-align:center;line-height:3'>长按识别二维码</p>",
+								anim: 'up',
+								style: 'position:fixed; bottom:0; left:0; width: 100%; height: 50%; padding:10px 0; border:none;',
+								success: function() {
+									isClick = false;
+									setTimeout(function() { //推迟半分钟检验
+										var xunhuan = setInterval(function() {
+											$.ajax({
+												type: "post",
+												url: SERVEROOTDATA + "Pay.ashx?action=checkPaySuccess",
+												dataType: 'text',
+												data: {
+													memberId: uid,
+													orderId: rechargeList
+												},
+												success: function(ress) {
+													if(ress == '812') {
+														clearInterval(xunhuan);
+														layer.open({
+															content: '支付成功，正在为您跳转到直播页面',
+															skin: 'msg',
+															time: 2 //2秒后自动关闭
+														});
+														isClick = true;
+														setTimeout(function() {
+															window.location.href = "../../liveplayer.html";
+														}, 2000);
+
+													} else {
+														return false;
+													}
+													
+													/*if(ress == '814') {
+														clearInterval(xunhuan);
+														if(!isClick){
+															layer.open({
+															content: '未完成支付,继续完成支付？',
+															btn: ['取消', '支付'],
+															yes: function(index) {
+																layer.closeAll();
+																isClick = true;
+															},
+															no: function(index) {
+																location.reload();
+															}
+														});
+														}
+														*/
+												}
+											});
+										}, 3000);
+
+									}, 30000);
+
+								},
+								end:function(){
+									isClick = true;
+								}
+							});
+						}
+					});
+				}
+
+				function openAliPayRUTE(rechargeAmount, rechargeList, uid, memberGradeId) {
+					//页面层
+					layer.open({
+						type: 1,
+						content: '<iframe id="payBox" src="' + SERVEROOTDATA + 'MemberGrade.ashx?action=purchaseMemberGrade&purchaseAmount=' +
+							rechargeAmount + '&payTypeId=3&purchaseList=' +
+							rechargeList + '&memberId=' +
+							uid + '&memberGradeId=' +
+							memberGradeId + '"></iframe>',
+						anim: 'up',
+						style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100%; border:none;'
+					});
+
+					setTimeout(function() {
+						$("#payBox").css("display", "block");
+					}, 2000)
+				}
+
+				function isWeiXin() { //判断是否是微信浏览器
+					var ua = window.navigator.userAgent.toLowerCase();
+					if(ua.match(/MicroMessenger/i) == 'micromessenger') {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-我的家长</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right " id="">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>我的家长</span>
+                <a href="studentmyparent.html" style="float: right;color: #ff6c00;font-size: 16px;padding-right: 20px" class="fehidden" id="goBack">返回</a>
+            </div>
+            <!--我的家长-->
+            <div class="festudentmyparent">
+                <!--一级页面-->
+                <div class="fehead ">
+                    <b>我的家长</b>
+                    <span>在这里,你可以和你的家长，一同分享</span>
+                    <ul>
+                        <li><span></span>你的学习动态</li>
+                        <li><span></span>你的课程进度</li>
+                        <li><span></span>你的兴趣爱好</li>
+                        <li><span></span>你的学术成长</li>
+                    </ul>
+                </div>
+                <div class="feedit ">
+                    <div class="fepersonaldata-title">
+                        <b>我的家长</b>
+                        <span>添加</span>
+                    </div>
+                    <p>温馨提示 : 最多可以绑定两位家长！</p>
+                </div>
+                <div class="fecontent" id="showmyparent">
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div class="feitem" v-cloak v-for="item in myparent">
+                        <div class="span6">
+                            <div class="feimage">
+                                <img src="../images/temp/myparent.png" alt="">
+                            </div>
+                        </div>
+                        <div class="span6" style="position: relative">
+                            <div class="febox">
+                                <h4><span>用户名:</span>{{item.parentName}}</h4>
+                                <h4><span>性&nbsp;&nbsp;&nbsp;别:</span>{{item.sexName}}</h4>
+                                <h4><span>手机号:</span>{{item.mobile}}</h4>
+                                <h4><span>与孩子关系:</span>{{item.relationTypeName}}</h4>
+                            </div>
+                            <b v-bind:data-id="item.studentParentRsId">×</b>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!--添加家长页面-->
+                <div class="addparent fehidden">
+                    <div class="fepersonaldata-title">
+                        <b>家长信息</b>
+                        <span class="active">添加</span>
+                    </div>
+                    <div id="addParent">
+                        <ul>
+                            <!--<li>-->
+                            <!--<span>用户名:</span>-->
+                            <!--<input type="text" id="username">-->
+                            <!--</li>-->
+                            <li>
+                                <span>手机号:</span>
+                                <input type="text">
+                                <button id="search">查询</button>
+                            </li>
+                        </ul>
+                        <div class="febox">
+                            <div class="febox-title">
+                                <div class="span3">用户名</div>
+                                <div class="span3">性别</div>
+                                <div class="span3">手机号</div>
+                                <div class="span3">操作</div>
+                            </div>
+                            <p class="" v-show="nodata">不存在该手机号！</p>
+                            <div class="febox-content" v-show="!nodata" v-cloak v-for="item in result">
+                                <div class="span3">{{item.parentName}}</div>
+                                <div class="span3">{{item.sexName}}</div>
+                                <div class="span3">{{item.mobile}}</div>
+                                <div class="span3"><button  @click="bindParentPop(item.mobile,item.parentId)">绑定</button></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--绑定家长弹框-->
+                    <div id="bindParent" style="display:none">
+                        <h1>绑定该用户为您的家长</h1>
+                        <ul >
+                            <li>
+                                <input type="hidden" id="clickCount" value="0" />
+                                <span>手&nbsp;机&nbsp;号 :</span>
+                                <input type="phone" value="" placeholder="请输入手机号"   autocomplete="off" id="phone" disabled>
+                                <input type="hidden" id="parentId">
+                            </li>
+                            <li style="height: 30px">
+                                <span>验&nbsp;证&nbsp;码 :</span>
+                                <input type="text" value=""  placeholder="请输入验证码" v-model="verificationCode" autocomplete="off" id="verificationCode" style="float: left">
+                                <s class="feverificationCode" @click="getImageVC" style="display: inline-block;margin-left: 15px;position: absolute">
+                                    <img :src="imageCodeImg" style="height:30px;width:100px;float: left"/></s>
+                            </li>
+                            <li>
+                                <span>校&nbsp;验&nbsp;码 :</span>
+                                <input type="text" value="" placeholder="请输入校验码"  v-model="checkCode" autocomplete="off" id="checkCode">
+                                <button @click="vcTimeCount">{{VCLabel}}</button>
+                            </li>
+                            <li>
+                                <span>关&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系&nbsp;:</span>
+                                <select name="relation" id="relation">
+                                    <option value="0">父亲</option>
+                                    <option value="1">母亲</option>
+                                    <option value="2">爷爷</option>
+                                    <option value="3">奶奶</option>
+                                    <option value="4">兄弟</option>
+                                    <option value="5">姐妹</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="feoperation">
+                            <button @click="confirmBind()">确定绑定</button>
+                            <button @click="close()">取消</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        myparent();
+    })
+</script>
+</body>
+
+</html>

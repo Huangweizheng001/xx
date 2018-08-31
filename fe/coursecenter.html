@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>选课中心-福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		
+		<style>
+			#fe-coursecenter-page .fe-header-nav-bar {
+				box-sizing: border-box;
+				padding-left: 230px;
+			}
+			#fe-coursecenter-page .new-fe-header-nav-bar>div{
+				box-sizing: border-box;
+				padding-left: 230px;
+			}
+		</style>
+
+	</head>
+
+	<body id="fe-coursecenter-page">
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		
+		<aside class="fe-side-nav-wrap" id="jcourseNavApp">
+			<div class="container">
+				<!--左侧导航-->
+				<section class="fe-left-nav-inner" @mouseleave="closeShow">
+					<ul>
+						<h4 @click="toggleLeftShow">全部课程分类</h4>
+						<li v-cloak v-for="(item, index) in leftNavArr" @mouseenter="mousechangeShow(item.educationalLevel[0].educationalLevelId)" v-show="isShowFlag">
+							<a href="#this" target="_blank" v-cloak v-bind:href="item.educationalLevel[0].educationalLevelId |addFirNavParent">{{item.educationalLevel[0].educationalLevelName}}</a>
+							<a href="#this" v-for="subitem in item.subject" target="_blank" v-bind:href="item.educationalLevel[0].educationalLevelId,subitem.subjectId | addFirNav">{{subitem.subjectName}}</a>
+						</li>
+					</ul>
+				</section>
+				<!--左侧二级导航区-->
+				<ul v-cloak class="fe-left-second-nav-inner" v-show="secondFlag" v-show="isShowFlag" @mouseenter="openShow" @mouseleave="secondCloseShow">
+					<li v-cloak v-for="item in secondNavArr" @mouseenter="getGrade(item.educationalLevel[0].gradeId)">
+						<a target="_blank" v-bind:href="item.educationalLevel[0].gradeId,parentNavId | addSecNavGrade">{{item.educationalLevel[0].gradeName}}</a>
+						<a href="#this" v-for="subitem in item.subject" v-bind:href="subitem.subjectId,parentNavId,gradeNavId | addSecNav">{{subitem.subjectName}}</a>
+					</li>
+				</ul>
+
+			</div>
+		</aside>
+
+
+		<section id="fecoursecenter" style="background: #f4f4f4">
+			<!--头部背景和广告-->
+			<div class="fecoursetopbg"></div>
+			<div class="fetopbg container">
+				<a href="#this" style="margin-right: 1.661%;width:32.226%"><img src="images/temp/course-logo1.png" alt="" ></a>
+				<a href="#this" style="margin-right: 1.661%;width:32.226%"><img src="images/temp/course-logo2.png" alt=""></a>
+				<a href="#this" style="width:32.226%;"><img src="images/temp/course-logo3.png" alt="" ></a>
+			</div>
+			<!--内容模块-->
+			<div class="container clearfix">
+				<!--左侧-->
+				<div class="span9" style="margin-bottom: 60px">
+					<div class="fecoursemodule clearfix" v-cloak v-for="model in courselist">
+						<!--标题-->
+						<div class="fetitle" v-bind:data-id="item.educationalLevelId" v-cloak v-for="item in model.educationalLevel">
+							{{item.educationalLevelName}}
+							<a href="#this" @click="" style="color:#ff6c00">更多></a>
+						</div>
+						<!--选择栏-->
+						<div class="courseSelect">
+							<ul class="fecoursenav">
+								<li v-cloak v-for="nav in model.subject"><a href="#this" v-bind:data-type="nav.subjectId">{{nav.subjectName}}</a></li>
+								<!--<li>数学</li>-->
+								<!--<li>英语</li>-->
+								<!--<li>奥数</li>-->
+							</ul>
+						</div>
+						<!--内容栏-->
+						<div class="courseContent min-height-300">
+							<div class="fenodata" v-if="model.course.rows.length<1" style="width:100%;height: 300px;"></div>
+							<div class="span4" v-cloak v-for="(item,index) in model.course.rows">
+								<div class="fepanel">
+									<a class="feimage" v-bind:href="item.courseId|addRoot" target="_blank" v-bind:title="item.courseName">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</a>
+									<div class="febox">
+										<h2>{{item.courseName}}</h2>
+										<div>
+											<span v-if="item.isFree=='免费'">免费</span>
+											<span v-else class="femoney">￥{{item.price}}</span>
+											<b>{{item.teacherName}}</b>
+											<a v-bind:href="item.organId|addSchoolRoot" target="_blank">{{item.organName}}</a>
+										</div>
+										<!--<a v-bind:href="item.newsId|addRoot">立即报名</a>-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--右侧-->
+				<div class="span3" style="margin-top: 54px">
+					<div class="fehotclassmodule fehotcourse" style="background: #fff;">
+						<div class="fetitle">热门课程榜</div>
+						<div class="fetabs clearfix">
+							<a href="#this" class="active" data-id="1">免费排行</a>
+							<a href="#this" data-id="0">收费排行</a>
+						</div>
+						<ul>
+							<li v-cloak v-for="(item,index) in hotcourse" class="clearfix">
+								<a v-bind:href="item.courseId|addRoot" style="display: block" target="_blank" v-bind:title="item.courseName">
+									<!--<div class="feleft">-->
+										<!--<span v-bind:style="{backgroundPosition:'-584px '+rankingPosition[index]+'px'}"></span>-->
+									<!--</div>-->
+									<span >{{index+1}}</span>
+									<div class="femiddle">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<div class="feright">
+										<h3>{{item.courseName}}</h3>
+										<h4>讲师：{{item.teacherName}}</h4>
+										<h4>报名数：{{item.enrollmentCount}}</h4>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="fehotclassmodule fehotminicourse" style="background: #fff;">
+						<div class="fetitle">热门微课榜</div>
+						<!--<div class="fetabs clearfix">-->
+							<!--<a href="#this" class="active">本周购买榜</a>-->
+							<!--<a href="#this">本周收藏榜</a>-->
+						<!--</div>-->
+						<ul>
+							<li v-cloak v-for="(item,index) in hotminicourse" class="clearfix">
+								<a v-bind:href="item.courseId,item.courseKind|addKindRoot" target="_blank" v-bind:title="item.courseName">
+									<!--<div class="feleft">-->
+										<!--<span v-bind:style="{backgroundPosition:'-584px '+rankingPosition[index]+'px'}"></span>-->
+									<!--</div>-->
+									<span >{{index+1}}</span>
+									<div class="femiddle">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<div class="feright">
+										<h3>{{item.courseName}}</h3>
+										<h4>讲师：{{item.teacherName}}</h4>
+										<h4>报名数：{{item.enrollmentCount}}</h4>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<footer id="footer" class="clearfix">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.storage.js"></script>
+		<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./js/vue.min.js"></script>
+		<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./js/fetv.js"></script>
+		<script type="text/javascript" src="./js/fetvAppend.js"></script>
+		<script>
+			$(function () {
+				addCourseAsideNav();
+				coursecenter();
+			})
+		</script>
+	</body>
+
+</html>

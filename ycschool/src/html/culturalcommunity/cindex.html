@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>文化社区</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff">
+
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section class="feknowledgePay" id="knowledgepay">
+    <div class="feknowledgePay-head">
+        <div class="container">
+            <div class="felogin-box">
+                <div class="feentry" v-if="login" v-cloak>
+                    <div class="feimage">
+                        <img :src="headIcon|addRootFile" alt="">
+                    </div>
+                    <div class="fecenter">
+                        <h1>{{nickName}}<span>{{mypoint}}积分</span></h1>
+                        <a href="askquestion.html" target="_blank">我要问问题</a>
+                    </div>
+                    <div class="febottom">
+                        <div class="femyquiz" @click="gotoMyquestion()">
+                            <h3>{{myQnum}}</h3>
+                            <h5>我的提问</h5>
+                        </div>
+                        <div class="femyproblem" @click="gotoMyreply()">
+                            <h3>{{myAnum}}</h3>
+                            <h5>我的回答</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="fenologin" v-if="!login" v-cloak>
+                    <h1>爱问知识人</h1>
+                    <img src="../../images/temp/knowledge-1.png" alt="">
+                    <div class="febox">
+                        <h3>已帮助的人数</h3>
+                        <h4>5000+</h4>
+                        <a href="login.html">快速登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--问答区-->
+    <div class="feknowledgePay-con">
+        <div class="container clearfix">
+            <div class="span8_5">
+                <div class="fewaitForU">
+                    <div class="moduleTitleWrapper">
+                        <span class="titleTip">Waiting for you to answer </span>
+                        <h1 class="title">等你来答<a class="more" href="questionlist.html" target="_blank">more></a></h1>
+                    </div>
+                    <ul class="fecontent">
+                        <div class="fenodata" v-cloak v-show="noQuestionData"></div>
+                        <li v-cloak v-for="item in questionList">
+                            <div class="feimage">
+                                <img :src="item.headIconPath|addRootFile" alt="">
+                            </div>
+                            <div class="febox">
+                                <h2>{{item.user}}<span>{{item.insertTime|showTime}}提问</span></h2>
+                                <a v-bind:href="item.KPQuestionId|addQuestionRoot" target="_blank" v-html="item.content"></a>
+                            </div>
+                        </li>
+                        <!--<li>-->
+                            <!--<div class="feimage">-->
+                            <!--<img src="../../images/temp/mr-tx.png" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="febox">-->
+                            <!--<h2>秋天、很阳光<span>14小时前提问</span></h2>-->
+                            <!--<a>[读书40]一旦爱上，就是一生——《时光回去，只愿未曾遇到你》读记!</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="feimage">-->
+                                <!--<img src="../../images/temp/mr-tx.png" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="febox">-->
+                                <!--<h2>秋天、很阳光<span>14小时前提问</span></h2>-->
+                                <!--<a>[读书40]一旦爱上，就是一生——《时光回去，只愿未曾遇到你》读记!</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span3_5">
+                <div class="fefamousTeacher">
+                    <div class="moduleTitleWrapper">
+                        <span class="titleTip">Questions and answers </span>
+                        <h1 class="title">名师问答<a class="more" @click="anotherBatch"><i class="uk-icon-refresh" style="margin-right: 5px"></i>换一批</a></h1>
+                    </div>
+                    <ul class="fecontent">
+                        <li class="clearfix" v-cloak v-for="item in teacherQAList">
+                            <div class="feimage">
+                                <img :src="item.headIconPath|addRootFile" alt="">
+                            </div>
+                            <a class="febox" :href="item.teacherId|addTeacherRoot" target="_blank">
+                                <h2>{{item.name}} <span>10积分提问</span></h2>
+                                <p>
+                                    <span>{{item.subject}}老师</span>
+                                    <span>{{item.QAnum}}个回答</span>
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--学习区-->
+    <div class="studyArea container clearfix">
+        <div class="span8_5">
+            <div class="parentClass">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Parent class </span>
+                    <h1 class="title">家长课堂<a class="more" href="parentclass.html" target="_blank">more></a></h1>
+                </div>
+                <div class="parentClassContent clearfix">
+                    <div class="fenodata" v-cloak v-show="nodata"></div>
+                    <div class="span4" v-cloak v-for="item in parentClass">
+                        <div class="courseItem">
+                            <a class="image" :href="item.courseId,item.videoId|addRoot" target="_blank">
+                                <img :src="item.iconPath|addRootFile" alt="">
+                                <div class="mask"><span class="play-icon"></span></div>
+                            </a>
+                            <div class="content">
+                                <h1 class="coursename">{{item.courseName}}</h1>
+                                <div class="desc">
+                                    <span class="head" :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></span>
+                                    <div class="box">
+                                        <h2 class="name">{{item.teacherName}}老师</h2>
+                                        <h4 class="count">{{item.clickCount}}次播放</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="span4">-->
+                        <!--<div class="courseItem">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="courseItem">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="courseItem">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="courseItem">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="courseItem">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <div class="span3_5">
+            <div class="popularArticles">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Popular articles </span>
+                    <h1 class="title">热门推荐<a class="more" href="learningactivities.html" target="_blank">more></a></h1>
+                </div>
+                <ul class="articleList">
+                    <li v-cloak v-for="item in articles"><a :href="item.activityId|addArticleRoot" target="_blank">{{item.title}}</a></li>
+                    <!--<li><a href="">家长文章：我的育儿体验</a></li>-->
+                    <!--<li><a href="">教育孩子心得《家长原创》</a></li>-->
+                    <!--<li><a href="">小班家长育儿体验小班家长育儿体验小班家长育儿体验</a></li>-->
+                    <!--<li><a href="">《3-6岁儿童学习与发展指南》</a></li>-->
+                    <!--<li><a href="">育儿心得体验</a></li>-->
+                    <!--<li><a href="">小学生家长谈育儿心得</a></li>-->
+                    <!--<li><a href="">家长文章：我的育儿体验</a></li>-->
+                    <!--<li><a href="">教育孩子心得《家长原创》</a></li>-->
+                    <!--<li><a href="">小班家长育儿体验小班家长育儿体验小班家长育儿体验</a></li>-->
+                    <!--<li><a href="">《3-6岁儿童学习与发展指南》</a></li>-->
+                    <!--<li><a href="">育儿心得体验</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--老师区-->
+    <!--<section class="teacher-wrapper">-->
+        <!--<div class="container">-->
+            <!--<div class="moduleTitleWrapper">-->
+                <!--<span class="titleTip">Psychological consultation </span>-->
+                <!--<h1 class="title">心理咨询</h1>-->
+            <!--</div>-->
+            <!--<div class="teacher-content">-->
+                <!--<div class="swiper-container teacher-content-hook">-->
+                    <!--<div class="swiper-wrapper">-->
+                        <!--<div class="swiper-slide swiper-slide-center">-->
+                            <!--<a href="">-->
+                                <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                                <!--<h1>杨江宇</h1>-->
+                                <!--<h3>初三语文老师</h3>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="swiper-slide">-->
+                            <!--<a href="">-->
+                                <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                                <!--<h1>杨江宇</h1>-->
+                                <!--<h3>初三语文老师</h3>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="swiper-slide">-->
+                            <!--<a href="">-->
+                                <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                                <!--<h1>杨江宇</h1>-->
+                                <!--<h3>初三语文老师</h3>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="swiper-slide">-->
+                            <!--<a href="">-->
+                                <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                                <!--<h1>杨江宇</h1>-->
+                                <!--<h3>初三语文老师</h3>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="swiper-slide">-->
+                            <!--<a href="">-->
+                                <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                                <!--<h1>杨江宇</h1>-->
+                                <!--<h3>初三语文老师</h3>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;<div class="swiper-pagination"></div>&ndash;&gt;-->
+                <!--<div class="swiper-button-prev"></div>-->
+                <!--<div class="swiper-button-next"></div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</section>-->
+    <!--家校互动-->
+    <div class="interactionBetweenFamily">
+        <div class="container">
+            <div class="moduleTitleWrapper">
+                <span class="titleTip">Interaction between family </span>
+                <h1 class="title">家校互动</h1>
+            </div>
+            <div class="content">
+                <textarea class="saySomeThing" placeholder="家长们，你们有什么话想对学校说的吗？可以在这里留言，我们会尽快回复。" v-model="textArea" @keyup="limitSize"></textarea>
+                <span class="wordCount">{{limitsize}}/400</span>
+                <div class="submitBtn">
+                    <a @click="jxSubmit()">提交</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

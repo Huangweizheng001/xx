@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>机构环境</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+
+</head>
+
+<body>
+<header id="organheader">
+    <organ-header-template></organ-header-template>
+</header>
+<section>
+    <div class="container">
+        <div class="feorgan-style" id="feorganStyle">
+            <h1>环境 <span>（共{{totalCount}}个）</span></h1>
+            <div class="feorgan-style-content clearfix">
+                <div class="fenodata" v-if="imgArr.length<1" v-cloak></div>
+                <div class="fepanel" v-cloak v-for="item in imgArr">
+                    <div class="feimage">
+                        <img v-bind:src="item.iconPath|addRootFile" alt="">
+                    </div>
+                    <div class="febox">
+                        <h4>{{item.title}}</h4>
+                        <h5>{{item.reportDate}} </h5>
+                    </div>
+                </div>
+                <!--<div class="fepanel">-->
+                    <!--<div class="feimage">-->
+                        <!--<img src="images/temp/teacherphoto2.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<h4>学校秋季学夏令营活动场景</h4>-->
+                        <!--<h5>2018-04-05 10:14:30 </h5>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel">-->
+                    <!--<div class="feimage">-->
+                        <!--<img src="images/temp/teacherphoto3.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<h4>学校秋季学夏令营活动场景</h4>-->
+                        <!--<h5>2018-04-05 10:14:30 </h5>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel">-->
+                    <!--<div class="feimage">-->
+                        <!--<img src="images/temp/teacherphoto4.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<h4>学校秋季学夏令营活动场景</h4>-->
+                        <!--<h5>2018-04-05 10:14:30 </h5>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="feloadmore" v-show="load">
+                <a href="#this" @click="loadMore()">查看更多 <i class="uk-icon-angle-down"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/fetvcyq.js"></script>
+<script>
+    $(function() {
+        var organId=$(this).getUrlParam("organId");
+        organStyle(organId);
+    })
+</script>
+
+</body>
+
+</html>

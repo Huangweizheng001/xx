@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>完善播米在线账号信息</title>
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/uikit.min.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		
+		
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="dyclogin">
+			<div class="container">
+				<div class="login-wrap">
+					<div class="dycslogan" style="display: none;">
+						<!--<img src="images/login_bg.png" />-->
+					</div>
+					<div class="dyclogin-box">
+						<div class="dycform-box">
+							<div class="yctitle">播米在线账号绑定</div>
+							<!--账号登入-->
+							<form id="jloginForm" class="yclogin-form" method="post">
+							<a class="dycchange-type" data-index="5" >创建新账号</a>
+								<label class="dyclogin-name">
+                                <input class="dyclogin-name-input" name="name" type="text" placeholder="请输入手机/用户名" />
+                                <span class="error">用户名不能为空！</span>
+                            </label>
+								<label class="dyclogin-pwd">
+                                <input class="dyclogin-pwd-input" name="password" type="password" placeholder="请输入密码" />
+                                <span class="error">密码不能为空！</span>
+                          </label>
+                                <label class="dylogin-auto">
+                                <input id="jautologin" type="checkbox" name="autologin" value="checkbox" checked="checked" />自动登录
+                                <a class="dycpwd-forget">忘记密码</a>
+                            </label>
+								<a id="jloginbind" class="dyclogin-btn" >绑定账号</a>
+							</form>
+							<!--手机注册-->
+							<form id="jphoneRegForm" class="ycregphone-form" method="post">
+								<a class="dycchange-type" data-index="3" href="#this">已有账号</a>
+								<label class="dycregphone-name ok">
+                                <input id="jregMoblie" name="mobile" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+								<label class="dycregphone-vc dycloginphone-vc">
+									<input id="jregIMgVC" name="imageCode" type="text" placeholder="请输入图形验证码" />
+									<a id="jgetPhoneRegImgVC" href="#this" style="font-size: 0;"><img class="imageVC" style="height: 96%; width: 98%;" src="ycedu/images/vcode.png" /></a>
+									<span class="error" style="top: 20px; left: 30px;">图片验证码不能为空</span>
+								</label>
+								<label class="dycregphone-vc">
+                                <input id="jregVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneRegVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycreguser-pwd">
+                                <input id="jregPwd" name="password" type="password" placeholder="请设置密码(4-8位)" />
+                                <span class="error">密码不能为空</span>
+                           </label>
+                           <label class="dycreguser-invite">
+                                <input id="jregIvc" name="inviteCode" type="text" placeholder="请输入邀请码（可选项）" />
+                                <span class="error"></span>
+                            </label>
+                           <label class="dyreg-agree">
+                                <input id="jagreement" class="jreg-agree" type="checkbox" name="" value="checkbox" checked="checked" />我已阅读并同意
+                                <a class="dycpwd-forget" target="_blank" href="ycedu/pact.html">播米在线注册条款</a>
+                            </label>
+								<a id="jsubRegbind" class="dycreg-btn">立即注册</a>
+							</form>
+							<!--忘记密码-->
+							<form id="jforgetFrom" class="ycforget-form" method="post">
+								<a class="dycchange-type" data-index="4" href="#this">已有账号</a>
+								<label class="dycforgetphone-name">
+                                <input id="jforgetPhone" name="name" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+								<label class="dycforgetphone-vc">
+									<input id="jforgetImgVC" name="validateImgCode" type="text" placeholder="请输入图形验证码" />
+									<a href="#this" style="font-size: 0; border: 1px solid #f00;"><img class="imageVC" style="height: 100%;" src="ycedu/images/vcode.png" /></a>
+								</label>
+								<label class="dycforgetphone-vc">
+                                <input id="jforgetVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneForgetVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwd">
+                                <input id="jforgetPwd" name="password" type="password" placeholder="请设置新密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwdnew">
+                                <input id="jforgetPwd2" name="forgetpwd" type="password" placeholder="请再次输入密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<a id="jforgetSubBtn" class="dyclogin-btn" href="#this">提交</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/uikit.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer.js"></script>
+		<script type="text/javascript" src="ycedu/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+		<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+		
+		<script>
+			$(function() {
+					var nickname = $(this).getUrlParam("nickname");
+					var openId = $(this).getUrlParam("openId");
+					var iconPath = $(this).getUrlParam("iconPath");
+					var boundType = $(this).getUrlParam("boundType");
+					
+				//判断显示内容
+				$.loginshow($(this).getUrlParam("login"));
+				$.bindNumber(openId,nickname, iconPath,boundType);//绑定账号,qq为0,微信为1
+				
+				if($(this).getUrlParam("pageType") == "live"){
+					$("body").css("padding-top",0);
+					$("#header").css("display","none");
+					$(".dyclogin .login-wrap .dyclogin-box").css("right","-4px");
+				}
+				
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>播米资讯详情</title>
+
+		<style>
+			body {
+				background: #fff;
+				padding-top: 9rem;
+			}
+			
+			#img img {
+				display: block;
+				width: 100%
+			}
+			
+			#content {
+				padding: 1rem 2.285rem;
+				box-sizing: border-box;
+			}
+			
+			#title {
+				margin-bottom: 1rem;
+				font-size: 2.57rem;
+				color: #3b3b3b;
+			}
+			
+			#time {
+				margin-bottom: 1rem;
+				font-size: 1.57rem;
+				color: #3b3b3b;
+			}
+			
+			#dataBox {
+				font-size: 2.2rem;
+				line-height: 1.8;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header id="header" class="blue">
+				<span onclick="goBack()">返回</span>
+				<p>播米资讯</p>
+			</header>
+			<div id="newsbox">
+				<div id="img"></div>
+				<div id="content">
+					<h3 id="title"></h3>
+					<p id="time"></p>
+					<div id="dataBox"></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+
+		<script>
+			$(function() {
+
+				var nId = $.getUrlParam("newsId");
+				var ischarge = $.getUrlParam("ischarge");
+
+				var $mid = localStorage.getItem("mid");
+
+				if((ischarge == '1') && (($mid == undefined) || ($mid == "") || ($mid == nill))) {
+					layer.open({
+						content: '登录后才可以观看观点，是否前往登录？',
+						btn: ['确定', '取消'],
+						yes: function(index) {
+							window.location = 'login.html'; //跳转到登陆页面
+							layer.close(index);
+						}
+					});
+				} else {
+					//新闻详情
+					newsdetail(nId);
+				}
+
+				//get course banner list
+				function newsdetail(nId) {
+					var img = $("#img"),
+						title = $('#title'),
+						time = $('#time'),
+						dataBox = $('#dataBox');
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'News.ashx?action=getCurrentNews',
+						dataType: "json",
+						data: {
+							"newsId": nId
+						},
+						success: function(result) {
+							if(result == '817') {
+								layer.open({
+									content: '购买才可以查看该观点',
+									btn: ['确定', '取消'],
+									yes: function(index) {
+
+										layer.close(index);
+									}
+								});
+							} else {
+								var obj = result[0][0];
+								if(obj) {
+									img.html('<img src="' + SERVEROOTFILE + obj.iconPath + '" />');
+									title.html(obj.title);
+									time.html(obj.reportDate);
+									dataBox.html(obj.newsDetail);
+								} else {
+									dataBox.html("<p style='text-align:center;margin-top:3rem;'>暂无数据！</p>");
+									return false;
+								}
+							}
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+
+</html>

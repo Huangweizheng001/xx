@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线直播间-金牌分析师交易布局/纵览全球经济</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/jquery.emoji.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle-old.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.5.6/skins/default/index.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			#emoji_container_1 {
+				top: inherit !important;
+				left: inherit !important;
+				right: 2%;
+				bottom: 80px;
+				z-index: 2;
+			}
+			
+			@keyframes tc {
+				0% {
+					position: fixed;
+					transform: scale(.2);
+					bottom: 30%;
+					left: 0;
+				}
+				20% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				50% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				60% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				70% {
+					transform: scale(1);
+					left: 70%;
+				}
+				80% {
+					transform: scale(1);
+					left: 80%;
+				}
+				90% {
+					transform: scale(1);
+					left: 100%;
+				}
+				100% {
+					transform: scale(1);
+					position: initial;
+					left: 100%;
+				}
+			}
+			
+			.ac {
+				animation: tc 5s;
+			}
+			
+			.yc-manage-wrap #jmanageBox {
+				position: fixed;
+				left: -999px;
+			}
+			
+			.yc-manage-wrap .layer-anim {
+				min-width: 500px;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox {
+				max-height: 250px;
+				position: relative;
+				left: 0;
+				padding: 2rem;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li {
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li p:first-child {
+				margin-bottom: .6rem;
+				font-size: 1.1rem;
+				color: #f00;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li p:not(:first-child) {
+				margin: .6rem 1rem .6rem;
+			}
+			
+			#jmanageOpen {
+				float: right;
+				display: none;
+				width: 52px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 3px;
+				cursor: pointer;
+				color: #fff;
+				background-color: #f00;
+			}
+			
+			.ycsendIcon {
+				color: #f00;
+			}
+			
+			#jmanageUser {
+				display: none;
+			}
+			
+			.ycuserName {
+				cursor: pointer;
+			}
+			
+			.ycstatus {
+				float: right;
+				margin-right: 2rem;
+				position: relative;
+				display: inline-block;
+				width: 50px;
+				height: 24px;
+				text-align: center;
+			}
+			
+			.ycstatus:after{
+				content: "未审核";	
+			}
+			
+			.ycdelete {
+				float: right;
+				margin-right: 1rem;
+				position: relative;
+				display: inline-block;
+				width: 50px;
+				height: 24px;
+				text-align: center;
+			}
+			
+			.ycdelete:after{
+				content: "删除";
+				
+			}
+			
+		</style>
+
+	</head>
+	<section class="yc-manage-wrap">
+		<ul class="yc-manage-box" id="jmanageBox">
+		</ul>
+	</section>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section>
+			<div class="dyccostlive clearfix" style="position: relative;">
+				<div class="dyccostplay-box">
+					<div class="dyccostplay-wrap">
+						<div class="dyccostplay-title">
+							<div class="span1" id="jliveteacherimg">
+								<a class="dyccostplay-image"><img src="images/costlive03.png" /></a>
+							</div>
+							<div class="dyccostplay-title-box span6">
+								<p id="jlivecname" class="dyccostplay-ctitle">职业操盘 实战教学</p>
+								<p id="jlivetname" class="dyccostplay-speaker">
+									<span class="dyccostplay-speaker-name">主讲：外汇</span>
+									<span>人气：1599</span>
+								</p>
+							</div>
+							<a class="span3 dycconnect_phone" id="jchangeVersion" style="margin-top: 12px;display: block;color: #000;"  >切换到新版本</a>
+							<!--<a class="span3 dycconnect_phone" style="margin-top: 12px;display: block;color: #000;" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes" class="span5 dycconnect_phone" id="jconnect_phone">联系客服</a>-->
+
+							<!--<p class="span3 dycconnect_phone" id="jconnect_phone">联系客服</p>-->
+						</div>
+						<div id="jcostPlayer" class="prism-player"></div>
+						<div class="dyccosttime">
+							您还可以观看时长：<span id="jcosthour"><a>0</a><a>0</a></span>：<span id="jcostminute"><a>0</a><a>0</a></span>：<span id="jcostsecond"><a>0</a><a>0</a></span>
+						</div>
+						<div id="jstop" class="dycnovideo">
+							<a class="dycnovideo-tips" href="#this">未登录只能观看15分钟哦~赶快去登录吧~</a>
+						</div>
+					</div>
+					<div class="dyccost-wrap clearfix">
+						<div class="span2">
+							<div class="dyccost-member clearfix">
+								<div class="span5">
+									<div class="dyccost-member-img" id="jcostMemberImg" style="background-size: cover;"></div>
+								</div>
+								<div class="span7">
+									<p class="dyccost-member-name" id="jcostMemberName">游客</p>
+									<p id="jover">播米币：0</p>
+									<a id="jrecharge" class="dyccost-btn dyccost-btn-recharge" href="#this">充值</a>
+									<a id="jrechargemember" class="dyccost-btn dyccost-btn-recharge" href="#this">会员</a>
+								</div>
+							</div>
+						</div>
+						<div class="dyccost-box span10">
+							<div class="dyccost-swiper swiper-container">
+								<div class="swiper-wrapper" id="jcostlogo">
+									<div class="swiper-slide">
+										<a class="dycgifts active" data-id="3" data-other="1" data-name="http://www.bomizx.net/bmOnline/uploads/images/bomi.jpg" title="1"><img src="images/bomi.png"></a>
+									</div>
+								</div>
+								<!--<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>-->
+							</div>
+							<div class="dyccost-brief-wrap clearfix">
+
+								<div class="span5" id="jcostBrief"></div>
+								<div class="span4">
+									<div class="dyccost-num">
+										<p>数量：<button id="jminus" class="dycminus"> - </button><span id="jcostnum" class="dyccostnum" contenteditable="true">1</span><button id="jadd" class="dycadd"> + </button></p>
+										<p>播米币：<span id="jprice">0</span></p>
+									</div>
+								</div>
+								<div class="span3">
+									<div id="jcostperson" class="dyccost-person"></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--讨论区-->
+				<div class="dyccostplay-right">
+					<div class="dyccostranklist">
+						<div id="jcostlisttab" class="dyccostrank-title clearfix">
+							<div class="span4" data-id="0">贡献榜</div>
+							<div class="span4 active" data-id="1">老师榜</div>
+							<div class="span4" data-id="2">主播榜</div>
+						</div>
+						<div id="jcostlistcon" class="dyccostrank-contain"></div>
+					</div>
+
+					<div class="dyccostdiscuss">
+						<p class="dyccostchat">聊天室</p>
+						<div class="dyccost-tips-imgae">
+							<img src="images/costlive01.png" />
+						</div>
+						<div id="chatbox" class="clearfix">
+							<div id="doc" style="height:100%;overflow: auto;padding: 0 10px;">
+								<div id="chat">
+									<div id="message" class="costmessage">
+										<div id="onlinecount"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="dycostdiscuss-bar">
+							<div class="yc-send-source-box">
+								<a id="jface" class="dycface" href="#this"></a>
+								<a class="dycfaceselect">
+									<span></span>
+									<input id="jsendImgPanel" type="file" accept="image/*" />
+								</a>
+								<a class="dycbarrage"></a>
+								<select id="jmanageUser">
+								</select>
+								<span id="jmanageOpen">管理</span>
+							</div>
+							<div class="dycsendbar">
+								<div id="content" contenteditable="true"></div>
+								<a id="mjr_send" class="dyccostsend-btn" href="#this" onclick="CHAT.submit(1);">发送</a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<section>
+
+			<div class="dyccostservice-btn">
+				<div id="jsvtn_phone" class="dycphone-btn">
+					<i class="uk-icon-group"></i> 在线客服
+				</div>
+				<div class="dyccostservice">
+					<ul>
+						<li>
+							<a id="buy_service" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes">购买课程</a>
+						</li>
+						<li>
+							<a id="recharge_service" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes">充值会员</a>
+						</li>
+						<li>
+							<a id="listen_service" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes">试听课程</a>
+						</li>
+						<li>
+							<a id="vip_service" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes">VIP服务</a>
+						</li>
+						<li>
+							<a id="sale_service" href="http://wpa.qq.com/msgrd?v=3&uin=2841949698&site=qq&menu=yes">售后服务</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/jquery.emoji.js"></script>
+		<script type="text/javascript" src="js/teacherswiper-old.js"></script>
+		<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+		<script type="text/javascript" src="js/costclient-old.js"></script>
+		<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>
+
+		<script type="text/javascript">
+			$(function() {
+				var username, userImg, leftTime, userGrade, grade;
+				var paramId = $(this).getUrlParam("channelId");
+				var channelProgramId = $(this).getUrlParam("channelProgramId");
+				
+				$('#jchangeVersion').attr('href','costliveplay.html?channelId='+paramId+'&channelProgramId='+channelProgramId);
+
+				if(($mid == undefined) || ($mid == null) || ($mid == "")) {
+					leftTime = '900'; //游客只能观看15min
+				} else {
+					leftTime = '1800'; //普通会员只能观看30min
+				}
+
+				$.costliveplayId(paramId, leftTime); //观看时长
+				$.jOver; //播米币打赏
+
+				$("#content").emoji({
+					button: "#jface",
+					showTab: false,
+					//animation: 'slide',
+					icons: [{
+						name: "QQ表情",
+						path: "./images/face/qq/",
+						maxNum: 90,
+						excludeNums: [41, 45, 54],
+						file: ".gif"
+					}]
+				});
+
+				//聊天昵称头像显示
+				if($mid != null && $mid != undefined && $mid != "") {
+					userGrade = getLever(); //等级名称userGrade[0]，等级序号userGrade[1]
+					grade = userGrade[1];
+					username = $mNickName;
+				} else {
+					username = "游客";
+					userGrade = 4; //游客
+				}
+				userImg = "../ycedu/images/grader.png";
+
+				costlisttab(); //排行版
+				$.clistCon(0); //排行版内容
+
+				$.costSelect(paramId, channelProgramId); //打赏、充值
+
+				$("body").css('padding', '0');
+				var st = $('.dyccostplay-box').height() - $('.dyccostranklist').height() - $('.dycostdiscuss-bar').height() + 30;
+
+				$('.dyccostdiscuss').css('height', st); //设置聊天大小
+
+				var discussheight = $('.dyccostdiscuss').height() - $('.dyccost-tips-imgae').height() - 167;
+
+				$('#chatbox').height(discussheight);
+
+				$.ajax({
+					type: "POST",
+					url: ROUTE + "Channel.ashx?action=getMemberType",
+					dataType: "json",
+					cache: false,
+					data: {
+						channelId: paramId,
+						memberId: $mid
+					},
+					success: function(result) {
+						localStorage.setItem("mUserType", result[0].memberType);
+					}
+				});
+
+				$('.dyccostservice-btn').hover(function() {
+					$('.dyccostservice').css('display', 'block');
+				}, function() {
+					$('.dyccostservice').css('display', 'none');
+				});
+
+				$.ajax({
+					url: "http://ip.chinaz.com/getip.aspx",
+					type: "get",
+					dataType: 'jsonp',
+					success: function(res) {
+						window.CHAT.init(username, userImg, grade, res.address); //等级名称userGrade[0]，等级序号userGrade[1]
+					},
+					error: function(res) {
+						window.CHAT.init(username, userImg, grade); //等级名称userGrade[0]，等级序号userGrade[1]
+					}
+				});
+
+				$("#message").on("click", ".ycuserName", function(e) {
+					$("#content").html($("#content").html() + "<span class='ycsendIcon'>@</span>" + $(this).context.innerText + "：");
+				})
+
+				$("#jmanageOpen").on("click", function() {
+					//捕获页
+					layer.open({
+						type: 1,
+						shade: false,
+						title: false, //不显示标题
+						content: $('#jmanageBox'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+						cancel: function() {}
+					});
+				})
+
+				$("#jmanageUser").on("change", function(e) {
+					$("#content").html($("#content").html() + "<span class='ycsendIcon'>@</span>" + $(this).find("option:selected").val() + "：");
+				})
+
+			})
+		</script>
+	</body>
+
+</html>

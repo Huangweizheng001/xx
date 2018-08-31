@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>我的评价</title>
+	</head>
+
+	<body>
+		<header id="feHeaderWhite">
+			<header-white-template title="我的评价"></header-white-template>
+		</header>
+		<section class="feCommentWrap" id="feToCommentWrap">
+			<div class="feCommentTip" v-if='commentNum!=0'>您有{{commentNum}}个课程待评价
+				<a class="feCommentBtn" href="mycourse.html?type=2">去评价</a>
+			</div>
+			<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore" v-cloak>
+					
+			<template v-for="item in listArr" v-cloak>
+				<div class="feCommentList">
+					<div class="feCommentTop clearfix">
+						<div class="feImage"><img v-lazy="item.iconPath"></div>
+						<h5>{{item.userName}}</h5>
+						<div class="feStar">
+							<template v-if='!item.half'>
+								<span v-for='n in item.starnum' class="lightStar"></span><span v-for='n in (5-item.starnum )'></span>
+							</template>
+							<template v-else>
+								<span v-for='n in item.starnum' class="lightStar"></span><span class="lightHalfStar"></span><span v-for='n in (4-item.starnum )'></span>
+							</template>
+						</div>
+					</div>
+					<p class="feContent">{{item.evaluation}}</p>
+					<div class="feCommentImageBox clearfix">
+							<a href="javascript:;" class="span4" v-for="childitem in item.children">
+								<img v-lazy="childitem.photo">
+							</a>
+						</div>
+					<div class="feCommentBottom">
+						<span>{{item.evaluationDate}}</span>
+						<span class="feType">{{item.recordTypeName}}</span>
+						<span>{{item.courseName}}</span>
+					</div>
+				</div>
+				<div class="feGrayLIne16"></div>
+			</template>
+				<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'">Loading...</span> <span v-show="bottomStatus === 'drop'">{{bottomText}}</span></div>
+				</mt-loadmore>
+			<div class="feNoMore" v-if='nolist'>暂无评价</div>
+		</section>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				tobeCommentApp();
+			})
+		</script>
+	</body>
+
+</html>

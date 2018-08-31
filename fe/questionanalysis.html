@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>错题解析—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+		<header id="questionheader">
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="fe-questionexercise">
+				<div class="container clearfix">
+					<div class="fe-questionexercise-head">
+						<!--<div class="fe-questionexercise-head-title">
+							<a href="#this">首页</a>>
+							<a href="#this">高中课题</a>>
+							<a href="#this" class="active">一年级</a>>
+							<a href="#this" class="active">数学</a>
+						</div>-->
+					</div>
+					<div class="fe-questionanalysis-contain clearfix" id="jQuestionAnalysis">
+						<ul class="fe-questionanalysis-list clearfix">
+							<li v-cloak v-for="(item,index) in topicList">
+								<p class="fe-questionanalysis-list-title">
+									<a class="fe-questiontopic-list-num">{{item.questionNo}}</a>.【单选】 <img v-bind:src="item.title|addRootFile">：（<span class=""></span>）
+								</p>
+								<div class="clearfix">
+									<span class="option">A</span><img v-bind:src="item.A|addRootFile" alt="">
+								</div>
+								<div class="clearfix">
+									<span class="option">B</span><img v-bind:src="item.B|addRootFile" alt="">
+								</div>
+								<div class="clearfix">
+									<span class="option">C</span><img v-bind:src="item.C|addRootFile" alt="">
+								</div>
+								<div class="clearfix">
+									<span class="option">D</span><img v-bind:src="item.D|addRootFile" alt="">
+								</div>
+								<p class="answer-btn btn-green">正确答案：{{item.rightAnswer}}</p>
+								<p class="answer-btn btn-orange">考点解析：</p>
+								<div class="fe-analysis active">
+									<img v-bind:src="item.analysis|addRootFile" alt="">
+								</div>
+								<!--<template v-for="itemoption in selectList">
+									<p class="active" v-if="item.rightAnswer != itemoption.optionNo">
+										<span class="option">{{itemoption.optionNo}}</span>{{itemoption.analysis}}
+									</p>
+									<p class="green" v-else>
+										<span class="option">{{itemoption.optionNo}}</span>{{itemoption.analysis}}
+									</p>
+								</template>-->
+							</li>
+							<div class="fe-questionanalysis-more">
+								<a @click="questionMore()">查看更多<span><i class="uk-icon-angle-down"></i></span></a>
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			questionAnalysis($(this).getUrlParam("examPaperId")); //解析
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>分享中心列表</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section>
+    <div class="container" id="knowledgesharelist">
+        <div class="feknowledgesharelist feknowledgePay-share">
+            <div class="fetitle">
+                新问题
+                <div class="febox">
+                    <input type="text" placeholder="输入关键字" v-model="keyword">
+                    <button @click="keySearch"></button>
+                </div>
+            </div>
+            <ul class="fecontent">
+                <div class="fenodata" v-if="nodata"></div>
+                <li v-cloak v-for="item in shareArr">
+                    <h1>
+                        {{item.content}}
+                        <img :src="i|addimg" alt="" v-for="i in item.iconPath">
+                    </h1>
+                    <div class="fepanel">
+                        <a class="feanswerer"><i></i>{{item.teacherName}}</a>
+                        <a class="fequizzer"><i></i><span><b :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></b>{{item.user}}</span></a>
+                        <a class="feprice">价值{{item.offerMoney}}元</a>
+                        <a class="festudynum">{{item.studyNum}}人学习过</a>
+                        <b>{{item.insertTime|showTime}}</b>
+                    </div>
+                </li>
+                <!--<li>-->
+                    <!--<h1>【九日早参】第33期|加密货币开始显示独立运动 中国商人成莫斯科最活跃加密货币交易者。</h1>-->
+                    <!--<div class="fepanel">-->
+                        <!--<a class="feanswerer"><i></i>王小强</a>-->
+                        <!--<a class="fequizzer"><i></i><span><b></b>秋天丶很阳光</span></a>-->
+                        <!--<a class="feprice">价值12元</a>-->
+                        <!--<a class="festudynum">1人学习过</a>-->
+                        <!--<b>2个小时之前</b>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+            <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                <li v-show="current != 1" @click="current-- && goto(current--)">
+                    <a href="#this">上一页</a>
+                </li>
+                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#this">{{index}}</a>
+                </li>
+                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                    <a href="#this">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function() {
+        knowledgesharelist();
+    })
+</script>
+
+</body>
+
+</html>

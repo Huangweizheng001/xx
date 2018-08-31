@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+
+		<link rel="stylesheet" href="../../css/bm.css">
+
+		<title>嘉宾专题</title>
+
+		<style>
+			#payBox {
+				display: none;
+				width: 100%;
+				height: 100vh;
+				border: none;
+			}
+			
+			.bmyhztPart1 {
+				max-width: 960px;
+				margin: auto;
+			}
+			.bmyhztPart1 .bmyhone{
+				font-size: 0;
+			}
+			.bmyhztPart1 .bmyhone img {
+				width: 100%;
+			}
+			.teachertopic-wrap{
+				position: relative;font-size: 0;
+			}
+			.teachertopic {
+				position: absolute;top:0;left:0;
+				padding:20px 30px;
+			}
+			.teachertopic .text{
+				color: #fff;font-size: 14px;line-height: 1.5;margin:10px;
+			}
+			.teachertopic .text .left{
+				float: left;width: 50%;
+			}
+			.teachertopic .text .price{
+				color: #e53b3a;font-size: 16px;margin:0 10px;
+			}
+			.teachertopic .btn {
+				padding: 8px 18px;
+				border-radius: 5px;
+				color: #fff;
+				font-size: 16px;
+				margin: 0 10px;
+			}
+			
+			.teachertopic .buybtn {
+				background: #e13636;
+				float: left;
+			}
+			
+			.teachertopic .advisorybtn {
+				background: #bc9871;
+				float: right;
+			}
+			
+			.discount {
+				color: #e13636;
+				display: block;
+				text-align: center;
+				margin-top: 20px;
+				font-size: 16px;
+			}
+			
+			.clearfix {
+				clear: both;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<section class="bmyhztPart1">
+			<div class="bmyhone">
+				<div class="teachertopic-wrap" >
+					<img src="../../images/teachertopic/teacherbg.jpg" />
+					<div class="teachertopic">
+						<img src="../../images/teachertopic/teachertop.png" />
+						
+						<div class="text">
+							<p class="clearfix"><span class="left">嘉&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宾：吴神算</span><span class="left">教程阶段：高级课程</span></p>
+							<p>教程时长：180分钟</p>
+							<p>开播时间：2017.12.08&nbsp;&nbsp;20:00</p>
+							<p>优&nbsp;&nbsp;惠&nbsp;&nbsp;价：<span class="price">88</span>元</p>
+							<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：888元</p>
+							
+						</div>
+						<a class="buybtn btn" id="buybtn">立即购买</a>
+						<a class="advisorybtn btn" id="advisorybtn">点击咨询</a>
+						<div class="clearfix"></div>
+						<!--<a class="discount">播米会员享1折优惠>></a>-->
+					</div>
+					
+				</div>
+				<img src="../../images/teachertopic/teachertopic.jpg" />
+			</div>
+		</section>
+
+		<script type="text/javascript" src="../../js/zepto.js"></script>
+		<script type="text/javascript" src="../../js/layer.js"></script>
+		<script type="text/javascript" src="../../js/bmmain.js"></script>
+		<script type="text/javascript" src="../../js/qq.js"></script>
+
+		<script>
+			$(function() {
+				var payType = 3;
+				var payPrice = 88.00;
+				var isClick = true; //是否可以点击支付
+
+				var date = new Date();
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				var seconds = date.getSeconds();
+				var randnum = "";
+				for(var i = 0; i < 5; i++) {
+					randnum += Math.floor(Math.random() * 10);
+				}
+
+				if(month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if(strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				if(seconds >= 0 && seconds <= 9) {
+					seconds = "0" + seconds;
+				}
+
+				var currentdate = String(date.getFullYear()) + String(month) + String(strDate) + String(date.getHours()) + String(date.getMinutes()) + String(seconds) + String(randnum);
+				var uid = localStorage.getItem('$ycuid');
+
+				$("#buybtn").on("click", function() {
+					if(!isLogined()) {
+						layer.open({
+							content: '非会员用户无法购物哦！',
+							btn: ['登录', '取消'],
+							yes: function(index) {
+								//location.reload();
+								window.location.href = "../login.html"
+								layer.close(index);
+							}
+						});
+					} else {
+						$.ajax({
+							type: "post",
+							url: SERVEROOTDATA + "Member.ashx?action=getSowingCoinByMemberId",
+							dataType: 'json',
+							data: {
+								"memberId": uid
+							},
+							timeout: 600,
+							success: function(res) {
+								if(res[0].isSaLong == 1 || res[0].isSaLong == "1") {
+									layer.open({
+										content: '您已报名了该课程！',
+										btn: '我知道了'
+									});
+								} else { //未购买，跳转到付钱部分
+									/*if(res[0].level>1){
+										layer.open({
+									    content: '您是'+res[0].memberlevel+'，享受一折优惠'
+									    ,skin: 'msg'
+									    ,time: 3 //2秒后自动关闭
+									  });
+										payPrice = 8.8;
+										setTimeout(function(){
+										submitOrder();
+									},2000);
+									}else{
+										submitOrder();
+									}*/
+									submitOrder();
+									
+
+								}
+							},
+							error: function(err) {
+								console.log("request error");
+							}
+						});
+					}
+				});
+
+				function submitOrder() {
+					var date = new Date();
+					var month = date.getMonth() + 1;
+					var strDate = date.getDate();
+					var seconds = date.getSeconds();
+					var randnum = "";
+					for(var i = 0; i < 5; i++) {
+						randnum += Math.floor(Math.random() * 10);
+					}
+
+					if(month >= 1 && month <= 9) {
+						month = "0" + month;
+					}
+					if(strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+					}
+					if(seconds >= 0 && seconds <= 9) {
+						seconds = "0" + seconds;
+					}
+
+					var currentdate = String(date.getFullYear()) + String(month) + String(strDate) + String(date.getHours()) + String(date.getMinutes()) + String(seconds) + String(randnum);
+
+					$.ajax({
+						type: "post",
+						url: SERVEROOTDATA + "MemberGrade.ashx?action=purchaseMemberGrade",
+						dataType: 'text',
+						data: {
+							memberId: localStorage.getItem("$ycuid"),
+							purchaseAmount: payPrice,
+							orderId: currentdate,
+							payTypeId: 3, //0: 支付宝， 1：微信 2：播米币； 3:"web 支付宝"
+							memberGradeId: 17,
+						},
+						success: function(res) {
+							if(res == 814 || res == "814") {
+								payError();
+								return false;
+							}
+
+							if(isWeiXin()) { //如果是是微信登录
+								var ss = payPrice + '_' + currentdate + '_membergrade';
+								window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7de03be2cd376b04&redirect_uri=http://m.bomizx.net/html/weixinturnpay.html&response_type=code&scope=snsapi_userinfo&state=' + ss + '#wechat_redirect';
+							} else {
+								openAliPayRUTE(payPrice, currentdate, uid, 17); //支付宝
+							}
+
+						},
+						error: function() {
+							payError();
+						}
+					})
+				}
+
+				function openAliPayRUTE(rechargeAmount, rechargeList, uid, memberGradeId) { //支付宝
+					//页面层
+					layer.open({
+						type: 1,
+						content: '<iframe id="payBox" src="' + SERVEROOTDATA + 'MemberGrade.ashx?action=purchaseMemberGrade&purchaseAmount=' +
+							rechargeAmount + '&payTypeId=3&purchaseList=' +
+							rechargeList + '&memberId=' +
+							uid + '&memberGradeId=' +
+							memberGradeId + '"></iframe>',
+						anim: 'up',
+						style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100%; border:none;'
+					});
+
+					setTimeout(function() {
+						$("#payBox").css("display", "block");
+					}, 2000)
+				}
+
+				function isWeiXin() { //判断是否是微信浏览器
+					var ua = window.navigator.userAgent.toLowerCase();
+					if(ua.match(/MicroMessenger/i) == 'micromessenger') {
+						return true;
+					} else {
+						return false;
+					}
+				}
+
+				//单个
+				BizQQWPA.addCustom({
+					aty: '0', //指定工号类型,0-自动分流，1-指定工号，2-指定分组
+					nameAccount: SERVERQQ, //营销 QQ 号码
+					selector: 'advisorybtn' //WPA 被放置的元素
+				});
+
+				function payError() {
+					layer.open({
+						content: "支付失败！",
+						skin: 'msg',
+						time: 2 //2秒后自动关闭
+					})
+					setTimeout(function() {
+						window.location.reload();
+					}, 1500)
+				}
+			})
+		</script>
+	</body>
+
+</html>

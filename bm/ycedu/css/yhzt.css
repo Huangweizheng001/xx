@@ -1,0 +1,500 @@
+@charset "UTF-8";
+
+/*
+* Autor:Jabo
+* Time：2017/10/26
+* Desc：悦华专题
+*/
+
+.bmyhPart1 {
+	height: 886px;
+	background: url(../images/temp/yhzt/ztbg01.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.bmyhliveBox {
+	padding-top: 266px;
+}
+
+.bmyhliveBox .bmyhliveLeft {
+	position: relative;
+	height: 480px;
+	background-color: #000;
+}
+
+.bmyhliveBox .bmyhliveRight {
+	padding-left: 20px;
+	height: 480px;
+	box-sizing: border-box;
+	/*background-color: #F1EF71;*/
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhCourseLi{
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhCourseLi a{
+	display: block;
+	height: 164px;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhCourseLi a img{
+	max-height: 100%;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhRightBox{
+	padding: 6px 20px;
+	height: 480px;
+	box-sizing: border-box;
+	background-color: #010101;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhcourseBtns{
+	text-align: center;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhcourseBtns a{
+	display: inline-block;
+	/*margin-right: 20px;*/
+	border-radius: 3px;
+	padding: 6px 0;
+	width: 46%;
+	color: #fed500;
+	border: 1px solid #fed500;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhcourseBtns a:hover{
+	color: #fff;
+	background-color: #fed500;
+}
+
+.bmyhliveBox .bmyhliveRight .bmyhRightBox h5{
+	padding: 10px;
+	font-size: 24px;
+	color: #fff;
+}
+
+.bmyhPart2 {
+	height: 910px;
+	background: url(../images/temp/yhzt/ztbg02.jpg) no-repeat center;
+	background-size: cover;
+}
+
+@media only screen and (max-width: 1499px) {
+	.bmyhPart1 {
+		height: 700px;	
+	}
+	
+	.bmyhliveBox{
+		padding-top: 190px;
+	}
+	
+	.bmyhPart2 {
+		height: 710px;
+	}
+}
+
+@media only screen and (max-width: 1199px) {
+	.bmyhPart2 {
+		height: 510px;
+	}
+}
+
+.bmyhPart3.dycmemberrule {
+	background: #252140;
+	height: auto;
+}
+
+.bmyhPart3 .container {
+	padding: 20px 60px;
+	box-sizing: border-box;
+}
+
+.bmyhPart3 .bmyhRechargeBox h4{
+	padding: 20px 0 40px;
+	text-align: center;
+	font-size: 52px;
+	color: #fff;
+}
+
+.bmyhPart3 .bmyhRechargeBox h4 span{
+	color: #ffd200;
+}
+
+.bmyhRechargeBox{
+	display: table;
+	width: 100%;
+}
+
+.bmyhRechargeBox .bmyhRechargeLeft{
+	display: table-cell;
+}
+
+.bmyhRechargeBox  .bmyhRechargeRight{
+	display: table-cell;
+	vertical-align: middle;
+	width: 440px;
+	padding-left: 35px;
+	font-size: 24px;
+	color: #fff;
+}
+
+.bmyhRechargeBox  .bmyhRechargeRight span{
+	color: #ffd200;
+}
+
+.bmyhRechargeBtn{
+	display: inline-block;
+	padding: 3px 60px;
+	border-radius: 3px;
+	font-size: 18px;
+	color: #fff;
+	background-color: #ffd200;
+}
+
+.bmyhRechargeBox  .bmyhRechargeRight p{
+	margin: 24px 0;
+}
+
+.bmyhRechargeDetail{
+	font-size: 14px;
+}
+
+.bmyhRechargeNoteBox{
+	margin-top: 15px;
+}
+
+.bmyhRechargeNoteBox .bmyhBgTitle{
+	margin-top: 30px;
+}
+
+.bmyhRechargeNoteBox li, .bmyhMemberTips{
+	margin: 6px 0;
+	font-size: 18px;
+	color: #fff;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title li>div:hover, .dycmemberrule .dycpanel .dycmemberrule-title li>div.active{
+	background: #29325d;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title li>div{
+	background: #0d1539;	
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title li>div h4{
+	color: #fff;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title li>div.active h4,
+.dycmemberrule .dycpanel .dycmemberrule-title li>div:hover h4{
+	color: #ffd200;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title li>div h4 span {
+	color: #fff !important;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-title{
+	padding:20px 0 0;
+	margin-left: -20px;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-content{
+	margin: 0;
+	border: 1px solid #29325d;
+	background: #0d1539;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-content h1{
+	margin: 20px 0;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-content h1>span{
+	background-color:#fed500;;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-content .dycmembercard{
+	padding: 0 20px;
+	border-right: 1px dotted #dd7c1c;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-content .dycprivilege {
+	padding: 15px 20px 0;
+	overflow: auto;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-bottom{
+	padding: 30px 0;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-bottom b{
+	color: #fed500;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-bottom>a{
+	padding: 4px 50px;
+	color: #fff;
+	background-color: #fed500;
+}
+
+.dycmemberrule .dycpanel .dycmemberrule-bottom>a{
+	right: 0;
+}
+
+.bmyhPart4 {
+	height: 930px;
+	background: url(../images/temp/yhzt/ztbg05.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.bmyhPart4 h4{
+	padding: 40px 0 10px;
+	text-align: center;
+	font-size: 52px;
+	color: #fff;
+}
+
+.bmyhPart4 h4 span{
+	color: #ffd200;;
+}
+
+.bmyhPart4  .bmyhSubTitle{
+	text-align: center;
+	font-size: 32px;
+	color: #fff;
+}
+
+.bmyhPart4  .bmyhCourseBox{
+	padding: 10px 60px;
+	margin: 30px 0 30px -20px;
+}
+
+.bmyhPart4   .bmyhCourseLi{
+	position: relative;
+	margin-left: 20px;
+	height: 460px;
+	overflow: hidden;
+	box-sizing: border-box;
+	z-index: 0;
+	cursor: pointer;
+	border: 2px solid #ffd200;
+	background: url(../images/temp/yhzt/01.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.bmyhPart4   .bmyhCourseBox .span4:nth-child(2) .bmyhCourseLi{
+	background: url(../images/temp/yhzt/2.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.bmyhPart4   .bmyhCourseBox .span4:nth-child(3) .bmyhCourseLi{
+	background: url(../images/temp/yhzt/3.jpg) no-repeat center;
+	background-size: cover;
+}
+
+.bmyhPart4   .bmyhCourseLi .bmyhBrief{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -68px 0 0 -90px;
+	padding-top: 100px;
+	width: 180px;
+	text-align: center;
+	font-size: 24px;
+	color: #FFD200;
+	background:url(../images/temp/yhzt/01.png) no-repeat center 14px;
+}
+
+.bmyhPart4   .span4:nth-child(2)  .bmyhCourseLi .bmyhBrief{
+	background:url(../images/temp/yhzt/02.png) no-repeat center 14px;
+}
+
+.bmyhPart4   .span4:nth-child(3) .bmyhCourseLi  .bmyhBrief{
+	background:url(../images/temp/yhzt/03.png) no-repeat center 14px;
+}
+
+.bmyhPart4   .bmyhCourseLi:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: rgba(0,0,0,.4);
+	transition: all .3s;
+}
+
+
+.bmyhPart4  .bmyhDisc{
+	position: absolute;
+    right: 0;
+    padding: 30px 36px 4px;
+    transform: translate(42px,-18px) rotate(45deg);
+    color: #fff;
+    background-color: #FFD200;
+}
+
+.bmyhPart4 .bmyhParentPara{
+	position: absolute;
+	padding: 6px 3px 6px 10px;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	font-size: 16px;
+	color: #fff;
+	background-color: #FFD200;
+	transition: all .3s;
+}
+
+.bmyhPart4 .bmyhSubPara{
+	position: absolute;
+    bottom: -150%;
+    left: 0;
+    line-height: 24px;
+    width: 100%;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    color: #fff;
+    background: rgba(0,0,0,.6);
+    transition: all .3s;
+}
+
+.bmyhPart4   .bmyhCourseLi:hover .bmyhSubPara{
+	bottom: 0;
+}
+
+.bmyhPart4   .bmyhCourseLi:hover .bmyhParentPara{
+	bottom: -150%;
+}
+
+.bmyhPart4  .bmyhCourseLi:hover:after{
+	background-color: rgba(0,0,0,.2);
+}
+
+.bmyhenrollBox {
+	padding: 30px 0;
+	text-align: center;
+}
+
+.bmyhenrollBox a{
+	display: inline-block;
+    padding: 8px 50px;
+    border-radius: 3px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #FFD200;
+}
+
+.bmyhenrollBox a:hover{
+	background-color: #D2B014;
+}
+
+/*
+ * 支付
+ */
+
+.bmyhPaySelectBox{
+	width:340px;
+	margin: auto;
+}
+
+.bmyhPaySelectBox h4{
+	padding: 10px 0;
+	text-align: center;
+	font-size: 18px;
+	color: #333;
+}
+
+.bmyhPaySelectBox  .bmyhPayPrice{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	line-height: 42px;
+	color: #888;
+}
+
+.bmyhPaySelectBox  .bmyhPayPrice span{
+	float: right;
+	color: #333;
+}
+
+.bmyhPaySelectInner{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+.bmyhPaySelectInner .bmyhPayType{
+	padding: 10px 0;
+	color: #888;
+	
+}
+
+.bmyhPaySelectInner  .payment {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.bmyhPaySelectInner  .payment__icon {
+    float: left;
+    font-size: 18px;
+    margin-right: 6px;
+}
+
+.bmyhPaySelectInner .payment__text {
+    font-size: 14px;
+    color: #333;
+    line-height: 18px;
+}
+
+.bmyhPaySelectInner .payment__radio {
+    display: block;
+    float: right;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #030303;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    -webkit-transition: background .15s;
+    transition: background .15s;
+    overflow: hidden;
+}
+
+.bmyhPaySelectInner .payment__radio.active {
+    background: #030303;
+}
+
+.bmyhPaySelectInner .payment__radio .check {
+    opacity: 0;
+    font-size: 12px;
+    fill: #fff;
+    stroke: #fff;
+    stroke-width: 100;
+    margin: 3px 0 0 2px;
+    -webkit-transition: opacity .15s;
+    transition: opacity .15s;
+}
+
+.bmyhPaySelectInner .payment__radio.active .check {
+    opacity: 1;
+}
+
+.bmyhPayBtnBox{
+	margin: 15px 0;
+	text-align: center;
+}
+
+.bmyhPayBtnBox a{
+	display: block;
+	line-height: 42px;
+	color: #fff;
+	background-color: #333;
+}
+
+.bmyhPayBtnBox a:hover{
+	background-color: #000;
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>登录注册—福建教育网</title>
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css?1" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+		<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101447287" data-redirecturi="http://www.fetv.cn/feweb/back.html" charset="utf-8"></script>
+	</head>
+
+	<body>
+
+		<header class="felogin-header-wrap">
+			<div class="container">
+				<div class="fepanel-box">
+					<a href="./index.html">
+						<img src="images/public/logo-icon-medium.png" alt="福建教育网" />
+					</a>
+					<span class="fepanel-brief">欢迎访问</span>
+				</div>
+			</div>
+		</header>
+
+		<!--登陆注册-->
+		<section class="felogin-login-wrap" id="jloginWrapApp">
+			<div class="container">
+				<div class="felogin-inner">
+					<div class="felogin-type-box">
+						<a :class={"active":userType==1} @click="selectUserType(1)">学生端</a>
+						<!--<a :class={"active":userType==2} @click="selectUserType(2)">家长端</a>-->
+						<a :class={"active":userType==3} @click="selectUserType(3)">教师端</a>
+						<!--<a href="http://www.fetv.cn/fe/login.html">教师端</a>-->
+					</div>
+
+					<!--账号密码登录-->
+					<div class="felogin-panel-wrap" v-show="pageType == 1">
+						<form class="felogin-panel">
+							<h4 v-cloak>福建教育网登录【{{currentRole}}】</h4>
+							<a class="fechange-login-type" @click="changeShowPage(2)">手机号快速登录</a>
+							<label class="felogin-name">
+                                <input class="felogin-name-input" name="name" type="text" placeholder="请输入手机/昵称" autofocus v-model="userName" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="userNameErrorTipsKey">{{userNameErrorTips}}</span>
+                            </label>
+							<label class="felogin-pwd">
+                                <input class="felogin-pwd-input" name="password" type="password" placeholder="请输入密码" v-model="userPwd" @keydown="keyboardSub($event)"   />
+                                <span class="error" v-cloak v-if="userPwdErrorTipsKey">{{userPwdErrorTips}}</span>
+                            </label>
+							<label class="felogin-auto">
+                                <input class="feautoLogin" type="checkbox" name="autologin" value="checkbox" checked="checked" @click="toggleStorage"/>自动登录
+                                <a class="fepwd-forget" href="javascript:;" @click="changeShowPage(4)">忘记密码</a>
+                            </label>
+							<a class="felogin-btn" @click="loginSub">登录</a>
+						</form>
+					</div>
+
+					<!--手机快速登录-->
+					<div class="feloginphone-panel-wrap" v-show="pageType == 2">
+						<form class="felogin-panel">
+							<h4 v-cloak>福建教育网登录【{{currentRole}}】</h4>
+							<a class="fechange-login-type" @click="changeShowPage(1)">账号密码登录</a>
+							<label class="felogin-name">
+                                <input class="felogin-name-input" name="name" type="text" placeholder="请输入您的手机号" autofocus v-model="quickPhone" @keydown="keyboardSub($event)"/>
+                                <span class="error" v-cloak v-if="quickPhoneErrorTipsKey">{{quickPhoneErrorTips}}</span>
+                           </label>
+							<label class="fephone-vc fephone-imagevc">
+                                <input name="imgValidateCode" type="text" placeholder="请输入图形验证码" v-model="quickImgVC1" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="getImageVC">
+                                	<img :src="imageCodeImg" /></a>
+                                <span class="error" v-cloak v-if="quickVCErrorTipsKey">{{quickVCErrorTips}}</span>
+                            </label>
+
+							<label class="fephone-vc">
+                                <input name="validateCode" type="text" placeholder="请输入手机验证码" v-model="quickVC" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="vcTimeCount" :class={"disabledStatus":!quickVCTimeKey}>{{quickVCLabel}}</a>
+                                <span class="error" v-cloak v-if="quickVCErrorTipsKey">{{quickVCErrorTips}}</span>
+                            </label>
+							<a class="felogin-btn" @click="loginSub">登录</a>
+							<!--<div class="felogin-phone-tip">验证即登录，未注册将自动创建福建教育网帐号</div>-->
+							<div class="felogin-phone-tip">验证登录，请先创建福建教育网帐号</div>
+						</form>
+					</div>
+
+					<!--注册页面-->
+					<div class="feregphone-panel-wrap" v-show="pageType == 3">
+						<form class="felogin-panel">
+							<h4 v-cloak>福建教育网注册【{{currentRole}}】</h4>
+							<a class="fechange-login-type" @click="changeShowPage(1)">已有账号登录</a>
+							<label class="fereg-phone">
+                                <input class="fereg-phone-input" name="phone" type="phone" placeholder="请输入您的手机号" autofocus v-model="regPhone" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="regPhoneErrorTipsKey">{{regPhoneErrorTips}}</span>
+                           </label>
+							<label class="fephone-vc fephone-imagevc">
+                                <input name="imgValidateCode" type="text" placeholder="请输入图形验证码" v-model="quickImgVC2" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="getImageVC">
+                                	<img :src="imageCodeImg" /></a>
+                                <span class="error" v-cloak v-if="quickVCErrorTipsKey">{{quickVCErrorTips}}</span>
+                            </label>
+							<label class="fephone-vc">
+                                <input name="validateCode" type="text" placeholder="请输入手机验证码" v-model="regVC" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="vcTimeCount" :class={"disabledStatus":!regVCTimeKey}>{{regVCLabel}}</a>
+                                <span class="error" v-cloak v-if="regVCErrorTipsKey">{{regVCErrorTips}}</span>
+                            </label>
+							<label class="fereg-name">
+                                <input class="fereg-name-input" name="name" type="text" placeholder="请输入昵称" v-model="regUserName" @keydown="keyboardSub($event)" @blur="checkUserName" />
+                                <span class="error" v-cloak v-if="regUserNameErrorTipsKey">{{regUserNameErrorTips}}</span>
+                           </label>
+							<label class="fereg-pwd">
+                                <input class="fereg-pwd-input" name="pwd" type="password" placeholder="请设置密码" v-model="regPwd" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="regPwdErrorTipsKey">{{regPwdErrorTips}}</span>
+                           </label>
+							<label class="fereg-pwd2">
+                                <input class="fereg-pwd-input2" name="pwd2" type="password" placeholder="请再次输入密码" v-model="regPwd2" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="regPwd2ErrorTipsKey">{{regPwd2ErrorTips}}</span>
+                           </label>
+
+							<label class="fereg-agree">
+                                <input type="checkbox" name="" checked="checked" @click="toggleAgreeReg" />我已阅读并同意
+                                <a class="fereg-agreement" target="_blank" href="#this">福建教育网注册条款</a>
+                            </label>
+
+							<a class="fereg-btn" @click="regSub">立即注册</a>
+						</form>
+					</div>
+
+					<!--忘记密码-->
+					<div class="feforget-panel-wrap" v-show="pageType == 4">
+						<form class="felogin-panel">
+							<h4 v-cloak>福建教育网忘记密码【{{currentRole}}】</h4>
+							
+							<a class="fechange-login-type" @click="changeShowPage(1)">已有账号登录</a>
+							<label class="feforget-phone">
+                                <input class="feforget-phone-input" name="phone" type="phone" placeholder="请输入您的手机号" autofocus v-model="forgetPhone" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="forgetPhoneErrorTipsKey">{{forgetPhoneErrorTips}}</span>
+                           </label>
+							<label class="fephone-vc fephone-imagevc">
+                                <input name="imgValidateCode" type="text" placeholder="请输入图形验证码" v-model="quickImgVC3" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="getImageVC">
+                                	<img :src="imageCodeImg" /></a>
+                                <span class="error" v-cloak v-if="quickVCErrorTipsKey">{{quickVCErrorTips}}</span>
+                            </label>
+							<label class="fephone-vc">
+                                <input name="validateCode" type="text" placeholder="请输入手机验证码" v-model="forgetVC" @keydown="keyboardSub($event)" />
+                                <a class="feget-vccode" @click="vcTimeCount" :class={"disabledStatus":!forgetVCTimeKey}>{{forgetVCLabel}}</a>
+                                <span class="error" v-cloak v-if="forgetVCErrorTipsKey">{{forgetVCErrorTips}}</span>
+                            </label>
+
+							<label class="feforget-pwd">
+                                <input class="feforget-pwd-input" name="pwd" type="password" placeholder="请设置密码" v-model="forgetPwd" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="forgetPwdErrorTipsKey">{{forgetPwdErrorTips}}</span>
+                           </label>
+							<label class="feforget-pwd2">
+                                <input class="feforget-pwd-input2" name="pwd2" type="password" placeholder="请再次输入密码" v-model="forgetPwd2" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="forgetPwd2ErrorTipsKey">{{forgetPwd2ErrorTips}}</span>
+                           </label>
+
+							<a class="feforget-btn" @click="forgetSub">提交</a>
+						</form>
+					</div>
+					
+					<!--账号密码登录-->
+					<div class="felogin-panel-wrap" v-show="pageType == 5">
+						<form class="felogin-panel">
+							<h4 v-cloak>福建教育网绑定账号【{{currentRole}}】</h4>
+							<a class="fechange-login-type" @click="changeShowPage(2)">手机号快速登录</a>
+							<label class="felogin-name">
+                                <input class="felogin-name-input" name="name" type="text" placeholder="请输入手机/用户名" autofocus v-model="userName" @keydown="keyboardSub($event)" />
+                                <span class="error" v-cloak v-if="userNameErrorTipsKey">{{userNameErrorTips}}</span>
+                            </label>
+							<label class="felogin-pwd">
+                                <input class="felogin-pwd-input" name="password" type="password" placeholder="请输入密码" v-model="userPwd" @keydown="keyboardSub($event)"   />
+                                <span class="error" v-cloak v-if="userPwdErrorTipsKey">{{userPwdErrorTips}}</span>
+                            </label>
+							<label class="felogin-auto">
+                                <input class="feautoLogin" type="checkbox" name="autologin" value="checkbox" checked="checked" @click="toggleStorage"/>自动登录
+                                <a class="fepwd-forget" href="javascript:;" @click="changeShowPage(4)">忘记密码</a>
+                            </label>
+							<a class="felogin-btn" @click="bindSub">账号绑定</a>
+						</form>
+					</div>
+
+					<!--public login-->
+					<div class="feotherlogin-bar">
+						<span>使用合作方账号登录:</span>
+						<a class="feqq" id="feqqLogin" @click="changeBindType(1)"></a>
+						<a class="feweixin" @click="changeBindType(2)"></a>
+						<a class="fesina" @click="changeBindType(3)"></a>
+					</div>
+					<div class="fecurrentreg-box" v-show="pageType != 3" @click="changeShowPage(3)">
+						<a>立即注册</a>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<footer class="felogin-footer-wrap">
+			<div class="container">
+				<p>&copy; 2015 fetv.cn 福建省教育电视台 版权所有</p>
+			</div>
+		</footer>
+
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.storage.js"></script>
+		<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./js/vue.min.js"></script>
+		<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./js/fetv.js?3"></script>
+		<script type="text/javascript" src="./js/fetvAppend.js"></script>
+
+		<script>
+			$(function() {
+				loginInit($(this).getUrlParam("login"), $(this));
+			})
+		</script>
+
+	</body>
+
+</html>

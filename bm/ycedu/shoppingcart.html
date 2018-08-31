@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>购物车</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css?2" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+
+		<style>
+			.dychadselect {
+				background: #df5e3f !important;
+				cursor: pointer !important;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="dycshoppingcart-wrap" id="jscapp">
+			<div class="container">
+				<!--购物车头部-->
+				<div class="dycshoppingcart-header">
+					<div class="dycshoppingcartlogo">
+						<img src="images/shoppinglogo.jpg" />
+					</div>
+					<div class="dycshoppingcartstate">
+						<span class="active">查看购物车</span>
+						<span>拍下课程</span>
+						<span>付款到播米</span>
+						<span>评价</span>
+					</div>
+				</div>
+
+				<!--购物车课程内容-->
+				<div class="dycshoppingcart-content">
+					<div class="swiper-container dycspcart-container">
+						<div class="dycspcartnav">
+							<ul id="jspcartnav" class="ycspcart-swiper-pagination" v-on:click="sppost($event)"></ul>
+							<div class="dycspcartorderinf">
+								已选课程 <span class="dycspcartprice"> ￥{{allMoney}} </span>
+								<a class="dycstatement" href="#this">结算</a>
+							</div>
+						</div>
+
+						<div class="swiper-wrapper swiper-no-swiping">
+							<!--全部课程-->
+							<div class="swiper-slide">
+								<!--头部bar--->
+								<div class="dycshcartop-bar">
+									<label><input type="checkbox" name="dycscall-select" id="dycscall-select" value="" v-bind:checked="checkAllFlag" @click="checkAll()" />全选</label>
+									<span>课程信息</span>
+									<span>金额</span>
+									<span>操作</span>
+								</div>
+
+								<div class="dycshoppingcar-list jscAllkc">
+									<template v-for="(item, index) in pList">
+										<div class="dycshoppingcar-li" v-if="item.show">
+											<div class="dycchosekc">
+												<input type="checkbox" v-bind:checked='item.checked' @click="selectedProduct(item, item.pid)" />
+											</div>
+											<a v-bind:href="[item.url+'?pId='+item.pid]" class="ycimage">
+												<img v-bind:src="item.src" alt="课程" />
+											</a>
+											<div class="dycspkc-box">
+												<a class="yctitle" v-bind:href="[item.url+'?pId='+item.pid]">{{item.title}}</a>
+												<p class="ycbrief">{{item.brief}}</p>
+											</div>
+											<div class="dycspprice-box">
+												<span class="dycspold-price">￥{{item.oldPrice}}</span>
+												<span class="dycspcurrent-price">￥{{item.price}}</span>
+											</div>
+											<div class="dycspop-box">
+												<a class="dycspfavorite" href="#this">移入收藏夹</a>
+												<a class="dycspkc-del" @click="delItem(item.pid)">删除</a>
+											</div>
+										</div>
+									</template>
+
+								</div>
+							</div>
+
+							<!--打折课程-->
+							<div class="swiper-slide">
+								<!--头部bar--->
+								<div class="dycshcartop-bar">
+									<label><input type="checkbox" name="dycscdis-select" id="dycscdis-select" value="" v-bind:checked="checkDisFlag" @click="checkDis()"/>全选</label>
+									<span>课程信息</span>
+									<span>金额</span>
+									<span>操作</span>
+								</div>
+
+								<div class="dycshoppingcar-list jscDiscount">
+									<template v-for="(item, index) in pList2">
+										<div class="dycshoppingcar-li" v-if="item.show">
+											<div class="dycchosekc">
+												<input type="checkbox" v-bind:checked='item.checked' @click="selectedProduct(item, item.pid)" />
+											</div>
+											<a href="#this" class="ycimage">
+												<img v-bind:src="item.src" alt="课程" />
+											</a>
+											<div class="dycspkc-box">
+												<a class="yctitle" href="#this">{{item.title}}</a>
+												<p class="ycbrief">{{item.brief}}</p>
+											</div>
+											<div class="dycspprice-box">
+												<span class="dycspold-price">￥{{item.oldPrice}}</span>
+												<span class="dycspcurrent-price">￥{{item.price}}</span>
+											</div>
+											<div class="dycspop-box">
+												<a class="dycspfavorite" href="#this">移入收藏夹</a>
+												<a class="dycspkc-del" @click="delItem(item.pid)">删除</a>
+											</div>
+										</div>
+									</template>
+
+								</div>
+							</div>
+
+							<!--即将过期-->
+							<div class="swiper-slide">
+								<!--头部bar--->
+								<div class="dycshcartop-bar">
+									<label><input type="checkbox" name="dycscexpire-select" id="dycscexpire-select" value="" v-bind:checked="checkExpFlag" @click="checkExp()"/>全选</label>
+									<span>课程信息</span>
+									<span>金额</span>
+									<span>操作</span>
+								</div>
+
+								<div class="dycshoppingcar-list jscExpire">
+									<template v-for="(item, index) in pList3">
+										<div class="dycshoppingcar-li" v-if="item.show">
+											<div class="dycchosekc">
+												<input type="checkbox" v-bind:checked='item.checked' @click="selectedProduct(item, item.pid)" />
+											</div>
+											<a href="#this" class="ycimage">
+												<img v-bind:src="item.src" alt="课程" />
+											</a>
+											<div class="dycspkc-box">
+												<a class="yctitle" href="#this">{{item.title}}</a>
+												<p class="ycbrief">{{item.brief}}</p>
+											</div>
+											<div class="dycspprice-box">
+												<span class="dycspold-price">￥{{item.oldPrice}}</span>
+												<span class="dycspcurrent-price">￥{{item.price}}</span>
+											</div>
+											<div class="dycspop-box">
+												<a class="dycspfavorite" href="#this">移入收藏夹</a>
+												<a class="dycspkc-del" @click="delItem(item.pid)">删除</a>
+											</div>
+										</div>
+									</template>
+								</div>
+							</div>
+						</div>
+
+						<!--统计bar-->
+						<div class="dycsp-count-bar">
+							<label><input type="checkbox" name="dycsp-all-select" id="dycsp-all-select" value="" v-bind:checked="checkAllFlag"  @click="checkAll()" />全选</label>
+
+							<a class="dycspdel-btn" href="#this" @click="selectedDel">删除</a>
+							<a class="dycspfavorite-btn" href="#this">移入收藏夹</a>
+
+							<span class="dycselected-kc">已选课程<span>{{selectedCourse}}</span>节</span>
+							<span class="dyccount-price">合计:<span>￥{{allMoney}}</span></span>
+
+							<a id="dycsettlement" href="#this" v-bind:class="{'dychadselect': hadSelected}" v-on:click="subOrder">结算</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/spcart.js"></script>
+	</body>
+
+</html>

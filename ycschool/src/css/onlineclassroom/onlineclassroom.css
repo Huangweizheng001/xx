@@ -1,0 +1,115 @@
+.course-wrapper .course-new .course-content .course-item .content {
+	padding: 10px;
+	background: #f6f6f6;
+	height: 95px;
+	overflow: hidden;
+}
+
+.onlineClassroom .moduleTitleWrapper {
+	padding-right: 20px;
+}
+
+.course-wrapperBox {
+	background-color: white;
+}
+
+.onlineClassroom .onlineClassroomBox {
+	padding: 26px;
+}
+
+.onlineClassroom .onlineClassroomBox .image {
+	position: relative;
+	display: block;
+}
+
+.onlineClassroom .onlineClassroomBox img {
+	display: block;
+	height: 183px;
+	width: 100%;
+}
+
+.onlineClassroom .onlineClassroomBox a {
+	position: relative;
+}
+
+.onlineClassroom .courseItem {
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+.onlineClassroom .courseItem .content {
+	height: 103px;
+	overflow: hidden;
+	padding: 10px;
+	background: #f6f6f6;
+}
+
+.onlineClassroom .courseItem .coursename {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	height: 42px;
+	font-size: 16px;
+	color: #333333;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+.onlineClassroom .courseItem .headportrait img {
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	float: left;
+}
+
+.onlineClassroom .courseItem .box {
+	height: 40px;
+	padding-left: 60px;
+	padding-top: 15px;
+}
+
+.onlineClassroom .courseItem .box h2 {
+	float: left;
+	font-size: 14px;
+	color: #999999;
+}
+
+.onlineClassroom .courseItem .box h4 {
+	font-size: 14px;
+	float: right;
+	color: #999999;
+}
+
+.onlineClassroom .courseItem .mask {
+	/*display: none;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*width: 100%;*/
+	/*height: 100%;*/
+	background: rgba(0, 0, 0, .4);
+	opacity: 0;
+	transition: all .3s linear;
+}
+
+.onlineClassroom .courseItem .play-icon {
+	/*display: block;*/
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -16px;
+	margin-left: -16px;
+	background: url("../../images/temp/play-icon.png");
+}
+
+.onlineClassroom .courseItem .mask:hover {
+	opacity: 1;
+	cursor: pointer;
+}

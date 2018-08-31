@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>名师工作室</title>
+	</head>
+
+	<body>
+		<header id="feHeaderTransparentShare">
+			<header-transparent-share-template></header-transparent-share-template>
+		</header>
+		<section class="feStudioCenterWrap" id="feStudioCenterWrap">
+			<div class="feStudioHead">
+				<div class="feStudioBg"></div>
+				<div class="feStudioHeadBox">
+					<div class="feImage">
+						<img v-lazy="studioArr.iconPath" />
+					</div>
+					<h3>{{studioArr.name}}</h3>
+					<div class="feNums">
+						<span class="feMember">成员数：{{studioArr.memberCount}}人</span><span class="feSource">资源数：{{studioArr.resourceCount}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feStudioNotice">
+				<span class="feNoticeTip">最新公告</span>
+				
+				<div class="swiper-container feStudioNoticeContainer">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"  v-if='noNotice'>
+							<a class="feNotice" >暂无数据</a>
+						</div>
+						<div class="swiper-slide"  v-for="item in newNotice"  v-else v-cloak>
+							<a class="feNotice" :href="item.activityId|addNoticePre" >{{item.name}}</a>
+						</div>
+					</div>
+				</div>
+				
+				<a class="feMore" :href="0|addNewsListHref" v-show="!noNotice"></a>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feStudioBox">
+				<p class="feStudioBoxHead">工作室资讯</p>
+				<initempty-component label="暂无数据" :initflag=noNewsData v-cloak></initempty-component>
+				<a class="feStudioNewsList clearfix" v-for="item in newsArr" v-cloak :href='item.newsId|addNewsPre'>
+					<div class="feImage">
+						<img v-lazy="item.iconPath" />
+					</div>
+					<p class="title">{{item.title}}</p>
+					<p class="cons">{{item.introduce}}</p>
+					<div class="note">来源：{{item.source}}<span class="time">{{item.reportDate}}</span></div>
+				</a>
+				<a class='feListMore' :href="1|addNewsListHref" v-show="!noNewsData" v-cloak>查看更多</a>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feStudioBox ">
+				<p class="feStudioBoxHead">好课推荐</p>
+				<initempty-component label="暂无数据" :initflag=noCourseData v-cloak></initempty-component>
+				<div class="feStudioCourseList clearfix">
+				<div class="span6" v-for="item in courseArr" v-cloak="">
+					<a :href="item.courseId,item.courseKind|addCoursePre">
+					<div class="feImage">
+						<span class="type">{{item.recordTypeName}}</span>
+						<img v-lazy="item.iconPath" />
+						<span class="time" v-if='item.recordType==1'>{{item.curriculaTime}} 开课</span>
+					</div>
+					<p class="title">{{item.courseName}}</p>
+					<div class="price" v-if='item.isFree==0'>
+						￥{{item.preferentialPrice}}<span class="nums">{{item.studyCount}}人学过</span>
+					</div>
+					<div class="price free" v-else>
+						免费<span class="nums">{{item.studyCount}}人学过</span>
+					</div>
+					</a>
+				</div>
+				
+				</div>
+				<a class='feListMore feStudioCourseMore' :href="|addCourseListHref" v-show="!noCourseData">查看更多</a>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feStudioBox">
+				<p class="feStudioBoxHead">工作室成员<a class="feStudioMemberMore" :href="|addTeacherListHref" v-show="!noMemberData">更多</a></p>
+				<initempty-component label="暂无数据" :initflag=noMemberData v-cloak></initempty-component>
+				<div class="swiper-container feStudioMemberContainer">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" v-for="item in memberArr" v-cloak="">
+						<a class="feStudioMemberList" :href="item.teacherId|addTeacherPre">
+							<div class="feImage">
+								<img v-lazy="item.iconPath" />
+							</div>
+							<p class="name">{{item.teacherName}}</p>
+							<p class="grade">{{item.teacherGradeName}}</p>
+						</a>
+					</div>
+					
+				</div>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feStudioBox ">
+				<p class="feStudioBoxHead">课件资源</p>
+				<div class="feStudioSourceHead clearfix">
+					<a class="active span4">PPT</a>
+					<a class="span4">word</a>
+					<a class="span4">excel</a>
+				</div>
+				<ul class="feStudioSourceList">
+					<li v-for="item in sourceArr" v-cloak>
+						<a>{{item.title}}<span>邱秀天</span></a>
+					</li>
+				</ul>
+			</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				studioCenterApp($.getUrlParam("teachingStudioId"));
+			})
+		</script>
+	</body>
+
+</html>

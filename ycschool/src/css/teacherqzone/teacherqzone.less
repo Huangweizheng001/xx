@@ -1,0 +1,565 @@
+@import "../config.less";
+//主页
+.teacherIndex{
+    margin-bottom: 20px;
+    background: #fff;
+    //左边
+    .teacherIntro{
+        margin-right: 60px;
+        .content{
+            padding: 0 26px;
+            li{
+                position: relative;
+                padding: 20px 0 20px 75px;
+                min-height: 21px;
+                font-size: 14px;
+                color: @fontDarkGrey;
+                border-bottom: 1px solid @borderGrey;
+                span{
+                    position: absolute;
+                    left: 0;
+                    top: 20px;
+                }
+            }
+        }
+    }
+    .teacherCourse{
+        margin-right: 60px;
+        .courseList{
+            padding: 20px 26px 0;
+            .courseItem{
+                display: flex;
+                margin-bottom: 20px;
+                .image{
+                    flex: 230 1 1;
+                    position: relative;
+                    width: 230px;
+                    height: 150px;
+                    margin-right: 20px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .mask {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, .4);
+                        opacity: 1;
+                        //transition: all .3s linear;
+                        .play-icon {
+                            display: block;
+                            width: 32px;
+                            height: 32px;
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            margin-top: -16px;
+                            margin-left: -16px;
+                            background: url("../../images/temp/play-icon.png");
+                        }
+                    }
+                }
+                .boxRight{
+                    position: relative;
+                    flex: 1;
+                    .courseName{
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin-bottom: 10px;
+                        color: @fontDarkGrey;
+                    }
+                    .intro{
+                        font-size: 14px;
+                        color: @fontGrey;
+                    }
+                    .bottom{
+                        position: absolute;
+                        bottom: 0;
+                        font-size: 14px;
+                        color: @fontGrey;
+                    }
+                    .btn{
+                        position: absolute;
+                        right: 0;
+                        bottom: 20px;
+                        width: 120px;
+                        height: 36px;
+                        text-align: center;
+                        line-height: 36px;
+                        background: @mainColor;
+                        font-size: 16px;
+                        color: #fff;
+                        transition: all .3s linear;
+                        &:hover{
+                            background: #000;
+                        }
+                    }
+                }
+            }
+        }
+        .loadmore{
+            padding: 20px 0 60px;
+            text-align: center;
+            a{
+                display: inline-block;
+                width: 120px;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                background: @mainColor;
+                color: #fff;
+                font-size: 16px;
+                transition: all .3s linear;
+                &:hover{
+                    background: #000;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    //右边
+    .rightNav{
+        margin:20px 26px 20px 29px;
+        display: flex;
+        a{
+            flex: 1;
+            border-right: 1px solid @borderGrey;
+            text-align: center;
+            &:last-child{
+                border-right: none;
+            }
+            span{
+                font-size: 16px;
+                color: @mainColor;
+            }
+            h5{
+                font-size: 16px;
+                color: @fontDarkGrey;
+            }
+        }
+    }
+    .teachingResearch{
+        margin-left: 29px;
+        margin-right: 26px;
+        .content{
+            margin-top: 20px;
+            margin-left: 26px;
+            .item{
+                margin-bottom: 10px;
+                .image{
+                    width: 100%;
+                    height: 142px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                h1{
+                    padding: 8px;
+                    font-size: 16px;
+                    color: @fontDarkGrey;
+                }
+                &:hover h1{
+                    color: @mainColor;
+                }
+            }
+        }
+    }
+    .rightPhoto{
+        margin-left: 29px;
+        margin-right: 26px;
+        .content{
+            margin-top: 20px;
+            padding-left: 16px;
+            div{
+                padding-left: 10px;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+                img {
+                    width: 100%;
+                    height: 69px;
+                }
+            }
+        }
+    }
+}
+
+//名师列表
+.teacherList{
+    margin: 20px 0;
+    background: #fff;
+    .teacherShow{
+        .content{
+            padding: 0 26px;
+            .item{
+                display: flex;
+                padding: 20px 0;
+                border-bottom: 1px solid @borderGrey;
+                transition: all .3s linear;
+                .image{
+                    flex: 80 1 1;
+                    width: 80px;
+                    height: 80px;
+                    margin-right: 20px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .boxRight{
+                    flex: 1;
+                    .teacherName{
+                        font-size: 18px;
+                        color: @fontDarkGrey;
+                    }
+                    .job,.intro{
+                        font-size: 14px;
+                        color: @fontLightGrey;
+                        margin-top:5px;
+                    }
+                }
+                &:hover{
+                    background: #f4f4f4;
+                }
+            }
+        }
+    }
+    //右边
+    .highQualityCourse{
+        padding:0 26px;
+        .content{
+            padding: 20px 0 0 26px;
+            .item{
+                display: flex;
+                margin-bottom: 20px;
+                .image{
+                    flex: 173 1 1;
+                    position: relative;
+                    width: 173px;
+                    height: 114px;
+                    margin-right: 18px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .mask{
+                        //display: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0,0,0,.4);
+                        opacity: 0;
+                        transition: all .3s linear;
+                        .play-icon{
+                            display: block;
+                            width: 32px;
+                            height: 32px;
+                            position: absolute;
+                            left: 50%;
+                            top: 50%;
+                            margin-top: -16px;
+                            margin-left: -16px;
+                            background: url("../../images/temp/play-icon.png");
+                        }
+                    }
+                    &:hover .mask{
+                        //display:block;
+                        opacity: 1;
+                        cursor: pointer;
+                    }
+                }
+                .boxRight{
+                    flex: 1;
+                    position: relative;
+                    h1{
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: @fontDarkGrey;
+                    }
+                    .bottom{
+                        position: absolute;
+                        display: flex;
+                        bottom: 0;
+                        span{
+                            flex: 33 1 1;
+                            width: 33px;
+                            height: 33px;
+                            margin-top: 4px;
+                            margin-right: 5px;
+                            overflow: hidden;
+                            border-radius: 50%;
+                            background: #30d88d;
+                            background-size: 100% 100% !important;
+                        }
+                        .desc{
+                            flex: 1;
+                            h4{
+                                font-size: 14px;
+                                color: @fontLightGrey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .teachingAndResearch{
+        padding: 0 26px;
+        .content{
+            padding: 20px 0 0 26px;
+            .item{
+                display: block;
+                margin-bottom: 10px;
+                .image{
+                    img {
+                        width: 100%;
+                        height: 140px;
+                    }
+                }
+                h1{
+                    font-size: 16px;
+                    color: @fontDarkGrey;
+                    margin-top: 5px;
+                }
+                &:hover h1{
+                    color: @mainColor;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+//名师活动
+.teacherActivity{
+    background: #fff;
+    margin-bottom: 20px;
+    .leftCon{
+        //margin-right: 60px;
+        .content{
+            padding: 20px 0 20px 26px;
+            .item{
+                display: block;
+                margin-bottom: 20px;
+                margin-right: 26px;
+                .image{
+                    float: left;
+                    width: 225px;
+                    height: 148px;
+                    margin-right: 20px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .boxRight{
+                    margin-left: 245px;
+                    height: 148px;
+                    position: relative;
+                    .courseName{
+                        font-size: 16px;
+                        color: @fontDarkGrey;
+                        font-weight: 600;
+                        //line-height: 1;
+                        margin-bottom: 25px;
+                    }
+                    .intro{
+                        font-size: 14px;
+                        color: @fontGrey;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                        height: 42px;
+                    }
+                    .bottom{
+                        position: absolute;
+                        bottom: 0;
+                        font-size: 14px;
+                        color: @fontGrey;
+                    }
+                }
+                &:hover .courseName{
+                    color: @mainColor;
+                }
+            }
+        }
+    }
+    .rightNav{
+        margin: 53px 26px 0;
+        a{
+            display: block;
+            padding: 20px 0;
+            font-size: 18px;
+            border-bottom: 1px dashed #ccc;
+            &.active,&:hover{
+                color: @mainColor;
+            }
+        }
+    }
+}
+//老师照片
+.teacherPhoto{
+    background: #fff;
+    margin-bottom: 20px;
+    .content{
+        padding-left: 26px;
+        padding-top: 20px;
+        .item{
+            margin-right: 26px;
+            .image{
+                width: 100%;
+                height: 176px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .box{
+                padding: 5px 10px;
+                .name{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+//老师微课
+.teacherMicroclass {
+    margin: 20px 0;
+    background: #fff;
+    .courseList {
+        padding: 20px 0 0 26px;
+        .courseItem {
+            margin-right: 26px;
+            margin-bottom: 20px;
+            .image {
+                float: left;
+                position: relative;
+                width: 230px;
+                height: 150px;
+                margin-right: 20px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                .mask {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, .4);
+                    opacity: 0;
+                    transition: all .3s linear;
+                    .play-icon {
+                        display: block;
+                        width: 32px;
+                        height: 32px;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        margin-top: -16px;
+                        margin-left: -16px;
+                        background: url("../../images/temp/play-icon.png");
+                    }
+                }
+                &:hover .mask {
+                    //display:block;
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+            .boxRight {
+                margin-left: 250px;
+                height: 150px;
+                position: relative;
+                .courseName{
+                    font-size: 16px;
+                    color: @fontDarkGrey;
+                    font-weight: 600;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    line-height: 1;
+                    margin-bottom: 20px;
+                }
+                .intro{
+                    font-size: 14px;
+                    color: @fontGrey;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    height: 42px;
+                }
+                .bottom{
+                    position: absolute;
+                    bottom: 0;
+                    font-size: 14px;
+                    color: @fontGrey;
+                }
+            }
+        }
+    }
+}
+//老师资源
+.teacherResource{
+    margin: 20px 0;
+    background: #fff;
+    .articleContent{
+        padding: 20px 0 20px 26px;
+        .article{
+            display: block;
+            margin-bottom: 20px;
+            margin-right: 26px;
+            .image{
+                float: left;
+                width: 225px;
+                height: 148px;
+                margin-right: 20px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .boxRight{
+                margin-left: 245px;
+                height: 148px;
+                position: relative;
+                .articleName{
+                    font-size: 16px;
+                    color: @fontDarkGrey;
+                    font-weight: 600;
+                    //line-height: 1;
+                    margin-bottom: 25px;
+                }
+                .intro{
+                    font-size: 14px;
+                    color: @fontGrey;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    height: 42px;
+                }
+                .bottom{
+                    position: absolute;
+                    bottom: 0;
+                    font-size: 14px;
+                    color: @fontGrey;
+                }
+            }
+            &:hover .articleName{
+                color: @mainColor;
+            }
+        }
+    }
+}

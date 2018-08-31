@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>视频课程-海量优质金融课程在线学习平台/随时随地/想听就听</title>
+
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/uikit.min.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		
+		<style>
+			.yccktype-container .swiper-slide a{
+				font-size: 0px !important;
+			}
+			.yccktype-container .swiper-slide:first-child .ycbox{
+				background-image: url(ycedu/images/courselist01.png);
+			}
+			.yccktype-container .swiper-slide:nth-child(2) .ycbox{
+				background-image: url(ycedu/images/courselist02.png);
+			}
+			.yccktype-container .swiper-slide:nth-child(3) .ycbox{
+				background-image: url(ycedu/images/courselist03.png);
+			}
+			.yccktype-container .swiper-slide:nth-child(4) .ycbox{
+				background-image: url(ycedu/images/courselist04.png);
+			}
+			.yccktype-container .swiper-slide .ycbox{
+				position: relative;
+			}
+			.yccktype-container .swiper-slide a:after{
+				content: "";
+				display: block;
+				position:absolute;
+				top:0px;
+				left:0px;
+				width:100%;
+				height:100%;
+				background-color: rgba(0,0,0,0.2);
+			}
+			.yccktype-container .swiper-slide .active:after{
+				background-color: rgba(0,0,0,0);
+			}
+			.yccktype-container .swiper-slide .ycbox a{
+				display: inline-block;width: 100%;height: 132px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--Index Banner-->
+		<section class="dycbanner-model">
+			<div class="container full">
+				<div class="swiper-container dycbanner-container">
+					<div class="swiper-wrapper" id="jcoursebanner">
+						<div class="swiper-slide">
+							<a href="#this"></a>
+						</div>
+						<!--<div class="swiper-slide" style="background-image: url(ycedu/images/spkcbanner01.jpg);">
+							<a href="#this"></a>
+						</div>
+						<div class="swiper-slide" style="background-image: url(ycedu/images/banner01.jpg);">
+							<a href="#this"></a>
+						</div>-->
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination swiper-pagination-white"></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="dyck-type" id="jcourselist">
+			<div class="dyctopWrap">
+				<div class="container">
+					<div class="swiper-container  yccktype-container">
+						<div class="swiper-wrapper" id="jcoursetype">
+							<div class="swiper-slide" v-cloak v-for="item in courseType">
+								<div class="ycbox">
+									<a class="yctitle" v-bind:data-id="item.courseTypeId" v-on:click="getCourseListData(item.courseTypeId, 1, $event)"></a>
+									<div class="yclink" v-if="item.children">
+										<template v-for="itemsub in item.children">
+											<a href="#this" v-bind:data-id="itemsub.courseTypeId" v-on:click="getCourseListData(itemsub.courseTypeId ,1, $event)">{{itemsub.name}}</a>
+										</template>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="ycinner clearfix">
+					<div class="span9">
+						<div class="dyclinksort-box">
+							<a class="active"　id="dycsortAll" href="#this" v-on:click="changeComprehensive" >综合</a>
+							<a id="dycsortPrice" href="#this" v-on:click="changeOrderPrice">价格<i class="uk-icon-long-arrow-down"></i></a>
+							<a id="dycsortRq" href="#this" v-on:click="changeOrderClickCount">人气<i class="uk-icon-long-arrow-down"></i></a>
+
+							<input id="dyckSearch" type="search" name="" required="" placeholder="请输入搜索的课程名称" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN" @keyup="search($event)">
+
+							<a id="dycsortGrid" href="#this" v-on:click="gridLayout()">&nbsp;</a>
+							<a id="dycsortList" href="#this" v-on:click="listLayout()">&nbsp;</a>
+
+							<div id="dycpageNumber">
+								<span v-cloak class="dyccurrentPage">{{current}}</span>/
+								<span v-cloak class="dycallPage">{{courseList.totalPageCount}}</span>页
+								<a class="nextPage uk-icon-angle-right" href="#this" @click="current++ && goto(current++)"></a>
+							</div>
+						</div>
+					</div>
+					<div class="span3">
+						<div class="dyclink">猜你喜欢</div>
+					</div>
+				</div>
+
+				<!--class="dycgridSort"-->
+				<div id="jcklist" class="dyckclist-wrap clearfix">
+
+					<div class="span9">
+						<div class="clearfix" >
+							<div class="yckcli" v-cloak v-for="item in courseList.rows">
+								<div class="span4">
+									<a v-bind:href="item.courseId" class="ycimage" target="_blank">
+										<img v-bind:src="item.iconPath | addRoute" alt="课程列表" />
+									</a>
+								</div>
+								<div class="span8">
+									<div class="ycbox">
+										<span class="yctitle">{{item.name}}</span>
+										<a class="dyctestListen" v-bind:href="item.listenUrl" v-if="item.listenUrl" target="_blank"><span></span>免费试听</a>
+										<p class="ycbrief">{{item.note}}</p>
+										<span class="dyccurrentPrice">￥{{item.preferentialPrice}}</span> <span class="dycoldPrice">￥{{item.price}}</span>
+										<a class="dycdetail" v-bind:href="item.courseId" target="_blank">查看详情</a>
+										<p class="dycotherInf">{{item.classHour}} <span>老师：{{item.teacherName}}</span></p>
+									</div>
+								</div>
+							</div>
+							<div id="jlist" class="dycseachbox" style="text-align:center;display: none;">没有相关搜索结果，换个关键词试试哦~</div>
+						</div>
+						<!--枫叶-->
+						<ul class="pagenationbox clearfix">
+							<template v-if="pageFlag">
+								<li v-show="current != 1" @click="current-- && goto(current--)">
+									<a href="#this">上一页</a>
+								</li>
+								<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+									<a href="#this">{{index}}</a>
+								</li>
+								<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+									<a href="#this">下一页</a>
+								</li>
+							</template>
+						</ul>
+					</div>
+					<div class="span3">
+						<div class="dycgs-like">
+							<div class="ycimage" id='jcostLivePlay'>
+								<a href="ycedu/bmliveroom.html" target="_blank">
+									<img src="ycedu/images/gslike.jpg" alt="广告" />
+								</a>
+								<a href="ycedu/bmliveroom.html" target="_blank">
+									<img src="ycedu/images/gslike02.png" alt="广告" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		
+		<div class="dycindenxadv " id="jadv" style="display: none;">
+			<div class="dyctadv">
+				<div style="position: relative;">
+					<a id="dycadv-img" target="_blank" class="dycadv-img"><img src="ycedu/images/indexadv.png" /></a>
+					<div class="dycadvclose-img" id="jadvclose"><img src="ycedu/images/indexadvclose.png" /></div>
+				</div>
+			</div>
+
+		</div>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/uikit.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/jquery.page.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer.js"></script>
+		<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/wow.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js?9"></script>
+		<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+
+		<script>
+			$(function() {
+				BizQQWPA.addCustom({aty: '0', a: '1005', nameAccount: 4006430618, selector: 'dycadv-img'});
+				indexSwiper();
+				var cTypeId = $(this).getUrlParam("courseTypeId");
+				$.courseBanner();
+				$.courselist(cTypeId); //list
+				
+				$.teacherLeftAdv();//广告位直播间
+				
+				/*setTimeout(function() {
+				$('#jadv').css('display', 'block');
+			}, 2000);*/
+			$('#jadv').click(function() {
+				$(this).css('display', 'none');
+			});
+			})
+		</script>
+	</body>
+
+</html>

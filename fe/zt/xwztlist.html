@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>教育资讯-福建教育网</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/xwzt.css"/>
+	</head>
+
+	<body>
+
+		<!--新闻列表-->
+		<section class="fenewslist fewxztListWrap">
+			<div class="container">
+				<div id="fexwztList">
+					<!--列表标题栏-->
+					<div class="fenewslist-left-title">
+						<div class="container">
+							<a href="javascript:;"  v-for="item in activityTypeArr" v-cloak :class="{active:item.activityTypeId == currentActivityId}" @click="changeType(item.activityTypeId)">{{item.name}}</a>
+						</div>
+
+					</div>
+					<div class="fenewslist-left">
+						<!--列表内容-->
+						<div class="fenewslist-left-content" id="newscontent">
+							<div class="fepanel">
+								<div class="fenodata" v-if="activityArr.length == 0"></div>
+								<a   v-for="item in activityArr" :href="item.activityId, currentActivityId |addRootHref" v-cloak target="_blank">
+									<div class="feimage">
+										<img :src="item.iconPath" alt="">
+									</div>
+									<div class="feright-box">
+										<h3>{{item.name}}</h3>
+										<p>{{item.note}}</p>
+										<h6>更新时间: {{item.beginTime}} &nbsp;&nbsp;&nbsp;阅读: {{item.clickCount}}</h6>
+									</div>
+								</a>
+	
+								<!--枫叶-->
+								<ul class="pagenationbox clearfix">
+									<li v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/xwzt.js"></script>
+		<script>
+			$(function() {
+				 xwztlist();
+			})
+		</script>
+	</body>
+
+</html>

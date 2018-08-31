@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="css/bmmobile_cyq.css" />
+		<link rel="stylesheet" href="css/bm.css">
+		<title>个人中心</title>
+
+		<style>
+			.active {
+				background: rgba(0, 0, 0, 0.3);
+			}
+			
+			header {
+				position: relative;
+				height: 24rem;
+				background: #5d527c url('images/member/menberbg01.jpg') no-repeat center;
+				background-size: cover;
+			}
+			
+			.yc-grid {
+				width: 100%;
+				background-color: #ffffff;
+				display: table;
+				table-layout: fixed;
+			}
+			
+			.yc-grid [class*=yc-col-] {
+				display: table-cell;
+				position: relative;
+				text-align: center;
+				vertical-align: middle;
+				padding: 1rem 0;
+			}
+			
+			.yc-grid [class*=yc-col-xs-]:active {
+				background-color: rgba(0, 0, 0, .1);
+			}
+			
+			.yc-grid .yc-grid-label {
+				display: block;
+				font-size: 0.51rem;
+				position: relative;
+				margin-top: 0.25rem;
+			}
+			
+			.yc-row {
+				overflow: hidden;
+				margin: 0;
+			}
+			
+			.yc-col-xs-1,
+			.yc-col-xs-2,
+			.yc-col-xs-3,
+			.yc-col-xs-4,
+			.yc-col-xs-5,
+			.yc-col-xs-6,
+			.yc-col-xs-7,
+			.yc-col-xs-8,
+			.yc-col-xs-9,
+			.yc-col-xs-10,
+			.yc-col-xs-11,
+			.yc-col-5 {
+				position: relative;
+				float: left;
+			}
+			
+			.yc-col-xs-12 {
+				width: 100%;
+				position: relative;
+			}
+			
+			.yc-col-xs-11 {
+				width: 91.66666667%;
+			}
+			
+			.yc-col-xs-10 {
+				width: 83.33333333%;
+			}
+			
+			.yc-col-xs-9 {
+				width: 75%;
+			}
+			
+			.yc-col-xs-8 {
+				width: 66.66666667%;
+			}
+			
+			.yc-col-xs-7 {
+				width: 58.33333333%;
+			}
+			
+			.yc-col-xs-6 {
+				width: 50%;
+			}
+			
+			.yc-col-xs-5 {
+				width: 41.66666667%;
+			}
+			
+			.yc-col-xs-4 {
+				width: 33.33333333%;
+			}
+			
+			.yc-col-xs-3 {
+				width: 25%;
+			}
+			
+			.yc-col-xs-2 {
+				width: 16.66666667%;
+			}
+			
+			.yc-col-xs-1 {
+				width: 8.33333333%;
+			}
+			
+			.yc-col-5 {
+				width: 20%;
+			}
+			
+			.set {
+				position: absolute;
+				display: inline-block;
+				width: 3.43rem;
+				height: 3.43rem;
+				top: 2.8rem;
+				right: 1.5rem;
+				background: url('images/member/setIcon.png') no-repeat center;
+				background-size: cover;
+			}
+			
+			#memberBox {
+				text-align: center;
+				padding-top: 5.5rem;
+				box-sizing: border-box;
+			}
+			
+			#memberBox img {
+				border-radius: 50%;
+				width: 9rem;
+				height: 9rem;
+				border: 0.1rem solid #fff;
+			}
+			
+			.memberInf {
+				color: #fff;
+			}
+			
+			#userName {
+				position: relative;
+				margin: 0.44rem 0 0.916rem;
+				padding-left: 4rem;
+				font-size: 1.76rem;
+			}
+			
+			#userName:before {
+				content: "";
+				position: absolute;
+				width: 2.6rem;
+				height: 1.2rem;
+				left: 0;
+				top: 0.55rem;
+				background: url("images/member/vip.png") no-repeat center;
+				background-size: cover;
+			}
+			
+			.memberInf p {
+				font-size: 1.351rem;
+			}
+			
+			#attentionNumber {
+				margin-right: 2rem;
+			}
+			
+			.loginBefore {
+				margin: 15px 0 10px;
+			}
+			
+			.loginBefore a {
+				display: inline-block;
+				padding: 3px 10px;
+				font-size: 1.351rem;
+				color: #fff;
+			}
+			
+			.quickbox .yc-grid {
+				color: #fff;
+				background: url('images/member/menberbg02.jpg') no-repeat center;
+				background-size: cover;
+			}
+			
+			.quickbox .yc-col-xs-3 {
+				padding: 0.8rem 0;
+			}
+			
+			.quickbox .img {
+				display: inline-block;
+				width: 3rem;
+				height: 3rem;
+				background: url('images/member/czIcon.png') no-repeat center;
+				background-size: cover;
+			}
+			
+			.quickbox .yc-grid-label {
+				font-size: 1.351rem;
+			}
+			
+			.modelTitle {
+				padding: 1rem 0 1rem 1.556rem;
+				font-size: 1.556rem;
+				color: #656565;
+				background: #f2f2f2;
+			}
+			
+			.infBox .img {
+				display: inline-block;
+				width: 3rem;
+				height: 3rem;
+				background: url('images/member/historyIcon.png') no-repeat center;
+				background-size: cover;
+			}
+			
+			.infBox .yc-row {
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.infBox .yc-grid-label {
+				font-size: 1.351rem;
+				color: #282828;
+			}
+			
+			.infBox .yc-col-xs-3 {
+				padding: 2rem 0;
+				box-sizing: border-box;
+				border-right: 1px solid #ddd;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header>
+				<a href="html/set.html" class="set"></a>
+				<div id="memberBox">
+					<img onclick="openInf()" id="userHeader" src="images/public/login.png" />
+					<!-- 登入后的展示 -->
+					<div class="memberInf" id="memberInf" style="display:none">
+						<span id="userName">播米在线</span>
+						<!-- <p>关注：<span id="attentionNumber">66</span> 粉丝：<span id="fanCount">666</span></p> -->
+					</div>
+					<!-- 登入前 -->
+					<div class="loginBefore" id="loginBefore">
+						<a href="#this" onclick="gotoLogin()">登录</a>
+						<a href="#this" onclick="openRegPhone()">注册</a>
+					</div>
+				</div>
+			</header>
+			<section class="quickbox">
+				<div class="yc-grid">
+					<div class="yc-col-xs-3" tapmode="active" onclick="openRecharge()">
+						<div class="img"></div>
+						<span class="yc-grid-label">钱包</span>
+					</div>
+					<div class="yc-col-xs-3" tapmode="active" onclick="openOrder()">
+						<div class="img" style="background-image: url('images/member/orderIcon.png')"></div>
+						<span class="yc-grid-label">订单</span>
+					</div>
+					<div class="yc-col-xs-3" tapmode="active" onclick="rootFrameGroupShow(1)">
+						<div class="img" style="background-image: url('images/member/courseIcon.png')"></div>
+						<span class="yc-grid-label">听课</span>
+					</div>
+					<div class="yc-col-xs-3" tapmode="active" onclick="rootFrameGroupShow(2)">
+						<div class="img" style="background-image: url('images/member/liveIcon.png')"></div>
+						<span class="yc-grid-label">直播</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="infBox">
+				<div class="modelTitle">个人中心</div>
+				<div class="yc-grid">
+					<div class="yc-row">
+						<!--<div class="yc-col-xs-3" tapmode="active" onclick="openHistory()">
+							<div class="img"></div>
+							<span class="yc-grid-label">历史记录</span>
+						</div>-->
+						<div class="yc-col-xs-3" tapmode="active" onclick="openCollection()">
+							<div class="img" style="background-image: url('images/member/scIcon.png')"></div>
+							<span class="yc-grid-label">我的收藏</span>
+						</div>
+						<div class="yc-col-xs-3" tapmode="active" onclick="openCouponHeader()">
+							<div class="img" style="background-image: url('images/member/yhqIcon.png')"></div>
+							<span class="yc-grid-label">优惠券</span>
+						</div>
+						<div class="yc-col-xs-3" tapmode="active" onclick="openInf()">
+							<div class="img" style="background-image: url('images/member/memberIcon.png')"></div>
+							<span class="yc-grid-label">我的会员</span>
+						</div>
+						<!--<div class="yc-col-xs-3" tapmode="active" onclick="openQuestion()">
+							<div class="img" style="background-image: url('images/member/tkIcon.png')"></div>
+							<span class="yc-grid-label">我的题库</span>
+						</div>-->
+						<!-- <div class="yc-col-xs-3" style="border-right:none" tapmode="active">
+                    <div class="img" style="background-image: url('images/member/bjIcon.png')"></div>
+                    <span class="yc-grid-label">我的笔记</span>
+                </div> -->
+						
+
+					</div>
+					<!--<div class="yc-row" style="border-top: none">
+						 <div class="yc-col-xs-3" tapmode="active">
+                    <div class="img" style="background-image: url('images/member/memberIcon.png')"></div>
+                    <span class="yc-grid-label">我的会员</span>
+                </div> -->
+						<!-- <div class="yc-col-xs-3" tapmode="active">
+                    <div class="img" style="background-image: url('images/member/jfIcon.png')"></div>
+                    <span class="yc-grid-label">我的积分</span>
+                </div> 
+						
+					</div>-->
+				</div>
+
+				<div class="modelTitle">消息中心</div>
+				<div class="yc-grid">
+					<div class="yc-row">
+						<!-- <div class="yc-col-xs-3" tapmode="active">
+                    <div class="img" style="background-image: url('images/member/hfwIcon.png')"></div>
+                    <span class="yc-grid-label">回复我的</span>
+                </div> -->
+						<!-- <div class="yc-col-xs-3" tapmode="active" onclick="openPriletter()"> -->
+						<div class="yc-col-xs-3" tapmode="active" onclick="openQQ()">
+							<div class="img" style="background-image: url('images/member/sxIcon.png')"></div>
+							<span class="yc-grid-label">我的私信</span>
+						</div>
+						<!--<div class="yc-col-xs-3" tapmode="active" onclick="openPraise()">
+							<div class="img" style="background-image: url('images/member/dzIcon.png')"></div>
+							<span class="yc-grid-label">我的赞</span>
+						</div>
+						<div class="yc-col-xs-3" tapmode="active" onclick="openSysmessage()">
+							<div class="img" style="background-image: url('images/member/xtIcon.png')"></div>
+							<span class="yc-grid-label">系统通知</span>
+						</div>-->
+					</div>
+				</div>
+			</section>
+			<footer id="indexfooter">
+				<ul class="fixedfooter flex-wrap">
+					<li id="index" class="flex-con">
+						<a href="index.html">首页</a>
+					</li>
+					<li id="course" class="flex-con">
+						<a href="courselist.html">课程</a>
+					</li>
+					<span id="toggleQuickBtns"></span>
+					<li id="live" class="flex-con">
+						<a href="liveplayer.html">直播</a>
+					</li>
+					<li id="me" class="flex-con active">
+						<a href="member.html">我的</a>
+					</li>
+				</ul>
+			</footer>
+			<div class="quickBoxWrap">
+				<div class="quickBox">
+					<a href="html/strategylist.html"></a>
+					<a href="html/teacherlist.html"></a>
+					<a id="jlisten" href="#this"></a>
+					<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/bmmain.js"></script>
+
+		<script>
+			/*	$(function() {*/
+
+			function courseHeader(id) { //获取类型
+				var box = $('#courseHeader'),
+					courseImg = $('#courseImg'),
+					titleBar = $('#titleBar'),
+					priceBox = $('#priceBox'),
+					targetBox = $('#targetBox'), //学习目标
+					fitBox = $('#fitBox'), //适用目标
+					teacherBox = $('#teacherBox'), //老师介绍
+					imgStr = "";
+				$.ajax({
+					type: "GET",
+					url: SERVEROOTDATA + 'Teacher.ashx?action=getTeacherByCourseId',
+					dataType: "json",
+					data: {
+						"courseId": id
+					},
+					success: function(result) {
+						if(result[0].length < 1) {
+							return false;
+						}
+						teacherBox.html('<p>' + result[0].name + result[0].note + '</p>');
+						window.kcxqSwiper.update();
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				});
+
+			}
+			//登入状态判断
+			function isLogin() {
+				var uName = localStorage.getItem('$ycuname'),
+					uId = localStorage.getItem('$ycuid'),
+					uHeader = localStorage.getItem('$ycuheader'),
+					memberInf = $('#memberInf'),
+					loginBefore = $('#loginBefore'),
+					userHeader = $('#userHeader'),
+					userName = $('#userName');
+
+				if(uId == "" || uId == undefined || uId == null) { //未登入
+					memberInf.css('display', 'none');
+					loginBefore.css('display', 'block');
+					userHeader.attr('src', "images/public/login.png");
+				} else {
+					console.log(uId)
+					if(uHeader != "false") {
+						userHeader.attr('src', uHeader);
+					}
+					userName.html(uName);
+					memberInf.css('display', 'block');
+					loginBefore.css('display', 'none');
+				}
+			}
+			isLogin();
+
+			//未登入跳转登录页
+			function unloginGoLogin() {
+				var uName = localStorage.getItem('$ycuname'),
+					uId = localStorage.getItem('$ycuid');
+				if(uId == "" || uId == undefined || uId == null) { //未登入
+					return true;
+				}
+				return false;
+			}
+
+			//个人信息
+			function openInf() {
+				if(unloginGoLogin()) {
+					gotoLogin();
+					return false;
+				}
+				window.location.href = 'html/memberinfo.html';
+			}
+
+			//登入
+			function gotoLogin() {
+				window.location.href = 'html/login.html';
+			}
+
+			//注册
+			function openRegPhone() {
+				window.location.href = 'html/reg.html';
+
+			}
+
+			//refresh nick
+			function reNickname() {
+				var newNick = localStorage.getItem('$ycuname');
+				$("#userName").html(newNick);
+			}
+
+			function openRecharge() {
+				if(unloginGoLogin()) {
+					gotoLogin();
+					return false;
+				}
+				window.location.href = 'html/recharge.html';
+			}
+
+			//open历史记录
+			function openHistory() {
+				/*if(unloginGoLogin()) {
+              gotoLogin();
+              return false;
+          }*/
+				/*window.location.href='html/history.html';*/
+
+			}
+
+			//open收藏
+			function openCollection() {
+				/*if(unloginGoLogin()) {
+				    gotoLogin();
+				    return false;
+				}
+				 
+				 window.location.href='html/collection.html';*/
+			}
+
+			//open 优惠券
+			function openCouponHeader() {
+				if(unloginGoLogin()) {
+					gotoLogin();
+					return false;
+				}
+
+				window.location.href = 'html/coupon.html';
+
+			}
+
+			//open 题库
+			function openQuestion() {
+				/* api.openWin({
+				     name: 'questionHeader',
+				     url: './member/questionHeader.html',
+				     pageParam: {
+				         name: 'questionHeader'
+				     }
+				 });*/
+
+			}
+
+			//open Sysmessage
+			function openSysmessage() {
+				window.location.href = 'html/sysmessage.html';
+
+				/*api.openWin({
+				    name: 'sysmessageheader',
+				    url: './member/sysMesHeader.html',
+				    pageParam: {
+				        name: 'sysmessageheader'
+				    }
+				});*/
+
+			}
+
+			//我的赞
+			function openPraise() {
+				/*if(unloginGoLogin()) {
+				    gotoLogin();
+				    return false;
+				}*/
+				window.location.href = 'html/praise.html';
+				/*api.openWin({
+				    name: 'praiseHeader',
+				    url: './member/praiseHeader.html',
+				    pageParam: {
+				        name: 'praiseHeader'
+				    }
+				});*/
+			}
+
+			//open priletter
+			function openPriletter() {
+				/* api.openWin({
+              name: 'priletterHeader',
+              url: './member/priletterHeader.html',
+              pageParam: {
+                  name: 'priletterHeader'
+              }
+          });
+*/
+			}
+
+			//change frame group show
+			function rootFrameGroupShow(index) {
+				if(index == 1) {
+					if(unloginGoLogin()) {
+						window.location.href = 'html/login.html';
+						return false;
+					}
+					window.location.href = 'html/lecturecourselist.html';
+				} else if(index == 2) {
+					window.location.href = 'liveplayer.html';
+				}
+
+			}
+
+			//open order list
+			function openOrder() {
+				if(unloginGoLogin()) {
+					gotoLogin();
+					return false;
+				}
+				window.location.href = 'html/order.html';
+
+			}
+
+			function openQQ() {
+				window.location.href = 'html/QQ.html';
+			}
+			
+			$('#jlisten').click(function() {
+					if(unloginGoLogin()) {
+						window.location.href = 'html/login.html';
+						return false;
+					}
+					window.location.href = 'html/lecturecourselist.html';
+				});
+
+				//未登入跳转登录页
+				function unloginGoLogin() {
+					var uName = localStorage.getItem('$ycuname'),
+						uId = localStorage.getItem('$ycuid');
+					if(uId == "" || uId == undefined || uId == null) { //未登入
+						return true;
+					}
+					return false;
+				}
+
+			/*	});*/
+		</script>
+	</body>
+
+</html>

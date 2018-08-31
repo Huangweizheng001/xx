@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>悦华直播专题</title>
+
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="../css/ycstyle.css" />
+		<link rel="stylesheet" href="../css/hwzstyle.css" />
+		<link rel="stylesheet" href="../css/yhzt.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			.bmgotoYHLive {
+				display: none;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 150px;
+				height: 40px;
+				line-height: 40px;
+				border-radius: 3px;
+				text-align: center;
+				font-size: 20px;
+				z-index: 20;
+				color: #fff;
+				background-color: #07d;
+				-webkit-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+			
+			.bmyhliveLeft:hover .bmgotoYHLive {
+				display: inline-block;
+			}
+			
+			.bmgotoYHLive:hover {
+			    color: #fff;
+			    background-color: #0f416b;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--part one-->
+		<section class="bmyhPart1">
+			<div class="container">
+				<div class="bmyhliveBox clearfix">
+					<div class="span8 bmyhliveLeft">
+						<!--<div id="bmyhLivePlayer" class="bmyhLivePlayer"></div>-->
+						<img src="../images/temp/yhzt/bmyhPlayer.jpg" style="height: 100%; width: 100%;" />
+						<a href="../bmliveroom.html" class="bmgotoYHLive" target="_blank">进入公开课</a>
+					</div>
+					<div class="span4 bmyhliveRight">
+						<div class="bmyhRightBox">
+							<h5>相关精品课程</h5>
+							<div class="bmyhCourseLi" onclick="openVideo(0)">
+								<a href="#this">
+									<img src="../images/temp/yhzt/01course.jpg" />
+								</a>
+							</div>
+							<div class="bmyhCourseLi" onclick="openVideo(1)">
+								<a href="#this">
+									<img src="../images/temp/yhzt/02course.jpg" />
+								</a>
+							</div>
+							<div class="bmyhcourseBtns">
+								<a id="onlineService01" href="#this">咨询课程</a>
+								<a href="#this" class="jyhRechargeBtn">立即报名</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--part two-->
+		<section class="bmyhPart2"></section>
+
+		<!--old model modify-->
+		<section class="bmyhPart3 dycmemberrule">
+			<div class="container">
+				<!--new add-->
+				<div class="bmyhRechargeBox">
+					<h4><span>强强联手</span>&nbsp;&nbsp;福利礼包</h4>
+					<div class="bmyhRechargeInner">
+						<div class="bmyhRechargeLeft">
+							<img src="../images/temp/yhzt/ztteacher01.jpg" />
+						</div>
+						<div class="bmyhRechargeRight">
+							<p>主讲嘉宾：<span>邵悦华</span></p>
+							<p>沙龙日期：<span>2017.11.09</span></p>
+							<p>沙龙售价：<span>￥88</span></p>
+							<a class="bmyhRechargeBtn jyhRechargeBtn" href="#this">立即报名</a>
+							<p id="onlineService03" class="bmyhRechargeDetail"><span>咨询沙龙详情 >></span></p>
+						</div>
+					</div>
+
+					<div class="bmyhRechargeNoteBox">
+						<div class="bmyhBgTitle">
+							<img src="../images/temp/yhzt/ztbg03.jpg" />
+						</div>
+						<ul>
+							<li>● 充值888元成为播米白银会员，获得悦华嘉宾著作《交易密码》一份；
+							</li>
+							<li>● 充值2888元成为黄金会员，获得一年播米讲座使用权。</li>
+						</ul>
+
+						<div class="bmyhBgTitle">
+							<img src="../images/temp/yhzt/ztbg04.jpg" />
+						</div>
+						<p class="bmyhMemberTips">播米会员购买悦华交易学院课程可享受7.5折优惠。</p>
+					</div>
+
+				</div>
+
+				<div class="dycpanel">
+					<ul class="dycmemberrule-title clearfix">
+						<li>
+							<div class="active" data-id="1">
+								<h4>普通会员</h4>
+								<h4><span class="orange">会员</span></h4>
+							</div>
+						</li>
+						<li>
+							<div data-id="2">
+								<h4>白银会员</h4>
+								<h4><span class="silver">白银</span></h4>
+							</div>
+						</li>
+						<li>
+							<div data-id="3">
+								<h4>黄金会员</h4>
+								<h4><span class="gold">黄金</span></h4>
+							</div>
+						</li>
+						<li>
+							<div data-id="4">
+								<h4>铂金会员</h4>
+								<h4><span class="purple">铂金</span></h4>
+							</div>
+						</li>
+					</ul>
+					<div class="dycmemberrule-content clearfix">
+						<div class="span3">
+							<h1><span>勋章</span></h1>
+							<div class="dycmembercard">
+								<img src="../images/card1.png" alt="">
+							</div>
+						</div>
+						<div class="span9 asb">
+							<h1><span>特权3<b>/15</b></span></h1>
+							<div id="dycprivilege" class="dycprivilege clearfix">
+
+							</div>
+						</div>
+					</div>
+					<div class="dycmemberrule-bottom">
+						<span>开通<s>普通</s>会员专享特权 <b>免费</b></span>
+						<a href="../recharge.html" target="_blank">立即开通</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bmyhPart4">
+			<div class="container">
+				<h4><span>线上课程</span>&nbsp;&nbsp;线下辅导</h4>
+				<p class="bmyhSubTitle">重金打造双优教学 只为财富再多一点</p>
+
+				<div class="bmyhCourseBox clearfix">
+					<div class="span4">
+						<div class="bmyhCourseLi">
+							<span class="bmyhDisc">7.5折</span>
+							<span class="bmyhBrief">线上</span>
+							<div class="bmyhParaBox">
+								<div class="bmyhParentPara">
+									<p>原价：￥1280 / 月</p>
+									<p>播米会员价：￥960 / 月</p>
+									<p>1个月线上</p>
+								</div>
+								<p class="bmyhSubPara">
+									每日直播课程为主，录制课程为辅，以直播课程、讲座、重要行情解析、理财沙龙以及微课堂等多种方式。
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="bmyhCourseLi">
+							<span class="bmyhDisc">7.5折</span>
+							<span class="bmyhBrief">线下</span>
+							<div class="bmyhParaBox">
+								<div class="bmyhParentPara">
+									<p>原价：￥118 </p>
+									<p>播米会员价：￥88 </p>
+									<p>线下精品沙龙</p>
+								</div>
+								<p class="bmyhSubPara">
+									线下指定场所开展讲座教学，现场互动，效果更佳
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="bmyhCourseLi">
+							<span class="bmyhDisc">7.5折</span>
+							<span class="bmyhBrief">线上 ● 线下</span>
+							<div class="bmyhParaBox">
+								<div class="bmyhParentPara">
+									<p>原价：￥29800 </p>
+									<p>播米会员价：￥22350</p>
+									<p>3年线上+2次线下</p>
+								</div>
+								<p class="bmyhSubPara">
+									在课程成熟的基础上，推出线下精品课程，以理财趴、集中训练营、操盘手培训计划等方式
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bmyhenrollBox clearfix">
+					<a class="jyhRechargeBtn" href="#this">立即报名</a>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="../js/template.js"></script>
+		<script type="text/javascript" src="../js/ycedu.js"></script>
+		<script type="text/javascript" src="../js/honoredguest.js"></script>
+
+		<script>
+			function openVideo(index) {
+				layer.open({
+					type: 2,
+					title: '悦华精品课程',
+					//closeBtn: 0, //不显示关闭按钮
+					shadeClose: true,
+					shade: [0.5, '#000'],
+					area: ['800px', '500px'],
+					scrollbar: false,
+					//offset: 'rb', //右下角弹出
+					//time: 2000, //2秒后自动关闭
+					anim: 2,
+					content: ['./yhvideoplayer.html?videoIndex=' + index, 'no']
+				});
+			}
+
+			$(function() {
+				//get live source from channelId
+				function getLiveSource() {
+					$.ajax({
+						type: "get",
+						url: ROUTE + "Channel.ashx?action=getLiveAddrByChannelId",
+						dataType: 'json',
+						data: {
+							channelId: 6 //pay attention to channelId
+						},
+						timeout: 600,
+						success: function(res) {
+							if(res.length < 1) {
+								return false;
+							}
+							createPlayer(res[0].rtmpUrl2, res[0].hlsUrl);
+						},
+						error: function() {
+							console.log("request error");
+						}
+					});
+				}
+				//getLiveSource();
+
+				//create player
+				function createPlayer(URL, URL2) {
+					if(flashChecker().f == 0) {
+						$("#bmyhLivePlayer").before('<a href="http://get.adobe.com/cn/flashplayer/" target="_blank" class="noFlashTips">检查到您的系统未安装Flash,请先安装</a>');
+					}
+					var objectPlayer = new aodianPlayer({
+						container: 'bmyhLivePlayer', //播放器容器ID，必要参数
+						rtmpUrl: URL, //控制台开通的APP rtmp地址，必要参数
+						hlsUrl: URL2, //控制台开通的APP hls地址，必要参数
+						/* 以下为可选参数*/
+						width: '100%', //播放器宽度，可用数字、百分比等
+						height: '480', //播放器高度，可用数字、百分比等
+						autostart: true, //是否自动播放，默认为false
+						bufferlength: '1', //视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+						maxbufferlength: '2', //最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+						stretching: '1', //设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+						controlbardisplay: 'enable', //是否显示控制栏，值为：disable、enable默认为disable。
+						adveDeAddr: '../images/temp/yhzt/bmyhPlayer.jpg', //封面图片链接
+						//adveWidth: 320,//封面图宽度
+						//adveHeight: 240,//封面图高度
+						//adveReAddr: '',//封面图点击链接
+						//isclickplay: false,//是否单击播放，默认为false
+						isfullscreen: true //是否双击全屏，默认为true
+					});
+				}
+
+				$(".jyhRechargeBtn").on("click", function() {
+					if($mid == null || $mid == undefined || $mid == "undefined" || $mid == "") {
+						layer.open({
+							type: 2,
+							title: false,
+							closeBtn: 1, //不显示关闭按钮
+							shade: [0],
+							shadeClose: true,
+							//scrollbar: false,
+							maxmin: true, //开启最大化最小化按钮
+							area: ['400px', '680px'],
+							content: './yhpay.html'
+						});
+					} else {
+						layer.open({
+							type: 2,
+							title: false,
+							closeBtn: 1, //不显示关闭按钮
+							shade: [0],
+							shadeClose: true,
+							maxmin: true, //开启最大化最小化按钮
+							area: ['380px', '320px'],
+							content: './yhpay.html'
+						});
+					}
+
+				})
+
+				//联系客服
+				BizQQWPA.addCustom({
+					aty: '0',
+					a: '1005',
+					nameAccount: 4006430618,
+					selector: 'onlineService01'
+				});
+				BizQQWPA.addCustom({
+					aty: '0',
+					a: '1005',
+					nameAccount: 4006430618,
+					selector: 'onlineService02'
+				});
+				BizQQWPA.addCustom({
+					aty: '0',
+					a: '1005',
+					nameAccount: 4006430618,
+					selector: 'onlineService03'
+				});
+				memberrule();
+			})
+
+			function reloadWin() {
+				window.location.reload();
+			}
+		</script>
+	</body>
+
+</html>

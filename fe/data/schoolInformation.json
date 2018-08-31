@@ -1,0 +1,47 @@
+[
+	{
+		"liveId":1,
+		"img": "temp/school-information-list1.jpg",
+		"courseTypeName":"快手在知乎得了负分，到底怎样才算真实记录世界？",
+		"brief":"大概在一周前，我和在快手上拥有 130 万粉丝的一个大号团队交换了微信，一顿寒暄后，这位直播收入每天在三四千、短视频广告费用能到六七千的富豪..",
+		"playTime":"19:30",
+		"see":"111"
+	},
+	{
+		"liveId":2,
+		"img": "temp/school-information-list2.jpg",
+		"courseTypeName":"快手在知乎得了负分，到底怎样才算真实记录世界？",
+		"brief":"大概在一周前，我和在快手上拥有 130 万粉丝的一个大号团队交换了微信，一顿寒暄后，这位直播收入每天在三四千、短视频广告费用能到六七千的富豪..",
+		"playTime":"2017-08-09 19:39",
+		"see":"998"
+	},{
+		"liveId":3,
+		"img": "temp/school-information-list3.jpg",
+		"courseTypeName":"高中数学",
+		"brief":"大概在一周前，我和在快手上拥有 130 万粉丝的一个大号团队交换了微信，一顿寒暄后，这位直播收入每天在三四千、短视频广告费用能到六七千的富豪..",
+		"playTime":"2017-08-09 19:30",
+		"see":"10"
+	},{
+		"liveId":4,
+		"img": "temp/school-information-list4.jpg",
+		"courseTypeName":"高中数学",
+		"brief":"数学一轮复习",
+		"playTime":"19:30",
+		"see":"10"
+	},{
+		"liveId":5,
+		"img": "temp/school-information-list5.jpg",
+		"courseTypeName":"高中数学",
+		"brief":"数学一轮复习",
+		"playTime":"19:30",
+		"see":"10"
+	},{
+		"liveId":6,
+		"img": "temp/school-information-list6.jpg",
+		"courseTypeName":"高中数学",
+		"brief":"数学一轮复习",
+		"playTime":"19:30",
+		"see":"10"
+	}
+	
+]

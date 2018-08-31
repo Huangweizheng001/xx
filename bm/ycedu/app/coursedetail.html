@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>课程详情-</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--课程购买-->
+		<section class="dyckcbuy" id="jcourseDetail">
+			<div class="container">
+				<!--课程描述-->
+				<div class="dyckc-inner">
+					<div class="dycby-top">
+						<div id="dyquicklink">
+							<a href="../courselist.html">全部课程</a>
+							<template v-cloak v-for="item in courseNav">
+								<a class="uk-icon-angle-right" v-bind:href="item.courseTypeId">{{item.name}}</a>
+							</template>
+						</div>
+
+						<div class="dycsckc" style="display: none;">
+							<span id="jssc-state" class="uk-icon-star-o"></span> 我收藏的课程
+						</div>
+					</div>
+
+					<div class="ycpanel">
+						<p v-cloak class="ycpanel-title">{{courseDetailContent.name}}</p>
+						<div v-cloak class="ycpanel-brief">{{courseDetailContent.note}}</div>
+
+						<div class="ycpanel-box clearfix">
+							<div class="span5">
+								<div class="ycpanel-image">
+									<a href="#this">
+										<img src="images/kclogo.png" v-bind:src="courseDetailContent.iconPath | addRoute" alt="课程详情" />
+									</a>
+								</div>
+							</div>
+							<div class="span7">
+								<div class="dycinner-box">
+									<p v-cloak class="dyckc-price">￥<span>{{courseDetailContent.preferentialPrice}}</span></p>
+									<p class="dycbenefit">优惠活动<span class="ycdiscount-logo">惠</span><span>限时优惠，报班送开学大礼</span></p>
+									<div class="dycspecial-server">
+										特色服务
+										<span>24H内答疑</span>
+										<span>名师专家</span>
+										<span>配套资料</span>
+									</div>
+									<div class="dycchose-shift">
+										选择班次
+										<span class="active">超值速成班</span>
+										<!--<span class="">三个月速成班</span>-->
+									</div>
+									<div v-cloak class="dyckc-brief">
+										{{courseDetailContent.classHour}}
+									</div>
+									<a class="dycbuy-btn" @click="buyNow">立即购买</a>
+									<a class="dycbuy-btn" @click="addSpCart" style="display:none">加入购物车</a>
+									<a class="dycbuy-btn" id="jfree" href="#this">免费试听</a>
+								</div>
+
+							</div>
+
+						<div class="dyckc-other clearfix">
+								<div class="yckcother-box">
+									<span class="span5">移动客户端下载:
+										<a href="#this">iPhone   </a>
+										<a href="#this">/  iPad  </a>
+										<a href="app/android.apk">/ 安卓</a>
+									</span>
+									<!--<span class="span1">预约</span>
+									<span class="span2">支付分期付款</span>-->
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--课程详情\大纲\评价--->
+				<div class="ycintro-panel">
+					<div class="swiper-container dyckcxq-container">
+						<ul class="yckcxq-swiper-pagination" id="jtabCourseDetail"></ul>
+
+						<div class="swiper-wrapper swiper-no-swiping">
+							<div class="swiper-slide">
+								<p class="yctitle">课程详情</p>
+								<div id="dyckcjj-wrap">
+									<div class="dyc-jjbox" v-html="courseDetailContent.detail"></div>
+								</div>
+								<div class="dycdxmb-box clearfix">
+									<div class="span6">
+										<p class="yctitle">适合对象</p>
+										<div class="dycdx-box clearfix">
+											<div class="span3">
+												<img src="images/kcdxlogo.png" />
+											</div>
+											<div class="span9">
+												<ol>
+													<template v-cloak v-for="item in fitObj">
+														<li>{{item}}</li>
+													</template>
+												</ol>
+											</div>
+										</div>
+									</div>
+									<div class="span6">
+										<p class="yctitle">学习目标</p>
+										<div class="dycmb-box">
+											<div class="span3">
+												<img src="images/kcmblogo.png" />
+											</div>
+											<div class="span9">
+												<ol>
+													<template v-cloak v-for="item in leGoal">
+														<li>{{item}}</li>
+													</template>
+												</ol>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="dycszjs-box clearfix">
+									<p class="yctitle">师资介绍</p>
+									<div class="span2">
+										<div class="dycszleft-box">
+											<a v-bind:href="['teacherdetail.html?teacherId=' + teacherArr.teacherId]">
+												<img src="images/sz01.jpg" v-bind:src="teacherArr.iconPath | addRoute" alt="老师介绍" />
+											</a>
+											<span v-cloak class="dycteacher-name">{{teacherArr.name}}</span>
+										</div>
+									</div>
+									<div class="span6">
+										<div class="dycszright-box" v-html="teacherArr.introduce"></div>
+									</div>
+								</div>
+
+								<div class="dycguesslike-box">
+									<p class="yctitle">猜您喜欢</p>
+									<div class="dycguesslike-wrap">
+										<div class="swiper-container dyckcgl-container">
+											<div class="swiper-wrapper">
+												<div class="swiper-slide" v-cloak v-for="item in guessLikeArr">
+													<a v-bind:href="['coursedetail.html?courseId=' + item.courseId]">
+														<div class="ycimage">
+															<img src="images/kccn01.jpg" v-bind:src="item.iconPath | addRoute" v-bind:alt="item.name" />
+														</div>
+														<p class="dyccn-title">{{item.name}}</p>
+														<p class="dyccn-brief">{{item.note}}</p>
+													</a>
+												</div>
+											</div>
+											<!-- Add Arrows -->
+											<div class="swiper-button-prev"></div>
+											<div class="swiper-button-next"></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="dyczxinf">
+									<img src="images/nr03.jpg" />
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<p class="yctitle">课程表</p>
+								<div id="dyckcdg-wrap">
+									<ul v-cloak v-for="(item , index) in outLine">
+										<h4><span>单元 <span>{{(index+1)}}</span></span>{{item.name}}<a class="dycfree-listen" v-if="item.allowListen>0"  v-bind:href="['player.html?courseId='+item.courseId+'&videoId=' + item.videoId+'&courseCatalogId=' + item.courseCatalogId]" target="_blank" style="top:-10px;">免费试听</a></h4>
+										<!--<template v-for="itemsub in item.children">
+											<a class="dycfree-listen" v-if="itemsub.allowListen>0" v-bind:href="['player.html?courseId='+itemsub.courseId+'&videoId=' + itemsub.videoId+'&courseCatalogId=' + itemsub.courseCatalogId]" target="_blank">免费试听</a>
+											<li><span class="dycfree" v-if="itemsub.allowListen>0">免费</span> {{itemsub.name}}</li>
+										</template>-->
+									</ul>
+								</div>
+							</div>
+							<div class="swiper-slide">
+
+								<div id="dyckcpj-wrap" class="clearfix">
+
+									<!--评论list-->
+									<div class="dycfeelbox">
+										<p class="yctitle" style="margin-left: -30px;">学员心声</p>
+										<div id="jcoursecomment" class="dyccomment-box">
+											<div class="dycmli-box">
+												<div class="dyccm-icon">
+													<img src="images/xueyueicon.jpg" />
+													<span>柳***持</span>
+												</div>
+												<div class="dyccm-content">
+													<p>肖老师讲得非常好，很有收获~</p>
+													<p>肖老师讲得非常好，很有收获~</p>
+													<p>肖老师讲得非常好，很有收获~</p>
+												</div>
+											</div>
+										</div>
+										<div class="dyccomment-more-box">
+											<a id="jaddmore" class="dycaddmore" href="#this">更多</a>
+										</div>
+										<!--评论-->
+										<form class="dyccomment-form" action="" method="post">
+											<textarea id="jcomment" name="commentText" rows="" cols="" placeholder="请输入评论内容（200字以内）"></textarea>
+											<a id="jsubmit-btn" class="dycsubmit-comment" href="#this">发表评论</a>
+										</form>
+									</div>
+									<!--其他课程广告-->
+									<div class="dycotheradbox">
+										<p class="yctitle">其他课程</p>
+										<div class="dycadbox" id="jcadbox">
+											<a href="#this">
+												<img src="images/xueyuead.jpg" alt="课程" />
+											</a>
+											<a href="#this">
+												<img src="images/xueyuead.jpg" alt="课程" />
+											</a>
+										</div>
+									</div>
+
+									<!--常见问题-->
+									<div class="dyccompro-box clearfix" style="display: none;">
+										<p class="yctitle">常见问题</p>
+										<ul>
+											<li data-id="1">
+												<p class="dyccp-title">播米在线是什么？</p>
+												<p class="dyccp-brief" style="display: block;">
+													播米在线主要由首页、直播/公开课、金融课堂、名师在线、播米资讯共五个栏目构成，是专注于金融财经直播交流学习的平台。平台涵盖了股票、外汇、大宗、从业等四大方面的内容，未来还将陆续上线银行理财、保险、期货等金融产品，播米在线致力于打造一个全方位的金融服务平台和金融超市。
+												</p>
+											</li>
+											<li data-id="2">
+												<p class="dyccp-title">播米币是什么？有什么用？</p>
+												<p class="dyccp-brief">
+													播米币是专供播米在线平台使用的货币，可用于平台内的课程观看和点赞，不可流通或进行二次消费，可提现。
+												</p>
+											</li>
+											<li data-id="3">
+												<p class="dyccp-title">播米币的有效期？</p>
+												<p class="dyccp-brief">
+													播米币没有有效期。
+												</p>
+											</li>
+											<li data-id="4">
+												<p class="dyccp-title">观看课程需要登录吗？</p>
+												<p class="dyccp-brief">
+													每次您观课程都需要登录，后台会自动进行识别未登录客户进行清除。
+												</p>
+											</li>
+											<li data-id="5">
+												<p class="dyccp-title">如何注册会员？</p>
+												<div class="dyccp-brief">
+													<p>（1）PC端用户可点击网站右上角的注册按钮，按照注册表的要求，填写相关信息即可注册成为播米会员。</p>  （2）移动端注册。
+												</div>
+											</li>
+											<li data-id="6">
+												<p class="dyccp-title">为什么注册不成功？</p>
+												<div class="dyccp-brief">
+													<p>（1）用户名重复</p> 为了保证用户资料的唯一性，同一个用户名只能注册一次，已经注册过的用户名，不能再使用。
+													<p> （2）手机号码已使用</p>
+													 同一个手机号码只能注册一次，已经注册过的手机号，不能再使用。
+													<p> （3）收不到验证码</p>
+													 ￭ 手机号码填写错误；
+													<br/> ￭ 网络延迟影响接收；
+													<br/> ￭ 手机设置了屏蔽垃圾短信，需自行调整；
+													<br/> ￭ 短信通道堵塞（若在排除以上三项的情况下，未收到验证码，可联系客服）;
+													<br/> ￭ 验证码/校验码填写错误
+													<br/>
+
+												</div>
+											</li>
+											<li data-id="7">
+												<p class="dyccp-title">购买课程后，是否能永久观看？</p>
+												<p class="dyccp-brief">
+													高级课在课程有效期内（从正式开课到课程下架前），直播课程仅限当日当次观看，回看课程可观看5次。学堂课程在课程听课期限内（课程结课之前）， 学生可以多次反复地听课学习，不限次数和时间。请注意每个课程都有一定的听课期限，学生只能在此期限内（结课日期前）听课学习。购买课程之前， 可在课程详情页面的上部看到每个课程的听课。
+
+												</p>
+											</li>
+											<li data-id="8">
+												<p class="dyccp-title">购买的课程可以下载吗？</p>
+												<p class="dyccp-brief">
+													不能，课程只能在线观看。网站上的视频均不可下载或者录制，禁止通过任何非法手段获取视频进行商业行为。
+												</p>
+											</li>
+											<li data-id="9">
+												<p class="dyccp-title" >忘记密码了怎么办？</p>
+												<p class="dyccp-brief">
+													可点击登录页面右侧下方忘记密码进行重置。
+												</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js?2"></script>
+		<script type="text/javascript" src="js/ycedu.js?13"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				var cId = $(this).getUrlParam("courseId");
+				var ctId = $(this).getUrlParam("courseTypeId");
+
+				$.courseDetail(cId);
+
+				setTimeout(function() {
+					var title = $('.ycpanel-title').text();
+					document.title = "课程详情-" + title;
+				}, 300);
+
+				$.courseOther(ctId);
+				$.courseComment(cId, 1);
+
+				//提交学员评论
+
+				$('#jsubmit-btn').on("click", function() {
+					$.postComment(cId);
+
+				})
+			})
+		</script>
+	</body>
+
+</html>

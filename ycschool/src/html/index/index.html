@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>亿策数字校园</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<!--banner-->
+<section class="banner-wrapper">
+    <div id="banner" class="banner">
+        <div class="swiper-container banner-hook">
+            <div class="swiper-wrapper">
+                <a class="swiper-slide" v-cloak target="_blank" v-for="item in bannerArr" :href="item.href" :style="{background:'url('+ item.iconPath +') no-repeat center'}"></a>
+            </div>
+            <div class="container" style="position: relative;">
+                <!--Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <!--Add Arrows -->
+                <!--<div class="swiper-button-next swiper-button-white" style="top: -135px"></div>-->
+                <!--<div class="swiper-button-prev swiper-button-white" style="top: -135px"></div>-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--课程区-->
+<section class="course-wrapper" id="courseArea">
+    <div class="container clearfix">
+        <!--最新课程-->
+        <div class="span8">
+            <div class="course-new">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Latest course</span>
+                    <h1 class="title">最新课程<a class="more" href="onlineclassmore.html" target="_blank">more></a></h1>
+                </div>
+                <div class="course-content clearfix">
+                    <div class="span4" v-cloak v-for="item in newCourse">
+                        <div class="course-item">
+                            <a class="image" :href="item.courseId,item.videoId|addRoot" target="_blank">
+                                <img :src="item.iconPath|addRootFile" alt="">
+                                <div class="mask"><span class="play-icon"></span></div>
+                            </a>
+                            <div class="content">
+                                <h1 class="coursename">{{item.courseName}}</h1>
+                                <div class="desc">
+                                    <span class="head"  :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></span>
+                                    <div class="box">
+                                        <h2 class="name">{{item.teacherName}}老师</h2>
+                                        <h4 class="count">{{item.readCount}}次播放</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="span4">-->
+                        <!--<div class="course-item">-->
+                            <!--<a class="image">-->
+                                <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                                <!--<div class="mask"><span class="play-icon"></span></div>-->
+                            <!--</a>-->
+                            <!--<div class="content">-->
+                                <!--<h1 class="coursename">国际市场营销学第3节课程</h1>-->
+                                <!--<div class="desc">-->
+                                    <!--<span class="head"></span>-->
+                                    <!--<div class="box">-->
+                                        <!--<h2 class="name">杨江宇老师</h2>-->
+                                        <!--<h4 class="count">1.7万次播放</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+        <!--热门课程-->
+        <div class="span4">
+            <div class="course-hot">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Hot course</span>
+                    <h1 class="title">热门课程<a class="more" href="onlineclassmore.html" target="_blank">more></a></h1>
+                </div>
+                <div class="course-hot-content">
+                    <div class="course-item" v-cloak v-for="item in hotCourse">
+                        <a class="image" :href="item.courseId,item.videoId|addRoot" target="_blank">
+                            <img :src="item.iconPath|addRootFile" alt="">
+                            <div class="mask"><span class="play-icon"></span></div>
+                        </a>
+                        <div class="content">
+                            <h1 class="coursename">{{item.courseName}}</h1>
+                            <div class="desc">
+                                <span class="head" :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></span>
+                                <div class="box">
+                                    <h2 class="name">{{item.teacherName}}老师</h2>
+                                    <h4 class="time">{{item.readCount}}次播放</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="course-item">-->
+                        <!--<a class="image">-->
+                            <!--<img src="../../images/temp/course@173-114.jpg" alt="">-->
+                            <!--<div class="mask"><span class="play-icon"></span></div>-->
+                        <!--</a>-->
+                        <!--<div class="content">-->
+                            <!--<h1 class="coursename">AE实战案例教程：如何 制作MC动画F</h1>-->
+                            <!--<div class="desc">-->
+                                <!--<span class="head"></span>-->
+                                <!--<div class="box">-->
+                                    <!--<h2 class="name">杨江宇老师</h2>-->
+                                    <!--<h4 class="time">3小时45分12秒</h4>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--老师区-->
+<section class="teacher-wrapper" id="teachershow">
+    <div class="container">
+        <div class="moduleTitleWrapper">
+            <span class="titleTip">Teacher show</span>
+            <h1 class="title">名师展示<a class="more" style="padding-right:26px" href="teacherlist.html" target="_blank">more></a></h1>
+        </div>
+        <div class="teacher-content">
+            <div class="swiper-container teacher-content-hook">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-center" v-cloak v-for="item in teacherList">
+                        <a :href="item.teacherId|addTeacherRoot" target="_blank">
+                            <img :src="item.iconPath|addRootFile" >
+                            <h1>{{item.teacherName}}</h1>
+                            <h3>{{item.gradeName}}{{item.subjectName}}老师</h3>
+                        </a>
+                    </div>
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="">-->
+                            <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                            <!--<h1>杨江宇</h1>-->
+                            <!--<h3>初三语文老师</h3>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="">-->
+                            <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                            <!--<h1>杨江宇</h1>-->
+                            <!--<h3>初三语文老师</h3>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="">-->
+                            <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                            <!--<h1>杨江宇</h1>-->
+                            <!--<h3>初三语文老师</h3>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="">-->
+                            <!--<img src="../../images/temp/teacher-tx.jpg" >-->
+                            <!--<h1>杨江宇</h1>-->
+                            <!--<h3>初三语文老师</h3>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!--<div class="swiper-pagination"></div>-->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</section>
+<!--学习区-->
+<section class="leaning-wrapper" id="studyArea">
+    <div class="container clearfix">
+        <div class="span7">
+            <div class="campus-radio">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Campus radio</span>
+                    <h1 class="title">校园电台<a class="more">more></a></h1>
+                </div>
+                <div class="content">
+                    <div class="tv-play"></div>
+                    <ul>
+                        <li>
+                            <i class="icon"></i>
+                            <h2 class="name">12级广告学专业秋季团建活动</h2>
+                            <h4 class="time">2018.3.20</h4>
+                        </li>
+                        <li>
+                            <i class="icon"></i>
+                            <h2 class="name">福州大学宣传片《有 梦想谁都了不起》</h2>
+                            <h4 class="time">2018.3.20</h4>
+                        </li>
+                        <li>
+                            <i class="icon"></i>
+                            <h2 class="name">福州大学宣传片《有 梦想谁都了不起》</h2>
+                            <h4 class="time">2018.3.20</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span5">
+            <div class="leaning-activities">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Learning activities</span>
+                    <h1 class="title">学习活动<a class="more" href="learningactivities.html" target="_blank">more></a></h1>
+                </div>
+                <div class="content">
+                    <a class="activitie-item" v-cloak v-for="item in activityArr" :href="item.activityId|addActivity" target="_blank">
+                        <div class="image">
+                            <img :src="item.iconPath|addRootFile" alt="">
+                        </div>
+                        <div class="box">
+                            <div class="name">{{item.title}}</div>
+                            <div class="introduce">{{item.describe}}</div>
+                            <div class="class">班级：{{item.className}}</div>
+                            <div class="time">时间：{{item.beginTime}}</div>
+                        </div>
+                    </a>
+                    <!--<div class="activitie-item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/activitie-2@226-148.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="box">-->
+                            <!--<div class="name">12级广告学专业学习活动</div>-->
+                            <!--<div class="introduce">讨论营销学中阿里特单定论成功性</div>-->
+                            <!--<div class="class">班级：12级广告学（2）班</div>-->
+                            <!--<div class="time">时间：2018.3.20</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <!--家庭教育-->
+        <div class="home-education">
+            <a href="parentclass.html" target="_blank"></a>
+        </div>
+    </div>
+</section>
+<!--教研活动-->
+<section class="teaching-wrapper" id="teachingActivity">
+    <div class="container">
+        <div class="teaching-activities">
+            <div class="moduleTitleWrapper">
+                <span class="titleTip">Teaching activities</span>
+                <h1 class="title">教研活动<a class="more" href="teachingactivities.html" target="_blank">more></a></h1>
+            </div>
+            <div class="content clearfix">
+                <div class="span3" v-cloak v-for="item in activityArr">
+                    <a class="item" :href="item.resultId|addRoot">
+                        <div class="image">
+                            <img :src="item.coverUrl|addRootFile" alt="">
+                        </div>
+                        <h1 class="coursename">{{item.title}}</h1>
+                    </a>
+                </div>
+                <!--<div class="span3">-->
+                    <!--<div class="item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@276-187.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<h1 class="coursename">国际市场营销学第三节课程</h1>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="span3">-->
+                    <!--<div class="item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@276-187.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<h1 class="coursename">国际市场营销学第三节课程</h1>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="span3">-->
+                    <!--<div class="item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@276-187.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<h1 class="coursename">国际市场营销学第三节课程</h1>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</section>
+<!--社圈-->
+<div class="communication">
+    <a href="cindex.html"></a>
+</div>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

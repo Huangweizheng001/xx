@@ -1,0 +1,43 @@
+
+.teachingActivitiesetails .teachingEtailsStencil{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.teachingActivitiesetails .etailsTitle{
+    margin-top: 52px;
+    height: 60px;
+    font-size: 32px;
+    text-align: center;
+    /*border-bottom: 1px solid #e6e6e6;*/
+}
+.teachingActivitiesetails .etailsDate{
+    color: #a1a1a1;
+    margin-left: 27px;
+    margin-right: 27px;
+    margin-top: 40px;
+    height: 26px;
+    font-size: 12px;
+    text-align: right;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.teachingActivitiesetails .etailFiles {
+	padding: 30px 27px;
+	color: #ff8d39;
+}
+
+.teachingActivitiesetails .etailFiles a:hover{
+	text-decoration: underline;
+}
+
+.teachingActivitiesetails .etailsContent{
+    width:920px;
+    margin:0  auto;
+    margin-top: 27px;
+}
+.teachingActivitiesetails  .pagenationbox li {
+    display: inline-block;
+    margin: 10px;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<title>悦华会员支付</title>
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+			<link rel="stylesheet" href="../../css/bm.css">
+		<style>
+			body,html{
+				height: 100%;
+			}
+			.bmyhPaySelectBox {
+				padding:30px 20px 0;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+}
+.bmyhPaySelectBox h4{
+	line-height: 3;
+	text-align: center;
+	font-size: 2rem;
+	color: #333;
+}
+
+.bmyhPaySelectBox  .bmyhPayPrice{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	line-height: 3;
+	font-size:1.5rem;
+	color: #888;
+	margin:1rem 0;
+}
+
+.bmyhPaySelectBox  .bmyhPayPrice span{
+	float: right;
+	color: #333;
+}
+
+			#payType {
+				margin: 2rem 0;
+				padding: 1.8rem;
+				background-color: #fff;
+			}
+			
+			#payType label {
+				position: relative;
+				margin-right: 1.5rem;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			
+			#payType label i {
+				position: absolute;
+				display: inline-block;
+				width: 2.28rem;
+				height: 2.28rem;
+				top: 0.4rem;
+				left: 0.28rem;
+				background: url(../../images/public/agree1.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			#payType label input:checked+i {
+				background-image: url(../../images/public/agree.png);
+			}
+			
+			#payType input {
+				width: 13rem;
+				height: 3rem;
+				opacity: 0;
+			}
+			
+			.alipay {
+				margin-bottom: 2.42rem;
+			}
+			
+			.alipay span {
+				display: inline-block;
+				width: 10rem;
+				margin-left: -10rem;
+				vertical-align: middle;
+			}
+			
+			.weixinpay span {
+				display: inline-block;
+				width: 10rem;
+				margin-left: -10rem;
+				vertical-align: middle;
+			}
+			
+			#submitPay {
+				display: block;
+				margin: 5rem 2.14rem 1rem;
+				line-height: 4.24rem;
+				border-radius: .6rem;
+				text-align: center;
+				font-size: 1.76rem;
+				color: #fff;
+				background-color: #1473e6;
+			}
+			#payBox {
+				display: none;
+				width: 100%;
+				height: 100vh;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section class="bmyhPaySelectBox">
+			<h4>悦华沙龙会员</h4>
+			<div class="bmyhPayPrice">
+				支付总额<span>￥<i>88.00</i></span>
+			</div>
+			
+			<div id="payType"><div class="alipay"><label><input value="0" type="radio" name="payType" checked="checked"><i></i></label><span><img src="../../images/public/aliPay.jpg"></span></div></div><div class="bmyhPayBtnBox"><a id="submitPay" href="#this">确认支付</a></div></section>
+			
+		</section>
+
+		<script type="text/javascript" src="../../js/zepto.js"></script>
+		<script type="text/javascript" src="../../js/layer.js"></script>
+		<script type="text/javascript" src="../../js/bmmain.js"></script>
+	</body>
+
+	<script>
+		$(function() {
+			var payType = 0;
+			var payPrice = 88.00;
+			var $mid =  localStorage.getItem("$ycuid");
+			
+			if($mid == null || $mid == undefined || $mid == "undefined" || $mid == "") {
+				window.location.href = '../../login.html';
+				
+				return false;
+			} else {
+				$.ajax({
+					type: "post",
+					url: SERVEROOTDATA + "Member.ashx?action=getSowingCoinByMemberId",
+					dataType: 'json',
+					data: {
+						"memberId": $mid
+					},
+					success: function(res) {
+						if(res[0].isSaLong == 1 || res[0].isSaLong =="1"){
+							layer.open({
+															content: '您已报名了该课程!',
+															skin: 'msg',
+															time: 2 //2秒后自动关闭
+													});
+						}
+					},
+					error: function(err) {
+						console.log("request error");
+					}
+				});
+			}
+			
+			$("#submitPay").on("click", function() {
+															
+															submitOrder();
+														});
+			function payError() {
+					layer.open({
+						content: "支付失败！",
+						skin: 'msg',
+						time: 2 //2秒后自动关闭
+					})
+					setTimeout(function() {
+						window.location.reload();
+					}, 1500)
+				}
+				
+				function submitOrder() {
+
+					//var payType = $('input[name="payType"]:checked').val();
+					var date = new Date();
+					var month = date.getMonth() + 1;
+					var strDate = date.getDate();
+					var seconds = date.getSeconds();
+					var randnum = "";
+					for(var i = 0; i < 5; i++) {
+						randnum += Math.floor(Math.random() * 10);
+					}
+
+					if(month >= 1 && month <= 9) {
+						month = "0" + month;
+					}
+					if(strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+					}
+					if(seconds >= 0 && seconds <= 9) {
+						seconds = "0" + seconds;
+					}
+
+					var currentdate = String(date.getFullYear()) + String(month) + String(strDate) + String(date.getHours()) + String(date.getMinutes()) + String(seconds) + String(randnum);
+
+					$.ajax({
+						type: "post",
+						url: SERVEROOTDATA + "MemberGrade.ashx?action=purchaseMemberGrade",
+						dataType: 'text',
+						data: {
+							memberId: localStorage.getItem("$ycuid"),
+							purchaseAmount: 88,
+							orderId: currentdate,
+							payTypeId: 3, //0: 支付宝， 1：微信 2：播米币； 3:"web 支付宝"
+							memberGradeId: 17,
+						},
+						success: function(res) {
+							if(res == 814 || res == "814") {
+								payError();
+								return false;
+							}
+							
+							/*if(payType == 0) {*/
+								openAliPayRUTE(88, currentdate, localStorage.getItem("$ycuid"));
+								//openAliPayRUTE(oldTotalPrice,orderId,localStorage.getItem("$ycuid"),17);
+							/*}*/
+						},
+						error: function() {
+							payError();
+						}
+					})
+				}
+				
+				/*function openAliPayRUTE(price, orderId, mId, dc, couId, otId, ptId) {
+					//页面层
+					layer.open({
+						type: 1,
+						content: '<iframe id="payBox" src="' + SERVEROOTDATA + 'Pay.ashx?action=directPay&amount=' + price + '&orderId=' + orderId + '&memberId=' + mId + '&discount=' + dc + '&couponReceiveId=' + couId + '&orderTypeId=' + otId + '&payTypeId=3"></iframe>',
+						anim: 'up',
+						style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100%; border:none;'
+					});
+					setTimeout(function() {
+						$("#payBox").css("display", "block");
+					}, 2000)
+
+				}*/
+				function openAliPayRUTE(price, orderId, mId) {
+					
+					//页面层
+					layer.open({
+						type: 1,
+						content: '<iframe id="payBox" src="' + SERVEROOTDATA + 'MemberGrade.ashx?action=purchaseMemberGrade&purchaseAmount=' + price + '&payTypeId=3&purchaseList=' + orderId + '&memberId=' + mId + '&memberGradeId=17"></iframe>',
+						anim: 'up',
+						style: 'position:fixed; left:0; top:0; width:100%; height:100%; border: none; -webkit-animation-duration: .5s; animation-duration: .5s;'
+					});
+
+					setTimeout(function() {
+						$("#payBox").css("display", "block");
+					}, 2000)
+				}
+
+
+		})
+	</script>
+
+</html>

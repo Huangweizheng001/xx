@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="fenodata"></div>
+            <!--<div class="feteacherpersonalcenter-right-head fehidden">-->
+                <!--<span>个人设置 <i class="uk-icon-angle-right"></i></span>-->
+                <!--<span>个人资料</span>-->
+                <!--<span>预览主页</span>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;个人资料&ndash;&gt;-->
+            <!--<div class="fepersonaldata fehidden">-->
+                <!--<div class="fepanel" id="information">-->
+                    <!--<div class="fepersonaldata-title">-->
+                        <!--<b>基本信息</b>-->
+                        <!--<span>编辑</span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<span>姓&nbsp;&nbsp;名 :</span>-->
+                            <!--<input type="text" value="" placeholder="自己的真实姓名" disabled>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>昵&nbsp;&nbsp;称 :</span>-->
+                            <!--<input type="text" value="小呆呆" disabled>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>性&nbsp;&nbsp;别 :</span>-->
+                            <!--<i>男</i>-->
+                            <!--<input type="radio" value="" name="sex" id="male" class="fehidden" value="男"><label for="male" class="fehidden">男</label>-->
+                            <!--<input type="radio" value="" name="sex" id="female" class="fehidden" value="女"><label for="female" class="fehidden">女</label>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>介&nbsp;&nbsp;绍 :</span>-->
+                            <!--<div class="fetextarea" contentEditable="false">-->
+                                <!--介绍一下自己,让学生快速了解你！-->
+                            <!--</div>-->
+                            <!--<b class="fehidden">内容不超过200个字！</b>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="feoperation fehidden">-->
+                        <!--<button>保存</button>-->
+                        <!--<button>取消</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel" id="contact">-->
+                    <!--<div class="fepersonaldata-title" >-->
+                        <!--<b>联系方式</b>-->
+                        <!--<span>编辑</span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<span>邮&nbsp;&nbsp;箱 :</span>-->
+                            <!--<input type="text" value="" placeholder="自己的邮箱" disabled>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>手&nbsp;&nbsp;机 :</span>-->
+                            <!--<input type="text" value="18024758586" disabled>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>Q&nbsp;&nbsp;&nbsp;&nbsp;Q :</span>-->
+                            <!--<input type="text" value="" placeholder="自己的QQ" disabled>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="feoperation fehidden">-->
+                        <!--<button>保存</button>-->
+                        <!--<button>取消</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel" id="background">-->
+                    <!--<div class="fepersonaldata-title" >-->
+                        <!--<b>背景资料</b>-->
+                        <!--<span>编辑</span>-->
+                    <!--</div>-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<span>教&nbsp;&nbsp;龄 :</span>-->
+                            <!--<i></i>-->
+                            <!--<select name="seniority" id="" class="feseniority fehidden" >-->
+                                <!--<option value="1年">1年</option>-->
+                                <!--<option value="2年">2年</option>-->
+                                <!--<option value="3年">3年</option>-->
+                                <!--<option value="4年">4年</option>-->
+                                <!--<option value="5年">5年</option>-->
+                                <!--<option value="6年">6年</option>-->
+                                <!--<option value="7年">7年</option>-->
+                            <!--</select>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>单位/机构/学校 :</span>-->
+                            <!--<input type="text" value="" class="fecompany" placeholder="单位/机构/学校（20字以内）" disabled>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>教学科目 :</span>-->
+                            <!--<i></i>-->
+                            <!--<select name="period" id="period" class="fesubject fehidden">-->
+                                <!--<option value="小学">小学</option>-->
+                                <!--<option value="初中">初中</option>-->
+                                <!--<option value="高中">高中</option>-->
+                            <!--</select>-->
+                            <!--<select name="grade" id="grade" class="fesubject fehidden">-->
+                                <!--<option value="1年">1年</option>-->
+                                <!--<option value="2年">2年</option>-->
+                                <!--<option value="3年">3年</option>-->
+                                <!--<option value="4年">4年</option>-->
+                                <!--<option value="5年">5年</option>-->
+                                <!--<option value="6年">6年</option>-->
+                            <!--</select>-->
+                            <!--<select name="class" id="class" class="fesubject fehidden">-->
+                                <!--<option value="语文">语文</option>-->
+                                <!--<option value="数学">数学</option>-->
+                                <!--<option value="英语">英语</option>-->
+                            <!--</select>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="feoperation fehidden">-->
+                        <!--<button>保存</button>-->
+                        <!--<button>取消</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel" id="pastthing">-->
+                    <!--<div class="fepersonaldata-title" >-->
+                        <!--<b>过往经历</b>-->
+                        <!--<span>添加</span>-->
+                    <!--</div>-->
+                    <!--<div class="fehistory fehidden">-->
+                        <!--<div class="febox">-->
+                            <!--<p>开始时间</p>-->
+                            <!--<select name="beginyear" id="beginyear">-->
+                                <!--<option value="2010年">2010年</option>-->
+                                <!--<option value="2011年">2011年</option>-->
+                                <!--<option value="2012年">2012年</option>-->
+                                <!--<option value="2013年">2013年</option>-->
+                                <!--<option value="2014年">2014年</option>-->
+                                <!--<option value="2015年">2015年</option>-->
+                                <!--<option value="2016年">2016年</option>-->
+                                <!--<option value="2017年">2017年</option>-->
+                            <!--</select>-->
+                            <!--<select name="beginmonth" id="beginmonth">-->
+                                <!--<option value="1月">1月</option>-->
+                                <!--<option value="2月">2月</option>-->
+                                <!--<option value="3月">3月</option>-->
+                                <!--<option value="4月">4月</option>-->
+                                <!--<option value="5月">5月</option>-->
+                                <!--<option value="6月">6月</option>-->
+                                <!--<option value="7月">7月</option>-->
+                                <!--<option value="8月">8月</option>-->
+                                <!--<option value="9月">9月</option>-->
+                                <!--<option value="10月">10月</option>-->
+                                <!--<option value="11月">11月</option>-->
+                                <!--<option value="12月">12月</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<p>结束时间</p>-->
+                            <!--<select name="endyear" id="endyear">-->
+                                <!--<option value="1年">2010年</option>-->
+                                <!--<option value="2年">2011年</option>-->
+                                <!--<option value="3年">2012年</option>-->
+                                <!--<option value="4年">2013年</option>-->
+                                <!--<option value="5年">2014年</option>-->
+                                <!--<option value="6年">2015年</option>-->
+                                <!--<option value="6年">2016年</option>-->
+                                <!--<option value="6年">2017年</option>-->
+                            <!--</select>-->
+                            <!--<select name="endmonth" id="endmonth">-->
+                                <!--<option value="1月">1月</option>-->
+                                <!--<option value="2月">2月</option>-->
+                                <!--<option value="3月">3月</option>-->
+                                <!--<option value="4月">4月</option>-->
+                                <!--<option value="5月">5月</option>-->
+                                <!--<option value="6月">6月</option>-->
+                                <!--<option value="7月">7月</option>-->
+                                <!--<option value="8月">8月</option>-->
+                                <!--<option value="9月">9月</option>-->
+                                <!--<option value="10月">10月</option>-->
+                                <!--<option value="11月">11月</option>-->
+                                <!--<option value="12月">12月</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<p>描述过往经历（50 - 200字）</p>-->
+                        <!--<div class="fetext" contentEditable="true">-->
+                            <!--1.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>-->
+                            <!--2.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>-->
+                            <!--3.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>-->
+                            <!--4.  ...-->
+                        <!--</div>-->
+                        <!--<div class="feoperation ">-->
+                            <!--<button>保存</button>-->
+                            <!--<button>取消</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<ul class="fepastthing-content">-->
+
+                    <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="fepanel" id="relevantcase">-->
+                    <!--<div class="fepersonaldata-title" >-->
+                        <!--<b>相关案例</b>-->
+                        <!--<span>添加</span>-->
+                    <!--</div>-->
+                    <!--<div class="fehistory fehidden">-->
+                        <!--<div class="febox">-->
+                            <!--<p>案例名称（10字以内）</p>-->
+                            <!--<input type="text">-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<p>日期</p>-->
+                            <!--<select name="dateyear" id="dateyear">-->
+                                <!--<option value="1年">2010年</option>-->
+                                <!--<option value="2年">2011年</option>-->
+                                <!--<option value="3年">2012年</option>-->
+                                <!--<option value="4年">2013年</option>-->
+                                <!--<option value="5年">2014年</option>-->
+                                <!--<option value="6年">2015年</option>-->
+                                <!--<option value="6年">2016年</option>-->
+                                <!--<option value="6年">2017年</option>-->
+                            <!--</select>-->
+                            <!--<select name="datemonth" id="datemonth">-->
+                                <!--<option value="1月">1月</option>-->
+                                <!--<option value="2月">2月</option>-->
+                                <!--<option value="3月">3月</option>-->
+                                <!--<option value="4月">4月</option>-->
+                                <!--<option value="5月">5月</option>-->
+                                <!--<option value="6月">6月</option>-->
+                                <!--<option value="7月">7月</option>-->
+                                <!--<option value="8月">8月</option>-->
+                                <!--<option value="9月">9月</option>-->
+                                <!--<option value="10月">10月</option>-->
+                                <!--<option value="11月">11月</option>-->
+                                <!--<option value="12月">12月</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<p>描述相关案例（50 - 300字）</p>-->
+                        <!--<div class="fetext" contentEditable="true">-->
+                            <!--例如： <br>-->
+                            <!--2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>-->
+                            <!--2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>-->
+                            <!--2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>-->
+                        <!--</div>-->
+                        <!--<div class="feoperation">-->
+                            <!--<button>保存</button>-->
+                            <!--<button>取消</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<ul class="fepastthing-content">-->
+
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;视频/照片&ndash;&gt;-->
+            <!--<div class="fevideophoto fehidden">-->
+                <!--<div class="febox">-->
+                    <!--<h1><b>我的资源:</b><span class="active">视频</span><span>照片</span></h1>-->
+                    <!--<p>-->
+                        <!--<button><i class="uk-icon-plus-circle"></i>添加视频</button>-->
+                        <!--<span>请将视频控制在1G之内，视频必须为你的原创作品。</span>-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="feteacherindex-photo">-->
+                    <!--&lt;!&ndash;视频&ndash;&gt;-->
+                    <!--<div class="fevediodetail ">-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse1.jpg" alt="">-->
+                                    <!--<a href=""><span>播放<b></b></span></a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>零基础：法语语音全教程详解</h3>-->
+                                    <!--<h4>2017年03月15日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse2.jpg" alt="">-->
+                                    <!--<a href=""><span>播放<b></b></span></a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>零基础：法语语音全教程详解</h3>-->
+                                    <!--<h4>2017年03月15日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse3.jpg" alt="">-->
+                                    <!--<a href=""><span>播放<b></b></span></a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>零基础：法语语音全教程详解</h3>-->
+                                    <!--<h4>2017年03月15日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse4.jpg" alt="">-->
+                                    <!--<a href=""><span>播放<b></b></span></a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>零基础：法语语音全教程详解</h3>-->
+                                    <!--<h4>2017年03月15日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="clear: both"></div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;照片&ndash;&gt;-->
+                    <!--<div class="fephotodetail fehidden">-->
+                        <!--<div class="span3">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto1.png" alt="">-->
+                                    <!--<a href="">-->
+                                        <!--<div>-->
+                                            <!--<h6>学校秋季游学夏令营活动场景</h6>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>学校秋季游学夏令营活动场景</h3>-->
+                                    <!--<h4>2017年8月10日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span3">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto2.png" alt="">-->
+                                    <!--<a href="">-->
+                                        <!--<div>-->
+                                            <!--<h6>学校秋季游学夏令营活动场景</h6>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>学校秋季游学夏令营活动场景</h3>-->
+                                    <!--<h4>2017年8月10日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span3">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto3.png" alt="">-->
+                                    <!--<a href="">-->
+                                        <!--<div>-->
+                                            <!--<h6>学校秋季游学夏令营活动场景</h6>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>学校秋季游学夏令营活动场景</h3>-->
+                                    <!--<h4>2017年8月10日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span3">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto4.png" alt="">-->
+                                    <!--<a href="">-->
+                                        <!--<div>-->
+                                            <!--<h6>学校秋季游学夏令营活动场景</h6>-->
+                                        <!--</div>-->
+                                    <!--</a>-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>学校秋季游学夏令营活动场景</h3>-->
+                                    <!--<h4>2017年8月10日</h4>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="clear: both"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;添加图片界面&ndash;&gt;-->
+                <!--<div class="feaddphoto fehidden">-->
+                    <!--<p><button>点击上传<input type="file" accept="image/png, image/jpeg, image/gif, image/jpg"/></button><span>仅支持 .jpg、.png、.jpeg 格式照片，大小不超过10M</span></p>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;添加视频界面&ndash;&gt;-->
+                <!--<div class="feaddvideo fehidden">-->
+                    <!--<p><button>点击上传<input type="file" accept="image/png, image/jpeg, image/gif, image/jpg"/></button><span>仅支持 .jpg、.png、.jpeg 格式照片，大小不超过10M</span></p>-->
+                    <!--<div><span>视频标题 :</span><input type="text"></div>-->
+                    <!--<button>保存</button>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;认证设置&ndash;&gt;-->
+            <!--<div class="feauthsetting fehidden">-->
+                <!--<div class="fepanel">-->
+                    <!--<h1>身份认证<span>(*必须)</span></h1>-->
+                    <!--<div class="fetitle">-->
+                        <!--<i class="identity"></i>-->
+                        <!--<span>个人身份认证 <b>(尚未认证)</b></span>-->
+                        <!--认证完成后才可以成为平台老师-->
+                        <!--<button>认证</button>-->
+                    <!--</div>-->
+                    <!--<div class="feauth ">-->
+                        <!--<div class="febox">-->
+                            <!--<span><b>*</b>姓 名 :</span>-->
+                            <!--<input type="text">-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<span><b>*</b>身份证号码 :</span>-->
+                            <!--<input type="text">-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<span><b>*</b>手持身份证照片 :</span>-->
+                            <!--<div class="feupdatephoto"><input type="file"><h3>上传照片</h3></div>-->
+                            <!--<s>示例</s>-->
+                            <!--<i></i>-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<span>身份证正面 :</span>-->
+                            <!--<div class="feupdatephoto"><input type="file"><h3>上传照片</h3></div>-->
+                            <!--<s>示例</s>-->
+                            <!--<i></i>-->
+                        <!--</div>-->
+                        <!--<h2><button>保存</button><button>取消</button></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel">-->
+                    <!--<h1>教师认证<span>(*必须)</span></h1>-->
+                    <!--<div class="fetitle">-->
+                        <!--<i class="teacher"></i>-->
+                        <!--<span>教师证认证 <b>(尚未认证)</b></span>-->
+                        <!--认证完成后学生才能看到老师发布的内容-->
+                        <!--<button>认证</button>-->
+                    <!--</div>-->
+                    <!--<div class="feauth ">-->
+                        <!--<div class="febox">-->
+                            <!--<div class="feupdatephoto"><input type="file"><h3>上传照片</h3></div>-->
+                            <!--<b>请提交在有效期内的教师证照片，需保证头像及文字清晰可见。</b>-->
+                        <!--</div>-->
+                        <!--<h2><button>保存</button><button>取消</button></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="fepanel">-->
+                    <!--<h1>其他资质认证<span class="normal">(可选)</span></h1>-->
+                    <!--<div class="fetitle">-->
+                        <!--<i class="education"></i>-->
+                        <!--<span>学历认证 <b>(尚未认证)</b></span>-->
+                        <!--认证完成后能够增加学生对老师个人背景的信任度-->
+                        <!--<button>认证</button>-->
+                    <!--</div>-->
+                    <!--<div class="feauth ">-->
+                        <!--<div class="febox">-->
+                            <!--<div class="feupdatephoto"><input type="file"><h3>上传照片</h3></div>-->
+                            <!--<b>请提交能证明你学历水平的证件照片，如：学生证、在读证明、毕业证等（需包含照片、 姓名、专业、校方印章等有效信息）</b>-->
+                        <!--</div>-->
+                        <!--<h2><button>保存</button><button>取消</button></h2>-->
+                    <!--</div>-->
+                    <!--<div class="fetitle">-->
+                        <!--<i class="major"></i>-->
+                        <!--<span>专业资质认证 <b>(尚未认证)</b></span>-->
+                        <!--认证完成后能够增加学生对老师专业技能的认可度-->
+                        <!--<button>认证</button>-->
+                    <!--</div>-->
+                    <!--<div class="feauth ">-->
+                        <!--<div class="febox">-->
+                            <!--<div class="feupdatephoto"><input type="file"><h3>上传照片</h3></div>-->
+                            <!--<b>请提交你教学能力或专业能力的证明，如：职称证书、考级证书等。</b>-->
+                        <!--</div>-->
+                        <!--<h2><button>保存</button><button>取消</button></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;资料上传&ndash;&gt;-->
+            <!--<div class="feupdatedata fehidden">-->
+                <!--<div class="febox">-->
+                    <!--<h1><b>我的资源:</b><span class="active">课件</span><span>文章</span></h1>-->
+                    <!--<p>-->
+                        <!--<button><i class="uk-icon-plus-circle"></i>添加课件</button>-->
+                        <!--&lt;!&ndash;<span>请将视频控制在1G之内，视频必须为你的原创作品。</span>&ndash;&gt;-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="feteacherindex-photo">-->
+                    <!--&lt;!&ndash;课件&ndash;&gt;-->
+                    <!--<div class="fevediodetail" id="courseware">-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse1.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高考数学错题讲评课件</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse2.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>语文高分作文精彩选段</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse3.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高三（5）班花名册</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/schoolcourse4.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高三（5）班花名册</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="clear: both"></div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;文章&ndash;&gt;-->
+                    <!--<div class="fevediodetail fehidden" id="article">-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto1.png" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高考数学错题讲评课件</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto2.png" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>语文高分作文精彩选段</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto3.png" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高三（5）班花名册</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teacherphoto4.png" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>高考数学错题讲评课件</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div style="clear: both"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;添加课件&ndash;&gt;-->
+                <!--<div class="feaddcourseware fehidden">-->
+                    <!--<div class="febox">-->
+                        <!--<span>上传文件 :</span>-->
+                        <!--<input type="text">-->
+                        <!--<button>打开</button>-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程标题 :</span>-->
+                        <!--<input type="text">-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程封面 :</span>-->
+                        <!--<div><input type="file" class="addcoursebg"></div><b>图片大小不超过5M</b>-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程简介 :</span>-->
+                        <!--<textarea></textarea>-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<h2><button>保存课件内容</button></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;添加文章&ndash;&gt;-->
+                <!--<div class="feaddarticle fehidden">-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程标题 :</span>-->
+                        <!--<input type="text">-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程封面 :</span>-->
+                        <!--<div><input type="file" class="addcoursebg"></div><b>图片大小不超过5M</b>-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<span>课程简介 :</span>-->
+                        <!--<textarea></textarea>-->
+                    <!--</div>-->
+                    <!--<div class="febox">-->
+                        <!--<h2><button>保存文章内容</button></h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+    })
+</script>
+</body>
+
+</html>

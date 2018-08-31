@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>名师活动</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #f4f4f4;">
+<header id="header">
+    <header-template></header-template>
+</header>
+<div id="teacherqzone">
+    <teacherqzone-template></teacherqzone-template>
+</div>
+<section class="container clearfix" id="teacherActivity">
+    <div class="teacherActivity  clearfix">
+        <!--<div class="span9 ">-->
+            <div class="leftCon">
+                <div class="topLink">
+                    <h1>教研活动 <span v-cloak>（共 {{allCount}} 门课）</span></h1>
+                </div>
+                <div class="content clearfix">
+                    <div class="fenodata" v-cloak v-show="nodata"></div>
+                    <div class="span6" v-cloak v-for="item in courseArr">
+                        <a class="item" :href="item.resultId|addActivity">
+                            <div class="image">
+                                <img :src="item.coverUrl|addRootFile" alt="">
+                            </div>
+                            <div class="boxRight">
+                                <h1 class="courseName">{{item.title}}</h1>
+                                <p class="intro">{{item.describe}}</p>
+                                <div class="bottom">
+                                    <h4>发起人：{{item.publishName}} </h4>
+                                    <h4>时间：{{item.addTime}} </h4>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!--<div class="span6">-->
+                        <!--<a class="item">-->
+                            <!--<div class="image">-->
+                                <!--<img src="../../images/temp/course@276-187.jpg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="boxRight">-->
+                                <!--<h1 class="courseName">初三数学组教研活动</h1>-->
+                                <!--<p class="intro">讨论营销学中阿里特单定论成功性，并且组建讨论小组，定期举行学习类活动。讨论-->
+                                    <!--营销学中阿里特单定论成功性，并且组建讨论小组，定期举行学习类活动！</p>-->
+                                <!--<div class="bottom">-->
+                                    <!--<h4>发起人：王晓飞 </h4>-->
+                                    <!--<h4>时间：2017-12-30 </h4>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+                <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                    <li v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        <!--</div>-->
+        <!--<div class="span3">-->
+            <!--<div class="rightNav">-->
+                <!--<a href="">教研活动</a>-->
+                <!--<a href="">学习活动</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

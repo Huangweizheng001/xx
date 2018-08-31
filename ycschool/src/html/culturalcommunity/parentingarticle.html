@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>育儿文章列表</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section id="parentingarticle">
+    <div class="container clearfix">
+        <div class="parentingArticle clearfix">
+            <div class="topLink">
+                <h1>文化社区 > <span>育儿文章</span></h1>
+            </div>
+            <div class="span8_5">
+                <div class="articleList">
+                    <div class="moduleTitleWrapper">
+                        <span class="titleTip">Parenting articles </span>
+                        <h1 class="title">育儿文章</h1>
+                    </div>
+                    <div class="articleContent">
+                        <div class="fenodata" v-cloak v-show="nodata"></div>
+                        <a class="article" v-cloak v-for="item in articles" :href="item.articleId|addRoot" target="_blank">
+                            <div class="image">
+                                <img :src="item.iconPath|addRootFile" alt="">
+                            </div>
+                            <div class="boxRight">
+                                <h1 class="articleName">{{item.title}}</h1>
+                                <p class="intro">{{item.content}}</p>
+                                <div class="bottom">
+                                    更新时间：{{item.publishDate}}     <span>阅读：{{item.clickCount}}</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!--<a class="article">-->
+                            <!--<div class="image">-->
+                                <!--<img src="../../images/temp/article_2@225-148.jpg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="boxRight">-->
+                                <!--<h1 class="articleName">中国首推英语“国际”将为教育考试带来颠覆性变革</h1>-->
+                                <!--<p class="intro">作为面向中国英语学习者的首个英语能力测评标准，《量表》划分为3个阶段，9个等-->
+                                    <!--级，以语言运用为导向，从听、说、读、写、口译、笔译、语用、语法等多方面入手...</p>-->
+                                <!--<div class="bottom">-->
+                                    <!--更新时间：2018-04-18 15:33     <span>阅读：3</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<a class="article">-->
+                            <!--<div class="image">-->
+                                <!--<img src="../../images/temp/article_3@225-148.jpg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="boxRight">-->
+                                <!--<h1 class="articleName">教育部领导参观我省基础教育信息化应用展馆</h1>-->
+                                <!--<p class="intro">5月5日至7日，第三届全国基础教育信息化应用展示交流活动在北京农业展览馆举行-->
+                                    <!--教育部副部长朱之文、刘利民等参加展会的领导嘉宾先后到我省展馆参观。</p>-->
+                                <!--<div class="bottom">-->
+                                    <!--更新时间：2018-04-16 15:33     <span>阅读：15</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<a class="article">-->
+                            <!--<div class="image">-->
+                                <!--<img src="../../images/temp/article_4@225-148.jpg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="boxRight">-->
+                                <!--<h1 class="articleName">海峡影视季-第三届两岸青年微电影展微电影作品征集公告</h1>-->
+                                <!--<p class="intro">为更好地传播、传承中华传统文化，体现时代精神的文化精品，更好地促进两岸青年文-->
+                                    <!--化交流与创新合作，增强两岸影视青年对两岸文化的认同感，打造海峡两岸更精彩美...</p>-->
+                                <!--<div class="bottom">-->
+                                    <!--更新时间：2018-04-18 15:33     <span>阅读：38</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                        <!--<a class="article">-->
+                            <!--<div class="image">-->
+                                <!--<img src="../../images/temp/article_5@225-148.jpg" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="boxRight">-->
+                                <!--<h1 class="articleName">毕业生安家也有补助！厦门扶持集成电路产业发展</h1>-->
+                                <!--<p class="intro">《厦门市加快发展集成电路产业实施细则》（以下简称《细则》）于日前出台，涵盖了厦-->
+                                    <!--门市发展集成电路的投融资政策、支持领域、人才补助和科研扶持等各类标准。</p>-->
+                                <!--<div class="bottom">-->
+                                    <!--更新时间：2018-04-18 15:33     <span>阅读：38</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</a>-->
+                    </div>
+                    <ul class="pagenationbox clearfix" style="padding: 30px 0 50px" v-cloak>
+                        <li v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3_5">
+                <div class="popularArticle">
+                    <div class="moduleTitleWrapper">
+                        <span class="titleTip">Popular articles </span>
+                        <h1 class="title">热门文章</h1>
+                    </div>
+                    <ul class="articleList">
+                        <li v-cloak v-for="item in hotArts">
+                            <a :href="item.articleId|addRoot" target="_blank">{{item.title}}</a>
+                        </li>
+                        <!--<li>-->
+                            <!--<a href="">家长文章：我的育儿体验</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="">教育孩子心得《家长原创》</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="">小班家长育儿体验</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a href="">育儿心得体验</a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

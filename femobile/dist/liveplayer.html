@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href=".../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>直播课程</title>
+	</head>
+
+	<body>
+		<header id="feHeaderTransparentShare">
+			<header-transparent-share-template></header-transparent-share-template>
+		</header>
+		<section class="feActiveDetailWrap feCoursePlayWrap feLivePlayWrap" id="jLivePlayWrap">
+			<div class="container flex flex-v">
+				<div class="feVideoInner">
+					<div style="height:4.18rem;overflow:hidden">
+						<div id="jActivePlayer" class="prism-player"></div>
+					</div>
+				</div>
+				<div class="feNewsTab">
+					<span class="menu" v-bind:class="{'menu-active':menuTab}" @click="menuBtnTab(0)">课程目录</span>
+					<span class="comment " v-bind:class="{'comment-active':!menuTab}" @click="menuBtnTab(1)">互动交流</span>
+				</div>
+				<div class="feTabCon flex flex-v" v-bind:class="{'tabHide':!menuTab}">
+					<div class="feActiveInner flex-1">
+						<template v-for="item in headerArr" v-cloak>
+							<div class="feCourseDetail"><p>共{{item.courseCatalogCount}}节课
+							<span>已报名:{{item.courseEnrollmentCount}}</span></p></div>
+						</template>
+						
+						<div class="feCoursePlayLi">
+						<!--<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore">-->
+							<template v-for="item in menuArr" v-cloak>
+								<template v-if='hasEnrolled'>
+									<a href="javascript:;" class="active"  data-channelId='182' >【直播课】{{item.rownum}}.{{item.courseCatalogName}}
+										<p>{{item.playDate}} {{item.playBeginTime}}-{{item.playEndTime}}</p>
+									</a>
+									<a class="" :href="item.courseCatalogId|addActiveHrefPre" v-else  data-channelId='182'>【直播课】{{item.rownum}}.{{item.courseCatalogName}}
+										<p>{{item.playDate}} {{item.playBeginTime}}-{{item.playEndTime}}</p>
+									</a>
+								</template>
+								<template v-if='!hasEnrolled && item.allowListen == 1' >
+									<a class="freePlay" :href="item.courseCatalogId|addActiveHrefPre" v-bind:class="{'active':channelId=='182'}"   data-channelId='182'>【直播课】{{item.rownum}}.{{item.courseCatalogName}}
+										<p>{{item.playDate}} {{item.playBeginTime}}-{{item.playEndTime}}</p>
+									</a>
+								</template>
+								<template v-if='!hasEnrolled && item.allowListen == 0'>
+									<a href="javascript:;" class=" nopay" v-bind:class="{'active':channelId=='182'}" @click='gotoBuy()'  data-channelId='182'>【直播课】{{item.rownum}}.{{item.courseCatalogName}}
+										<p>{{item.playDate}} {{item.playBeginTime}}-{{item.playEndTime}}</p>
+									</a>
+								</template>
+							</template>
+								
+								<!--<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'" v-cloak>Loading...</span> <span v-show="bottomStatus === 'drop'" v-cloak>{{bottomText}}</span></div>
+							</mt-loadmore>-->
+					</div>
+					</div>
+				</div>
+				<div class="feTabCon flex flex-v " v-bind:class="{'tabHide':menuTab}">
+					<div class="feComment feActiveInner flex flex-v">
+						<section class="chatWrap flex flex-v" id="jchatApp">
+								<div id="chatContent" class="chatContent flex-1">
+									<div id="message" class="message"></div>
+								</div>
+								<div class="chatSendBox"><span class="chatUnreadCount">0</span>
+									<div class="editContent" id="content" contenteditable="true"></div>
+									<a id="jSendBtn" class="sendBtn" href="javascript:;">发送</a>
+								</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script src="../js/libs/jquery.min.js"></script>
+		<script src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/axios.min.js"></script>
+		<script src="../js/libs/socket.io.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script src="https://g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+		<script src="../js/plugins/layer,wow,scroll.js"></script>
+		<script src="../js/plugins/swiper.min.js"></script>
+		<script src="../js/plugins/jquery.storage.js"></script>
+		<script src="../js/femoblie.min.js"></script>
+		<script src="../js/fescript.js"></script>
+		<script>
+			$(function() {
+				var t= $.getUrlParam("channelProgramId"); 
+				//var t= 182;//获取直播地址，暂时写固定182
+				livePlayApp($.getUrlParam("cpId"),$.getUrlParam("courseKind"),t);
+			})
+		</script>
+	</body>
+
+</html>

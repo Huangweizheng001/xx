@@ -1,0 +1,39 @@
+[
+	{
+		"teacherId": "1",
+		"name": "Lily",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	}, {
+		"teacherId": "1",
+		"name": "Mary",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	},{
+		"teacherId": "1",
+		"name": "Jabo",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	},{
+		"teacherId": "1",
+		"name": "Jabo",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	},{
+		"teacherId": "1",
+		"name": "Jabo",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	},{
+		"teacherId": "1",
+		"name": "Jabo",
+		"img": "temp/indexTeacher.jpg",
+		"good":"英语",
+		"brief":"爱拼才会赢，大声说出英语"
+	}
+]

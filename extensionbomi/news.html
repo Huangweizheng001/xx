@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米咨讯-播米新闻大爆料/往期回顾/今日要点/尽在播米在线</title>
+
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/uikit.min.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="ycedu/css/video-js.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--新闻列表头部列表-->
+		<section class="dycnewslist" id="jnewListHeader">
+			<div class="container clearfix">
+				<div class="dycnewlist-left span7">
+					<div class="swiper-container dycnewslist-container">
+						<div class="swiper-wrapper">
+							<template v-cloak v-for="(item,index) in bannerArr">
+								<div class="swiper-slide" v-if='index<2'>
+								<a target="_blank" v-bind:href="item.newsId" :style="{backgroundImage: 'url(' + item.iconPath + ')'}">
+									<div class="dycdesc-bar">{{item.title}}</div>
+								</a>
+								</div>
+							</template>
+						</div>
+						<!-- Add Pagination -->
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="dycnewlist-right span5">
+					<a class="span6" target="_blank" href="#this" v-cloak v-for="item in newsRightArr" v-bind:href="item.newsId">
+						<div class="dycrightli">
+							<img src="ycedu/images/newsRightList01.png" v-bind:src="item.iconPath | addRoute" />
+							<p>{{item.title}}</p>
+						</div>
+					</a>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="dycnewlistshow" id="jnewList">
+			<div class="container">
+				<div id="dycnewListType">
+					<template v-cloak v-for="item in newsTypeArr">
+						<!--<a href="#this" v-bind:data-id="item.newsTypeId" @click="alertConfirm()">{{item.name}}</a>-->
+						<a href="#this" v-bind:data-id="item.newsTypeId" v-bind:data-charge="item.isCharge" v-if="item.isCharge == '1'" @click="alertConfirm()">{{item.name}}</a>
+						<a href="#this" v-bind:data-id="item.newsTypeId" v-bind:data-charge="item.isCharge" v-else>{{item.name}}</a>
+					</template>
+				</div>
+				<div class="dycnewlist-content">
+
+					<div class="ycpanel clearfix">
+						<div class="span6" v-cloak v-for="item in newsArr.rows">
+							<a class="ycbox" href="#this" v-bind:href="item.newsId" target="_blank">
+								<div class="ycimage span6">
+									<img src="ycedu/images/newslist01.jpg" v-bind:src="item.iconPath | addRoute" alt="新闻" />
+								</div>
+								<div class="ycright-box span6">
+									<p class="yctitle">{{item.title}}</p>
+									<p class="ycbrief">{{item.introduce}}</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
+					<!--枫叶-->
+					<ul class="pagenationbox clearfix">
+						<li v-show="current != 1" @click="current-- && goto(current--)">
+							<a href="#this">上一页</a>
+						</li>
+						<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+							<a href="#this">{{index}}</a>
+						</li>
+						<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+							<a href="#this">下一页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+		</section>
+
+		<!--视频区-->
+		<section class="ycnew-vidio">
+			<div class="container">
+				<div class="prism-player" id="J_prismPlayer"></div>
+				<!--<div class="video" id="jnewsPlayer">
+					<object id="WsPlayer" name="WsPlayer" data="" width="100%" height="100%" title="Adobe Flash Player">
+					<param name="movie" value="">
+					<param name="quality" value="high">
+					<param name="bgcolor" value="#000000">
+					<param name="devicefont" value="false">
+					<param name="wmode" value="opaque">
+					<param name="allowScriptAccess" value="always">
+					<param name="allowFullscreen" value="true">
+					<param name="allownetworking" value="all">
+					<param name="flashVars" value="">
+			        </object>
+				</div>-->
+			</div>
+		</section>
+		
+		<div class="dycindenxadv " id="jadv" style="display: none;">
+			<div class="dyctadv">
+				<div style="position: relative;">
+					<a id="dycadv-img" target="_blank" class="dycadv-img"><img src="ycedu/images/indexadv.png" /></a>
+					<div class="dycadvclose-img" id="jadvclose"><img src="ycedu/images/indexadvclose.png" /></div>
+				</div>
+			</div>
+
+		</div>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/uikit.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer.js"></script>
+		<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/wow.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/video.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+		<script type="text/javascript" src="ycedu/js/swfobject.js"></script>
+		<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+		<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>
+		
+		<script>
+			$(function() {
+				
+				BizQQWPA.addCustom({aty: '0', a: '1005', nameAccount: 4006430618, selector: 'dycadv-img'});
+			
+				$.newListHeader();
+				$.newList();
+				
+				
+				
+				/*var windowWidth = $(window).width();
+				if(windowWidth > 1200) {
+					windowWidth = 1200;
+				} else {
+					windowWidth = windowWidth * 0.98;
+				}*/
+				
+				var player = new prismplayer({
+            id: 'J_prismPlayer',
+            width: '100%',
+            height:'460px',
+            autoplay: false,
+            //支持播放地址播放,此播放优先级最高
+            source : ROUTEFILE+'uploads/videos/news.mp4',
+         	 cover: ROUTEFILE+'start.jpg'
+            });
+            
+            setTimeout(function() {
+				$('#jadv').css('display', 'block');
+			}, 2000);
+			$('#jadv').click(function() {
+				$(this).css('display', 'none');
+			});
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+	<style>
+		.backcousebg{
+			position: absolute;top:0;left:0;height：100%;width:100%;background: rgba(0,0,0,0.3);height:100%;text-align: center;display: none;
+		}
+		.backservice{
+			margin:-22px 0 0 -67px;width:130px;height:40px;line-height: 40px;color: #fff;display: inline-block;position: absolute;top:50%;border:2px solid #ffc000;border-radius:8px;background:#ffc000;font-size: 18px;
+		}
+		.backservice:hover{
+			background:#ffc000 ;
+		}
+	</style>
+
+	<body style="padding-top: 0;">
+
+		<section class="bmbackPlayerModel" id="jbackPlayerApp" style="position: relative;">
+			<div id="backcoursePlayer" class="prism-player"></div>
+			<div class="backcousebg" id="jbackCousebg" >
+				<a id='jserviceBtn' class="backservice" >联系助理</a>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<!--<script type="text/javascript" src="js/bomi.js"></script>-->
+		
+	</body>
+
+	<script>
+		$(function() {
+			
+			var cId = $(this).getUrlParam("courseId");
+			var vId = $(this).getUrlParam("videoId");
+			if(undefined == vId || "" == vId || null == vId) {
+				layer.msg('视频源错误', {
+					icon: 6,
+					btn: ['明白了', '知道了'],
+				});
+			}
+
+			backCoursePlayer(cId, vId);
+
+			function backCoursePlayer(cId, vId) {
+				new Vue({
+					el: '#jbackPlayerApp',
+					data: {
+
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.getPlayAuth(vId);
+						})
+					},
+					methods: {
+						getPlayAuth: function(vid) {
+							var _this = this;
+							this.$http.post(ROUTE + "CourseCatalog.ashx?action=getPlayUrlByVideoId", {
+								videoid: vid
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.createBackPlayerEnDetail(vid, res.body);
+							});
+						},
+						createBackPlayerEnDetail: function(vid, auto) {
+							var newzonePlayer = new prismplayer({
+								id: "backcoursePlayer", // 容器id
+								//source: "http://live.bmizx.net/yicelive/streamyice.flv", // 视频地址
+								// source: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+								//source: URL,
+								vid: vid,
+								playauth: auto,
+								autoplay: true, //自动播放：否
+								width: "100%", // 播放器宽度
+								height: "452px", // 播放器高度
+								playsinline: true,
+								preload: false,
+								//isLive: true,
+								skinLayout: [{
+									"name": "bigPlayButton",
+									"align": "cc",
+									"x": 30,
+									"y": 80
+								}, {
+									"name": "controlBar",
+									"align": "blabs",
+									"x": 0,
+									"y": 0,
+									"children": [{
+										"name": "playButton",
+										"align": "tlabs",
+										"x": 10,
+										"y": 25
+									}, {
+										"name": "fullScreenButton",
+										"align": "trabs",
+										"x": 10,
+										"y": 25
+									}, {
+										"name": "volume",
+										"align": "trabs",
+										"x": 50,
+										"y": 25
+									}, {
+										"name": "progress",
+										"align": "tlabs",
+										"x": 0,
+										"y": 0
+									}]
+								}],
+								cover: './images/public/playBgIcon.jpg'
+								//cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png'
+							});
+							newzonePlayer.on("ready",function(){
+								if(newzonePlayer.getDuration() > 600){//如果总长大于10分钟
+									var times = setInterval(function(){
+										newzonePlayer.getCurrentTime();
+										if(newzonePlayer.getCurrentTime() > 600){//播放十分钟后停止播放，练习助手
+											newzonePlayer.pause();
+											$('#jbackCousebg').css('display','block');
+											clearInterval(times);
+										}
+										console.log(newzonePlayer.getCurrentTime());
+									},5000);
+								}
+							});
+							BizQQWPA.addCustom({
+												aty: '0',
+												a: '1005',
+												nameAccount: 800185768,
+												selector: 'jserviceBtn'
+											});
+							
+						}
+					}
+				});
+			}
+		})
+	</script>
+
+</html>

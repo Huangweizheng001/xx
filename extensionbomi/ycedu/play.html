@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>课程播放页</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/jquery.emoji.css" />
+		<!--<link rel="stylesheet" href="css/ycstyle.css" />-->
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+	</head>
+
+	<body>
+
+
+		<section class="dycplay-wrap w1200-player clearfix">
+			<div class="dycplaymain">
+				<div id="play"></div>
+			</div>
+			<!--讨论区-->
+			<div class="span2" style="padding:0 20px">
+				<div class="dycplaydiscuss">
+					<div class="dycplaydiscuss-content">
+						<ul id="" class="dycdiscuss-box">
+							<li class="clearfix">
+								<div class="span2"><img src="images/playmember.jpg" /></div>
+								<div class="span10">
+									<span class="dycplayname">138****8642</span>
+									<div class="dycplaycontent"><i class="uk-icon-caret-left"></i><span class="dycplaycon span10">我来啦啦啦啦、、、、我来啦啦啦啦、、、、我来啦啦啦啦、、、、</span></div>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="span2"><img src="images/playmember.jpg" /></div>
+								<div class="span10">
+									<span class="dycplayname">138****8642</span>
+									<div class="dycplaycontent"><i class="uk-icon-caret-left"></i><span class="dycplaycon span10">我来啦啦啦啦、、、</span></div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="dycplaydiscuss-bar">
+						<a class="dycbroadcast" href="#this"></a>
+						<a id="jface" class="dycface" href="#this"></a>
+						<a class="dycaudio" href="#this"></a>
+						<a class="dyccute" href="#this"></a>
+
+						<select class="dycforperson">
+							<option>所有人</option>
+						</select>
+						<div class="dycsendbar">
+							<div id="editor" contenteditable="true"></div>
+							<a class="dycsend-btn" href="#this">发送</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/jquery.emoji.js"></script>
+		<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				var $width = $("#play").width();
+				var $playWidth = parseInt($width - 500);
+
+				var objectPlayer = new aodianPlayer({
+					container: 'play', //播放器容器ID，必要参数
+					rtmpUrl: 'rtmp://8691.lssplay.aodianyun.com/dafuhao/stream', //控制台开通的APP rtmp地址，必要参数
+					hlsUrl: 'http://8691.hlsplay.aodianyun.com/dafuhao/stream.m3u8', //控制台开通的APP hls地址，必要参数
+					/* 以下为可选参数*/
+					width: '100%', //播放器宽度，可用数字、百分比等
+					height: '100%', //播放器高度，可用数字、百分比等
+					autostart: true, //是否自动播放，默认为false
+					bufferlength: '1', //视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+					maxbufferlength: '2', //最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+					stretching: '1', //设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+					controlbardisplay: 'enable', //是否显示控制栏，值为：disable、enable默认为disable。
+					//adveDeAddr: '',//封面图片链接
+					//adveWidth: 320,//封面图宽度
+					//adveHeight: 240,//封面图高度
+					//adveReAddr: '',//封面图点击链接
+					//isclickplay: false,//是否单击播放，默认为false
+					isfullscreen: true //是否双击全屏，默认为true
+				});
+				/* rtmpUrl与hlsUrl同时存在时播放器优先加载rtmp*/
+				/* 以下为Aodian Player支持的事件 */
+				/* objectPlayer.startPlay();//播放 */
+				/* objectPlayer.pausePlay();//暂停 */
+				/* objectPlayer.stopPlay();//停止 hls不支持*/
+				/* objectPlayer.closeConnect();//断开连接 */
+				/* objectPlayer.setMute(true);//静音或恢复音量，参数为true|false */
+				/* objectPlayer.setVolume(volume);//设置音量，参数为0-100数字 */
+				/* objectPlayer.setFullScreenMode(1);//设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。手机不支持 */
+
+				$("#editor").emoji({
+					button: "#jface",
+					showTab: false,
+					//animation: 'slide',
+					icons: [{
+						name: "QQ表情",
+						path: "./images/face/qq/",
+						maxNum: 91,
+						excludeNums: [41, 45, 54],
+						file: ".gif"
+					}]
+				});
+			})
+		</script>
+	</body>
+
+</html>

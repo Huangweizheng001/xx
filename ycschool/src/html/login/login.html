@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园登录/登录</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body style="background-color: #fff;">
+
+		<section class="loginWrap" id="jLoginApp">
+			<div class="loginHeader">
+				<div class="container">
+					<div class="webWelcomeBox">
+						<a href="./index.html">
+							<img src="../../images/static/logo.png" />
+						</a>
+						<span>欢迎访问</span>
+					</div>
+				</div>
+			</div>
+			<div class="loginInner clearfix">
+				<div class="container">
+					<div class="loginBox">
+						<div class="loginChangeBox clearfix">
+							<a class="span6" href="javasript:;" @mouseover="changeUserType(1)">学生端</a>
+							<a class="span6" href="javasript:;" @mouseover="changeUserType(3)">教师端</a>
+							<div class="loginBgHover" :class="{active: currentTypeIndex == 1, active2: currentTypeIndex == 3}"></div>
+						</div>
+						<div class="loginInputBox">
+							<div class="loginHeaderTips" v-cloak>福州大学 [ {{currentTypeLabel}} ] 登录</div>
+							<label class="loginLi loginName">
+                                <input class="loginInput" name="name" type="text" placeholder="请输入账号" v-model="account" autofocus @keydown="keyboardSub($event)"/>
+                                <span class="loginError" v-if="accountTipsFlag" v-cloak>{{accountTips}}</span>
+                            </label>
+                            <label class="loginLi loginPwd">
+                                <input class="loginInput" name="password" type="password"  placeholder="密码" v-model="password"  @keydown="keyboardSub($event)" />
+                                <span class="loginError" v-if="passwordTipsFlag" v-cloak>{{passwordTips}}</span>
+                            </label>
+                            <label class="loginLi loginSub">
+                                <input class="loginInput" name="autoLogin" checked="checked" type="checkbox" @click="toggleStorage"/>自动登录
+                                <a href="javascript:;" @click="loginSub">登录</a>
+                            </label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="loginFooter">
+				<a href="index.html" target="_blank">© 2018  亿策金点在线教育科技有限公司</a>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

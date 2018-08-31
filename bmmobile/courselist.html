@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="css/bmmobile_cyq.css" />
+		<link rel="stylesheet" href="css/dropload.css">
+		<link rel="stylesheet" href="css/bm.css">
+		<title>课程列表</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+			
+			#navBox {
+				font-size: 1.52rem;
+				text-align: center;
+				background-color: #fff;
+				position: fixed;
+				top: 7rem;
+				left: 0;
+				width: 100%;
+			}
+			
+			#navBox .swiper-slide {
+				position: relative;
+				color: #282828;
+				font-weight: 500;
+				padding: 1.2rem 0 .8rem;
+			}
+			
+			#navBox .swiper-slide.slideSelected {
+				color: #065ebf;
+			}
+			
+			#navBox .swiper-slide.slideSelected:after {
+				position: absolute;
+				content: "";
+				width: 9rem;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #065ebf;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header class="grayold flex-con" id="header">
+				<span>金融课堂</span>
+			</header>
+
+			<div class="swiper-container flex-con" id="navBox">
+				<ul class="swiper-wrapper" id="navHeadbox"></ul>
+			</div>
+			<section class="flex-con overAuto" style="margin-top: 10.5rem; ">
+				<div id="content">
+					<ul class="bmcourseListBox clearfix"></ul>
+				</div>
+
+			</section>
+
+			<footer id="indexfooter">
+				<ul class="fixedfooter flex-wrap">
+					<li id="index" class="flex-con">
+						<a href="index.html">首页</a>
+					</li>
+					<li id="course" class="flex-con active">
+						<a href="courselist.html">课程</a>
+					</li>
+					<span id="toggleQuickBtns"></span>
+					<li id="live" class="flex-con">
+						<a href="liveplayer.html">直播</a>
+					</li>
+					<li id="me" class="flex-con">
+						<a href="member.html">我的</a>
+					</li>
+				</ul>
+			</footer>
+			<div class="quickBoxWrap">
+				<div class="quickBox">
+					<a href="html/strategylist.html"></a>
+					<a href="html/teacherlist.html"></a>
+					<a id="jlisten" href="#this"></a>
+					<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/bmmain.js"></script>
+		<script type="text/javascript" src="js/zepto.picLazyLoad.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				var itemIndex = 0;
+				var LoadEnd_tab = new Array();
+				var firstParam = LoadEnd_tab[0];
+				LoadEnd_tab[0] = false;
+
+				var pageCount = new Array();
+				var firstPage = pageCount[0];
+				pageCount[0] = 0;
+
+				// 每页展示6个
+				var num = 6;
+				var nownum = 0; //当前数据在第几条
+				var tabTypeId = ""; //默认类型为1
+
+				navHeadBox();
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							console.log(tabTypeId)
+							pageCount[itemIndex]++;
+							exeCourselist(me, pageCount[itemIndex], tabTypeId, itemIndex); //默认首页
+						}, 200)
+					}
+				});
+
+				function currentType() {
+					$('#navHeadbox li').click(function() {
+						if($(this).hasClass('slideSelected')) {
+							return false;
+						} else {
+							$(this).siblings().removeClass('slideSelected');
+							$(this).addClass('slideSelected');
+						}
+						var index = $(this).attr('data-index');
+						var navType = $(this).attr('data-id');
+						window.navSwiper.slideTo(index, 300, false);
+
+						var $this = $(this);
+						itemIndex = $this.index();
+						$('#content .bmcourseListBox').eq(itemIndex).show().siblings('.bmcourseListBox').hide();
+
+						tabTypeId = $('.slideSelected').attr('data-id'); //数据类型
+
+						if(!LoadEnd_tab[itemIndex]) {
+							// 解锁
+							dropload.unlock();
+							dropload.noData(false);
+						} else {
+							// 锁定
+							dropload.lock('down');
+							dropload.noData();
+						}
+						// 重置
+						dropload.resetload();
+
+					});
+
+				}
+
+				function navBar() {
+					navSwiper = new Swiper('.swiper-container', {
+						slidesPerView: 3,
+					})
+
+					window.navSwiper = navSwiper;
+				}
+
+				function navHeadBox() { //获取类型
+					var box = $('#navHeadbox'),
+						bmBox = $('#content .bmcourseListBox'),
+						bmBoxStr = "",
+						htmlStr = "";
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseType.ashx?action=getSecondLevelCourseType',
+						dataType: "json",
+						data: {},
+						success: function(result) {
+							if(result.length < 1) {
+								return false;
+							}
+							tabTypeId = result[0].courseTypeId; //记录第一个数据类型
+
+							result.forEach(function(value, index) {
+								htmlStr += '<li class="swiper-slide" data-id="' + value.courseTypeId + '" data-index=' + index + '>' + value.name + '</li>';
+								bmBoxStr += '<ul class="bmcourseListBox clearfix" style="display:none"></ul>';
+								LoadEnd_tab.push(false);
+								pageCount.push(0);
+
+							});
+							bmBox.after(bmBoxStr);
+							box.html(htmlStr);
+
+							navBar();
+							$($(box.find('.swiper-slide'))[0]).addClass('slideSelected');
+
+							currentType();
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				function exeCourselist(me, page, typeNav, numIndex) { //获取数据
+					var box = $('#content .bmcourseListBox'),
+						htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getCourseByType',
+						dataType: "json",
+						data: {
+							"courseTypeId": typeNav,
+							"pageSize": num,
+							"pageIndex": page
+						},
+						success: function(result) {
+							if(result.length < 1) {
+								LoadEnd_tab[numIndex] = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+								return false;
+							}
+							if(page <= result.totalPageCount) {
+
+								result.rows.forEach(function(value, index) {
+									var imgSrc = value.mobileIconPath;
+									if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+										imgSrc = 'images/public/default.png';
+									} else {
+										imgSrc = SERVEROOTFILE + imgSrc;
+									}
+
+									htmlStr += '<li><a href="html/coursedetail.html?courseId=' + value.courseId + '">' + '<div class="img">' + '<img class="lazyload" src="images/public/default.png" data-original="' + imgSrc + '" /></div>' + '<p class="title">' + value.name + '</p>' + '<p class="price">￥' + value.preferentialPrice + '</p></a></li>';
+									nownum = (page - 1) * num + index + 1;
+									if((nownum) >= result.totalCount) {
+										console.log('到底啦')
+										// 数据加载完
+										//LoadEnd = true;
+										LoadEnd_tab[numIndex] = true;
+										// 锁定
+										me.lock();
+										// 无数据
+										me.noData();
+										//break;
+									}
+								});
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									box.eq(numIndex).append(htmlStr);
+									$("#content .lazyload").picLazyLoad({
+										threshold: 10
+									});
+									// 每次数据加载完，必须重置
+									me.resetload();
+									
+								}, 1000);
+
+							}
+
+						},
+						error: function(err) {
+							console.log('服务器出错了~');
+							// 加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+
+				$('#jlisten').click(function() {
+					if(unloginGoLogin()) {
+						window.location.href = 'html/login.html';
+						return false;
+					}
+					window.location.href = 'html/lecturecourselist.html';
+				});
+
+				//未登入跳转登录页
+				function unloginGoLogin() {
+					var uName = localStorage.getItem('$ycuname'),
+						uId = localStorage.getItem('$ycuid');
+					if(uId == "" || uId == undefined || uId == null) { //未登入
+						return true;
+					}
+					return false;
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

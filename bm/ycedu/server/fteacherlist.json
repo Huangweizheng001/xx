@@ -1,0 +1,48 @@
+[
+	{
+		"teacherId": "4",
+		"name": "ujddsd",
+		"iconPath": "images/searcht01.png",
+		"title": "职称",
+		"good": "擅长商场就是考虑到减肥路上看见",
+		"brief": "福建省第一批简介",
+		"course": [
+			{
+				"courseId": "121",
+				"coursename": "零基础玩转七大理财【两年畅学班】",
+				"coursesignnum": "12356",
+				"trylisten": "yes"
+			}
+		],
+		"live": [
+			{
+				"liveId": "111",
+				"livename": "sjfhsjkh",
+				"livesignnum": "45646"
+			}
+		]
+	},
+	{
+		"teacherId": "5",
+		"name": "34545646",
+		"iconPath": "images/searcht01.png",
+		"title": "职sdfjsdfhs称",
+		"good": "擅长商场就是考sdfsf虑到减肥路上看见",
+		"brief": "福建省第一批sdfsdf简介",
+		"course": [
+			{
+				"courseId": "121",
+				"coursename": "零基础玩转七大理财【两年畅学班】",
+				"coursesignnum": "12356",
+				"trylisten": "yes"
+			}
+		],
+		"live": [
+			{
+				"liveId": "111",
+				"livename": "sjfhsjkh",
+				"livesignnum": "45646"
+			}
+		]
+	}
+]

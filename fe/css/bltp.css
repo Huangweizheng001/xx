@@ -1,0 +1,142 @@
+.contentWrapper{
+    background: #e7ebef;
+    padding-top: 35px;
+    padding-bottom: 68px;
+}
+/*赛事视频*/
+.bltpVideo{
+    margin: 0 20px;
+    background: #fff;
+    position: relative;
+    padding-top: 188px;
+    padding-bottom: 135px;
+}
+.bltpVideo .topTip,.bltpDynamics .topTip{
+    position: absolute;
+    top: 40px;
+    left: -20px;
+    right: -20px;
+}
+.bltpVideo .videoContent{
+    margin-left: -34px;
+    padding: 26px 50px 0;
+
+}
+.bltpVideo .videoContent .videoItem{
+    margin-left: 34px;
+    margin-top: 58px;
+    cursor: pointer;
+    display: block;
+}
+.bltpVideo .videoContent .videoItem .image{
+    position: relative;
+    /*width: 100%;*/
+    height: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+/*.bltpVideo .videoContent .videoItem .image img{*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
+.bltpVideo .videoContent .videoItem .image .mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    opacity: 1;
+    transition: all .3s linear;
+}
+.bltpVideo .videoContent .videoItem .image .mask .play-icon{
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    background: url("../images/temp/play-icon.png");
+}
+.bltpVideo .videoContent .videoItem:hover .desc{
+    background: #b3d0e7;
+}
+.bltpVideo .videoContent .videoItem:hover .image .mask{
+    background: transparent;
+}
+.bltpVideo .videoContent .videoItem .desc{
+    background: #ebebeb;
+    font-size: 14px;
+    color: #191919;
+    line-height: 48px;
+    text-align: center;
+    padding: 0 10px;
+}
+.contentWrapper .pagenationbox li a{
+    color: #5b7787;
+    border: none;
+}
+.contentWrapper .pagenationbox li a:hover,.contentWrapper .pagenationbox li.active a{
+    background: #6faad8;
+    color: #fff;
+}
+/*赛事动态*/
+.bltpDynamics{
+    margin: 0 20px;
+    background: #fff;
+    position: relative;
+    padding-top: 188px;
+    padding-bottom: 135px;
+}
+.bltpDynamics .dynamicsContent{
+    padding: 40px 80px;
+}
+.bltpDynamics .dynamicsContent .listItem{
+    display: block;
+    position: relative;
+    padding: 30px 100px 10px 35px;
+    border-bottom: 2px solid #a2c6da;
+    font-size: 14px;
+    color: #191919;
+}
+.bltpDynamics .dynamicsContent .listItem:before{
+    display: table;
+    content: "";
+    position: absolute;
+    background: #3096d5;
+    width: 4px;
+    height: 4px;
+    left: 10px;
+    top: 39px;
+    border-radius: 50%;
+}
+.bltpDynamics .dynamicsContent .listItem span{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #5b7787;
+}
+.bltpDynamics .dynamicsContent .listItem:hover{
+    color: #0184ed;
+}
+/*赛事动态详情*/
+.bltpDynamics .dynamicsContent .top{
+    font-size: 24px;
+    color: #191919;
+    text-align: center;
+    padding:40px 110px;
+    border-bottom: 1px solid #a2c6da;
+}
+.bltpDynamics .dynamicsContent .center{
+    padding: 70px 40px;
+}
+.bltpDynamics .dynamicsContent .bottom{
+    border-top: 1px solid #a2c6da;
+    padding: 30px 20px;
+    text-align: right;
+    font-size: 14px;
+    color: #5b7787;
+}

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="css/bmmobile.css" />
+		<title>课程列表</title>
+
+		<style>
+			body {
+				/*padding-top: 14rem;*/
+				background: #f2f2f2;
+			}
+			
+			#navBox {
+				font-size: 2.285rem;
+				text-align: center;
+				/*background-color: #1473e6;*/
+				background-color: #fff;
+				position: fixed;
+				top: 9rem;
+				left: 0;
+				width: 100%;
+			}
+			
+			#navBox .swiper-slide {
+				position: relative;
+				/*color: #fff;*/
+				color: #282828;
+				font-weight: 500;
+				padding: 1.2rem 0 .8rem;
+			}
+			
+			#navBox .swiper-slide.slideSelected {
+				color: #065ebf;
+			}
+			
+			#navBox .swiper-slide.slideSelected:after {
+				position: absolute;
+				content: "";
+				width: 9rem;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #065ebf;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			header.grayold {
+				position: relative;
+				padding-top: 2.42rem;
+				height: 9rem;
+				line-height: 6.58rem;
+				z-index: 99;
+				box-sizing: border-box;
+				font-size: 2.285rem;
+				text-align: center;
+				color: #fff;
+				border-bottom: 1px solid #eee;
+				background: #fff;
+				/*background: #1473e6;*/
+			}
+			
+			header.grayold span {
+				display: inline-block;
+				padding: 0.2rem 0.9rem;
+				margin: 0 .8rem;
+				/*color: #fff;*/
+				color: #282828;
+				font-weight: bold;
+				line-height: normal;
+				border-radius: 1.0rem;
+			}
+			
+			header.grayold span.selected {
+				color: #065ebf;
+				/*background-color: #fff !important;*/
+			}
+			
+			header.grayold {
+				/*position: relative;*/
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				padding-top: 2.42rem;
+				height: 9rem;
+				line-height: 6.58rem;
+				z-index: 99;
+				box-sizing: border-box;
+				font-size: 2.285rem;
+				text-align: center;
+				color: #fff;
+				border-bottom: 1px solid #eee;
+				background: #fff;
+				/*background: #1473e6;*/
+			}
+			
+			header.grayold span {
+				display: inline-block;
+				padding: 0.2rem 0.9rem;
+				margin: 0 .8rem;
+				/*color: #fff;*/
+				color: #282828;
+				font-weight: bold;
+				line-height: normal;
+				border-radius: 1.0rem;
+			}
+			
+			header.grayold span.selected {
+				color: #065ebf;
+				/*background-color: #fff !important;*/
+			}
+			
+			.swiper-container {
+				margin-left: auto;
+				margin-right: auto;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+			}
+			
+			.swiper-container-android .swiper-slide,
+			.swiper-wrapper {
+				-webkit-transform: translate3d(0, 0, 0);
+				-moz-transform: translate3d(0, 0, 0);
+				-o-transform: translate(0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			
+			.swiper-wrapper {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-transition-property: -webkit-transform;
+				-moz-transition-property: -moz-transform;
+				-o-transition-property: -o-transform;
+				-ms-transition-property: -ms-transform;
+				transition-property: transform;
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+			
+			.swiper-slide {
+				-webkit-flex-shrink: 0;
+				-ms-flex: 0 0 auto;
+				flex-shrink: 0;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			.swiper-container-horizontal>.swiper-pagination-bullets,
+			.swiper-pagination-custom,
+			.swiper-pagination-fraction {
+				bottom: 10px;
+				left: 0;
+				width: 100%;
+			}
+			
+			.swiper-pagination {
+				position: absolute;
+				text-align: center;
+				-webkit-transition: .3s;
+				-moz-transition: .3s;
+				-o-transition: .3s;
+				transition: .3s;
+				-webkit-transform: translate3d(0, 0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				-o-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				z-index: 10;
+			}
+			
+			.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+				margin: 0 5px;
+			}
+			
+			.swiper-pagination-bullet {
+				width: 8px;
+				height: 8px;
+				display: inline-block;
+				border-radius: 100%;
+				background: #000;
+				opacity: .2;
+			}
+			
+			.swiper-pagination-bullet-active {
+				opacity: 1;
+				background: #007aff;
+			}
+			
+			#box {
+				padding: 0 2.14rem;
+				background: #fff;
+			}
+			
+			#box li {
+				width: 50%;
+				float: left;
+				padding: 2rem 1.35rem 0;
+				box-sizing: border-box;
+			}
+			
+			#box li a {
+				display: block;
+			}
+			
+			#box li img {
+				width: 100%;
+				border-radius: .6rem;
+			}
+			
+			#box li p {
+				line-height: 1.5;
+			}
+			
+			#box .title {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #282828;
+				font-size: 2.14rem;
+			}
+			
+			#box .price {
+				color: #d0d0d0;
+				font-size: 2rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header class="grayold flex-con" id="header">
+				<span class="selected" data-id='1'>直播平台</span>
+				<span data-id='2'>金融课堂</span>
+			</header>
+
+			<div class="swiper-container flex-con" id="navBox">
+				<ul class="swiper-wrapper" id="navHeadbox"></ul>
+			</div>
+			<section class="flex-con overAuto" style="margin-top: 14rem; position: relative;">
+
+				<div id="wrapper">
+					<div id="scroller">
+						<div id="pullDown">
+							<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
+						</div>
+						<ul id="box" class="clearfix">
+							<!--<li>
+						<a href="coursedetail.html?courseId=1" target="_blank">
+							<div class="img">
+								<img src="images/course/coursethumb.jpg" />
+							</div>
+							<p class="title">外汇交易</p>
+							<p class="price">5888￥</p>
+						</a>
+					</li>-->
+						</ul>
+						<div id="pullUp">
+							<span class="pullUpIcon"></span><span class="pullUpLabel">Pull up to load more...</span>
+						</div>
+					</div>
+				</div>
+
+			</section>
+
+			<footer id="indexfooter">
+				<ul class="fixedfooter flex-wrap">
+					<li id="index" class="flex-con">
+						<a href="index.html">首页</a>
+					</li>
+					<li id="course" class="flex-con active">
+						<a href="courselist.html">课程</a>
+					</li>
+					<span id="toggleQuickBtns"></span>
+					<li id="live" class="flex-con">
+						<a href="liveplayer.html">直播</a>
+					</li>
+					<li id="me" class="flex-con">
+						<a href="member.html">我的</a>
+					</li>
+				</ul>
+			</footer>
+			<div class="quickBoxWrap">
+				<div class="quickBox">
+					<a href="html/newslist.html"></a>
+					<a href="html/teacherlist.html"></a>
+					<a id="jlisten" href="#this"></a>
+					<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/bmmain.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+
+		<script>
+			$(function() {
+				navHeadBox(1); //默认直播
+				changeSelected(); //头部切换选择
+
+				function changeSelected() {
+					$('#header span').click(function() {
+						$(this).siblings().removeClass();
+						$(this).addClass('selected');
+						var type = $(this).attr('data-id');
+						navHeadBox(type);
+						window.navSwiper.slideTo(0, 300, false);
+					});
+
+				}
+
+				function currentType() {
+					$('#navHeadbox li').click(function() {
+						if($(this).hasClass('slideSelected')) {
+							return false;
+						} else {
+							$(this).siblings().removeClass('slideSelected');
+							$(this).addClass('slideSelected');
+						}
+						var index = $(this).attr('data-index');
+						var type = $(this).attr('data-type');
+						var navType = $(this).attr('data-id');
+
+						window.navSwiper.slideTo(index, 300, false);
+						exeCourselist(1, type, navType); //默认首页
+					});
+
+				}
+
+				function navBar() {
+					navSwiper = new Swiper('.swiper-container', {
+						slidesPerView: 3,
+					})
+
+					window.navSwiper = navSwiper;
+				}
+
+				function navHeadBox(type) { //获取类型
+					var box = $('#navHeadbox'),
+						htmlStr = "";
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseType.ashx?action=getSecondLevelCourseType',
+						dataType: "json",
+						data: {
+							"name": type
+						},
+						success: function(result) {
+
+							if(result.length < 1) {
+								return false;
+							}
+							result.forEach(function(value, index) {
+								htmlStr += '<li class="swiper-slide" data-id="' + value.courseTypeId + '" data-index=' + index + ' data-type=' + type + '>' + value.name + '</li>';
+							});
+							box.html(htmlStr);
+							navBar();
+							$($(box.find('.swiper-slide'))[0]).addClass('slideSelected');
+							exeCourselist(1, type, $('.slideSelected').attr('data-id')); //默认第一页
+							currentType();
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				function exeCourselist(page, type, typeNav) { //获取数据
+					var box = $('#box'),
+						htmlStr = "";
+					loadingTips();
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getCourseByType',
+						dataType: "json",
+						data: {
+							"type": type, //直播或者金融课堂
+							"courseTypeId": typeNav,
+							"pageSize": 6,
+							"pageIndex": page
+						},
+						success: function(result) {
+							closeLoadingTips();
+							if(result.length < 1) {
+								return false;
+							}
+							htmlStr += box.html();
+							result.rows.forEach(function(value, index) {
+								htmlStr += '<li><a href="html/coursedetail.html?courseId=' + value.courseId + '">' + '<div class="img">' + '<img src="' + SERVEROOTFILE + value.iconPath + '" /></div>' + '<p class="title">' + value.name + '</p>' + '<p class="price">￥' + value.preferentialPrice + '</p></a></li>';
+							});
+							box.html(htmlStr);
+													
+							myScroll.refresh();
+						},
+						error: function(err) {
+							loadingErrorTips();
+						}
+					});
+				}
+
+				$('#jlisten').click(function() {
+					if(unloginGoLogin()) {
+						window.location.href = 'html/login.html';
+						return false;
+					}
+					window.location.href = 'html/lecturecourselist.html';
+				});
+
+				//未登入跳转登录页
+				function unloginGoLogin() {
+					var uName = localStorage.getItem('$ycuname'),
+						uId = localStorage.getItem('$ycuid');
+					if(uId == "" || uId == undefined || uId == null) { //未登入
+						return true;
+					}
+					return false;
+				}
+
+				$.pullDownAction = function() {
+					setTimeout(function() {
+						exeCourselist(1, 1, 1);
+					}, 1000); // <-- Simulate network congestion, remove setTimeout from production!
+				};
+
+				$.pullUpAction = function() {
+					setTimeout(function() { 
+						exeCourselist(1, 1, 1);
+					}, 1000); // <-- Simulate network congestion, remove setTimeout from production!
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

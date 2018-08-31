@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>知识付费-问题列表</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section id="knowledgeQuestionList">
+    <div class="container clearfix">
+        <div class="span9">
+            <div class="feknowledgequestionlist" style="margin-right: 20px;box-shadow: 0 0 6px #ccc" >
+                <div class="fetitle">
+                    新问题
+                    <div class="febox">
+                        <input type="text" placeholder="输入关键字" v-model="keyword">
+                        <button @click="keySearch"></button>
+                    </div>
+                </div>
+                <ul class="fecontent">
+                    <li v-cloak v-for="item in questionList">
+                        <div class="feimage">
+                            <img :src="item.headIconPath|addRootFile" alt="">
+                        </div>
+                        <div class="fecenter">
+                            <h2>{{item.content}}</h2>
+                            <p>
+                                <span><i class="uk-icon-commenting-o"></i>回答({{item.num}})</span>
+                                <span><i class="uk-icon-eye"></i>浏览({{item.clickCount}})</span>
+                            </p>
+                        </div>
+                        <div class="febtn">
+                            <a :href="item.KPQuestionId,item.Qtype|addRoot" target="_blank">我要回答</a>
+                        </div>
+                    </li>
+                    <!--<li>-->
+                        <!--<div class="feimage">-->
+                            <!--<img src="images/temp/mr-tx.png" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="fecenter">-->
+                            <!--<h2>MBA申请必读：美国MBA申请看重哪些工作经验</h2>-->
+                            <!--<p>-->
+                                <!--<span><i></i>回答(0)</span>-->
+                                <!--<span><i></i>浏览(0)</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div class="febtn">-->
+                            <!--<a>我要回答</a>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                    <li v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="fehotquestion">
+                <h1>热门回答</h1>
+                <ul>
+                    <li v-cloak v-for="item in hotQuestion">
+                        <a :href="item.KPQuestionId,item.Qtype|addRoot">{{item.content}}</a>
+                    </li>
+                    <!--<li><a href="">考银行备考一般什么时候准备好一些？</a></li>-->
+                </ul>
+            </div>
+            <div class="feteacherQuestionList-right">
+                <h1>名师问答榜</h1>
+                <ul>
+                    <li v-cloak v-for="(item,index) in ranking">
+                        <span :style="{background:'url('+ item.iconPath +') no-repeat center'}"><b></b></span>
+                        <div class="febox">
+                            <h1><a :href="item.teacherId|addRoot" target="_blank">{{item.name}}</a></h1>
+                            <h3>回答数:{{item.QAnum}}</h3>
+                        </div>
+                        <i>{{index+1}}</i>
+                    </li>
+                    <!--<li>-->
+                        <!--<span><b></b></span>-->
+                        <!--<div class="febox">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>2</i>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function() {
+        knowledgeQuestionList();
+    })
+</script>
+
+</body>
+
+</html>

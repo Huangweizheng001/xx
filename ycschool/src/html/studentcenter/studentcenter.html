@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--学生中心</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="studentCenterWrap" id="jStudentcenterApp">
+			<div class="container personCenter">
+				<div class="studentCenterHeader">
+					<div class="personCenterTop clearfix" v-for="item in userData" v-cloak>
+						<div class="span5 topLeft">
+							<div class="image">
+								<img :src="item.iconPath | addRootFile">
+							</div>
+							<div class="boxLeft">
+								<h1>{{item.studentName}}</h1>
+								<h2>{{item.sex}} <span>|</span> {{item.className}}</h2>
+								<a @click="modifyPwd">修改密码</a>
+							</div>
+						</div>
+						<div class="span7 topRight">
+							<div class="boxRight" v-for="item in studyArr">
+								<div class="item">
+									<span>{{item.studyTime}}</span>
+									<h4>在线时长</h4>
+								</div>
+								<div class="item">
+									<span>{{item.studentPoint}}</span>
+									<h4>积分</h4>
+								</div>
+								<div class="item">
+									<span>{{item.collectionCounts}}</span>
+									<h4>收藏</h4>
+								</div>
+							</div>
+							<button @click="openInf">个人信息</button>
+						</div>
+					</div>
+				</div>
+				<div class="studentCenterLeft">
+					<div class="personCenterLeft">
+						<ul class="leftCon">
+							<li class="studentStudy" :class="{active:studyFlag}">
+								<a href="#study" @click="setRouter('#study')"><span></span>学习</a>
+							</li>
+							<li class="studentCheck" :class="{active:checkWorkFlag}">
+								<a href="#checkWork" @click="setRouter('#checkWork')"><span></span>考勤</a>
+							</li>
+							<li class="studentTeaching" :class="{active:evaTeachingFlag}">
+								<a href="#evaTeaching" @click="setRouter('#evaTeaching')"><span></span>评教</a>
+							</li>
+							<li class="studentHomeSchool" :class="{active:homeSchoolFlag}">
+								<a href="#homeSchool" @click="setRouter('#homeSchool')"><span></span>家校</a>
+							</li>
+                            <li class="studentActive" :class="{active:activeFlag}">
+                                <a href="#active" @click="setRouter('#active')"><span></span>活动</a>
+                            </li>
+							<li class="studentAnswer" :class="{active:answerFlag}">
+								<a href="#answer" @click="setRouter('#answer')"><span></span>问答</a>
+							</li>
+							<li class="studentApplication" :class="{active:applicationFlag}">
+								<a href="#application" @click="setRouter('#application')"><span></span>应用</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="studentCenterMain">  
+					<iframe id="jStudentIframe" src="study.html"></iframe>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

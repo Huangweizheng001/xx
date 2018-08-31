@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>添加评论</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+</head>
+<body>
+<div class="addcoursecomment">
+    <input type="hidden" id="clickCount" value="0" />
+    <h1>发表评论</h1>
+    <div class="fepanel">
+        <span>评分 :</span>
+        <ul class="fescore clearfix">
+            <li data-id="1"></li>
+            <li data-id="2"></li>
+            <li data-id="3"></li>
+            <li data-id="4"></li>
+            <li data-id="5"></li>
+        </ul>
+        <b></b>
+    </div>
+    <div class="fepanel">
+        <span>评价 :</span>
+        <textarea id="discuss"></textarea>
+    </div>
+    <div class="feoperation">
+        <button>发表评价</button>
+        <button>取消</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        addcoursecomment($(this).getUrlParam("courseId"),$(this).getUrlParam("courseKind"));
+    })
+</script>
+</body>
+</html>

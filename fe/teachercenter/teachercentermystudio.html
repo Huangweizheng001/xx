@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-我的工作室</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>名师工作室 <i class="uk-icon-angle-right"></i></span>
+                <span>我的工作室</span>
+                <span></span>
+            </div>
+            <!--我的工作室-->
+            <div class="femystudio" id="femystudio">
+                <div class="febox">
+                    <h1><b>我的工作室</b><a href="createstudio.html"><i class="uk-icon-plus-circle"></i>创建工作室</a></h1>
+                </div>
+                <div class="feteacherindex-photo">
+                    <!--工作室-->
+                    <div class="fevediodetail">
+                        <div class="span4" v-cloak v-for="item in mystudio">
+                            <div  class="fepanel">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.name}}</h3>
+                                </div>
+                                <ul>
+                                    <li><a v-bind:href="item.teachingStudioId|addStudioDetailRoot"><i class="uk-icon-edit"></i></a></li>
+                                    <li><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<div class="span4">-->
+                            <!--<a href="teachercentermystudiodetail.html" class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/joinedstudio2.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>王薇薇工作室</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<a href="teachercentermystudiodetail.html" class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/joinedstudio3.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>王薇薇工作室</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        //        console.log($(window).storager({ key: 'feUid' }).readStorage()==='undefined')
+//        if($(window).storager({ key: 'feUid' }).readStorage()=='undefined'){
+//            window.location.href = "http://www.fetv.cn/feweb/login.html";
+//            console.log(2);
+//        }else{
+//            personalsetting($(window).storager({ key: 'feUid' }).readStorage());
+//            console.log(3);
+//        }
+        mystudio(teacherId);
+    })
+</script>
+</body>
+
+</html>

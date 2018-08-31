@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>题库-首页</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body>
+
+<header id="questionheader">
+    <header-template></header-template>
+</header>
+<section>
+    <div class="container" id="questionBank">
+        <!--查询栏-->
+        <div class="fecoursedetailselect">
+            <div class="fetitle clearfix">
+                <span style="font-weight: 500">快速查题</span>
+                <ul>
+                    <li class="d1"></li>
+                    <li class="d2"></li>
+                    <li class="d3"></li>
+                    <li class="d4"></li>
+                    <li class="d5"></li>
+                </ul>
+                <!--<div class="feclearall" @click="clearAll()">清除全部</div>-->
+            </div>
+            <!--<div class="femodule clearfix">-->
+                <!--<span>年级:</span>-->
+                <!--<ul class="fegrade">-->
+                    <!--&lt;!&ndash;<li data-id="" @click="getgrade('')">不限</li>&ndash;&gt;-->
+                    <!--<li v-cloak v-for="item in gradeArr" v-bind:data-id="item.gradeId" @click="getgrade(item.gradeId)">{{item.gradeName}}</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="femodule clearfix">
+                <span>学科:</span>
+                <ul class="fesubject">
+                    <!--<li data-id="" @click="getsubject('')">不限</li>-->
+                    <li v-cloak v-for="item in subjectArr" v-bind:data-id="item.subjectId" @click="getsubject(item.subjectId)">{{item.subjectName}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix">
+            <!--左侧知识点-->
+            <div class="span3">
+                <div class="feknowledgePoint">
+                    <div class="fepanel">
+                        <h1 v-cloak>{{konwledgeName}}</h1>
+                        <div class="feone-level" v-cloak v-for="list in konwledge" v-bind:data-subjectknowledgeid="list.subjectKnowledgeId">
+                            <h3>{{list.knowledgeName}}</h3>
+                            <ul class="fetwo-level">
+                                <li v-for="item in list.Knodes" v-bind:data-knowledgenodeid="item.knowledgeNodeId">
+                                    <i class="uk-icon-plus-circle" v-if="item.Snodes.length"></i>
+                                    <h4>{{item.knowledgeNodeName}}</h4>
+                                    <ul class="fethree-level">
+                                        <li v-for="i in item.Snodes" v-bind:data-smallknowledgeid="i.smallKnowledgeId">
+                                            <h4>{{i.smallKnowledgeName}}</h4>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="span9">
+                <div class="fequestionList">
+                    <div class="fequestionList-nav">
+                        筛选结果
+                        <select name="" id="questionType">
+                            <option value="0">不限题型</option>
+                            <option v-bind:value="item.questionTypeId" v-cloak v-for="item in questionTypeArr">{{item.name}}</option>
+                        </select>
+                        <select name="" id="difficultyType">
+                            <option value="0">不限难度</option>
+                            <option value="1">简单</option>
+                            <option value="2">一般</option>
+                            <option value="3">困难</option>
+                        </select>
+                        <span v-cloak>共找出{{questionCount}}题</span>
+                    </div>
+                    <div class="fequestionList-content">
+                        <div class="fenodata" v-cloak v-show="nodata"></div>
+                        <div class="fepanel" v-cloak v-for="item in questionList">
+                            <div class="fetitle" v-html="item.title">
+                                <!--1.   对龚自珍的《己亥杂诗》赏析有误的一项是：（<span class="answer"></span>）-->
+                                <!--<button>添加到题库</button>-->
+                            </div>
+                            <!--&lt;!&ndash;选项&ndash;&gt;-->
+                            <!--<div class="feoption">-->
+                                <!--<span class="option">A</span>“浩荡离愁百日斜”中的“离愁”既指诗人离开京城时的伤感之情，也指眼见朝廷衰落腐败的伤心之意。-->
+                            <!--</div>-->
+                            <!--<div class="feoption">-->
+                                <!--<span class="option">B</span>“吟鞭东指即天涯”流露了作者挣脱束缚之后的轻松愉快之感。-->
+                            <!--</div>-->
+                            <!--<div class="feoption">-->
+                                <!--<span class="option">C</span> 如果将来我能取得一些成绩，那是老师用身躯为我架起了通向成功之路的桥粱。-->
+                            <!--</div>-->
+                            <!--<div class="feoption">-->
+                                <!--<span class="option">D</span> 当万紫千红的春天到来的时候，柳绿桃红，春光明媚。-->
+                            <!--</div>-->
+                            <div class="feanswer">
+                                <button v-show="isTeacherLogin" v-cloak v-bind:data-id="item.questionBankSketchId">添加到题库</button>
+                                <span>题型: {{item.questionType}}</span>
+                                <span>难度: {{item.degreeName}}</span>
+                                <b>丨</b>
+                                <a>查看答案</a>
+                            </div>
+                            <div class="ferightanswer">
+                                <p><span>正确答案:</span></p>
+                                <div v-html="item.selectAnswer"></div>
+                                <p><span style="background: #ff6c00">解析:</span></p>
+                                <div v-html="item.analysis"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/feteachercenter.js"></script>
+<script type="text/javascript" src="js/fetvcyq.js"></script>
+<script>
+    $(function () {
+        questionBank($(this).getUrlParam("period"));
+    })
+</script>
+
+</body>
+
+</html>

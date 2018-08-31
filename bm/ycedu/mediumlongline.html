@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <title>中长线专题</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/Ecalendar.css" />
+    <link rel="stylesheet" href="css/ycstyle.css" />
+    <link rel="stylesheet" href="css/cyqstyle.css" />
+    <link rel="stylesheet" href="css/hwzstyle.css" />
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section>
+    <img src="images/longline-banner.jpg" alt="" width="100%">
+    <div class="dyclongline">
+        <div class="container">
+            <div class="dycbtn"><span class="active" data-id="1">宏观分析</span></div>
+            <div class="dycbtn"><span data-id="2">技术分析</span></div>
+        </div>
+    </div>
+    <div class="dyceia-bottom">
+        <img src="images/longline-1.jpg" alt="" width="100%">
+    </div>
+
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/uikit.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/ycswiper.js"></script>
+<script type="text/javascript" src="js/ycedu.js"></script>
+<script type="text/javascript" src="js/honoredguest.js"></script>
+<script type="text/javascript" src="js/teacherswiper.js"></script>
+<script>
+    $(function() {
+        $('.dyclongline').on('click','span',function () {
+            $(this).parent().siblings().find('span').removeClass('active');
+            $(this).addClass('active');
+            var id=$(this).data('id');
+            $('.dyceia-bottom img').attr('src','images/longline-'+id+'.jpg');
+        })
+    })
+</script>
+</body>
+</html>

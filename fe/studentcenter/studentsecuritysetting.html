@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-安全设置</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right " id="securitysetting">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>安全设置</span>
+            </div>
+            <!--个人资料-->
+            <div class="fepersonaldata">
+                <div class="fepanel" id="loginPassword">
+                    <div class="fepersonaldata-title">
+                        <b>登录密码</b>
+                        <span>修改</span>
+                    </div>
+                    <p>经常修改密码，账号信息更安全！</p>
+                    <ul style="display: none">
+                        <li>
+                            <input type="hidden" id="clickCount" value="0" />
+                            <span>当前密码 :</span>
+                            <input type="password" value="" placeholder="" v-model="currentPassword"  id="currentPassword" autocomplete="off">
+                            <!--<s id="callBackPassword">找回当前密码?</s>-->
+                        </li>
+                        <li>
+                            <span>新&nbsp;密&nbsp;码 :</span>
+                            <input type="password" value=""  v-model="newPassword" autocomplete="off" id="newPassword" autocomplete="off">
+                        </li>
+                        <li>
+                            <span>确定新密码 :</span>
+                            <input type="password" value=""  v-model="confirmPassword" autocomplete="off" id="confirmPassword" autocomplete="off">
+                        </li>
+                    </ul>
+                    <div class="feoperation " style="display: none">
+                        <a @click="updatePassword()">保存</a>
+                        <a >取消</a>
+                    </div>
+                </div>
+                <div class="fepanel" id="bindPhone">
+                    <div class="fepersonaldata-title" >
+                        <b>绑定手机</b>
+                        <span>修改</span>
+                    </div>
+                    <p v-cloak>目前您已绑定手机号:{{alreadyBindPhone}}</p>
+                    <ul style="display: none">
+                        <li>
+                            <input type="hidden" id="clickCount1" value="0" />
+                            <span>手&nbsp;机&nbsp;号 :</span>
+                            <input type="phone" value="" placeholder="请输入手机号"  v-model="phone" autocomplete="off" id="phone">
+                        </li>
+                        <li>
+                            <span>验&nbsp;证&nbsp;码 :</span>
+                            <input type="text" value=""  placeholder="请输入验证码" v-model="verificationCode" autocomplete="off" id="verificationCode">
+                            <s class="feverificationCode" @click="getImageVC">
+                                <img :src="imageCodeImg" style="height:30px;width:100px;float: left"/></s>
+                        </li>
+                        <li>
+                            <span>校&nbsp;验&nbsp;码 :</span>
+                            <input type="text" value="" placeholder="请输入校验码"  v-model="checkCode" autocomplete="off" id="checkCode">
+                            <button @click="vcTimeCount">{{VCLabel}}</button>
+                        </li>
+                    </ul>
+                    <div class="feoperation" style="display: none">
+                        <a @click="updatePhone()">确认绑定</a>
+                        <a >取消</a>
+                    </div>
+                </div>
+                <!--<div class="fepanel" id="bindEmail">-->
+                    <!--<div class="fepersonaldata-title" >-->
+                        <!--<b>绑定邮箱</b>-->
+                        <!--<span>绑定</span>-->
+                    <!--</div>-->
+                    <!--<p>请为您的账号绑定邮箱！</p>-->
+                    <!--<ul style="display: none">-->
+                        <!--<li>-->
+                            <!--<span>安全邮箱 :</span>-->
+                            <!--<input type="text" value="" placeholder="请输入邮箱"  name="email" autocomplete="off" id="email">-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>确认邮箱 :</span>-->
+                            <!--<input type="text" value=""  placeholder="" name="confirmEmail" autocomplete="off" id="confirmEmail">-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>邮箱校验码 :</span>-->
+                            <!--<input type="text" value="" placeholder="请输入校验码"  name="emailCheckCode" autocomplete="off" id="emailCheckCode">-->
+                            <!--<button >获取邮箱校验码</button>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="feoperation " style="display: none">-->
+                        <!--<a >确认绑定</a>-->
+                        <!--<a >取消</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        securitysetting();
+    })
+</script>
+</body>
+
+</html>

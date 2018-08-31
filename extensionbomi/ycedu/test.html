@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+		
+		<script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+	</head>
+
+	<body>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script>
+			$(function() {
+
+				function getUserInfo(code) {
+					$.ajax({
+						type:'get',
+						dataType: 'jsonp',
+   						jsonp: 'jsoncallback',
+						url:"https://api.weixin.qq.com/sns/oauth2/access_token",
+						data: {
+							appid: 'wx554d4850ae066122',
+							secret: 'c7bf4a7eb362ab00cd5337b27fed022f',
+							code: code,
+							grant_type: 'authorization_code'
+						},
+						success: function(result) {
+							alert(result);
+						},
+						error: function(err) {
+							alert(JSON.stringify(err));
+						}
+						
+					});
+
+				}
+
+				getUserInfo($(this).getUrlParam("code"));
+			})
+		</script>
+	</body>
+
+</html>

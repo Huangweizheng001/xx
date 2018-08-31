@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<!--谍报直播模块-->
+		<section class="bmindexLiveModel">
+			<div class="container full">
+				<a class="bmindexGoToLive" id="bmindexGoToLive" href="ycedu/dbliveroom.html">进入讲堂</a>
+				<div class="bmindexLiveTeacherInf">
+					<div class="container" id="jindexLiveTeacherInfApp" v-cloak>
+						<div class="swiper-container bmindex-swiper-live-teacher">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-for="item in liveTeacherArr">
+									<a class="bnindexTeacherBox" :href="'ycedu/guestindex.html?teacherId=' + item.teacherId">
+										<img :src="item.iconPath" />
+									</a>
+									<div class="bmindexLiveTeacherContent">
+										<h5>{{item.name}}</h5>
+										<p><span class="bmindexLiveTeacher">主讲嘉宾:</span>{{item.teacherName}} <span class="bmindexCouter">开课时间:{{item.weekDay}}&nbsp;&nbsp;{{item.playTime}}</span></p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div id="indexLivePlayer" class="prism-player"></div>
+			</div>
+		</section>
+
+		<!--专题-->
+		<section class="bmindexSpecialModel" id="jSpecialModelApp">
+			<div class="container">
+				<div class="bmspecialBox clearfix">
+					<!--<div class="span3 col-xs-6" v-for="item in specialArr">
+						<a class="bmspecialLi" v-bind:href="item.href">
+							<img v-bind:src="item.iconPath" alt="专题" />
+						</a>
+					</div>-->
+					<div class="span3 col-xs-6">
+						<a class="bmspecialLi" href="ycedu/dbadv.html" target="_blank">
+							<img src="ycedu/images/temp/ztTemp001.jpg" alt="专题" />
+						</a>
+					</div>
+					<div class="span3 col-xs-6">
+						<a class="bmspecialLi" href="ycedu/guestindex.html?teacherId=1009" target="_blank">
+							<img src="ycedu/images/temp/ztTemp002.jpg" alt="专题" />
+						</a>
+					</div>
+					<div class="span3 col-xs-6">
+						<a class="bmspecialLi" href="ycedu/memberrule.html" target="_blank">
+							<img src="ycedu/images/temp/ztTemp003.jpg" alt="专题" />
+						</a>
+					</div>
+					<div class="span3 col-xs-6">
+						<a class="bmspecialLi" href="ycedu/livestopic.html" target="_blank">
+							<img src="ycedu/images/temp/ztTemp01.jpg" alt="专题" />
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--公开课-->
+		<section class="bmindexPublicModel" id="jindexPublicApp">
+			<div class="container">
+				<div class="bmindexTitleBox">
+					<h5><span>播米</span>公开课</h5>
+					<p>Public</p>
+				</div>
+				<div class="bmpublicInner clearfix">
+					<div class="span4 col-xm-6 col-xs-12">
+						<a class="bmpublicLi" :href="'ycedu/costliveplay.html?channelId=6&channelProgramId='+currentChannelProgramId" target="_blank">
+							<img src="ycedu/images/temp/publicTemp01.jpg" />
+						</a>
+					</div>
+					<div class="span4 col-xm-6 col-xs-12">
+						<div class="bmpublicLi">
+							<a href="#this" class="span12" :href="'ycedu/encyclopedialist.html?courseTypeId=18'" target="_blank">
+								<img src="ycedu/images/temp/publicTemp02.jpg" />
+							</a>
+							<a href="#this" class="span12" :href="'ycedu/costliveplay.html?channelId=6&channelProgramId='+currentChannelProgramId" target="_blank">
+								<img src="ycedu/images/temp/publicTemp03.jpg" />
+							</a>
+						</div>
+					</div>
+					<div class="span4 col-xm-6 col-xs-12">
+						<div class="bmpublicLi">
+							<a href="#this" class="span12" :href="'ycedu/encyclopedialist.html?courseTypeId=17'" target="_blank">
+								<img src="ycedu/images/temp/publicTemp04.jpg" />
+							</a>
+							<a href="#this" class="span12" :href="'ycedu/costliveplay.html?channelId=6&channelProgramId='+currentChannelProgramId" target="_blank">
+								<img src="ycedu/images/temp/publicTemp05.jpg" />
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--广告-->
+		<section class="bmindexAdModel">
+			<div class="container full">
+				<a href="ycedu/memberrule.html" target="_blank">
+					<img src="ycedu/images/temp/indexAdTemp01.jpg" />
+				</a>
+			</div>
+		</section>
+
+		<!--金融课堂-->
+		<section class="bmindexCourseModel">
+			<div class="container">
+				<div class="bmindexTitleBox">
+					<h5><span>金融</span>课堂</h5>
+					<p>Financial</p>
+					<a class="bmAddMore" href="courselist.html">更多&gt;&gt;</a>
+				</div>
+
+				<div class="swiper-container bmindex-swiper-course">
+					<div class="swiper-wrapper" id="jbmindexCourseApp">
+						<!--<div class="swiper-slide">
+								<div class="bmindexCourseLi">
+									<a class="bmindexCourseImg" href="#this" target="_blank">
+										<img src="ycedu/images/temp/courseTemp01.jpg" alt="course" />
+									</a>
+									<div class="bmindexCourseInf">
+										<h5>K线基础知识讲解</h5>
+										<p>
+											<a href="ycedu/guestindex.html?teacherId=">朱仁贵</a> <span>￥888.00</span></p>
+									</div>
+								</div>
+								<div class="bmindexCourseLi">
+									<a class="bmindexCourseImg" href="#this">
+										<img src="ycedu/images/temp/courseTemp01.jpg" alt="course" />
+									</a>
+									<div class="bmindexCourseInf">
+										<h5>K线基础知识讲解</h5>
+										<p>
+											<a href="#this">朱仁贵</a> <span>￥888.00</span></p>
+									</div>
+								</div>
+						</div>-->
+					</div>
+				</div>
+				<div class="swiper-button-prev swiper-button-course-prev"></div>
+				<div class="swiper-button-next swiper-button-course-next"></div>
+			</div>
+		</section>
+
+		<!--广告-->
+		<section class="bmindexAdModel">
+			<div class="container full">
+				<a href="ycedu/strategy.html" target="_blank">
+					<img src="ycedu/images/temp/indexAdTemp02.jpg" />
+				</a>
+			</div>
+		</section>
+
+		<!--播米百科-->
+		<section class="bmindexEncyclopediaModel">
+			<div class="container">
+				<div class="bmindexTitleBox">
+					<h5><span>播米</span>百科</h5>
+					<p>Bomipedia</p>
+					<a class="bmAddMore" href="ycedu/encyclopedialist.html">更多&gt;&gt;</a>
+				</div>
+
+				<div class="swiper-container bmindex-swiper-encyclopedia" id="jindexencyclopediaApp">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="item in encyclopeArr">
+							<a class="bmindexEncyclopediaLi" v-bind:data-id="item.courseId" v-bind:data-vid="item.videoId">
+								<div class="bmimageBox">
+									<img v-bind:src="item.iconPath" />
+								</div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>{{item.name}}</h5>
+									<p class="bmbrief">{{item.note}}</p>
+									<!--<p class="bmplayerCounter">3555</p>-->
+								</div>
+							</a>
+						</div>
+						<!--<div class="swiper-slide">
+							<a class="bmindexEncyclopediaLi" href="#this">
+								<div class="bmimageBox">
+									<img src="ycedu/images/temp/encyclopediaTemp01.jpg" />
+								</div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>汇市</h5>
+									<p class="bmbrief">汇市，英文缩写EXRATE,亦称“汇市行市”或</p>
+									<p class="bmplayerCounter">3555</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a class="bmindexEncyclopediaLi" href="#this">
+								<div class="bmimageBox">
+									<img src="ycedu/images/temp/encyclopediaTemp01.jpg" />
+								</div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>汇市</h5>
+									<p class="bmbrief">汇市，英文缩写EXRATE,亦称“汇市行市”或</p>
+									<p class="bmplayerCounter">3555</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a class="bmindexEncyclopediaLi" href="#this">
+								<div class="bmimageBox">
+									<img src="ycedu/images/temp/encyclopediaTemp01.jpg" />
+								</div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>汇市</h5>
+									<p class="bmbrief">汇市，英文缩写EXRATE,亦称“汇市行市”或</p>
+									<p class="bmplayerCounter">3555</p>
+								</div>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a class="bmindexEncyclopediaLi" href="#this">
+								<div class="bmimageBox">
+									<img src="ycedu/images/temp/encyclopediaTemp01.jpg" />
+								</div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>汇市</h5>
+									<p class="bmbrief">汇市，英文缩写EXRATE,亦称“汇市行市”或</p>
+									<p class="bmplayerCounter">3555</p>
+								</div>
+							</a>
+						</div>-->
+					</div>
+				</div>
+				<div class="swiper-button-prev swiper-button-encyclopedia-prev"></div>
+				<div class="swiper-button-next swiper-button-encyclopedia-next"></div>
+			</div>
+		</section>
+
+		<!--播米资讯-->
+		<section class="bmindexInforModel" id="jindexInforApp">
+			<div class="container">
+				<div class="bmindexTitleBox">
+					<h5><span>播米</span>资讯</h5>
+					<p>Information</p>
+					<a class="bmAddMore" href="news.html">更多&gt;&gt;</a>
+				</div>
+				<a class="bmindexInforLogo" href="news.html" target="_blank">
+					<img src="ycedu/images/temp/newTemp01.jpg" alt="" />
+				</a>
+				<ul class="bmindexInforInner">
+					<li v-for="item in newsArr">
+						<a class="bmindexInforLi" :href="'ycedu/newsdetail.html?newsId='+item.newsId">
+							<div class="bmimageBox">
+								<img v-bind:src="item.iconPath" alt="" />
+							</div>
+							<div class="bmindexInforBrief">
+								<h5>{{item.title}}</h5>
+								<p>{{item.introduce}}</p>
+								<span class="bmindexDetail">了解详情</span>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+	</body>
+
+	<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/layer,wow,scroll.js"></script>
+	<script type="text/javascript" src="ycedu/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+	<script type="text/javascript" src="ycedu/js/template.js"></script>
+	<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+	<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+	<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+	<script type="text/javascript" src="ycedu/js/bomi.js"></script>
+	<script type="text/javascript" src="ycedu/js/refersource.js"></script>
+	
+	<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>
+
+	<script>
+		$(function() {
+			//是否开启广告
+			adFunc();
+
+			var code = $(this).getUrlParam("code");
+			if(code != undefined) {
+				$.getwxUserInfo(code);
+			}
+			
+			indexData();
+			indexCourse(); //金融课堂
+		})
+	</script>
+
+</html>

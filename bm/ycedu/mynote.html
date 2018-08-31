@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>我的笔记</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/jquery.sinaEmotion.css" />
+		<link rel="stylesheet" href="css/dbliveroom.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+
+		<style>
+			.bmmyNoteBox .bmmynoteHeader {
+				line-height: 36px;
+			}
+			
+			.bmmyNoteBox .bmchangeNote {
+				text-align: center;
+				cursor: pointer;
+			}
+			
+			.bmmyNoteBox .bmchangeNote.active,
+			.bmmyNoteBox .bmchangeNote:hover {
+				color: #fff;
+				/*background-color: rgba(0, 0, 0, .1);*/
+				background-color: rgb(179, 168, 129);
+			}
+			
+			.bmaddTitle {
+				display: block;
+				border: 1px solid #ddd;
+				outline: none;
+				width: 98%;
+				margin: 20px auto 10px;
+				text-indent: 1rem;
+				line-height: 32px;
+			}
+			
+			#mynoteEdit,#mynoteEdit2 {
+				border: 1px solid #ddd;
+				outline: none;
+				width: 98%;
+				margin: 20px auto 0;
+				height: 260px;
+				overflow-x: hidden;
+				/*text-indent: 1rem;*/
+			}
+			
+			#addFile,#addFile2 {
+				position: relative;
+				display: block;
+				text-align: center;
+				width: 98%;
+				margin: 0 auto 10px;
+				line-height: 36px;
+				background-color: #ddd;
+			}
+			
+			#addFile:hover,#addFile2:hover {
+				color: #fff;
+				background-color: rgba(0, 0, 0, .5);
+			}
+			
+			#addFile input,#addFile2 input {
+				position: absolute;
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+			}
+			
+			#bmseveNote,#bmseveNote2 {
+				display: block;
+				padding: 10px 20px;
+				width: 120px;
+				margin: 30px auto;
+				text-align: center;
+				border: 1px solid #dedede
+			}
+			
+			.bmlistNoteBox table {
+				width: 100%;
+				line-height: 36px;
+				border-collapse: collapse;
+			}
+			
+			.bmlistNoteBox th,
+			.bmlistNoteBox td {
+				border: 1px solid #dedede;
+				text-align: center;
+			}
+			
+			#bmseveNote:hover,#bmseveNote2:hover {
+				color: #fff;
+				background-color: rgba(0, 0, 0, .5);
+			}
+			
+			.bminsertTime{
+				width: 197px;
+			}
+			
+			.operator {
+				width: 200px;
+			}
+			
+			.bmlistNoteBox a {
+				color: #00A8E6;
+			}
+			
+			.bmlistNoteBox a:hover {
+				color: #0077DD;
+			}
+			
+			.bmlistNoteBox tr:nth-child(even) {
+				background-color: rgba(0, 0, 0, .05);
+			}
+			
+			.bmaddNoteBox .bmdetailTitle{
+				margin:10px;
+				padding-bottom: 3px;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.bmaddNoteBox .bmdetailTitle span{
+				font-weight: 600;
+			}
+			
+			.bmaddNoteBox .bmdetailTitle i{
+				float: right;
+				font-size: 12px;
+			}
+			
+			.bmaddNoteBox  .bmdetailContent{
+				padding: 3px 10px;
+			}
+			
+			.bmaddNoteBox  .bmdetailContent h5{
+				font-weight: 600;
+			}
+		</style>
+
+	</head>
+
+	<body style="padding-top: 0;">
+		<div id="bmmyNoteWrap">
+			<div class="bmmyNoteBox">
+				<div class="bmmynoteHeader clearfix">
+					<div class="bmchangeNote span6" :class="index == 0 ? 'active':'' " @click="changeShow(0)" v-if="index != 2 && index !=3">
+						<div class="bmaddNote">添加笔记</div>
+					</div>
+					<div class="bmchangeNote span4" :class="index == 0 ? 'active':'' " @click="changeShow(0)" v-if="index == 2 || index == 3">
+						<div class="bmaddNote">添加笔记</div>
+					</div>
+					
+					<div class="bmchangeNote span6" :class="index == 1 ? 'active':'' " @click="changeShow(1)" v-if=" index != 2  && index !=3">
+						<div class="bmaddNote">笔记列表</div>
+					</div>
+					<div class="bmchangeNote span4" :class="index == 1 ? 'active':'' " @click="changeShow(1)" v-if=" index == 2 || index == 3">
+						<div class="bmaddNote">笔记列表</div>
+					</div>
+					
+					<div class="bmchangeNote span4" :class="index == 3 ? 'active':'' " @click="changeShow(3)" v-if="index == 3">
+						<div class="bmaddNote">笔记详情</div>
+					</div>
+					
+					<div class="bmchangeNote span4" :class="index == 2 ? 'active':'' " @click="changeShow(2)" v-if="index == 2">
+						<div class="bmaddNote">笔记修改</div>
+					</div>
+				</div>
+
+				<div class="bmaddNoteBox" v-show="index == 0">
+					<input class="bmaddTitle" type="text" placeholder="请输入标题" v-model="title" />
+					<div id="mynoteEdit" contenteditable="true"></div>
+					<a id="addFile" href="#this">
+						<input id="addFileInput" type="file" accept="image/*" /> 插入图片
+					</a>
+
+					<a id="bmseveNote" href="#this" @click="saveNote">保存笔记</a>
+				</div>
+				<div class="bmlistNoteBox" v-show="index == 1">
+					<table>
+						<tr>
+							<th>标题</th>
+							<th class="bminsertTime">时间</th>
+							<th class="operator">操作</th>
+						</tr>
+						<tr v-for="item in noteListArr">
+							<td>{{item.title}}</td>
+							<td>{{item.insertTime}}</td>
+							<td>
+								<a href="#this" @click="noteDetail(item.memberChannelNoteId)">查看</a>
+								<a href="#this" @click="noteModify(item.memberChannelNoteId)">修改</a>
+								<a href="#this" @click="noteDelete(item.memberChannelNoteId)">删除</a>
+							</td>
+						</tr>
+					</table>
+
+					<!--枫叶-->
+					<ul class="pagenationbox clearfix">
+						<li v-show="current != 1" @click="current-- && goto(current--)">
+							<a href="#this">上一页</a>
+						</li>
+						<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+							<a href="#this">{{index}}</a>
+						</li>
+						<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+							<a href="#this">下一页</a>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="bmaddNoteBox" v-show="index == 2">
+					<input class="bmaddTitle" type="text" placeholder="请输入标题" v-model="title2" />
+					<div id="mynoteEdit2" contenteditable="true"></div>
+					<a id="addFile2" href="#this">
+						<input id="addFileInput2" type="file" accept="image/*" /> 插入图片
+					</a>
+
+					<a id="bmseveNote2" href="#this" @click="saveModify">更新笔记</a>
+				</div>
+				
+				<div class="bmaddNoteBox" v-show="index == 3">
+					<p class="bmdetailTitle"><span>标题：</span>{{title2}}  <i>{{insretTime}}</i></p>
+					<div class="bmdetailContent"><h5>内容：</h5><div v-html="modifyContent"></div></div>
+				</div>
+
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+
+		<script>
+			$(function() {
+				var chId = $(this).getUrlParam("chId");
+				var tId = $(this).getUrlParam("tId");
+				var pId = $(this).getUrlParam("pId");
+
+				myNoteFunc(tId, chId, pId);
+			})
+
+			function myNoteFunc(tId, chId, pId) {
+				new Vue({
+					el: "#bmmyNoteWrap",
+					data: {
+						index: 0,
+						typeIndex: 1, //1:add 2: modify 3:delete  
+						noteContent: '',
+						noteListArr: [],
+						title: '',
+						title2:'',
+						addflag: true,
+						current: 1,
+						showItem: 8,
+						allpage: 0, //总页码  默认热点
+						tId2:'',
+						chId2:'',
+						pId2:'',
+						modifyId:'',
+						modifyContent:'',
+						insretTime:''
+					},
+					filters: {},
+					computed: {
+						pages: function() {
+							var pag = [];
+							if(this.current < this.showItem) { //如果当前的激活的项 小于要显示的条数
+								//总页数和要显示的条数那个大就显示多少条
+								var i = Math.min(this.showItem, this.allpage);
+								while(i) {
+									pag.unshift(i--);
+								}
+							} else { //当前页数大于显示页数了
+								var middle = this.current - Math.floor(this.showItem / 2), //从哪里开始
+									i = this.showItem;
+								if(middle > (this.allpage - this.showItem)) {
+									middle = (this.allpage - this.showItem) + 1
+								}
+								while(i--) {
+									pag.push(middle++);
+								}
+							}
+							return pag
+						}
+					},
+					mounted: function() { //1.0ready --> 2.0 
+						var _this = this;
+						this.$nextTick(function() {
+							_this.initImg();
+						})
+					},
+					methods: {
+						saveNote: function() { //newsList Banner
+							var _this = this;
+							if(!this.addflag) {
+								layer.msg("请勿重复添加！");
+								return false;
+							}
+							this.addflag = false;
+							setTimeout(function() {
+								_this.addflag = true;
+							}, 3000)
+
+							this.noteContent = $("#mynoteEdit").html();
+							if(this.title == "") {
+								layer.msg("笔记标题不能为空！");
+								return false;
+							}
+							if(this.noteContent == "") {
+								layer.msg("笔记内容不能为空！");
+								return false;
+							}
+
+							this.$http.post(ROUTE + "Channel.ashx?action=saveMemberChannelNote", {
+								memberId: $mid,
+								saveTag: _this.typeIndex, //1:add 2: modify 3:delete  
+								teacherId: tId,
+								channelId: chId,
+								programId: pId,
+								title: _this.title,
+								contentDom: _this.noteContent
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body.message == "200" || res.body.message == 200) {
+									layer.msg("笔记添加成功！");
+									$("#mynoteEdit").html("");
+									this.title = "";
+								} else {
+									layer.msg("笔记添加失败！");
+								}
+							})
+						},
+						noteDetail:function(id){
+							this.index = 3;
+							this.$http.post(ROUTE + "Channel.ashx?action=getMemberChannelNoteById", {
+								memberChannelNoteId:id
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								var obj = res.body.rows;
+								if(obj.length > 0){
+									this.title2 = obj[0].title;
+									this.modifyContent =obj[0].contentDom;
+									this.tId2 = obj[0].teacherId;
+									this.pId2 = obj[0].programId;
+									this.chId2 = obj[0].channelId;
+									this.insretTime = obj[0].insertTime;
+								}
+								
+							})
+						},
+						noteModify: function(id) {
+							this.index = 2;
+							this.typeIndex = 2;
+							this.modifyId = id;
+							this.$http.post(ROUTE + "Channel.ashx?action=getMemberChannelNoteById", {
+								memberChannelNoteId:id
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								var obj = res.body.rows;
+								if(obj.length > 0){
+									this.title2 = obj[0].title;
+									$("#mynoteEdit2").html(obj[0].contentDom);
+									this.tId2 = obj[0].teacherId;
+									this.pId2 = obj[0].programId;
+									this.chId2 = obj[0].channelId;
+								}
+								
+							})
+						},
+						
+						saveModify:function(){
+							var _this = this;
+							if(this.title2 == "") {
+								layer.msg("笔记标题不能为空！");
+								return false;
+							}
+							if($("#mynoteEdit2").html() == "") {
+								layer.msg("笔记内容不能为空！");
+								return false;
+							}
+
+							this.$http.post(ROUTE + "Channel.ashx?action=saveMemberChannelNote", {
+								memberId: $mid,
+								saveTag: 2, //1:add 2: modify 3:delete  
+								teacherId: _this.tId2,
+								channelId: _this.chId2,
+								programId: _this.pId2,
+								title: _this.title2,
+								memberChannelNoteId:_this.modifyId,
+								contentDom: $("#mynoteEdit2").html()
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body.message == "200" || res.body.message == 200) {
+									layer.msg("笔记更新成功！");
+								} else {
+									layer.msg("笔记更新失败！");
+								}
+							})
+						},
+						
+
+						noteDelete: function(id) {
+							this.$http.post(ROUTE + "Channel.ashx?action=saveMemberChannelNote", {
+								memberId: $mid,
+								saveTag: 3, //1:add 2: modify 3:delete 
+								memberChannelNoteId: id
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body.message == "200" || res.body.message == 200) {
+									layer.msg("删除成功！");
+									this.current = 1;
+									this.getNoteList();
+								} else {
+									layer.msg("删除失败！");
+								}
+							})
+						},
+						getNoteList: function() {
+							var _this = this;
+							this.$http.post(ROUTE + "Channel.ashx?action=getMemberChannelNoteList", {
+								memberId: $mid,
+								channelId: chId,
+								pageIndex: _this.current,
+								pageSize: _this.showItem
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.noteListArr = res.body.rows;
+								_this.allpage = res.body.totalPageCount;
+							})
+						},
+						initImg: function() {
+							$("#addFileInput").change(function(e) {
+								var file = $(this).get(0).files[0];
+								r = new FileReader(); //本地预览
+								r.onload = function() {
+									var img = document.createElement("img");
+									img.src = r.result;
+									//CHAT.submit(2, r.result);
+									$("#mynoteEdit").append(img);
+								}
+								r.readAsDataURL(file); //Base64
+							});
+							$("#addFileInput2").change(function(e) {
+								var file = $(this).get(0).files[0];
+								r = new FileReader(); //本地预览
+								r.onload = function() {
+									var img = document.createElement("img");
+									img.src = r.result;
+									//CHAT.submit(2, r.result);
+									$("#mynoteEdit2").append(img);
+								}
+								r.readAsDataURL(file); //Base64
+							});
+						},
+						changeShow: function(index) {
+							this.index = index;
+							if(index == 1) {
+								this.getNoteList();
+							}
+						},
+						goto: function(index) { //枫叶处理
+							if(index == this.current) return;
+							if(index > this.allpage) {
+								this.current = this.current - 2;
+								layer.msg("Sorry ╮(╯_╰)╭ 没有下一页喽！");
+								return false;
+							}
+							this.current = index;
+							//this.getInitData();
+						}
+					}
+				})
+			}
+		</script>
+
+	</body>
+
+</html>

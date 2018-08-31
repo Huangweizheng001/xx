@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>常见问题</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+				padding-top: 9rem;
+			}
+			
+			#commonproblemBox {
+				padding: 2.14rem;
+				background: #fff;
+			}
+			
+			#commonproblemBox li {
+				margin-bottom: 2rem;
+				padding-bottom: 1rem;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			#commonproblemBox h5 {
+				line-height: 2;
+				font-size: 2.24rem;
+			}
+			
+			#commonproblemBox p {
+				display: none;
+				line-height: 1.6;
+				font-size: 2rem;
+			}
+			
+			#commonproblemBox .open p {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack()">&nbsp;</span>
+				<p>常见问题</p>
+			</header>
+			<ul id="commonproblemBox">
+				<li>
+					<h5>播米在线是什么?</h5>
+					<p>播米在线主要由首页、直播/公开课、金融课堂、名师在线、播米资讯共五个栏目构成，是专注于金融财经直播交流学习的平台。平台涵盖了股票、外汇、大宗、从业等四大方面的内容，未来还将陆续上线银行理财、保险、期货等金融产品，播米在线致力于打造一个全方位的金融服务平台和金融超市。</p>
+				</li>
+				<li>
+					<h5>播米币是什么？有什么用?</h5>
+					<p>播米币是专供播米在线平台使用的货币，可用于平台内的课程观看和点赞，不可流通或进行二次消费，可提现。</p>
+				</li>
+				<li>
+					<h5>播米币的有效期？</h5>
+					<p>播米币没有有效期。</p>
+				</li>
+				<li>
+					<h5>观看课程需要登录吗？</h5>
+					<p>每次您观课程都需要登录，后台会自动进行识别未登录客户进行清除。</p>
+				</li>
+				<li>
+					<h5>如何注册会员？</h5>
+					<p>(1)PC端用户可点击网站右上角的注册按钮，按照注册表的要求，填写相关信息即可注册成为播米会员。<br/> (2)移动端注册。
+					</p>
+				</li>
+				<li>
+					<h5>为什么注册不成功？</h5>
+					<p>(1)用户名重复<br /> 为了保证用户资料的唯一性，同一个用户名只能注册一次，已经注册过的用户名，不能再使用。
+						<br /> (2)手机号码已使用 <br /> 同一个手机号码只能注册一次，已经注册过的手机号，不能再使用。
+						<br /> (3)收不到验证码
+						<br /> ￭ 手机号码填写错误；<br /> ￭ 网络延迟影响接收；<br /> ￭ 手机设置了屏蔽垃圾短信，需自行调整；<br /> ￭ 短信通道堵塞（若在排除以上三项的情况下，未收到验证码，可联系客服）;<br /> ￭ 验证码/校验码填写错误 </p>
+				</li>
+
+				<li>
+					<h5>购买课程后，是否能永久观看？</h5>
+					<p>每次您观课程都需要登录，后台会自动进行识别未登录客户进行清除高级课在课程有效期内（从正式开课到课程下架前），直播课程仅限当日当次观看，回看课程可观看5次。学堂课程在课程听课期限内（课程结课之前）， 学生可以多次反复地听课学习，不限次数和时间。请注意每个课程都有一定的听课期限，学生只能在此期限内（结课日期前）听课学习。购买课程之前， 可在课程详情页面的上部看到每个课程的听课。</p>
+				</li>
+
+				<li>
+					<h5>购买的课程可以下载吗？</h5>
+					<p>不能，课程只能在线观看。网站上的视频均不可下载或者录制，禁止通过任何非法手段获取视频进行商业行为。</p>
+				</li>
+
+				<li>
+					<h5>忘记密码了怎么办？</h5>
+					<p>可点击登录页面右侧下方忘记密码进行重置。</p>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script>
+			$(function() {
+				//toggle open
+				toggleOpen();
+
+				function toggleOpen() {
+					$('#commonproblemBox li').click(function() {
+						if($(this).hasClass("open")) {
+							$(this).toggleClass('open');
+						} else {
+							$('.open').removeClass('open');
+							$(this).toggleClass('open');
+						}
+					});
+
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

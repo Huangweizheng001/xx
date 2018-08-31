@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-课程收藏</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>收藏关注 <i class="uk-icon-angle-right"></i></span>
+                <span>课程收藏</span>
+            </div>
+            <!--课程收藏-->
+            <div class="fecoursecollection" id="coursecollection">
+                <!--头部切换栏-->
+                <div class="fehead-tabs">
+                    <span class="active" data-id="">全部课程</span>
+                    <span data-id="1">直播课程</span>
+                    <span data-id="0">录播课程</span>
+                </div>
+                <div class="fecoursedetailcontent-list clearfix">
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div v-cloak v-for="item in courselist">
+                        <div class="fepanel clearfix" >
+                            <div class="feleft">
+                                <a v-bind:href="item.recordType,item.courseId,item.courseKind| addRoot" target="_blank"><img v-bind:src="item.iconPath|addRootFile" alt=""></a>
+                            </div>
+                            <div class="fecenter">
+                                <!--<h2 :class="item.isFree==0 ? 'fehidden':''">-->
+                                <!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo"  target="_blank"><i></i>免费试听</a>-->
+                                <!--</h2>-->
+                                <h1>{{item.courseName}}
+                                    <span @click="deleteBtn(item.courseId,item.courseKind)"><i class="uk-icon-trash"></i></span>
+                                    <!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo" :class="item.isFree==0 ? 'fehidden':''" target="_blank"><i></i>免费试听</a>-->
+                                </h1>
+                                <p>{{item.note}}</p>
+                                <h6 v-if="item.isFree=='1'"><span>免费</span></h6>
+                                <h6 v-else ><span class="femoney">¥{{item.preferentialPrice}}</span><s>¥{{item.price}}</s></h6>
+                                <ul class="febox">
+                                    <li>随到随学</li>
+                                    <li>有效期{{item.validDays}}天 <span>|</span></li>
+                                    <li class="fegreen">总<span>{{item.classHour}}</span></li>
+                                    <li class="fetoggle">
+                                        <span>老师:&nbsp;&nbsp;{{item.teacherName}}</span>
+                                        <span><a v-bind:href="item.organId|addSchoolRoot" target="_blank">{{item.organName}}</a></span>
+                                    </li>
+                                </ul>
+                                <!--<div class="fegrid-teacher">-->
+                                    <!--<span>{{item.teacherName}}</span>-->
+                                    <!--<span><a v-bind:href="item.organId|addSchoolRoot" target="_blank">{{item.organName}}</a></span>-->
+                                <!--</div>-->
+                            </div>
+                            <div class="feright">
+                                <a v-bind:href="item.recordType,item.courseId,item.courseKind|addRoot" target="_blank">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        coursecollection();
+    })
+</script>
+</body>
+
+</html>

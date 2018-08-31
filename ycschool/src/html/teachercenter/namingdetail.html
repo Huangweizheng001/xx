@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-点名详情</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+</head>
+<body style="background: #fff;">
+<section id="namingdetail">
+    <div class="namingdetail">
+        <div class="top"><a href="teachercenterattendanc.html">返回</a></div>
+        <div class="title" v-for="item in headArr" v-cloak>
+            <h1><span>{{item.AttendanceDate}}/{{item.weekDay|getWeek}}</span>{{item.period|shiftTime}} {{item.subjectName}}课</h1>
+            <p v-cloak v-show="isNew"><a href="recorddetail.html">记录</a></p>
+        </div>
+        <div class="contentWrapper">
+            <div class="head">
+                <div class="leftItem">姓名</div>
+                <div class="rightItem">状态</div>
+            </div>
+            <div class="content">
+                <div class="list" v-cloak v-for="(item,index) in list" v-bind:data-id="item.studentId" v-bind:state="item.attendanceState" v-bind:attendance="item.attendanceId">
+                    <div class="leftList"><span>{{index+1}}</span>{{item.studentName}}</div>
+                    <div class="rightList">
+                        <div class="radioBox">
+                            <span data-state="1" :class="item.attendanceState == 1 ? 'active':''">已到</span>
+                            <span data-state="2" :class="item.attendanceState == 2 ? 'active':''">迟到</span>
+                            <span data-state="3" :class="item.attendanceState == 3 ? 'active':''">旷课</span>
+                            <span data-state="4" :class="item.attendanceState == 4 ? 'active':''">请假</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="operation">
+            <a @click="refer()">提交</a>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

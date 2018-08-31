@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>悦华视频</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/ycstyle.css" />
+	</head>
+
+	<body style="padding-top: 0;">
+
+		<section class="bmbackPlayerModel" id="jbackPlayerApp">
+			<div id="J_prismPlayer" class="prism-player"></div>
+		</section>
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/ycedu.js"></script>
+	</body>
+
+	<script>
+		$(function() {
+			var index = $(this).getUrlParam("videoIndex");
+
+			var videoArr = ["01.mp4", "02.mp4"];
+
+			var videoUrl = "http://www.bomizx.net/bmonline/uploads/videos/" + videoArr[index]; //获取的视频地址
+			// 初始化播放器
+			var player = new prismplayer({
+				id: "J_prismPlayer",
+				autoplay: true,
+				isLive: false,
+				playsinline: true,
+				width: "100%",
+				height: "458px",
+				controlBarVisibility: "always",
+				useH5Prism: false,
+				useFlashPrism: false,
+				source: videoUrl,
+				cover: "",
+				skinLayout: [{
+					"name": "bigPlayButton",
+					"align": "cc",
+					"x": 30,
+					"y": 80
+				}, {
+					"name": "controlBar",
+					"align": "blabs",
+					"x": 0,
+					"y": 0,
+					"children": [{
+						"name": "playButton",
+						"align": "tlabs",
+						"x": 10,
+						"y": 25
+					}, {
+						"name": "fullScreenButton",
+						"align": "trabs",
+						"x": 10,
+						"y": 25
+					}, {
+						"name": "volume",
+						"align": "trabs",
+						"x": 50,
+						"y": 25
+					}, {
+						"name": "progress",
+						"align": "tlabs",
+						"x": 0,
+						"y": 0
+					}]
+				}],
+			});
+		})
+	</script>
+
+</html>

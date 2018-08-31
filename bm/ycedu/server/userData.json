@@ -1,0 +1,17 @@
+{
+	"mid": 1,
+	"nickname": "小米",
+	"name":"播米",
+	"gender":1,
+	"birthday":"2017-5-9",
+	"email":"hjbno.1@qq.com",
+	"phone":"15159634302",
+	"brief": "把握趋势、顺应趋势、驾驭趋势",
+	"consigneeName":"张三",
+	"province":"上海市",
+	"city":"上海市市辖区",
+	"district":"虹口区",
+	"consigneeAddr":"福州市台江区国货东路",
+	"postCode":355501,
+	"src": "http://localhost/bmOnline/ycedu/images/sz01.jpg"
+}

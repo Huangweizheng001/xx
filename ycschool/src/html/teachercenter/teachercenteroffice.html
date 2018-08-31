@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-办公</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+<section id="teacherCenterOffice">
+    <div class="teacherCenterOffice">
+        <div class="title">
+            <span class="active" data-id="0">会议室申请</span>
+            <span data-id="1">用车申请</span>
+        </div>
+        <a href="addapply.html?type=0" class="btnStyle" id="apply"><i class="uk-icon-plus-circle"></i>添加申请</a>
+        <div class="content">
+            <div class="fenodata" v-cloak v-show="noOffice"  v-if="state==0"></div>
+            <div class="fenodata" v-cloak v-show="noCar"  v-if="state==1"></div>
+            <div class="item" v-cloak v-for="item in officeArr" v-if="state==0">
+                <div class="head">
+                    <div class="headItem">起始时间</div>
+                    <div class="headItem">截止时间</div>
+                    <div class="headItem">会议室</div>
+                    <div class="headItem">状态</div>
+                </div>
+                <div class="list">
+                    <div class="listItem">{{item.beginDate}}</div>
+                    <div class="listItem">{{item.endDate}}</div>
+                    <div class="listItem">{{item.name}}</div>
+                    <div class="listItem" :class="item.state|getCarClass">{{item.state}}</div>
+                </div>
+                <p><span>理由:</span>{{item.note}}</p>
+            </div>
+            <div class="item" v-cloak v-for="item in carArr" v-if="state==1">
+                <div class="head">
+                    <div class="headItem">起始时间</div>
+                    <div class="headItem">截止时间</div>
+                    <div class="headItem" >车牌</div>
+                    <div class="headItem">状态</div>
+                </div>
+                <div class="list">
+                    <div class="listItem">{{item.useTime}}</div>
+                    <div class="listItem">{{item.useTimeEnd}}</div>
+                    <div class="listItem">{{item.carNo}}</div>
+                    <div class="listItem" :class="item.state|getCarClass">{{item.state}}</div>
+                </div>
+                <p><span>理由:</span>{{item.reasons}}</p>
+            </div>
+        </div>
+        <!--枫叶-->
+        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                <a href="#this">上一页</a>
+            </li>
+            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#this">{{index}}</a>
+            </li>
+            <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                <a href="#this">下一页</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>窗口视频播放</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />
+</head>
+<body style="padding-top: 0;">
+<section class="bmbackPlayerModel" id="jbackPlayerApp">
+    <div id="backcoursePlayer" class="prism-player"></div>
+</section>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+<script>
+    $(function() {
+//        var cId = $(this).getUrlParam("courseId");
+        var vId = $(this).getUrlParam("videoId");
+        if(undefined == vId || "" == vId || null == vId) {
+            layer.msg('视频源错误', {
+                icon: 6,
+                btn: ['明白了', '知道了'],
+            });
+        }else{
+            windowVideoPlayer(vId);
+        }
+    })
+</script>
+</body>
+</html>

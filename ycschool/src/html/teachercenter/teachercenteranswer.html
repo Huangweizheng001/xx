@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-问答</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+<section id="teacherCenterAnswer">
+    <div class="teacherCenterAnswer">
+        <div class="title">
+            <span>问答列表</span>
+        </div>
+        <div class="content">
+            <div class="fenodata" v-cloak v-show="nodata"></div>
+            <div class="item" v-cloak v-for="item in list">
+                <a v-html="item.content" :href="'replydetail.html?questionId='+item.KPQuestionId" target="_blank"></a>
+                <div class="note">
+                    <span style="color: #ff6c00"><i :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></i>{{item.userName}}</span>
+                    <span>&nbsp;&nbsp;{{item.insertTime}} 提问</span>
+                    <b>{{item.offerPoint}}积分 提问 </b>
+                </div>
+                <div class="operation">
+                    <button v-if="item.isResponse==0" @click="answer(item.KPQuestionId)">待回答</button>
+                    <button class="active" v-if="item.isResponse==1">已回答</button>
+                </div>
+            </div>
+        </div>
+        <!--枫叶-->
+        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                <a href="#this">上一页</a>
+            </li>
+            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#this">{{index}}</a>
+            </li>
+            <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                <a href="#this">下一页</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

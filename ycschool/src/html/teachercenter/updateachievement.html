@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-上传资源</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+
+
+<section  id="uploadAchievement">
+    <div class="uploadAchievement">
+        <div class="title"><span>上传教研成果</span><a href="teachercenteractivity.html">返回</a></div>
+        <div class="firstStep" >
+            <ul class="content">
+                <li class="li-style">
+                    <b class="caption">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题:</b>
+                    <input type="text" class="inputText" name="name" v-model="title">
+                </li>
+                <li class="li-style">
+                    <b class="caption">教研封面:</b>
+                    <form action="" id="addImg">
+                        <div class="addImage">
+                            <img src="../../images/temp/teachercenter-add.jpg" alt="">
+                            <input type="file" name="iconPath" @change="addCover($event)">
+                        </div>
+                    </form>
+                    <i class="tip">图片大小不超过5M</i>
+                </li>
+                <li class="li-style">
+                    <b class="caption">上传文件:</b>
+                    <input type="text" class="inputText" name="name" disabled v-model="filePath" style="width: 400px">
+                    <form action="" id="addFile" enctype="multipart/form-data">
+                        <a class="filebtn">
+                            <input type="file" id="filename" name="filename" @change="addDocument($event)">打开
+                        </a>
+                    </form>
+                </li>
+                <li class="li-style">
+                    <b class="caption">教研简介:</b>
+                    <textarea name=""  v-model="intro" style="height: 120px"></textarea>
+                </li>
+                <li class="li-style">
+                    <b class="caption">教研内容:</b>
+                    <div contenteditable="true" id="content" name="" style="height: 240px; width: 578px; border:1px solid #ccc ;overflow: auto; outline: none; padding: 10px; border-radius: 3px;">{{desc}}</div>
+                </li>
+            </ul>
+            <div class="operation">
+                <button @click="saveFirstStep()">保存信息</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+
+</body>
+</html>

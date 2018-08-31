@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+		<link rel="stylesheet" href="./css/plugins/style.min.css">
+		<link rel="stylesheet" href="./css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="./css/plugins/layermobile.css">
+		<link rel="stylesheet" href="./css/femoblie.min.css">
+		<link rel="stylesheet" href="./css/festyle.css">
+		<title>福建教育网--班级作业</title>
+	</head>
+
+	<body style="background-color:#ebebeb">
+		<header id="feHeaderOrange">
+			<header-orange-template title="申请加入班级" openright=true rightname="+"></header-orange-template>
+		</header>
+
+		<section class="feWorkWrap feCourseCenterWrap" id="jClassWorkApp">
+				
+			<div class="container flex flex-v">
+				<!--<div class="feNewsListInner">-->
+				
+				<div class="feActiveInner flex-1">
+					<div class="feWorkClassList">
+						<div class="feNodata" @click="addNewClass()" v-show='nodata'>
+							<div class="bg">
+								<img src="images/static/classadd.png" />
+							</div>
+							<p>暂无班级，点击加入班级</p>
+						</div>
+						<a class="" href="dist/classworklist.html">
+							<p class="name">趣味教育四年级趣味教育四年级趣味教育四年级</p>
+							<p class="classnum">班号：7575</p>
+							<span class="status">已加入</span>
+						</a>
+						<a class="" @click="addTips()">
+							<p class="name">趣味教育四年级趣味教育四年级趣味教育四年级</p>
+							<p class="classnum">班号：7575</p>
+							<span class="status">审核中</span>
+						</a>
+					</div>
+				</div>
+				<div class="flex flex-v ">
+					<div class="workTab clearfix">
+						<a class="span4" href="work.html?style=0"><span>练习</span></a>
+						<a class="span4" href="work.html?style=1"><span>试卷</span></a>
+						<a class="span4" href='javascript:;'><span class="active">班级作业</span></a>
+					</div>
+				</div>
+				<!--</div>-->
+			</div>
+		</section>
+		<footer id="feFooter">
+			<footer-template></footer-template>
+		</footer>
+
+		<script src="./js/libs/jquery.min.js"></script>
+		<script src="./js/libs/vue.min.js"></script>
+		<script src="./js/plugins/axios.min.js"></script>
+		<script src="./js/plugins/index.js"></script>
+		<script src="./js/plugins/swiper.min.js"></script>
+		<script src="./js/plugins/layer,wow,scroll.js"></script>
+		<script src="./js/plugins/layermobile.js"></script>
+		<script src="./js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/femoblie.min.js"></script>
+		<script type="text/javascript" src="js/fescript.js"></script>
+		<script>
+			$(function() {
+				classWorkApp()
+			})
+		</script>
+	</body>
+
+</html>

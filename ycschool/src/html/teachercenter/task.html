@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--个人信息</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+		<style>
+			.taskBtns{
+				margin: 20px 0;
+			}
+			.taskBtns a {
+				display: inline-block;
+				padding: 10px 20px;
+				border-radius: 3px;
+				margin-left: 8px;
+				border:1px solid #ff8d39;
+			}
+			
+			.taskBtns a.active{
+				color: #fff;
+				background-color: #ff8d39;
+			}
+			
+			.taskBtns a:hover{
+				color: #fff;
+				background-color: #ff8d39;
+			}
+			
+			.taskOnline2{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<section class="taskWrap" id="jtaskApp">
+			<div class="container clearfix">
+				<div class="taskInner">
+					<div class="taskBtns">
+						<a href="javascript:;" class="a1 active"> 在线组卷</a>
+						<a href="javascript:;" class="a2"> 智能批阅</a>
+						<a href="javascript:;"> 成绩预警</a>
+					</div>
+
+					<div class="taskOnline">
+						<img src="../../images/temp/task1.png" />
+					</div>
+
+					<div class="taskOnline2">
+						<img src="../../images/temp/task2.png" />
+					</div>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+		<script>
+			$(function(){
+				$(".taskBtns a").on("click",function(){
+					$(".taskBtns a").removeClass("active");
+					$(this).addClass('active');
+				})
+				
+				$(".a1").click(function(){
+					$(".taskOnline").show();
+					$(".taskOnline2").hide();
+				})
+				
+				$(".a2").click(function(){
+					$(".taskOnline").hide();
+					$(".taskOnline2").show();
+				})
+			})
+		</script>
+	</body>
+
+</html>

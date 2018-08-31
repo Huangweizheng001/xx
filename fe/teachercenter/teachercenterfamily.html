@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-家校互动</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right" id="">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学生管理 <i class="uk-icon-angle-right"></i></span>
+                <span>家校互动</span>
+            </div>
+            <div class="feteacherfamily">
+                <!--头部切换栏-->
+                <div class="fehead">
+                    <b>我的课程:</b>
+                    <span class="active" data-id="1">答疑解惑</span>
+                    <span data-id="2">召开家长会</span>
+                </div>
+                <!--答疑解惑-->
+                <div id="answeringreply" class="">
+                    <!--筛选框-->
+                    <div class="feselect">
+                        <ul>
+                            <li>
+                                <span>课程名称 :</span>
+                                <input type="text" placeholder="请输入关键字" name="suject" id="suject">
+                            </li>
+                            <li style="position: relative">
+                                <span>提问时间 :</span>
+                                <input type="text" placeholder="请选择时间" name="questiontime" id="questiontime">
+                            </li>
+                            <li>
+                                <span>回复状态 :</span>
+                                <select name="state" id="state">
+                                    <option value="1">未解答</option>
+                                    <option value="2">已解答</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="feoperation">
+                            <button>查&nbsp;&nbsp;&nbsp;询</button>
+                            <button>清&nbsp;&nbsp;&nbsp;空</button>
+                        </div>
+                    </div>
+                    <!--内容显示栏-->
+                    <div class="fecontent"  id="">
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">提问内容</div>
+                            <div class="span2">课程名称</div>
+                            <div class="span1">提问人</div>
+                            <div class="span2">提问时间</div>
+                            <div class="span1">回复状态</div>
+                            <div class="span2">操作</div>
+                        </div>
+                        <div class="felist">
+                            <div class="span1">1</div>
+                            <div class="span3"><a title="在几点睡的实打实大大大大是阿达大大" class="textoverflow">在几点睡的实打实大大大大是阿达大大</a></div>
+                            <div class="span2">勾股定理</div>
+                            <div class="span1">小明</div>
+                            <div class="span2">2017/10/30 12:00</div>
+                            <div class="span1">未解答</div>
+                            <div class="span2">
+                                <a href="">查看解答</a>
+                                <span>|</span>
+                                <a href="" class="bulecolor">立即解答</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--召开家长会-->
+                <div id="parentcontact" class="fehidden">
+                    <p class="addnewPop"><button><i class="uk-icon-plus-circle"></i>新增会议</button></p>
+                    <!--内容显示栏-->
+                    <div class="fecontent"  id="">
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">会议内容</div>
+                            <div class="span3">会议时间</div>
+                            <div class="span2">状态</div>
+                            <div class="span3">操作</div>
+                        </div>
+                        <div class="felist">
+                            <div class="span1">1</div>
+                            <div class="span3"><a title="在几点睡的实打实大大大大是阿达大大" class="textoverflow">在几点睡的实打实大大大大是阿达大大</a></div>
+                            <div class="span3">2017/10/30 12:00</div>
+                            <div class="span2">未开始</div>
+                            <div class="span3">
+                                <a href="" class="orange">查看详情</a>
+                                <span>|</span>
+                                <a href="" >修改</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--新增窗口-->
+                    <div id="addnewPop" class="container" style="display: none">
+                        <ul class="addmeeting">
+                            <li>
+                                <span>会议标题:</span>
+                                <input type="text" placeholder="格式:2017秋季期中家长会">
+                            </li>
+                            <li>
+                                <span>会议时间:</span>
+                                <input type="text" placeholder="格式:2017-11-09 16:30">
+                            </li>
+                            <li>
+                                <span>会议大纲:</span>
+                                <textarea name="" id=""></textarea>
+                            </li>
+                            <li>
+                                <span>会议形式:</span>
+                                <input type="text">
+                            </li>
+                            <div class="feoperation">
+                                <button>保存</button>
+                                <button>取消</button>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        function ECalendarisOpen(obj) {
+            if(obj.length > 0) {
+                obj.ECalendar({
+                    type: "date", //模式，time: 带时间选择; date: 不带时间选择;
+                    stamp: false, //是否转成时间戳，默认true;
+                    offset: [0, 2], //弹框手动偏移量;
+                    format: "yyyy-mm-dd", //时间格式 默认 yyyy-mm-dd hh:ii;
+                    //skin: 3, //皮肤颜色，默认随机，可选值：0-8,或者直接标注颜色值;
+                    step: 10, //选择时间分钟的精确度;
+                    callback: function(v, e) {} //回调函数
+                });
+            }
+        }
+        ECalendarisOpen($("#questiontime"));
+        $('.addnewPop').on('click','button',function () {
+            layer.open({
+                type: 1,
+                title:"新增会议",
+                area:['800px','600px'],
+                content: $('#addnewPop') //这里content是一个DOM
+            });
+        })
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,730 @@
+/*
+ * Title:播米移动WEB版css
+ * Autor:Jabo
+ * DESC:公共或者特殊css部分
+ */
+
+html,
+body {
+	font-size: 14px;
+	height: 100%;
+}
+
+html {
+	font-family: PingFangSC-Regular, sans-serif;
+}
+
+html,
+body,
+header,
+section,
+index,
+footer,
+div,
+ul,
+ol,
+li,
+img,
+a,
+span,
+em,
+del,
+legend,
+center,
+strong,
+var,
+fieldset,
+form,
+label,
+dl,
+dt,
+dd,
+cite,
+input,
+hr,
+time,
+mark,
+code,
+figcaption,
+figure,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-style: normal;
+}
+
+html,
+body {
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-select: none;
+	background-color: #fff;
+}
+
+nav,
+article,
+aside,
+details,
+main,
+header,
+indexfooter,
+section,
+fieldset,
+figcaption,
+figure {
+	display: block;
+}
+
+img,
+a,
+button,
+em,
+del,
+strong,
+var,
+label,
+cite,
+small,
+time,
+mark,
+code,
+textarea {
+	display: inline-block;
+}
+
+header,
+section,
+indexfooter {
+	position: relative;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+input,
+button,
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	line-height: 1em;
+	/*-webkit-appearance:none;*/
+	background-color: rgba(0, 0, 0, 0);
+}
+
+span {
+	display: inline-block;
+}
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+label,
+.wordWrap {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+.clearfix:after {
+	content: ' ';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.loading_more {
+	display: block;
+	height: 1.5em;
+	width: 100%;
+}
+
+.loading_more:before {
+	display: inline-block;
+	vertical-align: text-bottom;
+	content: ' ';
+	height: 16px;
+	width: 16px;
+	margin-right: 6px;
+	background: url(../images/public/loading_more.gif) no-repeat center;
+	-webkit-background-size: contain;
+	background-size: contain;
+}
+
+.loading_more:after {
+	content: '加载更多';
+}
+
+.overAuto {
+	overflow: auto;
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only screen and (max-width: 640px) {
+	html,
+	body {
+		font-size: 10px;
+	}
+}
+
+@media only screen and (max-width: 476px) {
+	html,
+	body {
+		font-size: 7px;
+	}
+}
+
+
+/*
+ * 播米公共css
+ */
+
+.layui-m-layershade {
+	background-color: rgba(0, 0, 0, .08) !important;
+}
+
+.layui-m-layer2 .layui-m-layerchild {
+	padding: 10px 10px 0 !important;
+	box-sizing: border-box;
+	max-width: 260px;
+	min-width: 100px !important;
+	height: 80px !important;
+	background-color: #928e87 !important;
+}
+
+.active {
+	background: rgba(0, 0, 0, .2);
+}
+
+.bmmain-container {
+	max-width: 750px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.flex-wrap {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	width: 100%;
+}
+
+.flex-con {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+}
+
+.flexwrap {
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
+.flex-vertical {
+	-webkit-box-orient: vertical;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+}
+
+
+/*蓝header*/
+
+header.blue {
+	/*position: relative;*/
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	padding-top: 2.42rem;
+	height: 9rem;
+	line-height: 6.58rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 2.4285rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	color: #282828;
+	/*background: #1473e6;*/
+	background-color: #fff;
+}
+
+header.blue span:first-child {
+	font-size: 0;
+	position: absolute;
+	left: 1.4285rem;
+	padding-left: 2.142rem;
+	top: 2.4rem;
+	/*background: url(../images/public/public/goBack2.png) no-repeat center;*/
+	background: url(../images/public/goBackBlack.png) no-repeat center;
+	background-position: 0 center;
+	background-size: 1.285rem 2.285rem;
+}
+
+header.blue span:last-child {
+	position: absolute;
+	right: 1.4285rem;
+	top: 2.4rem;
+}
+
+
+/*灰header*/
+
+header.gray {
+	/*position: relative;*/
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	/*padding-top: 2.42rem;*/
+	/*height: 6rem;*/
+	line-height: 6rem;
+	z-index: 99;
+	box-sizing: border-box;
+	font-size: 2.4285rem;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+	color: #282828;
+	background: #f2f2f2;
+}
+
+header.gray span:first-child {
+	position: absolute;
+	left: 1.4285rem;
+	padding-left: 2.142rem;
+	top: 0;
+	background: url(../images/public/goBackBlack.png) no-repeat center;
+	background-position: 0 center;
+	background-size: 1.285rem 2.285rem;
+}
+
+header.gray span:last-child {
+	position: absolute;
+	right: 1.4285rem;
+	top: 2.4rem;
+}
+
+.flexcenter {
+	/*老版本语法*/
+	-webkit-box-align: center;
+	-moz-box-align: center;
+	/*混合版本语法*/
+	-ms-flex-align: center;
+	/*新版本语法*/
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+
+/*
+ * 主页 indexfooter 部分
+ */
+
+#indexfooter {
+	height: 7.14rem;
+}
+
+#indexfooter .fixedfooter {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding-top: 1.142rem;
+	font-size: 1.857rem;
+	background-color: #f2f2f2;
+}
+
+#indexfooter ul li {
+	/*padding-top: 2.57rem;*/
+	padding-bottom: 1rem;
+	background: url() no-repeat center 0.142rem;
+	background-size: auto 2.4rem;
+	text-align: center;
+}
+
+#indexfooter ul li a {
+	padding-top: 2.57rem;
+	color: #333;
+}
+
+#indexfooter ul li.active,
+#indexfooter ul li.active a {
+	color: #1473e6;
+}
+
+#indexfooter ul li:nth-of-type(1) {
+	background-image: url(../images/public/bottombtn0101.png);
+}
+
+#indexfooter ul li:nth-of-type(2) {
+	background-image: url(../images/public/bottombtn0201.png);
+}
+
+#indexfooter ul li:nth-of-type(3) {
+	background-image: url(../images/public/bottombtn0301.png);
+}
+
+#indexfooter ul li:nth-of-type(4) {
+	background-image: url(../images/public/bottombtn0401.png);
+}
+
+#indexfooter ul li:nth-of-type(1).active {
+	background-image: url(../images/public/bottombtn0102.png);
+}
+
+#indexfooter ul li:nth-of-type(2).active {
+	background-image: url(../images/public/bottombtn0202.png);
+}
+
+#indexfooter ul li:nth-of-type(3).active {
+	background-image: url(../images/public/bottombtn0302.png);
+}
+
+#indexfooter ul li:nth-of-type(4).active {
+	background-image: url(../images/public/bottombtn0402.png);
+}
+
+#indexfooter span {
+	display: inline-block;
+	margin-top: 0px;
+	width: 5rem;
+	height: 5rem;
+	line-height: 5rem;
+	text-align: center;
+	font-size: 2.57rem;
+	color: #fff;
+	border-radius: 50%;
+	background: #282828 url(../images/public/bottombtn-open.png) no-repeat center;
+	background-size: 46%;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	-webkit-transition: all .1s;
+	transition: all .1s;
+}
+
+#indexfooter span.active {
+	-webkit-transform: rotate(0);
+	transform: rotate(0);
+}
+
+.chat-input-box {
+	/*position: fixed;*/
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: .5rem;
+	box-sizing: border-box;
+	background-color: #d0d0d0;
+}
+
+.chat-input-box #chatContent {
+	display: inline-block;
+	border: 1px solid #bbb;
+	outline: none;
+	line-height: 1.5;
+	text-indent: 1rem;
+	min-height: 30px;
+	max-height: 60px;
+	width: 60%;
+	overflow: auto;
+	padding-top: 4px;
+	vertical-align: middle;
+	font-size: 14px;
+	width: calc(100% - 145px);
+	border-radius: .3rem;
+	background-color: #fff;
+}
+
+.chat-input-box #chatContent img {
+	display: inline-block;
+	max-width: 120px;
+}
+
+.chat-btns-group {
+	display: inline-block;
+	width: 136px;
+	line-height: 30px;
+}
+
+.chat-input-box .chat-face {
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	background: url(../images/public/face-btn.png) no-repeat;
+	background-size: 640%;
+	background-position: -3px -77px;
+}
+
+.chat-input-box .chat-file {
+	display: inline-block;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	overflow: hidden;
+	cursor: pointer;
+	background: url(../images/public/face-btn.png) no-repeat;
+	background-size: 640%;
+	background-position: -44px -77px;
+}
+
+.chat-input-box .chat-file input {
+	opacity: 0;
+}
+
+.chat-input-box .chat-submit {
+	display: inline-block;
+	float: right;
+	margin-top: 2px;
+	margin-right: 3px;
+	width: 40px;
+	height: 30px;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	background-color: #39ca07;
+}
+
+.quickBoxWrap {
+	display: none;
+	position: fixed;
+	z-index: 99;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .3);
+}
+
+.quickBoxWrap.active {
+	display: block;
+}
+
+.quickBox {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	position: fixed;
+	width: 100%;
+	height: 9.28rem;
+	bottom: 8rem;
+	z-index: 99;
+	text-align: center;
+}
+
+.quickBox a {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+	transform: scale(1, 1);
+		-ms-transform: scale(1, 1);
+		/* IE 9 */
+		-webkit-transform: scale(1, 1);
+		/* Safari 和 Chrome */
+		-o-transform: scale(1, 1);
+		/* Opera */
+		-moz-transform: scale(1, 1);
+		/* Firefox */
+		background: url(../images/public/bottomlistnews.png) no-repeat center;
+	background-size: auto 8.57rem;
+	
+	animation-fill-mode:forwards;
+	
+}
+
+@keyframes myfirst {
+	from {
+		transform: scale(0, 0);
+		-ms-transform: scale(0, 0);
+		/* IE 9 */
+		-webkit-transform: scale(0, 0);
+		/* Safari 和 Chrome */
+		-o-transform: scale(0, 0);
+		/* Opera */
+		-moz-transform: scale(0, 0);
+		/* Firefox */
+	}
+	to {
+		transform: scale(1, 1);
+		-ms-transform: scale(1, 1);
+		/* IE 9 */
+		-webkit-transform: scale(1, 1);
+		/* Safari 和 Chrome */
+		-o-transform: scale(1, 1);
+		/* Opera */
+		-moz-transform: scale(1, 1);
+		/* Firefox */
+	}
+}
+
+.quickBox a:first-child {
+	background: url(../images/public/bottomlistnews.png) no-repeat center;
+	background-size: auto 8.57rem;
+	/*animation: myfirst 500ms 0.2s;
+	-webkit-animation: myfirst 500ms 0.2s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:nth-child(2) {
+	background: url(../images/public/bottomlistbtn-icon02.png) no-repeat center;
+	background-size: auto 8.57rem;
+	/*animation: myfirst 500ms 0.4s;
+	-webkit-animation: myfirst 500ms 0.4s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:nth-child(3) {
+	background: url(../images/public/bottomlistbtn-icon03.png) no-repeat center;
+	background-size: auto 8.57rem;
+	/*animation: myfirst 900ms 0.4s;
+	-webkit-animation: myfirst 900ms 0.4s;
+	animation-fill-mode:forwards;*/
+}
+
+.quickBox a:last-child {
+	background: url(../images/public/bottomlistbtn-icon04.png) no-repeat center;
+	background-size: auto 8.57rem;
+	/*animation: myfirst 1200ms 0.4s;
+	-webkit-animation: myfirst 1200ms 0.4s;
+	animation-fill-mode:forwards;*/
+	
+}
+
+
+/*可以改变wrapper和scroller的样式来调节这个iscroll组件的使用*/
+
+#wrapper {
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	bottom: 48px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/*background: #aaa;*/
+	overflow: auto;
+}
+
+#scroller {
+	position: absolute;
+	z-index: 1;
+	/*	-webkit-touch-callout:none;*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	width: 100%;
+	padding: 0;
+}
+
+
+/**
+ *
+ * Pull down styles
+ *
+ */
+
+#pullDown,
+#pullUp {
+	background: #fff;
+	height: 40px;
+	line-height: 40px;
+	padding: 5px 10px;
+	border-bottom: 1px solid #f2f2f2;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	color: #888;
+}
+
+#pullUp{
+	border-top: 1px solid #f2f2f2;
+}
+
+#pullDown .pullDownIcon,
+#pullUp .pullUpIcon {
+	/*display: block;*/
+	display: inline-block;
+	vertical-align: middle;
+	/*float: left;*/
+	width: 40px;
+	height: 40px;
+	background: url(../images/public/pull-icon@2x.png) 0 0 no-repeat;
+	-webkit-background-size: 40px 80px;
+	background-size: 40px 80px;
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: 250ms;
+}
+
+#pullDown .pullDownIcon {
+	-webkit-transform: rotate(0deg) translateZ(0);
+}
+
+#pullUp .pullUpIcon {
+	-webkit-transform: rotate(-180deg) translateZ(0);
+}
+
+#pullDown.flip .pullDownIcon {
+	-webkit-transform: rotate(-180deg) translateZ(0);
+}
+
+#pullUp.flip .pullUpIcon {
+	-webkit-transform: rotate(0deg) translateZ(0);
+}
+
+#pullDown.loading .pullDownIcon,
+#pullUp.loading .pullUpIcon {
+	background-position: 0 100%;
+	-webkit-transform: rotate(0deg) translateZ(0);
+	-webkit-transition-duration: 0ms;
+	-webkit-animation-name: loading;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+@-webkit-keyframes loading {
+	from {
+		-webkit-transform: rotate(0deg) translateZ(0);
+	}
+	to {
+		-webkit-transform: rotate(360deg) translateZ(0);
+	}
+}

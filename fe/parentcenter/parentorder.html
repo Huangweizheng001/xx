@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长个人中心-订单管理</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <parent-header-template></parent-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <parent-left-template></parent-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>消息中心 <i class="uk-icon-angle-right"></i></span>
+                <span>订单管理</span>
+                <!--<a href="coursecenter.html" style="color: #e55e2a;margin-left: 20px;font-size: 16px">进入选课中心</a>-->
+            </div>
+            <!--我的课程-->
+            <div class="festudentlearningnote" id="ordermanage">
+                <div >
+                    <!--筛选框-->
+                    <div class="feselect">
+                        <select name="" id="time">
+                            <option value="0">全部时间</option>
+                            <option value="1">近三个月</option>
+                            <option value="2">近一年</option>
+                        </select>
+                        <select name="" id="coursetype">
+                            <option value="0">全部类型</option>
+                            <option value="2">直播课</option>
+                            <option value="1">录播课</option>
+                        </select>
+                        <select name="" id="state">
+                            <option value="0">全部状态</option>
+                            <option value="1">未支付</option>
+                            <option value="2">已支付</option>
+                        </select>
+                        <!--<p><button><i class="uk-icon-plus-circle"></i>添加笔记</button></p>-->
+                    </div>
+                    <div class="fecontent">
+                        <div class="fetitle">
+                            <div class="span3">订单号</div>
+                            <div class="span1">类型</div>
+                            <div class="span2">商品名称</div>
+                            <div class="span1">订单金额</div>
+                            <div class="span2">订购时间</div>
+                            <div class="span1">状态</div>
+                            <div class="span2">操作</div>
+                        </div>
+                        <div class="felist" v-cloak v-for="(item,index) in orderArr">
+                            <div class="span3">{{item.orderNumber}}</div>
+                            <div class="span1">{{item.recordType}}</div>
+                            <div class="span2"><a v-bind:title="item.courseName" class="textoverflow">{{item.courseName}}</a></div>
+                            <div class="span1">{{item.preferentialPrice}}</div>
+                            <div class="span2">{{item.orderTime}}</div>
+                            <div class="span1">{{item.payState}}</div>
+                            <div class="span2">
+                                <a class="bulecolor" v-if="item.payState=='未支付'" v-bind:href="item.courseId,item.orderId|payRoot">完成支付</a>
+                                <a class="bulecolor" v-else v-bind:href="item.courseId,item.recordType|gotoCourseRoot" target="_blank">查看详情</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        ordermanage();
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+{
+	"totalPageCount": 2,
+	"rows": [
+		{
+			"rownum": "1",
+			"courseEvaluationId": "260",
+			"courseId": "1034",
+			"memberId": "7",
+			"evaluation": "很励志，目标很明确。",
+			"evaluationDate": "2017/7/21 16:31:24",
+			"nickName": "Jabo",
+			"iconPath": "temp/coursecommenticon.jpg"
+		}, {
+			"rownum": "2",
+			"courseEvaluationId": "259",
+			"courseId": "1034",
+			"memberId": "7",
+			"evaluation": "很励志，目标很明确。",
+			"evaluationDate": "2017/7/21 16:29:08",
+			"nickName": "Jabo",
+			"iconPath": "temp/coursecommenticon.jpg"
+		}, {
+			"rownum": "3",
+			"courseEvaluationId": "258",
+			"courseId": "1034",
+			"memberId": "7",
+			"evaluation": "很励志，目标很明确。",
+			"evaluationDate": "2017/7/21 16:27:42",
+			"nickName": "Jabo",
+			"iconPath": "temp/coursecommenticon.jpg"
+		}, {
+			"rownum": "4",
+			"courseEvaluationId": "257",
+			"courseId": "1034",
+			"memberId": "7",
+			"evaluation": "很励志，目标很明确。",
+			"evaluationDate": "2017/7/21 16:26:00",
+			"nickName": "Jabo",
+			"iconPath": "temp/coursecommenticon.jpg"
+		}, {
+			"rownum": "5",
+			"courseEvaluationId": "256",
+			"courseId": "1034",
+			"memberId": "7",
+			"evaluation": "很励志，目标很明确。",
+			"evaluationDate": "2017/7/21 16:24:50",
+			"nickName": "Jabo",
+			"iconPath": "temp/coursecommenticon.jpg"
+		}
+	]
+}

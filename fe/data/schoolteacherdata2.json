@@ -1,0 +1,17 @@
+[
+	{
+		"liveId":1,
+		"img": "temp/school-teacher-course2.png",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"price":"3888",
+		"yuanjia":"4888"
+	},
+	{
+		"liveId":2,
+		"img": "temp/school-teacher-course1.png",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"price":"3888",
+		"yuanjia":"4888"
+	}
+	
+]

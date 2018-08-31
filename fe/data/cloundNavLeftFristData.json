@@ -1,0 +1,133 @@
+[
+	[
+		[
+			{
+				"firstTitle":"小学/升学",
+				"navId": 1
+			}
+		],
+		[
+			{
+				"firstSubTitle":"语文1",
+				"navId": 2
+			},
+			{
+				"firstSubTitle":"英语",
+				"navId": 3
+			},
+			{
+				"firstSubTitle":"奥数",
+				"navId": 4
+			},
+			{
+				"firstSubTitle":"择校",
+				"navId": 5
+			}
+		]
+	],
+	[
+		[
+			{
+				"firstTitle":"小学/升学2",
+				"navId": 2
+			}
+		],
+		[
+			{
+				"firstSubTitle":"语文2",
+				"navId": 2
+			},
+			{
+				"firstSubTitle":"英语",
+				"navId": 3
+			},
+			{
+				"firstSubTitle":"奥数",
+				"navId": 4
+			},
+			{
+				"firstSubTitle":"择校",
+				"navId": 5
+			}
+		]
+	],
+	[
+		[
+			{
+				"firstTitle":"小学/升学3",
+				"navId": 3
+			}
+		],
+		[
+			{
+				"firstSubTitle":"语文3",
+				"navId": 2
+			},
+			{
+				"firstSubTitle":"英语",
+				"navId": 3
+			},
+			{
+				"firstSubTitle":"奥数",
+				"navId": 4
+			},
+			{
+				"firstSubTitle":"择校",
+				"navId": 5
+			}
+		]
+	],
+	[
+		[
+			{
+				"firstTitle":"小学/升学4",
+				"navId": 4
+			}
+		],
+		[
+			{
+				"firstSubTitle":"语文4",
+				"navId": 2
+			},
+			{
+				"firstSubTitle":"英语",
+				"navId": 3
+			},
+			{
+				"firstSubTitle":"奥数",
+				"navId": 4
+			},
+			{
+				"firstSubTitle":"择校",
+				"navId": 5
+			}
+		]
+	],
+	[
+		[
+			{
+				"firstTitle":"小学/升学5",
+				"navId": 5
+			}
+		],
+		[
+			{
+				"firstSubTitle":"语文5",
+				"navId": 2
+			},
+			{
+				"firstSubTitle":"英语",
+				"navId": 3
+			},
+			{
+				"firstSubTitle":"奥数",
+				"navId": 4
+			},
+			{
+				"firstSubTitle":"择校",
+				"navId": 5
+			}
+		]
+	]
+	
+]

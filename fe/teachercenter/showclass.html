@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-班级信息</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学生管理 <i class="uk-icon-angle-right"></i></span>
+                <span>班级管理 > 班级信息</span>
+            </div>
+            <!--班级信息-->
+            <div class="feclassdetail" id="feclassdetail">
+                <p><span class="active" data-id="1">基本信息</span><span data-id="2">学生信息</span></p>
+                <ul class="feschoolmsg ">
+                    <li><span>学&nbsp;&nbsp;&nbsp;校:</span>福州一中</li>
+                    <li><span>年&nbsp;&nbsp;&nbsp;级:</span>高一</li>
+                    <li><span>班&nbsp;&nbsp;&nbsp;级:</span>（1）班</li>
+                    <li><span>科&nbsp;&nbsp;&nbsp;目:</span>数学</li>
+                </ul>
+                <div class="festudentmsg fehidden">
+                    <p>
+                        <input type="text">
+                        <button></button>
+                    </p>
+                    <div class="fetitle">
+                        <div class="span2">头像</div>
+                        <div class="span2">姓名</div>
+                        <div class="span3">手机号码</div>
+                        <div class="span3">邮箱</div>
+                        <div class="span2">操作</div>
+                    </div>
+                    <ul class="fecontent">
+                        <li>
+                            <div class="span2">
+                                <div class="feimage">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="span2">小明</div>
+                            <div class="span3">15816665873</div>
+                            <div class="span3">231312321@qq.com</div>
+                            <div class="span2"><button>移除班级</button></div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        classdetail(teacherId);
+    })
+</script>
+</body>
+
+</html>

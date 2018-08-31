@@ -1,0 +1,47 @@
+[
+	{
+		"liveId":1,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文汪老师",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	},
+	{
+		"liveId":2,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文汪老师",
+		"brief":"专注12年的中高考语专注12年的中高考语文教学成绩卓著专注12年的中高考语文教学成绩卓著专注12年的中高考语文教学成绩卓著文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	},{
+		"liveId":3,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文chen老师",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	},{
+		"liveId":4,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文汪师",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	},{
+		"liveId":5,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文汪老师",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	},{
+		"liveId":6,
+		"img": "temp/school-teacher1.png",
+		"teacherName":"语文汪老师",
+		"brief":"专注12年的中高考语文教学成绩卓著",
+		"advantage":"19:30",
+		"vedio":"高考语文审题.解题.回扣"
+	}
+	
+]

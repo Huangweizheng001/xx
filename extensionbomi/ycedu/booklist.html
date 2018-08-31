@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>课程预约</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/dbliveroom.css" />
+
+		<style>
+			#bmbookWrap .bmbookWeekBar {
+				display: table;
+				width: 100%;
+				border-bottom: 1px solid #ededed;
+				font-size: 0;
+			}
+			
+			#bmbookWrap .bmbookWeekBar li {
+				display: table-cell;
+				width: 20%;
+				padding: 10px 0;
+				text-align: center;
+				font-size: 14px;
+				color: #fff;
+				-webkit-transition: all .3s;
+				transition: all .3s;
+			}
+			
+			#bmbookWrap .bmbookWeekBar li:hover,
+			#bmbookWrap .bmbookWeekBar li.active {
+				background-color: rgba(0, 0, 0, .3);
+			}
+			
+			#bmbookWrap .bmbookBox {
+				width: 100%;
+				font-size: 0;
+				box-shadow: 0 1px 0 rgba(255, 255, 255, .3);
+			}
+			
+			#bmbookWrap .bmbookBox .bmbookLi {
+				display: inline-block;
+				padding: 24px 3px 0;
+				width: 20%;
+				height: 160px;
+				line-height: 26px;
+				text-align: center;
+				vertical-align: middle;
+				font-size: 14px;
+				cursor: pointer;
+				box-sizing: border-box;
+				box-shadow: 0 1px 0 rgba(255, 255, 255, .3);
+			}
+			
+			.bmbookBox .bmbookLi .bmbookTime {
+				font-style: italic;
+			}
+			
+			#bmbookWrap .bmbookBox .bmbookLi:nth-child(even) {
+				background-color: rgba(255, 255, 255, .3);
+			}
+			
+			#bmbookWrap .bmbookBox .bmbookLi:hover {
+				color: #fff;
+				background-color: rgba(0, 0, 0, .3);
+			}
+			
+			.bmbookTips {
+				padding: 10px 0 0 10px;
+			}
+		</style>
+
+	</head>
+
+	<body style="padding-top: 0; background-color: rgba(0, 184, 255, 0.47)">
+		<setion id="bmbookWrap">
+			<div class="container full">
+				<div class="bmbookInner">
+					<ul class="bmbookWeekBar">
+						<li @click="loadData(1)" :class="weekDay == 1 ? 'active':''">星期一</li>
+						<li @click="loadData(2)" :class="weekDay == 2 ? 'active':''">星期二</li>
+						<li @click="loadData(3)" :class="weekDay == 3 ? 'active':''">星期三</li>
+						<li @click="loadData(4)" :class="weekDay == 4 ? 'active':''">星期四</li>
+						<li @click="loadData(5)" :class="weekDay == 5 ? 'active':''">星期五</li>
+					</ul>
+					<ul class="bmbookBox">
+						<li class="bmbookLi" v-for="item in bookArr" v-cloak @click="bookCourse(item.channelProgramId, item.isOut)" :title="item.note">
+							<p class="bmbookTime">{{item.playTime}}</p>
+							<p class="bmbookTeacher">{{item.teacherName}}&nbsp;{{item.anchorName}}</p>
+							<p class="bmbookName">{{item.name}}</p>
+						</li>
+					</ul>
+					<p class="bmbookTips">注:预约课程在开课前半个小时关闭</p>
+				</div>
+			</div>
+		</setion>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+
+		<script>
+			function getBookList() {
+				new Vue({
+					el: '#bmbookWrap',
+					data: {
+						bookArr: [],
+						currentWeekDay: '',
+						currentHour:'',
+						currentMin:'',
+						currentTimeStamp:'',
+						weekDay: ''
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.getDate();
+						})
+					},
+					methods: {
+						getDate: function() {
+							var dateObj = new Date();
+							this.currentWeekDay = dateObj.getDay();
+							this.currentHour = dateObj.getHours();
+							this.currentMin = dateObj.getMinutes();
+							this.currentTimeStamp = this.currentHour * 60 + this.currentMin;
+							this.loadData(this.currentWeekDay);
+						},
+						loadData: function(day) {
+							this.weekDay = day;
+							var _this = this,temp1, temp2,temp3, time,time2;
+							//获取频道
+							this.$http.post(ROUTE + "ChannelProgram.ashx?action=reservationProgramList", {
+								channelId: 8,
+								weeks: day
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.bookArr = res.body.rows;
+
+								if(_this.weekDay == _this.currentWeekDay) {
+									console.log(_this.weekDay)
+									_this.bookArr.forEach(function(item, index) {
+										temp1 = item.playTime.split("-");
+										temp2 = temp1[1].split(":");
+										temp3 = temp1[0].split(":");
+
+										time = Number(temp2[0]) * 60 + Number(temp2[1]);
+										time2 = Number(temp3[0]) * 60 + Number(temp3[1]);
+											
+										if(time > _this.currentTimeStamp && _this.currentTimeStamp > time2) {
+											Vue.set(item, "isOut", 2); //注册变量
+										} else if(time < _this.currentTimeStamp) {
+											Vue.set(item, "isOut", 0); //注册变量
+										} else {
+											Vue.set(item, "isOut", 1); //注册变量
+										}
+									})
+								}
+							});
+						},
+						bookCourse: function(pid, isOut) {
+							if(this.weekDay < this.currentWeekDay) {
+								layer.msg("课程已结束暂不支持预约！");
+								return false;
+							}
+							if(isOut == 0) {
+								layer.msg("课程已结束暂不支持预约！");
+								return false;
+							}
+							if(isOut == 2) {
+								layer.msg("课程进行中，暂不支持预约！");
+								return false;
+							}
+							if($mid == "" || $mid == undefined) {
+								layer.msg("游客暂不支持预约！");
+								return false;
+							}
+							var _this = this;
+							//谍报直播源
+							this.$http.post(ROUTE + "ChannelProgram.ashx?action=memberReservationProgram", {
+								memberId: $mid,
+								channelProgramId: pid,
+								question: ''
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body == 8301) {
+									layer.msg("您已经预约过该课程！");
+									return false;
+								}
+								layer.msg("预约成功注意开课时间");
+							});
+						},
+					}
+				});
+			}
+			getBookList();
+		</script>
+	</body>
+
+</html>

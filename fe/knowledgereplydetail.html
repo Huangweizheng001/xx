@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>回答问题-福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+</head>
+
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="feaskquestion" id="knowledgereplydetail">
+    <div class="container clearfix">
+        <div class="span9">
+            <div class="feaskquestion-left" v-cloak>
+                <h2>{{questionCon.content}}</h2>
+                <div class="fepictureArr clearfix">
+                    <img :src="i|addImgile" alt="" v-for="i in questionCon.iconPath">
+                </div>
+                <div class="fenote">
+                    <span><i></i>{{questionCon.userName}}</span>
+                    <span>{{questionCon.clickCount}}次浏览</span>|
+                    <span>&nbsp;&nbsp;{{questionCon.insertTime}}提问</span>
+                    <b v-if="chargeMode==0">{{questionCon.offerPoint}}</b>
+                    <u v-else>{{questionCon.offerMoney}}</u>
+                </div>
+                <textarea name="" id="" placeholder="在这里描述您的问题" v-model="problemDescription" v-if="isResult==0"></textarea>
+
+                <div class="feaddpicture" style="margin-top: 20px" v-if="isResult==0">
+                    <i class="uk-icon-photo"></i>
+                    <a id="zwb_upload" style="overflow: hidden;top: 0">
+                        <input type="file" class="add" multiple>添加图片
+                    </a>
+                    <div class="feorgan-certificate">
+
+                    </div>
+                </div>
+                <div class="fepaybtn" v-if="isResult==0">
+                    <button @click="putQuestion()">提交答案</button>
+                </div>
+            </div>
+            <div class="felastanswer">
+                <h1 v-if="chargeMode==0">最新回答 <span v-cloak>({{totalCount}}条回答)</span></h1>
+                <h1 v-else>老师回答 <span v-cloak>({{totalCount}}条回答)</span></h1>
+                <ul>
+                    <div class="fenodata" v-if="replylist.length<1"></div>
+                    <!--免费积分模板-->
+                    <li v-cloak v-for="item in replylist" v-if="chargeMode==0">
+                        <div class="feimage">
+                            <img :src="item.headIconPath|addRootFile" alt="">
+                        </div>
+                        <div class="febox">
+                            <h2>{{item.responseName}}
+                                <span>{{item.insertTime|showTime}} 回答</span>
+                                <b v-if="item.isBest==1">最佳答案</b>
+                                <button v-if="item.isBest==0 && isResult!=0 && hasBest!=true" @click="setGood(item.KPResponseId)">采纳答案</button>
+                            </h2>
+                            <p>{{item.content}}</p>
+                            <div class="fepictureArr clearfix">
+                                <img :src="i|addImgile" alt="" v-for="i in item.filePath">
+                            </div>
+
+                        </div>
+                    </li>
+                    <!--付费老师模板-->
+                    <li v-cloak v-for="item in replylist" v-if="chargeMode==1">
+                        <div class="feimage">
+                            <img :src="item.headIconPath|addRootFile" alt="">
+                        </div>
+                        <div class="febox">
+                            <h2>{{item.responseName}}
+                                <span>{{item.insertTime|showTime}} 回答了问题</span>
+                                <b v-if="item.isBest==1">最佳答案</b>
+                                <button v-if="item.isBest==0 && isResult!=0 && hasBest!=true" @click="setGood(item.KPResponseId)">采纳答案</button>
+                            </h2>
+                            <p>{{item.content}}</p>
+                            <div class="fepictureArr clearfix">
+                                <img :src="i|addImgile" alt="" v-for="i in item.filePath">
+                            </div>
+                        </div>
+                    </li>
+                    <!--<li>-->
+                        <!--<div class="feimage">-->
+                            <!--<img src="images/temp/mr-tx.png" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                            <!--<h2>小飞飞     <span>12分钟之前 回答</span></h2>-->
+                            <!--<p>当校外补课让学生、家长疲于奔命、怨声载道的时候 ，确实应该由政府重拳出击整治，“最严禁补令”恰逢其时。要让校外补课真正回-->
+                                <!--归“补充”的作用，不能代替学校教育这道“主食”。</p>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <div class="feoperation" v-cloak v-if="loadmore">
+                    <button @click="loadMore">查看更多</button>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="fereplydetail-login-box">
+                <div class="feentry" v-if="login" v-cloak>
+                    <div class="feimage">
+                        <img :src="headIcon|addRootFile" alt="">
+                    </div>
+                    <div class="fecenter">
+                        <h1>{{nickName}}<span>{{mypoint}}积分</span></h1>
+                        <a href="knowledgeAskQuestion.html" target="_blank">我要问问题</a>
+                    </div>
+                    <div class="febottom">
+                        <div class="femyquiz" @click="gotoMyquestion()">
+                            <h3>{{myQnum}}</h3>
+                            <h5>我的提问</h5>
+                        </div>
+                        <div class="femyproblem" @click="gotoMyreply()">
+                            <h3>{{myAnum}}</h3>
+                            <h5>我的回答</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="fenologin" style="height: 340px" v-if="!login">
+                    <h1>爱问知识人</h1>
+                    <img src="images/temp/knowledge-1.png" alt="">
+                    <div class="febox">
+                        <h3>已帮助的人数</h3>
+                        <h4>5000+</h4>
+                        <a href="login.html">快速登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/upload.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var r=$(this).getUrlParam("r");
+        if(r==undefined||r==''||r=='undefined'){
+            r=0
+        }
+        var c=$(this).getUrlParam("c");
+        if(c==undefined||c==''||c=='undefined'){
+            c=0
+        }
+        knowledgereplydetail($(this).getUrlParam("questionId"),r,c);
+    })
+</script>
+</body>
+
+</html>

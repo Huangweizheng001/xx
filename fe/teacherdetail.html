@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>名师工作室</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--内容模块-->
+		<section class="femasterdetail clearfix" id="femasterdetail">
+			<div class="container">
+				<!--头部老师信息-->
+				<div class="femasterdetail-head clearfix">
+					<div class="feimage">
+						<img src="images/temp/teacherdetail-tx.png" alt="">
+					</div>
+					<h1>林呆呆</h1>
+					<p>
+						<span>福州第一中学</span>
+						<span>初二语文老师</span>
+					</p>
+				</div>
+				<!--导航栏-->
+				<div class="femasterdetail-nav ">
+					<a v-bind:href="item.typeid|addRootNav" v-cloak v-for="item in masterdetailnav"><span>{{item.title}}</span></a>
+				</div>
+				<div class="span9 ">
+					<div class="femasterdetail-left clearfix">
+						<!--老师推荐课程-->
+						<div class="ferecommendedcourses">
+							<h1>
+								老师推荐课程
+								<span>(共11门课)</span>
+							</h1>
+							<div class="fepanel" v-cloak v-for="item in recommendedcourses">
+								<div class="feleft">
+									<div class="feimage">
+										<img v-bind:src="item.imgsrc|addRootFile" alt="">
+										<p><a v-bind:href="item.newsId|addRoot">播放<b></b></a></p>
+									</div>
+								</div>
+								<div class="febox">
+									<h2>{{item.title}} <a v-bind:href="item.newsId|addRoot">直播课</a></h2>
+									<h4>开课: {{item.starttime}} 结课: {{item.endtime}}</h4>
+									<h4>共{{item.course}}节课</h4>
+									<h4>{{item.number}}人已报名</h4>
+									<h5>{{item.begintime}}开课 <span>老师: {{item.teacher}}</span></h5>
+								</div>
+								<div class="feright">
+									<h4>{{item.cprice|addMoneySign}}</h4>
+									<s v-bind:class="item.cprice=='免费'? 'fehidden':''">{{item.yprice|addMoneySign}}</s>
+									<a v-bind:href="item.newsId|addRoot">开始学习</a>
+								</div>
+							</div>
+							<div class="feloadmore">
+								<a href="#this" @click="recommendedCoursesLoadMore()">查看更多></a>
+							</div>
+						</div>
+						<!--老师介绍-->
+						<div class="feteacherintroduction clearfix">
+							<h1>老师介绍</h1>
+							<ul v-cloak v-for="item in teacherintroduction">
+								<li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span><div>{{item.name}}</div></li>
+								<li><span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</span><div>{{item.sex}}</div></li>
+								<li><span>教&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄:</span><div>{{item.old}} 年教龄</div></li>
+								<li><span>授课范围:</span><div>{{item.addr}}</div></li>
+								<li><span>个人认证:</span><div><span>身份证</span><span>教师认证</span><span>学历认证</span></div></li>
+								<li><span>自我介绍:</span><div>{{item.intro}}</div></li>
+							</ul>
+						</div>
+						<!--过往经历-->
+						<div class="fepastexperience clearfix">
+							<h1>
+								<span v-cloak v-for="item in pastnav" v-bind:data-id="item.typeid">{{item.text}}</span>
+							</h1>
+							<ul>
+								<li v-cloak v-for="item in pastexperience">
+									<div v-bind:class="index%2==0? 'feleft':'feright'" v-for="(i,index) in item">
+										<h2>{{i.title}}</h2>
+										<h4>{{i.time}}</h4>
+										<p>{{i.text}}</p>
+									</div>
+									<!--<div class="feright" v-for="i in item">-->
+										<!--<h2>{{i.title}}</h2>-->
+										<!--<h4>{{i.time}}</h4>-->
+										<!--<p>{{i.text}}</p>-->
+									<!--</div>-->
+								</li>
+							</ul>
+							<div class="feloadmore"><a href="#this" @click="pastExperienceLoadMore()">查看更多...</a></div>
+						</div>
+						<!--课程评价-->
+						<div class="fecourseevaluation clearfix">
+							<h1>课程评价<span>（累积评价<b>155</b>条）</span></h1>
+							<ul>
+								<li v-cloak v-for="item in courseevaluation">
+									<div class="feimage">
+										<img v-bind:src="item.imgsrc|addRootFile" alt="">
+									</div>
+									<div class="febox">
+										<h4>{{item.name}}</h4>
+										<h4>{{item.text}}</h4>
+										<span>{{item.time}}</span>
+									</div>
+								</li>
+							</ul>
+							<!--枫叶-->
+							<div class="span12">
+								<ul class="pagenationbox clearfix">
+									<li v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="femasterdetail-right">
+						<!--导航-->
+						<ul class="feright-nav clearfix">
+							<li v-cloak v-for="item in rightnav">
+								<h5>{{item.num}}</h5>
+								<a v-bind:href="item.newsId|addRoot">{{item.title}}</a>
+							</li>
+						</ul>
+						<!--资源-->
+						<div class="femasterdetail-right-resource" >
+							<h1>资源</h1>
+							<a class="febox" v-cloak v-for="item in rightresource" v-bind:href="item.newsId|addRoot">
+								<div class="feimage">
+									<img v-bind:src="item.imgsrc|addRootFile" alt="">
+								</div>
+								<h4>{{item.title}}</h4>
+							</a>
+							<div class="feright-more"><a href="">更多></a></div>
+						</div>
+						<!--视频/照片-->
+						<div class="femasterdetail-right-photo">
+							<h1>视频/照片</h1>
+							<div class="feimage">
+								<img src="images/temp/master-right-3.png" alt="">
+							</div>
+							<div class="feright-more"><a href="">更多></a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script>
+			$(function () {
+				masterdetail();
+			})
+		</script>
+	</body>
+
+</html>

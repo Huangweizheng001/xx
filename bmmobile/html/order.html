@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+
+		<!--<link rel="stylesheet" href="../css/bmmobilescroll.css" />-->
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>订单记录</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+				box-sizing: border-box;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			.orderHeader {
+				padding: 0 1.5rem;
+				font-size: 1.45rem;
+				color: #3b3b3b;
+				line-height: 4.7rem;
+				border-bottom: 1px solid #f2f2f2;
+				background-color: #fff;
+			}
+			
+			.orderHeader span {
+				font-size: 1.2rem;
+				float: right;
+			}
+			
+			.bmorderListBox li {
+				display: block;
+				border-bottom: 1.142rem solid #f2f2f2;
+				box-sizing: border-box;
+				overflow: hidden;
+				background-color: #fff;
+				-webkit-transition: all .3s;
+				transition: all .3s;
+			}
+			
+			.edit .bmorderListBox li .checkedBox {
+				position: relative;
+				float: left;
+				display: inline-block;
+				width: 14%;
+				text-align: center;
+			}
+			
+			.edit .bmorderListBox li .checkedBox::before {
+				content: "";
+				position: absolute;
+				width: 2.6rem;
+				height: 2.6rem;
+				top: 2.95rem;
+				z-index: 0;
+				background: url(../images/public/uncheckedIcon.png) no-repeat;
+				background-size: 2.5rem 2.5rem;
+				-webkit-transition: all .3s;
+				transition: all .3s;
+			}
+			
+			.bmorderListBox li.checked .checkedBox::before {
+				background-image: url(../images/public/checkedIcon.png);
+			}
+			
+			.bmorderListBox li input {
+				display: none;
+			}
+			
+			.edit .bmorderListBox li input {
+				position: relative;
+				display: inline-block;
+				width: 3.2rem;
+				height: 3.2rem;
+				z-index: 1;
+				opacity: 0;
+			}
+			
+			.content {
+				float: left;
+				width: 58%;
+				padding-left: 0.5rem;
+				padding-right: 0.1rem;
+				padding-top: 0;
+				line-height: normal;
+				box-sizing: border-box;
+			}
+			
+			.content p {
+				display: block;
+				width: 100%;
+				margin-bottom: 0.2rem;
+				font-size: 1.5rem;
+				line-height: 2;
+				color: #282828;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			
+			.content span {
+				display: block;
+				font-size: 0.415rem;
+				color: #989898;
+			}
+			
+			.bmorderListBox li {
+				width: 100%;
+				padding: 1rem 1.5rem;
+				box-sizing: border-box;
+			}
+			
+			.bmorderListBox li .img {
+				float: left;
+				display: inline-block;
+				max-height: 10.357rem;
+				width: 42%;
+				font-size: 0;
+			}
+			
+			.bmorderListBox li img {
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				max-height: 10.357rem;
+				border-radius: 0.6rem;
+			}
+			
+			.bmorderListBox li.checked {
+				background-color: #e7f1fc;
+			}
+			
+			.edit li .content {
+				width: 43%;
+			}
+			
+			#changeType {
+				position: fixed;
+				width: 100%;
+				top: 8rem;
+				left: 0;
+				z-index: 99;
+				background: #fff;
+				border-top: 1px solid #eee;
+				border-bottom: 2px solid #eee;
+				text-align: center;
+				font-size: 0;
+			}
+			
+			#changeType a {
+				position: relative;
+				display: inline-block;
+				padding: 1.42rem 0;
+				width: 50%;
+				font-size: 1.662rem;
+				font-weight: 300;
+				color: #282828;
+			}
+			
+			#changeType a.selected {
+				color: #065ebf;
+			}
+			
+			#changeType a.selected::after {
+				content: "";
+				position: absolute;
+				bottom: -1px;
+				left: 0;
+				height: 2px;
+				width: 100%;
+				background-color: #065ebf;
+			}
+			
+			#changeType a:last-child:before {
+				position: absolute;
+				content: "";
+				left: 0;
+				top: 10%;
+				height: 80%;
+				width: 1px;
+				background-color: #ddd;
+			}
+			
+			#footernav {
+				display:none;
+				z-index: -1;
+				position: fixed;
+				left: 0;
+				bottom: -1px;
+				height: 6.428rem;
+				width: 100%;
+				box-sizing: border-box;
+			}
+			
+			#footernav a {
+				position: relative;
+				float: left;
+				display: inline-block;
+				line-height: 6.428rem;
+				width: 50%;
+				font-size: 1.662rem;
+				color: #282828;
+				text-align: center;
+				background-color: #fff;
+			}
+			
+			#footernav a:first-child:after {
+				content: "";
+				position: absolute;
+				width: 1px;
+				height: 100%;
+				top: 0;
+				right: 0;
+				background-color: #eee;
+			}
+			
+			#footernav a:last-child.checked {
+				color: #fff;
+				background-color: #1473e6;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header id="header" class="blue flex-con">
+				<span onclick="goBack()" style="display: none;">返回</span>
+				<p>全部订单</p>
+				<span id='changeOpt'>编辑</span>
+			</header>
+			<div id="changeType" class="flex-con">
+				<a href="#this" class="selected" data-id='0'>未完成</a>
+				<a href="#this" data-id='1'>已完成</a>
+			</div>
+
+			<section id="main" class="flex-con overAuto" style="margin-top: 13.5rem;">
+				<div id="content">
+					<ul class="bmorderListBox"></ul>
+					<ul class="bmorderListBox"></ul>
+				</div>
+			</section>
+
+			<footer id="footernav">
+				<a id='selectAll' href="#this">全选</a>
+				<a id="del" href="#this">删除</a>
+			</footer>
+		</div>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/zepto.picLazyLoad.min.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			function course(id) {
+				window.location.href = 'pay.html?orderId=' + id;
+			}
+			$(function() {
+				var itemIndex = 0;
+				var LoadEnd_tab = new Array();
+				LoadEnd_tab[0] = false;
+				LoadEnd_tab[1] = false;
+
+				var pageCount = new Array();
+				pageCount[0] = 0;
+				pageCount[1] = 0;
+
+				// 每页展示6个
+				var num = 3;
+				var nownum = 0; //当前数据在第几条
+				var tabTypeId = 0; //默认类型为0
+
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							pageCount[itemIndex]++;
+							getData(me, pageCount[itemIndex], tabTypeId, itemIndex); //默认首页
+						}, 200)
+						
+					}
+				});
+				
+				
+				exeSetOrderType();
+				$('#selectAll').click(function() {
+					selectAll();
+				});
+
+				//execScript setOrderType
+				function exeSetOrderType() {
+					$('#changeType a').click(function() {
+						if(!$(this).hasClass('selected')) {
+							$(this).siblings(".selected").removeClass('selected');
+							$(this).addClass('selected');
+						} else {
+							return false;
+						}
+						tabTypeId = $(this).attr('data-id'); //数据类型
+
+						var $this = $(this);
+						itemIndex = $this.index();
+						if(itemIndex==1){
+							$('#changeOpt').css('display','none');
+							$('#footernav').css('display','none');
+						}else{
+							$('#changeOpt').css('display','block');
+							//alert(($('#changeOpt').text()))
+							if($('#changeOpt').text()=='完成'){
+								$('#footernav').css('display','block');
+							}
+						}
+						$('#content .bmorderListBox').eq(itemIndex).show().siblings('.bmorderListBox').hide();
+
+						if(!LoadEnd_tab[itemIndex]) {
+							// 解锁
+							dropload.unlock();
+							dropload.noData(false);
+						} else {
+							// 锁定
+							dropload.lock('down');
+							dropload.noData();
+						}
+						// 重置
+						dropload.resetload();
+
+					});
+
+				}
+
+				var editFlag = true, //默认编辑状态
+					footer = $("#footernav");
+				changeOpt();
+				//change opt btn
+				function changeOpt() {
+					$('#changeOpt').click(function() {
+						if(editFlag) {
+							editFlag = false;
+							$(this).text("完成");
+							footer.css('display','block');
+							footer.css('z-index', '1');
+							$('#main').addClass('edit');
+							$('#main').css('margin-bottom', '6rem');
+							
+						} else {
+							editFlag = true;
+							$(this).text("编辑");
+							footer.css('display','none');
+							footer.css('z-index', '-1');
+							$('#main').removeClass('edit');
+							$('#main').css('margin-bottom', '0rem');
+						}
+
+					});
+
+				}
+
+				//del btn status
+				function delStatus(len) {
+					var del = $('#del');
+					if(len == 0) { //no select
+						del.removeClass('checked');
+						del.html('删除');
+					} else {
+						del.addClass('checked');
+						del.html('删除(' + len + ')');
+					}
+				}
+
+				function getData(me, pageIndex, orderType, numIndex) {
+					var box = $("#content .bmorderListBox"),
+						htmlStr = "";
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'OrderDetail.ashx?action=getMemberOrderList',
+						dataType: "json",
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"pageIndex": pageIndex,
+							"pageSize": num,
+							"orderType": orderType //0-未完成，1-已完成
+						},
+						success: function(result) {
+							if(result.rows.length < 1) {
+								LoadEnd_tab[numIndex] = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+								return false;
+							} else {
+								var obj = result.rows;
+								if(obj) {
+									for(var i in obj) {
+										htmlStr += '<ul class="orderlist"><p class="orderHeader">订单编号:' + obj[i].orderNumber + ' <span>￥' + obj[i].preferentialTotalPrice + '</span></p>';
+										subObj = obj[i].list;
+										if(subObj) {
+											for(var j in subObj) {
+												var imgSrc = subObj[j].mobileIconPath;
+										if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+											imgSrc = '../images/public/default.png';
+										} else {
+											imgSrc = SERVEROOTFILE + imgSrc;
+										}
+												if(orderType==0){//未完成订单，可以点击
+													htmlStr += "<li class='clearfix'><div class='checkedBox' ><input type='checkbox' data-id="+obj[i].orderId+" /></div><div class='img'><img class='lazyload' src='../images/public/default.png' data-original=" + imgSrc + " onclick='course(" + obj[i].orderId + ")'/></div><div class='content flex-wrap flexwrap' onclick='course(" + obj[i].orderId + ")' ><p>" + subObj[j].CourseName + "</p><p>" + subObj[j].note + "</p></div></li>";
+												}else if(orderType==1){//已完成订单，不可以点击
+													htmlStr += "<li class='clearfix'><div class='checkedBox' ><input type='checkbox' data-id="+obj[i].orderId+" /></div><div class='img'><img class='lazyload' src='../images/public/default.png' data-original=" + imgSrc + " /></div><div class='content flex-wrap flexwrap' ><p>" + subObj[j].CourseName + "</p><p>" + subObj[j].note + "</p></div></li>";
+												}
+												
+												/*nownum = (pageIndex - 1) * num + i + 1;
+												if((nownum) >= result.totalCount) {
+													console.log('到底啦')
+													// 数据加载完
+													//LoadEnd = true;
+													LoadEnd_tab[numIndex] = true;
+													// 锁定
+													me.lock();
+													// 无数据
+													me.noData();
+													//break;
+												}*/
+
+											}
+										}
+										htmlStr += '</ul>';
+
+									}
+									
+								
+									
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										
+										box.eq(numIndex).append(htmlStr);
+										selectOrder();//选择删除的订单
+									
+										$("#content .lazyload").picLazyLoad({
+											threshold: 10
+										});
+										
+										if(pageIndex >= result.totalPageCount) {
+					console.log('到底啦')
+					// 数据加载完
+					//LoadEnd = true;
+					LoadEnd = true;
+					// 锁定
+					me.lock();
+					// 无数据
+					me.noData();
+					//break;
+				}
+				
+				
+										// 每次数据加载完，必须重置
+										me.resetload();
+										
+										$('#del').click(function() {
+											console.log(tabTypeId)
+											//selectOrder();//选择删除的订单
+											delDeal($('#changeType .selected').attr('data-id'));
+											
+											me.resetload();
+											
+										});
+									}, 1000);
+
+									var isEditOrder = localStorage.getItem('isEditOrder');
+
+								}
+							}
+							getCheckPush();
+						},
+						error: function(err) {
+							console.log('服务器出错了~');
+							// 加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+
+				//is edit status
+				function isEditClass(flag) {
+					if(flag == "1") {
+						$('#box').addClass('edit');
+					} else {
+						$('#box').removeClass('edit');
+					}
+				}
+
+				//get current checked to push
+				var checkArr = []; //storage checked
+				function getCheckPush() {
+					checkArr = [];
+					var objs = $(".bmorderListBox").find('input');
+					for(var i = 0; i < objs.length; i++) {
+						if(objs[i].checked) {
+							checkArr.push(objs[i].getAttribute("data-id"));
+
+						}
+					}
+
+					//checked del btn status
+					delStatus(checkArr.length);
+
+				}
+
+				//del deal
+				function delDeal(orderType) {
+					if(checkArr.length == 0) {
+						layer.open({
+							content: '暂未选择订单',
+							skin: 'msg',
+							time: 2 //2秒后自动关闭
+						});
+						return false;
+					} else { //del deal
+
+						//......
+						if(orderType == "1" || orderType == 1) {
+							layer.open({
+								content: '已完成订单暂不支持删除',
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});
+							return false;
+						}
+
+						//local del
+						var objs = $(".bmorderListBox .checked");
+						for(var i = 0; i < objs.length; i++) {
+							$(objs[i]).parents('.orderlist').remove();
+							delOrderServer(checkArr[i], orderType);
+						}
+
+					}
+				}
+
+				//server del
+				function delOrderServer(orderId, orderType) {
+					//server del
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Order.ashx?action=deleteOrder',
+						dataType: "text",
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"orderId": orderId,
+							"orderType": orderType
+						},
+						success: function() {
+							checkArr = [];
+							delStatus(0); //del status
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					});
+				}
+
+				//选择课程
+				function selectOrder() {
+					$('.bmorderListBox').off('click','.checkedBox');
+					$('.bmorderListBox').on('click','.checkedBox',function() {
+						//console.log($(this).children('input').attr('checked'))
+						if(($(this).children('input').attr('checked')) == 'checked') { //add checked
+							$(this).parents('li').removeClass("checked");
+							$(this).children('input').removeAttr('checked');
+						} else {
+							$(this).parents('li').addClass("checked");
+							$(this).children('input').attr('checked', 'checked');
+						}
+						getCheckPush();//删除高亮
+					});
+				}
+
+				function getNowTime() {
+					var time = new Date();
+					// 程序计时的月从0开始取值后+1
+					var m = time.getMonth() + 1;
+					var t = time.getFullYear() + "-" + m + "-" +
+						time.getDate() + " " + time.getHours() + ":" +
+						time.getMinutes() + ":" + time.getSeconds();
+
+					return t;
+				}
+
+				//selectAll
+				var selectAllFlag = true;
+
+				function selectAll() {
+					var objBox = $(".bmorderListBox li"),
+						objs = $(".bmorderListBox input");
+					if(selectAllFlag) {
+						selectAllFlag = false;
+						for(var i = 0; i < objs.length; i++) {
+
+							$(objs[i]).attr('checked', 'checked');
+							$(objBox[i]).addClass('checked');
+						}
+					} else {
+						selectAllFlag = true;
+						for(var i = 0; i < objs.length; i++) {
+							$(objs[i]).removeAttr('checked');
+							$(objBox[i]).removeClass('checked');
+						}
+					}
+
+					getCheckPush();
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

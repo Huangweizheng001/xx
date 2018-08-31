@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<!--<link rel="stylesheet" href="../css/bmmobile.css" />-->
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>搜索</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+				/*padding-top: 14.8rem;*/
+			}
+			
+			#header {
+				text-align: left;
+				padding-left: 2rem;
+			}
+			
+			#header label {
+				position: relative;
+				width: calc(100% - 8rem);
+				line-height: 4.57rem;
+				border-radius: 0.6rem;
+				background-color: #fff;
+			}
+			
+			#header label::before {
+				content: "";
+				position: absolute;
+				display: inline-block;
+				width: 1.72rem;
+				height: 1.72rem;
+				top: 1.28rem;
+				left: 0.9rem;
+				background: url(../images/public/search.png) no-repeat center;
+				background-size: contain;
+			}
+			/*#header span{
+				position:absolute;width: 1.72rem;
+				height: 1.72rem;
+				top: 3.28rem;
+				right:3.9rem;
+				background: url(../images/public/search.png) no-repeat center;
+				background-size: contain;
+			}*/
+			#header label input {
+				width: 100%;
+				line-height: 2.8rem;
+				text-indent: 3.5rem;
+				padding-right: 0.6rem;
+				font-size: 1.65rem;
+			}
+			
+			.headerNav {
+				position: fixed;
+				width: 100%;
+				top: 8rem;
+				left: 0;
+				z-index: 99;
+				overflow: hidden;
+				line-height: 4.42rem;
+				border-bottom: 1px solid #eee;
+				background-color: #fff;
+			}
+			
+			.headerNav li {
+				position: relative;
+				float: left;
+				display: inline-block;
+				width: 50%;
+				text-align: center;
+				color: #1473e6;
+				font-size: 1.818rem;
+			}
+			
+			.headerNav li.selected:after {
+				content: "";
+				position: absolute;
+				height: .1rem;
+				width: 9rem;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #1473e6;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header id="header" class="blue flex-con">
+				<form action="javascript:search();" method="post" id="form">
+					<label>
+			          <input id="searchInput" placeholder="请输入搜索嘉宾、课程名称"/>
+			        </label>
+			        <span id="gotoindex">取消</span>
+				</form>
+				<!--<span onclick="goBack()" >取消</span>-->
+			</header>
+			<ul class="headerNav flex-con" id="headerNav">
+				<li id="video" class="selected" data-type="1">课程</li>
+				<li id="teacher" data-type="2">嘉宾</li>
+			</ul>
+			<section class="flex-con overAuto" style="margin-top: 12.8rem;">
+				<div id="content">
+					<ul class="bmsearchListBox clearfix"></ul>
+					<ul class="bmsearchListBox clearfix" style="display: none;"></ul>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				
+				var con = "";
+				var tabTypeId = ""; //默认类型为1
+				changeSelected(); //选择类型
+				form.onsubmit = function() { //键盘搜索
+					con = $("#searchInput").val();
+					tabTypeId = $('.selected').attr("data-type");
+					window.location.href = 'searchlist.html?con='+con+'&tabTypeId='+tabTypeId;
+				}
+				$('#gotoindex').click(function(){
+					window.location.href='../index.html'
+				});
+
+					
+
+					function changeSelected() { //选择搜索；类型
+						$('#headerNav li').click(function() {
+							var con = $("#searchInput").val();
+							$(this).addClass('selected');
+							$(this).siblings().removeClass('selected');
+							var type = $(this).attr("data-type");
+
+
+							
+
+						});
+					}
+				
+				
+			
+			
+
+			});
+		</script>
+	</body>
+
+</html>

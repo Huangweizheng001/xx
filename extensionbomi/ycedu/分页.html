@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>{{title}}</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<style>
+			.jpagination{
+				
+			}
+			.jpagination a,.jpagination .current,.jpagination .disabled{
+				display: inline-block;
+				width:30px;
+				height: 30px;
+				line-height: 30px;
+				border-radius:8px;
+				margin:0 2px;
+				text-align: center;
+			}
+			.jpagination a{
+				color:#fff;
+				background-color: #dd5d40;
+			}
+			.jpagination a:hover{
+				background-color: #d53a12;
+			}
+			.jpagination .disabled{
+				color:#fff;
+				background-color: #ddd7d6;
+			}
+			.jpagination .current{
+				color:#000;
+				background-color: #fff;
+			}
+			.jpagination .nextPage,.jpagination .prevPage{
+				width:80px;
+			}
+			.jpagination .turndown{
+				padding:0 10px;margin-left:20px;
+			}
+			.jpagination .pagecount{
+				padding:0 10px;
+			}
+			.jpagination input{
+				margin:0 10px;width:50px;padding:2px 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="jpagination">
+			<span class="disabled prevPage">&lt;上一页</span>
+			<span class="current">1</span>
+			<a href="javascript:;" class="tcdNumber">2</a>
+			<a href="javascript:;" class="tcdNumber">3</a>
+			<a href="javascript:;" class="tcdNumber">4</a><span>...</span>
+			<a href="javascript:;" class="tcdNumber">9</a>
+			<a href="javascript:;" class="nextPage">下一页&gt;</a><span class="pagecount">共9页</span><span class="countYe">到第<input type="text" maxlength="1">页<a href="javascript:;" class="turndown">确定</a><span></span></span>
+		</div>
+	</body>
+
+</html>

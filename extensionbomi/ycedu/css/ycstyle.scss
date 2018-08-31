@@ -1,0 +1,4034 @@
+    /*
+ * Autor:Jabo
+ * Time：2017/04/26
+ * Desc：亿策在线教育
+ */
+    /*
+ * public part
+ */
+    
+    //视频样式
+    .video-js {
+        .vjs-big-play-button {
+            width: 3em;
+            height: 3em;
+            line-height: 3em;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    //公告title
+    .dyctitle-box-style1 {
+        position: relative;
+        z-index: 0;
+        padding: 1rem 0;
+        text-align: center;
+        &:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 55%;
+            height: 1px;
+            width: 100%;
+            z-index: -1;
+            background: #e05532;
+        }
+        .ycbox {
+            display: inline-block;
+            padding: 0 .5rem;
+            background: #fff;
+            .yctitle {
+                font-size: 3rem;
+                color: #e05532;
+            }
+            .yctitle-en {
+                font-size: 2rem;
+                color: #333;
+            }
+        }
+    }
+    /*
+ * public part end
+ */
+    /*
+ * 基础配置
+ */
+    
+    $navBg: #0a2848; //nav background
+    $navHoverColor: yellow; //nav hover color
+    $navLineHeight: 60px; //nav lineHeight
+    header {
+        position: fixed;
+        width: 100%;
+        z-index: 999;
+        top: 0;
+        #moblieMenu {
+            display: none;
+            z-index: 102;
+        }
+        background: $navBg;
+        .dycnav-wrap {
+            width: 1200px;
+        }
+        .dyclogo {
+            float: left;
+            width: 160px;
+            .ycimage {
+                display: block;
+                padding: 0 20px;
+                line-height: $navLineHeight;
+            }
+        }
+        .dycnav-box {
+            float: left;
+            width: 740px;
+            transition: all .3s;
+            .dycnav-first {
+                padding-left: 0;
+                margin-bottom: 0;
+                font-size: 0;
+                li {
+                    position: relative;
+                    display: inline-block;
+                    font-size: 14px;
+                    color: #fff;
+                    &.active {
+                        background: rgba(0, 0, 0, .3);
+                        &>a {
+                            color: $navHoverColor;
+                        }
+                    }
+                    a {
+                        display: block;
+                        padding: 0 30px;
+                        line-height: $navLineHeight;
+                        color: #fff;
+                        &:hover {
+                            text-decoration: none;
+                            color: $navHoverColor;
+                        }
+                    }
+                    i {
+                        display: none;
+                    }
+                    .dycsecond-had {
+                        position: absolute;
+                        right: 10px;
+                        top: 23px;
+                    }
+                    &:hover {
+                        background: rgba(0, 0, 0, .3);
+                        .dycsecond-had {
+                            color: $navHoverColor;
+                        }
+                        .dycnav-second {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                }
+            }
+            .dycnav-second {
+                opacity: 0;
+                left: 0;
+                transform: translateY(-100%);
+                position: absolute;
+                z-index: 10;
+                width: auto;
+                min-width: 100%;
+                padding-left: 0;
+                margin-bottom: 0;
+                background: $navBg;
+                transition: all .3s;
+                .goBack {
+                    display: none;
+                }
+                li {
+                    min-width: 150px;
+                    a {
+                        padding: 10px 0 10px 10px;
+                        line-height: 24px;
+                    }
+                }
+                li:not(:last-child) {
+                    border-bottom: 1px solid rgba(255, 255, 255, .3);
+                }
+            }
+        }
+        .dycnav-func-box {
+            float: right;
+            width: 300px;
+            height: 50px;
+            text-align: right;
+            color: #fff;
+            overflow: hidden;
+            line-height: $navLineHeight;
+            .dycmobile-search {
+                display: inline-block;
+                position: relative;
+                height: 40px;
+            }
+            .dycSearch-btn {
+                display: none;
+                position: absolute;
+                border: 1px solid #fff;
+                top: 15px;
+                right: 0px;
+                width: 30px;
+                line-height: normal;
+                padding: 3px 8px;
+            }
+            .dycSearch-type {
+                width: 70px;
+                height: 27px;
+                right: 56px;
+            }
+            #dycsearch {
+                display: inline-block;
+                width: 0;
+                height: 34px;
+                border: none;
+                text-indent: 2px;
+                color: #fff;
+                padding-right: 0;
+                border-bottom: 1px solid;
+                box-sizing: border-box;
+                background: rgba(0, 0, 0, 0);
+                transition: width .3s;
+            }
+            .searching {
+                #dycsearch {
+                    width: 250px;
+                    padding-right: 131px;
+                }
+                .dycSearch-btn {
+                    display: block;
+                }
+            }
+             ::-webkit-input-placeholder {
+                /* WebKit browsers */
+                color: #fdd;
+            }
+             :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #fdd;
+            }
+             ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #fdd;
+            }
+             :-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: #fdd;
+            }
+            a {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: inherit;
+                color: #fff;
+                &:hover {
+                    color: $navHoverColor;
+                    text-decoration: none;
+                }
+            }
+            .dycsearch-btn {
+                width: 45px;
+                text-align: center;
+                font-size: 1.4rem;
+            }
+            .dychadlogin,
+            .dycquitlogin {
+                display: none;
+            }
+        }
+    }
+    
+    .dycnavMask {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 0;
+        z-index: 100;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, .3);
+        transition: all .3s;
+    }
+    
+    @media only screen and (max-width: 1199px) {
+        header {
+            .active+.dycnavMask {
+                height: 100%;
+            }
+            #moblieMenu {
+                position: fixed;
+                top: 10px;
+                right: 20px;
+                display: block;
+                padding: 2px;
+                width: 46px;
+                height: 46px;
+                line-height: .8;
+                box-sizing: border-box;
+                text-align: center;
+                border-radius: 3px;
+                background: #fff;
+                &.active {
+                    right: 220px;
+                }
+                span {
+                    position: absolute;
+                    top: 22%;
+                    left: 15%;
+                    display: inline-block;
+                    width: 70%;
+                    height: 3px;
+                    background: rgba(0, 0, 0, .4);
+                    transition: all .3s;
+                    &:nth-child(2) {
+                        top: 45%;
+                    }
+                    &:last-child {
+                        top: 70%;
+                    }
+                }
+                &.active span {
+                    top: 45%;
+                    &:first-child {
+                        transform: rotate(45deg);
+                    }
+                    &:last-child {
+                        transform: rotate(-45deg);
+                    }
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+            }
+            .dycnav-wrap {
+                //width: auto;
+            }
+            .dycnav-box {
+                position: fixed;
+                right: -200px;
+                width: 200px;
+                height: 100vh;
+                z-index: 101;
+                background: $navBg;
+                .dycnav-first {
+                    li {
+                        display: block;
+                        border-bottom: 1px solid rgba(255, 255, 255, .3);
+                        .dycnav-second {
+                            position: fixed;
+                            width: 200px;
+                            min-width: auto;
+                            top: 0;
+                            right: -200px;
+                            left: auto;
+                            opacity: 1;
+                            transform: translateY(0);
+                            z-index: 2;
+                            height: 100vh;
+                            .goBack {
+                                display: block;
+                            }
+                        }
+                        a {
+                            padding: 0 25px;
+                            line-height: 40px;
+                        }
+                        i {
+                            display: block;
+                            position: absolute;
+                            width: 40px;
+                            height: 100%;
+                            line-height: 40px;
+                            text-align: center;
+                            top: 0;
+                            right: 0;
+                            border-left: 1px solid rgba(255, 255, 255, .3);
+                        }
+                    }
+                }
+                .dycsecond-had {
+                    display: none;
+                }
+            }
+            .dycnav-func-box {
+                float: right;
+                height: 50px;
+                text-align: right;
+                color: #fff;
+                overflow: hidden;
+                line-height: $navLineHeight;
+                margin-right: 60px;
+                #dycsearch {
+                    width: 0;
+                    height: 34px;
+                    border: none;
+                    text-indent: 2px;
+                    color: #fff;
+                    border-bottom: 1px solid;
+                    background: rgba(0, 0, 0, 0);
+                    transition: width .3s;
+                    &.searching {
+                        width: 190px;
+                    }
+                }
+                 ::-webkit-input-placeholder {
+                    /* WebKit browsers */
+                    color: #fdd;
+                }
+                 :-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+                    color: #fdd;
+                }
+                 ::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+                    color: #fdd;
+                }
+                 :-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+                    color: #fdd;
+                }
+                a {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: inherit;
+                    color: #fff;
+                    &:hover {
+                        color: $navHoverColor;
+                        text-decoration: none;
+                    }
+                }
+                .dycsearch-btn {
+                    width: 45px;
+                    text-align: center;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 600px) {
+        header {
+            position: relative;
+            #moblieMenu {
+                right: 10px;
+            }
+            .dycnav-wrap {
+                width: auto;
+                .dyclogo {
+                    width: 120px;
+                    .ycimage {
+                        padding: 0 10px;
+                    }
+                }
+            }
+            .dycnav-func-box {
+                width: auto;
+                margin-right: 60px;
+                .dycmobile-search {
+                    position: absolute;
+                    width: 100%;
+                    height: 0;
+                    line-height: 40px;
+                    left: 0;
+                    bottom: 0;
+                    text-align: center;
+                    background: #005599;
+                    transition: all .3s;
+                    &.searching {
+                        z-index: 2;
+                        bottom: -40px;
+                        height: 40px;
+                    }
+                }
+                .dycSearch-btn {
+                    top: 4px;
+                    right: 10px;
+                }
+                .dycSearch-type {
+                    right: 63px;
+                }
+                .searching {
+                    #dycsearch {
+                        width: 96%;
+                    }
+                }
+                 ::-webkit-input-placeholder {
+                    /* WebKit browsers */
+                    color: #fdd;
+                }
+                 :-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+                    color: #fdd;
+                }
+                 ::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+                    color: #fdd;
+                }
+                 :-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+                    color: #fdd;
+                }
+                a {
+                    display: inline-block;
+                    vertical-align: middle;
+                    line-height: inherit;
+                    color: #fff;
+                    &:hover {
+                        color: $navHoverColor;
+                        text-decoration: none;
+                    }
+                }
+                .dycsearch-btn {
+                    width: 45px;
+                    text-align: center;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    /*
+ * footer
+ */
+    
+    footer {
+        padding: 20px 0 12px;
+        background: #444446;
+        text-align: center;
+        .yctitle {
+            color: #fff;
+            font-size: 1.1rem;
+        }
+        ul {
+            margin-left: 0;
+            padding-left: 0;
+            a {
+                line-height: 2.2;
+            }
+        }
+        a {
+            color: #ababab;
+            font-size: .8rem;
+            &:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+        .dycphone-box {
+            span {
+                display: inline-block;
+                width: 100px;
+                height: 72px;
+                background: url(../images/publicIcon.png) no-repeat;
+            }
+            a {
+                display: block;
+                font-size: 1.6rem;
+                color: #fff;
+            }
+            p {
+                margin: 5px 0;
+                color: #fff;
+            }
+        }
+        .dyc-icp {
+            margin: 10px 0 15px;
+            font-size: .8rem;
+            color: #999;
+        }
+    }
+    /*
+ * 客户和购物车
+ */
+    
+    footer {
+        .dycservice-btn {
+            position: fixed;
+            right: 15%;
+            top: 30%;
+            z-index: 99;
+            a {
+                position: relative;
+                display: block;
+                width: 50px;
+                height: 60px;
+                margin: 30px 0;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+            .dycphone-btn {
+                background: url(../images/ycsevice-logo.png) no-repeat 0 0px;
+            }
+            .dycpeople-btn {
+                background: url(../images/ycsevice-logo.png) no-repeat 0 -85px;
+            }
+            .dycweixin-btn {
+                background: url(../images/ycsevice-logo.png) no-repeat 0 -170px;
+            }
+            .dycshop-btn {
+                background: url(../images/ycsevice-logo.png) no-repeat 0 -250px;
+                .shops-num {
+                    position: absolute;
+                    display: block;
+                    left: 18px;
+                    top: 18px;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    text-align: center;
+                    color: #fff;
+                    background-color: red;
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: 1499px) {
+        footer {
+            .dycservice-btn {
+                right: 2%;
+            }
+        }
+    }
+    
+    //@media screen and (max-width: 767px) {
+    //  .dylink,
+    //  .dycweixin {
+    //      margin-top: 10px;
+    //  }
+    //}
+    //
+    //@media screen and (max-width: 479px) {
+    //  .activity {
+    //      margin: 15px 0 6px;
+    //  }
+    //}
+    //枫叶
+    .pagenationbox {
+        position: relative;
+        padding-left: 0;
+        padding: 50px 0;
+        text-align: center;
+        li {
+            display: inline-block;
+            margin: 0 5px;
+            a {
+                padding: .5rem 1rem;
+                display: inline-block;
+                border: 1px solid #ddd;
+                background: #fff;
+                color: #0E90D2;
+                &:hover {
+                    background: #eee;
+                }
+            }
+            &.active {
+                a {
+                    background: #0E90D2;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    /*
+ * 登入注册
+ */
+    
+    #dyclogin-wrap {
+        display: none;
+    }
+    /*
+ * banner
+ */
+    
+    .dycbanner-model {
+        .dycbanner-container {
+            .swiper-slide {
+                height: 820px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                a {
+                    display: block;
+                    height: 100%;
+                }
+            }
+            .swiper-pagination-bullets,
+            .swiper-pagination-custom,
+            .swiper-pagination-fraction {
+                bottom: 40px;
+            }
+            .swiper-pagination-bullet {
+                border: 2px solid #fff;
+                width: 20px;
+                height: 20px;
+                opacity: 1;
+                background: transparent;
+            }
+            .swiper-pagination-bullet-active {
+                background: #fff;
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 1499px) {
+        .dycbanner-model {
+            .dycbanner-container {
+                .swiper-slide {
+                    height: 600px;
+                }
+            }
+        }
+    }
+    
+    @media only screen and (max-width: 1199px) {
+        .dycbanner-model {
+            .dycbanner-container {
+                .swiper-slide {
+                    height: 560px;
+                }
+            }
+        }
+    }
+    /*
+ * 首页分类快速链接
+ */
+    
+    .dycindex-link {
+        text-align: center;
+        .ycwrap {
+            margin-left: -12px;
+            overflow: hidden;
+        }
+        .dyclink-box {
+            margin-left: 12px;
+            margin-bottom: 12px;
+            a {
+                position: relative;
+                display: block;
+                line-height: 60px;
+                font-size: 1.2rem;
+                color: #fff;
+                z-index: 1;
+                background: #efb26e;
+                &:hover {
+                    text-decoration: none;
+                    &:after {
+                        width: 100%;
+                    }
+                }
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 100%;
+                    z-index: -1;
+                    background: rgba(0, 0, 0, .2);
+                    transition: all .3s;
+                }
+                &:before {
+                    content: "";
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 46px;
+                    height: 40px;
+                    margin-right: 8px;
+                    background: url(../images/publicIcon.png) no-repeat;
+                    background-position: -23px -146px;
+                }
+            }
+        }
+    }
+    /*
+ * 投资链接
+ */
+    
+    .dyctz-link {
+        text-align: center;
+        margin: 20px 0;
+        .ycwrap {
+            margin-left: -12px;
+        }
+        .dyclink-box {
+            margin-left: 12px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            a {
+                img {
+                    transition: all .3s;
+                }
+                &:hover img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width:767px) {
+        .dyctz-link {
+            .dyclink-box {
+                margin-bottom: 12px;
+            }
+        }
+    }
+    /*
+ * other Banner
+ */
+    
+    .dyc-obanner {
+        width: 100%;
+        .dycobanner-box {
+            position: relative;
+            height: 556px;
+            background: url(../images/obanner01.jpg) no-repeat center;
+            background-size: cover;
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    
+    //名师banner
+    .dycms-obanner {
+        .dycobanner-box {
+            background: url(../images/msbanner01.jpg) no-repeat center;
+            background-size: cover;
+        }
+    }
+    
+    @media screen and (max-width:1440px) {
+        .dyc-obanner {
+            .dycobanner-box {
+                height: 470px;
+            }
+        }
+    }
+    
+    @media screen and (max-width:960px) {
+        .dyc-obanner {
+            .dycobanner-box {
+                height: 400px;
+            }
+        }
+    }
+    
+    @media screen and (max-width:767px) {
+        .dyc-obanner {
+            .dycobanner-box {
+                height: 300px;
+            }
+        }
+    }
+    
+    @media screen and (max-width:478px) {
+        .dyc-obanner {
+            .dycobanner-box {
+                height: 160px;
+            }
+        }
+    }
+    /*
+ * 投资理财与考试
+ */
+    
+    .dyctzks {
+        text-align: center;
+        margin: 20px 0;
+        .ycwrap {
+            margin-left: -12px;
+        }
+        .dyctzks-box {
+            margin-left: 12px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            a {
+                img {
+                    transition: all .3s;
+                }
+                &:hover img {
+                    transform: scale(1.05);
+                }
+            }
+        }
+        .yctzks-swiper-pagination {
+            padding-left: 0;
+            margin: 2rem 0 .5rem;
+            text-align: left;
+            .swiper-pagination-bullet {
+                width: auto;
+                height: auto;
+                margin-left: 2rem;
+                font-size: 1.6rem;
+                opacity: 1;
+                color: #474747;
+                background: transparent;
+            }
+            .swiper-pagination-bullet-active {
+                color: #df5e3f;
+            }
+        }
+    }
+    
+    @media screen and (max-width:767px) {
+        .dyctzks {
+            .dyctzks-box {
+                margin-bottom: 12px;
+            }
+        }
+    }
+    /*
+ * 金融优势
+ */
+    
+    .dycys {
+        margin: 1rem 0 2.6rem;
+        text-align: center;
+        .yctitle {
+            font-size: 2rem;
+            p {
+                margin-bottom: .1rem;
+            }
+            span {
+                vertical-align: sub;
+                font-size: 3rem;
+            }
+        }
+        .ycsubtile {
+            margin: 1rem 0 1.5rem;
+            font-size: 1.2rem;
+        }
+        .ycpanel-title {
+            font-size: 1.3rem;
+            margin: 1.2rem 0;
+        }
+        .ycpanel-brief p {
+            margin: .4rem 0;
+        }
+        a {
+            display: inline-block;
+            color: #5b5b5b;
+            img {
+                transform: scale(.9);
+                transition: all .3s;
+            }
+            &:hover {
+                color: #000;
+                text-decoration: none;
+                img {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+    /*
+ * 学员评价
+ */
+    
+    .dycxypj {
+        margin: 3rem 0 1rem;
+        .dycxypj-box {
+            text-align: center;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    /*
+ * 名师风采
+ */
+    
+    .dycmsfc {
+        
+        .dycms-style-list {
+            overflow: hidden;
+            .uk-width-1-4 {
+                z-index: 1;
+                //display: flex;
+                //align-items: flex-end;
+                
+                &:hover {
+                   z-index: 2;
+                }
+                
+                &:first-child{
+                    transform: translateX(25px);
+                }
+                
+                &:nth-child(2) {
+                    transform: translateX(15px);
+                }
+                
+                &:nth-child(3){
+                     transform: translateX(-15px);
+                }
+                
+                &:last-child{
+                    transform: translateX(-25px);
+                }
+                
+                a {
+                    position: relative;
+                    display: block;
+                    perspective: 70rem;
+                    transform-style: preserve-3d;
+                    
+                    img {
+                       // transition: all .3s;
+                    }
+                    &:hover {
+                        img {
+                            transform: rotate3d(0, 1, 0, 180deg);
+                        }
+                        img:last-child {
+                            transform: rotate3d(0, 1, 0, 0deg) scale(1.02);
+                        }
+                    }
+                }
+                img {
+                    width: 102%;
+                    max-width: 102%;
+                    backface-visibility: hidden;
+                    transform: rotate3d(0, 1, 0, 0deg);
+                }
+                img:last-child {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transform: rotate3d(0, 1, 0, 180deg);
+                }
+                .ycpanel-image {
+                    //transition: all .6s;
+                    &:hover {
+                        z-index: 2;
+                    }
+                }
+            }
+            .uk-width-1-4:nth-child(2),
+            .uk-width-1-4:nth-child(3) {
+                img {
+                    //width: 115%;
+                    //max-width: 115%;
+                }
+            }
+        }
+        .dycmsinf {
+            overflow: hidden;
+            .ycwrap {
+                width: 400%;
+                overflow: hidden;
+                transition: all .3s;
+                .dycmsbox {
+                    margin: 1rem 0;
+                    width: 25%;
+                    float: left;
+                    text-align: center;
+                    .dycpost {
+                        font-size: 2.2rem;
+                        span {
+                            color: #e05532;
+                        }
+                    }
+                    .dyctitles {
+                        margin: .6rem 0;
+                        font-size: 1.2rem;
+                        color: #e05532;
+                    }
+                    .ycbrief {
+                        font-size: 1rem;
+                        p {
+                            margin: 0;
+                            line-height: 1.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 播米咨询
+ */
+    
+    .dycbozx {
+        .dyclist-wrap {
+            margin: 1rem 0;
+            ol {
+                li {
+                    list-style: decimal;
+                    line-height: 2;
+                    a {
+                        color: #555;
+                        &:hover {
+                            color: #000;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+            .dycfinancebox,
+            .dycpointbox,
+            .dyctestbox {
+                p {
+                    font-size: 1.4rem;
+                }
+            }
+            .dycfinancebox {
+                p {
+                    color: #d1a43a;
+                }
+            }
+            .dyctestbox {
+                p {
+                    color: #167ea3;
+                }
+            }
+            .dycpointbox {
+                p {
+                    color: #f54f50;
+                }
+            }
+        }
+    }
+    /**************************************************************************/
+    /*
+ * 课程选择页: PC
+ */
+    /*************************************************************************/
+    /*
+ *  课程选择分类
+ */
+    
+    .dyck-type {
+        background: #fff;
+        .dyctopWrap {
+            background: #e5e5e5;
+        }
+        .yccktype-container {
+            .ycbox {
+                padding: 16px;
+                min-height: 132px;
+                margin-top: 30px;
+                background: #eee;
+                line-height: 2;
+                transition: all .3s;
+                &:hover {
+                    background: #fff;
+                }
+                .yctitle {
+                    color: #de5f3f;
+                    font-size: 1.5rem;
+                }
+                .yclink {
+                    padding-bottom: 1rem;
+                    text-align: left;
+                    line-height: 1.5;
+                }
+                a {
+                    display: inline-block;
+                    padding: 3px 12px;
+                    color: #333;
+                    &:hover {
+                        color: #de5f3f;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .ycinner {
+            padding: 40px 0 20px;
+            .dyclinksort-box {
+                padding-bottom: 10px;
+                border-bottom: 1px solid #ccc;
+                a {
+                    color: #555;
+                    &:hover {
+                        color: #000;
+                        text-decoration: none;
+                    }
+                }
+                a:not(.nextPage) {
+                    padding: 6px 35px 6px 16px;
+                    display: inline-block;
+                }
+                #dycsortPrice {
+                    background: url(../images/kcIcon.png) no-repeat;
+                    background-position: 25px -45px;
+                }
+                #dycsortRq {
+                    background: url(../images/kcIcon.png) no-repeat;
+                    background-position: 25px -81px;
+                }
+                #dycsortGrid {
+                    display: inline-block;
+                    width: 20px;
+                    background: url(../images/kcIcon.png) no-repeat;
+                    background-position: 25px -16px;
+                }
+                #dycsortList {
+                    display: inline-block;
+                    width: 20px;
+                    background: url(../images/kcIcon.png) no-repeat;
+                    background-position: 25px -133px;
+                }
+                #dyckSearch {
+                    width: 222px;
+                    height: 24px;
+                    text-indent: 12px;
+                    outline: none;
+                    border: 1px solid #ccc;
+                }
+                #dycpageNumber {
+                    float: right;
+                    padding: 6px 0;
+                    display: inline-block;
+                    .nextPage {
+                        font-size: 22px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .dyclink {
+                padding: 6px 0;
+                margin: 0 20px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid #ccc;
+            }
+        }
+        .dyckclist-wrap {
+            .yckcli {
+                position: relative;
+                overflow: hidden;
+                margin-bottom: 30px;
+                z-index: 0;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 0;
+                    z-index: -1;
+                    background: rgba(0, 0, 0, .1);
+                    transition: all .3s;
+                }
+                &:hover {
+                    &:after {
+                        height: 100%;
+                    }
+                }
+                .ycimage {
+                    display: inline-block;
+                    height: 160px;
+                    //padding-left: 16px; 
+                    padding-right: 12px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .ycbox {
+                    .yctitle {
+                        font-weight: bold;
+                        font-size: 20px;
+                        color: #333;
+                    }
+                    .dyctestListen {
+                        display: inline-block;
+                        color: #df5e3f;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                        span {
+                            display: inline-block;
+                            padding-right: 4px;
+                            width: 22px;
+                            height: 22px;
+                            vertical-align: sub;
+                            background: url(../images/publicIcon.png) no-repeat;
+                            background-position: -142px -36px;
+                        }
+                    }
+                    .ycbrief {
+                        padding-right: 12px;
+                        margin: 10px 0;
+                        font-size: 14px;
+                        color: #919191;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .dyccurrentPrice {
+                        color: #df5e3f;
+                        font-size: 24px;
+                    }
+                    .dycoldPrice {
+                        color: #919191;
+                        text-decoration: line-through;
+                    }
+                    .dycdetail {
+                        display: inline-block;
+                        padding: 4px 20px;
+                        margin-right: 28px;
+                        float: right;
+                        border-radius: 3px;
+                        color: #df5e3f;
+                        border: 1px solid;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                    .dycotherInf {
+                        color: #919191;
+                    }
+                }
+            }
+            .dycgs-like {
+                text-align: center;
+                a {
+                    display: block;
+                    margin-bottom: 20px;
+                }
+            }
+            &.dycgridSort {
+                .yckcli {
+                    width: 33.333%;
+                    float: left;
+                    box-sizing: border-box;
+                    padding: 16px;
+                    margin-bottom: 15px;
+                    &>div {
+                        width: 100%;
+                        float: none;
+                    }
+                    .dyctestListen {
+                        display: none;
+                    }
+                    .ycbrief {
+                        display: none;
+                    }
+                    .dycotherInf {
+                        display: none;
+                    }
+                    .dycdetail {
+                        display: none;
+                    }
+                    .yctitle {
+                        display: block;
+                        padding: 14px 0 2px;
+                        color: #696969;
+                        font-size: 16px;
+                        font-weight: 400;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .ycimage {
+                        overflow: hidden;
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+        .dycspkc-pagination {
+            margin: 30px 0 60px;
+        }
+        .uk-pagination>.uk-active>span {
+            background: #dd5d40;
+        }
+        .uk-pagination>li>a:focus,
+        .uk-pagination>li>a:hover {
+            color: #fff;
+            background: #dd5d40;
+        }
+    }
+    /*
+ * 课程详情与直播详情页面
+ */
+    
+    .dyckcxq-search {
+        .ycbox {
+            padding: 20px 0;
+            .dyckc-form {
+                margin-top: 20px;
+                text-align: center;
+                #dyckc-input {
+                    width: 100%;
+                    height: 38px;
+                    text-indent: 8px;
+                    border: 1px solid #e45e2a;
+                }
+                label {
+                    position: relative;
+                    width: 80%;
+                    display: inline-block;
+                    a {
+                        position: absolute;
+                        top: 0;
+                        right: -1px;
+                        width: 60px;
+                        line-height: 40px;
+                        height: 100%;
+                        color: #fff;
+                        background: #e45e2a;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+            .ycimage {
+                text-align: center;
+            }
+        }
+    }
+    /*
+ * 课程购买与直播详情页面
+ */
+    
+    .dyckcbuy {
+        .dyckc-inner {
+            padding: 10px 30px;
+        }
+        .dycby-top {
+            padding: 40px 0;
+            #dyquicklink {
+                a {
+                    color: #5a5b5b;
+                    &:hover {
+                        color: #dd5d40;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .ycpanel {
+            .ycpanel-title {
+                font-size: 26px;
+                color: #000;
+            }
+            .ycpanel-brief {
+                padding-bottom: 24px;
+                color: #605f5f;
+            }
+            
+            .ycpanel-box{
+               .ycpanel-image{
+//                 width: 475px;
+                   height: 316px;
+                   overflow: hidden;
+                   
+                   img{
+                       width: 100%;
+                   }
+               } 
+            }
+            .dycinner-box {
+                padding-left: 20px;
+                .dyckc-price {
+                    font-size: 48px;
+                    margin-bottom: 0;
+                    line-height: .9;
+                    color: #605f5f;
+                    span {
+                        color: #ff6600;
+                    }
+                }
+                .dycbenefit {
+                    font-size: 14px;
+                    color: #5b5a5a;
+                    span {
+                        color: #ff6600;
+                    }
+                    .ycdiscount-logo {
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        margin-left: 18px;
+                        margin-right: 8px;
+                        text-align: center;
+                        color: #fff;
+                        background: #ff6600;
+                    }
+                }
+                .dycspecial-server {
+                    margin: 22px 0 14px;
+                    color: #5b5a5a;
+                    font-size: 14px;
+                    span {
+                        margin-right: 14px;
+                        display: inline-block;
+                        padding: 8px 4px 8px 30px;
+                        background: #f4f4f4 url(../images/kcxqlogo.png) no-repeat;
+                    }
+                    span:first-child {
+                        margin-left: 15px;
+                        background-position: -15px -96px;
+                        background-size: 86%;
+                    }
+                    span:nth-child(2) {
+                        background-position: -13px -48px;
+                        background-size: 97%;
+                    }
+                    span:nth-child(3) {
+                        background-position: -13px -5px;
+                        background-size: 97%;
+                    }
+                }
+                .dycchose-shift {
+                    font-size: 14px;
+                    color: #5b5a5a;
+                    span {
+                        position: relative;
+                        display: inline-block;
+                        padding: 6px 20px;
+                        margin-right: 8px;
+                        cursor: pointer;
+                        border: 1px solid #bbb;
+                        &:first-child {
+                            margin-left: 15px;
+                        }
+                        &.active {
+                            border: 1px solid #ff6600;
+                            &:before {
+                                content: "";
+                                position: absolute;
+                                bottom: 0;
+                                right: 0;
+                                border: 11px solid #ff6600;
+                                border-top-color: transparent;
+                                border-left-color: transparent;
+                            }
+                            &:after {
+                                content: "\f00c";
+                                position: absolute;
+                                bottom: 0;
+                                right: 0;
+                                font-size: 12px;
+                                color: #fff;
+                                font-family: FontAwesome;
+                                display: inline-block;
+                                font-weight: normal;
+                                font-style: normal;
+                                line-height: 1;
+                                -webkit-font-smoothing: antialiased;
+                                -moz-osx-font-smoothing: grayscale;
+                            }
+                        }
+                    }
+                }
+                .dyckc-brief {
+                    padding: 12px 0;
+                    margin: 12px 0;
+                    color: #5b5a5a;
+                    background: #f6f6f6;
+                }
+                .dycbuy-btn {
+                    position: relative;
+                    display: inline-block;
+                    padding: 12px 60px;
+                    border-radius: 3px;
+                    z-index: 1;
+                    font-size: 24px;
+                    color: #fff;
+                    background: #ff6600;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 0;
+                        width: 100%;
+                        z-index: -1;
+                        background: rgba(0, 0, 0, .2);
+                        transition: all .3s;
+                    }
+                    &:hover {
+                        text-decoration: none;
+                        &:after {
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+            .dyckc-other {
+                .yckcother-box {
+                    color: #5b5a5a;
+                    padding: 15px 0;
+                    a {
+                        color: #5B5A5A;
+                    }
+                }
+            }
+        }
+        .ycintro-panel {
+            .yckcxq-swiper-pagination {
+                margin: 45px 0 20px;
+                padding-left: 0;
+                background: #f6f6f6;
+                .swiper-pagination-bullet {
+                    opacity: 1;
+                    width: auto;
+                    height: 52px;
+                    line-height: 52px;
+                    padding: 0 30px;
+                    margin: 0 20px 0 0;
+                    font-size: 30px;
+                    color: #000;
+                    border-radius: 0;
+                    background: transparent;
+                    &.swiper-pagination-bullet-active {
+                        color: #fff;
+                        background: #ff6600;
+                    }
+                }
+            }
+            .dyckcxq-container {
+                #dyckcjj-wrap {
+                    margin-bottom: 20px;
+                }
+                .yctitle {
+                    position: relative;
+                    font-size: 24px;
+                    color: #e66313;
+                    &:before {
+                        content: "";
+                        display: inline-block;
+                        width: 8px;
+                        height: 20px;
+                        margin-right: 20px;
+                        background: #ff6600;
+                    }
+                }
+                .dycdxmb-box {
+                    margin-bottom: 20px;
+                    ol {
+                        padding-left: 14px;
+                    }
+                    li {
+                        list-style: decimal;
+                        line-height: 2;
+                        color: #919191;
+                    }
+                    .dycdx-box,
+                    .dycmb-box {
+                        &>div:first-child {
+                            text-align: center;
+                        }
+                        //                  &>div {
+                        //                      float: none;
+                        //                      display: inline-block;
+                        //                      vertical-align: middle;
+                        //                  }
+                        //                  &>div:last-child {
+                        //                      width: 74%;
+                        //                  }
+                    }
+                }
+                .dycszjs-box {
+                    .dycszleft-box {
+                        a {
+                            display: inline-block;
+                            height: 88px;
+                            width: 88px;
+                            overflow: hidden;
+                            img {
+                                width: 100%;
+                            }
+                        }
+                        text-align: center;
+                        padding-top: 20px;
+                        .dycteacher-name {
+                            font-weight: bold;
+                            padding-right: 10px;
+                        }
+                    }
+                    .dycszright-box {
+                        margin-bottom: 0;
+                        line-height: 1;
+                        color: #919191;
+                    }
+                }
+                .dycguesslike-box {
+                    .dycguesslike-wrap {
+                        padding: 0 60px;
+                    }
+                    a {
+                        position: relative;
+                        display: block;
+                        overflow: hidden;
+                        line-height: 2;
+                        font-size: 12px;
+                        color: #919191;
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            height: 0;
+                            width: 100%;
+                            background: rgba(0, 0, 0, .2);
+                            transition: all .3s;
+                        }
+                        &:hover {
+                            text-decoration: none;
+                            &:after {
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .ycimage {
+                        width: 255px;
+                        height: 150px;
+                        text-align: center;
+                        overflow: hidden;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .dyccn-title {
+                        margin: 14px 0 8px;
+                        font-size: 14px;
+                        color: #1d1d1d;
+                    }
+                    .dyccn-brief {
+                        margin-top: 8px;
+                    }
+                }
+                //大纲
+                #dyckcdg-wrap {
+                    position: relative;
+                    padding: 15px 0;
+                    background: #f9f9f9;
+                    .dycfree-listen {
+                        position: absolute;
+                        top: 50px;
+                        right: 16px;
+                        padding: 4px 16px;
+                        z-index: 1;
+                        color: #ff992b;
+                        border: 1px solid;
+                        &:hover {
+                            text-decoration: none;
+                            color: #fff;
+                            background: #ff992b;
+                        }
+                    }
+                    ul {
+                        position: relative;
+                        margin-left: 150px;
+                        margin-bottom: 25px;
+                        h4 {
+                            position: relative;
+                            margin-bottom: 30px;
+                            &>span {
+                                position: absolute;
+                                display: inline-block;
+                                left: -110px;
+                                top: -10px;
+                                border-radius: 50px;
+                                padding: 6px 46px 6px 12px;
+                                color: #fff;
+                                background: #c0c0c0;
+                                &>span {
+                                    position: absolute;
+                                    width: 32px;
+                                    height: 32px;
+                                    top: 0;
+                                    right: 0;
+                                    text-align: center;
+                                    line-height: 34px;
+                                    border-radius: 50%;
+                                    color: #ff992b;
+                                    border: 1px solid;
+                                    box-shadow: -4px 0 2px #fff;
+                                    background: #fff;
+                                }
+                            }
+                        }
+                    }
+                    li {
+                        position: relative;
+                        margin-bottom: 15px;
+                        span {
+                            position: absolute;
+                            top: 0;
+                            left: -60px;
+                            padding: 0 6px;
+                            background: #ff992b;
+                            color: #fff;
+                            border-radius: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        /*
+     * 课程评价
+     */
+        #dyckcpj-wrap {
+            .dycfeelbox {
+                float: left;
+                width: 915px;
+                box-sizing: border-box;
+                padding: 0 70px 0 30px;
+            }
+            .dyccomment-box {
+                .dycmli-box {
+                    margin: 30px 0;
+                    display: inline-block;
+                }
+                .dyccm-icon {
+                    float: left;
+                    width: 90px;
+                    text-align: center;
+                    span {
+                        display: block;
+                        margin-top: 6px;
+                        color: #373737;
+                    }
+                }
+                .dyccm-content {
+                    position: relative;
+                    float: left;
+                    margin-left: 15px;
+                    width: 710px;
+                    min-height: 135px;
+                    padding: 15px 12px;
+                    z-index: 1;
+                    box-sizing: border-box;
+                    background: #f9f9f9;
+                    box-shadow: 0 3px 2px rgba(0, 0, 0, .2);
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 20px;
+                        left: -16px;
+                        z-index: -1;
+                        box-shadow: -1px 0 0 rgba(0, 0, 0, .2);
+                        border: 15px solid #f9f9f9;
+                        border-bottom-color: transparent;
+                        border-right-color: transparent;
+                        transform: rotate(-45deg);
+                    }
+                    p {
+                        margin: 1px 0;
+                    }
+                }
+            }
+            .dyccomment-more-box {
+                margin: 10px 0 20px;
+                text-align: right;
+                .dycaddmore {
+                    display: inline-block;
+                    color: #666;
+                    &:hover {
+                        color: #000;
+                    }
+                }
+            }
+            //评论form
+            .dyccomment-form {
+                textarea {
+                    width: 100%;
+                    height: 200px;
+                    padding: 6px;
+                    box-sizing: border-box;
+                    border: 1px solid #ddd;
+                }
+                .dycsubmit-comment {
+                    float: right;
+                    margin: 20px 0 30px;
+                    width: 100px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: #fff;
+                    background: #e75b29;
+                    &:hover {
+                        text-decoration: none;
+                        background: #ab421d;
+                    }
+                }
+            }
+            //广告
+            .dycotheradbox {
+                float: left;
+                width: 285px;
+                a {
+                    display: block;
+                    margin: 30px 0;
+                }
+            }
+            //常见问题
+            .dyccompro-box {
+                ul {
+                    padding: 20px 50px 50px;
+                    .dyccp-title {
+                        margin-bottom: 0;
+                        color: #1c1c1c;
+                        font-weight: bold;
+                    }
+                    .dyccp-brief {
+                        display: none;
+                        margin: 0;
+                        line-height: 1.5;
+                        padding: 20px;
+                    }
+                    li {
+                        list-style: disc;
+                        cursor: pointer;
+                        line-height: 2;
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 登入注册
+ */
+    
+    .dyclogin {
+        height: 90%;
+        height: calc(100% - 60px);
+        background: url(../images/loginbg.jpg) no-repeat;
+        background-size: cover;
+        .container {
+            position: relative;
+            height: 100%;
+        }
+        .login-wrap {
+            height: 100%;
+            .dycslogan {
+                position: absolute;
+                top: 50%;
+                left: -160px;
+                margin-top: -314px;
+            }
+            .dyclogin-box {
+                position: absolute;
+                top: 50%;
+                right: 24px;
+                width: 400px;
+                box-shadow: 4px -1px 32px rgba(0, 0, 0, .2);
+                transform: translateY(-50%);
+                .dyccurrentreg-box {
+                    a {
+                        display: block;
+                        height: 60px;
+                        line-height: 60px;
+                        text-align: center;
+                        font-size: 24px;
+                        color: #fff;
+                        background: #222;
+                        &:hover {
+                            text-decoration: none;
+                            background: #000;
+                        }
+                    }
+                }
+            }
+            .dycform-box {
+                padding: 10px 30px;
+                .yctitle {
+                    padding: 20px 0 10px;
+                    font-size: 26px;
+                    color: #000;
+                }
+                .dycchange-type {
+                    display: block;
+                    padding: 8px 0 20px;
+                    text-align: right;
+                    font-size: 16px;
+                    color: #0a2848;
+                }
+                label {
+                    height: 60px;
+                    line-height: 60px;
+                    display: block;
+                }
+                input[type="text"],
+                input[type="password"] {
+                    width: 100%;
+                    height: 60px;
+                    line-height: 60px;
+                    text-indent: 28px;
+                    box-sizing: border-box;
+                    border: 1px solid #e5e5e5;
+                }
+                 ::-webkit-input-placeholder {
+                    /* WebKit browsers */
+                    color: #d0d0d0;
+                }
+                 :-moz-placeholder {
+                    /* Mozilla Firefox 4 to 18 */
+                    color: #d0d0d0;
+                }
+                 ::-moz-placeholder {
+                    /* Mozilla Firefox 19+ */
+                    color: #d0d0d0;
+                }
+                 :-ms-input-placeholder {
+                    /* Internet Explorer 10+ */
+                    color: #d0d0d0;
+                }
+            }
+            .dycotherlogin-bar {
+                color: #282828;
+                margin: 20px 0;
+                a {
+                    display: inline-block;
+                    width: 36px;
+                    height: 36px;
+                    margin-left: 15px;
+                    vertical-align: middle;
+                    background: url(../images/login-logo.png) no-repeat;
+                    background-position: -66px 0;
+                }
+                .dycweixin {
+                    background-position: -126px 0;
+                }
+                .dycsina {
+                    background-position: -190px 0;
+                    background-size: 1;
+                }
+            }
+            .dyclogin-btn,
+            .dycreg-btn {
+                display: block;
+                height: 50px;
+                margin: 10px 0 30px;
+                line-height: 50px;
+                text-align: center;
+                font-size: 24px;
+                border-radius: 6px;
+                color: #fff;
+                background: #0a2848;
+                &:hover {
+                    text-decoration: none;
+                    background: #05182b;
+                }
+            }
+            //账号登入
+            .yclogin-form {
+                .error {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: 6px;
+                    font-size: 12px;
+                    color: #f00;
+                }
+                input[type="text"],
+                input[type="password"] {
+                    text-indent: 70px;
+                }
+                .dyclogin-name {
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 26px;
+                        width: 36px;
+                        height: 60px;
+                        background: url(../images/login-logo.png) no-repeat;
+                        background-position: 0 15px;
+                    }
+                }
+                .dyclogin-pwd {
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 26px;
+                        width: 36px;
+                        height: 60px;
+                        background: url(../images/login-logo.png) no-repeat;
+                        background-position: 0 -50px;
+                    }
+                }
+                .dylogin-auto {
+                    color: #b4b4b4;
+                    input {
+                        margin-right: 6px;
+                    }
+                    a {
+                        float: right;
+                        color: #b4b4b4;
+                        &:hover {
+                            color: #000
+                        }
+                    }
+                }
+            }
+            //手机登入
+            .ycloginphone-form {
+                .error {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: 6px;
+                    font-size: 12px;
+                    color: #f00;
+                }
+                display: none;
+                .dycloginphone-name {
+                    position: relative;
+                    input {
+                        text-indent: 70px;
+                    }
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 26px;
+                        width: 36px;
+                        height: 60px;
+                        background: url(../images/login-logo.png) no-repeat;
+                        background-position: 0 -148px;
+                    }
+                }
+                .dycloginphone-vc {
+                    position: relative;
+                    a {
+                        position: absolute;
+                        width: 128px;
+                        height: 60px;
+                        top: 0;
+                        right: 0;
+                        text-align: center;
+                        color: #fff;
+                        background: #0a2848;
+                        &:hover {
+                            text-decoration: none;
+                            background: #05182b;
+                        }
+                    }
+                }
+                .dyclogin-btn {
+                    margin: 30px 0 25px;
+                }
+                .dycloginphone-tip {
+                    padding: 0 0 15px;
+                    color: #b4b4b4;
+                    border-bottom: 1px solid;
+                }
+            }
+            //手机注册
+            .ycregphone-form {
+                .error {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: 6px;
+                    font-size: 12px;
+                    color: #f00;
+                }
+                display: none;
+                border-bottom: 1px solid #b4b4b4;
+                .dycregphone-name {
+                    position: relative;
+                    //              &.ok {
+                    //                  &:after {
+                    //                      content: "";
+                    //                      position: absolute;
+                    //                      top: 0;
+                    //                      right: 8px;
+                    //                      width: 36px;
+                    //                      height: 60px;
+                    //                      background: url(../images/login-logo.png) no-repeat;
+                    //                      background-position: 15px -98px;
+                    //                  }
+                    //              }
+                }
+                .dycregphone-vc {
+                    position: relative;
+                    a {
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 120px;
+                        height: 40px;
+                        line-height: 40px;
+                        border-radius: 6px;
+                        text-align: center;
+                        color: #fff;
+                        background: #0a2848;
+                        &:hover {
+                            text-decoration: none;
+                            background: #05182b;
+                        }
+                    }
+                }
+                .dycreguser-name,
+                .dycreguser-pwd {
+                    position: relative;
+                    //              .tips {
+                    //                  display: none;
+                    //                  position: absolute;
+                    //                  top: 0;
+                    //                  right: 10px;
+                    //                  color: #db6d67;
+                    //              }
+                    //              &.error {
+                    //                  .tips {
+                    //                      display: block;
+                    //                  }
+                    //              }
+                }
+                .dyreg-agree {
+                    input {
+                        margin-right: 6px;
+                    }
+                }
+            }
+            //忘记密码
+            .ycforget-form {
+                .error {
+                    display: none;
+                    position: absolute;
+                    top: 0;
+                    right: 6px;
+                    font-size: 12px;
+                    color: #f00;
+                }
+                display: none;
+                .dycforgetphone-vc {
+                    position: relative;
+                    a {
+                        content: "";
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        width: 120px;
+                        height: 40px;
+                        line-height: 40px;
+                        border-radius: 6px;
+                        text-align: center;
+                        color: #fff;
+                        background: #0a2848;
+                        &:hover {
+                            text-decoration: none;
+                            background: #05182b;
+                        }
+                    }
+                }
+                .dycforgetphone-name,
+                .dycforgetuser-pwd,
+                .dycforgetuser-pwdnew {
+                    position: relative;
+                    //              .tips {
+                    //                  display: none;
+                    //                  position: absolute;
+                    //                  top: 0;
+                    //                  right: 10px;
+                    //                  color: #db6d67;
+                    //              }
+                    //              &.error {
+                    //                  .tips {
+                    //                      display: block;
+                    //                  }
+                    //              }
+                }
+                .dyclogin-btn {
+                    margin: 30px 0;
+                }
+            }
+        }
+    }
+    /*
+ * 新闻列表banner -top
+ */
+    
+    .dycnewslist {
+        margin: 20px 0;
+        .dycnewlist-left {
+            width: 766px;
+            float: left;
+        }
+        .dycnewslist-container {
+            a {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 362px;
+                .dycdesc-bar {
+                    position: absolute;
+                    box-sizing: border-box;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 48px;
+                    line-height: 48px;
+                    text-indent: 20px;
+                    padding-right: 150px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    color: #fff;
+                    background: rgba(0, 0, 0, .3);
+                }
+            }
+            .swiper-pagination {
+                text-align: right;
+                .swiper-pagination-bullet {
+                    width: 10px;
+                    height: 10px;
+                }
+                .swiper-pagination-bullet-active {
+                    background: #fff;
+                }
+            }
+        }
+        .dycnewlist-right {
+            width: 434px;
+            box-sizing: border-box;
+            padding-left: 10px;
+            float: left;
+            .dycrightli {
+                position: relative;
+                box-sizing: border-box;
+                margin: 0 10px 19px;
+                width: 192px;
+                height: 108px;
+                img {
+                    width: 100%;
+                }
+                p {
+                    position: absolute;
+                    box-sizing: border-box;
+                    bottom: 0;
+                    left: 0;
+                    margin: 0;
+                    width: 100%;
+                    height: 26px;
+                    padding: 4px 8px;
+                    color: #fff;
+                    font-size: 12px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    background: rgba(0, 0, 0, .3);
+                    transition: all .3s;
+                }
+            }
+            a {
+                &:hover {
+                    p {
+                        white-space: normal;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 新闻列表2
+ */
+    
+    .dycnewlistshow {
+        #dycnewListType {
+            //text-align: right;
+            a {
+                display: inline-block;
+                padding-right: 15px;
+                color: #616161;
+                font-size: 18px;
+                
+                &:hover {
+                    color: #000;
+                    text-decoration: none;
+                }
+                
+                &.active{
+//                  float: left;
+                    color: #000;
+                    font-weight: 600;
+                }
+            }
+        }
+        .ycnews-swiper-pagination {
+            padding-left: 0;
+            text-align: right;
+            .swiper-pagination-bullet {
+                width: auto;
+                height: auto;
+                margin: 0 25px;
+                font-size: 18px;
+                opacity: 1;
+                border-radius: 0;
+                color: #616161;
+                background: transparent;
+                &:hover {
+                    color: #000;
+                }
+            }
+            .swiper-pagination-bullet-active {
+                float: left;
+                margin: 0 5px;
+                font-size: 24px;
+                color: #000;
+            }
+        }
+        .dycnewlist-content {
+            .ycpanel {
+                padding: 30px 0;
+                .ycbox {
+                    position: relative;
+                    display: block;
+                    height: 170px;
+                    overflow: hidden;
+                    margin-bottom: 40px;
+                    z-index: 1;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 0;
+                        z-index: 0;
+                        background: rgba(0, 0, 0, .1);
+                        transition: all .3s;
+                    }
+                    &:hover {
+                        &:after {
+                            width: 100%;
+                        }
+                    }
+                }
+                .ycimage {
+                    float: left;
+                    width: 300px;
+                    height: 170px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .ycright-box {
+                    float: left;
+                    box-sizing: border-box;
+                    width: 270px;
+                    padding: 0 20px;
+                    .yctitle {
+                        font-size: 18px;
+                        color: #000;
+                    }
+                    .ycbrief {
+                        font-size: 16px;
+                        color: #909090;
+                    }
+                }
+            }
+            .dycspkc-pagination {
+                margin: 30px 0 40px;
+            }
+        }
+    }
+    /*
+ * 新闻列表视频
+ */
+    
+    .ycnew-vidio {
+        margin: 10px 0 50px;
+    }
+    /*
+ * 新闻详情
+ */
+    
+    .dycnewswrap {
+        .dycnewheader {
+            border-bottom: 1px solid #ccc;
+            .yctitle {
+                margin: 48px 0 10px;
+                color: #000;
+                font-size: 32px;
+            }
+            .yctime {
+                text-align: right;
+                color: #696969;
+            }
+        }
+        .dycnewsnav {
+            border-bottom: 1px solid #ccc;
+            margin-top: 20px;
+            .dycprenav,
+            .dycnextnav {
+                display: block;
+                font-size: 22px;
+                color: #282828;
+                &:hover {
+                    text-decoration: none;
+                    color: #000;
+                }
+                .dycprev-title,
+                .dycnext-title {
+                    margin-top: 12px;
+                    margin-bottom: 25px;
+                    font-size: 16px;
+                    color: #646464;
+                }
+                &:hover {
+                    .dycprev-title,
+                    .dycnext-title {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .dycnextnav {
+                text-align: right;
+            }
+        }
+        .dycrelatenews-box {
+            .dycboxbrief {
+                position: relative;
+                padding-left: 20px;
+                font-size: 22px;
+                color: #0A2848;
+                margin-top: 25px;
+                margin-bottom: 30px;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: -8px;
+                    left: 0;
+                    width: 10px;
+                    height: 50px;
+                    background: #0a2848;
+                }
+            }
+            ul {
+                padding-left: 25px;
+                list-style: disc;
+                li {
+                    list-style: disc;
+                    a {
+                        color: #666;
+                        line-height: 2;
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+        }
+        .dycrightbox {
+            margin-bottom: 30px;
+            .dycms-slide {
+                display: block;
+                padding: 15px;
+                &:hover {
+                    text-decoration: none;
+                }
+                .dyccontent {
+                    border-bottom: 1px solid #ddd;
+                }
+                .yctitle {
+                    color: #0a2848;
+                }
+                .ycimage {
+                    float: left;
+                    width: 70px;
+                    text-align: center;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .ycbrief {
+                    padding-left: 80px;
+                    margin-top: 0;
+                    line-height: 1.8;
+                    font-size: 14px;
+                    color: #696969;
+                }
+            }
+            ul {
+                box-sizing: border-box;
+                padding-left: 0;
+                padding-right: 15px;
+                margin: 18px 15px 3px 0;
+                text-align: right;
+            }
+            .dycnew-swiper-title {
+                float: left;
+                font-size: 18px;
+                color: #0a2848;
+                margin: 18px 0 3px 15px;
+            }
+            //播米直播
+            .dycnewsdetail2-container {
+                .swiper-slide {
+                    a {
+                        display: block;
+                        padding: 15px;
+                        width: 300px;
+                        height: 185px;
+                        box-sizing: border-box;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 会员中心
+ */
+    
+    //会员中心banner
+    .dycmbbanner-model {
+        .dycmbbanner-container {
+            position: relative;
+            i {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                color: #fff;
+                font-size: 22px;
+                font-weight: normal;
+                cursor: pointer;
+                vertical-align: middle;
+                transition: all .3s;
+                &:hover {
+                    transform-origin: center;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+    
+    //会员中心区域内容
+    .dycmembercenter-wrap {
+        margin: 30px 0;
+        overflow: hidden;
+        .dycmemberleft-wrap {
+            float: left;
+            width: 210px;
+            padding: 30px 20px;
+            box-sizing: border-box;
+            background: #f6f6f6;
+            .dycmemberinf {
+                text-align: center;
+            }
+            .dycpersonlogo {
+                a {
+                    display: block;
+                    width: 100px;
+                    height: 100px;
+                    margin: auto;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+            //个人信息
+            .dycpersonInf {
+                padding: 15px 0 0;
+                .dycpersonName {
+                    font-size: 18px;
+                    font-weight: 400;
+                    color: #000;
+                }
+                .dycpersonBrief {
+                    font-size: 14px;
+                    color: #797979;
+                    line-height: 1.8;
+                    a {
+                        cursor: pointer;
+                        margin-left: 18px;
+                        font-size: 18px;
+                        color: #797979;
+                        &:hover {
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            //会员列表
+            .dycmemberleft-list {
+                padding: 0;
+                margin: 0;
+                line-height: 2.2;
+                .active {
+                    color: #df5e3f !important;
+                }
+                i {
+                    display: inline-block;
+                    width: 20px;
+                    height: 28px;
+                    line-height: 28px;
+                    text-align: center;
+                    font-size: 18px;
+                    float: right;
+                    cursor: pointer;
+                    &:hover {
+                        color: #df5e3f;
+                    }
+                }
+                .dycleft-list-title {
+                    cursor: pointer;
+                    font-weight: 600;
+                    color: #3a3a3a;
+                    &:hover {
+                        color: #df5e3f;
+                    }
+                }
+                .dycsublist {
+                    display: none;
+                    text-align: center;
+                    a {
+                        display: inline-block;
+                        width: auto;
+                        height: auto;
+                        opacity: 1;
+                        border-radius: 0;
+                        background: transparent;
+                        padding: 0px 10px;
+                        font-size: 14px;
+                        color: #606060;
+                        cursor: pointer;
+                        &:hover {
+                            color: #df5e3f;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+        //会员内容区
+        .dycmembercontent-wrap {
+            float: right;
+            width: 960px;
+            background: #f6f6f6;
+        }
+        
+        //公共titlebar
+        .dyctitlebar {
+            padding: 10px 15px;
+            overflow: hidden;
+            border-bottom: 1px solid #ddd;
+            .dyctitle {
+                float: left;
+                font-size: 18px;
+                color: #2b2b2b;
+            }
+            ul {
+                float: left;
+                padding: 0;
+                margin: 0;
+            }
+            .swiper-pagination-bullet {
+                opacity: 1;
+                margin-left: 55px;
+                width: auto;
+                height: 25px;
+                line-height: 25px;
+                background: transparent;
+            }
+            .swiper-pagination-bullet-active {
+                color: #df5e3f;
+            }
+        }
+        //我的订单
+        .dycall-order-box {
+            .dycorderli-box {
+                position: relative;
+            }
+            .dycorder-header {
+                color: #606060;
+                padding: 30px 0 25px 20px;
+                .dyctime {
+                    margin-right: 30px;
+                }
+            }
+            .dycorder-body {
+                position: relative;
+                margin-bottom: 20px;
+                padding-left: 20px;
+                .ycimage {
+                    display: inline-block;
+                    width: 205px;
+                    height: 135px;
+                    vertical-align: middle;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .dycorderbox {
+                    display: inline-block;
+                    padding: 0 0 0 25px;
+                    width: 500px;
+                    box-sizing: border-box;
+                    vertical-align: middle;
+                    .dyorderli-title {
+                        color: #272727;
+                        font-weight: bold;
+                    }
+                    .dycordertype {
+                        width: 320px;
+                        line-height: 1.8;
+                        color: #606060;
+                    }
+                }
+            }
+            .orderBox {
+                text-align: right;
+            }
+            .dycopenorder {
+                position: relative;
+                display: inline-block;
+                margin-right: 20px;
+                z-index: 1;
+                color: #606060;
+                cursor: pointer;
+                &:hover {
+                    color: #000;
+                }
+                i {
+                    margin-left: 6px;
+                }
+            }
+            //订单评论
+            .dycpaycommentBox{
+                text-align: center;
+                textarea {
+                    box-sizing: border-box;
+                    width: 98%;
+                    height: 160px;
+                    margin: auto;
+                    text-indent: 12px;
+                    border: 1px solid #ddd;
+                }
+            }
+            
+            //订单详情
+            .dycorder-detail-box {
+                display: none;
+                margin: 20px 0 10px;
+                padding: 0 30px;
+                height: 50px;
+                line-height: 50px;
+                font-size: 18px;
+                color: #282828;
+                background: #e5e5e5;
+                .dycordernumber {
+                    margin-left: 100px;
+                }
+                .dycorder-price {
+                    float: right;
+                    color: #df5e3f;
+                    span {
+                        font-size: 14px;
+                        text-decoration: line-through;
+                        opacity: .5;
+                        margin: 0 6px;
+                    }
+                }
+            }
+        }
+        //待付款 
+        .dycwait-pay-box {
+            .dycwait-pay-btn {
+                position: relative;
+                float: right;
+                display: inline-block;
+                margin-right: 65px;
+                margin-top: -86px;
+                padding: 6px 16px;
+                border-radius: 3px;
+                background: #e45e2a;
+                color: #fff;
+                &:hover {
+                    background: #b45e2a;
+                    text-decoration: none;
+                }
+            }
+        }
+        //待评价
+        .dycwait-evaluate-box {
+            .dycwait-evaluate-btn {
+                float: right;
+                display: inline-block;
+                margin-right: 65px;
+                margin-top: 12px;
+                padding: 6px 16px;
+                border-radius: 3px;
+                background: #e45e2a;
+                color: #fff;
+                &:hover {
+                    background: #b45e2a;
+                    text-decoration: none;
+                }
+            }
+        }
+        /*
+     * 会员中心：我的消息
+     */
+        .dycmbmessage-panel {
+            .dycmessage-box-li {
+                position: relative;
+                width: 600px;
+                padding: 10px 0 10px 60px;
+                box-sizing: border-box;
+                line-height: 1.8;
+                color: #919191;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    display: inline-block;
+                    top: 5px;
+                    left: 10px;
+                    width: 32px;
+                    height: 32px;
+                    background: url(../images/publicIcon.png) no-repeat;
+                    background-position: -212px -30px;
+                }
+            }
+        }
+        /*
+     * 会员中心：我的邀请码
+     */
+        .dycmbinvitationcode-panel {
+            .dyctitlebar {
+                .ycmbinvitation-swiper-pagination {
+                    float: right;
+                    .swiper-pagination-bullet {
+                        padding: 2px 15px;
+                        color: #6c6c6c;
+                        background: #d2d2d2;
+                        border-radius: 5px;
+                        margin-left: 20px;
+                    }
+                    .swiper-pagination-bullet-active {
+                        color: #fff;
+                        background: #e45e2a;
+                    }
+                }
+            }
+            .dycinvitation-box {
+                padding: 20px;
+                color: #606060;
+                .dyctips {
+                    color: #df5e3f;
+                }
+                .dycQRcode {
+                    width: 204px;
+                    height: 200px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .dycinvitation-link {
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    background: transparent;
+                }
+                .dycinvitation-btn {
+                    margin: 30px 0;
+                    .dyccopy-btn {
+                        display: inline-block;
+                        padding: 6px 30px;
+                        border-radius: 6px;
+                        margin: 0 50px 0 10px;
+                        color: #fff;
+                        background: #e45e2a;
+                        &:hover {
+                            text-decoration: none;
+                            background: darken(#e45e2a, 10%);
+                        }
+                    }
+                    a {
+                        display: inline-block;
+                        float: none;
+                        margin: 0 15px;
+                        width: 30px;
+                        height: 30px;
+                        cursor: pointer;
+                        vertical-align: middle;
+                        background: url(../images/login-logo.png) no-repeat;
+                    }
+                    .dycshareQQ {
+                        background-position: -66px 0;
+                    }
+                    .dycshareWeixin {
+                        background-position: -128px 0;
+                    }
+                    .dycshareSina {
+                        background-position: -192px 0;
+                    }
+                }
+            }
+        }
+        /*
+     * 优惠券
+     */
+        .dycmbcoupon-panel {
+            .dyccoupon-box-list {
+                padding: 25px;
+                .dyccoupon-box-li {
+                    overflow: hidden;
+                    margin-bottom: 45px;
+                }
+                .dyccouponnumber {
+                    float: left;
+                    width: 230px;
+                    height: 130px;
+                    line-height: 130px;
+                    text-align: center;
+                    color: #fff;
+                    background: url(../images/couponbg.png) no-repeat;
+                    background-size: cover;
+                    span {
+                        font-size: 40px;
+                    }
+                    .dyccoupon-price {
+                        font-size: 80px;
+                        font-weight: 500;
+                    }
+                }
+                .dycoupondetail {
+                    margin-left: 60px;
+                    padding-left: 200px;
+                    height: 130px;
+                    background: #fff0bb;
+                    p {
+                        color: #666666;
+                        font-size: 22px;
+                    }
+                    .dyccoupon-condition {
+                        padding-top: 15px;
+                        margin-bottom: 0;
+                        font-size: 30px;
+                        font-weight: bold;
+                        span {
+                            font-size: 35px;
+                            color: #a75818;
+                        }
+                    }
+                    .dyccoupon-use-time {
+                        margin: 3px 0;
+                    }
+                    .dyccoupon-use-btn {
+                        display: inline-block;
+                        float: right;
+                        margin-top: -60px;
+                        margin-right: 30px;
+                        padding: 5px 20px;
+                        border-radius: 6px;
+                        border: 1px solid #df5e3f;
+                        color: #df5e3f;
+                        font-size: 24px;
+                        &:hover {
+                            text-decoration: none;
+                            color: #fff;
+                            background: #df5e3f;
+                        }
+                    }
+                }
+            }
+        }
+        /*
+     * 我的题库
+     */
+        .dycmbquestions-panel {
+            .swiper-slide {
+                padding-top: 10px;
+            }
+            li {
+                line-height: 3;
+                a {
+                    color: #606060;
+                    &:hover {
+                        color: #000;
+                    }
+                }
+            }
+        }
+        /*
+     * 我的收藏
+     */
+        .dycmbcollection-panel {
+            .dyccollection-box-list {
+                padding: 10px;
+                text-align: center;
+            }
+            .dyccollection-box-li {
+                display: block;
+                margin: 20px 15px 0;
+                color: #606060;
+                &:hover {
+                    text-decoration: none;
+                    color: #000;
+                }
+                .ycimage {
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        transition: all .3s;
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+                .ycbreif {
+                    padding-top: 6px;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        line-height: 1.8;
+                    }
+                }
+            }
+        }
+        /*
+     * 我的课程
+     */
+        .dycmbcourse-panel {
+            .dyccourse-box-list {
+                padding: 10px;
+                text-align: center;
+            }
+            .dyccourse-box-li {
+                position: relative;
+                display: block;
+                margin: 20px 15px 0;
+                color: #606060;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 0;
+                    z-index: 0;
+                    background: rgba(0, 0, 0, .1);
+                    transition: all .3s;
+                }
+                &:hover {
+                    text-decoration: none;
+                    color: #000;
+                    &:after {
+                        height: 100%;
+                    }
+                }
+                .ycimage {
+                    width: 205px;
+                    height: 135px;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        transition: all .3s;
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+                    }
+                }
+                .ycbreif {
+                    padding-top: 6px;
+                    p {
+                        margin: 0;
+                        padding: 0;
+                        line-height: 1.8;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+        /*
+     * 我的资料
+     */
+        .dycmbdata-panel {
+            .dycdata-box-list {
+                padding: 20px;
+            }
+            .dycdata-box-li {
+                overflow: hidden;
+                margin-bottom: 20px;
+                padding: 15px 20px;
+                background: #fff;
+            }
+            .dycdata-li-header {
+                span {
+                    color: #2b2b2b;
+                }
+                .dycdata-open-btn {
+                    float: right;
+                    color: #df5e3f;
+                }
+            }
+            .dycdata-li-body {
+                display: none;
+                overflow: hidden;
+                margin: 20px 20px 15px;
+                .ycimage {
+                    float: left;
+                    width: 130px;
+                    height: 130px;
+                    box-sizing: border-box;
+                    border: 1px solid #ddd;
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
+            .dycdata-right-content {
+                float: left;
+                width: 680px;
+                margin-left: 20px;
+                color: #969696;
+                line-height: 2.4;
+                font-size: 14px;
+                .dycdata-tips {
+                    display: block;
+                }
+                .dycdata-save-btn {
+                    line-height: normal;
+                }
+            }
+            .dycdata-save-btn {
+                display: inline-block;
+                padding: 3px 10px;
+                border-radius: 3px;
+                color: #fff;
+                background: #df5e3f;
+                &:hover {
+                    text-decoration: none;
+                    background: darken(#df5e3f, 10%);
+                }
+            }
+            //昵称
+            .dycdata-nice-box {
+                color: #606060;
+                font-size: 14px;
+                p {
+                    span:first-child {
+                        margin-right: 36px;
+                    }
+                }
+                #dycdata-new-nice {
+                    height: 24px;
+                    width: 200px;
+                    text-indent: 6px;
+                    border-radius: 3px;
+                    border: 1px solid #ddd;
+                }
+            }
+            //个人资料
+            .dycdata-person {
+                label {
+                    display: block;
+                    padding: 6px 0;
+                    color: #2b2b2b;
+                    span {
+                        display: inline-block;
+                        width: 76px;
+                    }
+                }
+                #dycdata-real-name,
+                #ECalendar_date,
+                #dycdata-intro,
+                #dycdata-email {
+                    height: 24px;
+                    width: 200px;
+                    text-indent: 6px;
+                    border-radius: 3px;
+                    border: 1px solid #ddd;
+                }
+                #dycdata-address {
+                    display: inline-block;
+                    outline: none;
+                }
+                #dycdata-intro {
+                    width: 350px;
+                    height: 100px;
+                    vertical-align: top;
+                }
+            }
+            //收货地址
+            .dycrecaddr {
+                .dycdata-tips {
+                    display: block;
+                    padding: 2px 0 6px;
+                    font-size: 14px;
+                    color: #969696;
+                }
+                label {
+                    display: block;
+                    padding: 6px 0;
+                    color: #2b2b2b;
+                    span {
+                        display: inline-block;
+                        width: 76px;
+                    }
+                }
+                #dycrec-address {
+                    display: inline-block;
+                    outline: none;
+                }
+                #dycrec-name,
+                #dycrec-detail-addr,
+                #dycemail-code,
+                #dycdate-phone {
+                    height: 24px;
+                    width: 200px;
+                    text-indent: 6px;
+                    border-radius: 3px;
+                    border: 1px solid #ddd;
+                }
+                .dycdataset-default {
+                    color: #969696;
+                    font-size: 12px;
+                }
+            }
+            //手机号码 //修改密码
+            .dycdata-phone,
+            .dycdata-modify-pwd {
+                label {
+                    display: block;
+                    padding: 6px 0;
+                    color: #2b2b2b;
+                    span {
+                        display: inline-block;
+                        width: 100px;
+                    }
+                }
+                input {
+                    height: 24px;
+                    width: 200px;
+                    text-indent: 6px;
+                    border-radius: 3px;
+                    border: 1px solid #ddd;
+                }
+                a {
+                    color: #df5e3f;
+                }
+            }
+        }
+    }
+    /*
+ * 购物车public
+ */
+    
+    .dycshoppingcart-header {
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        .dycshoppingcartlogo {
+            width: 120px;
+            float: left;
+        }
+        .dycshoppingcartstate {
+            float: right;
+            text-align: center;
+            span {
+                position: relative;
+                display: inline-block;
+                width: 232px;
+                line-height: 30px;
+                font-size: 18px;
+                font-weight: 500;
+                color: #282828;
+                background: #e4e4e4;
+                &:not(:last-child) {
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        display: inline-block;
+                        top: 4px;
+                        right: -10px;
+                        width: 22px;
+                        height: 22px;
+                        box-shadow: 2px -2px 0px rgba(255, 255, 255, 1);
+                        transform: rotate(45deg);
+                        background: #e4e4e4;
+                    }
+                }
+                &:last-child {
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+                &:first-child {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    z-index: 6;
+                }
+                &:nth-child(2) {
+                    z-index: 5;
+                }
+                &:nth-child(3) {
+                    z-index: 4;
+                }
+                &.active {
+                    color: #fff;
+                    background: #df5e3f;
+                    &:after {
+                        background: #df5e3f;
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 购物车
+ */
+    
+    .dycshoppingcart-wrap {
+        .dycshoppingcart-content {
+            padding: 0 20px;
+            margin-bottom: 20px;
+            .dycspcartnav {
+                overflow: hidden;
+                border-bottom: 1px solid #ddd;
+                ul {
+                    padding-left: 0;
+                    float: left;
+                }
+                .dycspcartnum {
+                    color: #df5e3f;
+                }
+                .swiper-pagination-bullet {
+                    padding: 10px 30px;
+                    font-size: 20px;
+                    color: #282828;
+                    width: auto;
+                    height: auto;
+                    opacity: 1;
+                    border-radius: 0;
+                    background: transparent;
+                    &:nth-child(2) {
+                        position: relative;
+                        &:before,
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            top: 15px;
+                            width: 1px;
+                            height: 40%;
+                            background: #ddd;
+                        }
+                        &:before {
+                            left: 0;
+                        }
+                        &:after {
+                            right: 0;
+                        }
+                    }
+                }
+                .swiper-pagination-bullet-active {
+                    color: #df5e3f;
+                    border-bottom: 1px solid #df5e3f;
+                }
+                .dycspcartorderinf {
+                    float: right;
+                    line-height: 50px;
+                    color: #696969;
+                    .dycspcartprice {
+                        display: inline-block;
+                        padding: 0 3px;
+                        color: #df5e3f;
+                    }
+                    .dycstatement {
+                        display: inline-block;
+                        border-radius: 3px;
+                        padding: 3px 10px;
+                        line-height: normal;
+                        color: #fff;
+                        background: #df5e3f;
+                        &:hover {
+                            text-decoration: none;
+                            background: darken(#df5e3f, 10%);
+                        }
+                    }
+                }
+            }
+            //购物车提速头部
+            .dycshcartop-bar {
+                line-height: 70px;
+                color: #282828;
+                font-size: 20px;
+                #dycscall-select,
+                #dycscdis-select,
+                #dycscexpire-select {
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 30px;
+                    margin-right: 20px;
+                }
+                span {
+                    display: inline-block;
+                    &:nth-of-type(1) {
+                        width: 660px;
+                        margin-left: 50px;
+                    }
+                    &:nth-of-type(3) {
+                        float: right;
+                        margin-right: 92px;
+                    }
+                    &:nth-of-type(3) {
+                        float: right;
+                        margin-right: 92px;
+                    }
+                }
+            }
+            .dycshoppingcar-list {
+                border: 1px solid #ddd;
+            }
+            .dycshoppingcar-li:not(:last-child) {
+                border-bottom: 1px solid #ddd;
+            }
+            .dycshoppingcar-li {
+                position: relative;
+                overflow: hidden;
+                padding: 12px 0;
+                z-index: 1;
+                background: #f7f7f7;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 0%;
+                    z-index: -1;
+                    background: rgba(0, 0, 0, .05);
+                    transition: all .3s;
+                }
+                &:hover {
+                    &:after {
+                        height: 100%;
+                    }
+                }
+                .dycchosekc {
+                    display: inline-block;
+                    float: left;
+                    width: 80px;
+                    line-height: 136px;
+                    text-align: center;
+                    input {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+                .ycimage {
+                    display: inline-block;
+                    float: left;
+                    width: 206px;
+                    height: 136px;
+                    img {
+                        width: 100%;
+                    }
+                }
+                .dycspkc-box {
+                    display: inline-block;
+                    box-sizing: border-box;
+                    width: 530px;
+                    padding-left: 30px;
+                    padding-right: 20px;
+                    float: left;
+                    .yctitle {
+                        margin-bottom: 25px;
+                        font-size: 20px;
+                        color: #272727;
+                    }
+                    .ycbrief {
+                        line-height: 1.8;
+                        color: #606060;
+                    }
+                }
+                .dycspprice-box {
+                    position: relative;
+                    float: left;
+                    text-align: center;
+                    display: inline-block;
+                    width: 100px;
+                    height: 136px;
+                    .dycspold-price {
+                        position: absolute;
+                        top: 20px;
+                        left: 10px;
+                        display: block;
+                        text-decoration: line-through;
+                        color: #909090;
+                        font-size: 18px;
+                    }
+                    .dycspcurrent-price {
+                        position: absolute;
+                        top: 52px;
+                        left: 10px;
+                        display: block;
+                        color: #df5e3f;
+                        font-size: 22px;
+                    }
+                }
+                .dycspop-box {
+                    position: relative;
+                    text-align: center;
+                    float: left;
+                    display: inline-block;
+                    width: 200px;
+                    a {
+                        position: absolute;
+                        display: block;
+                        color: #909090;
+                    }
+                    .dycspfavorite {
+                        top: 20px;
+                        left: 100px;
+                    }
+                    .dycspkc-del {
+                        top: 52px;
+                        left: 100px;
+                    }
+                }
+            }
+        }
+        .dycsp-count-bar {
+            margin: 20px 0 30px;
+            line-height: 60px;
+            background: #eee;
+            #dycsp-all-select {
+                margin: 0 20px 0 30px;
+                width: 20px;
+                height: 20px;
+                font-size: 20px;
+                color: #505050;
+            }
+            a {
+                display: inline-block;
+            }
+            .dycspdel-btn,
+            .dycspfavorite-btn {
+                padding: 0 15px;
+                color: #505050;
+            }
+            .dycselected-kc,
+            .dyccount-price {
+                span {
+                    display: inline-block;
+                    color: #df5e3f;
+                }
+            }
+            .dycselected-kc {
+                margin-left: 450px;
+            }
+            .dyccount-price {
+                margin-left: 100px;
+            }
+            #dycsettlement {
+                float: right;
+                padding: 0 30px;
+                border-radius: 3px;
+                color: #fff;
+                background: #bfbfbf;
+                &:hover {
+                    cursor: no-drop;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    /*
+ * 拍下课程
+ */
+    
+    .dycsubmitorder-wrap {
+        .dycsubmitorder-inner {
+            padding: 0 20px 20px;
+            .dycsbor-bar {
+                padding: 15px 0;
+                margin-bottom: 20px;
+                color: #282828;
+                border-bottom: 1px solid #ddd;
+                span {
+                    display: inline-block;
+                }
+                span:first-child {
+                    width: 650px;
+                }
+                span:nth-child(2) {
+                    width: 120px;
+                }
+                span:nth-child(3) {
+                    width: 100px;
+                }
+                span:nth-child(4) {
+                    width: 150px;
+                }
+            }
+            //订单列表
+            .dycsubmitorder-list {
+                margin-bottom: 20px;
+                background: #f7f7f7;
+                .dycsubmitorder-li {
+                    position: relative;
+                    overflow: hidden;
+                    padding: 10px;
+                    z-index: 1;
+                    color: #606060;
+                    border: 1px solid #ddd;
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 0;
+                        width: 100%;
+                        z-index: -1;
+                        background: rgba(0, 0, 0, .05);
+                        transition: all .3s;
+                    }
+                    &:hover {
+                        &:after {
+                            height: 100%;
+                        }
+                    }
+                    .ycimage {
+                        float: left;
+                        width: 205px;
+                        height: 135px;
+                        img {
+                            width: 100%;
+                        }
+                    }
+                    .dycsbcontent {
+                        float: left;
+                        width: 420px;
+                        padding: 0 15px 0 26px;
+                        box-sizing: border-box;
+                        .yctitle {
+                            margin-bottom: 25px;
+                            font-size: 20px;
+                            color: #272727;
+                        }
+                    }
+                    span {
+                        display: inline-block;
+                        font-size: 20px;
+                    }
+                    .dycsbprice {
+                        width: 140px;
+                    }
+                    .dycsbnumber {
+                        width: 90px;
+                    }
+                    .dycdiscountway {
+                        width: 130px;
+                        color: #df5e3f;
+                    }
+                    .dycsbsubtotal {
+                        color: #df5e3f;
+                    }
+                }
+            }
+            //优惠券
+            .dycdiscount-box {
+                padding: 20px 0;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+                .dycusediscount {
+                    span {
+                        display: inline-block;
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: #2D2D2D;
+                        i {
+                            vertical-align: middle;
+                            margin-left: 15px;
+                            color: #666;
+                            cursor: pointer;
+                            &:hover {
+                                color: #000;
+                            }
+                        }
+                    }
+                    a {
+                        float: right;
+                    }
+                }
+                .dycdiscountinf {
+                    display: none;
+                    padding: 10px;
+                }
+            }
+            //订单提交盒子
+            .dycsborder-box {
+                margin: 15px 0 20px;
+                overflow: hidden;
+                .dycrightbox {
+                    float: right;
+                    width: 300px;
+                    height: 120px;
+                    padding: 15px;
+                    box-sizing: border-box;
+                    border: 1px solid #df5e3f;
+                    text-align: right;
+                    &>span {
+                        font-size: 14px;
+                        color: #282828;
+                    }
+                    .dycsborder-price {
+                        font-size: 20px;
+                        color: #df5e3f;
+                    }
+                    .dycsborder-btn-box {
+                        margin-top: 30px;
+                        text-align: left;
+                        .dycgoshcart {
+                            display: inline-block;
+                            color: #df5e3f;
+                        }
+                        .dycsbuorder {
+                            float: right;
+                            padding: 3px 10px;
+                            color: #fff;
+                            background: #df5e3f;
+                            &:hover {
+                                text-decoration: none;
+                                background: darken(#df5e3f, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*
+ * 付款到播米
+ */
+    
+    .dycpay-wrap {
+        .dycpay-inner {
+            //margin: 5px 20px 20px;
+            padding: 10px;
+            //border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            ul {
+                padding-left: 0;
+            }
+            li {
+                position: relative;
+                display: inline-block;
+                width: 240px;
+                height: 90px;
+                margin-right: 30px;
+                box-sizing: border-box;
+                cursor: pointer;
+                background: url(../images/pay_s.png) no-repeat;
+                background-position: 60px -305px;
+                &.active {
+                    outline: 1px solid red;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        border: 12px solid red;
+                        border-top-color: transparent;
+                        border-left-color: transparent;
+                    }
+                    &:after {
+                        content: "\f00c";
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        color: #fff;
+                        font-family: FontAwesome;
+                        display: inline-block;
+                        font-weight: normal;
+                        font-style: normal;
+                        line-height: 1;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                    }
+                }
+            }
+            .dycwxpay {
+                background-position: 64px -426px;
+            }
+        }
+        .dycpaysub-box {
+            overflow: hidden;
+            padding: 10px 20px 50px;
+            .dycpayheader {
+                color: #ff9900;
+                i {
+                    padding-right: 6px;
+                }
+            }
+            .dycpaysub-content {
+                margin-top: -20px;
+                float: right;
+                display: inline-block;
+                width: 180px;
+                span:first-child {
+                    color: #222;
+                    font-size: 14px;
+                    margin-right: 30px;
+                }
+                .dycsurepaynumber {
+                    float: right;
+                    color: #df5e3f;
+                    font-size: 20px;
+                    em {
+                        font-size: 12px;
+                    }
+                }
+                .dycpaynow-btn {
+                    display: inline-block;
+                    text-align: center;
+                    margin: 10px 0 10px 40px;
+                    width: 140px;
+                    height: 40px;
+                    line-height: 40px;
+                    color: #fff;
+                    background: #df5e3f;
+                    &:hover {
+                        text-decoration: none;
+                        background: darken(#df5e3f, 10%);
+                    }
+                }
+                .dycfeedback {
+                    display: block;
+                    text-align: right;
+                }
+            }
+        }
+    }
+    /*
+ * 播放页
+ */
+    
+    .dycplay-wrap {
+        height: 100vh;
+        background: #474747;
+        .dycplaymain {
+            float: left;
+            width: calc(100% - 500px);
+            height: 100%;
+        }
+        #play {
+            height: 100%;
+        }
+        .dycplaydiscuss {
+            width: 500px;
+            height: 100vh;
+            float: left;
+            background: #dcdcdc;
+        }
+        .dycplaydiscuss-header {
+            text-align: center;
+            a {
+                line-height: 50px;
+                color: #434343;
+                font-size: 24px;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .dycplaydiscuss-content {
+            padding: 25px;
+            box-sizing: border-box;
+            min-height: 70%;
+            height: calc(100vh - 50px - 120px);
+            overflow: auto;
+            border-bottom: 1px solid #ccc;
+        }
+        .dycdiscuss-box {
+            padding-left: 0;
+            height: 95%;
+            color: #6e6e6e;
+            li {
+                margin: 4px 0;
+                overflow: hidden;
+            }
+            .dycleft {
+                float: left;
+                display: inline-block;
+                width: 90px;
+                line-height: 24px;
+            }
+            .dycright {
+                float: left;
+                width: 342px;
+                margin: 0;
+                line-height: 24px;
+            }
+        }
+        .dycplaydiscuss-bar {
+            padding-left: 10px;
+            line-height: 55px;
+            a {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                background: url(../images/publicIcon.png) no-repeat;
+            }
+            .dycbroadcast {
+                background-position: -324px -24px;
+            }
+            .dycface {
+                background-position: -402px -24px;
+            }
+            .dycaudio {
+                background-position: -492px -24px;
+            }
+            .dyccute {
+                background-position: -576px -24px;
+            }
+            .dycforperson {
+                float: right;
+                margin-top: 15px;
+                margin-right: 15px;
+                border: none;
+                background: #dcdcdc;
+            }
+        }
+        .dycsendbar {
+            padding: 12px;
+            margin-top: -16px;
+            margin-left: -10px;
+            line-height: normal;
+            background: #474747;
+            #editor {
+                display: inline-block;
+                width: 410px;
+                height: 40px;
+                line-height: 40px;
+                text-indent: 10px;
+                outline: none;
+                border-radius: 3px;
+                background: #fff;
+            }
+            a {
+                width: 30px;
+                height: auto;
+                padding: 10px 15px;
+                background: none;
+                color: #fff;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }

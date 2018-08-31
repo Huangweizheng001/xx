@@ -1,0 +1,34 @@
+var _menus = {
+"default": [
+{
+"titleid": "1", "titlename": "贵金属啥啥啥",
+"menus": [
+{ "menuid": "13", "menuname": "01-了解" },
+{ "menuid": "14", "menuname": "02-组织机构管理" },
+{ "menuid": "15", "menuname": "03-角色管理" }
+]
+},
+{
+"titleid": "2", "menuname": "贵金属投资02",
+"menus": [{ "menuid": "21", "menuname": "04-修改密码" },
+{ "menuid": "16", "menuname": "05-功能管理" },
+{ "menuid": "17", "menuname": "06登陆日志"}
+]
+}
+],
+"point": [
+{
+"titleid": "3", "icon": "icon-computer", "menuname": "事务中心",
+"menus": [
+{ "menuid": "33", "menuname": "测试菜单1", "icon": "icon-user", "url": "../Commonpage/building.htm" },
+{ "menuid": "34", "menuname": "测试菜单2", "icon": "icon-organ", "url": "../Commonpage/building.htm" },
+{ "menuid": "35", "menuname": "测试菜单3", "icon": "icon-group-key", "url": "../Commonpage/building.htm" },
+{ "menuid": "36", "menuname": "测试菜单4", "icon": "icon-key", "url": "../Commonpage/building.htm" }
+]
+},
+{
+"menuid": "4", "icon": "icon-user", "menuname": "其他菜单",
+"menus": [{ "menuid": "41", "menuname": "测试菜单5", "icon": "icon-lock", "url": "../Commonpage/building.htm" }]
+}
+]
+};

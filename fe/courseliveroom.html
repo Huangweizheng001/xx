@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>直播课程</title>
+		<link rel="shortcut icon" href="images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/jquery.sinaEmotion.css" />
+		<link rel="stylesheet" href="css/liveroom.css?13" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<body>
+		<section class="liveRoom" id="jliveRoom">
+			<div class="liveRoomContainer">
+				<div class="liveLeftWrap">
+					<div class="liveMainContainer">
+						<div class="liveMainHeaderInner" id="jliveTeacherInf">
+							<!--<a class="bmimageBox">
+									<img class="teahcerIcon" src="images/live/dbteacherIcon.png" alt="嘉宾主页" title="嘉宾主页" />
+								</a>-->
+							<p class="livename">课程直播</p>
+
+						</div>
+						<div class="liveMainInner">
+							<!--作为计算点：高-->
+							<div id="jplayerHeight" style="height: 100%; float: left;"></div>
+							<div id="livePlayer" class="prism-player livePlayer"></div>
+						</div>
+
+					</div>
+				</div>
+				<div class="liveRightWrap">
+					<div class="liveRightContainer">
+						<div class="liveRightTab clearfix" id="livetab">
+							<a class="chat span12 active" data-id='0'>
+								<i class="uk-icon-commenting"></i>
+							</a>
+							<!--<a class="personlist span6" data-id='1'>
+								<i class="uk-icon-user"></i>
+							</a>-->
+						</div>
+						<div class="liveRightCon" style="display: block;">
+							<div class="liveRightInner" id="jchatBox">
+								<div class="messagePanel" id="chatbox" class="clearfix">
+									<div id="doc">
+										<div id="chat">
+											<div id="message">
+												<!--<div id="onlinecount"></div>-->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="liveRightFooterInner">
+
+								<div class="liveSendTools">
+									<a class="icon" href="javascript:;" title="表情"><i class="uk-icon-smile-o"></i>表情</a>
+									<a class="Img" href="javascript:;" title="图片"><i class="uk-icon-image"></i><input id="jsendImgPanel" type="file" accept="image/*">图片</a>
+
+									<!--<a class="Format" href="javascript:;" title="格式刷">格式刷</a>-->
+
+									<!--<select id="jmanageUser"></select>
+								<span id="jmanageOpen">管理</span>-->
+
+								</div>
+								<div class="liveSendBox">
+									<input type="text" class="hideIcon" style="display: none;" />
+									<span id="tempImg" style="display: none;"></span>
+									<div id="content" contenteditable="true"></div>
+									<a class="sendBtn" href="#this" onclick="CHAT.submit();">发送</a>
+								</div>
+							</div>
+						</div>
+						<!--<div class="liveRightCon" style="display: none;">
+							<p class="parents">学生家长：<span><i id="jnowtotal"></i>/<i id="jparenttotal">25</i></span></p>
+							<ul class="parentslist" id="jparentlist">
+								<li v-cloak v-for="item in parentListArr">
+									<a><span><img v-bind:src="item.iconPath|addRootFile"  /></span>{{item.userName}}</a>
+								</li>
+							</ul>
+						</div>-->
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/jquery.sinaEmotion.js"></script>
+		<!--<script type="text/javascript" src="js/feclient.js?27"></script>-->
+		<!--<script type="text/javascript" src="js/feclient1.js?27"></script>-->
+		<script>
+			$(".messagePanel").mCustomScrollbar({
+				scrollButtons: { //上下按钮配置    
+					enable: true, //是否添加按钮    
+					//scrollType: 'pixels',//点击滚动是否有停顿效果    
+					//scrollAmount: 50,//每次点击滚动的距离    
+				},
+				autoHideScrollbar: true,
+				//theme:"light-thick",//以下是主题    
+				theme: "rounded-dots",
+				//theme:"dark-thin",    
+				//theme:"light-3",    
+				//theme:"3d-thick",    
+				//theme:"3d",    
+				//theme:"rounded-dark",    
+				//horizontalScroll: true,//创建水平滚动条    
+				//scrollInertia: 0,//滚动惯性    
+				//mouseWheel: false,//是否取消滚轮效果    
+				//mouseWheelPixels: 100,//滚动一下移动的距离    
+				//autoDraggerLength: false,//自动调整滚动条的长度    
+
+			});
+		</script>
+	</body>
+
+</html>

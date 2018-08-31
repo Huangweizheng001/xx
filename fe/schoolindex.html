@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>学校首页</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css?1" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+		
+		<!--<img src="images/temp/school.jpg" />-->
+		<header id="schoolheader" v-cloak>
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="fe-school-banner" id="jschoolIndexBanner" v-cloak>
+				<div class="swiper-container fe-school-banner-swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="item in bannerImgArr" v-cloak>
+							<a  v-bind:href="item.liveId" :style="{backgroundImage: 'url(' + item.img + ')'}" target="_blank"></a>
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+				<ul class="fe-banner-news" v-if="!bannerNodata">
+					<li>校园资讯</li>
+					<template v-cloak v-for="(item,index) in bannerArr">
+						<li :class={"active":indexActive==[index]} v-on:mouseover="changeCurrentShow(item.newsId , index)" >
+							<a v-bind:href="item.liveId" target="_blank">{{item.title}}</a>
+						</li>
+					</template>
+				</ul>
+			</div>
+		</section>
+		<section>
+			<div class="fe-school-wrap" id="jschoolIndexCon" v-cloak>
+				<!--<div class="container">-->
+					<div class="fe-school-hotcourse container">
+						<div class="fe-school-hotcourse-title">热门课程
+							<a v-bind:href="coursemore|addCourseRoot" target="_blank" @click="storageActive(1)">更多></a>
+						</div>
+						<div class="fe-school-hotcourse-wrap clearfix" >
+							<div class="fenodata" v-if="courseListArrNodata" ></div>
+							<div class="span3"  v-cloak v-for="item in courseListArr" v-else>
+								<a class="fe-hotcourse-box" target="_blank" v-bind:href="item.courseId" v-bind:title="item.title">
+									<div class="fe-hotcourse-box-img">
+										<img v-bind:src="item.iconPath | addRootFile" />
+									</div>
+									<p class="fe-hotcourse-box-title">{{item.title}}</p>
+									<!--<p class="fe-hotcourse-box-price">￥{{item.preferentialPrice}}<span>￥{{item.price}}</span></p>
+									<div class="fe-freelisten"><i class="uk-icon-play-circle"></i>免费试听</div>-->
+									<p class="fe-hotcourse-box-price-free" v-if='item.isFree==1'>免费</p>
+									<p class="fe-hotcourse-box-price" v-else>￥{{item.preferentialPrice}}</p>
+									<div class="teachername">{{item.teacherName}}</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="fe-school-teacher">
+						<div class="container">
+						<div class="fe-school-teacher-title">名师推荐
+							<a v-bind:href="coursemore|addTeacherRoot" @click="storageActive(2)" target="_blank">更多></a>
+						</div>
+						<div class="fe-school-teacher-wrap">
+							<p class="fe-teacher-wrap-title" v-cloak>—&nbsp;&nbsp;{{informationArr.name}}名师团&nbsp;&nbsp;—</p>
+							<div class="fe-teacher-wrap-detail clearfix" v-show="!teacherListArrNodata">
+								<div class="span9">
+									<div class="fe-teacherdetail-brief">
+										<p class="fe-teacherdetail-title" v-cloak>{{teacherListArr.teacherName}}</p>
+										<p class='fe-teacherdetail-name' v-cloak>{{teacherListArr.organName}}  {{teacherListArr.subjectName}}</p>
+										<p v-cloak v-html="teacherListArr.introduce" class="fe-teacherdetail-con"></p>
+									</div>
+								</div>
+								<div class="span3">
+									<div class="fe-teacher-right clearfix">
+										
+											<div class="fe-teacherdetail-img">
+												<img v-bind:src="teacherListArr.iconPath | addRootFile" />
+											</div>
+									
+
+									</div>
+								</div>
+								<div class="span12">
+											<a class="fe-teacherdetail-btn" target="_blank" v-bind:href="teacherListArr.liveId">进入老师主页</a>
+										</div>
+							</div>
+							<div class="fe-teacher-wrap-otherteacher">
+								<div class="fenodata" v-if="otherTeacherArrNodata" style="height:212px;"></div>
+
+								<div class="swiper-container fe-teacher-swiper" v-else>
+									<div class="swiper-wrapper">
+										<div class="swiper-slide" v-for="item in otherTeacherArr" style="text-align: center" v-cloak>
+											<a v-bind:href="item.liveId" target="_blank" alt=""> 
+												<div></div><img v-bind:src="item.iconPath | addRootFile" >
+											</a>
+											<p class="teachername" >{{item.teacherName}}</p>
+										</div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-button-next"></div>
+									<div class="swiper-button-prev"></div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+					<div class="fe-school-news container">
+						<p class="fe-school-news-title">校园资讯</p>
+						<div class="fe-school-news-contain">
+						<div class="fe-school-news-detail clearfix">
+							<p class="span6" v-cloak>
+								创办时间：{{informationArr.createDate}}
+							</p>
+							<p class="span6" v-cloak>
+								校园网站：{{informationArr.webUrl}}
+							</p>
+						</div>
+						<div class="fe-school-news-detail clearfix">
+							<p class="span6" v-cloak>
+								校园地址：{{informationArr.address}}
+							</p>
+							<p class="span6" v-cloak>
+								联系电话：{{informationArr.tel}}
+							</p>
+						</div>
+						<p class="fe-school-brief" v-cloak>
+							校园简介：{{informationArr.introduce}}
+						</p>
+						</div>
+					</div>
+					<div class="fe-school-style container" >
+						<div class="fe-school-style-title">校园风采
+							<a v-bind:href="coursemore|addStyleRoot" @click="storageActive(4)" target="_blank">更多></a>
+						</div>
+						
+						<div class="fe-school-swiper">
+							<div class="fenodata" v-if="styleArrNodata" style="height:379px;"></div>
+							<ul class="fe-school-style-wrap" id="jschoolSwiper"  v-else>
+								<template v-cloak v-for="(item,index) in styleArr" v-if="index<5">
+						<li :class={"active":indexActive==[index]}><div class="fe-style-swiper-cover">{{item.title}}</div><a ><img v-bind:src="item.iconPath | addRootFile" v-bind:alt="item.introduce" /></a></li>
+					</template>
+							</ul>
+						</div>
+					</div>
+				<!--</div>-->
+			</div>
+		</section>
+		<footer id="footer" v-cloak>
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			
+
+			$(function() {
+				var organId=$(this).getUrlParam("organId");
+                checkOrgan(organId);
+				schoolIndexBanner(organId);//学校首页banner
+				shoolIndexCon(organId); //学校首页
+				
+			})
+		</script>
+
+	</body>
+
+</html>

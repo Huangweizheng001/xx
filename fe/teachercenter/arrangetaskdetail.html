@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-布置作业详情</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative;min-height: 1500px" id="homeworkdetail">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学生管理 <i class="uk-icon-angle-right"></i></span>
+                <span>布置作业 <i class="uk-icon-angle-right"></i></span>
+                <span>作业详情</span>
+                <!--<a href="coursecenter.html" style="color: #e55e2a;margin-left: 20px;font-size: 16px">进入选课中心</a>-->
+            </div>
+            <!--布置作业1级页面-->
+            <div class="feteacherfamily" >
+                <!--填写框-->
+                <div class="feselect">
+                    <ul>
+                        <li style="width: 100%;padding-bottom: 0">
+                            <span>作业名称 :</span>
+                            <input type="text" id="workname" style="width: 300px">
+                        </li>
+                        <li>
+                            <span>班&emsp;&emsp;级 :</span>
+                            <select name="" id="classname">
+
+                            </select>
+                        </li>
+                        <li style="position: relative">
+                            <span>发布时间 :</span>
+                            <input type="text" placeholder="请选择时间" name="publishtime" id="publishtime">
+                        </li>
+                        <li class="examtype1"  style="position: relative">
+                            <span>上交时间 :</span>
+                            <input type="text" id="endtime">
+                        </li>
+                    </ul>
+                    <p>
+                        <a id="addTimuBtn"><i class="uk-icon-plus-circle"></i>新增题目</a>
+                        <a id="selectTimuBtn"><i class="uk-icon-dot-circle-o"></i>题库选择</a>
+                        <span class="uk-icon-trash"></span>
+                    </p>
+                </div>
+                <!--已选择题目列表-->
+                <div class="fecontent">
+                    <div class="fetitle">
+                        <div class="span2">选择</div>
+                        <div class="span5">题目名称</div>
+                        <div class="span3">题目类型</div>
+                        <div class="span2">操作</div>
+                    </div>
+                    <div class="felist" v-cloak v-for="(item,index) in homework">
+                        <div class="span2"><input type="checkbox" v-bind:data-id="item.tid"></div>
+                        <div class="span5"><a v-html="item.title" class="textoverflow"></a></div>
+                        <div class="span3">{{item.type}}</div>
+                        <div class="span2">
+                            <a @click="preview(item.title)">演示</a>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+            <!--题库选择-->
+            <div class="tikuselect" id="mytiku">
+                <div class="fequestionList-content">
+                    <div class="fenodata" v-cloak v-show="nodata"></div>
+                    <div class="fepanel" v-cloak v-for="item in myTiku">
+                        <div class="fetitle" v-html="item.title"></div>
+                        <div class="feanswer">
+                            <button @click="addHomework(item.questionBankSketchId,item.title,item.questionType)">添加到作业</button>
+                            <span>题型: {{item.questionType}}</span>
+                            <span>难度: {{item.degreeName}}</span>
+                            <b>丨</b>
+                            <a>查看答案</a>
+                        </div>
+                        <div class="ferightanswer">
+                            <p><span>正确答案:</span></p>
+                            <div v-html="item.selectAnswer"></div>
+                            <p><span style="background: #ff6c00">解析:</span></p>
+                            <div v-html="item.analysis"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+            <!--新增试题-->
+            <div class="addnewtimu" id="addnewtimu">
+                <!--题目-->
+                <div class="fetitle clearfix">
+                    <h4>试题题目 <span class="active">文字形式</span> <span>图片形式</span></h4>
+                    <div class="span9">
+                        <textarea name="" id=""></textarea>
+                        <div class="feimage">
+                            <img src="../images/temp/addnewphoto.png" alt="">
+                            <input type="file">
+                        </div>
+                    </div>
+                    <div class="span3">
+                        <h5>题目类型</h5>
+                        <select name="" id="">
+                            <option value="">单选题</option>
+                        </select>
+                    </div>
+                </div>
+                <!--选择-->
+                <div class="feanswer">
+                    <h4>答案 <span class="active">文字形式</span> <span>图片形式</span></h4>
+                    <div class="fefonttype fehidden">
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项A</span>
+                            <input type="text">
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项B</span>
+                            <input type="text">
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项C</span>
+                            <input type="text">
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项D</span>
+                            <input type="text">
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                    </div>
+                    <div class="fephototype">
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项A</span>
+                            <div class="feimage">
+                                <img src="../images/temp/addnewphoto.png" alt="">
+                                <input type="file">
+                            </div>
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项B</span>
+                            <div class="feimage">
+                                <img src="../images/temp/addnewphoto.png" alt="">
+                                <input type="file">
+                            </div>
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项C</span>
+                            <div class="feimage">
+                                <img src="../images/temp/addnewphoto.png" alt="">
+                                <input type="file">
+                            </div>
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                        <div class="febox">
+                            <span><i class="uk-icon-dot-circle-o"></i>选项D</span>
+                            <div class="feimage">
+                                <img src="../images/temp/addnewphoto.png" alt="">
+                                <input type="file">
+                            </div>
+                            <b class="uk-icon-trash"></b>
+                        </div>
+                    </div>
+                </div>
+                <!--分类-->
+                <div class="fetimusort">
+                    <span><i class="uk-icon-list-ul"></i>题目分类</span>
+                    <select name="" id="">
+                        <option value="">发达的</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">发达的</option>
+                    </select>
+                    <select name="" id="">
+                        <option value="">发达的</option>
+                    </select>
+                </div>
+                <!--难度-->
+                <div class="fetimudifficulty">
+                    <span><i class="uk-icon-fire"></i>试题难度</span>
+                    <select name="" id="">
+                        <option value="">发达的</option>
+                    </select>
+                </div>
+                <!--答案解析-->
+                <div class="fetimuanalysis">
+                    <span><i class="uk-icon-file-text-o"></i>答案解析</span>
+                    <div class="feimage">
+                        <img src="../images/temp/addnewphoto.png" alt="">
+                        <input type="file">
+                    </div>
+                </div>
+                <div class="feoperation">
+                    <a>保存</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        arrangeworkdetail();
+    })
+</script>
+</body>
+
+</html>

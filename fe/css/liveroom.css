@@ -1,0 +1,141 @@
+.liveRoom{
+	height: 100%;width: 100%;padding: 2px 0;box-sizing: border-box;background: #292929;
+}
+.liveRoomContainer{
+	position: relative;height: 100%;width: 100%;
+}
+.liveLeftWrap{
+	box-sizing: border-box;padding-right: 500px;width: 100%;height: 100%;
+}
+.liveRightWrap{
+	width:500px;position: absolute;right: 0;top:0;background: #131313;height: 100%;
+}
+/*左边部分*/
+.liveMainContainer{
+	position: relative;height: 100%;
+}
+.liveMainContainer .liveMainHeaderInner{
+	position: absolute;left:0;top:0;width: 100%;
+}
+.liveMainContainer .liveMainInner{
+	height: 100%;width: 100%;
+}
+.liveMainContainer .liveMainHeaderInner .livename{
+	background: rgba(0,0,0,0.5);color: #fff;font-size: 20px;display: inline-block;width: 100%;padding: 10px 20px;box-sizing: border-box;
+}
+
+/*右边部分*/
+.liveRightWrap .liveRightContainer{
+	height: 100%;
+}
+.liveRightWrap .liveRightTab a{
+	display: inline-block;height:50px;line-height: 50px;color:#fff;text-align: center;font-size:24px;border-bottom: 2px solid #3d4045;
+}
+.liveRightWrap .liveRightTab .active{
+	color:#e55e2a;border-bottom: 2px solid #e55e2a;
+}
+.liveRightWrap .liveRightContainer .liveRightCon{
+	height: 100%;
+}
+
+.liveRightWrap .liveRightInner{
+	padding: 50px 20px 140px;color:#fff;margin-top: -50px;height: 100%;box-sizing: border-box;
+}
+.liveRightWrap .liveRightFooterInner{
+	margin-top: -140px;padding:10px 20px;box-sizing: border-box;
+}
+.liveRightFooterInner .liveSendTools{
+	margin-bottom: 10px ;
+}
+.liveRightFooterInner .liveSendTools a {
+	display: inline-block;
+	padding-left: 20px;
+	height: 30px;
+	line-height: 30px;
+	margin:0 5px;
+	font-size: 12px;
+	color: #fff;
+}
+.liveRightFooterInner .liveSendTools .active,.liveRightFooterInner .liveSendTools a:hover{
+	color: #e55e2a;
+}
+.liveRightFooterInner .liveSendTools a>i{
+	font-size: 20px;margin-right: 5px;vertical-align: middle;
+}
+.liveRightFooterInner .liveSendTools  .icon{
+	
+}
+.liveRightFooterInner .liveSendTools  .Img {
+	position: relative;
+}
+.liveRightFooterInner .liveSendTools  .Img input{
+	position: absolute;opacity: 0;width:60px;left:10px;top:0;height: 100%;
+}
+.liveRightFooterInner .sendBtn{
+	background-color: #e55e2a;color: #fff;border-radius:5px ;padding: 5px 20px;margin-top: -50px;float: right;margin-right: 10px;
+}
+.liveRightWrap .liveRightFooterInner #content{
+	text-indent: 6px;
+    overflow: auto;
+    overflow-x: hidden;
+    outline: none;
+    margin-right: 100px;
+    height: 70px;
+    color:#000;
+    background: #fff;border-radius: 8px;
+}
+/*聊天内容*/
+.dycplayname{
+	cursor: pointer;
+}
+.liveRightInner .messagePanel{
+	height: 100%;
+    margin: 6px 0;
+    color: #fff;
+    box-sizing: border-box;
+}
+.sendContent {
+	padding: 8px;
+	margin:6px 0;
+	background: rgba(255, 255, 255, .2);
+	border-radius: 3px;
+	word-break: break-all;
+}
+.dycdiscuss-box{
+	margin: 10px 0;
+}
+.dycdiscuss-box .dycplayname{
+	display: inline-block;margin-bottom: 5px;
+}
+.dycdiscuss-box .bmsendMessageTime{
+	color: #999;
+}
+
+/*家长列表*/
+.liveRightCon{
+	color: #fff;margin-top: -50px;
+}
+.liveRightCon .parents{
+	padding:60px 20px 10px;border-bottom: 2px solid #3d4045;box-sizing: border-box;
+}
+.liveRightCon .parents>span{
+	float: right;
+}
+.liveRightCon .parents>span>i{
+	font-style: normal;
+}
+.liveRightCon .parentslist{
+	box-sizing: border-box;height: 100%;padding:95px 20px 20px;margin-top: -95px;
+}
+.liveRightCon .parentslist li{
+	padding: 10px 0;box-sizing: border-box;
+}
+.liveRightCon .parentslist li a{
+	display: block;width:100%;color: #fff;
+}
+.liveRightCon .parentslist li span{
+	display: inline-block;border-radius: 100%;overflow: hidden;vertical-align: middle;margin-right: 10px;
+}
+.liveRightCon .parentslist li span img{
+	border-radius: 100%;width:40px;height:40px;
+}

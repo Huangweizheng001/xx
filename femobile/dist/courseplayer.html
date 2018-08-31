@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css">
+		
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>课程播放</title>
+	</head>
+
+	<body>
+		<header id="feHeaderTransparentShare">
+			<header-transparent-share-template></header-transparent-share-template>
+		</header>
+		<section class="feActiveDetailWrap feCoursePlayWrap" id="jCoursePlayWrap">
+			<div class="container flex flex-v">
+				<!--<template v-cloak v-for="item in activeDetailArr">-->
+					<div class="feVideoInner">
+						<div style="height:4.18rem;overflow:hidden;border-bottom: 1px solid #ddd;">
+							<div id="jActivePlayer" class="prism-player" ></div>
+						</div>
+						<div class="feCourseDetail">
+							<p v-cloak>共{{activeDetailArr.periodCount}}
+							<span>已报名:{{activeDetailArr.enrolledCount}}</span>
+							</p>
+						</div>
+					</div>
+				<!--</template>-->
+				<div class="feActiveInner flex-1">
+					<div class="feCoursePlayLi">
+						<!--<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore">-->
+							<template v-for="item in menuArr" v-cloak>
+								<template v-if='activeDetailArr.hasEnrolled==1 '>
+									<a href="javascript:;" class="fecoursePlayLi active"  v-if='courseCatalogId==item.courseCatalogId' >
+										【录播课】{{item.rownum}}.{{item.courseCatalogName}}
+									</a>
+									<a class="fecoursePlayLi" :href="item.courseCatalogId|addActiveHrefPre" v-else>
+										【录播课】{{item.rownum}}.{{item.courseCatalogName}}
+									</a>
+								</template>
+								<template v-if='activeDetailArr.hasEnrolled==0 && item.allowListen == 1'>
+									<a class="fecoursePlayLi freePlay" :href="item.courseCatalogId|addActiveHrefPre" v-else>
+										【录播课】{{item.rownum}}.{{item.courseCatalogName}}
+									</a>
+								</template>
+								<template v-if='activeDetailArr.hasEnrolled==0 && item.allowListen == 0'>
+									<a href="javascript:;" class="fecoursePlayLi nopay" v-bind:class="{'active':courseCatalogId==item.courseCatalogId}" @click='gotoBuy()'>
+										【录播课】{{item.rownum}}.{{item.courseCatalogName}}
+									</a>
+								</template>
+							</template>
+								
+								<!--<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'" v-cloak>Loading...</span> <span v-show="bottomStatus === 'drop'" v-cloak>{{bottomText}}</span></div>
+							</mt-loadmore>-->
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		<script src="../js/libs/jquery.min.js"></script>
+		<script src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/axios.min.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script src="https://g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+		<script src="../js/plugins/layer,wow,scroll.js"></script>
+		<script src="../js/plugins/jquery.storage.js"></script>
+		<script src="../js/femoblie.min.js"></script>
+		<script src="../js/fescript.js"></script>
+		<script>
+			$(function() {
+				var ccId = $.getUrlParam('courseCatalogId');
+				var cId = $.getUrlParam("courseId");
+				var courseKind = $.getUrlParam('courseKind');
+				coursePlayApp(ccId,cId,courseKind);
+			})
+		</script>
+	</body>
+
+</html>

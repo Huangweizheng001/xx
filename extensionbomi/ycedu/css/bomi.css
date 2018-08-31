@@ -1,0 +1,433 @@
+.bmindexSwiperWrap .swiper-slide{
+	height: 300px;
+}
+
+.bmindexSwiperWrap .swiper-slide a{
+	display: block;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+}
+
+.bmindexLiveChatModel .bmindexLiveChatInner{
+	position: relative;
+	height: 530px;
+}
+
+.bmindexLiveChatInner .bmindexLiveChatLeft{
+	padding: 0 370px 0 0;
+	height: 100%;
+	/*background-color: #f00;*/
+}
+
+.bmindexLiveChatInner .bmindexLiveChatRight{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 360px;
+	height: 100%;
+	background-color: #0a2848;
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftTop{
+	position: relative;
+	height: 400px;
+	box-sizing: border-box;
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftAd{
+	position: absolute;
+	padding: 0 10px 10px 0;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	height: 100%;
+	width: 150px;
+	box-sizing: border-box;
+	/*background-color: #008000;*/
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftAd a{
+	display: block;
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftAd img{
+	height: 390px;
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftLive{
+	position: relative;
+	padding-left: 150px;
+	height: 100%;
+	/*background-color: #203B58;*/
+}
+
+.bmindexLiveChatLeft .bmindexLiveChatLeftLive:hover .bmindexGoToLive{
+	display: inline-block;
+	left: 62%;
+}
+
+.bmindexLiveChatLeftBottom {
+	height: 130px;
+	background-color: #0a2848;
+}
+
+.bmmarketDataLeftBox{
+	/*width: 830px;*/
+	margin-right: 380px;
+	height: 1080px;
+	overflow: hidden;
+}
+
+.bmmarketDataLeftBox iframe{
+	margin-left: -54px;
+	margin-top: -258px;
+}
+
+.bmmarketDataLeftBox .bmindexTitleBoxWrap{
+	position: relative;
+	padding-top: 4px;
+	margin: 0;
+	/*width: 82%;*/
+	background-color: #fff;
+}
+
+.bmindexTitleBoxWrap{
+	margin: 20px 0;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e6e6e6;
+	font-size: 0;
+}
+
+.bmindexTitleBoxWrap h5{
+	position: relative;
+	display: inline-block;
+	margin-right: 20px;
+	cursor: pointer;
+	font-size: 24px;
+	color: #0a2848;
+}
+
+.bmindexTitleBoxWrap h5:hover:after,.bmindexTitleBoxWrap h5.active:after{
+	content: "";
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #ffd200;
+}
+
+.bmindexTitleBoxWrap h5:not(:first-child) {
+	margin: 0 20px;
+	/*border-left: 1px solid #ddd;*/
+}
+
+.bmindexTitleBoxWrap h5:not(:first-child):before{
+	content: "";
+	position: absolute;
+	top: 10%;
+	left: -20px;
+	height: 80%;
+	width: 1px;
+	background-color: #ddd;
+}
+
+.bmindexTitleBoxWrap .bmAddMore{
+	float: right;
+	margin-top: 6px;
+	font-size: 14px;
+	color: #333;
+}
+
+.bmteacherModel{
+	/*padding: 20px 0;*/
+	background: url(../images/index/indexteacherBg.jpg) center;
+	background-size: cover;
+}
+
+.bmindex-swiper-teacher {
+	position: relative;
+}
+
+.bmindex-swiper-teacher .bmimagebox{
+	padding: 30px 0;
+}
+
+.bmindex-swiper-teacher  .bmcourseList {
+	overflow: hidden;
+	margin-left: -30px;
+	padding: 0 0 20px;
+	box-sizing: border-box;
+}
+
+.bmindex-swiper-teacher  .bmcourseList .bmcourseBox{
+	display: block;
+	margin-left: 30px;
+}
+
+.bmindex-swiper-teacher  .bmcourseList .bmcourseBox .bmimage{
+	overflow: hidden;
+}
+
+.bmindex-swiper-teacher  .bmcourseList .bmcourseBox:hover img{
+	-webkit-transition: all .3s;
+	transition: all .3s;	
+}
+
+.bmindex-swiper-teacher  .bmcourseList .bmcourseBox:hover img{
+	-webkit-transform: scale(1.02);
+	transform: scale(1.02);
+}
+
+.bmindex-swiper-teacher .bmteacherbox {
+	display: block;
+	vertical-align: bottom;
+	padding-left: 15px;
+}
+
+.bmindex-swiper-teacher .swiper-slide{
+	display: table;
+}
+
+.bmindex-swiper-teacher .bmleft{
+	display: table-cell;
+}
+
+.bmindex-swiper-teacher .bmright{
+	/*display: table-cell;*/
+	display: none;
+	vertical-align: bottom;
+	width: 33.33333333%;
+}
+
+.bmindexCourseModel {
+	position: relative;
+	margin-top: -500px;
+    background-color: #fff;
+	padding: 20px 0;
+}
+
+.bmteacherModel .container{
+	position: relative;
+}
+
+.bmteacherModel .swiper-button-prev, .bmteacherModel .swiper-button-next { left: -45px; top: 55%; background: url(../images/public/bmIcon.png) no-repeat; background-position: -72px 3px;  opacity: .6;}
+
+.bmteacherModel .swiper-button-prev:hover, .bmteacherModel .swiper-button-next:hover{
+	opacity: 1;
+}
+
+.bmteacherModel .swiper-button-next {
+    left: initial;
+    right: -55px;
+    background-position: -130px 3px;
+}
+
+.bmmarketDataModel {
+	padding: 20px 0 0;
+}
+
+.bmmarketDataInner{
+	position: relative;
+}
+
+.bmmarketDataRightBox{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 365px;
+	height: 580px;
+	padding:0 15px;
+	box-sizing: border-box;
+	background-color: #f5f5f5;
+}
+
+.bmmarketDataRightBox .bmindexTitleBoxWrap{
+	margin: 4px 0;
+}
+
+.bmindexLiveChatModel{
+	margin: 10px 0;
+}
+
+.bmmarketDataModel .bmdayNews{
+	margin: 15px 0;
+}
+
+.bmmarketDataModel .bmdayNews h5{
+	padding: 6px 0 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #333;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.bmmarketDataModel  .bmgotonews{
+	margin-top: 24px;
+	text-align: center;
+}
+
+.bmmarketDataModel  .bmgotonews a{
+	font-size: 16px;
+	color: #666;
+}
+
+.bmmarketDataModel  .bmgotonews a:hover{
+	color: #333;
+}
+
+.bmmarketDataModel .bmmarketDataInner .bmimageBox{
+	position: relative;
+	overflow: hidden;
+}
+
+.bmmarketDataModel .bmmarketDataInner .bmimageBox img{
+	height: 185px;
+	width: 100%;
+}
+
+.bmmarketDataModel .bmmarketDataInner .bmimageBox:hover img{
+	transform: scale(1.02);
+}
+
+.bmmarketDataModel .bmmarketDataInner .bmimageBox:before{
+    content: "";
+    position: absolute;
+    width: 96px;
+    height: 96px;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: url(../images/public/bmIcon.png) no-repeat;
+    background-position: -6px -80px;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+#jindexLiveModel .bmindexplayer {
+	height: 390px;
+	background-color: #203B58;
+}
+
+.bmlivePlayList {
+	/*display: table;
+	width: 100%;*/
+}
+
+.bmlivePlayList .bmliveLeft{
+	float: left;
+	width: 70px;
+	margin-top: 16px;
+	text-align: center;
+	/*display: table-cell;*/
+	vertical-align: middle;
+	color: #ffd200;
+}
+
+.bmlivePlayList .bmliveRight{
+	/*display: table-cell;*/
+	padding: 10px;
+}
+
+.bmlivePlayList .bmliveLeft span{
+	font-size: 28px;
+}
+
+.bmlivePlayList .bmliveRight .bmbooklist{
+	height: 110px;
+	margin-right: -8px;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi{
+	position: relative;
+	padding-top: 10px;
+	margin-right: 8px;
+	display: inline-block;
+	width: 140px;
+	height: 100px;
+	z-index: 1;
+	border-radius: 3px;
+	overflow: hidden;
+	cursor: pointer;
+	box-sizing: border-box;
+	background: url(../images/live/1.jpg) no-repeat center;
+	background-size: cover;
+	transition: all .3s;
+}
+.bmlivePlayList .bmliveRight .bmbookLi:hover .bmbook{
+	color: #fff;
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi:before{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-color: rgba(0,0,0,.3);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi.isOut:after{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	background-color: rgba(0,0,0,.5);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi:nth-child(2n){
+	background-image: url(../images/live/2.jpg);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi:nth-child(3n){
+	background-image: url(../images/live/3.jpg);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi:nth-child(4n){
+	background-image: url(../images/live/4.jpg);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi:nth-child(5n){
+	background-image: url(../images/live/5.jpg);
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi .time{
+	text-align: center;
+	color: #fff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.bmlivePlayList .bmliveRight .bmbookLi h5{
+	font-size: 16px;
+	text-align: center;
+	color: #fff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bmlivePlayList .bmliveRight .bmbookLi .bmbook{
+	position:absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 30px;
+	background-color: #ffd200;
+	transition: all .3s;
+}

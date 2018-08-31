@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/jquery.sinaEmotion.css" />
+
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_liveroom.css" />
+		<title>直播室</title>
+		<!--<script type="text/javascript" src="http://s.union.360.cn/186446.js" async defer></script>-->
+
+		<style>
+			#jHiddenIcon {
+				display: inline-block;
+				width: 35px;
+				height: 35px;
+				vertical-align: middle;
+				background: #fff url(../images/live/hideInput.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			.chat-input-box #chatContent {
+				width: calc(100% - 135px);
+			}
+			
+			.chat-btns-group {
+				width: 125px;
+			}
+			
+			.chat-input-box .chat-recharge {
+				margin-left: 10px;
+				width: 45px;
+			}
+			
+			.chat-input-box {
+				/*display: none;*/
+			}
+			
+			#LRdiv3{
+				display: none !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header" style="display: none;">
+			<span class="goBack" onclick="goBack()"></span>
+		</header>
+		<p style="display: none;">
+			<xmp id="show" style="display: none;">
+			</xmp>
+		</p>
+		<p style="display: none;">
+			<xmp id="init" style="display: none;">
+			</xmp>
+		</p>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<!--聊天-->
+			<a class="bmservice" id="bmcontact" style="top: 65px;">
+				<img src="../images/live/regBtn.png" />
+			</a>
+			<a class="bmservice" id="bmservice"><img src="../images/live/service.png" /></a>
+			<!--内容区域-->
+			<!-- 直播box -->
+			<!--	<div id="J_prismPlayer" class="prism-player flex-con"></div>
+-->
+			<!--交流区-->
+			<div id="chatbox" class="flex-con"></div>
+
+			<div class="chatbox-wrap" style="z-index: 2;">
+				<div class="chatbox-inner"></div>
+				<div class="chat-input-box">
+					<span id="jHiddenIcon" style="display: none;"></span>
+					<div id="chatContent" contenteditable="true"></div>
+					<input type="text" class="hideIcon" style="display: none;" />
+					<span id="tempImg" style="display: none;"></span>
+					<div class="chat-btns-group">
+						<a class="chat-recharge" id="jrecharge"></a>
+						<a class="chat-cost" href="#this" id='dbcost'></a>
+					</div>
+					<div class="chat-btns-group" style="display: none;">
+						<a class='chat-face face' href='#this'></a><span class='chat-file'><input id='files' type='file' accept='image/*' /></span>
+						<a class='chat-submit' href='#this' onclick='CHAT.submit();'>发送</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<!--	<script type="text/javascript" src="../js/zepto.min.js"></script>-->
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+		<script type="text/javascript" src="../js/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript" src="../js/client2.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<!--<script type="text/javascript" src="../js/qq.js"></script>-->
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+	</body>
+
+</html>

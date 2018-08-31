@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-上传资源</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+
+
+<section  id="uploadResource">
+    <div class="uploadCourse">
+        <div class="title"><span>上传资源</span><a href="teachercenterresource.html">返回</a></div>
+        <div class="firstStep" >
+            <ul class="content">
+                <li style="padding-left: 0" class="li-style">
+                    <div class="selectBox" style="margin-left: 0">
+                        <span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型:</span>
+                        <select name="type" id="type" v-cloak v-model="resourceType">
+                            <option value="2" >课件</option>
+                            <option value="1">教案</option>
+                        </select>
+                    </div>
+                </li>
+                <li style="padding-left: 0" class="li-style">
+                    <div class="selectBox" style="margin-left: 0">
+                        <span>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级:</span>
+                        <select name="gradeId" id="grade" v-cloak v-model="gradeId">
+                            <option v-for="item in gradeArr" :value="item.gradeId" >{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div class="selectBox">
+                        <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期:</span>
+                        <select name="termId" id="term" v-cloak v-model="termId">
+                            <option :value="item.id" v-for="item in termArr" >{{item.name}}</option>
+                        </select>
+                    </div>
+                    <div class="selectBox">
+                        <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科:</span>
+                        <select name="subjectId" id="subject" v-cloak v-model="subjectId">
+                            <option :value="item.subjectId" v-for="item in subjectArr" >{{item.name}}</option>
+                        </select>
+                    </div>
+                </li>
+                <li class="li-style">
+                    <b class="caption">目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录:</b>
+                    <div class="catalog">
+                        <div class="nodata" v-show="nodata" v-cloak>暂无目录 o(╥﹏╥)o</div>
+                        <div class="first" v-cloak v-for="list in outlineArr">
+                            <!--caret-right-->
+                            <!--caret-down-->
+                            <i class="uk-icon-caret-down" v-if="list.childNodes.length>0"></i>
+                            <h4 v-bind:data-id="list.nodeId">{{list.nodeName}}</h4>
+                            <ul class="second">
+                                <li v-for="item in list.childNodes">
+                                    <i class="uk-icon-caret-down" v-if="item.childNodes.length>0"></i>
+                                    <h4 v-bind:data-id="item.nodeId">{{item.nodeName}}</h4>
+                                    <ul class="three">
+                                        <li v-for="i in item.childNodes">
+                                            <h4 v-bind:data-id="i.nodeId">{{i.nodeName}}</h4>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--<div class="first">-->
+                        <!--&lt;!&ndash;caret-right&ndash;&gt;-->
+                        <!--&lt;!&ndash;caret-down&ndash;&gt;-->
+                        <!--<i class="uk-icon-caret-down"></i>-->
+                        <!--<h4>第二单元 成长体验</h4>-->
+                        <!--<ul class="second">-->
+                        <!--<li>-->
+                        <!--<i class="uk-icon-caret-down"></i>-->
+                        <!--<h4>1、从百草园到三味书屋</h4>-->
+                        <!--<ul class="three">-->
+                        <!--<li>-->
+                        <!--<h4>测试章节</h4>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--</div>-->
+                    </div>
+                    <p>已选中目录为: <span v-cloak>{{syllabusName}}</span></p>
+                </li>
+                <li class="li-style">
+                    <b class="caption">上传文件:</b>
+                    <input type="text" class="inputText" name="name" disabled v-model="filePath" style="width: 400px">
+                    <form action="" id="addFile" enctype="multipart/form-data">
+                        <a class="filebtn">
+                            <input type="file" id="filename" name="filename" @change="addDocument($event)">打开
+                        </a>
+                    </form>
+                </li>
+                <li class="li-style">
+                    <b class="caption">资源名称:</b>
+                    <input type="text" class="inputText" name="name" v-model="resourcename">
+                </li>
+                <li class="li-style">
+                    <b class="caption">资源封面:</b>
+                    <form action="" id="addImg">
+                        <div class="addImage">
+                            <img src="../../images/temp/teachercenter-add.jpg" alt="">
+                            <input type="file" name="iconPath" @change="addCover($event)">
+                        </div>
+                    </form>
+                    <i class="tip">图片大小不超过5M</i>
+                </li>
+                <li class="li-style">
+                    <b class="caption">资源简介:</b>
+                    <textarea name="" id="" v-model="desc"></textarea>
+                </li>
+            </ul>
+            <div class="operation">
+                <button @click="saveFirstStep()">保存信息</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+
+</body>
+</html>

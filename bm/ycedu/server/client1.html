@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>初始化网站信息</title>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	</head>
+	<body>
+		
+		用户名:<input type="text" id="username" name="username" value="" /><br  />
+		会员组:<input type="text" id="groupname" name="groupname" value="" /><br  />
+		UID:<input type="text" id="uid" name="uid" />
+		
+		
+		<script>
+			$(document).ready(function(){
+				var url = "server.php?inAjax=1&do=checkMember&username=jabo";
+				
+				var data={};
+				
+				$.get(url, data, function(res){
+					var jsonObj = eval("(" + res + ")");
+					$("#username").val(jsonObj.username);
+					$("#groupname").val(jsonObj.groupname);
+					$("#uid").val(jsonObj.uid);
+				})
+			})
+		</script>
+	</body>
+</html>

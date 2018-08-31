@@ -1,0 +1,8 @@
+body{
+	background: red url(../../images/temp/t1.jpg);
+}
+
+.ycModelWrap{
+	padding-top: 250px;
+	text-align: center;
+}

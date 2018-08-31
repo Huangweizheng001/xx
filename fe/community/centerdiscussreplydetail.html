@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>评论回复详情</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<div class="container">
+    <div class="answeringreplydetail" id="discussdetail">
+        <h1><span v-cloak>评论人: {{rUserName}}</span><span v-cloak>评论来源: {{topicTitle}}</span> </h1>
+        <ul id="content">
+            <p><button @click="lookmore()" v-show="nodata"><i class="uk-icon-clock-o"></i>查看更多...</button></p>
+            <li class="orange" v-cloak v-for="item in result">
+                <span style="width: 90px">{{item.poster}}</span>
+                <div>{{item.message}} <b style="float: right;font-weight: normal">{{item.postdatetime}}</b></div>
+            </li>
+        </ul>
+        <div class="fehuifu">
+            <span>回复评论:</span>
+            <textarea name="" id="" ></textarea>
+        </div>
+        <div class="feoperation">
+            <button>保存</button>
+            <!--<button>取消</button>-->
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/fecommunitycenter.js"></script>
+<script>
+    $(function () {
+        discussdetail()
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--学生中心</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+	</head>
+<body>
+
+	<section class="evateachingWrap" id="jevateachingApp">
+		<div class="container full">
+			<div class="evateachingInner">
+				<h4 class="evateachingTitle">
+					教师评教问卷调查
+				</h4>
+				<div class="evateachingBrief">
+					<p>同学你好！为了更好地完善学校的教育教学工作，学校对于教师执教情况进行问卷调查，请你认真填写问卷，谢谢！</p>
+					<p>A：满意    B：比较满意    C：不满意</p>
+				</div>
+				<select class="evateachingSelect">
+					<option v-for="item in subjectArr" :value="item.teacherId"  v-cloak>{{item.teacherName}}</option>
+				</select>
+				<div class="fetaskTemplate" id="tasktemplate" style="position: relative">
+					<div  class="fepanel" v-cloak v-for="(modular,index) in questionList" v-bind:class="modular.questionType|getStyle">
+						<h3>{{index+1|toChinese}}、{{modular.questionTypeName}}</h3>
+						<div class="febox" v-for="(list,index1) in modular.questions" v-bind:class="'q'+ list.questionid + '-' + list.source" v-bind:data-id="list.questionid" v-bind:data-source="list.source">
+							<input type="hidden" class="studentAnswer">
+							<div class="fe-stems">
+								<b>{{index1+1}}</b>
+								<span v-cloak v-for="item in list.stems" v-if="item.type=='文本'">{{item.text}}</span>
+								<span v-cloak v-for="item in list.stems" v-if="item.type=='输入框'"><input type="text" placeholder="请填写答案"></span>
+								<span v-cloak v-for="item in list.stems" v-if="item.type=='图片'"><img v-bind:src="item.text" alt=""></span>
+								<span style="color: #00aaff">[{{list.theValue}}分]</span>
+							</div>
+							<!--<p>-->
+							<!--<button @click="collectQuestion(list.questionid,list.source)" v-cloak>收藏此题</button>-->
+							<!--</p>-->
+							<div class="fe-items">
+								<div v-cloak v-for="m in list.items" v-if="list.type==1" class="i-select">
+									<b>{{m.label}}</b>
+									<span v-html="m.title"></span>
+								</div>
+								<div v-cloak v-for="m in list.items" v-if="list.type==2" class="i-select">
+									<b>{{m.label}}</b>
+									<span v-html="m.title"></span>
+								</div>
+								<div v-cloak v-for="m in list.items" v-if="list.type==3" class="i-select">
+									<b>{{m.label}}</b>
+									<span v-html="m.title"></span>
+								</div>
+								<div v-cloak v-if="list.type==4">
+									<textarea name="" id="" placeholder="请填写答案..."></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="feanswer-card">
+						<div class="fepanel" v-cloak v-for="(modular,index) in questionList">
+							<h4 v-cloak>{{modular.questionTypeName}}</h4>
+							<span v-bind:class="'w'+ list.questionid + '-' + list.source" v-for="(list,index1) in modular.questions" v-bind:data-id="list.questionid" v-bind:data-source="list.source">{{index1+1}}</span>
+						</div>
+						<div class="feoperation">
+							<button>提交</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+	<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+	<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+	<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+	<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+	<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+	<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-我的关注</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvcyq.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>收藏关注 <i class="uk-icon-angle-right"></i></span>
+                <span>老师关注</span>
+            </div>
+            <!--我的关注-->
+            <div class="femyattention" id="myattention">
+                <!--头部切换栏-->
+                <div class="fe-schoolteacher-wrap clearfix" >
+                    <div class="fe-schoolteacher-list" style="margin: 0;padding: 0">
+                        <div class="fenodata" v-show="nodata"></div>
+                        <div class="fe-schoolteacher-list-wrap" v-cloak v-for="item in teacherListArr" >
+                            <div class="span3">
+                                <a class="fe-schoolteacher-list-img" target="_blank" v-bind:href="item.liveId">
+                                    <img v-bind:src="item.iconPath | addRootFile" />
+                                </a>
+                            </div>
+                            <div class="span9">
+                                <a class="fe-schoolteacher-list-box" >
+                                    <div class="fe-schoolteacher-list-name">{{item.teacherName}} <span @click="deleteBtn(item.teacherId)"><i class="uk-icon-trash"></i></span></div>
+                                    <p class="fe-schoolteacher-list-brief" >{{item.note}}</p>
+                                    <div class="fe-schoolteacher-list-advantage">
+                                        <!--<span v-for="itemChildren in item.liveIdArr" >{{itemChildren}}</span>-->
+                                        <span>{{item.ofSchoolAge}}年教龄</span>
+                                        <span>{{item.subjectName}}</span>
+                                        <span>{{item.teacherGradeName}}</span>
+                                    </div>
+                                </a>
+                                <a class="fe-schoolteacher-list-course" target="_blank" v-if='item.recordType==1' v-bind:href="item.courseId | addCloundRoot" >视频课：{{item.courseName|addCourseNameEmpty}}</a>
+                                <a class="fe-schoolteacher-list-course" target="_blank" v-if='item.recordType==0' v-bind:href="item.courseId | addCourseRoot" >视频课：{{item.courseName|addCourseNameEmpty}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        myattention();
+    })
+</script>
+</body>
+
+</html>

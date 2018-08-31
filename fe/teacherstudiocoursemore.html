@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>名师工作室课程more</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="festudiocoursemore clearfix" id="feteacherstudiocoursemore">
+    <div class="feteacherdetailhead" v-cloak v-for="studio">
+        <div class="feimage">
+            <img v-bind:src="studio.iconPath|addRootFile" alt="">
+        </div>
+        <h1>{{studio.name}}</h1>
+        <h3>创建人: {{studio.creator}}</h3>
+        <p>
+            成员数:
+            <span>{{studio.memberCount}}</span>|&nbsp;&nbsp;
+            课件数:
+            <span>{{studio.resourceCount}}</span>|&nbsp;&nbsp;
+            文章数:
+            <span>{{studio.publishCount}}</span>
+        </p>
+        <div class="feapplybtn">
+            <button v-if="isShow" id="applyStudio">申请加入工作室</button>
+        </div>
+        <!--<div class="fefollow">-->
+            <!--<button><i class="uk-icon-plus"></i>关注</button>-->
+            <!--<button class="cancel">取消关注</button>-->
+        <!--</div>-->
+        <div class="feteacherdetail-news">
+            <h3>工作室介绍</h3>
+            <p>{{studio.introduce}}</p>
+        </div>
+    </div>
+    <div class="container">
+        <!--<h1>首页 > 名师工作室 > <span>名师课堂</span></h1>-->
+        <div class="festudiocoursemoreselect">
+            <div class="femodule clearfix">
+                <span>课堂:</span>
+                <ul class="">
+                    <li v-cloak v-for="item in teacherclassroomnav" v-bind:data-id="item.courseTypeId">{{item.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <!--<div class="fecoursedetailnav clearfix">-->
+            <!--<div class="">-->
+                <!--<a href="#this" class="fesortall">综合</a>-->
+                <!--<a href="#this" class="fesortprice">价格 <i class="uk-icon-long-arrow-down"></i></a>-->
+                <!--<a href="#this" class="fesortrenqi">人气 <i class="uk-icon-long-arrow-up"></i></a>-->
+                <!--<div class="febox">-->
+                    <!--<span v-cloak>{{current}}</span>/-->
+                    <!--<span v-cloak>{{allpage}}</span>页-->
+                    <!--<a href="#this" class="fenextpage uk-icon-angle-right" @click="current++ && goto(current++)"></a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="fecoursedetailcontent-grid clearfix">
+            <div class="fenodata" v-show="teacherclassroomnodata" style="width: 100%"></div>
+            <div  v-cloak v-for="item in teacherclassroom" style="width: 25%;margin-left: 0;">
+                <div class="fepanel" style="margin: 0 10px">
+                    <div class="feleft">
+                        <a v-bind:href="item.courseId,item.recordType,item.courseKind|addRootCourse" target="_blank"><img v-bind:src="item.iconPath|addRootFile" alt=""></a>
+                    </div>
+                    <div class="fecenter">
+                        <h1>{{item.courseName}}</h1>
+                        <h6 v-if="item.isFree==0" ><span style="color: #ff6c00">¥{{item.preferentialPrice}}</span></h6>
+                        <h6 v-else><span>免费</span></h6>
+                        <div class="fegrid-teacher">
+                            <span>{{item.teacherName}}</span>
+                            <span><a >{{item.organName}}</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--枫叶-->
+        <div class="span12">
+            <ul class="pagenationbox clearfix">
+                <li v-show="current != 1" @click="current-- && goto(current--)">
+                    <a href="#this">上一页</a>
+                </li>
+                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#this">{{index}}</a>
+                </li>
+                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                    <a href="#this">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var teachingStudioId=$(this).getUrlParam("teachingStudioId");
+        teacherstudiocoursemore(teachingStudioId);
+    })
+</script>
+</body>
+</html>

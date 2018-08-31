@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-视频/照片</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>主页管理 <i class="uk-icon-angle-right"></i></span>
+                <span>视频/照片</span>
+                <span></span>
+                <b>.mp4/.avi/.wmv/.rm/.rmvb/.mov/.flv 格式均可上传</b>
+                <span><a href="">预览主页</a></span>
+            </div>
+            <!--视频/照片-->
+            <div class="fevideophoto">
+                <div class="febox">
+                    <h1><b>我的资源:</b><span class="active">视频</span><span>照片</span></h1>
+                    <!--<p>-->
+                        <!--<button><i class="uk-icon-plus-circle"></i>添加视频</button>-->
+                        <!--<span>请将视频控制在1G之内，视频必须为你的原创作品。</span>-->
+                    <!--</p>-->
+                </div>
+                <div class="feteacherindex-photo">
+                    <!--视频-->
+                    <div class="fevediodetail " id="showvideo" style="position: relative">
+                        <div class="span4" v-cloak v-for="item in videoArr">
+                            <div class="fepanel" v-bind:data-vid="item.videoId">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                    <a ><span>播放<b></b></span></a>
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.resourceName}}</h3>
+                                    <h4>{{item.publishDate}}</h4>
+                                </div>
+                                <ul v-bind:data-id="item.studioResourceId">
+                                    <li><i class="uk-icon-edit"></i></li>
+                                    <li><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!--照片-->
+                    <div class="fephotodetail fehidden" id="showphoto" style="position: relative">
+                        <div class="span4" v-cloak v-for="item in photoArr">
+                            <div class="fepanel">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                    <a >
+                                        <div>
+                                            <h6>{{item.note}}</h6>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.resourceName}}</h3>
+                                    <h4>{{item.publishDate}}</h4>
+                                </div>
+                                <ul>
+                                    <li><i class="uk-icon-edit"></i></li>
+                                    <li><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--添加图片界面-->
+                <!--<div class="feaddphoto fehidden">-->
+                    <!--<form action="">-->
+                        <!--<div class="fepanel">-->
+                            <!--<span>图片标题 :</span>-->
+                            <!--<input type="text" name="title" id="picturetitle">-->
+                        <!--</div>-->
+                        <!--<div class="fepanel">-->
+                            <!--<span>添加图片 :</span>-->
+                            <!--<div>-->
+                                <!--<img src="images/temp/teachercenter-add.jpg" alt="">-->
+                                <!--<input type="file" class="addcoursebg" name="iconPath" id="picture">-->
+                            <!--</div>-->
+                            <!--<b>图片大小不超过5M</b>-->
+                            <!--<p><button>保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存</button></p>-->
+                        <!--</div>-->
+                    <!--</form>-->
+                    <!--&lt;!&ndash;<p><b>点击上传<input type="file" accept="image/png, image/jpeg, image/gif, image/jpg"/></b><span>仅支持 .jpg、.png、.jpeg 格式照片，大小不超过10M</span></p>&ndash;&gt;-->
+                <!--</div>-->
+                <!--添加视频界面-->
+                <!--<div class="feaddvideo fehidden">-->
+                    <!--<p><b>点击上传<input type="file" accept="image/png, image/jpeg, image/gif, image/jpg"/></b><span>仅支持 .jpg、.png、.jpeg 格式照片，大小不超过10M</span></p>-->
+                    <!--<div><span>视频标题 :</span><input type="text"></div>-->
+                    <!--<button>保存</button>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        videophoto(teacherId);
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+.userInfWrap {
+  width: 850px;
+  margin: auto;
+}
+.userInfWrap .noBorder {
+  border: none !important;
+}
+.userInfWrap .userInfInner {
+  padding: 12px 6px 30px;
+  color: #666;
+}
+.userInfWrap .userInfInner .img {
+  float: left;
+  width: 220px;
+  padding-top: 38px;
+  text-align: center;
+}
+.userInfWrap .userInfInner .img img {
+  display: inline-block;
+  width: 126px;
+  height: 146px;
+}
+.userInfWrap .userInfInner .left {
+  padding-left: 230px;
+  padding-right: 50px;
+}
+.userInfWrap .userInfInner .userLine {
+  line-height: 46px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.userInfWrap .userInfInner .userField {
+  display: inline-block;
+  width: 230px;
+}

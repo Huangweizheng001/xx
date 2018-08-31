@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>课程播放-</title>
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/jquery.emoji.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			body {
+				padding-top: 0;
+			}
+			
+			#J_prismPlayer {
+				height: 99% !important;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<!-- 视频播放 -->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/swfobject.js"></script>
+		<div class="dycpheader">
+			<ul id="jplayerhead" class="dycplayerheader clearfix">
+				<li class="dycgo-left">
+					<a href="#this"><i class="uk-icon-arrow-left"></i></a>
+				</li>
+				<li id="jplayertitle" class="dycplayertitle"><span></span></li>
+			</ul>
+		</div>
+		<div class="dycplayer-wrap" >
+			<div class="prism-player" id="J_prismPlayer" style="position: absolute;"></div>
+			<div class="dycplistwrap clearfix">
+				<div class="scollbar">
+					<a class="scollbar-name active" href="#this"><i class="uk-icon-bars"></i>章节</a>
+					<a class="scollbar-name" href="#this"><i class="uk-icon-question-circle"></i>提问</a>
+				</div>
+				<div class="dycpalyerlist">
+					<div id="jplayerlist" class="dycplcontent">
+						<h3>Canvas 绘制时钟</h3>
+						<ul>
+							<h4>
+								<span class="dycz">第 <span>2</span>章</span> 
+								贵金属投资概述与开户初体验贵金属投资概述与开户初体验贵金属投资概述与开户初体验
+							</h4>
+							<li>
+								<a href="#this">
+									<span class="dycpltext">01- 了解市场了解市场了解市场了解市场了解市场了解市场了解市了解市场了场</span>
+									<span class="dyclearnlogo learn"><i class="uk-icon-check-circle"></i></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="nano-pane" style="display: none;">
+						<div class="nano-slider" style="height: 775px; transform: translate(0px, 0px);"></div>
+					</div>
+				</div>
+			</div>
+			<div id="jsold" class="dycnosold" style="display: none;">
+				<a id="jcoursebuy" class="dycnosold-tips" href="" target="_blank">该课程需购买观看，赶紧去抢购哦~</a>
+			</div>
+			<div class="dycnovideo" style="display: none;">
+				<a class="dycnovideo-tips" href="#this">没有视频~</a>
+			</div>
+			<div id="jstop" class="dycnovideo" style="display: none;position: absolute;background-color:rgba(0,0,0,0);">
+				<a class="dycnovideo-tips" href="#this">未登录只能观看十分钟哦~赶快去登录吧~</a>
+			</div>
+		</div>
+
+	</body>
+	
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/uikit.min.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/vue.min.js"></script>
+	<script type="text/javascript" src="js/template.js"></script>
+	<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="js/wow.min.js"></script>
+	<script type="text/javascript" src="js/ycswiper.js"></script>
+	<script type="text/javascript" src="js/ycedu.js"></script>
+	<script type="text/javascript" src="js/player.js"></script>
+	<script type="text/javascript" src="js/teacherswiper.js"></script>
+	<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+
+	<script>
+		$(function() {
+			var cId = $(this).getUrlParam("courseId");
+			var vId = $(this).getUrlParam("videoId");
+			var ccId = $(this).getUrlParam("courseCatalogId");
+
+			var ncId = $.playerList(cId, ccId);
+			var b, allowListen;
+			var obj = $('.scollbar-name');
+			var olist = $('.dycplistwrap');
+
+			obj.click(function() {
+				b = !b;
+				if(!b) {
+					olist.animate({
+						right: "-350px"
+
+					});
+				} else {
+					olist.animate({
+						right: "0px"
+					});
+				}
+			});
+
+			if((vId == '') || (vId == undefined)) {
+				ccId = ncId[1];
+				vId = ncId[0];
+			}
+
+			allowListen = $.playerHead(ccId);
+
+			setTimeout(function() {
+				var title = $('#jplayertitle span').text();
+				document.title = "课程播放-" + title;
+			}, 300);
+
+			var player = "";
+
+			play = function(vId) {
+				$.ajax({
+					type: "post",
+					url: ROUTE + "CourseCatalog.ashx?action=getPlayUrlByVideoId",
+					dataType: 'text',
+					data: {
+						videoid: vId
+					},
+					success: function(msg) {
+						player = new prismplayer({
+							id: 'J_prismPlayer',
+							width: '100%',
+							autoplay: true,
+							vid: vId,
+							playauth: msg,
+							waterMark:ROUTEROOT+"ycedu/images/liveWaterIcon.png|BL|0.08|0.8"
+						});
+						
+
+					}, //操作成功后的操作！msg是后台传过来的值
+					error: function(ex) {
+						$('.dycnovideo').css('display', 'block');
+					}
+				});
+			}
+
+			if(ncId[2] == 0) { //未购买
+				if(allowListen == 1) { //允许试听
+					play(vId);
+				} else {
+					$('#jsold').css('display', 'block')
+				}
+			} else if(ncId[2] == 1) { //已购买
+				play(vId);
+			}
+
+			$('#jcoursebuy').click(function() {
+				$(this).attr('href', 'coursedetail.html?courseId=' + cId);
+			});
+
+			if($mid == null || $mid == undefined || $mid == "") {
+				var ss = setInterval(function() {
+							var nowtime = player.getCurrentTime();
+							if(nowtime >= 600) {
+								clearInterval(ss);
+								player.pause();
+								$('#jstop').css('display', 'block');
+								$("#jstop").on("click",'a',function() {
+									layer.open({
+										type: 2,
+										title: false,
+										closeBtn: 1, //不显示关闭按钮
+										shade: [0],
+										shadeClose: true,
+										maxmin: true, //开启最大化最小化按钮
+										area: ['400px', '540px'],
+										content: '../login.html?pageType=live'
+									});
+								})
+								
+							}
+					},
+					100);
+		 }
+		})
+	</script>
+
+</html>

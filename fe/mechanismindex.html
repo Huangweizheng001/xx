@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>机构首页</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css?1" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body>
+
+<!--<img src="images/temp/school.jpg" />-->
+<header id="organheader">
+    <organ-header-template></organ-header-template>
+</header>
+<section id="organBanner" class="feorganbanner">
+    <div class="swiper-container gg">
+        <div class="swiper-wrapper">
+            <a class="swiper-slide" :style="{background:'url('+ item.iconPath +') no-repeat center'}" v-cloak v-bind:href="item.newsId" v-for="item in dataArr" target="_blank">
+                <!--<h1>{{item.title}}</h1>-->
+            </a>
+        </div>
+        <!--Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+        <!--Add Arrows --
+        <!--<div class="swiper-button-next swiper-button-white dd1"></div>-->
+        <!--<div class="swiper-button-prev swiper-button-white dd2"></div>-->
+    </div>
+</section>
+<section id="onlineCourse">
+    <div class="container">
+        <div class="feorgan-top-title">
+            <span>在线课堂</span>
+            <a v-bind:href="'mechanismcourse.html?organId='+organId +'&t=0'" target="_blank">更多></a>
+        </div>
+        <div class="feorgan-online-course clearfix">
+            <div class="fenodata" v-cloak v-if="onlineCourseArr.length<1"></div>
+            <div  v-cloak v-for="(item,index) in onlineCourseArr" v-if="index < 10">
+                <div class="fepanel">
+                    <a class="feimage" target="_blank" v-bind:href="item.courseId,item.recordType,item.courseKind|addRoot">
+                        <img v-bind:src="item.iconPath|addRootFile" />
+                    </a>
+                    <div class="febox clearfix">
+                        <h4 style="font-weight: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{item.title}}</h4>
+                        <h5 class="clearfix">
+                            <b v-if="item.isFree == 1">免费</b>
+                            <b v-if="item.isFree != 1" style="color:#ff6c00;">￥{{item.preferentialPrice}}</b>
+                            <!--<b>{{item.preferentialPrice|changePrice}}</b>-->
+                            <div>
+                                <span>
+                                    <!--<a v-bind:href="'teacherindex.html?teacherId='+item.teacherId" target="_blank">-->
+                                        {{item.teacherName}}
+                                    <!--</a>-->
+                                </span>
+                                <!--<a v-bind:href="'schoolindex.html?organId='+item.organId" target="_blank">{{item.organName}}</a>-->
+                            </div>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="underlineCourse" style="margin-bottom: 40px">
+    <div class="container">
+        <div class="feorgan-top-title">
+            <span>线下辅导</span>
+            <a v-bind:href="'mechanismcourse.html?organId='+organId +'&t=1'" target="_blank">更多></a>
+        </div>
+        <div class="feorgan-underline-course clearfix">
+            <div>
+                <a class="fe-ad" href="#this">
+                    <div class="feimage">
+                        <img src="images/temp/organ-ad.png" alt="">
+                    </div>
+                    <!--<div class="febox">-->
+                        <!--<h4>精品课程</h4>-->
+                        <!--<h4>暑我先行 赢在今夏</h4>-->
+                    <!--</div>-->
+                </a>
+            </div>
+            <div class="fenodata" v-if="underlineCourse.length<1" v-cloak></div>
+            <div v-cloak v-for="item in underlineCourse">
+                <a class="fepanel" v-bind:href="item.courseId|addRoot" target="_blank">
+                    <h1>{{item.title}}</h1>
+                    <h3>主讲教师：{{item.teacherName}}</h3>
+                    <h4>{{item.address}}</h4>
+                    <h4>{{item.beginTime}} 至 {{item.endTime}}</h4>
+                    <div class="febox">
+                        <span>¥{{item.preferentialPrice}}</span>
+                        <b>报名截止{{item.deadlineDays}}天</b>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="organEnvironment" style="background: #f4f4f4">
+    <div class="container">
+        <div class="feorgan-top-title">
+            <span>学校环境</span>
+            <a v-bind:href="'mechanismstyle.html?organId='+organId " target="_blank">更多></a>
+        </div>
+        <div class="feorgan-environment clearfix">
+            <div class="feimage">
+                <div class="swiper-container pp">
+                    <div class="swiper-wrapper">
+                        <a class="swiper-slide" v-cloak v-for="item in leftCon">
+                            <img v-bind:src="item.iconPath|addRootFile" alt="">
+                        </a>
+                    </div>
+                    <!--Add Pagination -->
+                    <!--<div class="swiper-pagination swiper-pagination-white"></div>-->
+                    <!--Add Arrows -->
+                    <div class="swiper-button-next swiper-button-white dd1"></div>
+                    <div class="swiper-button-prev swiper-button-white dd2"></div>
+                </div>
+            </div>
+            <div class="fepanel" v-cloak>
+                <h1>{{rightCon.name}}</h1>
+                <h4>创建日期:{{rightCon.createDate}}</h4>
+                <p>{{rightCon.introduce}}</p>
+                <a href="#this">在线了解</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="organTeacher">
+    <div class="container">
+        <div class="feorgan-teacher">
+            <h1>名师推荐<a v-bind:href="'mechanismteacher.html?organId='+organId " target="_blank">更多></a></h1>
+            <div class="swiper-container hh">
+                <div class="swiper-wrapper">
+                    <a class="fepanel swiper-slide" v-cloak v-for="item in teacherList" v-bind:href="item.teacherId|addTeacherRoot" target="_blank">
+                        <div class="feimage">
+                            <img v-bind:src="item.iconPath|addRootFile" alt="">
+                        </div>
+                        <div class="febox">
+                            <h2>{{item.teacherName}}<span>{{item.educationlevel}}</span></h2>
+                            <p>{{item.note}}</p>
+                        </div>
+                    </a>
+                </div>
+                <!--Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <!--Add Arrows -->
+                <div class="swiper-button-next swiper-button-white dd1"></div>
+                <div class="swiper-button-prev swiper-button-white dd2"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="organNews">
+    <div class="container">
+        <div class="feorgan-top-title">
+            <span>最新动态</span>
+            <a v-bind:href="'mechanismnews.html?organId='+organId " target="_blank">更多></a>
+        </div>
+        <div class="feorgan-news clearfix">
+            <a class="feorgan-news-item" v-cloak v-for="item in newsList" v-bind:href="item.organId,item.newsId|addNewsRoot">{{item.title}}</a>
+
+
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/fetvcyq.js"></script>
+<script>
+
+
+    $(function() {
+        var organId=$(this).getUrlParam("organId");
+        mechanismindex(organId)
+    })
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-个人资料</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人设置 <i class="uk-icon-angle-right"></i></span>
+                <span>个人资料</span>
+                <span><a href="">预览主页</a></span>
+            </div>
+            <!--个人资料-->
+            <div class="fepersonaldata">
+                <div class="fepanel" id="information">
+                    <form action="" method="post" id="information-form" name="information-form">
+                        <div class="fepersonaldata-title">
+                            <b>基本信息</b>
+                            <span>编辑</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <span>姓&nbsp;&nbsp;名 :</span>
+                                <input type="text" value="" placeholder="自己的真实姓名" name="name" disabled id="username" autocomplete="off">
+                            </li>
+                            <li>
+                                <span>昵&nbsp;&nbsp;称 :</span>
+                                <input type="text" value="" disabled name="nickname" autocomplete="off" id="nickname">
+                            </li>
+                            <li>
+                                <span>性&nbsp;&nbsp;别 :</span>
+                                <i>男</i>
+                                <input type="radio"  name="sex" id="male" class="fehidden" value="0"><label for="male" class="fehidden">男</label>
+                                <input type="radio"  name="sex" id="female" class="fehidden" value="1"><label for="female" class="fehidden">女</label>
+                            </li>
+                            <li>
+                                <span>介&nbsp;&nbsp;绍 :</span>
+                                <div class="fetextarea" contentEditable="false">
+                                    介绍一下自己,让学生快速了解你！
+                                </div>
+                                <b class="fehidden">内容不超过200个字！</b>
+                            </li>
+                        </ul>
+                        <div class="feoperation fehidden">
+                            <a >保存</a>
+                            <a >取消</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="fepanel" id="contact">
+                    <form action="" method="post" id="contact-form">
+                        <div class="fepersonaldata-title" >
+                            <b>联系方式</b>
+                            <span>编辑</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <span>邮&nbsp;&nbsp;箱 :</span>
+                                <input type="text" value="" placeholder="自己的邮箱" disabled name="email" autocomplete="off" id="email">
+                            </li>
+                            <li>
+                                <span>手&nbsp;&nbsp;机 :</span>
+                                <input type="text" value="" disabled name="mobile" autocomplete="off" id="phone">
+                            </li>
+                            <li>
+                                <span>Q&nbsp;&nbsp;&nbsp;&nbsp;Q :</span>
+                                <input type="text" value="" placeholder="自己的QQ" disabled name="qq" autocomplete="off" id="qq">
+                            </li>
+                        </ul>
+                        <div class="feoperation fehidden">
+                            <a >保存</a>
+                            <a >取消</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="fepanel" id="background">
+                    <form action="" method="post" id="background-form">
+                        <div class="fepersonaldata-title" >
+                            <b>背景资料</b>
+                            <span>编辑</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <span>教&nbsp;&nbsp;龄 :</span>
+                                <i></i>
+                                <select name="ofSchoolAge" id="seniority" class="feseniority fehidden" >
+                                </select>
+                            </li>
+                            <!--<li>-->
+                                <!--<span>单位/机构/学校 :</span>-->
+                                <!--<input type="text" value="" class="fecompany" placeholder="单位/机构/学校（20字以内）" disabled name="company" autocomplete="off" id="company">-->
+                            <!--</li>-->
+                            <li id="Teachingsubject">
+                                <span>教学科目 :</span>
+                                <i></i>
+                                <select name="educationalLevelId" id="period" class="fesubject fehidden">
+                                    <!--<option value=" ">-学段-</option>-->
+                                    <option v-bind:value="item.educationalLevelId" v-cloak v-for="item in educationalLevel">{{item.educationalLevelName}}</option>
+                                </select>
+                                <select name="gradeId" id="grade" class="fesubject fehidden">
+                                    <!--<option value=" ">-年级-</option>-->
+                                    <option v-bind:value="item.gradeId" v-cloak v-for="item in grade">{{item.gradeName}}</option>
+                                </select>
+                                <select name="subjectId" id="subject" class="fesubject fehidden">
+                                    <!--<option value=" ">-学科-</option>-->
+                                    <option v-bind:value="item.subjectId" v-cloak v-for="item in subject">{{item.subjectName}}</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="feoperation fehidden">
+                            <a >保存</a>
+                            <a >取消</a>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="fepanel" id="pastthing">
+                    <form action="" method="post" id="pastthing-form">
+                        <div class="fepersonaldata-title" >
+                            <b>过往经历</b>
+                            <span>添加</span>
+                        </div>
+                        <div class="fehistory fehidden">
+                            <div class="febox">
+                                <p>开始时间</p>
+                                <select name="beginyear" id="beginyear">
+                                    <option value="2010">2010年</option>
+                                    <option value="2011">2011年</option>
+                                    <option value="2012">2012年</option>
+                                    <option value="2013">2013年</option>
+                                    <option value="2014">2014年</option>
+                                    <option value="2015">2015年</option>
+                                    <option value="2016">2016年</option>
+                                    <option value="2017">2017年</option>
+                                </select>
+                                <select name="beginmonth" id="beginmonth">
+                                    <option value="01">1月</option>
+                                    <option value="02">2月</option>
+                                    <option value="03">3月</option>
+                                    <option value="04">4月</option>
+                                    <option value="05">5月</option>
+                                    <option value="06">6月</option>
+                                    <option value="07">7月</option>
+                                    <option value="08">8月</option>
+                                    <option value="09">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
+                            </div>
+                            <div class="febox">
+                                <p>结束时间</p>
+                                <select name="endyear" id="endyear">
+                                    <option value="2010">2010年</option>
+                                    <option value="2011">2011年</option>
+                                    <option value="2012">2012年</option>
+                                    <option value="2013">2013年</option>
+                                    <option value="2014">2014年</option>
+                                    <option value="2015">2015年</option>
+                                    <option value="2016">2016年</option>
+                                    <option value="2017">2017年</option>
+                                </select>
+                                <select name="endmonth" id="endmonth">
+                                    <option value="01">1月</option>
+                                    <option value="02">2月</option>
+                                    <option value="03">3月</option>
+                                    <option value="04">4月</option>
+                                    <option value="05">5月</option>
+                                    <option value="06">6月</option>
+                                    <option value="07">7月</option>
+                                    <option value="08">8月</option>
+                                    <option value="09">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
+                            </div>
+                            <p>描述过往经历（50 - 200字）</p>
+                            <div class="fetext" contentEditable="true">
+                                1.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>
+                                2.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>
+                                3.  教学经历： 例如-2011年-2013年 北京外国语大学学习英语专业； 2.  教学经历： 例如-2011年-2013<br>
+                                4.  ...
+                            </div>
+                            <div class="feoperation ">
+                                <a >保存</a>
+                                <a >取消</a>
+                            </div>
+                        </div>
+                        <ul class="fepastthing-content">
+
+                        </ul>
+                    </form>
+                </div>
+                <div class="fepanel" id="relevantcase">
+                    <form action="" method="post" id="relevantcase-form">
+                        <div class="fepersonaldata-title" >
+                            <b>相关案例</b>
+                            <span>添加</span>
+                        </div>
+                        <div class="fehistory fehidden">
+                            <div class="febox">
+                                <p>案例名称（10字以内）</p>
+                                <input type="text" name="title" autocomplete="off" id="casename">
+                            </div>
+                            <div class="febox">
+                                <p>日期</p>
+                                <select name="dateyear" id="dateyear">
+                                    <option value="2010年">2010年</option>
+                                    <option value="2011年">2011年</option>
+                                    <option value="2012年">2012年</option>
+                                    <option value="2013年">2013年</option>
+                                    <option value="2014年">2014年</option>
+                                    <option value="2015年">2015年</option>
+                                    <option value="2016年">2016年</option>
+                                    <option value="2017年">2017年</option>
+                                </select>
+                                <select name="datemonth" id="datemonth">
+                                    <option value="1月">1月</option>
+                                    <option value="2月">2月</option>
+                                    <option value="3月">3月</option>
+                                    <option value="4月">4月</option>
+                                    <option value="5月">5月</option>
+                                    <option value="6月">6月</option>
+                                    <option value="7月">7月</option>
+                                    <option value="8月">8月</option>
+                                    <option value="9月">9月</option>
+                                    <option value="10月">10月</option>
+                                    <option value="11月">11月</option>
+                                    <option value="12月">12月</option>
+                                </select>
+                            </div>
+                            <p>描述相关案例（50 - 300字）</p>
+                            <div class="fetext" contentEditable="true">
+                                例如： <br>
+                                2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>
+                                2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>
+                                2011年，指导学生在美术高考中获得优异成绩，其中95%的学生考入了中央美术学院、清华大学美术学院； 2011年，指导<br>
+                            </div>
+                            <div class="feoperation">
+                                <a >保存</a>
+                                <a >取消</a>
+                            </div>
+                        </div>
+                        <ul class="fepastthing-content">
+
+                        </ul>
+                    </form>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+//        console.log($(window).storager({ key: 'feUid' }).readStorage()==='undefined')
+//        if($(window).storager({ key: 'feUid' }).readStorage()=='undefined'){
+//            window.location.href = "http://www.fetv.cn/feweb/login.html";
+//            console.log(2);
+//        }else{
+//            personalsetting($(window).storager({ key: 'feUid' }).readStorage());
+//            console.log(3);
+//        }
+        personalsetting(teacherId);
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线直播间-金牌分析师交易布局/纵览全球经济</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/jquery.emoji.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/dbstyle.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.5.6/skins/default/index.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			#emoji_container_1 {
+				top: inherit !important;
+				left: inherit !important;
+				right: 2%;
+				bottom: 80px;
+				z-index: 2;
+			}
+			
+			@keyframes tc {
+				0% {
+					position: fixed;
+					transform: scale(.2);
+					bottom: 30%;
+					left: 0;
+				}
+				20% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				50% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				60% {
+					transform: scale(1.2);
+					left: 50%;
+				}
+				70% {
+					transform: scale(1);
+					left: 70%;
+				}
+				80% {
+					transform: scale(1);
+					left: 80%;
+				}
+				90% {
+					transform: scale(1);
+					left: 100%;
+				}
+				100% {
+					transform: scale(1);
+					position: initial;
+					left: 100%;
+				}
+			}
+			
+			.ac {
+				animation: tc 5s;
+			}
+			
+			.yc-manage-wrap #jmanageBox {
+				position: fixed;
+				left: -999px;
+			}
+			
+			.yc-manage-wrap .layer-anim {
+				min-width: 500px;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox {
+				max-height: 250px;
+				position: relative;
+				left: 0;
+				padding: 2rem;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li {
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li p:first-child {
+				margin-bottom: .6rem;
+				font-size: 1.1rem;
+				color: #f00;
+			}
+			
+			.yc-manage-wrap .layer-anim #jmanageBox li p:not(:first-child) {
+				margin: .6rem 1rem .6rem;
+			}
+			
+			#jmanageOpen {
+				float: right;
+				display: none;
+				width: 52px;
+				line-height: 30px;
+				text-align: center;
+				border-radius: 3px;
+				cursor: pointer;
+				color: #fff;
+				background-color: #f00;
+			}
+			
+			.ycsendIcon {
+				color: #f00;
+			}
+			
+			#jmanageUser {
+				display: none;
+			}
+			
+			.ycuserName {
+				cursor: pointer;
+			}
+			
+			.ycstatus {
+				float: right;
+				margin-right: 2rem;
+				position: relative;
+				display: inline-block;
+				width: 50px;
+				height: 24px;
+				text-align: center;
+			}
+			
+			.ycstatus:after {
+				content: "未审核";
+			}
+			
+			.ycdelete {
+				float: right;
+				margin-right: 1rem;
+				position: relative;
+				display: inline-block;
+				width: 50px;
+				height: 24px;
+				text-align: center;
+			}
+			
+			.ycdelete:after {
+				content: "删除";
+			}
+			
+			.dyccostlive .dycdiscuss-box-admin .dycadmin-admin-img {
+				position: relative;
+			}
+			
+			.dycadmin-admin-img span {
+				position: absolute;
+				top: 0;
+				width: 200px;
+				margin-left: 5px;
+				color: #f00;
+			}
+		</style>
+
+	</head>
+	<section class="yc-manage-wrap">
+		<ul class="yc-manage-box" id="jmanageBox">
+		</ul>
+	</section>
+
+	<body>
+
+		<!--<header id="header">
+			<header-template></header-template>
+		</header>-->
+
+		<section>
+
+			<div class="dyccostlive clearfix" style="position: relative;">
+				<div class="dycleft-menu">
+					<ul class="dyctop-menu">
+						<li>
+							<ul class="dbmenu" id="jdbmenu" style="display: none;">
+								<li>
+									<a class="active" href="Eia.html" target="_blank">EIA技术分析</a>
+								</li>
+								<li>
+									<a>非农技术分析</a>
+								</li>
+								<li>
+									<a class="" target="_blank">日内短线技术分析</a>
+								</li>
+								<li>
+									<a class="" href="mediumlongline.html" target="_blank">中长线技术分析</a>
+								</li>
+							</ul>
+							<a class="technical">
+								<span></span> 技术分析
+
+							</a>
+
+						</li>
+
+						<li>
+							<a class="workservice" href="../courselist.html" target="_blank">
+								<span></span> 课程服务
+							</a>
+						</li>
+						<li>
+							<a class="read" href="../news.html" target="_blank">
+								<span></span> 策略解读
+							</a>
+						</li>
+						<li id="jreservation">
+							<a class="reservation">
+								<span></span> 课程预约
+							</a>
+
+							<div class="dbcourse" style="display: none;position: absolute;left:120px;top:-300px;width: 700px;height: 500px;z-index: 2;">
+								<img src="images/dbcourse.png" />
+							</div>
+						</li>
+						<li id='jdbcostlogin'>
+							<a class="dyccostlogin" href="../login.html?login=1" target="_blank">
+								<span></span> 注册/登录
+							</a>
+						</li>
+						<li id='jquitLogin' style="display: none;">
+							<a class="dyccostquit">
+								<span></span>退出
+							</a>
+						</li>
+					</ul>
+
+				</div>
+				<div class="dyccostplay-box">
+					<div class="dyccostplay-wrap">
+						<div class="dyccostplay-title">
+							<div class="span1" id="jliveteacherimg">
+								<a class="dyccostplay-image"><img src="images/costlive03.png" /></a>
+							</div>
+							<div class="dyccostplay-title-box">
+								<p id="jlivecname" class="dyccostplay-ctitle"></p>
+								<p id="jlivetname" class="dyccostplay-speaker"></p>
+
+							</div>
+							<div class="dyctitle-tips" id="jdbguest">
+								
+							</div>
+						</div>
+						<div id="jcostPlayer" class="prism-player"></div>
+
+					</div>
+					<div class="dycdbcost-tab-wrap">
+						<ul class="dycdbcost-tab-head clearfix" id="jdbcosttab">
+							<li class="entain active" data-id='0'><span></span></li>
+							<li class="study" data-id='1'><span></span></li>
+							<li class="course" data-id='2'><span></span></li>
+							<li class="assistant" data-id='3'><span></span></li>
+							<li class="speak" data-id='4'><span></span></li>
+						</ul>
+						<div class="dyccost-wrap clearfix" style="display: block;">
+							<div class="dyccost-member clearfix">
+								<div class="dyccost-member-img" id="jcostMemberImg" style="background-size: cover;background-image: url('images/youke.png');"></div>
+								<div class="dyccostname">
+									<p class="dyccost-member-name" id="jcostMemberName">游客</p>
+									<p>播米币：<span id="jover">0</span></p>
+								</div>
+							</div>
+							<div class="dyccost-box">
+								<div class="dyccost-swiper swiper-container">
+									<div class="swiper-wrapper" id="jcostlogo">
+										<!--<div class="swiper-slide">
+											<a class="dycgifts active" data-id="3" data-other="1" data-name="http://www.bomizx.net/bmOnline/uploads/images/bomi.jpg" title="1"><img src="images/bomi.png"></a>
+										</div>-->
+									</div>
+
+								</div>
+								<div class="swiper-button-prev" id="swiper-button-prev"></div>
+								<div class="swiper-button-next" id="swiper-button-next"></div>
+								<div class="clearfix">
+									<div class="dyccost-brief-wrap">
+										<div class="span7" id="jcostBrief"></div>
+										<div class="span5">
+											<div class="dyccost-num">
+												<p>数量：<button id="jminus" class="dycminus"> - </button><span id="jcostnum" class="dyccostnum" contenteditable="true">1</span><button id="jadd" class="dycadd"> + </button></p>
+												<p>播米币：<span id="jprice">0</span></p>
+											</div>
+										</div>
+									</div>
+									<div id="jcostperson" class="dyccost-person"></div>
+								</div>
+							</div>
+						</div>
+						<div class="dyccost-wrap clearfix" style="display: none;">
+							<ul class="dycstudy clearfix" id="jstudy">
+								<li class="active">
+									<a class="note"><span></span>我的笔记</a>
+								</li>
+								<li data-id='2'>
+									<a class="node"><span></span>标记笔</a>
+								</li>
+								<li data-id='3'>
+									<a class="work"><span></span>我的作业</a>
+								</li>
+								<li data-id='4'>
+									<a class="test"><span></span>我的试卷</a>
+								</li>
+							</ul>
+
+						</div>
+						<div class="dyccost-wrap clearfix" style="display: none;"></div>
+						<div class="dyccost-wrap clearfix" style="display: none;"></div>
+						<div class="dyccost-wrap clearfix" style="display: none;"></div>
+					</div>
+
+				</div>
+				<!--讨论区-->
+				<div class="dyccostplay-right">
+					<div class="swiper-container dyccostranklist-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide"><a href="#this"><img src="images/dbbanner.jpg" /></a></div>
+							<div class="swiper-slide"><a href="guestfeature.html" target="_blank"><img src="images/dbjiabin.png" /></a></div>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+
+
+					<div class="dyccostdiscuss">
+
+						<div id="chatbox" class="clearfix">
+							<div id="doc" style="height:100%;overflow: auto;padding: 0 10px;">
+								<div id="chat">
+									<div id="message" class="costmessage">
+										<div id="onlinecount"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="dycostdiscuss-bar">
+							<div class="yc-send-source-box">
+								<a id="jface" class="dycface" href="#this"></a>
+								<a class="dycfaceselect">
+									<span></span>
+									<input id="jsendImgPanel" type="file" accept="image/*" />
+								</a>
+								<a class="dycbarrage"></a>
+								<a class="dycclear"></a>
+								<select id="jmanageUser">
+								</select>
+								<span id="jmanageOpen">管理</span>
+							</div>
+							<div class="dycsendbar">
+								<div id="content" contenteditable="true"></div>
+								<a id="mjr_send" class="dyccostsend-btn" href="#this" onclick="CHAT.submit(1);"></a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="dyclogin dyccostlivelogin">
+			<div class="container">
+				<div class="login-wrap">
+					<div class="dyclogin-box">
+
+						<div class="dycform-box">
+							<p id="jcostliveColse" class="dyccostlivecolse"><i class="uk-icon-close"></i></p>
+							<div class="yctitle">播米在线登录</div>
+							<!--账号登入-->
+							<form id="jloginForm" class="yclogin-form" method="post">
+								<a class="dycchange-type" data-index="1">手机号快速登录</a>
+								<label class="dyclogin-name">
+                                <input class="dyclogin-name-input" name="name" type="text" placeholder="请输入手机/用户名" />
+                                <span class="error">用户名不能为空！</span>
+                            </label>
+								<label class="dyclogin-pwd">
+                                <input class="dyclogin-pwd-input" name="password" type="password" placeholder="请输入密码" />
+                                <span class="error">密码不能为空！</span>
+                            </label>
+								<label class="dylogin-auto">
+                                <input id="jautologin" type="checkbox" name="autologin" value="checkbox" checked="checked" />自动登录
+                                <a class="dycpwd-forget">忘记密码</a>
+                            </label>
+								<a id="jloginForm-btn" class="dyclogin-btn">登录</a>
+							</form>
+							<!--手机登入-->
+							<form id="jphoneLoginForm" class="ycloginphone-form" method="post">
+								<a class="dycchange-type" data-index="2">账号密码登录</a>
+								<label class="dycloginphone-name">
+                                <input id="jloginphone" name="name" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空！</span>
+                            </label>
+								<label class="dycloginphone-vc">
+                                <input id="jloginphonevc" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneLoginVC" >获取短信验证码</a>
+                                <span class="error" style="top: 75%; left: 0;">验证码不能为空！</span>
+                            </label>
+								<a id="jloginquickphone" class="dyclogin-btn" href="#this">登录</a>
+								<div class="dycloginphone-tip">验证即登录，未注册将自动创建播米在线帐号</div>
+							</form>
+							<!--手机注册-->
+							<form id="jphoneRegForm" class="ycregphone-form" method="post">
+								<a class="dycchange-type" data-index="3" href="#this">已有账号登录</a>
+								<label class="dycregphone-name ok">
+                                <input id="jregMoblie" name="mobile" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+								<label class="dycregphone-vc">
+                                <input id="jregVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneRegVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycreguser-name">
+                                <input id="jregName" name="name" type="text" placeholder="请输入用户名(4-16位)"/>
+                                <span class="error">用户名不能为空</span>
+                            </label>
+								<label class="dycreguser-pwd">
+                                <input id="jregPwd" name="password" type="password" placeholder="请设置密码(4-8位)" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<label class="dycreguser-invite">
+                                <input id="jregIvc" name="inviteCode" type="text" placeholder="请输入邀请码（可选项）" />
+                                <span class="error"></span>
+                            </label>
+								<label class="dyreg-agree">
+                                <input id="jagreement" class="jreg-agree" type="checkbox" name="" value="checkbox" checked="checked" />我已阅读并同意
+                                <a class="dycpwd-forget" target="_blank" href="pact.html">播米在线注册条款</a>
+                            </label>
+								<a id="jsubRegForm" class="dycreg-btn">立即注册</a>
+							</form>
+							<!--忘记密码-->
+							<form id="jforgetFrom" class="ycforget-form" method="post">
+								<a class="dycchange-type" data-index="4" href="#this">已有账号登录</a>
+								<label class="dycforgetphone-name">
+                                <input id="jforgetPhone" name="name" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+								<label class="dycforgetphone-vc">
+                                <input id="jforgetVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneForgetVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwd">
+                                <input id="jforgetPwd" name="password" type="password" placeholder="请设置新密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwdnew">
+                                <input id="jforgetPwd2" name="forgetpwd" type="password" placeholder="请再次输入密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<a id="jforgetSubBtn" class="dyclogin-btn" href="#this">提交</a>
+							</form>
+							<!--<div class="dycotherlogin-bar">
+								<span>使用合作方账号登录</span>
+								<a class="dycqq" id="qqLoginBtn" href="#this"></a>
+								<a class="dycweixin" id="weixinLoginBtn" href="#this"></a>
+							</div>-->
+						</div>
+						<div class="dyccurrentreg-box">
+							<a>立即注册</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/jquery.emoji.js"></script>
+		<script type="text/javascript" src="js/dbteacherswiper.js"></script>
+		<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+		<script type="text/javascript" src="js/costclient2.js?v2"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				window.location.href="dbliveroom.html";
+				
+				var username, userImg, leftTime, userGrade, grade;
+				var paramId = $(this).getUrlParam("channelId");
+				var channelProgramId = $(this).getUrlParam("channelProgramId");
+				
+
+				$("#jcostlistcon").mCustomScrollbar();
+
+				$.jcostLiveLogin(); //直播打赏-点击注册登录
+				if(($mid == undefined) || ($mid == null) || ($mid == "")) {
+					leftTime = '900'; //游客只能观看15min
+					$('#jdbcostlogin').css('display', 'block');//登录显示
+					$('#jquitLogin').css('display', 'none'); 
+
+				} else {
+					leftTime = '1800'; //普通会员只能观看30min
+					$.jOver; //播米币打赏
+					$('#jdbcostlogin').css('display', 'none');//登录隐藏
+					$('#jquitLogin').css('display', 'block'); 
+
+				}
+
+				$.costliveplayId(paramId, leftTime); //观看时长
+
+				$("#content").emoji({
+					button: "#jface",
+					showTab: false,
+					//animation: 'slide',
+					icons: [{
+						name: "QQ表情",
+						path: "./images/face/qq/",
+						maxNum: 90,
+						excludeNums: [41, 45, 54],
+						file: ".gif"
+					}]
+				});
+
+				//聊天昵称头像显示
+				if($mid != null && $mid != undefined && $mid != "") {
+					userGrade = getLever(); //等级名称userGrade[0]，等级序号userGrade[1]
+					grade = userGrade[1];
+					username = $mNickName;
+				} else {
+					username = "游客";
+					userGrade = 4; //游客
+				}
+				userImg = "../ycedu/images/grader.png";
+
+				costlisttab(); //排行版
+				$.clistCon(0); //排行版内容
+
+				$.costSelect(paramId, channelProgramId); //打赏、充值
+
+				$("body").css('padding', '0');
+				var st = $('.dyccostplay-box').height() - $('.dyccostranklist-container').height() - $('.dycostdiscuss-bar').height() + 90; //设置聊天(内容+输入框)大小
+
+				$('.dyccostdiscuss').css('height', st); //设置聊天(内容+输入框)大小
+
+				var discussheight = $('.dyccostdiscuss').height() - $('.dyccost-tips-imgae').height() - 180; //设置聊天(内容)大小
+
+				$('#chatbox').height(discussheight); //设置聊天(内容)大小
+
+				$.ajax({
+					type: "POST",
+					url: ROUTE + "Channel.ashx?action=getMemberType",
+					dataType: "json",
+					cache: false,
+					data: {
+						channelId: paramId,
+						memberId: $mid
+					},
+					success: function(result) {
+						localStorage.setItem("mUserType", result[0].memberType);
+					}
+				});
+
+//				$('.dyccostservice-btn').hover(function() {
+//					$('.dyccostservice').css('display', 'block');
+//				}, function() {
+//					$('.dyccostservice').css('display', 'none');
+//				});
+
+				$.ajax({
+					url: "http://ip.chinaz.com/getip.aspx",
+					type: "get",
+					dataType: 'jsonp',
+					success: function(res) {
+						window.CHAT.init(username, userImg, grade, res.address); //等级名称userGrade[0]，等级序号userGrade[1]
+					},
+					error: function(res) {
+						window.CHAT.init(username, userImg, grade); //等级名称userGrade[0]，等级序号userGrade[1]
+					}
+				});
+
+				$("#message").on("click", ".ycuserName", function(e) {
+					$("#content").html($("#content").html() + "<span class='ycsendIcon'>@</span>" + $(this).context.innerText + "：");
+				})
+
+				$("#jmanageOpen").on("click", function() {
+					//捕获页
+					layer.open({
+						type: 1,
+						shade: false,
+						title: false, //不显示标题
+						content: $('#jmanageBox'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+						cancel: function() {}
+					});
+				})
+
+				$("#jmanageUser").on("change", function(e) {
+					$("#content").html($("#content").html() + "<span class='ycsendIcon'>@</span>" + $(this).find("option:selected").val() + "：");
+				});
+
+			})
+		</script>
+	</body>
+
+</html>

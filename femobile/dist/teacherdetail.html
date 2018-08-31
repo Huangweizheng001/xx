@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="renderer" content="webkit"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"><meta name="format-detection" content="telephone=yes"><meta name="full-screen" content="yes"><meta name="x5-fullscreen" content="true"><meta name="keywords" content="福建教育网"><meta name="description" content="福建教育网"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png"><link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png"><link rel="stylesheet" href="../css/plugins/style.min.css"><link rel="stylesheet" href="../css/femoblie.min.css"><title>福建教育网老师详情</title></head><body><div id="modelMintApp"><p>{{sheetVisible}}</p><p><mt-button @click.native="handleClick">Toast</mt-button><ul><li v-for="item in list"><img v-lazy="item.iconPath"></li></ul><ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10"><li v-for="item in list[0]">{{ item.teacherName }}</li></ul></p><p>正在加载</p><mt-actionsheet :actions="actions" v-model="sheetVisible"></mt-actionsheet></div><script src="../js/libs/jquery.min.js"></script><script src="../js/libs/vue.min.js"></script><script src="../js/plugins/axios.min.js"></script><script src="../js/plugins/index.js"></script><script src="../js/femoblie.min.js"></script><script>$(function() {
+        // 为给定 ID 的 user 创建请求
+        axios.get('Teacher.ashx?action=getOnlineTeacher&pageSize=8&organId=')
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        //post 版
+        axios.post('Teacher.ashx?action=getOnlineTeacher', {
+                pageSize: 8,
+                organId: ''
+            })
+            .then(function(res) {
+                console.log(res);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
+        //终极版
+        axios({
+            method: 'post',
+            url: 'Teacher.ashx?action=getOnlineTeacher',
+            // headers: {
+            //     'Content-Type': 'application/x-www-form-urlencoded',
+            // },
+            data: {
+                pageSize: 8,
+                organId: ''
+            }
+        }).then(function(response) {
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+        new Vue({
+            el: '#modelMintApp',
+            data: {
+                list: [],
+                list2: [0],
+                i: 1,
+                j: 10,
+                sheetVisible:true,
+                actions:[{name:"01",method:"test"}],
+            },
+            filters: {
+
+            },
+            mounted: function mounted() {
+                //1.0ready --> 2.0
+                this.$nextTick(function() {
+                    this.getInitData(this.i, this.j);
+                });
+            },
+            methods: {
+                handleClick: function() {
+                    this.$toast('Hello world');
+                },
+                getInitData: function(i, j) {
+                    var _this = this;
+                    axios.post('News.ashx?action=getHotDocRecommend', {
+                            organId: 1,
+                            pageIndex: i,
+                            pageSize: j
+                        })
+                        .then(function(res) {
+                            _this.list = _this.list.concat(res.data.rows);
+                            _this.list.forEach(function(item, index) {
+                                if (!item.had) {
+                                    //全局注册判断是否加载到底
+                                    Vue.set(item, "had", true);
+                                    //全局注册变量
+                                    Vue.set(item, "iconPath", 'http://www.fetv.cn/fe/' + item.iconPath);
+                                }
+
+                            });
+
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        });
+                },
+                loadMore() {
+
+                    this.loading = true;
+                    setTimeout(() => {
+                        this.i = this.i + 1;
+                        this.getInitData(this.i, this.j)
+
+                        this.loading = false;
+                    }, 2500);
+
+                }
+
+            },
+
+        })
+
+    })</script></body></html>

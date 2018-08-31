@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../../css/bm.css">
+		<title>会员专题</title>
+		<style>
+			.bmmember{
+				position: relative;
+			}
+			.bmmember >a {
+				position: absolute;
+    bottom: 47px;
+    right: 30px;
+    width: 23%;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<section class="bmyhztPart2">
+			<div class="bmmember" style="">
+				<img src="../../images/yh/activemember.png" />
+				<a id="onlineService">
+					<img src="../../images/yh/activeservice.png" />
+				</a>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../../js/bmmain.js"></script>
+		<script type="text/javascript" src="../../js/qq.js"></script>
+
+		<script>
+			$(function() {
+				BizQQWPA.addCustom({
+					aty: '0', //指定工号类型,0-自动分流，1-指定工号，2-指定分组
+					nameAccount: SERVERQQ, //营销 QQ 号码
+					selector: 'onlineService' //WPA 被放置的元素
+				});
+			});
+		</script>
+	</body>
+
+</html>

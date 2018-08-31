@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>机构动态</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body>
+
+<header id="organheader">
+    <organ-header-template></organ-header-template>
+</header>
+<section>
+    <div class="fe-schoolinformation-wrap" id="jshoolInformation">
+        <div class="container clearfix">
+            <div class="span9">
+                <div class="fe-schoolinformation-list">
+                    <div class="fenodata" v-show="nodata"></div>
+                    <a class="fe-schoolinformation-list-wrap" target="_blank" v-cloak v-for="item in leftListArr" v-bind:href="item.liveId">
+                        <div class="span4">
+                            <div class="fe-schoolinformation-list-img">
+                                <img v-bind:src="item.iconPath | addRootFile" alt="">
+                            </div>
+                        </div>
+                        <div class="span8">
+                            <div class="fe-schoolinformation-list-box">
+                                <h3>{{item.newsName}}</h3>
+                                <p>{{item.introduce}}</p>
+                                <h6>更新时间：{{item.reportDate}}<span><i class="uk-icon-eye"></i>&nbsp;&nbsp;{{item.clickcount}}</span></h6>
+                            </div>
+                        </div>
+                    </a>
+                    <!--<a class="fe-schoolinformation-list-wrap" href="">
+                        <div class="span4">
+                            <div class="fe-schoolinformation-list-img">
+                                <img src="images/temp/school-information-list2.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="span8">
+                            <div class="fe-schoolinformation-list-box">
+                                <h3>快手在知乎得了负分，到底怎样才算真实记录世界？</h3>
+                                <p>1、 大概在一周前，我和在快手上拥有 130 万粉丝的一个大号团队交换了微信，一顿寒暄后，这位直播收入每天在三四千、短视频广告费用能到六七千的富豪...</p>
+                                <h6>更新时间：2017-2-15 16:13:58<span>阅读：10</span></h6>
+                            </div>
+                        </div>
+                    </a>-->
+                    <!--<a href="#this" class="fe-schoolinformation-more" @click="informationloadMore()" v-show="load">加载更多...</a>-->
+                    <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                        <li v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="fe-schoolinformation-dynamic">
+                    <p class="fe-schoolinformation-dynamic-title"><span>热门资讯</span></p>
+                    <ul class="fe-schoolinformation-dynamic-wrap">
+                        <div class="fenodata" v-if="rightHotArrNodata"></div>
+                        <li v-cloak v-for="item in rightHotArr"><a v-bind:href="item.liveId" target="_blank">{{item.title}}</a></li>
+                        <!--<li><a href="">春天来了，一切都有“心”的希 学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希望—王心彤开学见闻开学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希望—王心彤开学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希 学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希望—王心彤开学见闻开学见闻春天来了，一切都有“心”的希望—王心彤开学见闻开学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希望—王心彤开学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希 学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希望—王心彤开学见闻开学见闻</a></li>
+                        <li><a href="">春天来了，一切都有“心”的希 学见闻</a></li>-->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/fetvcyq.js"></script>
+<script>
+    $(function() {
+        var organId=$(this).getUrlParam("organId");
+        organInformation(organId); //校园资讯
+    })
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>提问题-福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+</head>
+
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="feaskquestion" id="knowledgeAskQuestion">
+    <div class="container clearfix">
+        <div class="span9">
+            <div class="feaskquestion-left" v-cloak>
+                <h1>描述您的问题</h1>
+                <p>问题描述</p>
+                <textarea name="" id="" placeholder="在这里描述您的问题" @keyup="limitSize()" v-model="problemDescription"></textarea>
+                <h4>还可以输入{{limitsize}}字！</h4>
+                <div class="feaddpicture">
+                    <i class="uk-icon-photo"></i>
+                    <a id="zwb_upload" style="overflow: hidden;top: 0">
+                        <input type="file" class="add" multiple>添加图片
+                    </a>
+                    <div class="feorgan-certificate">
+
+                    </div>
+                </div>
+                <p>问题悬赏</p>
+                <div class="feaddscore">
+                    <input type="number" placeholder="0" v-model="point"> 您目前的积分为: <span>{{currentPoint}}</span>
+                </div>
+                <div class="fepaybtn">
+                    <button @click="putQuestion()">提交问题</button>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="feaskquestion-right">
+                <div class="fetitle">提问的正确姿势</div>
+                <ul>
+                    <li>
+                        <span></span>
+                        问题要具体、语句通顺，不寻求模糊空 洞的答案。
+                    </li>
+                    <li>
+                        <span></span>
+                        问题要具体、语句通顺，不寻求模糊空 洞的答案。
+                    </li>
+                    <li>
+                        <span></span>
+                        问题要具体、语句通顺。
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/upload.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        knowledgeAskQuestion();
+    })
+</script>
+</body>
+
+</html>

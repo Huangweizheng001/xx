@@ -1,0 +1,142 @@
+@import "../config";
+
+.answer{
+    padding: 25px 50px;
+    .title{
+        font-size: 20px;
+        color: @fontMidleGrey;
+        padding-bottom: 25px;
+        line-height: 1;
+        border-bottom: 1px solid @borderGrey;
+        margin-bottom: 25px;
+        span{
+            margin-right: 40px;
+            line-height: 1;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            &:hover,&.active{
+                color: @mainColor;
+            }
+            &:hover:after,&.active:after{
+                display: table;
+                content: '';
+                position: absolute;
+                bottom: -26px;
+                height: 2px;
+                left: 0;
+                right: 0;
+                width: 100%;
+                background: @mainColor;
+            }
+        }
+    }
+    .myquiz,.myanswer{
+        .fenav{
+            border-bottom: 1px dashed #e5e5e5;
+            li{
+                float: left;
+                padding: 0 20px;
+                margin: 20px 0;
+                position: relative;
+                span{
+                    display: inline-block;
+                    width: 70px;
+                    height: 28px;
+                    background: #fff;
+                    border-radius: 3px;
+                    line-height: 28px;
+                    text-align: center;
+                    &.active,&:hover{
+                        color: #fff;
+                        background: @mainColor;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .item{
+            padding: 20px 0;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+            a{
+                font-size: 16px;
+                color: @fontDarkGrey;
+                padding-right: 170px;
+                display: block;
+                box-sizing: border-box;
+            }
+            h3{
+                color: #999;
+                font-size: 14px;
+                padding-right: 120px;
+                box-sizing: border-box;
+                padding-top: 10px
+            }
+            p{
+                font-size: 14px;
+                color: #999;
+                padding-right: 120px;
+                box-sizing: border-box;
+                padding-top: 10px;
+                span{
+                    margin-right: 40px;
+                }
+                b{
+                    padding-left: 20px;
+                    background: url(../../images/temp/score-2.jpg) no-repeat left center;
+                    color: @mainColor;
+                    font-weight: normal;
+                }
+            }
+            .feanswernum{
+                text-align: center;
+                top: 50%;
+                font-size: 14px;
+                color: #999;
+                margin-top: -25.5px;
+                position: absolute;
+                right: 90px;
+                padding-top: 30px;
+                width: 80px;
+                background: url(../../images/temp/answer-num.png) no-repeat center top;
+            }
+            .festate1{
+                text-align: center;
+                top: 50%;
+                font-size: 14px;
+                color: #34a2ff;
+                margin-top: -25.5px;
+                position: absolute;
+                right: 0px;
+                padding-top: 30px;
+                width: 80px;
+                background: url("../../images/temp/state-1.png") no-repeat center top;
+            }
+            .festate2{
+                text-align: center;
+                top: 50%;
+                font-size: 14px;
+                color: #13a654;
+                margin-top: -25.5px;
+                position: absolute;
+                right: 0px;
+                padding-top: 30px;
+                width: 80px;
+                background: url("../../images/temp/state-2.png") no-repeat center top;
+            }
+            .festate3{
+                text-align: center;
+                top: 50%;
+                font-size: 14px;
+                color: #ff6c00;
+                margin-top: -25.5px;
+                position: absolute;
+                right: 0px;
+                padding-top: 30px;
+                width: 80px;
+                background: url("../../images/temp/state-3.png") no-repeat center top;
+            }
+        }
+    }
+}

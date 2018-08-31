@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>充值查询</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/jquery.sinaEmotion.css" />
+		<link rel="stylesheet" href="css/Ecalendar.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/dbliveroom.css" />
+
+	</head>
+
+	<body style="padding-top: 0;">
+		<h3 class="bmuservisitTitle">充值查询</h3>
+		<div id="bmuservisitList">
+			<div id="bmsearchBox">
+				<label style="position: relative;">
+					开始时间:<input id="bmsetTime1" type="text" /> 
+				</label>
+				<label style="position: relative;">
+					结束时间:<input id="bmsetTime2" type="text" />
+				</label> 昵称:
+				<input type="text" v-model="keyword" />
+				手机:
+				<input type="text" v-model="keymoblie" />
+				<a @click="searchData" class="bmuservisitSeachbtn" href="#this">搜索</a>
+			</div>
+			<table class="bmuservisitList">
+				<tr>
+					<th>行数</th>
+					<th>昵称</th>
+					<th>手机</th>
+					<th>充值时间</th>
+					<th>支付类型</th>
+					<th>充值描述</th>
+					<th>充值金额</th>
+					<th>备注</th>
+					<th>操作</th>
+					<!--<th>IP</th>-->
+				</tr>
+				<tr v-for="(item,index) in visitArr" v-cloak>
+					<td>{{index+1}}</td>
+					<td>{{item.nickName}}</td>
+					<td>{{item.mobile}}</td>
+					<td>{{item.payTime}}</td>
+					<td>{{item.payType}}</td>
+					<td>{{item.payReason}}</td>
+					<td>{{item.amount}}</td>
+					<td>{{item.noteInf}}</td>
+					<td><a style="color: #007AFF;" target="_blank" :href="'chatuservisit.html?mid='+item.memberId">查询</a></td>
+					<!--<td>{{item.ip}}</td>-->
+				</tr>
+			</table>
+
+			<!--枫叶-->
+			<ul class="pagenationbox clearfix">
+				<li v-show="current != 1" @click="current-- && goto(current--)">
+					<a href="#this">上一页</a>
+				</li>
+				<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+					<a href="#this">{{index}}</a>
+				</li>
+				<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+					<a href="#this">下一页</a>
+				</li>
+			</ul>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript" src="js/Ecalendar.jquery.min.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script>
+			$(function() {
+				var vmid = $(this).getUrlParam("mid");
+				new Vue({
+					el: "#bmuservisitList",
+					data: {
+						visitArr: [],
+						keyword: '',
+						keymoblie:'',
+						beginTime: '',
+						endTime: '',
+						current: 1,
+						showItem: 12,
+						allpage: 0, //总页码  默认热点
+					},
+					filters: {
+						addRootFile: function addRootFile(img) {
+							return img;
+						}
+					},
+					computed: {
+						pages: function() {
+							var pag = [];
+							if(this.current < this.showItem) { //如果当前的激活的项 小于要显示的条数
+								//总页数和要显示的条数那个大就显示多少条
+								var i = Math.min(this.showItem, this.allpage);
+								while(i) {
+									pag.unshift(i--);
+								}
+							} else { //当前页数大于显示页数了
+								var middle = this.current - Math.floor(this.showItem / 2), //从哪里开始
+									i = this.showItem;
+								if(middle > (this.allpage - this.showItem)) {
+									middle = (this.allpage - this.showItem) + 1
+								}
+								while(i--) {
+									pag.push(middle++);
+								}
+							}
+							return pag
+						}
+					},
+					mounted: function mounted() {
+						//1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.getInitData();
+							this.setTime1();
+							this.setTime2();
+						});
+					},
+					methods: {
+						getInitData: function getInitData() {
+							var _this = this;
+							this.$http.post(ROUTE + "Member.ashx?action=getRechargeList", {
+								adminid: $mid,
+								beginTime: _this.beginTime,
+								endTime: _this.endTime,
+								nickName: _this.keyword,
+								mobile:_this.keymoblie,
+								pageIndex: _this.current,
+								pageSize: _this.showItem
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body == 8401){
+									layer.msg("暂无权限!");
+									return false;
+								}
+								_this.allpage = res.body.totalPageCount;
+								_this.visitArr = res.body.rows;
+							});
+						},
+						searchData: function() {
+							this.current = 1;
+							this.showItem = 12;
+							this.allpage = 0;
+							this.getInitData();
+						},
+						setTime1: function() {
+							var _this = this;
+							$("#bmsetTime1").ECalendar({
+								type: "time",
+								offset: [0, 2],
+								 format:"yyyy-mm-dd hh:ii:00",   //时间格式 默认 yyyy-mm-dd hh:ii;
+								callback: function(v, e) {
+									_this.beginTime = $("#bmsetTime1").val();
+								}
+
+							});
+						},
+						setTime2: function() {
+							var _this = this;
+							$("#bmsetTime2").ECalendar({
+								type: "time",
+								offset: [0, 2],
+								format:"yyyy-mm-dd hh:ii:00",   //时间格式 默认 yyyy-mm-dd hh:ii;
+								callback: function(v, e) {
+									_this.endTime = $("#bmsetTime2").val();
+								}
+							});
+						},
+						goto: function(index) { //枫叶处理
+							if(index == this.current) return;
+							if(index > this.allpage) {
+								this.current = this.current - 2;
+								layer.msg("Sorry ╮(╯_╰)╭ 没有下一页喽！");
+								return false;
+							}
+							this.current = index;
+							this.getInitData();
+						}
+					}
+				});
+			})
+		</script>
+
+	</body>
+
+</html>

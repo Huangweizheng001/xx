@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-作业报告</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <!--<div style="padding-top: 80px;text-align: center">-->
+            <!--<img src="images/temp/research.png" alt="">-->
+            <!--</div>-->
+
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学习中心 <i class="uk-icon-angle-right"></i></span>
+                <span>作业报告</span>
+                <a href="studentmyhomework.html" style="float: right; color: rgb(255, 108, 0); font-size: 16px; padding-right: 20px;">返回</a>
+            </div>
+            <!--报告模板-->
+            <div class="feresultsummary" id="resultsummary">
+                <div class="feresultsummary-head">
+                    <h1 v-cloak>{{taskName}}</h1>
+                    <h3><span v-cloak>{{sumValue}}</span>分</h3>
+                    <p>
+                        <span><b style="background: #17f427"></b>答对</span>
+                        <span><b style="background: #ff6c60"></b>答错</span>
+                        <span><b></b>主观题</span>
+                        <span style="color: #999">(主观题不参与评分)</span>
+                    </p>
+                </div>
+                <div class="feanswer-card" >
+                    <div class="fepanel" v-cloak v-for="(modular,index) in questionList" style="text-align: center;">
+                        <h4>{{modular.questionTypeName}}</h4>
+                        <span  v-for="(list,index1) in modular.question_result" v-bind:data-id="list.questionid" v-bind:data-source="list.source" :class="list.result,modular.questionType|getColor">{{index1+1}}</span>
+                    </div>
+                </div>
+                <div class="feoperation">
+                    <a >全部解析</a>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        resultSummary($(window).storager({ key: 'ppid' }).readStorage());
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长个人中心-账号信息</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <parent-header-template></parent-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <parent-left-template></parent-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right ">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>账号信息</span>
+            </div>
+            <!--个人资料-->
+            <div class="fepersonaldata">
+                <div class="fepanel" id="information">
+                    <form action="" method="post" id="information-form" name="information-form">
+                        <div class="fepersonaldata-title">
+                            <b>基本信息</b>
+                            <span>编辑</span>
+                        </div>
+                        <ul>
+                            <li>
+                                <span>昵&nbsp;&nbsp;称 :</span>
+                                <input type="text" value="" disabled name="nickName" autocomplete="off" id="nickname">
+                            </li>
+                            <li>
+                                <span>姓&nbsp;&nbsp;名 :</span>
+                                <input type="text" value="" placeholder="自己的真实姓名" name="username" disabled id="username" autocomplete="off">
+                            </li>
+                            <li>
+                                <span>性&nbsp;&nbsp;别 :</span>
+                                <i>男</i>
+                                <input type="radio"  name="sex" id="male" class="fehidden" value="0"><label for="male" class="fehidden">男</label>
+                                <input type="radio"  name="sex" id="female" class="fehidden" value="1"><label for="female" class="fehidden">女</label>
+                            </li>
+                            <li style="display: inline-block;margin: 0">
+                                <span>出生日期 :</span>
+                                <input type="text" value="" disabled name="" autocomplete="off" id="birth"  placeholder="请选择日期">
+                            </li>
+                            <li>
+                                <span>所在地 :</span>
+                                <input type="text" value="" disabled name="address" autocomplete="off" id="address">
+                            </li>
+                        </ul>
+                        <div class="feoperation fehidden">
+                            <a >保存</a>
+                            <a >取消</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="fepanel" id="contact">
+                    <form action="" method="post" id="contact-form">
+                        <div class="fepersonaldata-title" >
+                            <b>联系方式</b>
+                            <!--<span>编辑</span>-->
+                        </div>
+                        <ul>
+                            <!--<li>-->
+                                <!--<span>邮&nbsp;&nbsp;箱 :</span>-->
+                                <!--<input type="text" value="" placeholder="自己的邮箱" disabled name="email" autocomplete="off" id="email">-->
+                            <!--</li>-->
+                            <li>
+                                <span>手&nbsp;&nbsp;机 :</span>
+                                <input type="text" value="" disabled name="mobile" autocomplete="off" id="phone">
+                            </li>
+                            <!--<li>-->
+                                <!--<span>Q&nbsp;&nbsp;&nbsp;&nbsp;Q :</span>-->
+                                <!--<input type="text" value="" placeholder="自己的QQ" disabled name="qq" autocomplete="off" id="qq">-->
+                            <!--</li>-->
+                        </ul>
+                        <div class="feoperation fehidden">
+                            <a >保存</a>
+                            <a >取消</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        accountinformation();
+    })
+</script>
+</body>
+
+</html>

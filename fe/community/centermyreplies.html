@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>论坛中心-我的回帖</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <community-header-template></community-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <community-left-template></community-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right" style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>帖子管理 <i class="uk-icon-angle-right"></i></span>
+                <span>我的回贴</span>
+                <!--<span><i class="uk-icon-angle-right"></i>基本信息</span>-->
+                <!--<span></span>-->
+            </div>
+            <!--我的回帖-->
+            <div class="femygroupdetail">
+                <div class="fecontent">
+                    <div class="mycreategrouppost" id="myreplies" >
+                        <div class="feselect">
+                            <span>所属群组:</span>
+                            <select name="" id="group">
+                                <option value="">全部</option>
+                                <option v-bind:value="item.id" v-cloak v-for="item in groupArr">{{item.groupName}}</option>
+                            </select>
+                            <input type="text" placeholder="请输入关键字" id="keyword">
+                        </div>
+                        <div class="fecommunitytable">
+                            <div class="fetitle">
+                                <div class="span3">帖子标题</div>
+                                <div class="span3">所属群组</div>
+                                <div class="span4">回复内容</div>
+                                <div class="span2">回复时间</div>
+                            </div>
+                            <div class="felist" v-cloak v-for="(item,index) in post">
+                                <div class="span3"><a class="textoverflow" v-bind:href="'communitypostdetail.html?postId='+item.tid" target="_blank">{{item.title}}</a></div>
+                                <div class="span3">{{item.groupName}}</div>
+                                <div class="span4"><a class="textoverflow">{{item.content}}</a></div>
+                                <div class="span2">{{item.postdatetime}}</div>
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                        <div style="clear: both"></div>
+                    </div>
+
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/fecommunitycenter.js"></script>
+<script>
+    $(function () {
+        myreplies();
+    })
+</script>
+</body>
+
+</html>

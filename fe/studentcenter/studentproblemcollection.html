@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-习题收藏</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <!--<div style="padding-top: 80px;text-align: center">-->
+            <!--<img src="images/temp/research.png" alt="">-->
+            <!--</div>-->
+
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学习中心 <i class="uk-icon-angle-right"></i></span>
+                <span>习题收藏</span>
+            </div>
+            <!--习题收藏-->
+            <div class="fetaskTemplate" id="problemcollection">
+                <div class="fe-select">
+                    <span>学科分类:</span>
+                    <select name="" id="subject">
+                        <option value="0">全部</option>
+                        <option v-bind:value="item.subjectId" v-cloak v-for="item in subjectArr">{{item.name}}</option>
+                    </select>
+                    <span style="margin-left: 40px">题型分类:</span>
+                    <select name="" id="questionType">
+                        <option value="0">全部</option>
+                        <option v-bind:value="item.questionTypeId" v-cloak v-for="item in questionTypeArr">{{item.name}}</option>
+                    </select>
+                </div>
+                <div  class="fepanel">
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div class="febox" v-for="(list,index) in questionList"  v-bind:data-id="list.questionid" v-bind:data-source="list.source">
+                        <input type="hidden" class="studentAnswer">
+                        <div class="fe-stems">
+                            <b v-cloak>{{(current-1)*pageSize+index+1}}</b>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='文本'">{{item.text}}</span>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='输入框'"><input type="text"   ></span>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='图片'"><img v-bind:src="item.text" alt=""></span>
+                            <!--<span style="color: #00aaff">[{{list.theValue}}分]</span>-->
+                        </div>
+                        <p>
+                            <!--<span>来源: <b v-cloak>{{list.paperTitle}}</b></span>-->
+                            <button @click="deleteQuestion(list.questionid,list.source)" v-cloak>取消收藏</button>
+                        </p>
+                        <div class="fe-items">
+                            <div v-cloak v-for="m in list.items" v-if="list.type==1" class="i-select" >
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-for="m in list.items" v-if="list.type==2" class="i-select" >
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-for="m in list.items" v-if="list.type==3" class="i-select">
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-if="list.type==4">
+                                <textarea name="" id="" ></textarea>
+                            </div>
+                        </div>
+                        <!--<div class="fe-answer">-->
+                            <!--<span>正确答案</span>-->
+                            <!--<div v-html="list.answer"></div>-->
+                            <!--<span style="background: #ff6c00">答案解析</span>-->
+                            <!--<div v-html="list.answerKey"></div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        problemCollection();
+    })
+</script>
+</body>
+
+</html>

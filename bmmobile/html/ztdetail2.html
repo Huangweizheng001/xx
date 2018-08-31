@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bm.css">
+			<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<title>汇市专题</title>
+
+		<style>
+			body {
+				background: #f2f2f2;padding-top: 8rem;
+			}
+			
+			.teacher {
+				padding: 1rem 2.285rem;
+				font-size: 1.42rem;
+				color: #606060;
+				background-color: #fff;
+			}
+			.content img {
+				width: 100%;
+			}
+			
+			.teacher li {
+				margin-bottom: 2rem;
+			}
+			
+			.title img {
+				width: 100%;
+			}
+			
+			.teacher p {
+				padding-top: 1rem;
+				padding-bottom: .3rem;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.course {
+				padding: 1rem 2.285rem;
+				overflow: hidden;
+				background: #282828 url(../images/zt/dzcontentbg03.jpg) no-repeat center;
+				background-size: cover;
+			}
+			
+			.course li {
+				display: inline-block;
+				margin-bottom: 1.14rem;
+				float: left;
+				width: 50%;
+				box-sizing: border-box;
+			}
+			
+			.course li img {
+				width: 100%;
+			}
+			
+			.course li:nth-child(even) {
+				padding-left: 0.57rem;
+			}
+			
+			.course li:nth-child(odd) {
+				padding-right: 0.57rem;
+			}
+			
+			.banner img {
+				width: 100%;
+			}
+			.teacher a {
+				font-size: 1.42rem;
+				color: #606060;
+				width: 100%;
+			}
+			.teacher img {
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack()" style="display: none;">返回</span>
+				<p id="title">专题</p>
+				<!-- <span onclick="saveHistory()">保存</span> -->
+			</header>
+			<div class="banner">
+				<img src="../images/zt/whBanner.jpg" alt="">
+			</div>
+			<div class="content">
+				<img src="../images/zt/whContent01.jpg" alt="">
+			</div>
+
+			<div class="teacher">
+				<div class="header">
+					<img src="../images/zt/whtitle01.png" />
+				</div>
+				<ul class="teacherBox" id="teacherBox">
+					<!-- <li onclick="openTeacherDetail(1)">
+              <img src="../images/banner-ms01.png" alt="">
+              <p>描述</p>
+            </li> -->
+				</ul>
+			</div>
+
+			<div class="course">
+				<div class="header">
+					<img src="../images/zt/whtitle02.png" />
+				</div>
+				<ul id="courseBox">
+					<!-- <li onclick="openCourseDetail(1)">
+          <img src="../images/banner-cs01.png" alt="">
+        </li> -->
+				</ul>
+			</div>
+
+			<div class="content" style="font-size:0">
+				<img src="../images/zt/whContent02.jpg" alt="">
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+
+		<script>
+			$(function() {
+
+				getTeacherData();
+				getCourseData();
+
+				//getTeacher data
+				function getTeacherData() {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Teacher.ashx?action=getTeacherByCourseType',
+						dataType: "json",
+						data: {
+							"courseTypeId": 2 //外汇
+						},
+						success: function(result) {
+							var htmlStr = "",
+								objData = result.rows;
+							if(objData) {
+								for(var i = 0; i < 3 && i < objData.length; i++) {
+									htmlStr += '<li><a href="teacherdetail.html?teacherId=' + objData[i].teacherId + '">' +
+										'<img src="' + SERVEROOTFILE + objData[i].mobileIconPath + '" alt="">' +
+										'<p>' + objData[i].note + '</p></a></li>';
+								}
+								$("#teacherBox").html(htmlStr);
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//getCourse Data
+				function getCourseData() {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getCourseTopicByType',
+						dataType: "json",
+						data: {
+							"courseTypeId": 2 //外汇
+						},
+						success: function(result) {
+							var htmlStr = "",
+								objData = result;
+							if(objData) {
+								for(var i in objData) {
+									htmlStr += '<li><a href="coursedetail.html?courseId=' + objData[i].courseId + '">' +
+										'<img src="' + SERVEROOTFILE + objData[i].mobileIconPath + '" alt="">' +
+										'</a></li>';
+								}
+								$("#courseBox").html(htmlStr);
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>视频—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css" />
+	</head>
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<!--视频区-->
+		<section style="padding: 20px 0;background: #f4f4f4;border-bottom: 1px solid #e5e5e5">
+			<div class="container">
+				<div class="prism-player femoviecircle-video" id="jnewsPlayer"></div>
+				<div style="font-size: 18px;color:#000;padding-top: 40px;line-height: 1;font-weight: bold">往期回顾</div>
+			</div>
+		</section>
+		<!--往期回顾-->
+		<section>
+			<div class="container">
+				<div class="fepastreview" id="fepastreview">
+					<div class="swiper-container femoviepast">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-cloak v-for="item in movieArr" >
+								<a v-bind:href="item.microVideoId,item.videoId|addDetailRoot" class="febox" target="_blank" v-bind:title="item.videoName">
+									<img v-bind:src="item.iconPath|addRootFile" alt="">
+									<p>{{item.title}}</p>
+								</a>
+							</div>
+						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-next pp2"></div>
+						<div class="swiper-button-prev pp1"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--影视列表-->
+		<section class="femoviecirclelist">
+			<div class="container">
+				<!--左侧-->
+				<div class="femoviecirclelist-left span9" id="femoviecirclelist">
+					<!--影视标题栏-->
+					<div class="femoviecirclelist-left-title">
+						<div v-cloak v-for="items in movieTypeArr" >
+							<b v-bind:data-id="items.videoTypeId">{{items.typeName}}</b>
+							<!--<ul>-->
+								<!--<li v-for="menu in items.children">-->
+									<!--<a href="#this" v-bind:data-id="menu.videoTypeId">{{menu.typeName}}</a>-->
+								<!--</li>-->
+								<!--&lt;!&ndash;<li><a href="">公益</a></li>&ndash;&gt;-->
+								<!--&lt;!&ndash;<li><a href="">科普</a></li>&ndash;&gt;-->
+								<!--&lt;!&ndash;<li><a href="">教育</a></li>&ndash;&gt;-->
+								<!--&lt;!&ndash;<li><a href="">文化</a></li>&ndash;&gt;-->
+							<!--</ul>-->
+							<!--<span></span>-->
+						</div>
+						<!--<div>-->
+						<!--<ul>-->
+						<!--<li><a href="">校园</a></li>-->
+						<!--<li><a href="">公益</a></li>-->
+						<!--</ul>-->
+						<!--<span></span>-->
+						<!--</div>-->
+					</div>
+					<!--影视内容-->
+					<div class="femoviecirclelist-left-content">
+						<div class="fepanel">
+							<div class="fenodata" v-show="nodata"></div>
+							<a v-bind:href="movie.microVideoId,movie.videoId|addRoot" v-cloak v-for="(movie,index) in movieListArr" target="_blank" v-bind:title="movie.title">
+								<div class="feimage">
+									<img v-bind:src="movie.iconPath|addRootFile" alt="">
+									<p>{{movie.title}}</p>
+								</div>
+								<div class="feright-box">
+									<h3>{{movie.videoName}}</h3>
+									<!--<h4><span v-bind:style="{backgroundPosition:position[index]+'px 0px'}"></span>{{movie.score}}</h4>-->
+									<p>{{movie.introduce}}</p>
+									<!--<ul class="feright-box-ul">-->
+										<!--<li><span class="comment"></span>{{movie.messageCount}}</li>-->
+										<!--<li><span class="heart"></span>{{movie.favoriteCount}}</li>-->
+										<!--<li><span class="share"></span></li>-->
+									<!--</ul>-->
+									<h6>{{movie.updateTime}}</h6>
+								</div>
+							</a>
+							<!--<div class="femoviecirclelist-left-loadmore" @click="movieloadMore()" v-show="load">-->
+								<!--加载更多...-->
+							<!--</div>-->
+							<!--枫叶-->
+							<div class="span12">
+								<ul class="pagenationbox clearfix">
+									<li v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--右侧-->
+				<div class="femoviecirclelist-right span3" style="margin-top: 38px">
+					<!--热门推荐-->
+					<div class="femoviecirclelist-freshsms" id="fefreshsms">
+						<div class="fepanel-title">热门推荐</div>
+						<div class="fepanel-box" v-cloak v-for="item in msList">
+							<p>
+								<a v-bind:href="item.microVideoId,item.videoId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+							</p>
+							<!--<h6>{{item.updateTime}}</h6>-->
+							<!--<b></b>-->
+						</div>
+
+					</div>
+					<!--热门排行-->
+					<div class="femoviecirclelist-hotarticle" id="fehotarticle">
+						<div class="fepanel-title">热门排行</div>
+						<ul class="fepanel-ul">
+							<li v-cloak v-for="(item,index) in msList">
+								<a v-bind:href="item.microVideoId,item.videoId|addRoot" target="_blank" v-bind:title="item.title">
+									<div class="fepanel-image" v-if="item.iconPath && index<2">
+										<img v-bind:src="item.iconPath|addRootFile" alt="">
+									</div>
+									<h2>{{item.title}}</h2>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer" class="clearfix">
+			<footer-template></footer-template>
+		</footer>
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
+		<script>
+			$(function() {
+				pastreview();
+				moviecircle();
+				moviehotrecommend();
+				moviehotlist();
+				/*play();
+				play = function(vId) {*/
+				/*$.ajax({
+					type: "post",
+					url: ROOTDATA + "CourseCatalog.ashx?action=getPlayUrlByVideoId",
+					dataType: 'text',
+					data: {
+						videoid: vId
+					},
+					success: function(msg) {*/
+//						player = new prismplayer({
+//							id: 'jnewsPlayer',// 容器id
+//							source: "http://live.fetv.cn/felive/festream.m3u8?auth_key=1503027257-0-0-70dbae53de166a87b5d163a0e4d57398", // 视频地址src
+//							autoplay: true, //自动播放：否
+//							width: "1200px", // 播放器宽度
+//							height: "546px", // 播放器高度630px
+//						});
+
+				/*	}, //操作成功后的操作！msg是后台传过来的值
+					error: function(ex) {
+						$('.dycnovideo').css('display', 'block');
+					}
+				});*/
+			/*}*/
+			})
+		</script>
+	</body>
+
+</html>

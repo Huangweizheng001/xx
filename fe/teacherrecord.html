@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师主页</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+
+</head>
+
+<body>
+
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<!--内容模块-->
+<section class="femasterdetail clearfix" id="femasterdetail_record">
+    <div class="container">
+        <!--头部老师信息-->
+        <div class="femasterdetail-head clearfix" v-cloak v-for="item in teacher">
+            <div class="feimage">
+                <img v-bind:src="item.iconPath|addRootFile" alt="">
+            </div>
+            <h1>{{item.teacherName}}</h1>
+            <p>
+                <span><a v-bind:href="item.organId|goToSchool" target="_blank">{{item.organName}}</a></span>
+                <span>{{item.subjectName}}</span>
+            </p>
+            <div class="fefollow">
+                <button><i class="uk-icon-plus"></i>关注</button>
+                <button class="cancel">取消关注</button>
+            </div>
+        </div>
+        <!--导航栏-->
+        <div class="femasterdetail-nav ">
+            <a v-bind:href="item.teacherInfoTypeId|addRootNav" v-cloak v-for="item in masterdetailnav"><span>{{item.name}}</span></a>
+        </div>
+        <div class="feteacherindex-record">
+            <h1>老师介绍</h1>
+            <ul class="feteacherintro" v-cloak v-for="item in teacherintroduction">
+                <li class="clearfix"><span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span><div>{{item.teacherName}}</div></li>
+                <li class="clearfix"><span>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</span><div>{{item.sex}}</div></li>
+                <li class="clearfix"><span>教&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄:</span><div>{{item.ofSchoolAge}} 年教龄</div></li>
+                <li class="clearfix"><span>自我介绍:</span><div v-html="item.introduce"></div></li>
+            </ul>
+        </div>
+        <div class="feteacherindex-record">
+            <h1>过往经历</h1>
+            <div class="fenodata" v-show="nodata"></div>
+            <ul class="feteacherpastthing">
+                <li v-cloak v-for="item in pastthings">
+                    <h3>{{item.beginDate}} 至 {{item.endDate}}</h3>
+                    <p>{{item.experience}}</p>
+                </li>
+            </ul>
+            <div class="feloadmore" v-show="load">
+                <a href="#this" @click="pastThingLoadMore()" >查看更多</a>
+            </div>
+        </div>
+        <div class="feteacherindex-record clearfix" style="display: none;">
+            <h1>相关案例</h1>
+            <div id="masonry" class="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/masonry-docs.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var teacherId=$(this).getUrlParam("teacherId");
+        teacherindex_record(teacherId);
+    })
+</script>
+</body>
+
+</html>

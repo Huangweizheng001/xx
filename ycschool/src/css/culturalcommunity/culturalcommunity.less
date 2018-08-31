@@ -1,0 +1,1356 @@
+@import "../config";
+
+.span8_5 {
+    float: left;
+    width: 70.84%;
+}
+
+.span3_5 {
+    float: left;
+    width: 29.16%;
+}
+
+/*知识付费-首页*/
+.feknowledgePay .feknowledgePay-head {
+    margin: 20px 0;
+    background: url("../../images/temp/knowledge-baner.png") no-repeat center;
+    height: 370px;
+    width: 100%;
+}
+
+.feknowledgePay .feknowledgePay-head .container {
+    position: relative;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box {
+    position: absolute;
+    right: 0;
+    top: 30px;
+    height: 320px;
+    width: 264px;
+}
+
+.fereplydetail-login-box {
+    width: 100%;
+    height: 320px;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry, .fereplydetail-login-box .feentry {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .8);
+    position: relative;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .feimage, .fereplydetail-login-box .feentry .feimage {
+    padding: 20px;
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .feimage img,
+.fereplydetail-login-box .feentry .feimage img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .fecenter,
+.fereplydetail-login-box .feentry .fecenter {
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .fecenter h1,
+.fereplydetail-login-box .feentry .fecenter h1 {
+    line-height: 1;
+    font-size: 16px;
+    color: #000;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .fecenter h1 span,
+.fereplydetail-login-box .feentry .fecenter h1 span {
+    line-height: 1;
+    font-size: 12px;
+    color: #fff;
+    background: @mainColor;
+    border-radius: 50px;
+    padding: 0px 5px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .fecenter a,
+.fereplydetail-login-box .feentry .fecenter a {
+    width: 100px;
+    height: 34px;
+    line-height: 34px;
+    color: #fff;
+    background: #ffaf35;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    transition: all .3s linear;
+    display: inline-block;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .fecenter a:hover,
+.fereplydetail-login-box .feentry .fecenter a:hover {
+    background: #000;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .febottom,
+.fereplydetail-login-box .feentry .febottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .febottom > div,
+.fereplydetail-login-box .feentry .febottom > div {
+    float: left;
+    width: 50%;
+    text-align: center;
+    box-sizing: border-box;
+    height: 100%;
+    cursor: pointer;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .febottom > div:first-child,
+.fereplydetail-login-box .feentry .febottom > div:first-child {
+    border-right: 1px solid #e6e6e6;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .febottom h3,
+.fereplydetail-login-box .feentry .febottom h3 {
+    font-size: 16px;
+    color: #000;
+    padding: 10px 0;
+    line-height: 1;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .feentry .febottom h5,
+.fereplydetail-login-box .feentry .febottom h5 {
+    font-size: 16px;
+    color: #999;
+    line-height: 1;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin,
+.fereplydetail-login-box .fenologin {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .8);
+    position: relative;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin img,
+.fereplydetail-login-box .fenologin img {
+    width: 100%;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin h1,
+.fereplydetail-login-box .fenologin h1 {
+    font-size: 16px;
+    line-height: 1;
+    padding: 20px 0;
+    color: @mainColor;
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin .febox,
+.fereplydetail-login-box .fenologin .febox {
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin .febox h3,
+.fereplydetail-login-box .fenologin .febox h3 {
+    font-size: 16px;
+    color: #000;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin .febox h4,
+.fereplydetail-login-box .fenologin .febox h4 {
+    font-size: 16px;
+    color: @mainColor;
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin .febox a,
+.fereplydetail-login-box .fenologin .febox a {
+    width: 120px;
+    height: 34px;
+    border-radius: 5px;
+    background: @mainColor;
+    color: #fff;
+    font-size: 16px;
+    line-height: 34px;
+    text-align: center;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    transition: all .3s linear;
+    display: inline-block;
+}
+
+.feknowledgePay .feknowledgePay-head .felogin-box .fenologin .febox a:hover,
+.fereplydetail-login-box .fenologin .febox a:hover {
+    background: #000;
+}
+
+.feknowledgePay .feknowledgePay-con {
+    margin-bottom: 20px;
+}
+
+/*等你来答*/
+.feknowledgePay .feknowledgePay-con .fewaitForU {
+    margin-right: 60px;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent {
+    margin-left: 26px;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li {
+    padding: 20px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li:last-child {
+    border-bottom: none;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .feimage {
+    float: left;
+    width: 50px;
+    padding-right: 20px;
+    height: 50px;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .feimage img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .febox {
+    margin-left: 70px;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .febox h2 {
+    font-size: 22px;
+    padding: 12px 0;
+    line-height: 1;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .febox h2 span {
+    font-size: 14px;
+    margin-left: 20px;
+    color: #666;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .febox a {
+    font-size: 16px;
+}
+
+.feknowledgePay .feknowledgePay-con .fewaitForU .fecontent li .febox a:hover {
+    color: @mainColor;
+}
+
+/*名师问答*/
+.feknowledgePay .feknowledgePay-con .fefamousTeacher {
+    padding-right: 26px;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent {
+    margin-left: 26px;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li {
+    padding: 20px 0;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li:last-child {
+    border-bottom: none;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .feimage {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .feimage img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox {
+    margin-left: 60px;
+    display: block;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox:hover {
+    color: @mainColor;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox h2 {
+    font-size: 16px;
+    padding-bottom: 5px;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox h2 span {
+    font-size: 12px;
+    float: right;
+    padding: 3px 5px;
+    background: @mainColor;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox p {
+    color: #666;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox p > span {
+    float: left;
+    width: 33.3%;
+    /*margin-top: 6px;*/
+    color: #666;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox p > span:nth-child(2) {
+    text-align: center;
+}
+
+.feknowledgePay .feknowledgePay-con .fefamousTeacher .fecontent li .febox p > span:last-child {
+    text-align: right;
+}
+
+.studyArea {
+    margin-bottom: 20px;
+}
+
+//家长课堂
+.parentClass {
+    padding-right: 60px;
+    .parentClassContent {
+        margin-top: 20px;
+        padding-left: 6px;
+        .courseItem {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            .courseStyle
+        }
+    }
+}
+
+//热门文章
+.popularArticles {
+    padding-right: 26px;
+    .articleList {
+        padding: 10px 0 0 26px;
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid @borderGrey;
+            a {
+                display: block;
+                font-size: 14px;
+                color: @fontGrey;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &:hover {
+                    color: @mainColor;
+                }
+            }
+        }
+    }
+}
+
+//老师区
+.teacher-wrapper {
+    padding: 20px 0;
+    background: #f4f4f4;
+    .teacher-content {
+        padding: 40px 50px;
+        position: relative;
+        .none-effect {
+            transition: none;
+        }
+        .swiper-container {
+            width: 100%;
+            //margin: 35px 0;
+            .swiper-slide {
+                transition: transform 1s;
+                transform: scale(0.82);
+                a {
+                    background: #fff;
+                    display: block;
+                    width: 220px;
+                    text-align: center;
+                    img {
+                        margin-top: 22px;
+                        width: 108px;
+                        height: 108px;
+                        border-radius: 50%;
+                    }
+                    h1 {
+                        font-size: 20px;
+                        color: @fontDarkGrey;
+                        padding-top: 10px;
+                    }
+                    h3 {
+                        font-size: 16px;
+                        color: @fontGrey;
+                        padding-top: 10px;
+                        padding-bottom: 16px;
+                    }
+                    //&:after{
+                    //  position: absolute;
+                    //  top: 0;
+                    //  left: 0;
+                    //  display: block;
+                    //  box-sizing: border-box;
+                    //  border: 10px solid #fff;
+                    //  content: "";
+                    //  width: 100%;
+                    //  height: 100%;
+                    //  background: url("../../images/temp/top_slick_cover_bg01.png") 0 0 repeat;
+                    //  border-radius: 20px;
+                    //}
+                }
+                &:hover {
+                    transform: scale(1);
+                    box-shadow: 0 0 6px #ccc;
+                }
+                &:hover h1 {
+                    color: @mainColor;
+                }
+                &:hover :after {
+                    background: none;
+                }
+            }
+            //.swiper-slide-active,.swiper-slide-duplicate-active {
+            //  transform: scale(1);
+            //}
+            //.swiper-slide-active a:after {
+            //  background: none;
+            //}
+        }
+        .swiper-button-prev {
+            border: none;
+            outline: none;
+            width: 21px;
+            height: 40px;
+            border-radius: 50%;
+            background: url("../../images/temp/lunbo-l-h.png") no-repeat center;
+        }
+        .swiper-button-next {
+            border: none;
+            outline: none;
+            width: 21px;
+            height: 40px;
+            border-radius: 50%;
+            background: url("../../images/temp/lunbo-r-h.png") no-repeat center;
+        }
+    }
+}
+
+//家校互动
+.interactionBetweenFamily {
+    margin: 20px 0 30px;
+    .content {
+        margin: 40px 100px 0;
+        .saySomeThing {
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            width: 100%;
+            height: 120px;
+            padding: 20px;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+        .wordCount {
+            float: right;
+            position: relative;
+            margin-top: -20px;
+            margin-right: 20px;
+            z-index: 100;
+        }
+        .submitBtn {
+            margin-top: 20px;
+            text-align: right;
+            a {
+                display: inline-block;
+                width: 120px;
+                height: 40px;
+                line-height: 40px;
+                background: @mainColor;
+                color: #fff;
+                text-align: center;
+                font-size: 24px;
+                border-radius: 3px;
+                transition: all .3s linear;
+                &:hover {
+                    background: #000;
+                }
+            }
+        }
+    }
+}
+
+/*提出您的问题*/
+.feaskquestion {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.feaskquestion .feaskquestion-left {
+    //box-shadow: 0 0 6px #ccc;
+    margin-right: 60px;
+    background: #fff;
+    padding: 20px 0 20px 26px;
+}
+
+.feaskquestion .feaskquestion-left .fepictureArr img {
+    float: left;
+    width: 100px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.feaskquestion .felastanswer .fepictureArr img {
+    float: left;
+    width: 100px;
+    height: 60px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.feaskquestion .feaskquestion-left > h1 {
+    font-size: 24px;
+    color: #000;
+    line-height: 1;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.feaskquestion .feaskquestion-left > h2 {
+    font-size: 24px;
+    color: #000;
+    line-height: 1.2;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.feaskquestion .feaskquestion-left > h1 span {
+    color: @mainColor;
+    margin: 0 10px;
+}
+
+.feaskquestion .feaskquestion-left p {
+    font-size: 20px;
+    color: #000;
+    line-height: 1;
+    padding: 20px 0;
+}
+
+.feaskquestion .feaskquestion-left .textarea {
+    font-size: 16px;
+    color: #000;
+    padding: 10px 20px;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    overflow-y: auto;
+    border: 1px solid #e5e5e5;
+}
+
+.feaskquestion .feaskquestion-left .textarea:focus {
+    border-color: @mainColor;
+}
+
+.feaskquestion .feaskquestion-left h4 {
+    font-size: 16px;
+    color: #999;
+    text-align: right;
+}
+
+.feaskquestion .feaskquestion-left .feaddpicture {
+    line-height: 1;
+}
+.feaskquestion .feaskquestion-left .feaddpicture .select-wrapper{
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 60px;
+}
+.feaskquestion .feaskquestion-left .feaddpicture .select-wrapper span{
+    font-size: 18px;
+}
+.feaskquestion .feaskquestion-left .feaddpicture .select-wrapper select{
+    padding: 2px 5px;
+    vertical-align: top;
+    margin: 4px 10px;
+}
+.feaskquestion .feaskquestion-left .feaddpicture i {
+    font-size: 26px;
+    float: left;
+    margin-right: 10px;
+    color: @mainColor;
+    margin-top: 2px;
+}
+
+.feaskquestion .feaskquestion-left .feaddpicture .feorgan-certificate .feimgList {
+    margin-top: 10px;
+    border: 1px solid #e5e5e5;
+    padding: 10px 10px 0;
+}
+
+.feaskquestion .feaskquestion-left .feaddpicture .feorgan-certificate .feimgList img {
+    width: 23.5%;
+    margin-right: 2%;
+    padding-bottom: 10px;
+    height: 140px;
+}
+
+.feaskquestion .feaskquestion-left .feaddpicture .feorgan-certificate .feimgList img:nth-child(4n) {
+    margin-right: 0;
+}
+
+.feaskquestion .feaskquestion-left .feaddscore {
+    font-size: 16px;
+}
+
+.feaskquestion .feaskquestion-left .feaddscore input {
+    font-size: 16px;
+    padding: 2px 5px 2px 25px;
+    background: url("../../images/temp/score-1.png") no-repeat 6px 6px;
+    width: 60px;
+    outline: none;
+    border: 1px solid @borderGrey;
+    margin-right: 10px;
+}
+
+.feaskquestion .feaskquestion-left .feaddscore input:focus {
+    border-color: @mainColor;
+}
+
+.feaskquestion .feaskquestion-left .feaddscore span {
+    color: @mainColor;
+}
+
+.feaskquestion .feaskquestion-left .fepaybtn {
+    padding: 40px 0;
+    text-align: right;
+    border-top: 1px solid #e6e6e6;
+    margin-top: 20px;
+}
+
+.feaskquestion .feaskquestion-left .fepaybtn button {
+    width: 120px;
+    height: 36px;
+    border: none;
+    background: @mainColor;
+    color: #fff;
+    font-size: 16px;
+    line-height: 36px;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+    transition: all .3s linear;
+}
+
+.feaskquestion .feaskquestion-left .fepaybtn button:hover {
+    background: #000;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer {
+    padding: 0px 0 20px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li {
+    padding: 20px 0;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li:last-child {
+    border-bottom: none;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feimage {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feimage img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box {
+    margin-left: 70px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box h1 {
+    font-size: 16px;
+    padding-top: 10px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box h1 span {
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box p {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.5;
+    padding-top: 10px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box .feprice {
+    font-size: 12px;
+    color: #48a9ee;
+    border: 1px solid #48a9ee;
+    border-radius: 3px;
+    padding: 2px 8px;
+    margin-right: 20px;
+}
+
+.feaskquestion .feaskquestion-left .fehistory-answer li .feright-box .festudynum {
+    font-size: 12px;
+    color: #30d88d;
+    border: 1px solid #30d88d;
+    border-radius: 3px;
+    padding: 2px 8px;
+}
+
+.feaskquestion .feaskquestion-left .fenote {
+    line-height: 1;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.feaskquestion .feaskquestion-left .fenote span {
+    font-size: 14px;
+    color: #999;
+    margin-right: 10px;
+    vertical-align: top;
+    line-height: 16px;
+}
+
+.feaskquestion .feaskquestion-left .fenote span > i {
+    background: url("../../images/temp/user-1.jpg") no-repeat center;
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin-right: 10px;
+}
+
+.feaskquestion .feaskquestion-left .fenote b {
+    display: inline-block;
+    padding-left: 20px;
+    color: @mainColor;
+    line-height: 16px;
+    background: url("../../images/temp/score-2.jpg") no-repeat left center;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+//.feaskquestion .feaskquestion-left .fenote>u{
+//  display: inline-block;padding-left: 20px;color: #FF6c00;text-decoration: none;
+//  background: url("../images/temp/money-1.png") no-repeat left center;width: 16px;height: 16px;padding-top: 4px;margin-right: 10px;
+//}
+.feaskquestion .felastanswer {
+    padding: 20px 0 20px 26px;
+    background: #fff;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.feaskquestion .felastanswer h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.feaskquestion .felastanswer h1 span {
+    font-size: 14px;
+    color: #999;
+}
+
+.feaskquestion .felastanswer ul li {
+    padding: 20px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.feaskquestion .felastanswer ul li .feimage {
+    width: 50px;
+    height: 50px;
+    float: left;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.feaskquestion .felastanswer ul li .feimage img{
+    width: 50px;
+    height: 50px;
+}
+
+.feaskquestion .felastanswer ul li .febox {
+    margin-left: 70px;
+}
+
+.feaskquestion .felastanswer ul li .febox h2 {
+    font-size: 16px;
+    color: #000;
+}
+
+.feaskquestion .felastanswer ul li .febox h2 span {
+    margin-left: 40px;
+    color: #999;
+}
+
+.feaskquestion .felastanswer ul li .febox h2 b {
+    color: @mainColor;
+    margin-left: 100px;
+    border: 1px solid @mainColor;
+    font-size: 14px;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+.feaskquestion .felastanswer ul li .febox h2 button {
+    line-height: 24px;
+    outline: none;
+    float: right;
+    height: 24px;
+    width: 80px;
+    transition: all .3s linear;
+    color: #fff;
+    margin-right: 100px;
+    border: none;
+    font-size: 14px;
+    border-radius: 3px;
+    background: @mainColor;
+}
+
+.feaskquestion .felastanswer ul li .febox h2 button:hover {
+    background: #000;
+}
+
+.feaskquestion .felastanswer ul li .febox p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+}
+
+.feaskquestion .felastanswer .feoperation {
+    padding: 20px;
+    text-align: center;
+}
+
+.feaskquestion .felastanswer .feoperation button {
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    outline: none;
+    display: inline-block;
+    border: none;
+    background: #f4f4f4;
+}
+
+.feaskquestion .felastanswer .feoperation button:hover {
+    color: @mainColor;
+}
+
+.feaskquestion .feaskquestion-right {
+    //box-shadow: 0 0 10px #eee;
+    border: 1px solid @borderGrey;
+    margin-left: 20px;
+    margin-right: 26px;
+    box-sizing: border-box;
+    padding-bottom: 60px;
+}
+
+.feaskquestion .feaskquestion-right .fetitle {
+    font-size: 20px;
+    width: 100%;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+    color: #fff;
+    background: @mainColor;
+}
+
+//.feaskquestion .feaskquestion-right .fetitle:before{
+//  content: '';display: table;position: absolute;width: 4px;height: 20px;background: #FF6c00;top: 0;
+//  left: 0;
+//}
+.feaskquestion .feaskquestion-right ul li {
+    padding: 20px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid @borderGrey;
+}
+
+.feaskquestion .feaskquestion-right ul li:last-child {
+    border-bottom: none;
+}
+
+.feaskquestion .feaskquestion-right ul li span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    margin-right: 10px;
+}
+
+
+.boxshadow {
+    box-shadow: 0 0 6px #eee;
+}
+
+//等你来答列表页
+//筛选
+.fe-schoolteacher-head {
+    font-size: 16px;
+    margin-top: 20px;
+    background: #fff;
+}
+
+.fe-schoolteacher-head a:hover, .fe-schoolteacher-head .fe-schoolteacher-head-title > a:hover {
+    color: #e75a25;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-title {
+    margin: 30px 0;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-title > a {
+    color: #000;
+    margin: 0 10px;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-title .active, .fe-schoolteacher-head .fe-schoolteacher-head-title .active:hover {
+    color: #6d6d6d;
+}
+
+/*.fe-schoolteacher-wrap {
+	margin: 20px 0;
+}*/
+.fe-schoolteacher-head .fe-schoolteacher-head-grade {
+    border-bottom: 1px dashed #ccc;
+    padding: 1rem 0;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-select {
+    /*line-height:4.5rem;*/
+    padding: 15px 0 15px 55px;
+    position: relative;
+    margin: 0 26px;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-select > a {
+    /*padding:5px 10px;margin:5px 8px;display: inline-block;*/
+    padding: 2.5px 11px;
+    margin: 5px 8px;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-select > span {
+    color: #000;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    font-weight: bold;
+}
+
+.fe-schoolteacher-head .fe-schoolteacher-head-select .active, .fe-schoolteacher-head .fe-schoolteacher-head-select > a:hover {
+    background: @mainColor;
+    color: #fff;
+}
+
+#questionList {
+    margin-bottom: 20px;
+}
+
+
+.feknowledgequestionlist {
+    background: #fff;
+    padding: 0 26px 0;
+}
+
+//.feknowledgequestionlist .fetitle{
+//  font-size: 18px;color:#FF6c00;
+//}
+//.feknowledgequestionlist .fetitle .febox{
+//  float: right;position: relative;
+//}
+//.feknowledgequestionlist .fetitle .febox input{
+//  padding: 4px 10px;font-size: 14px;
+//  width: 100px;margin-right: 30px;padding-right: 30px;outline: none;border: 1px solid #e6e6e6;border-radius: 50px;
+//}
+//.feknowledgequestionlist .fetitle .febox button{
+//  top: 0;border-radius: 50px;outline: none;border: none;
+//  position: absolute;right: 0;width: 50px;height: 30px;background: url("../../images/temp/knowledge-search-1.png") no-repeat center #FF6c00;
+//}
+.feknowledgequestionlist .fecontent {
+    //margin-top: 20px;
+}
+
+.feknowledgequestionlist .fecontent li {
+    padding: 20px 0;
+    position: relative;
+    border-bottom: 1px solid @borderGrey;
+}
+
+.feknowledgequestionlist .fecontent li .feimage {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    float: left;
+}
+
+.feknowledgequestionlist .fecontent li .feimage img {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter {
+    margin-right: 120px;
+    margin-left: 70px;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter h2 {
+    font-size: 16px;
+    color: #000;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter h2 img {
+    height: 24px;
+    line-height: 22px;
+    vertical-align: top;
+    margin-right: 5px;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter p {
+    font-size: 14px;
+    color: #999;
+    padding: 10px 0;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter p span {
+    margin-right: 40px;
+}
+
+.feknowledgequestionlist .fecontent li .fecenter p span > i {
+    margin-right: 10px;
+}
+
+.feknowledgequestionlist .fecontent li .febtn a {
+    margin-top: -16px;
+    border-radius: 3px;
+    line-height: 30px;
+    text-align: center;
+    transition: all .3s linear;
+    width: 100px;
+    height: 30px;
+    border: 1px solid @mainColor;
+    color: @mainColor;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+.feknowledgequestionlist .fecontent li .febtn a:hover {
+    background: @mainColor;
+    color: #fff;
+}
+
+//排行榜
+.rankingList {
+    background: #fff;
+    margin: 10px 26px 0 24px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 6px #eee;
+}
+
+.rankingList > h1 {
+    background: @mainColor;
+    font-size: 20px;
+    color: #fff;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+}
+
+.rankingList ul li {
+    padding: 10px 0;
+    margin: 0 26px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.rankingList ul li:last-child {
+    border-bottom: none;
+}
+
+.rankingList ul li span {
+    width: 45px;
+    height: 45px;
+    float: left;
+    border-radius: 50%;
+    border: 1px solid @borderGrey;
+    position: relative;
+    background-size: 100% 100% !important;
+}
+
+.rankingList ul li .febox {
+    margin-left: 70px;
+}
+
+.rankingList ul li .febox h1 {
+    font-size: 16px;
+    color: #000;
+    /*padding: 0px 0 5px;*/
+}
+
+.rankingList ul li .febox h3 {
+    font-size: 14px;
+    color: #666;
+}
+
+.rankingList ul li i {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -8px;
+    font-size: 16px;
+    color: #666;
+}
+
+.rankingList ul li:first-child i {
+    color: #ff424f;
+}
+
+.rankingList ul li:nth-child(2) i {
+    color: @mainColor;
+}
+
+.rankingList ul li:nth-child(3) i {
+    color: #ff9f2e;
+}
+
+.rankingList ul li:first-child span b {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -8px;
+    top: 0;
+    background: url("../../images/public/public-icon.png") no-repeat -584px -78px;
+}
+
+.rankingList ul li:nth-child(2) span b {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -8px;
+    top: 0;
+    background: url("../../images/public/public-icon.png") no-repeat -610px -78px;
+}
+
+.rankingList ul li:nth-child(3) span b {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -8px;
+    top: 0;
+    background: url("../../images/public/public-icon.png") no-repeat -637px -78px;
+}
+
+.parentClassList {
+    margin: 20px 0;
+    background: #fff;
+    .courseList {
+        padding: 20px 0 0 26px;
+        .courseItem {
+            display: flex;
+            margin-right: 26px;
+            margin-bottom: 20px;
+            .image {
+                flex: 230 1 1;
+                position: relative;
+                width: 230px;
+                height: 150px;
+                margin-right: 20px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                .mask {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, .4);
+                    opacity: 0;
+                    transition: all .3s linear;
+                    .play-icon {
+                        display: block;
+                        width: 32px;
+                        height: 32px;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        margin-top: -16px;
+                        margin-left: -16px;
+                        background: url("../../images/temp/play-icon.png");
+                    }
+                }
+                &:hover .mask {
+                    //display:block;
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+            .boxRight {
+                flex: 1;
+                position: relative;
+                .courseName{
+                    font-size: 16px;
+                    color: @fontDarkGrey;
+                    font-weight: 600;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    line-height: 1;
+                    margin-bottom: 20px;
+                }
+                .intro{
+                    font-size: 14px;
+                    color: @fontGrey;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
+                    height: 42px;
+                }
+                .bottom{
+                    position: absolute;
+                    bottom: 0;
+                    font-size: 14px;
+                    color: @fontGrey;
+                }
+            }
+        }
+    }
+}
+.parentingArticle{
+    margin: 20px 0;
+    background: #fff;
+    .articleList{
+        margin-right: 20px;
+        .articleContent{
+            padding: 30px 26px 0;
+            .article{
+                display: flex;
+                margin-bottom: 20px;
+                .image{
+                    flex: 225 1 1;
+                    width: 225px;
+                    height: 148px;
+                    margin-right: 20px;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .boxRight{
+                    flex: 1;
+                    position: relative;
+                    .articleName{
+                        font-size: 16px;
+                        color: @fontDarkGrey;
+                        font-weight: 600;
+                        line-height: 1;
+                        margin-bottom: 35px;
+                    }
+                    .intro{
+                        font-size: 14px;
+                        color: @fontGrey;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        overflow: hidden;
+                        height: 42px;
+                    }
+                    .bottom{
+                        position: absolute;
+                        bottom: 0;
+                        font-size: 14px;
+                        color: @fontGrey;
+                    }
+                }
+                &:hover .articleName{
+                    color: @mainColor;
+                }
+            }
+        }
+    }
+    .popularArticle{
+        .articleList{
+            padding: 30px 26px 0;
+            li{
+                padding: 20px 0;
+                line-height: 1;
+                border-bottom: 1px solid @borderGrey;
+                a{
+                    display: block;
+                    font-size: 14px;
+                    color: @fontGrey;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                }
+                &:first-child{
+                    padding-top: 0;
+                }
+                &:hover a{
+                    cursor: pointer;
+                    color: @mainColor;
+                }
+            }
+
+        }
+    }
+}

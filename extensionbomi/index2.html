@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>大讲堂全新升级，打造国内顶尖金融在线教育平台</title>
+
+		<link rel="stylesheet" href="./ycedu/css/base.css" />
+		<!--<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.0.1/skins/default/aliplayer-min.css" />-->
+		<link rel="stylesheet" href="./ycedu/css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="./ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="./ycedu/css/dbliveroom.css?13" />
+		<link rel="stylesheet" href="./ycedu/css/jquery.sinaEmotion.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<!--<section class="yc-manage-wrap">
+		<ul class="yc-manage-box" id="jmanageBox"></ul>
+	</section>-->
+
+	<body id="bmdbLiveRoom">
+		<section class="bmliveRoomWrap">
+			<div class="bmliveRoomContainer">
+				<div class="bmliveLeftWrap">
+					<a class="bmliveLogo" href="./index.html" target="_blank" title="返回首页">
+						<img src="./ycedu/images/live/dblogo.png" />
+					</a>
+					<ul class="bmliveQuickBtns">
+						<li id='jloginout' style="display: none;"></li>
+						<li>
+							<a class="bmliveQuickFirst bmliveLoginBtn" href="#this">
+								登录
+							</a>
+						</li>
+						<li>
+							<a class="bmliveQuickFirst bmliveRegisterBtn" href="#this">
+								注册
+							</a>
+							<ul class="bmliveQuickSubs bmliveRegister" id="jbmliveRegister">
+								<li>
+									<a href="#this" data-id='1' >扫码注册</a>
+								</li>
+								<li>
+									<a href="#this" id='jregisterSer'>人工注册</a>
+								</li>
+								<li>
+									<a href="#this" data-id='2'>自助注册</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="bmliveQuickFirst bmliveTeBtn" href="#this">米宝咨询</a>
+							<ul class="bmliveQuickSubs" id="jbmliveReport" style="width: 300px;">
+								<li>
+									<a href="./ycedu/encyclopedialist.html?courseTypeId=18&topTypeId=12" target="_blank">每日新鲜快讯</a>
+								</li>
+								<li>
+									<a href="./ycedu/encyclopedialist.html?courseTypeId=17&topTypeId=12" target="_blank">每周大事件解读</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a class="bmliveQuickFirst bmliveSerBtn" href="#this">课程服务</a>
+							<ul class="bmliveQuickSubs bmliveQuickSer" style="width: 500px;">
+								<li>
+									<a href="./courselist.html" target="_blank">金融课堂</a>
+								</li>
+								<!--<li>
+									<a href="./ycedu/encyclopedialist.html?courseTypeId=20&topTypeId=12" target="_blank">实时行情解读</a>
+								</li>-->
+								<li>
+									<a href="./ycedu/encyclopedialist2.html" target="_blank">新手频道</a>
+								</li>
+								
+								<li>
+									<a href="./ycedu/encyclopedialist.html?courseTypeId=19&topTypeId=12" target="_blank">嘉宾访谈</a>
+								</li>
+								
+								<li>
+									<a class="bmOtherTips1" href="#this">播米大咖秀</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li>
+							<a class="bmliveQuickFirst bmlivebookBtn" href="#this">
+								课程预约
+							</a>
+							<ul class="bmliveQuickSubs bmliveBookSer" style="width: 300px;">
+								<li>
+									<a href="#this" id='bmlivebookBtn'>课程预约</a>
+								</li>
+								<li>
+									<a href="#this" class="bmOtherTips2">大咖秀预约</a>
+								</li>
+							</ul>
+						</li>
+						<!--<li>
+							<a class="bmliveQuickFirst bmliveStockBtn" href="stockInterpretation.html?technologyTypeId=5" target="_blank">
+								股市解读
+							</a>
+						</li>-->
+						
+							<li>
+							<a class="bmliveQuickFirst bmliveTeBtn" href="#this">
+								汇市交易
+							</a>
+							<ul class="bmliveQuickSubs" id="jbmliveReport">
+								<li>
+									<a class="jbmgetHSData" href="#this" data-id="2">日内短线分析</a>
+								</li>
+								
+								<li>
+									<a href="#this" data-id="0">EIA分析</a>
+								</li>
+								<li>
+									<a href="#this" data-id="1">非农分析</a>
+								</li>
+								
+								<li>
+									<a href="#this" data-id="3">中长线分析</a>
+								</li>
+							</ul>
+						</li>
+						<!--<li>
+							<a class="bmliveQuickFirst bmliveForeignBtn"  href="foreignInterpretation.html?technologyTypeId=6" target="_blank">
+								汇市解读
+							</a>
+						</li>-->
+						<li>
+							<a class="bmliveQuickFirst bmliveReadBtn" href="#this">
+								股市交易
+							</a>
+							<ul class="bmliveQuickSubs bmliveQuickRead" style="width: 500px;">
+								<!--<li>
+									<a href="stockInterpretation.html?technologyTypeId=5" target="_blank">股市解读</a>
+								</li>
+								<li>
+									<a href="foreignInterpretation.html?technologyTypeId=6" target="_blank">汇市解读</a>
+								</li>-->
+								<li>
+									<a href="#this" class="bmOtherTips1">嘉宾论市</a>
+								</li>
+								<li>
+									<a href="#this" class="bmOtherTips1">行业研究报告</a>
+								</li>
+								<li>
+									<a href="#this" class="bmOtherTips3">概念热评</a>
+								</li>
+								<li>
+									<a href="#this" class="jbmgetGSData">优股解读</a>
+								</li>
+							</ul>
+						</li>
+						
+						
+					</ul>
+
+					<ul name="" class="bmchangeAccount" id="jchangeAccount">
+						<!--<option value="1"></option>-->
+					</ul>
+
+				</div>
+				<div class="bmliveMainWrap">
+					<div class="bmliveMainContainer">
+						<div class="bmliveMainHeaderInner" id="jliveTeacherInf">
+							<a class="bmlinkTeacher bmliveTeacherInf" href="./ycedu/guestindex.html?teacherId=" target="_blank">
+								<span class="bmimageBox">
+									<img class="bmteahcerIcon" src="./ycedu/images/live/dbteacherIcon.png" alt="嘉宾主页" title="嘉宾主页" />
+								</span>
+								<p class="bmliveCoursename">课 题：K线基础理论详解</p>
+								<p class="bmliveTeacher">嘉宾：陈小可</p>
+							</a>
+							<div class="bmteacherOtherBtns">
+								<a id="jsvtn_phone" href="#this" style="display: none;">在线客服</a>
+								<a id="bmsaveBtn" href="#this">收藏</a>
+								<a class="bmlinkTeacher" href="./ycedu/guestindex.html?teacherId=" target="_blank">嘉宾微博</a>
+								<a href="./index.html" target="_blank">返回首页</a>
+							</div>
+						</div>
+						<div class="bmliveMainInner">
+							<!--作为计算点：高-->
+							<div id="jplayerHeight" style="height: 100%; float: left;"></div>
+							<div id="dbLivePlayer" class="prism-player bmlivePlayer">
+								<div class="kzvisiterBox"></div>
+							</div>
+						</div>
+						<div class="bmliveFooterInner">
+							<div class="bmliveFooterBtns">
+								<a class="bmliveFooterbtn bmliveSpeakBtn active" href="javascript:;" dataId="6">热门推荐</a>
+								<a class="bmliveFooterbtn bmliveEntertainmentBtn" href="javascript:;" dataId="1">娱乐功能</a>
+								<a class="bmliveFooterbtn bmliveStudyToolBtn" href="javascript:;" dataId="2">学习工具</a>
+								<a class="bmliveFooterbtn bmliveCoursewareBtn" href="javascript:;" dataId="3">我的课件</a>
+								<a class="bmliveFooterbtn bmliveTeacherTeamBtn" href="javascript:;" dataId="4" style="display: none;">嘉宾团队</a>
+								<a class="bmliveFooterbtn bmliveEducationAssistantBtn" href="javascript:;" dataId="5">教务助理</a>
+								<!--<a class="bmliveFooterbtn bmliveSpeakBtn" href="javascript:;" dataId="6">举手发言</a>-->
+							</div>
+							<div class="bmliveFooterContentBox">
+								<!--娱乐功能-->
+								<div id="jentertainmentBox" class="bmentertainmentBox bmfooterContentBox" dataId="1">
+									<div class="bmentertainmentLeft">
+										<a id="juserInf" href="./membercenter.html" class="bmuserInf" target="_blank">
+											<img class="bmuserIcon" src="./ycedu/images/live/dbusericon.png" />
+											<p class="bmnickname">游客</p>
+											<p class="bmuserLevel">游客会员</p>
+										</a>
+										<a class="bmcodeBox" href="./ycedu/recharge.html" target="_blank">
+											<p class="bmcodeinf">播米币:0</p>
+										</a>
+									</div>
+									<div class="bmentertainmentRight">
+										<div class="bmentertainmentCostList">
+											<div class="swiper-container bmenterainmentContainer">
+												<div class="swiper-wrapper" id="jenterainmentSwiperWrapper">
+													<div class="swiper-slide">
+														<a class="bmreward active" data-id="3" data-index="1" data-img="" data-note="" data-name="http://www.bomizx.net/bmOnline/uploads/images/bomi.jpg">
+															<img src="./ycedu/images/bomi.png">
+														</a>
+													</div>
+												</div>
+
+											</div>
+											<div class="swiper-button-prev bmenterainmentSwiperPrev"></div>
+											<div class="swiper-button-next bmenterainmentSwiperNext"></div>
+										</div>
+										<div class="bmentertainmentCostInf">
+											<div class="bmentertainmentInfDetail">
+												<div class="bmentertainmentInfDetailLeft" id="jcostDetail">
+													<div class="bmcostIcon">
+														<img class="bmcostImg" src="http://www.bomizx.net/bmonline/uploads/images/3d8a01f32910febb6077c224ba0f2576.png" />
+													</div>
+													<div class="bmcostBriefBox">
+														<p class="bmcostName">播米币<span>(1播米币)</span></p>
+														<p class="bmcostBrief">土豪 快用播米币来砸我吧</p>
+													</div>
+
+													<div class="bmcostNumberBox">
+														<p class="bmcostNumberOpt">数量:
+															<a class="bmcostOpt bmcostOptSub">-</a>
+															<input type="number" value="1" dataType='1' maxlength="6" min="1" />
+															<a class="bmcostOpt bmcostOptAdd">+</a>
+														</p>
+														<p class="bmcostnumber">播米币:1000</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="bmentertainmentForBtns">
+												<a class="bmcostToTeacher" href="javascript:;"></a>
+												<a class="bmcostToPresenter" href="javascript:;"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--学习工具-->
+								<div id="jstudyToolBox" class="bmstudyToolBox bmfooterContentBox clearfix" dataId="2">
+									<div class="span4">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolBook" href="javascript:;"></a>
+											<p>我的笔记</p>
+										</div>
+									</div>
+									<!--<div class="span3">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolSign" href="javascript:;"></a>
+											<p>标记笔</p>
+										</div>
+									</div>-->
+									<div class="span4">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolWork" href="./ycedu/subjecttest.html?paperTypeId=6" target="_blank"></a>
+											<p>我的作业</p>
+										</div>
+									</div>
+									<div class="span4">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolTest" href="./ycedu/subjectselect.html?paperTypeId=5" target="_blank"></a>
+											<p>我的试卷</p>
+										</div>
+									</div>
+								</div>
+
+								<!--我的课件-->
+								<div id="jcoursewareBox" class="bmcoursewareBox bmfooterContentBox" dataId="3" style="color:#dabb84; text-align: center; box-sizing: border-box;">
+									<div class="bmtips">
+										<a id="jcourseNoBuyTips" target="_blank" href="./courselist.html" style="display: block; color: rgb(218,187,132); padding-top: 30px;">您暂未购买课程！选择自己喜欢的课程哦！</a>
+									</div>
+									
+									<div class="bmbuyCourseBox" style="display: none;">
+										<a class="bmlookMore" href="./membercenter.html?openType=kc01" target="_blank">更多&gt;&gt;</a>	
+									</div>
+								</div>
+
+								<!--嘉宾团队-->
+								<div id="jliveTeacherTeamBox" class="bmliveTeacherTeamBox bmfooterContentBox" dataId="4">
+									<a class="guest" href="./fteachertopic.html" target="_blank">
+										<img src="./ycedu/images/live/dbteacherIcon.jpg" />
+									</a>
+								</div>
+
+								<!--教务助理-->
+								<div id="jliveEducationAssistantBox" class="bmliveEducationAssistantBox bmfooterContentBox" dataId="5">
+									<a id="jdbAssistant">
+										<img src="./ycedu/images/live/dbzlIcon.png" />
+										<!--<img src="images/live/dbzlIcon.jpg" />-->
+									</a>
+								</div>
+
+								<!--举手发言-->
+								<!--<div id="jliveSpeakBox " class="bmliveSpeakBox bmfooterContentBox" dataId="6" style="color:#dabb84; text-align: center; padding-top: 30px;box-sizing: border-box;">
+									开发待续中...
+								</div>-->
+								
+								<!--热门推荐-->
+								<div id="jliveSpeakBox " class="bmliveSpeakBox bmfooterContentBox bmliveHotBanner" dataId="6" style="color:#dabb84; text-align: center; box-sizing: border-box;">
+									<div class="swiper-container bmliveRightSwiperContainer">
+								<div class="swiper-wrapper" id="bmhotBanner">
+								</div>
+								<div class="swiper-pagination"></div>
+							</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bmliveRightWrap">
+					<div class="bmliveRightContainer">
+						<!--<div class="bmliveRightHeaderInner">
+							
+						</div>-->
+						
+						<div class="bmliveRightInner" id="jchatBox">
+							<div class="bmdayshortPlan" id='jbmdayshortPlan'><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><a>立即查看</a></div>
+							<div class="bmmessagePanel" id="chatbox" class="clearfix" >
+								
+								<div id="doc">
+									<div id="chat">
+										<div id="message">
+											<!--<div id="onlinecount"></div>-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bmliveRightFooterInner">
+							<div class="bmliveSendTools">
+								<a class="bmicon" href="javascript:;" title="表情">表情</a>
+								<a class="bmImg" href="javascript:;" title="图片"><input id="jsendImgPanel" type="file" accept="image/*">图片</a>
+								<a class="bmColorBar" href="javascript:;" title="彩条">彩条</a>
+								<a class="bmFormat" href="javascript:;" title="格式刷">格式刷</a>
+
+								<select id="jmanageUser"></select>
+								<span id="jmanageOpen">管理</span>
+
+							</div>
+							<div class="bmliveSendBox">
+								<input type="text" class="hideIcon" style="display: none;" />
+								<span id="tempImg" style="display: none;"></span>
+								<div id="content" contenteditable="true"></div>
+								<a class="bmsendBtn" href="#this" onclick="CHAT.submit(1);"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="bmchatOpenBtnBox">
+					<img src="./ycedu/images/public/mclose.png" />
+				</div>
+			</div>
+		</section>
+		<!--<section>
+			<div class="dyccostservice-btn">
+				<div id="jsvtn_phone" class="dycphone-btn">
+					<i class="uk-icon-group"></i> 在线客服
+				</div>
+				<div class="dyccostservice">
+					<ul>
+						<li>
+							<a id="buy_service" href="#this">购买课程</a>
+						</li>
+						<li>
+							<a id="recharge_service" href="#this">充值会员</a>
+						</li>
+						<li>
+							<a id="listen_service" href="#this">试听课程</a>
+						</li>
+						<li>
+							<a id="vip_service" href="#this">VIP服务</a>
+						</li>
+						<li>
+							<a id="sale_service" href="#this">售后服务</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>-->
+
+		<script type="text/javascript" src="./ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="./ycedu/js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./ycedu/js/swiper.jquery.min.js"></script>
+		<!--<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.0.1/aliplayer-min.js"></script>-->
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="./ycedu/js/socket.io.js"></script>
+		<script type="text/javascript" src="./ycedu/js/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript" src="./ycedu/js/ycedu.js?2"></script>
+		<script type="text/javascript" src="./ycedu/js/dbclient2.js?22"></script>
+		<script type="text/javascript" src="./ycedu/js/loginclient.js"></script>
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>
+
+	</body>
+
+</html>

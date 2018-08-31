@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72xb72-precomposed.png" />
+		<link rel="stylesheet" href="css/bmmobile.css" />
+		<title></title>
+
+		<style>
+			.swiper-container {
+				margin-left: auto;
+				margin-right: auto;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+			}
+			
+			.swiper-container-android .swiper-slide,
+			.swiper-wrapper {
+				-webkit-transform: translate3d(0, 0, 0);
+				-moz-transform: translate3d(0, 0, 0);
+				-o-transform: translate(0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			
+			.swiper-wrapper {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-transition-property: -webkit-transform;
+				-moz-transition-property: -moz-transform;
+				-o-transition-property: -o-transform;
+				-ms-transition-property: -ms-transform;
+				transition-property: transform;
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+			
+			.swiper-slide {
+				-webkit-flex-shrink: 0;
+				-ms-flex: 0 0 auto;
+				flex-shrink: 0;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			.swiper-container-horizontal>.swiper-pagination-bullets,
+			.swiper-pagination-custom,
+			.swiper-pagination-fraction {
+				bottom: 0.714rem;
+				left: 0;
+				width: 100%;
+			}
+			
+			.swiper-pagination {
+				position: absolute;
+				text-align: center;
+				-webkit-transition: .3s;
+				-moz-transition: .3s;
+				-o-transition: .3s;
+				transition: .3s;
+				-webkit-transform: translate3d(0, 0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				-o-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				z-index: 10;
+			}
+			
+			.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+				margin: 0 0.357rem;
+			}
+			
+			.swiper-pagination-bullet {
+				width: 0.571rem;
+				height: 0.571rem;
+				display: inline-block;
+				border-radius: 100%;
+				background: #000;
+				opacity: .2;
+			}
+			
+			.swiper-pagination-bullet-active {
+				opacity: 1;
+				background: #007aff;
+			}
+			
+			.liveEntrance {
+				position: relative;
+				width: 100%;
+				min-height: 7rem;
+				font-size: 0;
+			}
+			
+			.liveEntrance a {
+				display: block;
+				width: 100%;
+				min-height: 7rem;
+			}
+			
+			.liveEntrance img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.liveEntrance .liveEntranceTip,
+			.liveEntrance .searchBtn,
+			.liveEntrance .message {
+				position: absolute;
+				top: 4.285rem;
+				font-size: 1.571rem;
+			}
+			
+			.liveEntrance .liveEntranceTip {
+				top: 4.4rem;
+				left: 3rem;
+				/*padding: 0.142rem 0.714rem;*/
+				padding: 0.35rem 0;
+				width: 5rem;
+				font-size: 1.57rem;
+				text-align: center;
+				border-radius: 1rem;
+				color: #fff;
+				background: #1473e6;
+			}
+			
+			.liveEntrance .searchBtn {
+				right: 3rem;
+				width: 3rem;
+				height: 3rem;
+				background: url(images/search-icon.png) no-repeat center;
+				background-size: cover;
+			}
+			
+			.broadcast-swiper {
+				padding: 1.8rem 0 3.85rem;
+				line-height: 1.5;
+				text-align: center;
+				color: #fff;
+				background-color: #fff;
+			}
+			
+			.broadcast-swiper.swiper-container-horizontal>.swiper-pagination-bullets {
+				bottom: 1.5rem
+			}
+			
+			.broadcast-swiper.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+				background-color: #5f5f5f;
+			}
+			
+			.broadcast-swiper .swiper-slide {
+				position: relative;
+				text-align: center;
+			}
+			
+			.broadcast-swiper .swiper-slide:not(:nth-child(3n)):after {
+				content: "";
+				position: absolute;
+				top: 10%;
+				right: 0;
+				height: 80%;
+				width: 1px;
+				background: #f4f4f4;
+			}
+			
+			.broadcast-swiper .title {
+				color: #727272;
+				font-size: 1.857rem;
+				font-weight: bolder;
+			}
+			
+			.broadcast-swiper .index {
+				font-size: 2.285rem;
+				font-weight: bolder;
+				color: #ff4d4b;
+			}
+			
+			.broadcast-swiper .float {
+				font-size: 1rem;
+				color: #848484;
+			}
+			
+			.teacherwrap,
+			.coursewrap,
+			.livewrap {
+				padding-bottom: 1rem;
+				background: #ebebeb;
+			}
+			
+			.modeltitle {
+				position: relative;
+				font-size: 2rem;
+				padding: 2.14rem 0 2.14rem 3rem;
+				background-color: #fff;
+			}
+			
+			.modeltitle i {
+				/*content: "";
+				position: absolute;*/
+				display: inline-block;
+				width: 2.85rem;
+				height: 2.85rem;
+				/*top: 1.5rem;
+				left: 3rem;*/
+				margin-right: .5rem;
+				vertical-align: middle;
+				background: url(./images/public/ms-icon.png) no-repeat center center;
+				background-size: contain;
+			}
+			
+			.coursewrap .modeltitle i {
+				background-image: url(./images/public/cs-icon.png);
+			}
+			
+			.livewrap .modeltitle i {
+				background-image: url(./images/public/live-icon.png);
+			}
+			
+			.newswrap .modeltitle i {
+				background-image: url(./images/public/new-icon.png);
+			}
+			
+			.knowledgewrap .modeltitle i {
+				background-image: url(./images/public/know-icon.png);
+			}
+			
+			.teacher-swiper,
+			.course-swiper,
+			.live-swiper {
+				background: #fff;
+				padding: 0 2.35rem 2.14rem;
+			}
+			
+			.teacher-swiper .swiper-slide,
+			.course-swiper .swiper-slide,
+			.live-swiper .swiper-slide {
+				padding: 0 0.645rem;
+				box-sizing: border-box;
+				text-align: center;
+			}
+			
+			.teacher-swiper .swiper-slide a,
+			.course-swiper .swiper-slide a {
+				width: 100%;
+			}
+			
+			.teacher-swiper .swiper-slide img,
+			.course-swiper .swiper-slide img,
+			.live-swiper .swiper-slide img {
+				width: 100%;
+				border-radius: 3px;
+			}
+			
+			.teacher-swiper p {
+				margin-top: 2.57rem;
+				text-align: left;
+				font-size: 1.57rem;
+				color: #858585;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+			}
+			
+			.live-swiper img {
+				width: 100%;
+			}
+			
+			#liveCourseBox a {
+				display: block;
+				text-align: left;
+			}
+			
+			.course-swiper .course-img-box {
+				position: relative;
+				font-size: 0;
+				border-radius: .4rem;
+				overflow: hidden;
+			}
+			
+			.course-swiper .course-img-box img {
+				min-height: 6.2rem;
+			}
+			
+			.course-swiper .course-img-box p {
+				position: absolute;
+				width: 100%;
+				bottom: 0;
+				padding-left: 1rem;
+				line-height: 2.4rem;
+				font-size: 1.28rem;
+				text-align: left;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .4);
+			}
+			
+			.course-swiper a {
+				display: block;
+				text-align: left;
+			}
+			
+			.course-swiper .course-brief {
+				font-size: 1.57rem;
+				color: #858585;
+				padding: 1rem 0 .5rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.course-swiper .course-price {
+				font-size: 1.57rem;
+				color: #858585;
+				padding: 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			#liveCourseBox .live-img-box {
+				position: relative;
+				font-size: 0;
+				border-radius: .4rem;
+				overflow: hidden;
+			}
+			
+			#liveCourseBox .live-img-box img {
+				min-height: 6.2rem;
+			}
+			
+			.knowledgewrap .course-img-box {
+				position: relative;
+				border-radius: 0;
+			}
+			
+			.knowledgewrap .course-img-box:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, .2) url(images/public/playerIcon.png) no-repeat center;
+				background-size: 30%;
+			}
+			
+			#liveCourseBox .live-img-box p {
+				position: absolute;
+				width: 100%;
+				bottom: 0;
+				padding-left: 1rem;
+				line-height: 2.4rem;
+				font-size: 1.28rem;
+				text-align: left;
+				box-sizing: border-box;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .4);
+			}
+			
+			#liveCourseBox .live-brief {
+				font-size: 1.57rem;
+				color: #858585;
+				padding: 1rem 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.zt-wrap {
+				box-shadow: 0px 9px 30px -12px rgba(0, 0, 0, .2) inset;
+				overflow: hidden;
+				background-color: #fff;
+			}
+			
+			.zt-wrap .row {
+				/*margin: 3.85rem 1.57rem;*/
+				margin: 3.85rem 1.2rem;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				text-align: center;
+				/*margin-bottom: 1.4rem;*/
+			}
+			
+			.zt-wrap .row a {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding: 0 2.85rem;
+				/*padding: 0 4.428rem;*/
+				/*padding: 0 3.828rem;*/
+				/*padding: 0 2.428rem;*/
+				/*padding: 0 2.285rem;*/
+				/*padding: 0 1.285rem;*/
+				text-align: center;
+				font-size: 1.857rem;
+				color: #3b3b3b;
+			}
+			
+			.zt-wrap .row a span {
+				display: block;
+				margin-top: 2rem;
+			}
+			
+			.ad {
+				min-height: 2rem;
+				padding-bottom: 0.857rem;
+				font-size: 0;
+				/*background: #ebebeb;*/
+			}
+			
+			.ad a {
+				width: 100%;
+			}
+			
+			.ad img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.newswrap {
+				padding-bottom: 3rem;
+			}
+			
+			.newswrap .newsbox {
+				padding-left: 1rem;
+				margin-left: 2.28rem;
+			}
+			
+			.newswrap .newsbox,
+			.newswrap .newsbox li {
+				overflow: hidden;
+				/*list-style-type: disc;*/
+				list-style-type: none;
+				/*margin-bottom: 0.2rem;*/
+				margin-bottom: 1.5rem;
+				line-height: 1.7;
+				font-size: 2rem;
+			}
+			
+			.newswrap .newsbox a {
+				color: #7d7d7d;
+			}
+			
+			.newswrap .newsbox .right {
+				float: left;
+				width: calc(100% - 13rem);
+				padding-left: 1rem;
+			}
+			
+			.newswrap .newsbox img {
+				width: 11rem;
+				/*padding-left: 1rem;*/
+				float: left;
+			}
+			
+			@media only screen and (max-width: 476px) {
+				.liveEntrance .liveEntranceTip {
+					top: 2.4rem;
+					left: 2rem;
+				}
+				.zt-wrap .row a {
+					padding: 0 1.5rem;
+				}
+				.zt-wrap .row a span {
+					margin-top: 1rem;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<!--内容区域-->
+			<section class="liveEntrance">
+				<span class="liveEntranceTip">直播</span>
+				<a href="liveplayer.html"><img id="liveEntrance" src="./images/temp/indexlive.jpg"></a>
+				<span class="searchBtn" onclick="openSearch()"></span>
+				<span class="message"></span>
+			</section>
+
+			<!--时时播报-->
+			<div class="swiper-container broadcast-swiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<p class="title">黄金 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="title">白银 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="title">美元指数 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="title">黄金 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="title">白银 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+					<div class="swiper-slide">
+						<p class="title">美元指数 (kg)</p>
+						<p class="index">4012.00</p>
+						<p class="float">+25.00 +0.29%</p>
+					</div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+				<!-- 如果需要导航按钮 -->
+				<!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+				<!-- 如果需要滚动条 -->
+				<!-- <div class="swiper-scrollbar"></div> -->
+			</div>
+
+			<!-- 专题 -->
+			<section class="zt-wrap">
+				<div class="row">
+					<a href="html/ztdetail0.html">
+						<img src="./images/public/dz-icon01.png" />
+						<span>股票</span>
+					</a>
+					<a href="html/ztdetail1.html">
+						<img src="./images/public/dz-icon02.png" />
+						<span>商品</span>
+					</a>
+					<a href="html/ztdetail2.html">
+						<img src="./images/public/dz-icon03.png" />
+						<span>外汇</span>
+					</a>
+					<a href="html/ztdetail3.html">
+						<img src="./images/public/dz-icon06.png" />
+						<span>从业</span>
+					</a>
+				</div>
+				<!--<div class="row">
+					<a href="#this" onclick="openzt(3)">
+						<img src="./images/public/dz-icon06.png" />
+						<span>考证</span>
+					</a>
+					<a href="#this">
+						<img src="./images/public/dz-icon04.png" />
+						<span>原油</span>
+					</a>
+					<a href="#this">
+						<img src="./images/public/dz-icon05.png" />
+						<span>就业</span>
+					</a>
+				</div>-->
+			</section>
+
+			<section class="livewrap">
+				<div class="modeltitle"><i></i>往前回顾
+					<a href="courselist.html" style="float:right; color:#666; margin-right:1.8rem;text-decoration: underline;">更多</a>
+				</div>
+				<div class="swiper-container live-swiper">
+					<div class="swiper-wrapper" id="liveCourseBox">
+						<!--<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="live-img-box">
+									<img src="./images/temp/recordCourse.png" />
+									<p>首席分析师：陈原野</p>
+								</div>
+								<p class="live-brief">新手投资让大家快实战攻略解</p>
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="live-img-box">
+									<img src="./images/temp/recordCourse.png" />
+									<p>首席分析师：陈原野</p>
+								</div>
+								<p class="live-brief">新手投资让大家快实战攻略解</p>
+							</a>
+						</div>-->
+					</div>
+					<!-- 如果需要分页器 -->
+					<!-- <div class="swiper-pagination"></div> -->
+				</div>
+			</section>
+
+			<!--广告-->
+			<section class="ad">
+				<a href="#this">
+					<img src="images/temp/indexAd.jpg" />
+				</a>
+			</section>
+
+			<section class="coursewrap">
+				<div class="modeltitle"><i></i>推荐课程
+					<a href="courselist.html" style="float:right; color:#666; margin-right:1.8rem;text-decoration: underline;">更多</a>
+				</div>
+				<div class="swiper-container course-swiper">
+					<div class="swiper-wrapper" id="courseBox">
+						<!--<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="course-img-box">
+									<img src="images/temp/courseimg.png" />
+									<p>首席分析师：陈原野</p>
+								</div>
+								<p class="course-brief">新手投资让大家快实战攻略解</p>
+								<p class="course-price">￥1888.00</p>
+							</a>
+						</div>-->
+
+					</div>
+				</div>
+			</section>
+
+			<!--金融小知识-->
+			<section class="coursewrap knowledgewrap">
+				<div class="modeltitle" onclick="rootFrameGroupShow(1)"><i></i>金融小知识 <span style="float:right; color:#666; margin-right:1.8rem;text-decoration: underline;">更多</span></div>
+				<div class="swiper-container course-swiper">
+					<div class="swiper-wrapper" id="courseBox">
+						<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="course-img-box">
+									<img src="images/temp/courseimg.png" />
+								</div>
+								<p class="course-brief">新手投资让大家快实战攻略解</p>
+								<!--<p class="course-price">￥1888.00</p>-->
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="course-img-box">
+									<img src="images/temp/courseimg.png" />
+								</div>
+								<p class="course-brief">新手投资让大家快实战攻略解</p>
+								<!--<p class="course-price">￥1888.00</p>-->
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="html/coursedetail.html?courseId=101">
+								<div class="course-img-box">
+									<img src="images/temp/courseimg.png" />
+								</div>
+								<p class="course-brief">新手投资让大家快实战攻略解</p>
+								<!--<p class="course-price">￥1888.00</p>-->
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!--名师介绍-->
+			<section class="teacherwrap">
+				<div class="modeltitle"><i></i>嘉宾介绍
+					<a href='html/teacherlist.html' style="float:right; color:#666; margin-right:1.8rem;text-decoration: underline;">更多</a>
+				</div>
+				<div class="swiper-container teacher-swiper">
+					<div class="swiper-wrapper" id="teacherBox">
+						<div class="swiper-slide">
+							<a href="teacherdetail?teacheId=">
+								<div class="teacher-img-box">
+									<img src="images/temp/teacherIntruduction.jpg" />
+								</div>
+								<p>股市快速入门，适合新手投资者快速入门，让大家快速了均线解缠 技巧,从认识均线解缠知识出发，利用均线解缠实战攻略解......
+								</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- 播米咨询 -->
+			<section class="newswrap">
+				<div class="modeltitle"><i></i>播米资讯
+					<a href="html/newslist.html" style="float:right; color:#666; margin-right:1.8rem;text-decoration: underline;">更多</a>
+				</div>
+				<!-- <ul class="newsbox" id="newsBox">
+			<li tapmode="active" onclick="openNewsDetail(0)">黄金 | 黄金的诅咒：人类用血汗铸就的辉煌！ 报价报价哆哆嗦</li>
+		</ul> -->
+				<ul class="newsbox" id="newsBox">
+					<!-- <li tapmode="active" onclick="openNewsDetail(0)" style="margin-bottom:1rem; overflow:hidden">
+				<div class="right" style="float:left; width:calc(100% - 15rem)">
+					黄金 | 黄金的诅咒：人类用血汗铸就的辉煌！ 报价报价哆哆嗦
+				</div>
+				<img src="http://www.bomizx.net/bmOnline/uploads/images/178378334.jpg"  style="width:12rem;float:left"/>
+			</li> -->
+
+					<li>
+						<a href="newsdetail.html?newId=1">
+							<img src="http://www.bomizx.net/bmOnline/uploads/images/178378334.jpg" />
+							<div class="right">黄金 | 黄金的诅咒：人类用血汗铸就的辉煌！ 报价报价哆哆嗦</div>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+		<footer id="indexfooter">
+			<ul class="fixedfooter flex-wrap">
+				<li id="index" class="flex-con active">
+					<a href="index.html">首页</a>
+				</li>
+				<li id="course" class="flex-con">
+					<a href="courselist.html">课程</a>
+				</li>
+				<span id="toggleQuickBtns"></span>
+				<li id="live" class="flex-con">
+					<a href="liveplayer.html">直播</a>
+				</li>
+				<li id="me" class="flex-con">
+					<a href="member.html">我的</a>
+				</li>
+			</ul>
+		</footer>
+
+		<div class="quickBoxWrap">
+			<div class="quickBox">
+				<a href="html/newslist.html"></a>
+				<a href="html/teacherlist.html"></a>
+				<a href="html/lecturecourselist.html"></a>
+				<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/bmmain.js"></script>
+
+		<script>
+			function openSearch() {
+				window.location.href = 'html/searchlist.html';
+			}
+			$(function() {
+				function broadcastSwiperFunc() { //时时播报咨询
+					var broadcastSwiper = new Swiper('.broadcast-swiper', {
+						direction: 'horizontal',
+						slidesPerView: 3,
+						slidesPerGroup: 3,
+						loop: true,
+						pagination: '.swiper-pagination',
+					})
+				}
+
+				function liveSwiperFunc() { //推荐直播banner
+					var liveSwiper = new Swiper('.live-swiper', {
+						direction: 'horizontal',
+						slidesPerView: 2,
+						slidesPerGroup: 2,
+						// spaceBetween: 10,
+						loop: true,
+						// pagination: '.swiper-pagination',
+					})
+				}
+
+				function courseSwiperFunc() { //课程banner
+					var courseSwiper = new Swiper('.course-swiper', {
+						direction: 'horizontal',
+						slidesPerView: 2,
+						slidesPerGroup: 2,
+						loop: true,
+						// pagination: '.swiper-pagination',
+					})
+				}
+
+				function teacherSwiperFunc() { //名师banner
+					var teacherSwiper = new Swiper('.teacher-swiper', {
+						direction: 'horizontal',
+						loop: true,
+					})
+				}
+				
+				function getLookBack(){
+					var htmlStr = "";
+					$.ajax({
+						type:"get",
+						url: SERVEROOTDATA + "Course.ashx?action=getLiveChannelCourse",
+						dataType:"json",
+						data:{
+							courseTypeId:'',
+							pageSize:5,
+							pageIndex:0
+						},
+						success:function(res){
+							var listArr = res.rows;
+							for (var i=0; i < listArr.length; i++) {						
+								htmlStr += '<div class="swiper-slide">'+
+											'<a href="html/coursedetail.html?courseId='+listArr[i].courseId+'">'+
+											'<div class="live-img-box">'+
+											'<img src="'+SERVEROOTFILE + listArr[i].mobileIconPath+'" />'+
+											'<p>'+listArr[i].teacherType+'：'+listArr[i].teacherName+'</p>'+
+											'</div><p class="live-brief">'+listArr[i].name+'</p>'+
+											'</a></div>';
+							}
+							
+							$("#liveCourseBox").html(htmlStr);
+							liveSwiperFunc();
+						}
+					});
+				}
+				
+				getLookBack();
+
+				function getLiveCourse() {  //推荐课程
+					var htmlStr = "";
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Course.ashx?action=getChannelRecommendCourse",
+						dataType: "json",
+						success: function(res) {
+							for(var i = 0; i < res.length; i++) {
+								htmlStr += '<div class="swiper-slide">' +
+									'<a href="html/coursedetail.html?courseId=' + res[i].courseId + '">' +
+									'<div class="course-img-box">' +
+									'<img src="' + SERVEROOTFILE + res[i].mobileIconPath + '" />' +
+									'<p>' + res[i].teacherType + ':' + res[i].teacherName + '</p></div>' +
+									'<p class="course-brief">' + res[i].name + '</p>' +
+									'<p class="course-price">￥' + res[i].preferentialPrice + '</p>' +
+									'</a></div>';
+							}
+
+							$("#courseBox").html(htmlStr);
+							courseSwiperFunc();
+						}
+					});
+				}
+				getLiveCourse();
+
+				function getHOtTeacher() { //嘉宾介绍
+					var htmlStr = "";
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Teacher.ashx?action=getHotTeacher",
+						dataType: "json",
+						success: function(res) {
+							for(var i = 0; i < res.length; i++) {
+								htmlStr += '<div class="swiper-slide">' +
+									'<a href="html/teacherdetail.html?teacherId=' + res[i].teacherId + '">' +
+									'<div class="teacher-img-box">' +
+									'<img src="' + SERVEROOTFILE + res[i].mobileIconPath + '" /></div>' +
+									'<p>' + res[i].note + '</p>' +
+									'</a></div>';
+							}
+
+							$("#teacherBox").html(htmlStr);
+							teacherSwiperFunc();
+						}
+					});
+				}
+				getHOtTeacher();
+
+				function getNew() {    //播米咨询
+					var htmlStr = "";
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "News.ashx?action=getHotNews",
+						dataType: "json",
+						success: function(res) {
+							for(var i = 0; i < res.length; i++) {
+								htmlStr += '<li><a href="html/newsdetail.html?newsId=' + res[i].newsId + '&ischarge=0">' +
+									'<img src="' + SERVEROOTFILE + res[i].iconPath + '" />' +
+									'<div class="right">' + res[i].newsTypeName + ' | ' + res[i].title + '</div></a></li>';
+							}
+
+							$("#newsBox").html(htmlStr);
+						}
+					});
+				}
+				getNew();
+
+				broadcastSwiperFunc();
+				
+
+			});
+		</script>
+	</body>
+
+</html>

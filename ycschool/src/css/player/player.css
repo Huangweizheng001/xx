@@ -1,0 +1,226 @@
+.playerWrap {
+  margin-top: 20px;
+}
+.playerInner {
+  position: relative;
+  background-color: #000;
+}
+.playerInner .prism-player {
+  height: 675px;
+}
+.playerInner .collectionCourse {
+  opacity: 0;
+  position: absolute;
+  bottom: 10px;
+  left: 220px;
+  width: 75px;
+  height: 22px;
+  z-index: 109;
+  padding-left: 24px;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #fff;
+  transition: all .3s;
+}
+.playerInner .collectionCourse:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 1px;
+  width: 22px;
+  height: 22px;
+  background: url(../../images/public/icon.png) no-repeat;
+  background-position: 3px -467px;
+}
+.playerInner .collectionCourse.active {
+  color: #ff8d39;
+}
+.playerInner .collectionCourse.active:before {
+  background-position: -48px -467px;
+}
+.playerInner:hover .collectionCourse {
+  opacity: 1;
+  color: #ff8d39;
+}
+.playerRelevant {
+  margin: 20px 0;
+  padding: 26px;
+  background-color: #fff;
+}
+.playerRelevant .left {
+  padding-right: 50px;
+}
+.playerRelevant .title {
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 6px;
+  font-size: 16px;
+  color: #666;
+}
+.playerRelevant .relevantBox {
+  margin-top: 20px;
+}
+.playerRelevant .relevantBox .img {
+  float: left;
+  width: 90px;
+  height: 90px;
+}
+.playerRelevant .relevantBox .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.playerRelevant .relevantSentBox {
+  position: relative;
+  margin-left: 110px;
+}
+.playerRelevant .relevantSentBox textarea {
+  text-indent: 20px;
+  width: 100%;
+  height: 120px;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  background-color: #f5f5f5;
+}
+.playerRelevant .relevantSentBox span {
+  position: absolute;
+  bottom: 2px;
+  right: 6px;
+  font-size: 16px;
+  color: #999;
+}
+.playerRelevant .submitRelevantBtn {
+  float: right;
+  margin: 20px 0;
+  width: 120px;
+  line-height: 34px;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff8d39;
+}
+.playerRelevant .submitRelevantBtn:hover {
+  background-color: #d25900;
+}
+.playerRelevant .relevantList .relevantLi {
+  padding: 20px 0;
+  border-top: 1px solid #ccc;
+}
+.playerRelevant .relevantList .img {
+  float: left;
+  width: 90px;
+  height: 90px;
+}
+.playerRelevant .relevantList .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.playerRelevant .relevantList .relevantContent {
+  position: relative;
+  margin-left: 110px;
+}
+.playerRelevant .relevantList .relevantContent .name {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #000;
+}
+.playerRelevant .relevantList .relevantContent .time {
+  display: inline-block;
+  margin-left: 10px;
+  color: #666;
+}
+.playerRelevant .relevantList .relevantContent .content {
+  color: #333;
+}
+.playerRelevant .relatedCourseLi {
+  position: relative;
+  display: block;
+  padding-left: 26px;
+  margin-top: 20px;
+}
+.playerRelevant .relatedCourseLi .right {
+  height: 100px;
+  margin-left: 164px;
+}
+.playerRelevant .relatedCourseLi h5 {
+  height: 48px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 16px;
+  color: #333;
+}
+.playerRelevant .relatedCourseLi .img {
+  position: relative;
+  float: left;
+  width: 150px;
+  height: 100px;
+}
+.playerRelevant .relatedCourseLi .img img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.playerRelevant .relatedCourseLi .img:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  opacity: 0;
+  z-index: 1;
+  background: url(../../images/public/icon.png) no-repeat;
+  background-position: -172px -106px;
+}
+.playerRelevant .relatedCourseLi .img:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all .3s;
+}
+.playerRelevant .relatedCourseLi:hover .img:after {
+  height: 100%;
+}
+.playerRelevant .relatedCourseLi:hover .img:before {
+  opacity: 1;
+}
+.playerRelevant .relatedCourseLi:hover h5 {
+  color: #ff8d39;
+}
+.relatedCourseBox .moduleTitleWrapper .title .more {
+  margin-top: 2px;
+}
+.relatedCourseBox .other {
+  margin-top: 12px;
+  color: #999;
+}
+.relatedCourseBox .other img {
+  float: left;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.relatedCourseBox .other .name {
+  margin-left: 42px;
+  font-size: 14px;
+}
+.relatedCourseBox .other .count {
+  margin-left: 42px;
+  font-size: 12px;
+}

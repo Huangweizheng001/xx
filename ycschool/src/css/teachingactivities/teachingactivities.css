@@ -1,0 +1,85 @@
+
+.teachingActivities  .teachingStencil{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+.teachingActivities .teachingActivitiesBody{
+    padding-top: 10px;
+    margin-left: 18px;
+}
+.teachingActivities .teachList{
+    margin-right: 26px;
+}
+.teachingActivities .teachingListLeftContent{
+    display: block;
+     height: 169px;
+
+}
+
+.teachingActivities .teachingListLeftContent:hover{
+    background: #f5f5f5;
+    color: #ff6c00;
+}
+.teachingActivities .teachingListLeftContent:hover .teachingListLeftImage img{
+    transform: scale(1.2);
+}
+.teachingActivities .teachingListLeftImage{
+    float: left;
+    height: 149px;
+    width: 199px;
+    margin-left: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+.teachingActivities .teachingListLeftImage img{
+    width: 100%;
+    height: 100%;
+    transition: all .3s linear;
+}
+.teachingActivities .teachingListRightText p:hover{
+     color: #ff6c00;
+ }
+.teachingActivities .teachingListRightText h1:hover{
+    color: #ff6c00;
+}
+.teachingActivities .teachingListRightText{
+    height: 149px;
+    padding-left: 227px;
+    padding-top: 8px;
+}
+.teachingActivities .teachingTitle{
+    height: 20px;
+    overflow: hidden;
+    font-size: 16px;
+    color: #333333;
+}
+.teachingActivities .teachingContent{
+    height: 40px;
+    overflow: hidden;
+    font-size: 14px;
+    color: #999999;
+    padding-top: 20px;
+}
+.teachingActivities .teachingListEtails{
+    padding-top: 20px;
+}
+.teachingActivities .teachingListIcon{
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.teachingActivities .teachingSponsor {
+    font-size: 14px;
+    color: #999999;
+    padding-top: 4px;
+    padding-left: 65px;
+}
+.teachingActivities .teachingDate{
+    font-size: 14px;
+    color: #999999;
+    padding-top: 2px;
+    padding-left: 65px;
+}

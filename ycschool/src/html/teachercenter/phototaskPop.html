@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-作业</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="./librarycss/Ecalendar.css" />
+
+</head>
+<body>
+<div class="container">
+    <!--<div class=""  style="position: relative;width: 880px;margin: auto;background: #fff" >-->
+    <div class="fe-arrangetask-pop" id="photoTask" style="padding-top: 40px">
+        <ul>
+            <li>
+                <span>作业名称</span><input type="text" id="paperName">
+            </li>
+            <li id="classes">
+                <span style="float: left">班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级</span><div class="classWrapper">
+                    <div v-cloak v-for="item in classArray" v-bind:data-id="item.classId">
+                        <i></i>
+                        <span>{{item.classname}}</span>
+                    </div>
+                </div>
+                <!-- <select name="" id="classes">
+                     <option value="0">全部</option>
+                     <option v-bind:value="item.classId" v-cloak v-for="item in array">{{item.name}}</option>
+                 </select>-->
+            </li>
+            <li>
+                <span>年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级</span><select name="gradeId" id="grade" v-cloak v-model="gradeId">
+                <option v-for="item in gradeArr" :value="item.gradeId" >{{item.name}}</option>
+            </select>
+            </li>
+            <li>
+                <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期</span><select name="termId" id="term" v-cloak v-model="termId">
+                <option :value="item.id" v-for="item in termArr" >{{item.name}}</option>
+            </select>
+            </li>
+            <li>
+                <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科</span><select name="subjectId" id="subject" v-cloak v-model="subjectId">
+                <option :value="item.subjectId" v-for="item in subjectArr" >{{item.name}}</option>
+            </select>
+            </li>
+            <li>
+                <span style="float: left">目&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+                <div class="catalog">
+                    <div class="nodata" v-show="nodata" v-cloak>暂无目录 o(╥﹏╥)o</div>
+                    <div class="first" v-cloak v-for="list in outlineArr">
+                        <!--caret-right-->
+                        <!--caret-down-->
+                        <i class="uk-icon-caret-down" v-if="list.childNodes.length>0"></i>
+                        <h4 v-bind:data-id="list.nodeId">{{list.nodeName}}</h4>
+                        <ul class="second">
+                            <li v-for="item in list.childNodes">
+                                <i class="uk-icon-caret-down" v-if="item.childNodes.length>0"></i>
+                                <h4 v-bind:data-id="item.nodeId">{{item.nodeName}}</h4>
+                                <ul class="three">
+                                    <li v-for="i in item.childNodes">
+                                        <h4 v-bind:data-id="i.nodeId">{{i.nodeName}}</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<div class="first">-->
+                    <!--&lt;!&ndash;caret-right&ndash;&gt;-->
+                    <!--&lt;!&ndash;caret-down&ndash;&gt;-->
+                    <!--<i class="uk-icon-caret-down"></i>-->
+                    <!--<h4>第二单元 成长体验</h4>-->
+                    <!--<ul class="second">-->
+                    <!--<li>-->
+                    <!--<i class="uk-icon-caret-down"></i>-->
+                    <!--<h4>1、从百草园到三味书屋</h4>-->
+                    <!--<ul class="three">-->
+                    <!--<li>-->
+                    <!--<h4>测试章节</h4>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                </div>
+                <p>已选中目录为: <span v-cloak>{{syllabusName}}</span></p>
+            </li>
+            <li>
+                <span>课&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程</span><select name="courseId" id="course" v-cloak v-model="courseId">
+                <option :value="item.courseId" v-for="item in courseArr" >{{item.name}}</option>
+            </select>
+
+            <li>
+                <span style="float: left">上传图片</span><a id="zwb_upload" style="overflow: hidden">
+                    <input type="file" class="add" multiple>点击上传文件
+                </a>
+                <div class="feorgan-certificate"></div>
+            </li>
+            <li>
+                <span >上交时间</span><input type="text" id="endTime">
+            </li>
+        </ul>
+        <div class="fe-save">
+            <button>保存</button>
+        </div>
+        <!--<div >-->
+        <!--<button id="hh">测试</button>-->
+        <!--</div>-->
+    </div>
+
+</div>
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融在线教育领跑者！学金融，玩股汇，就来播米在线</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<!--<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />-->
+		<link rel="stylesheet" href="ycedu/css/bomi.css" />
+		<link rel="stylesheet" href="ycedu/css/indexliveroom.css" />
+		<link rel="stylesheet" href="ycedu/css/jquery.sinaEmotion.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--首页banner-->
+		<div class="bmindexBannerModel" id="jindexBannerApp">
+			<div class="container full">
+				<div class="swiper-container bmindexSwiperWrap">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="item in indexBannerArr">
+							<a :href="item.href" :style="{backgroundImage: 'url(' + item.iconPath + ')'}"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--谍报直播模块-->
+		<section class="bmindexLiveChatModel" id="jindexLiveModel">
+			<div class="container">
+				<div class="bmindexLiveChatInner">
+					<div class="bmindexLiveChatLeft" id="jindexLiveInner">
+						<div class="bmindexLiveChatLeftTop">
+							<div class="bmindexLiveChatLeftAd">
+								<!--<a href="./ycedu/recharge.html?recharge=1&type=1" target="_blank">-->
+								<a href="./ycedu/memberrule.html" target="_blank">
+									<img src="ycedu/images/index/adbanner.jpg" />
+								</a>
+							</div>
+							<div class="bmindexLiveChatLeftLive">
+								<a class="bmindexGoToLive" id="bmindexGoToLive" href="ycedu/dbliveroom.html">进入讲堂</a>
+								<div id="jindexLivePlayer" class="bmindexplayer"></div>
+							</div>
+						</div>
+						<div class="bmindexLiveChatLeftBottom">
+							<div class="bmlivePlayList" id="jbookListBox">
+								<div class="bmliveLeft">
+									<span v-cloak>{{currentMon}}</span>月
+									<p>/</p>
+									<span v-cloak>{{curentDay}}</span>日
+								</div>
+								<div class="bmliveRight">
+									<div class="bmbooklist">
+										<div class="bmbookLi" v-for="item in bookArr" @click="bookLive(item.channelProgramId,item.isOut)" :class="item.isOut == 0 ? 'isOut':''" v-cloak>
+											<p class="time">{{item.playTime}}</p>
+											<h5>{{item.name}}</h5>
+											<p class="bmbook">预约课程</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="bmindexLiveChatRight">
+						<div class="bmliveRightInner" id="jchatBox">
+							<div class="bmmessagePanel" id="chatbox" class="clearfix">
+								<div id="doc">
+									<div id="chat">
+										<div id="message">
+											<!--<div id="onlinecount"></div>-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bmliveRightFooterInner">
+							<div class="bmliveSendTools">
+								<a class="bmicon" href="javascript:;" title="表情">表情</a>
+								<a class="bmImg" href="javascript:;" title="图片">
+									<input id="jsendImgPanel" type="file" accept="image/*">图片</a>
+								<a class="bmColorBar" href="javascript:;" title="彩条">彩条</a>
+								<a class="bmFormat" href="javascript:;" title="格式刷">格式刷</a>
+
+								<select id="jmanageUser"></select>
+								<span id="jmanageOpen">管理</span>
+
+							</div>
+							<div class="bmliveSendBox">
+								<input type="text" class="hideIcon" style="display: none;" />
+								<span id="tempImg" style="display: none;"></span>
+								<div id="content" contenteditable="true"></div>
+								<a class="bmsendBtn" href="#this" onclick="CHAT.submit(1);"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div id="bmchatOpenBtnBox">
+			<img src="./ycedu/images/public/mclose.png" />
+		</div>
+
+		<!--市场数据-->
+		<section class="bmmarketDataModel">
+			<div class="container">
+				<div class="bmmarketDataInner">
+					<div class="bmmarketDataLeftBox">
+						<div class="bmindexTitleBoxWrap">
+							<h5 class="active">市场数据</h5>
+						</div>
+						<iframe src="https://www.jin10.com/" width="100%" height="1288" frameborder="0" scrolling="auto" id="bmmarketIframe"></iframe>
+					</div>
+					<div class="bmmarketDataRightBox" id="jbmnewsApp">
+						<div class="bmindexTitleBoxWrap">
+							<h5 class="active">行情资讯</h5>
+						</div>
+						<!--<div class="bmdayNews">
+							<a onclick="openVideo(1)">
+								<div class="bmimageBox">
+									<img src="./ycedu/images/temp/yhzt/02course.jpg"></div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>邵悦华宣传片</h5></div>
+							</a>
+						</div>-->
+						<div class="bmdayNews" v-for="(item,index) in newArr" v-if="index <= 1" v-cloak>
+							<a :href="'./ycedu/encyclopediadetail.html?ecId='+item.courseId" target="_blank" class="bmindexEncyclopediaLi">
+								<div class="bmimageBox">
+									<img :src="item.iconPath | addRoute"></div>
+								<div class="bmindexEncyclopediaInf">
+									<h5>{{item.name}}</h5></div>
+							</a>
+						</div>
+
+						<p class="bmgotonews">
+							<a target="_blank" href="./ycedu/encyclopedialist.html?courseTypeId=20&topType=12">更多资讯>></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--金融课堂和百科-->
+		<section class="bmindexCourseModel">
+			<div class="container">
+				<!--<div class="bmindexTitleBox">
+					<h5><span>金融</span>课堂</h5>
+					<p>Financial</p>
+					<a class="bmAddMore" href="courselist.html">更多&gt;&gt;</a>
+				</div>-->
+
+				<div class="bmindexTitleBoxWrap">
+					<h5 data-id="2" class="jbmtitle active">行情资讯</h5>
+					<h5 data-id="1" class="jbmtitle">金融课堂</h5>
+					<h5 data-id="3" class="jbmtitle">新手频道</h5>
+					<a id="jbmAddMore" target="_blank" class="bmAddMore" href="./ycedu/encyclopedialist.html">更多&gt;&gt;</a>
+				</div>
+
+				<div class="swiper-container bmindex-swiper-course">
+					<div class="swiper-wrapper" id="jbmindexCourseApp"></div>
+				</div>
+				<div class="swiper-button-prev swiper-button-course-prev"></div>
+				<div class="swiper-button-next swiper-button-course-next"></div>
+			</div>
+		</section>
+
+		<section class="bmteacherModel">
+			<div class="container">
+				<div class="swiper-container bmindex-swiper-teacher">
+					<div class="swiper-wrapper" id="jbmindexTeacherApp">
+						<div class="swiper-slide">
+							<a href="./ycedu/guestindex.html?teacherId=1047" target="_blank">
+								<img src="./ycedu/images/index/index01T.png" />
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="./ycedu/guestindex.html?teacherId=1033" target="_blank">
+								<img src="./ycedu/images/index/index02T.png" />
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="./ycedu/guestindex.html?teacherId=1036" target="_blank">
+								<img src="./ycedu/images/index/index03T.png" />
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-button-prev swiper-button-teacher-prev"></div>
+				<div class="swiper-button-next swiper-button-teacher-next"></div>
+			</div>
+		</section>
+
+		<section class="bmopenClassViewModel" id="jopenClassViewApp">
+			<div class="container">
+				<div class="bmindexTitleBoxWrap">
+					<h5 class="active">策略解读</h5>
+					<a id="jbmAddMore" class="bmAddMore" href="./ycedu/strategy.html">更多&gt;&gt;</a>
+				</div>
+
+				<div class="bmopenClassViewContent clearfix">
+					<div class="span8 col-sm-12">
+						<a target="_blank" :href="viewHref" class="bmopenClassViewImg">
+							<img v-bind:src="viewImg" />
+						</a>
+					</div>
+					<div class="span4 col-sm-12">
+						<ul class="bmopenClassNewsLi">
+							<li v-for="item in viewArr">
+								<a target="_blank" :href="'ycedu/strategynewsdetail.html?newsId='+item.newsId +'&newsTypeId='+item.newsTypeId">
+									{{item.title}}
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+	</body>
+
+	<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="ycedu/js/layer,wow,scroll.js"></script>
+	<script type="text/javascript" src="ycedu/js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+	<script type="text/javascript" src="ycedu/js/socket.io.js"></script>
+	<script type="text/javascript" src="ycedu/js/jquery.sinaEmotion.js"></script>
+	<script type="text/javascript" src="ycedu/js/template.js"></script>
+	<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+	<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+	<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+	<!--<script type="text/javascript" src="ycedu/js/bomi.js"></script>-->
+
+	<script type="text/javascript" src="ycedu/js/indexclient.js"></script>
+
+	<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+	<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+
+	<script>
+		function openVideo(index) {
+			layer.open({
+				type: 2,
+				title: '悦华精品课程',
+				//closeBtn: 0, //不显示关闭按钮
+				shadeClose: true,
+				shade: [0.5, '#000'],
+				area: ['800px', '500px'],
+				scrollbar: false,
+				//offset: 'rb', //右下角弹出
+				//time: 2000, //2秒后自动关闭
+				anim: 2,
+				content: ['./ycedu/yh/yhvideoplayer.html?videoIndex=' + index, 'no']
+			});
+		}
+
+		//		$(function() {
+		//			//是否开启广告
+		//			adFunc();
+		//
+		//			var code = $(this).getUrlParam("code");
+		//			if(code != undefined) {
+		//				$.getwxUserInfo(code);
+		//			}
+		//
+		//			indexData();
+		//			indexCourse(); //金融课堂
+		//
+		//		})
+
+		$(function() {
+			function indexPage() {
+				new Vue({
+					el: '#jindexBannerApp',
+					data: {
+						indexBannerArr: []
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.loadData();
+						})
+					},
+					filters: {
+						addRoute: function(value) {
+							return ROUTEFILE + value;
+						}
+					},
+					methods: {
+						loadData: function() {
+							var _this = this;
+							//获取频道
+							this.$http.post(ROUTE + "Banner.ashx?action=getBanner&bannerType=homepage", {
+
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.indexBannerArr = res.body;
+								_this.indexBannerArr.forEach(function(item, index) {
+									Vue.set(item, "iconPath", ROUTEFILE + item.iconPath); //注册变量
+								})
+							}).then(function() {
+								_this.indexBannerSwiper();
+							});
+						},
+						indexBannerSwiper: function() {
+							var mySwiper = new Swiper('.bmindexSwiperWrap', {
+								//direction: 'vertical',
+								//slidesPerView: 2,
+								//autoplay: 3000,
+								loop: true
+							})
+						}
+					}
+				});
+
+				new Vue({
+					el: '#jindexLiveInner',
+					data: {
+						liveTeacherArr: [],
+						bookArr: [],
+						currentWeekDay: '',
+						currentMon: '',
+						curentDay: '',
+						currentHour: '',
+						currentMin: '',
+						currentTimeStamp: ''
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.loadData();
+							this.getData();
+						})
+					},
+					methods: {
+						loadData: function() {
+							var _this = this;
+							//谍报直播源
+							this.$http.post(ROUTE + "Channel.ashx?action=getLiveAddrByChannelId", {
+								channelId: 8
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.createPlayer(res.body[0].rtmpUrl2, res.body[0].hlsUrl);
+							});
+						},
+						getData: function() {
+							var dataObj = new Date();
+							this.currentWeekDay = dataObj.getDay();
+							this.curentDay = dataObj.getDate();
+							this.currentMon = dataObj.getMonth() + 1;
+							this.currentHour = dataObj.getHours();
+							this.currentMin = dataObj.getMinutes();
+							this.currentTimeStamp = this.currentHour * 60 + this.currentMin;
+							this.bookData();
+						},
+						bookData: function() {
+							var _this = this,
+								temp1, temp2, temp3, time, time2;
+							//谍报直播源
+							this.$http.post(ROUTE + "ChannelProgram.ashx?action=reservationProgramList", {
+								channelId: 8,
+								weeks: _this.currentWeekDay
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.bookArr = res.body.rows;
+								_this.bookArr.forEach(function(item, index) {
+									temp1 = item.playTime.split("-");
+									temp2 = temp1[1].split(":");
+									temp3 = temp1[0].split(":");
+
+									time = Number(temp2[0]) * 60 + Number(temp2[1]);
+									time2 = Number(temp3[0]) * 60 + Number(temp3[1]);
+
+									if(time < _this.currentTimeStamp) {
+										Vue.set(item, "isOut", 0); //注册变量
+									} else if(_this.currentTimeStamp > time2) {
+										Vue.set(item, "isOut", 2); //注册变量
+									} else {
+										Vue.set(item, "isOut", 1); //注册变量
+									}
+								})
+							}).then(function() {
+								$("#jbookListBox .bmbooklist").mCustomScrollbar({
+									horizontalScroll: true
+								});
+							});
+						},
+						bookLive: function(pid, isOut) {
+							if(isOut == 0) {
+								layer.msg("该课程已结束暂不支持预约！");
+								return false;
+							}
+							if(isOut == 2) {
+								layer.msg("该课程正在直播暂不支持预约！");
+								return false;
+							}
+							if($mid == "" || $mid == undefined) {
+								layer.msg("游客暂不支持预约！");
+								return false;
+							}
+							var _this = this;
+							//谍报直播源
+							this.$http.post(ROUTE + "ChannelProgram.ashx?action=memberReservationProgram", {
+								memberId: $mid,
+								channelProgramId: pid,
+								question: ''
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body == 8301) {
+									layer.msg("您已经预约过该课程！");
+									return false;
+								}
+								layer.msg("预约成功注意开课时间");
+							});
+						},
+						createPlayer: function(URL, URL2) {
+							if(flashChecker().f == 0) {
+								$("#jindexLivePlayer").before('<a href="http://get.adobe.com/cn/flashplayer/" target="_blank" class="noFlashTips">检查到您的系统未安装Flash,请先安装</a>');
+							}
+							var objectPlayer = new aodianPlayer({
+								container: 'jindexLivePlayer', //播放器容器ID，必要参数
+								rtmpUrl: URL, //控制台开通的APP rtmp地址，必要参数
+								hlsUrl: URL2, //控制台开通的APP hls地址，必要参数
+								/* 以下为可选参数*/
+								width: '100%', //播放器宽度，可用数字、百分比等
+								height: '390', //播放器高度，可用数字、百分比等
+								autostart: true, //是否自动播放，默认为false
+								bufferlength: '1', //视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+								maxbufferlength: '2', //最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+								stretching: '1', //设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+								controlbardisplay: 'enable', //是否显示控制栏，值为：disable、enable默认为disable。
+								adveDeAddr: './ycedu/images/live/dbplayerbg.jpg', //封面图片链接
+								//adveWidth: 320,//封面图宽度
+								//adveHeight: 240,//封面图高度
+								//adveReAddr: '',//封面图点击链接
+								//isclickplay: false,//是否单击播放，默认为false
+								isfullscreen: true //是否双击全屏，默认为true
+							});
+						}
+					}
+				});
+
+				//首页金融课堂
+				function indexCourse(type, url, data) {
+					var htmlStr = "";
+					$.ajax({
+						type: "get",
+						url: ROUTE + url,
+						dataType: "json",
+						data: data,
+						success: function(result) {
+							var dataObj = result.rows;
+							dataObj.forEach(function(item, index) {
+								if(type == 1 || type == "1") {
+									if(index % 2 == 0) {
+										htmlStr += '<div class="swiper-slide">';
+									}
+									htmlStr += '<div class="bmindexCourseLi">' +
+										'<a class="bmindexCourseImg" href="ycedu/coursedetail.html?courseId=' + item.courseId + '" target="_blank">' +
+										'<img src="' + ROUTEFILE + item.iconPath + '" alt="course" /></a>' +
+										'<div class="bmindexCourseInf">' +
+										'<h5>' + item.name + '</h5><p>' +
+										'<a href="ycedu/guestindex.html?teacherId="' + item.teacherId + ' target="_blank">' + item.teacherName + '</a> <span>' + item.preferentialPrice + '</span></p></div></div>';
+
+									if((index + 1) % 2 == 0) {
+										htmlStr += '</div>';
+									}
+								} else if(type == 2 || type == 3) {
+									if(index % 2 == 0) {
+										htmlStr += '<div class="swiper-slide">';
+									}
+									htmlStr += '<div class="bmindexCourseLi">' +
+										'<a class="bmindexCourseImg" href="ycedu/encyclopediadetail.html?ecId=' + item.courseId + '" target="_blank">' +
+										'<img src="' + ROUTEFILE + item.iconPath + '" alt="course" /></a>' +
+										'<div class="bmindexCourseInf">' +
+										'<h5>' + item.name + '</h5>' +
+										'</div></div>';
+
+									if((index + 1) % 2 == 0) {
+										htmlStr += '</div>';
+									}
+								}
+							})
+
+							$("#jbmindexCourseApp").html(htmlStr);
+							indexCourseSwiper();
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				new Vue({
+					el: '#jopenClassViewApp',
+					data: {
+						viewArr: [],
+						viewImg: '',
+						viewHref: ''
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.loadData();
+						})
+					},
+					methods: {
+						loadData: function() {
+							var _this = this;
+							this.$http.post(ROUTE + "Banner.ashx?action=getBanner", {
+								bannerType: 'opinion'
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body[0] == undefined || res.body[0] == "undefined") {
+									return false;
+								}
+								_this.viewImg = ROUTEFILE + res.body[0].iconPath;
+								_this.viewHref = res.body[0].href;
+							});
+
+							this.$http.post(ROUTE + "News.ashx?action=getUpToDateNews", {
+								pageIndex: 0,
+								pageSize: 7
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								_this.viewArr = res.body.rows;
+							});
+						}
+					}
+				});
+
+				new Vue({
+					el: '#jbmnewsApp',
+					data: {
+						newArr: []
+					},
+					filters: {
+						addRoute: function(value) {
+							return ROUTEFILE + value;
+						}
+					},
+					mounted: function() { //1.0ready --> 2.0
+						this.$nextTick(function() {
+							this.loadData();
+						})
+					},
+					methods: {
+						loadData: function() {
+							var _this = this;
+							this.$http.post(ROUTE + "Course.ashx?action=getFinancialKnowledge", {
+								type: 'uptodate',
+								pageIndex: 1,
+								pageSize: 2,
+								courseTypeId: 20,
+								topTypeId:12
+							}, {
+								emulateJSON: true
+							}).then(function(res) {
+								if(res.body.code == 200 || res.body.code == "200") {
+									_this.newArr = res.body.rows;
+								}
+
+							});
+						}
+					}
+				});
+
+				/*
+				 * 首页金融课堂
+				 */
+				function indexCourseSwiper() {
+					var courseSwiper = new Swiper('.bmindex-swiper-course', {
+						slidesPerView: 4, //'auto'
+						spaceBetween: 20,
+						loop: true,
+						nextButton: '.swiper-button-course-next',
+						prevButton: '.swiper-button-course-prev',
+						breakpoints: {
+							1024: {
+								slidesPerView: 4,
+								spaceBetween: 20
+							},
+							960: {
+								slidesPerView: 3,
+								spaceBetween: 15
+							},
+							640: {
+								slidesPerView: 2,
+								spaceBetween: 10
+							}
+						}
+					})
+				}
+
+				$(".jbmtitle").on("click", function() {
+					var dataid = $(this).attr("data-id");
+					if($(this).hasClass("active")) {
+						return false;
+					} else {
+						$(".jbmtitle").removeClass("active");
+						$(this).addClass("active");
+					}
+
+					if(dataid == 1 || dataid == "1") {
+						indexCourse(1, "Course.ashx?action=getCourseByType", {
+							courseTypeId: '',
+							pageIndex: 1,
+							pageSize: 16,
+							orderName: 'price',
+							ascType: "asc"
+						});
+						$("#jbmAddMore").attr("href", "courselist.html");
+					} else if(dataid == 2 || dataid == "2") {
+						indexCourse(2, "Course.ashx?action=getFinancialKnowledge", {
+							type: 'uptodate',
+							pageIndex: 1,
+							pageSize: 16,
+							//courseTypeId: 15,
+							topTypeId: 12
+						});
+						$("#jbmAddMore").attr("href", "./ycedu/encyclopedialist.html");
+					} else if(dataid == 3 || dataid == "3") {
+						indexCourse(3, "Course.ashx?action=getFinancialKnowledge", {
+							type: 'uptodate',
+							pageIndex: 1,
+							pageSize: 16,
+							//courseTypeId: 15,
+							topTypeId: 21
+						});
+						$("#jbmAddMore").attr("href", "./ycedu/encyclopedialist.html?courseTypeId=16&topType=21");
+					}
+
+				})
+
+				indexCourse(2, "Course.ashx?action=getFinancialKnowledge", {
+					type: 'uptodate',
+					pageIndex: 1,
+					pageSize: 16,
+					//courseTypeId: 15,
+					topTypeId: 12
+				});
+				//indexCourse(2, "Course.ashx?action=getFinancialKnowledge",{type: 'uptodate',pageIndex: 1,pageSize: 16,courseTypeId: 15});
+
+				//老师
+				function indexTeacherSwiper() {
+					var courseSwiper = new Swiper('.bmindex-swiper-teacher', {
+						//						slidesPerView: 4, //'auto'
+						//						spaceBetween: 20,
+						//autoplay: 3000,
+						loop: true,
+						nextButton: '.swiper-button-teacher-next',
+						prevButton: '.swiper-button-teacher-prev'
+					})
+				}
+
+				//获取老师信息
+				function getTeacherInf() {
+					var htmlStr = "";
+					$.ajax({
+						type: "get",
+						url: ROUTE + "HomePage.ashx?action=getTeacherCourse",
+						dataType: "json",
+						data: {},
+						success: function(result) {
+							result.forEach(function(item, index) {
+								htmlStr += '<div class="swiper-slide">' +
+									'<div class="bmleft">' +
+									'<div class="bmimagebox">' +
+									'<a href="ycedu/guestindex.html?teacherId="' + item.teacherInfo[0].teacherId + '>' +
+									'<img src="' + ROUTEFILE + item.teacherInfo[0].homeIcon + '" />' +
+									'</a></div>' +
+									'<div class="bmcourseList">';
+
+								item.courseInfo.forEach(function(subItem, subIndex) {
+									htmlStr += '<div class="span4">' +
+										'<a target="_blank" href="ycedu/coursedetail.html?courseId=' + subItem.courseId + '" class="bmcourseBox">' +
+										'<div class="bmimage">' +
+										'<img src="' + ROUTEFILE + subItem.iconPath + '" />' +
+										'</div><p class="bmcourseName">' + subItem.name + '</p>' +
+										'</a></div>';
+								});
+
+								htmlStr += '</div></div>' +
+									'<div class="bmright">' +
+									'<a href="ycedu/guestindex.html?teacherId="' + item.teacherInfo[0].teacherId + ' class="bmteacherbox">' +
+									'<img src="' + ROUTEFILE + item.teacherInfo[0].photo + '" />' +
+									'</a></div></div>';
+							});
+							//$("#jbmindexTeacherApp").html(htmlStr);
+							indexTeacherSwiper();
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				getTeacherInf();
+
+			}
+
+			indexPage();
+
+		})
+	</script>
+
+</html>

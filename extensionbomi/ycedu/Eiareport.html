@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>大讲堂-EIA技术分析报告</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/Ecalendar.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<body>
+		<header id="header" class="dycEiaHead">
+			<div class="container">
+				<a class="dycEiabomi" href="../index.html" title="首页"></a>
+				<!--<a class="dycEiadb" href="dbliveroom.html" title="财经叠报大讲堂"></a>-->
+				全国投资者在线教育领导品牌
+			</div>
+		</header>
+
+		<section>
+			<div class="dycEia">
+				<div class="container">
+					<div class="dycEiaheaderWrap">
+						<div class="dycEia-head">
+							<div class="dycEia-banner">
+								<div class="swiper-container dycEiaBannerContainer">
+									<div class="swiper-wrapper">
+										<div class="swiper-slide">
+											<a href="#this" target="_blank">
+												<img src="images/eia-swiper.jpg" />
+											</a>
+										</div>
+										<div class="swiper-slide">
+											<a href="#this" target="_blank">
+												<img src="images/eia-swiper.jpg" />
+											</a>
+										</div>
+										<div class="swiper-slide">
+											<a href="#this" target="_blank">
+												<img src="images/eia-swiper.jpg" />
+											</a>
+										</div>
+									</div>
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="dycEiamember" id="jEiamember">
+								<div class="dycEiamember-top">
+									<a class="dycEiamember-img" href="../membercenter.html" target="_blank" title="会员中心">
+										<!--<img src="images/Eia-member-avar.jpg" />-->
+									</a>
+									<p class="dycEiamember-name"><span>[在线]</span></p>
+									<span class="dycEiamember-lever"></span>
+								</div>
+								<ul class="dycEiamember-bottom" id="jEiamemberList">
+									<!--<li class='time'>登录时长<em>/</em><span>32分钟</span></li>-->
+									<li class='grade'>会员等级<em>/</em><span></span></li>
+									<li class='special'>我的特权<em>/</em><span></span></li>
+								</ul>
+							</div>
+
+						</div>
+						<ul class="dycEiaheadBtn clearfix" id="jEiaheadBtn">
+							<li class="active" data-id="0">本期EIA技术分析</li>
+							<li data-id="1">往期EIA技术分析</li>
+							<li data-id="2">我的报告收藏</li>
+							<li data-id="3">我的提问</li>
+							<li data-id="4" id="jdbAssistant">联系助理</li>
+						</ul>
+					</div>
+					<div class="dycEiaDateCons" style="display: block;">
+						<div class="dycEiaThemeWrap" >
+							<!--<div class="dycEiaDate">
+								<img src="images/eiadata-con-shang.jpg" />
+							</div>-->
+							<div class="dycEiaTheme" id="jcurrentCon">
+								<!--<img src="images/report/EIA3.png" />-->
+							</div>
+							
+						</div>
+						<!--<div class="dycEiaThemeWrap" style="display: none;">
+							<div class="dycEiaDate">
+								<img src="images/eiadata-con-benqi.jpg" />
+							</div>
+							<div class="dycEiaTheme">
+								<img src="images/eiatheme-con-benqi.jpg" />
+							</div>
+						</div>
+						<div class="dycEiaThemeWrap" style="display: block;">
+							<div class="dycEiaDate" style="display: none;">
+								
+							</div>
+							<div class="dycEiaTheme">
+								<img src="images/eiatheme-con-san.jpg" />
+							</div>
+						</div>-->
+						<!--
+						<div class="dycEiaTheme-tabcon" id="jEiaThemeTab">
+							<a class="prev" id="jprev" style="display: block;">
+								上一篇 本期基本面分析
+								<< </a>
+									<a class="next" id="jnext"  style="display: none;">
+										下一篇 本期技术面分析 >>
+									</a>
+						</div>-->
+
+					</div>
+					<div class="dycEiaDateCons dycpastList">
+						<ul class="dycpastulList dycEiapastlist" id="jPastList"></ul>
+						<ul id="jteacherpage" class="pagenationbox clearfix"></ul>
+					</div>
+					<div class="dycEiaDateCons"></div>
+					<div class="dycEiaDateCons"></div>
+					<div class="dycEiaDateCons"></div>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				if(!judgeStatuHref()) { //未登入时跳转
+					window.location.href = "../login.html";
+					return false;
+				}
+				//判断登入状态跳转
+				function judgeStatuHref() {
+					if($mid != null && $mid != undefined && $mid != "") {
+						return true;
+					}
+					return false;
+				}
+
+				mediumLongLine();
+
+			})
+		</script>
+	</body>
+
+</html>

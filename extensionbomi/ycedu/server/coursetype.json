@@ -1,0 +1,6 @@
+[
+	{"courseTypeId":"1","name":"黄金"},
+	{"courseTypeId":"2","name":"股票","children":[{"courseTypeId":"6","name":"闽福发"}]},
+	{"courseTypeId":"3","name":"外汇","children":[{"courseTypeId":"4","name":"美金1"}]},
+	{"courseTypeId":"7","name":"大宗"}
+]

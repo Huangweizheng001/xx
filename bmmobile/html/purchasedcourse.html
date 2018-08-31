@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.9/skins/default/index-min.css" />
+		<!--<link rel="stylesheet" href="../css/bmmobile.css" />-->
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>购买课程播放</title>
+
+		<style>
+			body,html{
+				height: 100%;
+			}
+			#livePlanBox {
+				padding: 0 1.42rem;
+				overflow: hidden;
+				text-align: center;
+				font-size: 1.8rem;
+				color: #272828;
+				line-height: 4.357rem;
+				background-color: #f2f2f2;
+			}
+			
+			#livePlanBox .menu {
+				display: inline-block;
+				width: 50%;
+				float: left;
+				cursor: pointer;
+			}
+			
+			#livePlanBox .menu.selected {
+				font-weight: bold;
+			}
+			
+			#J_prismPlayer {
+				width: 100%;
+				height: 24.92rem;
+			}
+			
+			header {
+				position: absolute;
+				top: 1.57rem;
+				z-index: 999;
+			}
+			
+			.goBack {
+				position: absolute;
+				left: 2.14rem;
+				width: 3.42rem;
+				height: 3.42rem;
+				top: 2.4rem;
+				border-radius: 50%;
+				background: url(../images/public/goBack2.png) no-repeat center;
+				background-color: rgba(255, 255, 255, .3);
+				background-position: 40% center;
+				background-size: 1.285rem 2.285rem;
+			}
+			
+			#sendBox {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 6.428rem;
+				width: 100%;
+				background-color: #1473e6;
+			}
+			
+			#sendBox label {
+				width: 100%;
+				height: 100%;
+				padding: 1.14rem 8.58rem 1.14rem 1.64rem;
+				box-sizing: border-box;
+			}
+			
+			#sendBox input {
+				width: 100%;
+				height: 3.8rem;
+				line-height: 4rem;
+				text-indent: 1rem;
+				font-size: 1.857rem;
+				border-radius: 0.6rem;
+				background-color: #fff;
+			}
+			
+			#sendBox i {
+				position: absolute;
+				width: 3.57rem;
+				height: 3.57rem;
+				right: 3.14rem;
+				top: 1.5rem;
+				background: url(../images/public/send.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			#outlineBox {
+				padding: 0.5rem 1.14rem;
+				font-size: 1.65rem;
+				color: #282828;
+			}
+			
+			#outlineBox li {
+				position: relative;
+				margin: 1.5rem 0;
+				padding: 0.6rem 0;
+				border-radius: 1rem;
+				background-color: #f2f2f2;
+			}
+			
+			#outlineBox li span {
+				vertical-align: middle;
+			}
+			
+			#outlineBox li span:first-child {
+				display: inline-block;
+				padding: 0 1rem;
+				min-width: 6.5rem;
+			}
+			
+			#outlineBox li span:nth-child(2) {
+				display: inline-block;
+				width: calc(100% - 13rem);
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			#outlineBox li.allowed {
+				color: #fff;
+				background-color: #2e85ef;
+			}
+			
+			#outlineBox li.allowed a {
+				color: #fff;
+				display:block;
+			}
+			
+			#outlineBox li.allowed i {
+				position: absolute;
+				right: 1.6rem;
+			/*	top: 0.5rem;*/
+				display: inline-block;
+				width: 2.25rem;
+				height: 2.25rem;
+				background: url(../images/public/playIcon.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			#commentBox {
+				padding: 2.14rem;
+				margin-bottom: 30px;
+				color: #282828;
+				font-size: 1.42rem;
+			}
+			
+			#commentBox li {
+				margin-bottom: 1rem;
+			}
+			
+			#commentBox .top * {
+				vertical-align: middle;
+			}
+			
+			#commentBox .top img {
+				margin-right: 1rem;
+				width: 3.92rem;
+				height: 3.92rem;
+				border-radius: 50%;
+			}
+			
+			#commentBox .top .time {
+				float: right;
+				margin-top: 1rem;
+			}
+			
+			#commentBox .content {
+				font-size: 1.57rem;
+				line-height: 3;
+			}
+			
+			#inputField {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<!--<header>
+				<span class="goBack" onclick="goBack()"></span>
+			</header>-->
+
+			<!-- 直播box -->
+			<div id="J_prismPlayer" class="prism-player flex-con"></div>
+
+			<section id="livePlanBox" >
+				<span class="menu selected" data-id='0'>章节</span>
+				<span class="menu" data-id='1'>评论</span>
+			</section>
+			<ul id="outlineBox" class="flex-con" style="overflow: auto;"></ul>
+			<div id="commentBox" style="display: none;overflow: auto;" class="flex-con">
+				<div id="content">
+					<ul class="purchaseListBox clearfix"></ul>
+				</div>
+			</div>
+			<section id="inputField" style="display: none;">
+				<div class="chatbox-wrap">
+					<div class="chatbox-inner"></div>
+					<div class="chat-input-box">
+						<input id="chatContent" contenteditable="true" placeholder='请输入文字' style="border:none;width:80%"></input>
+						<a class="chat-submit" id='chatsend' href="#this">发送</a>
+					</div>
+				</div>
+		</div>
+		</section>
+
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/prism-h5-min.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+
+				var cId = $.getUrlParam("courseId");
+				var vId = $.getUrlParam("videoId");
+				
+				var itemIndex = 0, 
+					LoadEnd_tab = false,
+					pageCount = 0;
+
+				// 每页展示6个
+				var num = 3;
+				var nownum = 0; //当前数据在第几条
+				
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							pageCount++;
+							comment(me, pageCount, cId, itemIndex); //默认首页
+						}, 200)
+					}
+				});
+				
+
+				//outline
+				var outlineFlag = true;
+				var isFirst = true;
+
+				fnSetNavMenuIndex(cId);//切换
+				outline(cId); //默认章节
+
+				if((vId != undefined) && (vId != "") && (vId != null)) {
+					getVideoSource(vId);
+				} else {
+					setTimeout(function() {
+						getVideoSource(vId)
+					}, 1000);
+				}
+
+				function fnSetNavMenuIndex(cId) {//切换
+					$('#livePlanBox span').click(function() {
+						var type = $(this).attr('data-id');
+						$(this).addClass('selected');
+						$(this).siblings().removeClass('selected');
+						if(type == '0') {
+							//outline(cId);
+							$('#outlineBox').css('display', 'block');
+							$('#commentBox').css('display', 'none');
+							$('#inputField').css('display', 'none');
+
+						} else {
+							//comment(1, cId);
+							$('#outlineBox').css('display', 'none');
+							$('#commentBox').css('display', 'block');
+							$('#inputField').css('display', 'block');
+						}
+					});
+				}
+
+				function outline(id) { //获取目录
+					var outlineBox = $('#outlineBox'),
+						$htmlStr = "";
+					$.ajax({ //发送消息
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseCatalog.ashx?action=getCourseCatalogByCourseId',
+						dataType: "json",
+						data: {
+							"courseId": id,
+							"memberId":localStorage.getItem('$ycuid')
+						},
+						success: function(result) {
+							if((result[1].length < 1) || (result[0].length < 1)) {
+								return false;
+							} else {
+								if(result[0][0].isSold == '1') {
+									vId = result[1][0].videoId;
+									result[1].forEach(function(value, index) {
+										if((value.videoId != undefined) && (value.videoId != "") && (value.videoId != null)) { //有视频源
+											$htmlStr += "<li class='allowed'><a href='purchasedcourse.html?videoId=" + value.videoId + "&courseId=" + value.courseId + "'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></a></li>";
+										} else { //没有视频源，提示
+											layer.open({
+												content: "该节暂无视频资源！",
+												skin: 'msg',
+												time: 2 //2秒后自动关闭
+											});
+											$htmlStr += "<li class='allowed'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></li>";
+
+										}
+									});
+								} else {
+									result[1].forEach(function(value, index) {
+										if(value.allowListen == '1') {
+											if((value.videoId != undefined) && (value.videoId != "") && (value.videoId != null)) { //有视频源
+												if(isFirst) {
+													vId = value.videoId;
+													isFirst = false;
+												}
+												$htmlStr += "<li class='allowed'><a href='purchasedcourse.html?videoId=" + value.videoId + "&courseId=" + value.courseId + "'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></a></li>";
+											} else { //没有视频源，提示
+												layer.open({
+													content: "该节暂无视频资源！",
+													skin: 'msg',
+													time: 2 //2秒后自动关闭
+												});
+												$htmlStr += "<li class='allowed'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></li>";
+											}
+
+										} else {
+											$htmlStr += "<li class='noallowed'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></li>";
+											/*$htmlStr += "<li onclick='openPlayTips()'><span>第" + (index + 1) + "节</span><span>" + value.name + "</span><i></i></li>";*/
+										}
+
+									});
+								}
+								outlineBox.html($htmlStr);
+								outlineFlag = false;
+
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//评论
+				//var commentFlag = true;
+
+				function comment(me, pageIndex, id, itemIndex){
+					var commentBox = $('.purchaseListBox'), //评论部分
+						htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseEvaluation.ashx?action=getEvaluation',
+						dataType: "json",
+						data: {
+							"courseId": id,
+							"pageIndex": pageIndex,
+							"pageSize": num
+						},
+						success: function(result) {
+							var obj = result.rows;
+							if(obj < 1){
+								LoadEnd_tab = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+								return false;
+							}
+							obj.forEach(function(value, index) {
+								if(value.iconPath == "") {
+									value.iconPath = '../images/public/login.png';
+								} else {
+									value.iconPath = SERVEROOTFILE + value.iconPath;
+								}
+								htmlStr += "<li><div class='top'><img src=" + value.iconPath + " /><span class='name'>" + value.nickName + "</span><span class='time'>" + value.evaluationDate + "</span></div><div class='content'>" + value.evaluation + "</div></li>";
+								nownum = (pageIndex - 1) * num + index + 1;
+									if((nownum) >= result.totalCount) {
+										console.log('到底啦')
+										// 数据加载完
+										LoadEnd_tab = true;
+										// 锁定
+										me.lock();
+										// 无数据
+										me.noData();
+										//break;
+									}
+							});
+							
+							// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									commentBox.append(htmlStr);
+									
+									// 每次数据加载完，必须重置
+									me.resetload();
+									
+								}, 1000);
+							//commentFlag = false;
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+				sendComment();
+				//open commentFrame
+				function sendComment() {
+					$('#chatsend').click(function() {
+						//判断是否登入
+						if(!isLogined()) {
+							layer.open({
+								content: "非会员用户暂无法评论！",
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});
+
+							setTimeout(function() {
+								window.location.href = 'login.html';
+							}, 1500);
+
+						} else {
+							insertComment($('#chatContent').val(), cId);
+						}
+					})
+
+				}
+
+				//插入评论
+				function insertComment(txt, id) {
+					$.ajax({ //发送消息
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseEvaluation.ashx?action=evaluation',
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"courseId": id,
+							"evaluation": txt
+						},
+						success: function(result) {
+							if(result) {
+								layer.open({
+									content: "评论成功！",
+									skin: 'msg',
+									time: 2 //2秒后自动关闭
+
+								});
+								$('#chatContent').val('');
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+					localInsert(txt);
+				}
+
+				function localInsert(txt) {
+					var htmlStr = "",
+						headerIcon = localStorage.getItem('$ycuheader');
+
+					//判断用户头像是否存在
+					if(headerIcon == "false" || headerIcon == "" || headerIcon == undefined) {
+						headerIcon = "../images/public/login.png";
+					}
+
+					htmlStr = '<li><div class="top"><img src="' + headerIcon + '" />' +
+						'<span class="name">' + localStorage.getItem("$ycuname") + '</span>' +
+						'<span class="time">' + getNowFormatDate() + '</span>' +
+						'</div><div class="content">' + txt + '</div></li>';
+
+					$("#commentBox").prepend(htmlStr);
+				}
+
+				function getNowFormatDate() {
+					var date = new Date();
+					var seperator1 = "/";
+					var seperator2 = ":";
+					var month = date.getMonth() + 1;
+					var strDate = date.getDate();
+					if(month >= 1 && month <= 9) {
+						month = "0" + month;
+					}
+					if(strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+					}
+					var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+						" " + date.getHours() + seperator2 + date.getMinutes() +
+						seperator2 + date.getSeconds();
+					return currentdate;
+				}
+
+				function getVideoSource(videoId) {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseCatalog.ashx?action=getPlayUrlByVideoId',
+						data: {
+							"videoid": videoId
+						},
+						success: function(result) {
+							newPlay(videoId, result);
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+				function newPlay(vid, url) {
+					window.courseplayer = new prismplayer({
+						id: "J_prismPlayer", // 容器id
+						// source: 'http://live.bmizx.net/yicelive/streamyice.m3u8 ', // 视频地址
+						//source: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8 ',
+						// source:url,
+						autoplay: true, //自动播放：否
+						width: "100%", // 播放器宽度
+						height: "24.92rem", // 播放器高度
+						preload: true,
+						playsinline: true,
+						vid: vid,
+						playauth: url,
+
+						// isLive: true,
+						cover: '../images/public/playIcon.jpg '
+					});
+
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

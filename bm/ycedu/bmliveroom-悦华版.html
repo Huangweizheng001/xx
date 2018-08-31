@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线 公开课</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/bmliveroom.css" />
+		<link rel="stylesheet" href="css/jquery.sinaEmotion.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		
+		<style>
+			/*.bmlivePlayer {
+				background: url("./images/live/yhplayerbg.png") no-repeat center;
+				background-size: cover;
+			}*/
+		</style>
+	</head>
+
+	<!--<section class="yc-manage-wrap">
+		<ul class="yc-manage-box" id="jmanageBox"></ul>
+	</section>-->
+
+	<body id="bmdbLiveRoom">
+		<section class="bmliveRoomWrap">
+			<div class="bmliveRoomContainer">
+				<div class="bmliveLeftWrap">
+					<a class="bmliveLogo" href="../index.html" title="返回首页">
+						<img src="images/live/bmlogo.jpg" />
+					</a>
+					<ul class="bmliveQuickBtns">
+						<li>
+							<a class="bmliveQuickFirst bmliveTeBtn" href="../index.html">首页</a>
+						</li>
+
+						<li>
+							<a class="bmliveQuickFirst bmliveSerBtn">充值</a>
+						</li>
+						<li>
+							<!--<a class="bmliveQuickFirst bmliveReadBtn" target="_blank" href="recharge.html?recharge=0">
+								会员
+							</a>-->
+							<a class="bmliveQuickFirst bmliveReadBtn">
+								悦华讲座门票 
+							</a>
+						</li>
+						<li>
+							<a id="jbmserverQQ" class="bmliveQuickFirst bmlivebookBtn" href="#this">
+								客服
+							</a>
+						</li>
+						<li>
+							<a class="bmliveQuickFirst bmliveLoginBtn" href="#this">
+								注册登录
+							</a>
+						</li>
+					</ul>
+					
+					<select name="" class="bmchangeAccount" id="jchangeAccount">
+						<option value="1"></option>
+					</select>
+
+				</div>
+				<div class="bmliveMainWrap">
+					<div class="bmliveMainContainer">
+						<div class="bmliveMainHeaderInner" id="jliveTeacherInf">
+							<a class="bmlinkTeacher bmliveTeacherInf" href="guestindex.html?teacherId=" target="_blank">
+								<span class="bmimageBox">
+									<img class="bmteahcerIcon" src="images/live/dbteacherIcon.png" alt="嘉宾主页" title="嘉宾主页" />
+								</span>
+								<p class="bmliveCoursename">课 题：K线基础理论详解</p>
+								<p class="bmliveTeacher">嘉宾：陈小可</p>
+							</a>
+							<div class="bmteacherOtherBtns">
+								<p class="bmTips">嘉宾言论仅代表个人观点不做任何建议 </p>
+							</div>
+						</div>
+						<div class="bmliveMainInner">
+							<!--作为计算点：高-->
+							<div id="jplayerHeight" style="height: 100%; float: left;"></div>
+							<div id="dbLivePlayer" class="prism-player bmlivePlayer"></div>
+						</div>
+						<div class="bmliveFooterInner">
+							<div class="bmliveFooterBtns">
+								<a class="bmliveFooterbtn bmliveEntertainmentBtn active" href="javascript:;" dataId="1">娱乐功能</a>
+								<a class="bmliveFooterbtn bmliveStudyToolBtn" href="javascript:;" dataId="2">学习工具</a>
+								<a class="bmliveFooterbtn bmliveCoursewareBtn" href="javascript:;" dataId="3">我的课件</a>
+								<a class="bmliveFooterbtn bmliveTeacherTeamBtn" href="javascript:;" dataId="4">嘉宾团队</a>
+								<a class="bmliveFooterbtn bmliveEducationAssistantBtn" href="javascript:;" dataId="5">教务助理</a>
+								<a class="bmliveFooterbtn bmliveSpeakBtn" href="javascript:;" dataId="6">举手发言</a>
+							</div>
+							<div class="bmliveFooterContentBox">
+								<!--娱乐功能-->
+								<div id="jentertainmentBox" class="bmentertainmentBox bmfooterContentBox" dataId="1">
+									<div class="bmentertainmentLeft">
+										<a id="juserInf" href="../membercenter.html" class="bmuserInf" target="_blank">
+											<img class="bmuserIcon" src="images/live/dbusericon.png" />
+											<p class="bmnickname">游客</p>
+											<p class="bmuserLevel">游客会员</p>
+										</a>
+										<a class="bmcodeBox" href="recharge.html" target="_blank">
+											<p class="bmcodeinf">播米币:0</p>
+										</a>
+									</div>
+									<div class="bmentertainmentRight">
+										<div class="bmentertainmentCostList">
+											<div class="swiper-container bmenterainmentContainer">
+												<div class="swiper-wrapper" id="jenterainmentSwiperWrapper">
+													<div class="swiper-slide">
+														<a class="bmreward active" data-id="3" data-index="1" data-img="" data-note="" data-name="http://www.bomizx.net/bmOnline/uploads/images/bomi.jpg">
+															<img src="images/bomi.png">
+														</a>
+													</div>
+												</div>
+
+											</div>
+											<div class="swiper-button-prev bmenterainmentSwiperPrev"></div>
+											<div class="swiper-button-next bmenterainmentSwiperNext"></div>
+										</div>
+										<div class="bmentertainmentCostInf">
+											<div class="bmentertainmentInfDetail">
+												<div class="bmentertainmentInfDetailLeft" id="jcostDetail">
+													<div class="bmcostIcon">
+														<img class="bmcostImg" src="http://www.bomizx.net/bmonline/uploads/images/3d8a01f32910febb6077c224ba0f2576.png" />
+													</div>
+													<div class="bmcostBriefBox">
+														<p class="bmcostName">播米币<span>(1播米币)</span></p>
+														<p class="bmcostBrief">土豪 快用播米币来砸我吧</p>
+													</div>
+
+													<div class="bmcostNumberBox">
+														<p class="bmcostNumberOpt">数量:
+															<a class="bmcostOpt bmcostOptSub">-</a>
+															<input type="number" value="1" dataType='1' maxlength="6" min="1" />
+															<a class="bmcostOpt bmcostOptAdd">+</a>
+														</p>
+														<p class="bmcostnumber">播米币:1000</p>
+													</div>
+												</div>
+
+											</div>
+											<div class="bmentertainmentForBtns">
+												<a class="bmcostToTeacher" href="javascript:;"></a>
+												<a class="bmcostToPresenter" href="javascript:;"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!--学习工具-->
+								<div id="jstudyToolBox" class="bmstudyToolBox bmfooterContentBox clearfix" dataId="2">
+									<div class="span3">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolBook" href="javascript:;"></a>
+											<p>我的笔记</p>
+										</div>
+									</div>
+									<div class="span3">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolSign" href="javascript:;"></a>
+											<p>标记笔</p>
+										</div>
+									</div>
+									<div class="span3">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolWork" href="javascript:;"></a>
+											<p>我的作业</p>
+										</div>
+									</div>
+									<div class="span3">
+										<div class="bmstudyToolLi">
+											<a class="bmstudyToolTest" href="javascript:;"></a>
+											<p>我的试卷</p>
+										</div>
+									</div>
+								</div>
+
+								<!--我的课件-->
+								<div id="jcoursewareBox" class="bmcoursewareBox bmfooterContentBox" dataId="3" style="color:#dabb84; text-align: center; padding-top: 30px;box-sizing: border-box;">
+									开发待续中...
+								</div>
+
+								<!--嘉宾团队-->
+								<div id="jliveTeacherTeamBox" class="bmliveTeacherTeamBox bmfooterContentBox" dataId="4">
+									<a class="guest" href="../fteachertopic.html" target="_blank">
+										<img src="images/live/dbteacherIcon.jpg" />
+									</a>
+								</div>
+
+								<!--教务助理-->
+								<div id="jliveEducationAssistantBox" class="bmliveEducationAssistantBox bmfooterContentBox" dataId="5">
+									<a id="jdbAssistant">
+										<img src="images/live/dbzlIcon.png" />
+										<!--<img src="images/live/dbzlIcon.jpg" />-->
+									</a>
+								</div>
+
+								<!--举手发言-->
+								<div id="jliveSpeakBox " class="bmliveSpeakBox bmfooterContentBox" dataId="6" style="color:#dabb84; text-align: center; padding-top: 30px;box-sizing: border-box;">
+									开发待续中...
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="bmliveRightWrap">
+					<div class="bmliveRightContainer">
+						<div class="bmliveRightHeaderInner">
+							<div class="swiper-container bmliveRightSwiperContainer">
+								<div class="swiper-wrapper">
+									<!--<div class="swiper-slide">
+										<a href="./yh/yhzt01.html" target="_blank">
+											<img src="images/dbad01.jpg" />
+										</a>
+									</div>-->
+
+									<div class="swiper-slide">
+										<a href="memberrule.html" target="_blank">
+											<img src="images/abmember.jpg" />
+										</a>
+									</div>
+
+									<div class="swiper-slide">
+										<a href="coursedetail.html?courseId=1266" target="_blank" style="text-align: center; display: block;">
+											<img src="images/newAdBanner.jpg" />
+										</a>
+									</div>
+									
+									<!--<div class="swiper-slide">
+										<a href="dbzt/db01.html" target="_blank" style="text-align: center; display: block;">
+											<img src="images/live/bn11062.png" />
+										</a>
+									</div>
+									
+									<div class="swiper-slide">
+										<a href="#this" target="_blank" style="text-align: center; display: block;">
+											<img src="images/live/bn1106.png" />
+										</a>
+									</div>-->
+								</div>
+								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+						<div class="bmliveRightInner" id="jchatBox">
+							<div class="bmmessagePanel" id="chatbox" class="clearfix">
+								<div id="doc">
+									<div id="chat">
+										<div id="message">
+											<!--<div id="onlinecount"></div>-->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="bmliveRightFooterInner">
+							<div class="bmliveSendTools">
+								<a class="bmicon" href="javascript:;" title="表情">表情</a>
+								<a class="bmImg" href="javascript:;" title="图片"><input id="jsendImgPanel" type="file" accept="image/*">图片</a>
+								<a class="bmColorBar" href="javascript:;" title="彩条">彩条</a>
+								<a class="bmFormat" href="javascript:;" title="格式刷">格式刷</a>
+
+								<select id="jmanageUser"></select>
+								<span id="jmanageOpen">管理</span>
+
+							</div>
+							<div class="bmliveSendBox">
+								<input type="text" class="hideIcon" style="display: none;" />
+								<span id="tempImg" style="display: none;"></span>
+								<div id="content" contenteditable="true"></div>
+								<a class="bmsendBtn" href="#this" onclick="CHAT.submit(1);"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div id="bmchatOpenBtnBox">
+					<img src="images/public/mclose.png" />
+				</div>
+			</div>
+		</section>
+		<!--<section>
+			<div class="dyccostservice-btn">
+				<div id="jsvtn_phone" class="dycphone-btn">
+					<i class="uk-icon-group"></i> 在线客服
+				</div>
+				<div class="dyccostservice">
+					<ul>
+						<li>
+							<a id="buy_service" href="#this">购买课程</a>
+						</li>
+						<li>
+							<a id="recharge_service" href="#this">充值会员</a>
+						</li>
+						<li>
+							<a id="listen_service" href="#this">试听课程</a>
+						</li>
+						<li>
+							<a id="vip_service" href="#this">VIP服务</a>
+						</li>
+						<li>
+							<a id="sale_service" href="#this">售后服务</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>-->
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/jquery.sinaEmotion.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/bmclient.js"></script>
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+		
+
+	</body>
+
+</html>

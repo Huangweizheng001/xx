@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+	<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>题库类型选择</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section>
+			<div class="dycsubject-bg">
+				<img src="images/subject-banner.jpg" />
+			</div>
+		</section>
+
+		<!--题库类型-->
+		<section>
+			<div class="container">
+				<form action="" method="get">
+					<div class="dycsubselect">
+						<p class="dycsubselect-head">题库类型</p>
+						<div class="clearfix dycsubselect-style" id="jcourseTypeId"></div>
+						<!--年份类型-->
+						<!--<div class="dycsubselect">
+							<label class="dycsubselect-head">年份类型</label>
+							<select name="">
+								<option value="0">2011</option>
+								<option value="1">2012</option>
+							</select>
+						</div>-->
+				</form>
+				</div>
+			</div>
+		</section>
+
+		<!--题库列表-->
+		<section>
+			<div class="container">
+				<ul id="jsubjectlist" class="dycsubjectlist clearfix"></ul>
+			</div>
+		</section>
+
+		<!--分页-->
+		<section>
+			<div class="container">
+				<ul id='jsubjectlistpage' class="pagenationbox clearfix"></ul>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				
+				var pId = $(this).getUrlParam("paperTypeId");
+				$.jcourseType(pId);
+				
+				$.jsubjectList(pId, 1,1);//默认选中第一个
+				$('#jsubjectlist').click(function() {
+			
+				if(($mid == undefined) || ($mid == '') || ($mid == null)) {
+					
+						alert("您还未登录")
+					
+				}else if($(this).children('li').find('a').attr('href') == '#this'){
+					alert("您还未拥有该类型题库，购买该类型任意课程即可拥有该类型所有题库~")
+				}
+});
+			})
+		</script>
+	</body>
+
+</html>

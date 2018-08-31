@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长个人中心-我的老师</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <parent-header-template></parent-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <parent-left-template></parent-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right " id="" style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>我的老师</span>
+            </div>
+            <div class="feparentmyteacher">
+                <b>老师:</b>
+                <span class="active" data-id="1">我的老师</span>
+                <span data-id="2">孩子的老师</span>
+            </div>
+            <!--我的老师-->
+            <div class="festudentmyteacher" id="myteacher">
+                <div class="feselect" style="border: none">
+                    <input type="text" placeholder="输入关键字" id="keyword"> <button>搜索</button>
+                </div>
+                <!--筛选框-->
+                <!--<div class="fecoursedetailselect">-->
+                    <!--<div class="femodule">-->
+                        <!--<span>类型:</span>-->
+                        <!--<ul class="feperio">-->
+                            <!--<li data-id="">全部</li>-->
+                            <!--<li >辅导老师</li>-->
+                            <!--<li>学校老师</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="femodule">-->
+                        <!--<span>年级:</span>-->
+                        <!--<ul class="feperio">-->
+                            <!--<li data-id="">全部</li>-->
+                            <!--<li >小学</li>-->
+                            <!--<li>初中</li>-->
+                            <!--<li>高中</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="femodule">-->
+                        <!--<span>学科:</span>-->
+                        <!--<ul class="feperio">-->
+                            <!--<li data-id="">全部</li>-->
+                            <!--<li >语文</li>-->
+                        <!--<li>数学</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--筛选结果-->
+                <div class="femyteacherlist">
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div class="fepanel" v-cloak v-for="item in myteacher">
+                        <div class="span2">
+                            <div class="feimage">
+                                <img v-bind:src="item.iconPath|addRootFile" alt="">
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <b>{{item.name}}</b>
+                        </div>
+                        <div class="span5">
+                            <div class="febox">
+                                <h4>{{item.organname}}</h4>
+                                <h4>{{item.subjectname}}</h4>
+                                <h4>{{item.coursename}}</h4>
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <p><a v-bind:href="item.teacherId,item.name|addAnswerRoot">提&nbsp;&nbsp;&nbsp;问</a></p>
+                            <!--<p><a href="#this">上传作业</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+                <div style="clear: both"></div>
+            </div>
+            <!--孩子的老师-->
+            <div class="festudentmyteacher" id="childteacher" style="display: none">
+                <div class="feselect" style="border: none">
+                    <input type="text" placeholder="输入关键字" id="keyword1"> <button>搜索</button>
+                </div>
+                <!--筛选框-->
+                <!--<div class="fecoursedetailselect">-->
+                <!--<div class="femodule">-->
+                <!--<span>类型:</span>-->
+                <!--<ul class="feperio">-->
+                <!--<li data-id="">全部</li>-->
+                <!--<li >辅导老师</li>-->
+                <!--<li>学校老师</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="femodule">-->
+                <!--<span>年级:</span>-->
+                <!--<ul class="feperio">-->
+                <!--<li data-id="">全部</li>-->
+                <!--<li >小学</li>-->
+                <!--<li>初中</li>-->
+                <!--<li>高中</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--<div class="femodule">-->
+                <!--<span>学科:</span>-->
+                <!--<ul class="feperio">-->
+                <!--<li data-id="">全部</li>-->
+                <!--<li >语文</li>-->
+                <!--<li>数学</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--筛选结果-->
+                <div class="femyteacherlist">
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div class="fepanel" v-cloak v-for="item in childteacher">
+                        <div class="span2">
+                            <div class="feimage">
+                                <img v-bind:src="item.iconPath|addRootFile" alt="">
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <b>{{item.teachername}}</b>
+                        </div>
+                        <div class="span5">
+                            <div class="febox">
+                                <h4>{{item.organname}}</h4>
+                                <h4>{{item.subjectname}}</h4>
+                                <h4>{{item.name}}</h4>
+                            </div>
+                        </div>
+                        <div class="span2">
+                            <p><a v-bind:href="item.teacherId,item.teachername|addAnswerRoot">提&nbsp;&nbsp;&nbsp;问</a></p>
+                            <!--<p><a href="#this">上传作业</a></p>-->
+                        </div>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        myteacher();
+    })
+</script>
+</body>
+
+</html>

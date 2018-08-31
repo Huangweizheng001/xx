@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="./css/plugins/style.min.css">
+		<link rel="stylesheet" href="./css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css">
+		<link rel="stylesheet" href="./css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/festyle.css">
+		<title>新闻直播</title>
+	</head>
+
+	<body>
+		<header id="feHeaderTransparentShare">
+			<header-transparent-share-template></header-transparent-share-template>
+		</header>
+		<section class="feActiveDetailWrap feCoursePlayWrap feNewsLiveWrap" id="jNewsLiveWrap">
+			<div class="container flex flex-v">
+				<div class="feVideoInner">
+					<div style="height:4.18rem;overflow:hidden">
+						<div id="jActivePlayer" class="prism-player"></div>
+					</div>
+				</div>
+				<div class="feNewsTab">
+					<span class="menu" v-bind:class="{'menu-active':menuTab}" @click="menuBtnTab(0)">节目单</span>
+					<span class="comment " v-bind:class="{'comment-active':commentTab}" @click="menuBtnTab(1)">评论室</span>
+				</div>
+				<div class="feTabCon flex flex-v" v-bind:class="{'tabHide':commentTab}">
+					<div class="swiper-container feNewsLiveContainer">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-cloak v-for="(item, index) in weekArr" v-bind:class="{'active-nav':index==currentIndex}">
+								<a href="javascript:;" @click="changeSlide(item.newsTypeId,index)" v-bind:data-id='item.newsTypeId'>{{item.name}}</a>
+							</div>
+						</div>
+					</div>
+					<div class="feActiveInner flex-1">
+						<div class="feNewsLiveList ">
+							<div class="swiper-container feNewsListContainer">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" v-cloak v-for="item in menuArr">
+										<initempty-component label="暂无数据" :initflag=item.noData></initempty-component>
+										<a class="feMenuLi active " data-channelId='182'>
+											<span class="time">16:50-17:20</span><span class="menutitle">人文中国</span>
+										</a>
+										<a class="feMenuLi feMenuToBeLi">
+											<span class="time">16:50-17:20</span><span class="menutitle">人文中国</span>
+										</a>
+										<template v-for='(itemChild,index) in item'>
+
+											<a class="feMenuLi">
+												<span class="time">16:50-17:20</span><span class="menutitle">人文中国</span>
+											</a>
+										</template>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="feTabCon flex flex-v " v-bind:class="{'tabHide':menuTab}">
+					<div class="feComment feActiveInner flex-1">
+						<section class="chatWrap" id="jchatApp">
+							<div class="container flex flex-v">
+								<div id="chatContent" class="chatContent flex-1">
+									<div id="message" class="message"></div>
+								</div>
+								<div class="chatSendBox"><span class="chatUnreadCount">0</span>
+									<div class="editContent" id="content" contenteditable="true"></div>
+									<a id="jSendBtn" class="sendBtn" href="javascript:;">发送</a>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script src="./js/libs/jquery.min.js"></script>
+		<script src="./js/libs/vue.min.js"></script>
+		<script src="./js/plugins/axios.min.js"></script>
+		<script src="../js/libs/socket.io.js"></script>
+		<script src="./js/plugins/index.js"></script>
+		<script src="https://g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+		<script src="./js/plugins/layer,wow,scroll.js"></script>
+		<script src="./js/plugins/swiper.min.js"></script>
+		<script src="./js/plugins/jquery.storage.js"></script>
+		<script src="./js/femoblie.min.js"></script>
+		<script src="./js/fescript.js"></script>
+		<script>
+			$(function() {
+				newsLiveApp();
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-创建工作室</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>主页管理 <i class="uk-icon-angle-right"></i></span>
+                <span>我的工作室</span>
+                <span><i class="uk-icon-angle-right"></i>创建工作室</span>
+                <span></span>
+            </div>
+            <!--创建工作室-->
+            <div class="fecreatestudio" id="fecreatestudio">
+                <h1>基本信息</h1>
+                <form action="" id="createstudio-form">
+                    <div class="fepanel">
+                        <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区&nbsp;:</span>
+                        <select name="cityId" id="address">
+                            <option  v-cloak v-for="item in city" v-bind:value="item.cityId" v-bind:data-code="item.code">{{item.cityName}}</option>
+                            <!--<option value="厦门市">厦门市</option>-->
+                            <!--<option value="莆田市">莆田市</option>-->
+                        </select>
+                    </div>
+                    <div class="fepanel">
+                        <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段&nbsp;:</span>
+                        <select name="educationalLevelId" id="period" >
+                            <option v-bind:value="item.educationalLevelId" v-cloak v-for="item in educationalLevel">{{item.educationalLevelName}}</option>
+                            <!--<option value="初中">初中</option>-->
+                            <!--<option value="高中">高中</option>-->
+                        </select>
+                    </div>
+                    <div class="fepanel">
+                        <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科&nbsp;:</span>
+                        <select name="subjectId" id="subject">
+                            <option v-bind:value="item.subjectId" v-cloak v-for="item in grade">{{item.subjectName}}</option>
+                            <!--<option value="数学">数学</option>-->
+                            <!--<option value="英语">英语</option>-->
+                        </select>
+                    </div>
+                    <div class="fepanel">
+                        <span>工作室头像&nbsp;:</span>
+                        <div class="feimage">
+                            <img src="../images/temp/createstudio.png" alt="">
+                            <input type="file" id="addphoto" name="studiophoto">
+                        </div>
+                        <b>图片大小不超过5M</b>
+                    </div>
+                    <div class="fepanel">
+                        <span>工作室名称&nbsp;:</span>
+                        <input type="text" name="name" id="studioname">
+                    </div>
+                </form>
+
+                <!--<h1>成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;员</h1>-->
+                <!--<div class="femenber ">-->
+                    <!--<div class="span4">-->
+                        <!--<div class="feaddmender ">-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="femenber-content ">-->
+                            <!--<div class="span5">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teachercenter-tx.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<h5>张少天</h5>-->
+                            <!--</div>-->
+                            <!--<div class="span7">-->
+                                <!--<h4>福州市第一中学</h4>-->
+                                <!--<h6>初中二年级</h6>-->
+                                <!--<h6>语文老师</h6>-->
+                                <!--<button><i class="uk-icon-trash"></i>删除成员</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="span4">-->
+                        <!--<div class="femenber-content ">-->
+                            <!--<div class="span5">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/teachercenter-tx.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<h5>张少天</h5>-->
+                            <!--</div>-->
+                            <!--<div class="span7">-->
+                                <!--<h4>福州市第一中学</h4>-->
+                                <!--<h6>初中二年级</h6>-->
+                                <!--<h6>语文老师</h6>-->
+                                <!--<button><i class="uk-icon-trash"></i>删除成员</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <p><a>保&nbsp;&nbsp;&nbsp;&nbsp;存</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+//        console.log($(window).storager({ key: 'feUid' }).readStorage()==='undefined')
+//        if($(window).storager({ key: 'feUid' }).readStorage()=='undefined'){
+//            window.location.href = "http://www.fetv.cn/feweb/login.html";
+//            console.log(2);
+//        }else{
+//            personalsetting($(window).storager({ key: 'feUid' }).readStorage());
+//            console.log(3);
+//        }
+        createstudio('268');
+    })
+</script>
+</body>
+</html>

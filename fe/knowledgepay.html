@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>社圈-福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+</head>
+
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="feknowledgePay" id="knowledgepay">
+    <div class="feknowledgePay-head">
+        <div class="container">
+            <div class="felogin-box">
+                <div class="feentry" v-if="login" v-cloak>
+                    <div class="feimage">
+                        <img :src="headIcon|addRootFile" alt="">
+                    </div>
+                    <div class="fecenter">
+                        <h1>{{nickName}}<span>{{mypoint}}积分</span></h1>
+                        <a href="knowledgeAskQuestion.html" target="_blank">我要问问题</a>
+                    </div>
+                    <div class="febottom">
+                        <div class="femyquiz" @click="gotoMyquestion()">
+                            <h3>{{myQnum}}</h3>
+                            <h5>我的提问</h5>
+                        </div>
+                        <div class="femyproblem" @click="gotoMyreply()">
+                            <h3>{{myAnum}}</h3>
+                            <h5>我的回答</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="fenologin" v-if="!login" v-cloak>
+                    <h1>爱问知识人</h1>
+                    <img src="images/temp/knowledge-1.png" alt="">
+                    <div class="febox">
+                        <h3>已帮助的人数</h3>
+                        <h4>5000+</h4>
+                        <a href="login.html">快速登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feknowledgePay-ad">
+        <div class="container">
+            <a href="login.html">
+                <img src="images/temp/knowledge-ad.png" alt="">
+            </a>
+        </div>
+    </div>
+    <div class="feknowledgePay-con">
+        <div class="container clearfix">
+            <div class="span9">
+                <div class="fewaitForU">
+                    <div class="fetitle">
+                        等你来答 <a href="knowledgequestionlist.html" target="_blank">更多></a>
+                    </div>
+                    <ul class="fecontent">
+                        <div class="fenodata" v-cloak v-if="questionList.length<1"></div>
+                        <li v-cloak v-for="item in questionList">
+                            <div class="feimage">
+                                <img :src="item.headIconPath|addRootFile" alt="">
+                            </div>
+                            <div class="febox">
+                                <h2>{{item.user}}<span>{{item.insertTime|showTime}}提问</span></h2>
+                                <a v-bind:href="item.KPQuestionId|addQuestionRoot">{{item.content}}</a>
+                            </div>
+                        </li>
+                        <!--<li>-->
+                        <!--<div class="feimage">-->
+                        <!--<img src="images/temp/mr-tx.png" alt="">-->
+                        <!--</div>-->
+                        <!--<div class="febox">-->
+                        <!--<h2>秋天、很阳光<span>14小时前提问</span></h2>-->
+                        <!--<a>[读书40]一旦爱上，就是一生——《时光回去，只愿未曾遇到你》读记!</a>-->
+                        <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="fefamousTeacher">
+                    <div class="fetitle">
+                        名师问答 <a href="knowledgeteacherlist.html" target="_blank"><i class="uk-icon-repeat"></i>换一批</a>
+                    </div>
+                    <ul class="fecontent">
+                        <li class="clearfix" v-cloak v-for="item in teacherQAList">
+                            <div class="feimage">
+                                <img :src="item.headIconPath|addRootFile" alt="">
+                            </div>
+                            <a class="febox" :href="item.teacherId|addTeacherRoot" target="_blank">
+                                <h2>{{item.name}} <span>¥{{item.answerPrice}}提问</span></h2>
+                                <p>{{item.organ}}</p>
+                                <p>
+                                    <span>{{item.subject}}老师</span>
+                                    <span>{{item.QAnum}}个回答</span>
+                                </p>
+                            </a>
+                        </li>
+                        <!--<li class="clearfix">-->
+                            <!--<div class="feimage">-->
+                                <!--<img src="images/temp/mr-tx.png" alt="">-->
+                            <!--</div>-->
+                            <!--<a class="febox">-->
+                                <!--<h2>张一山 <span>¥6提问</span></h2>-->
+                                <!--<p>-->
+                                    <!--<span>福州一中</span>-->
+                                    <!--<span>数学老师</span>-->
+                                    <!--<span>66个回答</span>-->
+                                <!--</p>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feknowledgePay-share">
+        <div class="container clearfix">
+            <div class="fetitle">
+                分享中心 <a href="knowledgesharelist.html" target="_blank">更多></a>
+            </div>
+            <ul class="fecontent">
+                <li v-cloak v-for="item in shareArr">
+                    <h1>
+                        {{item.content}}
+                        <img :src="i|addimg" alt="" v-for="i in item.iconPath">
+                    </h1>
+                    <div class="fepanel">
+                        <a class="feanswerer"><i></i>{{item.teacherName}}</a>
+                        <a class="fequizzer"><i></i><span><b :style="{background:'url('+ item.headIconPath +') no-repeat center'}"></b>{{item.user}}</span></a>
+                        <a class="feprice">价值{{item.offerMoney}}元</a>
+                        <a class="festudynum">{{item.studyNum}}人学习过</a>
+                    </div>
+                </li>
+                <!--<li>-->
+                    <!--<h1>【九日早参】第33期|加密货币开始显示独立运动 中国商人成莫斯科最活跃加密货币交易者。</h1>-->
+                    <!--<div class="fepanel">-->
+                        <!--<a class="feanswerer"><i></i>王小强</a>-->
+                        <!--<a class="fequizzer"><i></i><span><b></b>秋天丶很阳光</span></a>-->
+                        <!--<a class="feprice">价值12元</a>-->
+                        <!--<a class="festudynum">1人学习过</a>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+            <div class="fefloatbox person">
+                <div class="fehead" style="background: #48a9ee;">
+                    <span>问问老师</span>
+                    —专业的老师 靠谱的答案
+                </div>
+                <div class="feimage">
+                    <img :src="teacherQAList_first.headIconPath|addRootFile" alt="" v-cloak>
+                </div>
+                <h1 v-cloak>{{teacherQAList_first.name}}</h1>
+                <h2 v-cloak>{{teacherQAList_first.organ}}</h2>
+                <h5>擅长领域</h5>
+                <h6 v-cloak>{{teacherQAList_first.subject}}</h6>
+                <button style="background: #48a9ee;" @click="window.open('knowledgeAskTeacherQuestion.html?teacherId='+ teacherQAList_first.teacherId)">向Ta求助</button>
+            </div>
+            <div class="fefloatbox person">
+                <div class="fehead" style="background: #ffac44">
+                    <span>问问达人</span>
+                    —我回答的 是你想知道的
+                </div>
+                <div class="feimage">
+                    <img :src="ranking_first.iconPath" alt="" v-cloak>
+                </div>
+                <h1 v-cloak>{{ranking_first.userName}}</h1>
+                <h2 v-cloak>{{ranking_first.name}}</h2>
+                <h5>采纳数</h5>
+                <h6 v-cloak>{{ranking_first.num}}</h6>
+                <button style="background: #ffac44" @click="layer.msg('点赞成功！')">给Ta点赞</button>
+            </div>
+            <div class="fefloatbox ranking">
+                <div class="fehead" style="background: #30d88d">
+                    <span>排行榜</span>
+                    —周采纳数排行榜
+                </div>
+                <ul>
+                    <li v-cloak v-for="(item,index) in ranking">
+                        <span :style="{background:'url('+ item.iconPath +') no-repeat center'}"><b></b></span>
+                        <div class="fe-item">
+                            <h1>{{item.userName}}</h1>
+                            <h3>采纳数:{{item.num}}</h3>
+                        </div>
+                        <i>{{index+1}}</i>
+                    </li>
+                    <!--<li>-->
+                        <!--<span><b></b></span>-->
+                        <!--<div class="fe-item">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>2</i>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span><b></b></span>-->
+                        <!--<div class="fe-item">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>3</i>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span></span>-->
+                        <!--<div class="fe-item">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>4</i>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span></span>-->
+                        <!--<div class="fe-item">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>5</i>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        knowledgepay();
+    })
+</script>
+</body>
+
+</html>

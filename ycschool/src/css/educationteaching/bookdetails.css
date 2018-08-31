@@ -1,0 +1,19 @@
+
+.bookDetils  .BooksInner{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+.bookDetils .resourceBox{
+    margin: 26px 26px 26px 26px;
+    height: 920px;
+}
+.bookDetils iframe {
+    width: 100%;
+    height: 100%;
+    border-width: 1px;
+    border-style: none;
+    border-color: white;
+    border-image: initial;
+    allowTransparency:true;
+}

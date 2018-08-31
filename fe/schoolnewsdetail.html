@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>校园新闻详情</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+
+	</head>
+
+	<body>
+
+		<header id="schoolheader">
+			<header-template></header-template>
+		</header>
+
+		<!--新闻详情-->
+		<section class="feschool-news-detail-wrap clearfix" id="jschoolNewsDetailApp">
+			<div class="container">
+				<div class="fe-news-detail-inner">
+					<template v-for="item in currentNewsArr">
+						<h4 class="fe-news-title" v-cloak>{{item.title}}</h4>
+						<div class="fe-news-other-inf clearfix">
+							<span v-cloak>来源:{{item.source}}</span>
+							<span v-cloak>发布时间:{{item.reportDate}}</span>
+						</div>
+						<div class="fe-news-content" v-cloak v-html="item.newsDetail"></div>
+					</template>
+					<div class="bdsharebuttonbox" data-tag="share_1" id="share" style="margin-top: 20px">
+						<span>分享到:</span>
+						<a class="qqplay" data-cmd="sqq"></a>
+						<a class="qzone"  data-cmd="qzone"></a>
+						<a class="weixin" data-cmd="weixin"></a>
+						<a class="weibo" data-cmd="tsina"></a>
+					</div>
+					<div class="fe-news-go-box">
+						<a href="#this" v-for="item in preNewsArr" v-cloak @click="openNews(item.newsId)">
+							上一篇: <span>{{item.title}}</span>
+						</a>
+						<a href="#this" v-for="item in nextNewsArr" v-cloak @click="openNews(item.newsId)">
+							下一篇: <span>{{item.title}}</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./js/jquery.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.storage.js"></script>
+		<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./js/vue.min.js"></script>
+		<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./js/fetv.js"></script>
+		<script type="text/javascript" src="./js/fetvAppend.js"></script>
+		<script>
+			schoolNewsDetail($(this).getUrlParam("organId"), $(this).getUrlParam("newsId"));
+			setTimeout(function () {
+				with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+			},1000);
+		</script>
+
+	</body>
+
+</html>

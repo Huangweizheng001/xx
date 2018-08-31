@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+	</head>
+
+	<body style="padding-top: 0;">
+
+		<section class="bmbackPlayerModel" id="jbackPlayerApp">
+			<div id="backcoursePlayer" class="prism-player"></div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/bomi.js"></script>
+	</body>
+
+	<script>
+		$(function() {
+			var cId = $(this).getUrlParam("courseId");
+			var vId = $(this).getUrlParam("videoId");
+			if(undefined == vId || "" == vId || null == vId) {
+				layer.msg('视频源错误', {
+					icon: 6,
+					btn: ['明白了', '知道了'],
+				});
+			}
+			backCoursePlayer(cId, vId);
+		})
+	</script>
+
+</html>

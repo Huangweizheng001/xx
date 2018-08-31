@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <title>播米会员充值规则</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+    <link rel="stylesheet" href="css/Ecalendar.css" />
+    <link rel="stylesheet" href="css/ycstyle.css" />
+    <link rel="stylesheet" href="css/cyqstyle.css" />
+    <link rel="stylesheet" href="css/hwzstyle.css" />
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<!--会员充值规则logo-->
+<section>
+    <div class="container">
+        <div class="clearfix" >
+            <div class="span5">
+                <div class="dycrecharge-logo">
+                    <img src="images/membercenter-logo.jpg" />
+                </div>
+            </div>
+            <div class="span4" style="float: right;">
+                <div class="dycrecharge-logo" id="onlineService">
+                    <a class="dycservicephone" href="javascript:void(0)" target="_blank" title="联系客服"><img src="images/public-phone.png" /><span class="dycphone-num">400-6430-618</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--会员充值规则banner-->
+<section>
+    <div class="span12">
+        <div class="dycmemberrules-logo">
+            <img src="images/memberrule-logo.jpg" />
+            <div class="dycmember">
+                <div class="dycrules-member clearfix" id="jrulemember" >
+                    <div class="dycimg span5">
+                        <img src="images/membercenter-img.png" />
+                    </div>
+                    <div class="span7">
+                        <p class="dycmembername">666</p>
+                        <div class="dycmembergrade">普通会员</div>
+                    </div>
+                </div>
+                <a class="dycmember-btn" href="recharge.html">体验专享特权</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <img src="images/memberrule-mark.jpg" alt="" width="100%">
+    <div class="dycmemberrule">
+        <div class="container">
+            <div class="dycpanel">
+                <ul class="dycmemberrule-title clearfix">
+                    <li>
+                        <div class="active" data-id="1">
+                            <h4>普通会员</h4>
+                            <h4><span class="orange">会员</span></h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div data-id="2">
+                            <h4>白银会员</h4>
+                            <h4><span class="silver">白银</span></h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div data-id="3">
+                            <h4>黄金会员</h4>
+                            <h4><span class="gold">黄金</span></h4>
+                        </div>
+                    </li>
+                    <li>
+                        <div data-id="4">
+                            <h4>铂金会员</h4>
+                            <h4><span class="purple">铂金</span></h4>
+                        </div>
+                    </li>
+                </ul>
+                <div class="dycmemberrule-content clearfix">
+                    <div class="span3">
+                        <h1><span>勋章</span></h1>
+                        <div class="dycmembercard">
+                            <img src="images/card1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="span9 asb">
+                        <h1><span>特权3<b>/15</b></span></h1>
+                        <div class="dycprivilege clearfix" >
+
+                        </div>
+                    </div>
+                </div>
+                <div class="dycmemberrule-bottom">
+                    <span>开通<s>普通</s>会员专享特权 <b>免费</b></span>
+                    <a href="recharge.html">立即开通</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section>
+    <a href="#this" style="margin-top: -60px;display: block" id="jdbAssistant"><img src="images/personal-tailor.png" alt="" width="100%"  style="height:418px "></a>
+    <img src="images/memberrule-3.jpg" alt="" width="100%" style="margin-top: -70px;position: relative;z-index: -1;">
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/uikit.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/ycswiper.js"></script>
+<script type="text/javascript" src="js/ycedu.js"></script>
+<script type="text/javascript" src="js/honoredguest.js"></script>
+<script type="text/javascript" src="js/teacherswiper.js"></script>
+<script>
+    $(function() {
+        $.jruleMember();
+        BizQQWPA.addCustom({aty: '0', a: '1005', nameAccount: 4006430618, selector: 'onlineService'});
+        memberrule();
+        //联系客服
+        BizQQWPA.addCustom({aty: '0', a: '1005', nameAccount: 4006430618, selector: 'jdbAssistant'});
+    })
+</script>
+</body>
+</html>

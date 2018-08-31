@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../ycedu/css/base.css" />
+		<!--<link rel="stylesheet" href="../ycedu/css/uikit.min.css" />-->
+		<link rel="stylesheet" href="../ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="../ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="../ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="../ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		<style>
+			.bmshareBox {
+				position: absolute;
+				top: 20px;
+				right: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="bmencyclopediadetailDetailModel clearfix" id="jencyclopediadetailApp" style="margin-top: 24px;">
+			<div class="container">
+				<div class="bmencyclopediaDetailTeacherBox" style="display: none;">
+					<a class="bmencyclopediaDetailTeacher" :href="'guestindex.html?teacherId=' + teacherId" v-cloak>
+						<img v-cloak v-bind:src="icon" />
+					</a>
+					<div class="bmencyclopediaDetailTeacherInf">
+						<h5 v-cloak>{{titleT}}</h5>
+						<p v-cloak><span class="bmindexLiveTeacher">主讲嘉宾:</span>{{teacherName}} <span class="bmindexCouter">开课时间:{{time}}</span></p>
+					</div>
+				</div>
+				<div class="span9">
+					<div class="bmencyclopediaDetailLeftWrap">
+						<div id="encyclopediadetailPlayer" class="prism-player"></div>
+
+						<div class="bmencyclopediadetailBox" style="position: relative;">
+							<h5 class="bmTitle" v-cloak>{{title}}</h5>
+							<div class="bmshareBox">
+								<s class="jiathis_style">
+		                            <a class="jiathis_button_weixin"></a>
+		                            <a class="jiathis_button_tsina"></a>
+		                            <!--<a class="jiathis_button_qzone"></a>-->
+		                            <a class="jiathis_button_cqq"></a>
+                        		</s>
+							</div>
+							<p v-html="intru" v-cloak></p>
+						</div>
+
+						<div class="bmencyclopediadetailAd">
+							<a href="memberrule.html" target="_blank">
+								<img src="images/temp/adTemp01.jpg" />
+							</a>
+						</div>
+
+						<div class="bmencyclopediadetailCourse">
+							<h5 class="bmCourseTitle">
+								课程推荐
+							</h5>
+							<div class="bmencyclopediadetailCourseBox clearfix">
+								<div class="span3 col-sm-6" v-for="item in reletiveArr" v-cloak>
+									<div class="bmbackCourseLi">
+										<!--<a :href="'../ycedu/player.html?courseId='+item.courseId+'&videoId='+item.ideoId" class="bmimage" target="_blank">
+											<img v-bind:src="item.iconPath" alt="" />
+										</a>-->
+										<a :href="'../ycedu/coursedetail.html?courseId='+item.courseId" class="bmimage" target="_blank">
+											<img v-bind:src="item.iconPath" alt="" />
+										</a>
+										<div class="bmbackCourseInf">
+											<a :href="'../ycedu/coursedetail.html?courseId='+item.courseId" target="_blank" class="title">{{item.name}}</a>
+											<a :href="'../ycedu/guestindex.html?teacherId='+item.teacherId" target="_blank" class="teacher">嘉宾：{{item.teacherName}}</a>
+											<span class="tips">会员观看</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="span3">
+					<div class="bmencyclopediadetailReBox">
+						<h4>相关视频</h4>
+						<ul>
+							<li v-for="item in reletiveVideoArr" v-cloak>
+								<a :href="'encyclopediadetail.html?ecId='+item.courseId">
+									<img v-bind:src="item.iconPath" />
+									<p>{{item.name}}</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="../ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../ycedu/js/template.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+		<script type="text/javascript" src="../ycedu/js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../ycedu/js/swiper.jquery.min.js"></script>
+		<!--<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" ></script>-->
+		<script type="text/javascript" src="../ycedu/js/ycedu.js"></script>
+		<script type="text/javascript" src="../ycedu/js/teacherswiper.js"></script>
+		<script type="text/javascript" src="../ycedu/js/bomi.js"></script>
+	</body>
+
+	<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+	<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+
+	<script>
+		$(function() {
+			BizQQWPA.addCustom({
+				aty: '0',
+				a: '1005',
+				nameAccount: 4006430618,
+				selector: 'dycadv-img'
+			});
+			//$.indexBannerFunc();
+			$.newsLive(); //首页直播
+			$.bminformation();
+			$.tzksSwiper(); //投资理财、从业考试tab
+			$.NewsTop(); //首页专家观点
+
+			//$.jtzcourse();
+			setTimeout(function() {
+				$('#jadv').css('display', 'block');
+			}, 2000);
+			$('#jadv').click(function() {
+				$(this).css('display', 'none');
+			});
+
+			var code = $(this).getUrlParam("code");
+			if(code != undefined) {
+				$.getwxUserInfo(code);
+			}
+
+			initEnDetail($(this).getUrlParam("ecId"));
+
+			var p = document.createElement("script");
+			p.src = "http://v3.jiathis.com/code/jia.js";
+			var d = document.getElementsByTagName("script")[0];
+			d.parentNode.insertBefore(p, d);
+		})
+	</script>
+
+</html>

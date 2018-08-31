@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>创建试卷</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<div class="container">
+    <ul class="createtestpaper clearfix">
+        <li>
+            <span>课程名称 :</span>
+            <select name="" id="coursename" onchange="getCourseCatalog(this.value)">
+               
+            </select>
+        </li>
+        <li>
+            <span>课程章节 :</span>
+            <select name="" id="chapter">
+                
+            </select>
+        </li>
+        <li>
+            <span>班&emsp;&emsp;级 :</span>
+            <select name="" id="classname">
+                
+            </select>
+        </li>
+        <li>
+            <span>作业名称 :</span>
+            <input type="text" id="workname">
+        </li>
+        <li style="position: relative">
+            <span>发布时间 :</span>
+            <input type="text" placeholder="请选择时间" name="publishtime" id="publishtime">
+        </li>
+        <li class="examtype1"  style="position: relative">
+            <span>上交时间 :</span>
+            <input type="text" id="endtime">
+        </li>
+        <li class="examtype2">
+            <span>限时 :</span>
+            <input type="text" id="limitTime" placeholder="格式:59">分钟
+        </li>
+       <!-- <li>
+            <input type="checkbox" id="fixedtime"><label for="fixedtime">定时发布</label>
+        </li>-->
+    </ul>
+    <div class="createtestpaper-content clearfix">
+        <div class="fetitle clearfix">
+            <div class="span2">选择</div>
+            <div class="span4">试题类型</div>
+            <div class="span3">题目数量</div>
+            <div class="span3">单题分值</div>
+        </div>
+        <p>
+            <button><i class="uk-icon-plus-circle"></i>新增题目类型</button>
+            <span class="uk-icon-trash uk-icon-medium"></span>
+        </p>
+        <div class="fepanel">
+            <!--<div class="felist clearfix">-->
+                <!--<div class="span2">-->
+                    <!--<input type="checkbox">-->
+                <!--</div>-->
+                <!--<div class="span4">-->
+                    <!--<select name="" id="">-->
+                        <!--<option value="1">选择题</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+                <!--<div class="span3">-->
+                    <!--<input type="text">-->
+                <!--</div>-->
+                <!--<div class="span3">-->
+                    <!--<input type="text">-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <div class="feoperation">
+            <button>确认</button>
+            <button>取消</button>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        createtestpaper();
+    })
+</script>
+</body>
+
+</html>

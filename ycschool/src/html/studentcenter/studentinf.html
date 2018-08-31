@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--个人信息</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+	</head>
+
+	<body style="background-color: #fff;">
+		<section class="userInfWrap" id="jstudyInfApp">
+			<div class="container">
+				<div class="userInfInner" v-for="item in userData" v-cloak>
+					<div class="img">
+						<img :src="item.iconPath | addRootFile" alt="" />
+					</div>
+					<div class="left">
+						<div class="userLine">
+							<div class="userField">
+								姓&nbsp;&nbsp;&nbsp;&nbsp;名： &nbsp;&nbsp;{{item.studentName}} 
+							</div>
+							<div class="userField">
+								性&nbsp;&nbsp;&nbsp;&nbsp;别： &nbsp;&nbsp;{{item.sex}} 
+							</div>
+						</div>
+						<div class="userLine">
+							<div class="userField">
+								班&nbsp;&nbsp;&nbsp;&nbsp;级： &nbsp;&nbsp;{{item.className}}
+							</div>
+							<div class="userField">
+								身份证号： &nbsp;&nbsp;{{item.idCard}}
+							</div>
+						</div>
+						<div class="userLine">
+							<div class="userField">
+								学&nbsp;&nbsp;&nbsp;&nbsp;号： &nbsp;&nbsp;{{item.studentId}}
+							</div>
+							<div class="userField">
+								出生日期：  &nbsp;&nbsp;{{item.birthDay}}
+							</div>
+						</div>
+						<div class="userLine">
+							户&nbsp;&nbsp;&nbsp;&nbsp;籍： &nbsp;&nbsp;{{item.mailAddress}} 
+						</div>
+						
+						<div class="userLine noBorder">
+							<div class="userField">
+								监&nbsp;护&nbsp;人： &nbsp;&nbsp;父亲：{{item.member1Name}}
+							</div>
+							<div class="userField">
+								电话：  &nbsp;&nbsp;{{item.member1Mobile}} 
+							</div>
+							<div class="userField">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								母亲：{{item.member2Name}} 
+							</div>
+							<div class="userField">
+								电话：  &nbsp;&nbsp;{{item.member2Mobile}} 
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

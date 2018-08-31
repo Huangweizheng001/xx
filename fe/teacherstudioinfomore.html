@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>名师工作室资讯、公告more</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="festudioinformore clearfix" id="feteacherstudioinfomore">
+    <div class="feteacherdetailhead" v-cloak v-for="studio">
+        <div class="feimage">
+            <img v-bind:src="studio.iconPath|addRootFile" alt="">
+        </div>
+        <h1>{{studio.name}}</h1>
+        <h3>创建人: {{studio.creator}}</h3>
+        <p>
+            成员数:
+            <span>{{studio.memberCount}}</span>|&nbsp;&nbsp;
+            课件数:
+            <span>{{studio.resourceCount}}</span>|&nbsp;&nbsp;
+            文章数:
+            <span>{{studio.publishCount}}</span>
+        </p>
+        <div class="feapplybtn">
+            <button v-if="isShow" id="applyStudio">申请加入工作室</button>
+        </div>
+        <!--<div class="fefollow">-->
+            <!--<button><i class="uk-icon-plus"></i>关注</button>-->
+            <!--<button class="cancel">取消关注</button>-->
+        <!--</div>-->
+        <div class="feteacherdetail-news">
+            <h3>工作室介绍</h3>
+            <p>{{studio.introduce}}</p>
+        </div>
+    </div>
+    <div class="container">
+        <!--<h1>首页 > 名师工作室 > <span>资讯、公告</span></h1>-->
+        <div class="span9">
+            <div class="festudionoticemore clearfix">
+                <h2>工作室公告</h2>
+                <ul>
+                    <li class="fenodata" v-show="noticenodata"></li>
+                    <li v-cloak v-for="(item,index) in notice" v-bind:data-id="item.activityId" @click="bindPopNotice(item.activityId)"><h1>{{++index}}、 {{item.name}} </h1><span>{{item.noticeDate}}</span><b>{{item.publishName}}</b></li>
+                    <!--<li>1 法语语音教程 <span>2017-08-23</span><b>陈大方</b></li>-->
+                    <!--<li>1 法语语音教程 <span>2017-08-23</span><b>陈大方</b></li>-->
+                    <!--<li>1 法语语音教程 <span>2017-08-23</span><b>陈大方</b></li>-->
+                    <!--<li>1 法语语音教程 <span>2017-08-23</span><b>陈大方</b></li>-->
+                    <!--<li>1 法语语音教程 <span>2017-08-23</span><b>陈大方</b></li>-->
+                </ul>
+                <div class="feloadmore" v-show="noticeload">
+                    <span @click="noticeClickMore()" >查看更多</span>
+                </div>
+            </div>
+            <div class="femasterdetail-content" style="box-shadow: 0 0 5px 2px #ededed;">
+                <h2>工作室资讯</h2>
+                <div class="fenodata" v-show="studioinformationnodata"></div>
+                <a class="clearfix" v-bind:href="item.newsId|addRootNews" v-cloak v-for="item in studioinformation" target="_blank">
+                    <div class="feimage">
+                        <img  v-bind:src="item.iconPath|addRootFile" alt="">
+                    </div>
+                    <div class="febox">
+                        <h3 >{{item.title}}</h3>
+                        <p >{{item.introduce}}</p>
+                        <h6>更新时间：{{item.reportDate}}<span>发布人 : {{item.author}}</span></h6>
+                    </div>
+                </a>
+                <div class="feloadmore" v-show="studioinformationload">
+                    <span @click="studioInformationClickMore()" >查看更多</span>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="femasterdetail-allresource" style="box-shadow: 0 0 5px 2px #ededed;">
+                <ul>
+                    <li><i></i>工作室公告<span>{{rightCount.activityCount}}</span></li>
+                    <li><i></i>工作室资讯<span>{{rightCount.newsCount}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<div style="clear: both"></div>-->
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var teachingStudioId=$(this).getUrlParam("teachingStudioId");
+        teacherstudioinfomore(teachingStudioId);
+    })
+</script>
+</body>
+</html>

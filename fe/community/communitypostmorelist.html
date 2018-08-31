@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>帖子列表页</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/fetvcommunity.css" />
+		<link rel="stylesheet" href="../css/swiper,animate.min.css" />
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="communitypostlist">
+			<div class="container">
+			
+			
+			<div class="fecommunity clearfix" id="fecommunity">
+				<div class="fecommunity-left span12">
+					<div class="fecommunity-left-content">
+						<div class="fepanel-title"><a class="all active">全部</a><a class="active">热门</a><a>精华</a><a>推荐</a></div>
+						<div class="fepanel">
+							<!--<a v-bind:href="item.newsId|addRoot" v-cloak v-for="item in communityListArr">
+								<div class="span5">
+									<div class="feimage">
+										<img v-bind:src="item.icon|addRootFile" alt="">
+									</div>
+								</div>
+								<div class="feright-box span7">
+									<h3>{{item.title}}</h3>
+									<p>{{item.message}}</p>
+									<h6>浏览次数：{{item.views}}&nbsp;&nbsp;&nbsp;&nbsp;评论数：{{item.replies}}<span><img v-bind:src="item.ptx">{{item.lastposter}}</span><span class="time">{{item.lastpost}}</span></h6>
+								</div>
+							</a>-->
+							<a href="#this" >
+								<div class="span4">
+									<div class="feimage">
+										<img src="../images/temp/2-285-186.jpg" alt="">
+									</div>
+								</div>
+								<div class="feright-box span8">
+									<h3>按时交付告诉发</h3>
+									<p>啊啊啊</p>
+									<h6>浏览次数：1&nbsp;&nbsp;&nbsp;&nbsp;评论数：1<span><img src="../images/temp/community-tx.png">阿苏个</span><span class="time">2017-23-24</span></h6>
+								</div>
+							</a>
+							<a href="#this" >
+								<div class="span4">
+									<div class="feimage">
+										<img src="../images/temp/2-285-186.jpg" alt="">
+									</div>
+								</div>
+								<div class="feright-box span8">
+									<h3>按时交付告诉发</h3>
+									<p>啊啊啊</p>
+									<h6>浏览次数：1&nbsp;&nbsp;&nbsp;&nbsp;评论数：1<span><img src="../images/temp/community-tx.png">阿苏个</span><span class="time">2017-23-24</span></h6>
+								</div>
+							</a>
+							<div class="span12">
+								<ul class="pagenationbox clearfix">
+									<li v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/fetvAppend.js"></script>
+		<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+		<script>
+			$(function() {
+				var type = $(this).getUrlParam("type");
+			
+			})
+		</script>
+	</body>
+
+</html>

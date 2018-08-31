@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+	<!--	<link rel="stylesheet" href="../css/bmmobile.css" />-->
+		<link rel="stylesheet" href="../css/bm.css">
+			<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<title>策略解读详情</title>
+
+		<style>
+			body {
+				background: #EBEBEB;
+				padding-top: 8rem;
+			}
+			/*span{
+				display: block;
+			}*/
+			.clearfix{
+				clear: both;
+			}
+			.dycstrategynewsdetail-banner {
+				height: 130px;
+				width: 100%;
+				background: url(../images/strategy/strategynewsdetail-banner.jpg) no-repeat;
+				text-align: center;
+				padding-top: 20px;
+				box-sizing: border-box;
+				background-size: cover;
+			}
+			
+			.dycstrategynewsdetail-banner h1,
+			.dycstrategynewsdetail-banner h2,
+			.dycstrategynewsdetail-banner>p {
+				color: #fff;
+			}
+			
+			.dycstrategynewsdetail-banner h1 {
+				font-size: 2.273rem;line-height: 2;
+			}
+			
+			.dycstrategynewsdetail-banner h2 {
+				font-size: 1.364rem;
+			}
+			
+			.dycstrategynewsdetail-banner .date {
+				font-size: 0.91rem;
+				border: 0.5px solid #ffb502;
+				display: inline-block;
+				padding:2px 10px;
+				margin-top: 15px;
+				color: #fff;
+				float: right;
+				margin-right: 10px;
+			}
+			
+			.dycstrategynewsdetail-banner .container {
+				position: relative;
+			}
+			
+			
+			/*内容部分*/
+			
+			.strategynewsdetail-detail .strategynewsdetail-detail-wrap {
+				background: #ffffff;
+				padding: 20px;
+				box-sizing: border-box;
+				position: relative;
+			}
+			
+			
+			.strategynewsdetail-detail-wrap .strategynewsdetail-detail-img {
+				float: left;
+				width: 50%;
+			}
+			
+			.strategynewsdetail-detail-wrap .strategynewsdetail-detail-con {
+				color: #000;
+				float: left;
+				width: 50%;
+				box-sizing: border-box;
+				padding-left:10px ;
+				
+			}
+			
+			.strategynewsdetail-detail-con .own {
+				font-size: 1.1rem;
+				color: #666;
+			}
+			
+			.strategynewsdetail-detail-con h3 {
+				font-size: 1.64rem;
+				color: #000;
+				margin: 5px 0;
+			}
+			
+			.strategynewsdetail-detail-con span {
+				border-bottom: 2px solid #ffb502;
+				padding-bottom: 5px;
+			}
+			
+			.strategynewsdetail-detail-con .strategynewsdetail-detail-brief {
+				font-size:1.1rem;
+			}
+			
+			.strategydetail-day-btn a {
+				color: #000000;
+				font-size: 1.1rem;
+				text-decoration: none;
+				background: #ffb502;
+				border-radius: 5px;
+				color: #000;
+				padding: 3px 10px;
+				text-align: center;
+				display: inline-block;
+				position: absolute;
+				bottom: 90px;
+				right:20px;
+			}
+			
+			.strategydetail-day-btn a:hover {
+				background: #efaa05;
+			}
+			
+			.dycstrategynewsdetail-buy {
+				padding-top:15px;
+				color: #818181;
+				
+			}
+			
+			.dycstrategynewsdetail-buy	.dycstrategynewsdetail-buy-btn{
+				float: left;width: 50%;box-sizing: border-box;text-align: center;
+				font-size:1.1rem
+			}
+			.dycstrategynewsdetail-buy	.dycstrategynewsdetail-buy-btn>p{
+				line-height: 2;
+			}
+			.dycstrategynewsdetail-buy a {
+				display: inline-block;
+				text-decoration: none;
+				padding: 2px 20px;background: #ffb502;
+				color: #fff;
+				border-radius: 3px;
+			}
+			
+			 .dycstrategynewsdetail-buy a>p {
+				margin: 5px 0;
+			}
+			
+			 .dycstrategynewsdetail-buy a:hover {
+				background: #efaa05;
+				color: #000;
+			}
+			
+			
+			.strategynewsdetail-con {
+				background: #ffffff;
+				margin-top: 10px;
+				padding: 10px 20px;
+				box-sizing: border-box;
+				color: #595959;
+				font-size: 1.2rem !important;
+				
+			}
+			.strategynewsdetail-con span{
+				display: inline;
+			}
+			.strategynewsdetail-con .title {
+				font-size: 1.45rem;
+				color: #000;
+				border-left: 3px solid #ffb502;
+				padding-left: 10px;
+				margin: 20px 0 15px;
+			}
+			
+			.strategynewsdetail-con h2:first-child {
+				margin: 0 0 15px;
+			}
+			
+			 .strategynewsdetail-con .strategynewsdetail-con-more {
+				margin-top: 20px;
+			}
+			
+			 .strategynewsdetail-con-more>p {
+				color: #000;font-size: 1.3rem;
+			}
+			
+			.strategynewsdetail-con-more .strategynewsdetail-con-paymore {
+				text-align: center;
+				font-size: 0.827rem;
+				display: block;
+				color: #333333;
+				text-decoration: none;
+				margin-top: 30px
+			}
+			
+			 .strategynewsdetail-con-paymore>span {
+				display: inline-block;
+				width: 60px;
+				height: 30px;
+				background: url(../images/strategy/strategy.png) no-repeat 0 -5px;
+			}
+			
+			 .strategynewsdetail-con-paymore>p {
+				margin-top: 0;
+				font-size: 1.1rem;
+			}
+			
+			 .strategynewsdetail-con-more .strategynewsdetail-con-paymore:hover {
+				color: #ffb502;
+			}
+			
+			.strategynewsdetail-morearticles .strategynewsdetail-morearticles-img {
+				width: 100%;
+				max-height: 180px;
+				overflow: hidden;
+			}
+			
+			img {
+				transition: all 0.3s ease-in-out;
+			}
+			
+			.strategynewsdetail-morearticles .strategynewsdetail-morearticles-img:hover img {
+				transform: scale(1.2);
+			}
+			
+			.strategynewsdetail-pay-content {
+				padding: 20px;
+			}
+			
+			.strategynewsdetail-pay-content li a {
+				color: #000;
+				text-decoration: none;
+				display: block;
+				padding-left: 30px;
+				font-size: 0.727rem;
+				line-height: 35px;
+				background: url(../images/strategy/strategy.png) no-repeat -15px -61px;
+			}
+			
+			.strategynewsdetail-pay-content .checked {
+				background-position: -15px -32px;
+			}
+			
+			.strategynewsdetail-pay-content li>a>span {
+				color: #ffb502;
+				margin: 0 10px;
+				font-size: 0.818rem;
+				display: inline-block;
+			}
+			
+			.strategynewsdetail-pay-content .paycorrect {
+				text-align: center;
+				margin-top: 80px;
+			}
+			
+			.strategynewsdetail-pay-content .paycorrect>a {
+				background: #ffb502;
+				color: #fff;
+				border-radius: 5px;
+				padding: 5px 20px;
+				text-decoration: none;
+				font-size: 0.818rem;
+			}
+			
+			.strategynewsdetail-bottom {
+				background: url(../images/strategy/strategydetailnews2.jpg) no-repeat  center;
+				width: 100%;
+				
+				padding: 20px;
+				box-sizing: border-box;
+				background-size: cover;
+			}
+			
+			.strategynewsdetail-bottom .strategynewsdetail-bottom-next,
+			.strategynewsdetail-bottom .strategynewsdetail-bottom-prev {
+				color: #fff;
+				font-size: 1.364rem;
+				text-decoration: none;
+			}
+			
+			.strategynewsdetail-bottom .strategynewsdetail-bottom-next .dycnext-title,
+			.strategynewsdetail-bottom .strategynewsdetail-bottom-prev .dycprev-title {
+				font-size: 0.91rem;
+			}
+			
+			.
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header id="header" class="blue">
+				<span onclick="goBack()" style="display: none;">返回</span>
+				<p>策略解读</p>
+			</header>
+			<!--strategydetail Banner-->
+			<section>
+				<div class="dycstrategynewsdetail-banner">
+					<div class="container" id="jstrategyndbanner">
+						<h1></h1>
+						<h2></h2>
+						<p class="date"></p>
+						
+					</div>
+				</div>
+			</section>
+
+			<!--内容-->
+			<section>
+				<div class="strategynewsdetail-detail">
+
+					<div class="strategynewsdetail-detail-wrap ">
+						<div class="strategynewsdetail-detail-img" id="jstrategydetailimg">
+							<!--<img src="images/strategy-second-bg.jpg" />-->
+						</div>
+						<div class="strategynewsdetail-detail-con">
+							<p class="own">所属专辑</p>
+							<h3 id="jstrategydetailname"></h3>
+							<p class="strategynewsdetail-detail-brief" id="jstrategydetailbrief"></p>
+						</div>
+						<!--<div class="strategydetail-day-btn clearfix" id="jstrategydetailmore"></div>-->
+						<div class="dycstrategynewsdetail-buy clearfix">
+							<div class="dycstrategynewsdetail-buy-btn">
+								<a href="#this" id="jstrategynewsdetailprice" data-price='0.99'>
+									<p>￥0.99元</p>
+								</a>
+								<p>购买本条</p>
+							</div>
+							<div class="dycstrategynewsdetail-buy-btn">
+								<a id="jpayspecial" style="border-left: 1px solid #fff;">
+									
+									<p>￥16.9/起</p>
+								</a>
+								<p>购买特辑</p>
+							</div>
+						</div>
+					</div>
+					<div class="strategynewsdetail-con">
+						<div id="jstrategynewsdetail">我国外汇储备重回3万亿，等值五万美元外汇；国家外汇管理局，我国外汇市场是全球唯一，上到中央政府， 下到黎明百姓都在参与的金融投资市场；国家参与是为了整个国家经济更好地进行运转，散户参与是因为外汇 投资市场，在全球投资市场中是最公平最大的商品交易市场。</div>
+						<div class="strategynewsdetail-con-more" id="jstrategydetailpaymore">
+							<p>本文来自播米在线专栏，每日一篇，覆盖投资精英必读核心资讯。请付费阅读！</p>
+							<a class="strategynewsdetail-con-paymore" id="jpaymore">
+								<span></span>
+								<p>付费解锁更多内容</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="strategynewsdetail-bottom">
+					<div class="container clearfix">
+						<div  id="jnewsPrevPage" style="width: 50%;float: left;">
+							<!--<a class="strategynewsdetail-bottom-prev" href="#this"  data-newid="3">
+							上一篇:
+							<p class="dycprev-title">2017-07-03 关注美国6月Markit制造业采购经理指数终</p>
+						</a>-->
+						</div>
+						<div  id="jnewsNextPage" style="width: 50%;float: left;">
+							<!--<a class="strategynewsdetail-bottom-next" href="#this"  data-newid="3">
+							下一篇:
+							<p class="dycnext-title">2017-07-03 关注美国6月Markit制造业采购经理指数终</p>
+						</a>-->
+						</div>
+					</div>
+
+				</div>
+			</section>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/iscroll.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+
+		<script>
+			$(function() {
+				var nId = $.getUrlParam("newsId");
+				var ntId = $.getUrlParam("newsTypeId");
+				var $mid = localStorage.getItem('$ycuid');
+
+				strategyndCons(nId, ntId); //策略文章页-内容
+				strategyndAlbum(ntId); //策略文章页-专辑
+				strategyndBuy(nId, ntId); //策略文章页-购买
+
+				//策略文章页-内容
+				function strategyndCons(id, newsTypeId) {
+					var $jstrategynewsdetail = $("#jstrategynewsdetail"),
+						$jnewsPrevPage = $('#jnewsPrevPage'),
+						$jnewsNextPage = $('#jnewsNextPage'),
+						title = $('#jstrategyndbanner h1'),
+						name = $("#jstrategyndbanner h2"),
+						day = $('#jstrategyndbanner .date'), //专辑时间
+						yesterday = "",
+						market = "",
+						focus = "",
+						plan = "",
+						reminder = "",
+						htmlStr = "";
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + "News.ashx?action=getCurrentNews",
+						dataType: "json",
+						data: {
+							"memberId": localStorage.getItem('mid'),
+							"newsId": id,
+							"newsTypeId": newsTypeId
+						},
+						success: function(result) {
+							if(result.length < 1) {
+								return false;
+							}
+							var res = result[0];
+							var days = new Array();
+							title.html(result[0][0].newsTypeName); //专辑标题
+							name.html("-" + result[0][0].title + "-"); //文章标题
+							days = res[0].reportDate.split(" ");
+							day.html(days[0]); //文章日期
+
+							if(result[0][0].isFree == 1) { //已购买
+								if(result[0][0].yesterday_news != "") { //昨日要闻
+									yesterday = '<h2 class="title">昨日要闻阐述</h2>' + result[0][0].yesterday_news;
+								} else {
+									yesterday = "";
+								}
+								if(result[0][0].market_hot != "") { //市场热点
+									market = '<h2 class="title">市场热点追踪</h2>' + result[0][0].market_hot;
+								} else {
+									market = "";
+								}
+								if(result[0][0].focus != "") { //今日重点
+									focus = '<h2 class="title">今日重点关注</h2>' + result[0][0].focus;
+								} else {
+									focus = "";
+								}
+								if(result[0][0].trading_plan != "") { //今日交易
+									plan = '<h2 class="title">今日交易计划</h2>' + result[0][0].trading_plan;
+								} else {
+									plan = "";
+								}
+								if(result[0][0].reminder != "") { //温馨提示
+									reminder = '<h2 class="title">温馨提示</h2>' + result[0][0].reminder;
+								} else {
+									reminder = "";
+								}
+								htmlStr = yesterday + market + focus + plan + reminder;
+								$('#jstrategydetailpaymore').css('display', 'none');
+							} else { //未购买
+								if(result[0][0].yesterday_news != "") {
+									htmlStr = '<h2 class="title">昨日要闻阐述</h2>' + result[0][0].yesterday_news;
+								} else {
+									htmlStr = "";
+								}
+
+							}
+							$jstrategynewsdetail.html(htmlStr);
+
+							if(result[1][0] == null || result[1][0] == "" || result[1][0] == undefined) {
+								$jnewsPrevPage.html("");
+							} else {
+								$jnewsPrevPage.html("<a class='strategynewsdetail-bottom-prev' href='strategynewsdetail.html?newsId=" + result[1][0].newsId + "&newsTypeId=" + result[1][0].newsTypeId + "'>上一篇:<p class='dycprev-title'>" + result[1][0].title + "</p></a>");
+
+							}
+
+							if(result[2][0] == null || result[2][0] == "" || result[2][0] == undefined) {
+								$jnewsNextPage.html("");
+							} else {
+								$jnewsNextPage.html("<a class='strategynewsdetail-bottom-next' href='strategynewsdetail.html?newsId=" + result[2][0].newsId + "&newsTypeId=" + result[2][0].newsTypeId + "'>下一篇:<p class='dycnext-title'>" + result[2][0].title + "</p></a>");
+							}
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//策略文章页-专辑
+				function strategyndAlbum(id) {
+					var $jstrategydetailimg = $("#jstrategydetailimg"), //图片
+						$jstrategydetailname = $('#jstrategydetailname'), //名字
+						$jstrategydetailbrief = $('#jstrategydetailbrief'), //note
+						$jstrategydetailmore = $('#jstrategydetailmore'); //了解更多
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + "Teacher.ashx?action=getTeacherColumn",
+						dataType: "json",
+						data: {
+							"newsTypeId": id
+						},
+						success: function(result) {
+
+							if(result.length < 1) {
+								return false;
+							}
+							if(result[0].teacherColumn == undefined) {
+								return false;
+							}
+							var res = result[0].teacherColumn;
+							$jstrategydetailimg.html("<img src='" + SERVEROOTFILE + res[0].iconPath + "' />");
+							$jstrategydetailname.html("<span>" + res[0].name + "</span>");
+							$jstrategydetailbrief.html(res[0].note);
+							$jstrategydetailmore.html("<a href='strategydetail.html?newsTypeId=" + res[0].newsTypeId + "&teacherId=" + res[0].teacherId + "' target='_blank'>了解更多</a>");
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//策略文章页-购买
+				function strategyndBuy(nId, ntId) {
+					paythisView($('#jstrategynewsdetailprice'), nId, $('#jstrategynewsdetailprice').attr('data-price'), ntId); //购买本条	
+					paythisView($('#jpaymore'), nId, $('#jstrategynewsdetailprice').attr('data-price'), ntId); //解锁更多--暂时价格写固定
+					$('#jpayspecial').click(function() { //左上角专辑购买
+
+						layer.open({
+							type: 1,
+							skin: 'layui-layer-rim', //加上边框
+							area: ['420px', '420px'], //宽高
+							content: '<div class="strategynewsdetail-pay-content"><h3>请选择购买方式：</h3><ul id="jstrategynewsdetailpay"></ul><div class="paycorrect"><a class="articlepay_btn" id="jarticlepay">确认购买</a></div></div>'
+						});
+						var $jstrategynewsdetailpay = $('#jstrategynewsdetailpay'), //包月价格
+							$jarticlepay = $('#jarticlepay'),
+							htmlStr = "";
+						$.ajax({
+							type: "GET",
+							url: SERVEROOTDATA + "Teacher.ashx?action=getTeacherColumn",
+							dataType: "json",
+							data: {
+								"newsTypeId": 15
+							},
+							success: function(result) {
+
+								if((result.length < 1) || (result[0].validDate == undefined)) {
+									return false;
+								}
+								var price = result[0].validDate;
+								price.forEach(function(value, index) {
+									if(index == 0) {
+										htmlStr = "<li><a class='checked' data-price=" + value.price + " data-moon=" + value.validType + ">购买本专辑" + value.validMonth + "<span>" + value.price + "</span>元</li>";
+									} else {
+										htmlStr += "<li><a data-price=" + value.price + " data-moon=" + value.validType + ">购买本专辑" + value.validMonth + "<span>" + value.price + "</span>元</li>";
+									}
+								});
+								$jstrategynewsdetailpay.html(htmlStr);
+								$('.strategynewsdetail-pay-content a').click(function() {
+									$(this).addClass('checked');
+									$(this).parents().siblings().children('a').removeClass('checked');
+								});
+							},
+							error: function(err) {
+								console.log(err);
+							}
+						});
+						payAlbum($jarticlepay, ntId);
+					});
+
+				}
+
+				function paythisView(obj, nId, price, ntId) { //购买本条
+					$(obj).click(function() {
+						if(($mid != undefined) && ($mid != "") && ($mid != null)) {
+							$.ajax({
+								type: "POST",
+								dataType: 'json',
+								url: SERVEROOTDATA + "Order.ashx?action=directBuyGoods",
+								async: false, //同步请求
+								data: {
+									"memberId": $mid,
+									"goodsId": nId, //新闻id
+									"price": price,
+									"orderType": 1
+								},
+								success: function(data) {
+									if(data == 818 || data == "818") {
+										layer.msg("您已购买过该课程！");
+										return false;
+									} else {
+										if(data[0].orderId != undefined) {
+											var dataobj = data[0];
+											if(dataobj) {
+												location.href = "strategypay.html?orderId=" + dataobj.orderId + "&type=0" + '&goodsId=' + nId + "&newsTypeId=" + ntId;
+											}
+										}
+
+									}
+								},
+								error: function(data) {
+									layer.open({
+										content: '服务器出差了~',
+										skin: 'msg',
+										time: 2 //2秒后自动关闭
+									});
+								}
+							});
+						} else {
+							location.href = 'login.html';
+							/*layer.open({
+								content: '非会员暂不支持购买哦！',
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});*/
+						}
+
+					});
+				}
+
+				function payAlbum(obj, id) { //购买专辑
+					$(obj).click(function() {
+						if(($mid != undefined) && ($mid != "") && ($mid != null)) {
+							var datamoon = $('#jstrategynewsdetailpay .checked').attr('data-moon');
+							var dataprice = $('#jstrategynewsdetailpay .checked').attr('data-price');
+
+							$.ajax({
+								type: "POST",
+								dataType: 'json',
+								url: SERVEROOTDATA + "Order.ashx?action=directBuyMoonGoods",
+								async: false, //同步请求
+								data: {
+									"memberId": $mid,
+									"goodsId": id,
+									"moonNum": datamoon,
+									"price": dataprice,
+									"orderType": 1
+								},
+								success: function(data) {
+									if(data == 818 || data == "818") {
+										layer.open({
+											content: '您已购买过该课程！',
+											skin: 'msg',
+											time: 2 //2秒后自动关闭
+										});
+
+										return false;
+									} else {
+										if(data[0].orderId != undefined) {
+											var dataobj = data[0];
+											if(dataobj) {
+												location.href = "strategypay.html?orderId=" + dataobj.orderId + "&type=1" + '&goodsId=' + id;
+											}
+
+										}
+
+									}
+								},
+								error: function(data) {
+									layer.open({
+										content: '服务器出差了！',
+										skin: 'msg',
+										time: 2 //2秒后自动关闭
+									});
+
+								}
+							});
+						} else {
+							location.href = 'login.html';
+							/*layer.open({
+								content: '非会员暂不支持购买哦！',
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});*/
+						}
+					});
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

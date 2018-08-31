@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="../css/plugins/layermobile.css">
+
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>我的订单</title>
+	</head>
+
+	<body>
+		<header id="feHeaderWhite">
+			<header-white-template title="我的订单"></header-white-template>
+		</header>
+		<section class="feMyOrderWrap feMyCourseWrap" id="feMyOrderWrap">
+			<div class="swiper-container feMyOrderHeadContainer feMyCourseHeadContainer">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide active-nav">
+						<a href="javascript:;" @click="changeSlide(0)">待支付</a>
+					</div>
+					<div class="swiper-slide">
+						<a href="javascript:;" @click="changeSlide(1)">已支付</a>
+					</div>
+				</div>
+			</div>
+			<div class="feGrayLIne16"></div>
+			<div class="feMyCourseList feMyOrderList">
+				<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore" v-cloak>
+					<div class="swiper-container feMyCourseListContainer">
+						<div class="swiper-wrapper">
+							
+						<!--未支付-->
+						<div class="swiper-slide">
+							<initempty-component label="暂无数据" :initflag=liveNoData></initempty-component>
+							<div class="feMyCourseLi feMyLiveCourseLi clearfix" v-for='item in liveArr' @click='gotoCourse(item.courseId,item.courseKind)' v-cloak>
+									<div class="feImage">
+										<img  v-lazy="item.iconPath">
+									</div>
+									<h5>{{item.courseName}}</h5>
+									<div class="feCourseType">{{item.recordTypeName}}</div>
+									<p class="feCourseNote">{{item.teacherName}} 总{{item.courseCatalogCount}}节课</p>
+									<a class="feCourseReplay" @click.stop="deletOrder(item.orderId)">删除订单</a>
+									<a class="feCourseBtn" :href='item.courseId,item.courseKind|addOrderHrefPre'>立即支付</a>
+							</div>
+							
+						</div>
+						<div class="swiper-slide">
+							<!--已支付-->
+							<initempty-component label="暂无数据" :initflag=recordeNodata></initempty-component>
+							<div class="feMyCourseLi fePaiedLi clearfix" v-for="item in recordeArr" @click='gotoOrder(item.orderId)'  v-cloak>
+									<div class="feImage"><img v-lazy="item.iconPath"></div>
+									<h5>{{item.courseName}}</h5>
+									<div class="feCourseType">{{item.recordTypeName}}</div>
+									<p class="feCourseNote">{{item.teacherName}} 总{{item.courseCatalogCount}}节课</p>
+									<!--<a class="feCourseReplay" :href="item.courseId|addCommentHrefPre">删除订单</a>-->
+							</div>
+
+							
+						</div>
+						
+					</div>
+					</div>
+					<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'">Loading...</span> <span v-show="bottomStatus === 'drop'">{{bottomText}}</span></div>
+				</mt-loadmore>
+			</div>
+
+		</section>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		
+		<script type="text/javascript" src="../js/plugins/layermobile.js"></script>
+
+		<script type="text/javascript" src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script src="../js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				myOrderApp();
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米直播间-金牌分析师交易布局/纵览全球经济</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/jquery.emoji.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.5.6/skins/default/index.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			.J-mjrlinkWrap {
+				color: #fff;
+			}
+			/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+			
+			::-webkit-scrollbar {
+				width: 10px;
+				background-color: #545455;
+			}
+			/*定义滚动条轨道 内阴影+圆角*/
+			
+			::-webkit-scrollbar-track {
+				-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+				background-color: #BBBBBB;
+			}
+			/*定义滑块 内阴影+圆角*/
+			
+			::-webkit-scrollbar-thumb {
+				-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+				border-radius: 8px;
+				background-color: #615F5F;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section>
+			<div class="live-bg">
+				<div class="container dyclive" style="overflow:hidden">
+					<div class="dycplay-wrap w1200-player clearfix">
+
+						<div class="dycplaymain">
+							<div id="J_prismPlayer" class="prism-player"></div>
+
+							<button id="J_clickToPlay" type="button"></button>
+							<div id="jstop" class="dycnovideo" style="display: none;position: absolute;background-color:rgba(0,0,0,0.4);top:0px;left:0px;height:50%;padding-top: 30vh;">
+								<a class="dycnovideo-tips" href="#this" style="">未登录只能观看15分钟哦~赶快去登录吧~</a>
+							</div>
+						</div>
+
+						<!--讨论区-->
+						<div class="dycplaydiscuss clearfix">
+							<div class="dycplaydiscuss-content">
+								<div id="chatbox" class="clearfix">
+									<div id="doc" class="chatbox">
+										<div id="chat">
+											<div id="message" class="message">
+												<div id="onlinecount" class="dycchattips">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="dycplaydiscuss-bar">
+								<!--<a class="dycbroadcast" href="#this"></a>-->
+								<a id="jface" class="dycface" href="#this" style="vertical-align: sub;"></a>
+								
+								<div style="display: inline-block; position: relative; margin-right: 20px; cursor: pointer; vertical-align: super;">
+							<span style="position: absolute; left: 0; top: 0; width: 88px; line-height: 24px; text-align: center; cursor: pointer; background-color: #f00; color: #fff;">选择图片</span>
+							<input style="width: 110px; height: 40px; opacity: 0; cursor: pointer;"  id="jsendImgPanel" type="file" accept="image/*" />
+						</div>
+								
+								
+								<!--<a class="dycaudio" href="#this"></a>
+								<a class="dyccute" href="#this"></a>
+-->
+								<div class="input-box clearfix">
+									<div class="input span9" id="content" contenteditable="true"></div>
+									<div class="action span2">
+										<button class="dycsend-btn" type="button" id="mjr_send" onclick="CHAT.submit(1);">提交</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="span8">
+						<div class="dyccontent">
+							<div class="dyccourse-box" style="display: none;">
+								<div class="dyccourse-title">课程简介</div>
+								<div id="jcoursebrief" class="dyccourse-brief">课程将黄金投资市场的发展特点精炼为五大模块，用归纳式的模式进行教学，一一列举出黄金市场的发展特点，分析其发展的背景，总结出未来的发展趋势。</div>
+							</div>
+							<div class="dyccourse-box">
+								<div class="dyccourse-title">推荐课程</div>
+								<ul id="jrecommendcourse" class="dyccourse-list clearfix">
+									<li class="span4">
+										<a class="dyccourse-list-box" href="#">
+											<div class="dyccourse-list-img">
+												<img src="images/live-course01.jpg" />
+											</div>
+											<p class="dyccourse-list-title">黄金价格的逻辑体系</p>
+											<p class="dyccourse-list-brief"> 将复杂的逻辑简化为简单的逻辑思维图，用最短的时间快速学习。</p>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="span3" style="float:right">
+						<div id="jrelatedteacher">
+							<a class="dycliveteacher" href="#this">
+								<div class="dycliveteacher-img">
+									<img src="images/live-teacher.png" />
+								</div>
+								<p class="dycliveteacher-name">吴蔚岗</p>
+								<p class="dycliveteacher-brief">福建省第一批国家注册黄金分析师，国家注册理财规划师，证券分析师。从事贵金属及外汇市场8年实战交易，结合实战操作经验独创交易模型。</p>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.5.6/prism-min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/player.js"></script>
+		<script type="text/javascript" src="js/jquery.emoji.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+		<script type="text/javascript" src="js/costclient.js?v1"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				// 初始化播放器
+
+				$("#content").emoji({
+					button: "#jface",
+					showTab: false,
+					//animation: 'slide',
+					icons: [{
+						name: "QQ表情",
+						path: "./images/face/qq/",
+						maxNum: 91,
+						excludeNums: [41, 45, 54],
+						file: ".gif"
+					}]
+				});
+				var paramId = $(this).getUrlParam("channelId");
+
+				$.courseBrief(paramId);
+				$.recommendCourse(paramId);
+				$.relatedTeacher(paramId);
+				$.liveplayId(paramId);
+				//$.discussMent(1);
+				if($mid != null && $mid != undefined && $mid != "") {
+					if($mUserIcon != null && $mUserIcon != undefined && $mUserIcon != "") {
+						userImg = ROUTEFILE + $mUserIcon;
+					} else {
+						userImg = ROUTEROOT+"ycedu/images/mbheadIcon.png";
+					}
+					username = $mNickName;
+				} else {
+					username = "游客";
+					userImg = ROUTEROOT+"ycedu/images/mbheadIcon.png";
+				}
+				window.CHAT.init(username, userImg);
+
+				$.ajax({
+					type: "POST",
+					url: ROUTE + "Channel.ashx?action=getMemberType",
+					dataType: "json",
+					cache: false,
+					data: {
+						channelId:paramId,
+						memberId:$mid
+					},
+					success: function(result) {
+						localStorage.setItem("mUserType",result[0].Column1);
+					}
+				})
+
+			})
+		</script>
+	</body>
+
+</html>

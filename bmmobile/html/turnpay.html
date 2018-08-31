@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="dycloading" style="width:100px;height: 100px;margin:400px auto;">
+			<img src="../images/public/loading.gif" />
+		</div>
+		<section>
+			<iframe id="jtiaozhuan" style="display: none; border:0;width:100%;height:100%;position: fixed;top:0px;left:0px;" src="">
+				
+			</iframe>
+		</section>
+	</body>
+	<script type="text/javascript" src="../js/zepto.js" ></script>
+	<script type="text/javascript" src="../js/bmmain.js" ></script>
+		<script>
+			var amount = $.getUrlParam("amount");
+			var orderId = $.getUrlParam("orderId");
+			var mid = $.getUrlParam("memberId");
+			var discount = $.getUrlParam("discount");
+			var couponReceiveId = $.getUrlParam("couponReceiveId");
+			var orderTypeId= $.getUrlParam("orderTypeId");
+			
+			$('#jtiaozhuan').attr('src',SERVEROOTDATA + "Pay.ashx?action=directPay&amount="+amount+"&orderId="+orderId+"&memberId="+mid+ "&discount=" + discount+ "&couponReceiveId=" + couponReceiveId+"&orderTypeId="+orderTypeId+"&payTypeId=3");	
+			
+			setTimeout(function(){
+				$("#jtiaozhuan").css("display","block");
+			},500)
+		</script>
+</html>

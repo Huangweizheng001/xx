@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-题目选择弹框</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <!--<div class=""  style="position: relative;width: 880px;margin: auto;background: #fff" id="homeworkdetail">-->
+        <!--布置作业1级页面-->
+            <div class="fe-select-question-pop clearfix" id="selectQuestion">
+                <div class="fe-select-question-left">
+                    <p><input type="text" placeholder="请输入题目名称"></p>
+                    <div class="fe-select-condition">
+                        <div class="fe-checkall">
+                            <input type="checkbox" id="checkall">
+                            <label for="checkall">全选</label>
+                        </div>
+                        <div class="fe-classify">
+                            <button>分类 <i class="uk-icon-caret-down"></i></button>
+                            <!--子类触发父类隐藏方法-->
+                            <b style="display: none" id="hidden-btn1"></b>
+                            <input type="hidden" id="knowledgeName1">
+                            <div class="fe-already-mes">
+                                <a></a><b class="uk-icon-times"></b>
+                            </div>
+                        </div>
+                        <div class="fe-difficulty">
+                            <button>难度 <i class="uk-icon-caret-down"></i></button>
+                            <div class="fe-already-difficulty">
+                                <a></a><b class="uk-icon-times"></b>
+                            </div>
+                            <ul>
+                                <li data-id="1">简单</li>
+                                <li data-id="2">一般</li>
+                                <li data-id="3">困难</li>
+                            </ul>
+                        </div>
+                        <div class="fe-type">
+                            <button>类型 <i class="uk-icon-caret-down"></i></button>
+                            <div class="fe-already-type">
+                                <a></a><b class="uk-icon-times"></b>
+                            </div>
+                            <ul>
+                                <li>选择题</li>
+                                <li>填空题</li>
+                                <li>简答题</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fe-question-bank">
+                        <div class="fe-item">
+                            <span><input type="checkbox"></span>
+                            <h3>食品类所需的证件?食品类所需的证件?食品类所需的证件?食品类所需的证件?食品类所需的证件?</h3>
+                        </div>
+                        <div class="fe-item">
+                            <span><input type="checkbox"></span>
+                            <h3>食品类所需的证件?</h3>
+                        </div>
+                        <div class="fe-load-more">
+                            <button>点击加载更多</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="fe-select-question-right">
+                    <div class="fe-select-question-right-top">
+                        <span>已选题目:</span>
+                        <button>重新选择</button>
+                        <!--<button style="background: #00aaff;color: #fff;border-color:#00aaff">确定</button>-->
+                    </div>
+                    <div class="fe-already-select-question">
+                        <div class="fe-item">
+                            <h3>食品类所需的证件?食品类所需的证件?食品类所需的证件?食品类所需的证件?食品类所需的证件?</h3>
+                            <i class="uk-icon-times"></i>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+                <div class="feoperation">
+                    <button>确定</button>
+                </div>
+            </div>
+        <!--</div>-->
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        selectQuestionPop();
+    })
+</script>
+</body>
+
+</html>

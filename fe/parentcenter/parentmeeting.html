@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长个人中心-家校互动</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <parent-header-template></parent-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <parent-left-template></parent-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>家校互动</span>
+                <!--<a href="coursecenter.html" style="color: #e55e2a;margin-left: 20px;font-size: 16px">进入选课中心</a>-->
+            </div>
+            <!--我的课程-->
+            <div class="festudentlearningnote" id="parentmeeting">
+                <div style="margin-top: 20px">
+                    <div class="fecontent">
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">会议名称</div>
+                            <div class="span2">老师</div>
+                            <div class="span2">直播开始时间</div>
+                            <div class="span2">直播结束时间</div>
+                            <div class="span2">操作</div>
+                        </div>
+                        <div class="felist" v-cloak v-for="(item,index) in meeting" v-bind:data-tid="item.teacherId" v-bind:data-id="item.channelId" v-bind:data-cid="item.channelProgramId">
+                            <div class="span1">{{index+1}}</div>
+                            <div class="span3"><a v-bind:title="item.programName" class="textoverflow">{{item.programName}}</a></div>
+                            <div class="span2">{{item.teacherName}}</div>
+                            <div class="span2 beginT">{{item.playBeginTime}}</div>
+                            <div class="span2 endT">{{item.playEndTime}}</div>
+                            <div class="span2 caozuo">
+                                <!--<a v-bind:class="item.state==0 ? 'gray':'fehidden'">{{item.state|getState}}</a>-->
+                                <!--<a v-bind:class="item.state==1 ? 'orange':'fehidden'" href="../liveroom.html">{{item.state|getState}}</a>-->
+                                <!--<a v-bind:class="item.state==2 ? 'bulecolor':'fehidden'">{{item.state|getState}}</a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        parentmeeting();
+    })
+</script>
+</body>
+
+</html>

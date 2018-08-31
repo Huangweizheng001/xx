@@ -1,0 +1,242 @@
+
+
+/*
+ * 打赏直播
+ */
+#chatbox{
+	background: #2c2926;
+}
+.bmmessagePanel {
+  overflow: auto;
+}
+
+.dycdiscuss-box-admin {
+  margin: 8px 0;
+  padding: 0 10px 10px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding-left: 0px;
+  word-break: break-all;
+  color: #fff;
+  background: #413e3b;
+}
+
+.dycdiscuss-box {
+  margin: 0.5rem 0;
+  padding-left: 56px;
+  position: relative;
+  word-break: break-all;
+  padding-left: 56px;
+  color: #fff;
+  font-size:1.435rem;
+}
+
+.dycdiscuss-box .dycadmin-silver {
+  /* background-position: -3px -60px; */
+  background-position: -75px -60px;
+}
+
+.dycdiscuss-box .dycadmin {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: inline-block;
+  width: 56px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: -100px -6px;
+}
+
+.dycplayname {
+  /*color:#ecb83d;*/
+ /* color: #48de6c;*/
+color: #757575;
+}
+
+.dycordinary .dycplayname {
+  color: #fd8c39;
+}
+
+.dycsilver .dycplayname {
+  color: #c9d0d7;
+}
+
+.dycgold .dycplayname {
+  color: #ecb83d;
+}
+
+.dycdiamond .dycplayname {
+  color: #9b74ff;
+}
+
+.dycexclusive .dycplayname {
+  color: #e1292e;
+}
+
+.dycadmin-box .dycplayname,
+.dycdiscuss-box-admin .dycplayname {
+  color: #7bd9e7;
+}
+
+.dycadmin-box.dycanchor-box  .dycplayname,
+.dycdiscuss-box-admin .dycplayname {
+  color: #42fc65;
+}
+
+.dycdiscuss-box .dycadmin {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: inline-block;
+  width: 56px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-position: -70px -3px;
+  background-size:270px 270px ;
+}
+
+.dycdiscuss-box .dycadmin-ordinary {
+  background-position: -71px -29px;
+}
+
+.dycdiscuss-box .dycadmin-silver {
+  background-position: -71px -51px;
+}
+
+.dycdiscuss-box .dycadmin-gold {
+  background-position: -71px -76px;
+}
+
+.dycdiscuss-box .dycadmin-diamond {
+  background-position: -71px -102px;
+}
+
+.dycdiscuss-box .dycadmin-exclusive {
+  /*background-position: -3px -144px;*/
+  background-position: -71px -126px;
+}
+
+.dycdiscuss-box .dycadmin-admin {
+  background-position: -71px -176px;
+}
+
+.dycdiscuss-box-admin {
+  background: #413e3b;
+  border-radius: 5px;
+  padding-left: 0px;
+  word-break: break-all;
+  color: #ff0000;
+  margin: 8px 0;
+  padding: 0 10px 10px 0;
+  box-sizing: border-box;
+      font-size: 1.435rem;
+}
+
+.dycdiscuss-box-admin .dycadmin-admin-img {
+  float: left;
+  width: 50px;
+  max-height: 50px;
+}
+
+.dycdiscuss-box-admin .dycadmin-box {
+  padding-left: 60px;
+}
+
+.dycdiscuss-box-admin .dycadmin-box p {
+  margin-top: 0px;
+  color: red;
+}
+
+.dycdiscuss-box-admin .dycadmin-box a {
+  text-decoration: none;
+}
+
+.dycdiscuss-box-admin .dycadmin-admin {
+  height: 30px;
+  width: 60px;
+  background: url(../images/live/grader.png) no-repeat;
+  background-position: -71px -151px;
+	background-size: 270px 270px;
+  
+}
+
+.dycdiscuss-box-admin .dycanchor-box .dycadmin-admin {
+    height: 30px;
+    width: 60px;
+    background: url(../images/live/grader.png) no-repeat;
+    background-size: 270px 270px;
+    background-position: -71px -176px;
+}
+
+.dycdiscuss-box-admin .dycadmin-box .msg-system-img {
+  display: inline-block;
+}
+
+#onlinecount {
+	font-size: 1rem;
+	margin: 10px 0;
+	text-align: center;
+	color: #fff;
+}
+
+.J-mjrlinkWrap {
+	text-align: center;
+	margin: 5px 0;
+	color: #fff;
+	    font-size: 1.435rem;
+}
+
+.J-mjrlinkWrap .msg-system .grader {
+	width: 56px;
+	height: 20px;
+	vertical-align: bottom;
+	background: url(../images/live/grader.png) no-repeat -3px -7px;
+	display: inline-block;
+	background-size:270px 270px ;
+}
+
+
+.J-mjrlinkWrap .msg-system .grader-ordinary {
+	background-position: -71px -29px;
+}
+
+.J-mjrlinkWrap .msg-system .grader-silver {
+	 background-position: -71px -51px;
+}
+
+.J-mjrlinkWrap .msg-system .grader-gold {
+	  background-position: -71px -76px;
+}
+
+.J-mjrlinkWrap .msg-system .grader-diamond {
+	 background-position: -71px -102px;
+}
+
+.J-mjrlinkWrap .msg-system .grader-exclusive {
+	background-position: -71px -126px;
+}
+
+.J-mjrlinkWrap .msg-system .grader-admin {
+	background-position: -71px -176px;
+}
+
+.J-mjrlinkWrap .msg-system .msg-system-img {
+	display: inline-block;
+	margin: 0 5%;
+	vertical-align: bottom;
+}
+
+.J-mjrlinkWrap .msg-system-img img {
+	width: 70%;
+}
+
+.J-mjrlinkWrap .msg-system .dycplayname {
+	/*color: #ec3d4d;*/
+}
+
+.J-mjrlinkWrap .msg-system .msg-system-num {
+	padding: 0 1%;
+	color: #f6e023;
+	font-size: 26px;
+	vertical-align: sub;
+}

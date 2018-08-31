@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,外汇投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+    <meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+    <title>嘉宾-个人百科</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/ycstyle.css" />
+    <link rel="stylesheet" href="css/cyqstyle.css" />
+    <link rel="stylesheet" href="css/hwzstyle.css" />
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="" id="guest">
+    <div class="dycguestcommonhead">
+        <div class="dycimage" v-cloak>
+            <img v-bind:src="teachermsg.iconPath|addRoute" alt="">
+        </div>
+        <div class="dycbox">
+            <h3 v-cloak>{{teachermsg.name}}</h3>
+            <h4 v-cloak>{{teachermsg.teacherTypeName}}</h4>
+        </div>
+    </div>
+    <!--<div v-html="banner.iconPath" class="guestbanner"></div>-->
+    <!--<img src="images/distinguishedguest.jpg" alt="">-->
+    <!--<div class="container dycdistinguishedguest">-->
+        <!--<div class="dycpastreview">-->
+            <!--<div class="swiper-container aa">-->
+                <!--<div class="swiper-wrapper">-->
+                    <!--<div class="swiper-slide" v-cloak v-for="item in specialArr">-->
+                        <!--<a v-bind:href="item.courseId|addCourseRoute" class="febox">-->
+                            <!--<img v-bind:src="item.iconPath|addRoute" alt="">-->
+                            <!--<p><span>{{item.name}}</span></p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; Add Arrows &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="swiper-button-next"></div>-->
+            <!--<div class="swiper-button-prev"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+</section>
+<section class="clearfix dycgray-bg" id="guestperson">
+    <div class="container">
+        <ul class="dycdistinguishedguest-title clearfix">
+            <li><a v-bind:href="teacherId|addindexRoute">嘉宾主页</a><b></b></li>
+            <li><a v-bind:href="teacherId|addcourseRoute">课程</a><b></b></li>
+            <li><a v-bind:href="teacherId|addphotoRoute">相册/视频</a><b></b></li>
+            <li class="active"><a href="#this">履历</a><b></b></li>
+        </ul>
+        <div class="span9">
+            <div class="dycdistinguishedguest-index">
+                <div class="dycguestperson-panel" v-if="experience.introduce">
+                    <h1>个人介绍</h1>
+                    <div v-html="experience.introduce"></div>
+                </div>
+                <div class="dycguestperson-panel" v-if="experience.experience">
+                    <h1>个人经历</h1>
+                    <div v-html="experience.experience"></div>
+                    <!--<ul class="dycguest-experience">-->
+                        <!--<li>-->
+                            <!--<p>2001年 - 2010年</p>-->
+                            <!--<p>美国运通资本管理有限公司 华南区分部交易员 （1998-2011兼职操盘手）</p>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<p>2011年 - 2012年</p>-->
+                            <!--<p>美国私企 元鼎投资有限公司 （副总经理）（黄金分析师）</p>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<p>2012年 - 2015年</p>-->
+                            <!--<p>福建省理财规划师协会（高级黄金投资分析师） 华恒睿银投资管理顾问有限公司（运营总监）</p>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                </div>
+                <div class="dycguestperson-panel" v-if="experience.styleConcept">
+                    <h1>风格理念</h1>
+                    <div v-html="experience.styleConcept"></div>
+                    <!--<ul class="dycstyle-concept">-->
+                        <!--<li><span>操作风格 : </span>日内短线交易为主，趋势中线交易为辅。把握投资机会，结合投资环境，控制投资心态，追求财富有道。</li>-->
+                        <!--<li><span>交易理念 : </span>复杂的事情，简单做；简单的事情，重复做。</li>-->
+                    <!--</ul>-->
+                </div>
+                <div class="dycguestperson-panel" v-if="experience.kingRecord">
+                    <h1>战绩之王</h1>
+                    <div v-html="experience.kingRecord"></div>
+                    <!--<ul class="dycrecord-king">-->
+                        <!--<li>2015年12月18日，综合评估国际黄金市场开采成本，判断黄金价格在USD1050/盎司，可能是历史性阶段底部，布局中长线买-->
+                            <!--入持有，时隔不到半年，在2015年5月6日和2016年6月24日，黄金价格上涨反弹分别在USD1300/盎司附近和USD1350/-->
+                            <!--盎司附近，分批获利全部平仓。 </li>-->
+                        <!--<li>2016年12月16日，叙利亚1.5万余名反对派武装分子，开始从阿勒颇市东区撤离，叙利亚政府军将完全控制阿勒颇市，这标志着-->
+                            <!--叙利亚局势将迎来转折点，政府军与反政府武装再次发生冲突。</li>-->
+                        <!--<li>预判黄金可能重新出现年度价格的底部，再次布局开仓做多黄金价格在USD1130/盎司买入，在2017年3月3日，成功在USD12-->
+                            <!--55/盎司获利止盈。</li>-->
+                    <!--</ul>-->
+                </div>
+                <div class="dycguestperson-panel" v-if="experience.classicCas">
+                    <h1>经典案例</h1>
+                    <div v-html="experience.classicCase"></div>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <a v-bind:href="item.newsTypeId,item.teacherId|addExpertRoute" class="dycviewpoint-content" v-cloak v-for="item in expertopinion">
+                <div class="dyctitle"><span>策略解读</span></div>
+                <div class="dycimg">
+                    <img v-bind:src="item.iconPath|addRoute" alt="">
+                </div>
+                <p><span>{{item.name}}</span></p>
+                <p>{{item.note}}</p>
+            </a>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/uikit.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/ycswiper.js"></script>
+<script type="text/javascript" src="js/ycedu.js"></script>
+<script type="text/javascript" src="js/teacherswiper.js"></script>
+<script type="text/javascript" src="js/honoredguest.js"></script>
+<script>
+    $(function () {
+        var teacherId=$(this).getUrlParam("teacherId");
+        guesthead(teacherId);
+        guestperson(teacherId);
+    })
+</script>
+</body>
+</html>

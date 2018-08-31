@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>登录注册—福建教育网</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css?1" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+    <!--<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101447287" data-redirecturi="http://www.fetv.cn/feweb/back.html" charset="utf-8"></script>-->
+</head>
+
+<body>
+
+<header class="felogin-header-wrap">
+    <div class="container">
+        <div class="fepanel-box">
+            <a href="./index.html">
+                <img src="images/public/logo-icon-medium.png" alt="福建教育网" />
+            </a>
+            <span class="fepanel-brief">欢迎访问</span>
+        </div>
+    </div>
+</header>
+
+<!--登陆注册-->
+<section class="femechanismLogin" id="organLogin">
+    <div class="container">
+        <div class="felogin-box">
+            <h1>机构登录</h1>
+            <form action="" class="felogin-form">
+                <label class="felogin-name">
+                    <input type="text" placeholder="请输入账号" class="felogin-name-input" autofocus="autofocus" name="username" v-model="username">
+                </label>
+                <label class="felogin-pwd">
+                    <input type="password" placeholder="请输入密码" class="felogin-pwd-input" name="password" v-model="password">
+                </label>
+                <!--<label class="">-->
+                    <!--<input type="text" placeholder="输入验证码" class="felogin-name-input">-->
+                    <!--<img style="height: 30px;width: 150px;margin: 10px 0px -20px 0px" src="http://www.fetv.cn/fe/images/verifyCode/04041009578728.png" alt="">-->
+                <!--</label>-->
+                <a class="felogin-btn" @click="loginData()">登录</a>
+                <a class="felogin-register" href="mechanismregister.html">我要入驻</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer class="felogin-footer-wrap">
+    <div class="container">
+        <p>&copy; 2015 fetv.cn 福建省教育电视台 版权所有</p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js?3"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+
+<script>
+    $(function() {
+        organLogin();
+    })
+</script>
+
+</body>
+
+</html>

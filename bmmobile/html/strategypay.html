@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>订单详情</title>
+
+		<style>
+			body {
+				background-color: #f2f2f2;
+				padding-top: 9rem;
+			}
+			
+			#orderBox li {
+				position: relative;
+				padding: 1.14rem 2.14rem 1.71rem;
+				/*border-bottom: 0.3rem solid #f2f2f2;*/
+				border-bottom: 1px solid #f2f2f2;
+				overflow: hidden;
+				background-color: #fff;
+			}
+			
+			#orderBox li img {
+				/*float: left;
+				margin-right: 1rem;
+				width: 20.5rem;
+				*/
+				width: 100%;
+				margin-bottom: 1rem;
+				border-radius: 0.6rem;
+			}
+			
+			#orderBox .title {
+				/*padding-left: 21.4rem;*/
+				margin-bottom: 1rem;
+				font-size: 2.285rem;
+				color: #282828;
+			}
+			
+			#orderBox .brief {
+				margin: 1rem 0 1.3rem;
+				/*padding-left: 21.4rem;*/
+				font-size: 1.857rem;
+				color: #b1b1b1;
+			}
+			
+			#orderBox .expire {
+				display: none;
+				/*padding-left: 21.4rem;*/
+				font-size: 1rem;
+				color: #282828;
+			}
+			
+			#orderBox .price {
+				/*position: absolute;*/
+				/*top: 1.14rem;
+            right: 2.14rem;*/
+				/*margin: 1rem 0;*/
+				font-size: 2.14rem;
+				color: #ff0000;
+			}
+			
+			.tips {
+				line-height: 4.72rem;
+				border-bottom: 1px solid #f2f2f2;
+				/*padding-left: 2.14rem;*/
+				/*border-top: 2.85rem solid #f2f2f2;
+            border-bottom: 2.85rem solid #f2f2f2;*/
+				padding: 0 3rem;
+				text-align: right;
+				font-size: 2.14rem;
+				color: #282828;
+				background-color: #fff;
+			}
+			
+			#payType {
+				margin: 2.57rem 0;
+				padding: 3rem;
+				background-color: #fff;
+			}
+			
+			#payType label {
+				position: relative;
+				margin-right: 2.14rem;
+				display: inline-block;
+				vertical-align: middle;
+			}
+			
+			#payType label i {
+				position: absolute;
+				display: inline-block;
+				width: 2.28rem;
+				height: 2.28rem;
+				top: 0.4rem;
+				left: 0.28rem;
+				background: url(../images/public/agree1.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			#payType label input:checked+i {
+				background-image: url(../images/public/agree.png);
+			}
+			
+			#payType input {
+				width: 15rem;
+				height: 3rem;
+				opacity: 0;
+			}
+			
+			.alipay {
+				margin-bottom: 2.42rem;
+			}
+			
+			.alipay span {
+				display: inline-block;
+				width: 10rem;
+				margin-left: -12rem;
+				vertical-align: middle;
+			}
+			
+			.weixinpay span {
+				display: inline-block;
+				width: 12.85rem;
+				margin-left: -12rem;
+				vertical-align: middle;
+			}
+			
+			#submitPay {
+				display: block;
+				margin: 5rem 2.14rem 1rem;
+				line-height: 6.24rem;
+				border-radius: .6rem;
+				text-align: center;
+				font-size: 2.42rem;
+				color: #fff;
+				background-color: #1473e6;
+			}
+			
+			.couponWrap {
+				overflow: hidden;
+				background-color: #fff;
+			}
+			
+			.couponTitle {
+				position: relative;
+				padding: 2.24rem 2.24rem 0;
+				font-size: 2.24rem;
+			}
+			
+			#couponbox {
+				padding: 2.14rem 2.24rem 0;
+			}
+			
+			.show #couponbox li {
+				display: block;
+			}
+			
+			#couponbox li {
+				display: none;
+				margin-bottom: 2.14rem;
+				border-radius: 1rem;
+				font-size: 1.71rem;
+				color: #fff;
+				background-color: #f2f2f2;
+			}
+			
+			#couponbox li.selected {
+				box-shadow: 0 0 0 1px #f00;
+			}
+			
+			#couponbox .top {
+				border-top-left-radius: 1rem;
+				border-top-right-radius: 1rem;
+				padding: 1rem 2.24rem;
+				background: #f59b10;
+			}
+			
+			#couponbox .moneyType {
+				margin-left: 2.24rem;
+				font-size: 2.42rem;
+			}
+			
+			#couponbox .moneyNumber {
+				float: right;
+				margin-top: .8rem;
+				font-size: 4.5rem;
+			}
+			
+			#couponbox .moneyNumber i {
+				font-size: 3.14rem;
+				font-style: normal;
+				vertical-align: text-top;
+			}
+			
+			#couponbox .bottom {
+				padding: 1rem 2.24rem 0.7rem;
+				color: #636363;
+			}
+			
+			#couponbox img {
+				width: 6.42rem;
+				height: 6.42rem;
+				vertical-align: middle;
+			}
+			
+			#couponbox .icon {
+				display: inline-block;
+				width: 2.28rem;
+				height: 2.28rem;
+				vertical-align: middle;
+				background: url(../images/public/timeIcon.png) no-repeat center;
+				background-size: cover;
+			}
+			
+			#couponbox .time {
+				margin-left: 1rem;
+			}
+			
+			#couponbox .useStatus {
+				float: right;
+			}
+			
+			#openCoupon {
+				position: absolute;
+				top: 3rem;
+				right: 2.24rem;
+				width: 2.428rem;
+				height: 1.3rem;
+				background: url(../images/public/openIcon.png) no-repeat center;
+				background-size: cover;
+				/*-webkit-transition:all .3s;
+            transition:all .3s;*/
+			}
+			
+			.show #openCoupon {
+				-webkit-transform: rotate(180deg);
+				transform: rotate(180deg);
+			}
+			
+			#payBox {
+				display: none;
+				width: 100%;
+				height: 100vh;
+				border: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header id="header" class="blue">
+				<!--<span onclick="goBack()">返回</span>-->
+				<p>付款方式</p>
+				<span id="deleteOrder">取消</span>
+			</header>
+			<!--<p class="tips" id="tips">23:59</p>-->
+			<ul id="orderBox"></ul>
+
+			<div class="couponWrap" style="display: none;">
+				<h3 class="couponTitle">我的优惠券 <span id="openCoupon"></span></h3>
+				<ul id="couponbox">
+					<!-- <li style="background-color:#fff; font-size:2.14rem; text-align:center; color:#282828">
+              <p class="notCouponTips">暂无优惠券</p>
+            </li> -->
+					<li data-id="10" data-price="16">
+						<div class="top">
+							<img src="../images/public/couponIcon.png" />
+							<span class="moneyType">优惠金</span>
+							<span class="moneyNumber">￥16</span>
+						</div>
+						<div class="bottom">
+							<span class="icon"></span>
+							<span class="time">2017.05.12-2017.09.22</span>
+							<span class="useStatus">未使用</span>
+						</div>
+					</li>
+					<li data-id="12" data-price="20">
+						<div class="top">
+							<img src="../images/public/couponIcon.png" />
+							<span class="moneyType">优惠金</span>
+							<span class="moneyNumber">￥20</span>
+						</div>
+						<div class="bottom">
+							<span class="icon"></span>
+							<span class="time">2017.05.12-2017.09.22</span>
+							<span class="useStatus">未使用</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div id="payType">
+				<div class="alipay">
+					<!--<label>
+          <input value="0" type="radio" name="payType" checked="checked"/>
+          <i></i>
+        </label>
+					<span><img src="../images/public/aliPay.jpg" /></span>
+				</div>
+				<div class="weixinpay">
+					<label>
+          <input value="1" type="radio" name="payType"/>
+          <i></i>
+        </label>
+					<span><img src="../images/public/weixinPay.jpg" /></span>-->
+				</div>
+			</div>
+
+			<a id="submitPay">确认支付: ￥<span id="totalPrice"></span></a>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script>
+			$(function() {
+
+				var orderId = $.getUrlParam("orderId");
+				var goodsId = $.getUrlParam("goodsId");
+				var type = $.getUrlParam("type");
+
+				//var orderTime = $(this).getUrlParam("orderTime");
+				var selectedCouponId = "", //选中的优惠券ID
+					selectedCouponPrice = 0, //选中优惠的金额
+					oldTotalPrice = 0; //没有添加优惠券之前
+
+				$('#deleteOrder').click(function() {
+					deleteOrder(orderId);
+				});
+
+				$("#submitPay").on("click", function() {
+					//var paytypess = $('input[name="payType"]:checked').val();
+					//imPayment(paytypess, orderId, goodsId);
+					submitOrder($("#jmoney").html(),orderId,goodsId);
+				})
+				orderListDetail(orderId, type);
+
+				function deleteOrder(id) {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Order.ashx?action=deleteOrder',
+						dataType: "json",
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"orderId": orderId,
+							"orderType": '' //0-未完成，1-已完成
+						},
+						success: function(result) {
+							layer.open({
+								content: '订单取消成功!',
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});
+							setTimeout(function() {
+								goBack();
+							}, 2000);
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//server del
+				function delOrderServer(orderId) {
+					//server del
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Order.ashx?action=deleteOrder',
+						dataType: "text",
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"orderId": orderId,
+							"orderType": orderType
+						},
+						success: function() {
+							checkArr = [];
+							delStatus(0); //del status
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					});
+				}
+
+				selectedCoupon();
+				//select coupon
+				function selectedCoupon() {
+					$('#couponbox li').click(function() {
+						if($(this).hasClass("selected")) {
+							$(this).toggleClass('selected');
+						} else {
+							$(this).siblings(".selected").removeClass('selected');
+							$(this).toggleClass('selected');
+						}
+						refreshCouponInf();
+					});
+
+				}
+
+				//refresh CouponInf
+				function refreshCouponInf() {
+					var selectedObj = $(".selected");
+					if("null" == selectedObj || null == selectedObj) {
+						selectedCouponId = "";
+						selectedCouponPrice = 0;
+					} else {
+						selectedCouponId = selectedObj.attr('data-id');
+						selectedCouponPrice = selectedObj.attr('data-price');
+					}
+					$("#totalPrice").html(oldTotalPrice - selectedCouponPrice);
+				}
+
+				toggleCoupon();
+				//toggle coupon
+				function toggleCoupon() {
+					$('#openCoupon').click(function() {
+						$(this.parentNode).toggleClass('show');
+						$('.couponTitle').siblings().children('li').css('display', 'none');
+						$('.show').siblings().children('li').css('display', 'block');
+					})
+
+				}
+
+				//get orderDetail list
+				function orderListDetail(orderId, bayType) {
+					var orderBox = $('#orderBox'),
+						$htmlStr = '';
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'OrderDetail.ashx?action=getOrderListByOrderId',
+						dataType: "json",
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"orderId": orderId,
+							"orderTypeId": 1,
+							"bayType": bayType //0是购买单条--1专辑的包月
+						},
+						success: function(result) {
+							var obj = result[0];
+
+							if(obj) {
+								oldTotalPrice = obj.preferentialTotalPrice;
+								$("#totalPrice").html(oldTotalPrice);
+								obj.list.forEach(function(value, index) {
+									$htmlStr = "<li><img src='" + SERVEROOTFILE + value.mobileIconPath + "' /><p class='title'>" + value.newsName + "</p><p class='brief'>" + value.note + "</p><span class='price'>￥<span id='jmoney'>" + value.preferentialPrice + "</span></span></li>";
+								});
+								orderBox.html($htmlStr);
+							}
+							//orderTimeDeal();
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					});
+				}
+				
+				function submitOrder(money,orderId,goodsId) {//提交订单
+					
+					$.ajax({
+						type: "post",
+						url: SERVEROOTDATA + "Pay.ashx?action=directPay",
+						dataType: 'text',
+						data: {
+								"memberId": localStorage.getItem('$ycuid'),
+								"amount": money,
+								"discount": 0,
+								"orderId": orderId,
+								"payTypeId": payType,//0: 支付宝， 1：微信 2：播米币； 3:"web 支付宝"
+								"couponReceiveId": 0,
+								"orderTypeId": 1
+						},
+						success: function(res) {
+							if(res == 814 || res == "814") {
+								payError();
+								return false;
+							}
+							
+							if(payType == 0) {
+								openAliPayRUTE(money, orderId, localStorage.getItem("$ycuid"), 0, 0, 1, 0);
+								//openAliPayRUTE(oldTotalPrice,orderId,localStorage.getItem("$ycuid"),17);
+							} else if(payType == 1) { //微信支付
+								var ss = money+'_'+orderId;
+								window.location.href='https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7de03be2cd376b04&redirect_uri=http://m.bomizx.net/html/weixinstrageturnpay.html&response_type=code&scope=snsapi_userinfo&state='+ss+'#wechat_redirect';
+							}
+
+						},
+						error: function() {
+							payError();
+						}
+					});
+					
+					
+				}
+				
+				
+
+				//order time deal
+				function orderTimeDeal(orderTime) {
+					var orderTimeTemp = orderTime.replace(/-/g, "/");
+					var currentTime = Date.parse(new Date()),
+						orderTime = Date.parse(new Date(orderTimeTemp));
+					var diffTime = currentTime - orderTime,
+						oneDayStamp = 24 * 60 * 60 * 1000,
+						oneDayDiff = "",
+						tempTimeMinute = "",
+						tempTimeHour = "",
+						tips = $('#tips');
+					oneDayDiff = oneDayStamp - diffTime;
+					if(oneDayDiff < 0) {
+						tips.html('订单已过期,请重新下单！');
+						clearInterval(refreshTime);
+					} else {
+						tempTimeMinute = Math.floor((oneDayDiff / 1000 / 60) % 60); // minute
+						tempTimeHour = Math.floor((oneDayDiff / 1000 / 60 / 60)); // hour
+						tips.html(tempTimeHour + ':' + tempTimeMinute);
+					}
+				}
+				
+				payStyleShow();
+				function payStyleShow() {
+					if(isWeiXin()) { //如果是微信浏览器,微信支付为1，支付宝为0
+						payType = 1;
+						$('#payType').html("<div class='weixinpay'><label><input value='1' type='radio' name='payType' checked='checked'/><i></i></label><span><img src='../images/public/weixinPay.jpg' /></span></div>");
+						/*$('#payType .alipay').css('display', 'none');
+						$('#payType .weixinpay').css('display', 'block');*/
+					} else {
+						payType = 0;
+						$('#payType').html("<div class='alipay'><label><input value='0' type='radio' name='payType' checked='checked'/><i></i></label><span><img src='../images/public/aliPay.jpg' /></span></div>");
+						/*$('#payType .alipay').css('display', 'block');
+						$('#payType .weixinpay').css('display', 'none');*/
+					}
+				}
+
+				function payError() {
+					layer.open({
+						content: "支付失败！",
+						skin: 'msg',
+						time: 2 //2秒后自动关闭
+					})
+					setTimeout(function() {
+						window.location.reload();
+					}, 1500)
+				}
+
+				
+
+				function openAliPayRUTE(price, orderId, mId, dc, couId, otId, ptId) {
+					//页面层
+					layer.open({
+						type: 1,
+						content: '<iframe id="payBox" src="' + SERVEROOTDATA + 'Pay.ashx?action=directPay&amount=' + price + '&orderId=' + orderId + '&memberId=' + mId + '&discount=' + dc + '&couponReceiveId=' + couId + '&orderTypeId=' + otId + '&payTypeId=3"></iframe>',
+						anim: 'up',
+						style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100%; border:none;'
+					});
+
+					setTimeout(function() {
+						$("#payBox").css("display", "block");
+					}, 2000)
+				}
+				
+				function isWeiXin() {//判断是否是微信登录
+					var ua = window.navigator.userAgent.toLowerCase();
+					if(ua.match(/MicroMessenger/i) == 'micromessenger') {
+						return true;
+					} else {
+						return false;
+					}
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

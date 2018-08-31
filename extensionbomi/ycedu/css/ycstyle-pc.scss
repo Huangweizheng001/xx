@@ -1,0 +1,105 @@
+/*
+ * 导航Public
+ */
+
+header {
+    background: #0A2848;
+}
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #fdd;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #fdd;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #fdd;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #fdd;
+}
+
+$containerWidth: 1200px;
+$navHeight:60px;
+$navLineHeigt: 60px;
+$navHoverColor: yellow;
+.dycnav-wrap {
+    width: 1200px;
+    height: $navHeight;
+    line-height: $navLineHeigt;
+    color: #fff;
+    .dyclogo {
+        float: left;
+        width: 160px;
+    }
+    .ycimage {
+        display: block;
+        padding: 0 20px;
+    }
+    .dycnav-box {
+        width: 800px;
+        float: left;
+        .swiper-wrapper {
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+        .swiper-slide {
+            width: auto;
+            a {
+                display: inline-block;
+                padding: 0 15px;
+                color: #fff;
+                &:hover {
+                    color: $navHoverColor;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    .dycnav-func-box {
+        width: $containerWidth - 160 - 800;
+        height: $navHeight;
+        overflow: hidden;
+        text-align: right;
+        a {
+            display: inline-block;
+            color: #fff;
+            vertical-align: top;
+        }
+        #dycsearch {
+            width: 0px;
+            border: none;
+            text-indent: 2px;
+            padding: 3px 0;
+            border-bottom: 1px solid #fff;
+            color: #fff;
+            background: rgba(0, 0, 0, 0);
+            transition: width .3s;
+            &.active {
+                width: 175px;
+                
+            }
+        }
+        .dycsearch-btn {
+            width: 60px;
+            height: $navHeight;
+            line-height: $navLineHeigt;
+            font-size: 1.8rem;
+            font-weight: normal;
+            text-align: center;
+            //          background: url(../images/publicIcon.png) no-repeat;
+            //          background-position: 6px 3px;
+            //          background-size: 630px 630px;
+            &:hover {
+                color: $navHoverColor;
+            }
+        }
+    }
+}

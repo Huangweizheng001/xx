@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--学生中心</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body>
+
+		<section class="homeWorkWrap" id="jhomeWorkApp">
+			<div class="container full">
+				<div class="homeWorkInner">
+					<div class="homeWorkLi clearfix" v-for="item in consultList" v-cloak> 
+						<a href="javascript:;" class="deleteBtn"></a>
+						<div class="homeWorkParent clearfix" title="展开查看回复" @click="toggleReply(item)">
+							<div class="img">
+								<img :src="item.iconPath2 | addRootFile" />
+							</div>
+							<div class="left"> 
+								<p>{{item.studentName}}</p>
+								<div class="content">{{item.content}}</div>
+								<span>{{item.insertTime}}</span>
+							</div>
+						</div>
+						<div class="homeWorkSub" v-if="item.openFlag">
+							<div class="homeWorkSubInner">
+								<div class="homeWorkSubLi clearfix" v-for="subItem in item.suggestion">
+									<div class="img">
+										<img :src="subItem.headIconPath | addRootFile" />
+									</div>
+									<div class="left">
+										<p>{{subItem.responseName}}<span>回复</span></p>
+										<div class="content">{{subItem.content}}</div>
+										<span class="replyTime">{{subItem.insertTime}}</span>
+									</div> 
+								</div>
+						
+								<div class="homeWorkTeatarea clearfix">
+									<div class="img">
+										<img :src="userIconPath | addRootFile" />
+									</div>
+									<div class="left">
+										<textarea name="" rows="" cols="" v-model="item.replyContent" placeholder="回复学校"></textarea>
+									</div>
+									<a class="replyBtn" href="javascript:;" @click="replySub(item)">回复</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="fenodata" v-if="consultList.length == 0"></div>
+				</div>
+			</div>
+		</section>
+
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

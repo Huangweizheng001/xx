@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>论坛中心-已加入的群组</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <community-header-template></community-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <community-left-template></community-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right" style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>我的群组 <i class="uk-icon-angle-right"></i></span>
+                <span>已创建</span>
+                <span><i class="uk-icon-angle-right"></i>基本信息</span>
+                <span></span>
+            </div>
+            <!--我的群组详情-->
+            <div class="femygroupdetail">
+                <ul>
+                    <span>群组管理:</span>
+                    <li class="active" data-id="1">基本信息</li>
+                    <li data-id="2">成员管理</li>
+                    <li data-id="3">通知管理</li>
+                    <!--<li><span data-id="4">我的成员</span></li>-->
+                </ul>
+                <div class="fecontent">
+                    <!--基本信息-->
+                    <div class="communitybassic">
+                        <form action="" id="communitybassic">
+                            <div class="feleft">
+                                <div class="fepanel">
+                                    <span>名称&nbsp;:</span>
+                                    <input type="text" disabled name="groupName" id="groupName">
+                                </div>
+                                <div class="fepanel">
+                                    <span>分类&nbsp;:</span>
+                                    <!--<s ></s>-->
+                                    <select  class="" name="groupTypeId" id="groupTypeId" disabled>
+                                    </select>
+                                </div>
+                                <div class="fepanel">
+                                    <span style="float: left">简介&nbsp;:</span>
+                                    <textarea name="introduction" id="introduction" disabled ></textarea>
+                                </div>
+                             </div>
+                            <div class="feright">
+                                <p><span id="edit"><i class="uk-icon-edit"></i>编辑</span></p>
+                                <img src="" alt="" >
+                                <div class="feoperation fehidden">
+                                    <span><input type="file" id="groupimg"  name="groupimg">选择图片</span>
+                                    <!--<span>上传图片</span>-->
+                                </div>
+                            </div>
+                        </form>
+                        <p class="fehidden" id="btn"><button>保存</button><button>取消</button></p>
+                    </div>
+                    <!--成员管理-->
+                    <div class="menbermanage" id="menbermanage" style="display: none">
+                        <div class="feselect">
+                            <span>时间:</span>
+                            <input type="text" id="jointime">
+                            <input type="text" placeholder="请输入关键字" id="keyword">
+                        </div>
+                        <div class="fecommunitytable">
+                            <div class="fetitle">
+                                <div class="span2">头像</div>
+                                <div class="span2">成员昵称</div>
+                                <div class="span2">入组时间</div>
+                                <div class="span2">发帖数</div>
+                                <div class="span2">回帖数</div>
+                                <div class="span2">操作</div>
+                            </div>
+                            <div class="felist-big" v-cloak v-for="(item,index) in menber" v-bind:data-id="item.userId">
+                                <div class="span2"><img v-bind:src="item.avatar|addFetvFile" alt=""></div>
+                                <div class="span2">{{item.username}}</div>
+                                <div class="span2">{{item.insertTime}}</div>
+                                <div class="span2">{{item.topicNum|zero}}</div>
+                                <div class="span2">{{item.topicReplyNum|zero}}</div>
+                                <div class="span2">
+                                    <a class="orange" @click="setManage(item.uid)" v-if="item.isManager=='0'">设为管理员</a>
+                                    <b class="orange" v-else>管理员</b>
+                                    <span>|</span>
+                                    <a @click="deleteU(item.uid)">移除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--通知管理-->
+                    <div class="noticemanage" id="noticemanage" style="display: none">
+                        <div class="feselect">
+                            <button><i class="uk-icon-plus-circle"></i> 发布通知</button>
+                        </div>
+                        <div class="fecommunitytable">
+                            <div class="fetitle">
+                                <div class="span4">通知标题</div>
+                                <!--<div class="span4">通知内容</div>-->
+                                <div class="span4">发布时间</div>
+                                <div class="span4">操作</div>
+                            </div>
+                            <div class="felist" v-cloak v-for="(item,index) in notice">
+                                <div class="span4"><a class="textoverflow">{{item.title}}</a></div>
+                                <!--<div class="span4"><div class="textoverflow" v-html="item.message"></div></div>-->
+                                <div class="span4">{{item.starttime}}</div>
+                                <div class="span4">
+                                    <a class="orange" @click="bindEdit(item.id)">编辑</a>
+                                    <span>|</span>
+                                    <a @click="bindDelete(item.id)">删除</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/fecommunitycenter.js"></script>
+<script>
+    $(function () {
+        mygroupdetail($(this).getUrlParam("groupId"),$(this).getUrlParam("groupTypeId"),$(this).getUrlParam("type"));
+    })
+</script>
+</body>
+
+</html>

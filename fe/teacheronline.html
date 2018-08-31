@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>名师工作室-福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section id="feteacherstyle">
+			<div class="feteahcertopbg">
+				<!--<img src="images/temp/teacher-bg.png" alt="">-->
+			</div>
+			<!--头部select选择栏-->
+			<div class="container">
+				<div class="feselectnav" >
+					<div class="fepanel">
+						<label>地区:</label>
+						<div class="febox">
+							<div>
+								全部
+							</div>
+							<ul>
+								<li data-id="">全部</li>
+								<li v-cloak v-for="item in selectNav.city" v-bind:data-id="item.cityId">{{item.cityName}}</li>
+							</ul>
+							<input type="text" value="" style="display: none">
+						</div>
+					</div>
+					<div class="fepanel">
+						<label>学段:</label>
+						<div class="febox">
+							<div>
+								全部
+							</div>
+							<ul>
+								<li data-id="">全部</li>
+								<li v-cloak v-for="item in selectNav.period" v-bind:data-id="item.educationalLevelId">{{item.educationalLevelName}}</li>
+							</ul>
+							<input type="text" value="" style="display: none">
+						</div>
+					</div>
+					<div class="fepanel">
+						<label>学科:</label>
+						<div class="febox">
+							<div>
+								全部
+							</div>
+							<ul>
+								<li data-id="">全部</li>
+								<li v-cloak v-for="item in selectNav.subject" v-bind:data-id="item.subjectId">{{item.subjectName}}</li>
+							</ul>
+							<input type="text" value="" style="display: none">
+						</div>
+					</div>
+					<div class="fepanel">
+						<label>等级:</label>
+						<div class="febox">
+							<div>
+								全部
+							</div>
+							<ul>
+								<li data-id="">全部</li>
+								<li v-cloak v-for="item in rank" v-bind:data-id="item.teacherGradeId">{{item.teacherGradeName}}</li>
+							</ul>
+							<input type="text" value="" style="display: none">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--内容模块-->
+			<div class="feteacher clearfix">
+				<div class="container ">
+					<!--左侧-->
+					<div class="span9 feteacherlist">
+						<div class="fenodata-nobg" v-show="nodata"></div>
+						<div class="span4" v-cloak v-for="item in teacherListArr">
+							<div class="fepanel clearfix">
+								<h3>{{item.title}}</h3>
+								<div class="feimage span5">
+									<img v-bind:src="item.iconPath|addRootFile" alt="">
+								</div>
+								<div class="febox span7">
+									<h4>名师 :<span>{{item.creator}}</span></h4>
+									<h5>成员 :<span>{{item.memberCount}}</span></h5>
+									<h5>资源数 :<span>{{item.resourceCount}}</span></h5>
+								</div>
+								<a v-bind:href="item.teachingStudioId|addRoot" target="_blank"><b >进入工作室</b></a>
+							</div>
+						</div>
+					</div>
+					<!--右侧-->
+					<div class="span3">
+						<!--工作室动态-->
+						<div class="festudio">
+							<h2>工作室动态</h2>
+							<ul>
+								<li v-cloak v-for="item in studioArr">
+									<b>{{item.operateTime|showTime}}</b>
+									<div>
+										<div class="feimage">
+											<img v-bind:src="item.iconPath|addRootFile" alt="">
+										</div>
+										<div class="febox">
+											<h3><a v-bind:href="item.operatorId|addTeacherRoot" target="_blank">{{item.operatorName}}</a></h3>
+											<h4>
+												<span>{{item.operateTypeName}}了:</span>
+												<a v-bind:href="item.studioResourceId|addArticleRoot" v-bind:class="item.resourceType=='courseware'? 'fehidden':''" target="_blank">{{item.title}}</a>
+												<a target="_blank" v-bind:class="item.resourceType=='courseware'? '':'fehidden'" @click="addDownloadRecord(item.studioResourceId,item.resourcePath)" v-bind:title="item.title">{{item.title}}</a>
+											</h4>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="span3">
+						<!--资源排行榜-->
+						<div class="feresourceranking">
+							<h2>资源排行榜</h2>
+							<div class="feresourceranking-title">
+								<span>排名</span>
+								<span>工作室</span>
+								<span>资源数</span>
+							</div>
+							<ul>
+								<li v-cloak v-for="(item,index) in resourceRankingArr">
+									<div class="feranking">
+										{{index+1}}
+									</div>
+									<div class="febox">
+										<span v-bind:style="{background:'url('+item.iconPath+')no-repeat center/cover'}">
+											<b v-bind:style="{backgroundPosition:crown[index]+'px -78px'}" v-if="index<3"></b>
+										</span>
+										<a v-bind:href="item.teachingStudioId|addRoot" target="_blank">{{item.name}}</a>
+									</div>
+									<h6>{{item.resourceCount}}</h6>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--枫叶-->
+					<div class="span12">
+						<ul class="pagenationbox clearfix">
+							<li v-show="current != 1" @click="current-- && goto(current--)">
+								<a href="#this">上一页</a>
+							</li>
+							<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+								<a href="#this">{{index}}</a>
+							</li>
+							<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+								<a href="#this">下一页</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+	</body>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.storage.js"></script>
+	<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+	<script type="text/javascript" src="./js/vue.min.js"></script>
+	<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+	<script type="text/javascript" src="./js/fetv.js"></script>
+	<script type="text/javascript" src="./js/fetvAppend.js"></script>
+	<script>
+		$(function () {
+			teacherstyle();
+		})
+	</script>
+</html>

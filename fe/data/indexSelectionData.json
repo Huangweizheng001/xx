@@ -1,0 +1,32 @@
+[
+	[
+		{
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿",
+			"img": "temp/indexcourse.jpg"
+		}, {
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿2",
+			"img": "temp/indexcourse.jpg"
+		}, {
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿3",
+			"img": "temp/indexcourse.jpg"
+		}, {
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿4",
+			"img": "temp/indexcourse.jpg"
+		}
+	],
+	[
+		{
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿5",
+			"img": "temp/wei-course.jpg"
+		}, {
+			"courseId": "1",
+			"title": "空中俯瞰美丽新世遗——鼓浪屿6",
+			"img": "temp/wei-course.jpg"
+		}
+	]
+]

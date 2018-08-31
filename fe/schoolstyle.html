@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>校园风采—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+		
+
+	</head>
+
+	<body>
+		<header id="schoolheader">
+			<header-template></header-template>
+		</header>
+
+		<!--<header id="header">
+			<img src="images/temp/school-style-head.png" />
+		</header>-->
+		<section>
+			<div class="fe-style-banner" id="jschoolStyleBanner">
+				<div class="swiper-container fe-schoolstyle-banner-swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="item in bannerArr">
+							<a v-cloak v-bind:href="item.liveId" :style="{backgroundImage: 'url(' + item.img + ')'}" target="_blank">
+								<div class="fe-cover">
+									<h3>{{item.title}}</h3>
+									<p>{{item.introduce}}</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="fe-schoolstyle" id="jschoolStyleCon">
+				<div class="fe-schoolstyle-slight">
+					<div class="container">
+						<div class="fe-schoolstyle-slight-title">
+							<img src="images/static/school-style-weiguan.png" />
+						</div>
+						<div class="fe-schoolstyle-slight-wrap">
+							<div class="fe-schoolstyle-slight-swiper swiper-container " v-show='!slightArrNodata'>
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" v-cloak  v-for="item in slightArr">
+										<a href="#this">
+											<div class="fe-cover">
+												<h3>{{item.title}}</h3>
+												<div>{{item.introduce}}</div>
+											</div>
+											<img v-bind:src="item.iconPath | addRootFile" alt="">
+										</a>
+									</div>
+								</div>
+							</div>
+							<div id="swiper-button-prev" v-show='!slightArrNodata'><i class="uk-icon-angle-left"></i></div>
+							<div id="swiper-button-next" v-show='!slightArrNodata'><i class="uk-icon-angle-right"></i></div>
+							<div class="fenodata" v-show='slightArrNodata' style="background-color:#F4F4F4 ;"></div>
+
+							<p class="fe-schoolstyle-brief">校/园/微/光/拾/遗</p>
+						</div>
+					</div>
+				</div>
+				<div class="fe-schoolstyle-hot container">
+					<div class="fe-schoolstyle-hot-title">
+						<img src="images/static/school-style-retu.png" />
+					</div>
+					<div class="fe-schoolstyle-hot-wrap clearfix">
+						<div class="span2">
+							<div class="fe-schoolstyle-hot-change">
+								<img src="images/static/school-style-hot.jpg" />
+								<a id="jHotChange" href="#this" @click='changeList(0)'><i class="uk-icon-refresh"></i>换一批</a>
+							</div>
+						</div>
+						<div class="span10">
+							<div class="span6">
+								<transition-group tag="div"  href="#this"   enter-active-class="animated fadeIn duration"  v-if='!hotLeftArrNodata'>
+								<a v-cloak class="fe-schoolstyle-center-img" v-for="item in hotLeftArr" :key="item" style="" >
+												
+										<img v-bind:src="item.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief">
+											<h3 >{{item.title}}</h3>
+											<div>{{item.introduce}}</div>
+										</div>
+										
+									</a>
+									
+								</transition-group>
+								<template v-else>
+									<a class="fe-schoolstyle-center-img" href="#this"  >
+										<div class="fenodata" style="height:180px"></div>
+									</a>
+									<a class="fe-schoolstyle-center-img" href="#this" >
+										<div class="fenodata" style="height:180px"></div>
+									</a>
+									<a class="fe-schoolstyle-center-img" href="#this" >
+										<div class="fenodata" style="height:180px"></div>
+									</a>
+									<a class="fe-schoolstyle-center-img" href="#this" >
+										<div class="fenodata" style="height:180px"></div>
+									</a>
+									</template>
+									
+							</div>
+							<div class="span6">
+								<!--<a class="fe-schoolstyle-hot-img " href="#this" v-show='!hotRightArrNodata'>
+									<img v-bind:src="hotRightArr.iconPath | addRootFile" />
+									<div class="fe-schoolstyle-wrap-brief fe-schoolstyle-wrap-brief-big">
+										<h3>{{hotRightArr.title}}</h3>
+										<div>{{hotRightArr.introduce}}</div>
+									</div>
+								</a>-->
+								<transition-group tag="div"  href="#this" v-if='!hotRightArrNodata'  enter-active-class="animated fadeIn duration">
+											
+											<a v-cloak class="fe-schoolstyle-hot-img" v-for="item in hotRightArr" :key="item" style="margin: 20px 0;">
+												
+										<img v-bind:src="item.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief" style="width: 100%;">
+										<h3 >{{item.title}}</h3>
+										<div>{{item.introduce}}</div>
+										</div>
+									</a>
+									</transition-group>
+								<a class="fe-schoolstyle-hot-img" href="#this"  v-else>
+										<div class="fenodata" style="height:380px"></div>
+									</a>
+							</div>
+						</div>
+					</div>
+					<p class="fe-schoolstyle-brief">校/园/微/光/拾/遗</p>
+				</div>
+				<div class="fe-schoolstyle-youth">
+					<div class="container">
+						<div class="fe-schoolstyle-youth-title">
+							<img src="images/static/school-style-qingchun.png" />
+						</div>
+						<div class="fe-schoolstyle-youth-wrap clearfix">
+							<div class="span5">
+								<!--<a class="fe-schoolstyle-youthleft-img" href="#this" v-show='!youthRightTwoNodata'>
+									<img v-bind:src="youthLeftArr.iconPath | addRootFile" />
+									<div class="fe-schoolstyle-wrap-brief fe-schoolstyle-wrap-brief-big">
+										<h3>{{youthLeftArr.title}}</h3>
+										<div>{{youthLeftArr.introduce}}</div>
+									</div>
+								</a>-->
+								<transition-group tag="div"  href="#this" v-if='!youthLeftArrNodata'  enter-active-class="animated fadeIn duration">
+											
+											<a v-cloak class="fe-schoolstyle-youthleft-img" v-for="item in youthLeftArr" :key="item" style="">
+												
+										<img v-bind:src="item.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief fe-schoolstyle-wrap-brief-big">
+										<h3 >{{item.title}}</h3>
+										<div>{{item.introduce}}</div>
+										</div>
+									</a>
+									</transition-group>
+								<a class="fe-schoolstyle-youthleft-img" href="#this"  v-show='youthLeftArrNodata'>
+										<div class="fenodata" style="height:372px;background-color: #F4F4F4;"></div>
+									</a>
+							</div>
+							<div class="span7 fe-schoolstyle-youthright">
+								<transition-group tag="div"  href="#this" v-if='!youthRightArrNodata'  enter-active-class="animated fadeIn duration">
+									<div class="span6" v-for="item in youthRightArr" :key="item" style="">
+											
+											<a v-cloak class="fe-schoolstyle-youth-img" >
+												
+										<img v-bind:src="item.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief ">
+										<h3 >{{item.title}}</h3>
+										<div>{{item.introduce}}</div>
+										</div>
+									</a>
+									</div>
+									</transition-group>
+									<template v-else>
+										<div class="span6">
+											<a class="fe-schoolstyle-youth-img" href="#this"  >
+												<div class="fenodata" style="height:200px;background-color: #F4F4F4;"></div>
+											</a>
+										</div>
+										<div class="span6">
+											<a class="fe-schoolstyle-youth-img" href="#this"  >
+												<div class="fenodata" style="height:200px;background-color: #F4F4F4;"></div>
+											</a>
+										</div>
+									</template>
+									
+									
+									
+								<!--<div class="span6">
+									<a class="fe-schoolstyle-youth-img" href="#this"  v-show='!youthRightOneNodata'>
+										<img v-bind:src="youthRightOne.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief">
+											<h3>{{youthRightOne.title}}</h3>
+											<div>{{youthRightOne.introduce}}</div>
+										</div>
+									</a>
+									<a class="fe-schoolstyle-youth-img" href="#this"  v-show='youthRightOneNodata'>
+										<div class="fenodata" style="height:200px;background-color: #F4F4F4;"></div>
+									</a>
+								</div>
+								<div class="span6">
+									<a class="fe-schoolstyle-youth-img" href="#this" v-show='!youthRightTwoNodata'>
+										<img v-bind:src="youthRightTwo.iconPath | addRootFile" />
+										<div class="fe-schoolstyle-wrap-brief">
+											<h3>{{youthRightTwo.title}}</h3>
+											<div>{{youthRightTwo.introduce}}</div>
+										</div>
+									</a>
+									<a class="fe-schoolstyle-youth-img" href="#this"  v-show='youthRightTwoNodata'>
+										<div class="fenodata" style="height:200px;background-color: #F4F4F4;"></div>
+									</a>
+							</div>-->
+								<div class="span12">
+									<div class="fe-schoolstyle-youth-change">
+										<img src="images/static/school-style-young.jpg" style="height: 150px;" />
+										<a id="jYouthChange" href="#this" @click='changeList(1)'><i class="uk-icon-refresh"></i>换一批</a>
+									</div>
+							</div>
+							</div>
+						</div>
+						<p class="fe-schoolstyle-brief">青/春/掠/影</p>
+					</div>
+				</div>
+				<div class="fe-schoolstyle-teacher container">
+					<div class="fe-schoolstyle-teacher-title">
+						<img src="images/static/school-style-mingshi.png" />
+					</div>
+					<div class="fe-schoolstyle-teacher-wrap">
+						<div class="fe-schoolstyle-teacher-swiper swiper-container" v-show='!teacherArrNodata'>
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-cloak v-for="item in teacherArr">
+									<a v-bind:href="item.liveId" target="_blank">
+										<div class="fe-cover">
+											<h3>{{item.teacherName}}</h3>
+											<div v-html="item.note"></div>
+										</div>
+										<img v-bind:src="item.iconPath | addRootFile" alt="">
+									</a>
+									<a class="fe-schoolstyle-teacher-grade" v-bind:href="item.liveId" target="_blank"><h3>高级讲师：{{item.teacherName}}</h3>
+									<p>{{item.gradeName}}</p></a>
+								</div>
+							</div>
+						</div>
+						<div id="teacherswiper-button-prev" v-show='!teacherArrNodata'><i class="uk-icon-angle-left"></i></div>
+						<div id="teacherswiper-button-next" v-show='!teacherArrNodata'><i class="uk-icon-angle-right"></i></div>
+						<div class="fenodata" v-show='teacherArrNodata'></div>
+					</div>
+					<p class="fe-schoolstyle-brief">校/园/名/师</p>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			$(function() {
+				var organId=$(this).getUrlParam("organId");
+				schoolStyleBanner(organId);//获取banner
+				schoolStyleCon(organId);//获取除banner外内容
+				
+			})
+		</script>
+
+	</body>
+
+</html>

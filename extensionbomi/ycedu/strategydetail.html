@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线教育-播米在线策略解读</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+	</head>
+	<style>
+		body>a{
+			display: none;
+		}
+	</style>
+
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--strategydetail Banner-->
+		<section>
+			<div class="dycstrategydetail-banner" id="jsgydetailbanner">
+				<!--<h1>播米在线外汇专栏</h1>
+				<h2>-老肖外汇录-</h2>
+				<p>阅读也能增加财富</p>-->
+			</div>
+		</section>
+
+		<!--strategy 外汇每日精选-->
+		<section>
+			<div class="strategydetail-day container">
+				<div class="strategydetail-day-wrap clearfix">
+					<div class="strategydetail-day-img" id="jstrategydetaildayimg">
+						<img src="images/strategy-second-bg.jpg" />
+					</div>
+					<div class="strategydetail-day-con" id="jstrategydetailday">
+						<h3></h3>
+						<p class="strategydetail-day-brief">
+							股市行情，一点就听
+						</p>
+						<div class="dycstrategy-day-box" id="jpayselect"></div>
+						<div class="strategydetail-day-btn">
+							<a href='#this' id="jpaystrategy">立即购买</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--strategydetail 简介-->
+		<section>
+			<div class="dycstrategydetail-brief dycstrategydetail-bg container">
+				<h2>简介</h2>
+				<p id="jstrategydetailbrief"></p>
+			</div>
+		</section>
+
+		<!--strategydetail 作者-->
+		<section>
+			<div class="dycstrategydetail-author dycstrategydetail-bg container" id="jstrategyauthor">
+				<h2>作者</h2>
+				<p class="dycstrategydetail-author-name"></p>
+				<p class="dycstrategydetail-author-brief"></p>
+				<!--<p class="dycstrategydetail-author-style"><span>操作风格</span>阿介绍给大家说的干哈就</p>
+				<p class="dycstrategydetail-author-style"><span>交易理念</span>阿介绍给大家说的干哈就</p>-->
+			</div>
+		</section>
+
+		<!--strategydetail 全部文章-->
+		<section>
+			<div class="dycstrategydetail-news dycstrategydetail-bg container" id="jdycstrategydetaillist">
+				<h2>全部文章</h2>
+				<div >
+					<li class="dycstrategydetail-news-list" v-cloak v-for="item in newStrageArr">
+						<div class="dycstrategydetail-news-img span4">
+							<img  v-bind:src="item.iconPath | addRoute" />
+						</div>
+						<div class="dycstrategydetail-news-con span8">
+							<h3>{{item.title}}</h3>
+							<p>{{item.introduce}}</p>
+						</div>
+						<a class="dycstrategydetail-news-btn" v-bind:href="item.newsId" target="_blank">了解详情</a>
+					</li>
+				</div>
+				<!--<ul class="pagenationbox clearfix" id="jstrategydetailpage"></ul>-->
+				<ul class="pagenationbox clearfix">
+					<li v-show="current != 1" @click="current-- && goto(current--)">
+						<a href="#this">上一页</a>
+					</li>
+					<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+						<a href="#this">{{index}}</a>
+					</li>
+					<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+						<a href="#this">下一页</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script type="text/javascript" src="js/bomi.js?s"></script>
+		<script>
+			var nId = $(this).getUrlParam("newsTypeId");
+			var tId = $(this).getUrlParam("teacherId");
+			
+			$.strategyDetailbanner(nId,tId);//策略专栏-banner
+			$.strategyBrief(nId);//策略专栏-价格及简介
+			$.strategyAuthor(tId);//策略专栏-专家作者
+			$.strategydetailList(nId);//策略专栏-全部文章,默认第一页
+
+
+
+			
+			
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,27 @@
+[
+	{
+		"chapterId": "1",
+		"chapterName": "法语语音教程（一）",
+		"playTime": "2017年07月24日 20:30 - 21:30",
+		"freeStatus": "1",
+		"courseStatus": "1"
+	}, {
+		"chapterId": "2",
+		"chapterName": "法语语音教程（一）2",
+		"playTime": "2017年07月24日 20:30 - 21:30",
+		"freeStatus": "0",
+		"courseStatus": "1"
+	}, {
+		"chapterId": "3",
+		"chapterName": "法语语音教程（一）3",
+		"playTime": "2017年07月24日 20:30 - 21:30",
+		"freeStatus": "0",
+		"courseStatus": "0"
+	},{
+		"chapterId": "4",
+		"chapterName": "法语语音教程（一）4",
+		"playTime": "2017年07月24日 20:30 - 21:30",
+		"freeStatus": "0",
+		"courseStatus": "0"
+	}
+]

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-我的课程</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学习中心 <i class="uk-icon-angle-right"></i></span>
+                <span>我的课程</span>
+                <a href="../coursecenter.html" style="color: #ff6c00;margin-left: 20px;font-size: 16px">进入选课中心</a>
+            </div>
+            <!--我的课程-->
+            <div class="festudentmycourse" >
+                <!--头部切换栏-->
+                <div class="fehead">
+                    <b>我的课程:</b>
+                    <span class="active" data-id="1">直播课程</span>
+                    <span data-id="2">录播课程</span>
+                </div>
+
+
+                <!--内容显示栏-->
+                <!--直播-->
+                <div id="livecourse">
+                    <!--筛选框-->
+                    <div class="feselect">
+                        <ul>
+                            <li>
+                                <span>学科 :</span>
+                                <input type="text" placeholder="请输入关键字" name="suject" id="subject1">
+                            </li>
+                            <li>
+                                <span>课程 :</span>
+                                <input type="text" placeholder="请输入关键字" name="coursename" id="courseName1">
+                            </li>
+                            <li>
+                                <span>状态 :</span>
+                                <select name="state" id="playState1">
+                                    <option value="">全部</option>
+                                    <option value="0">未开始</option>
+                                    <option value="1">进行中</option>
+                                    <option value="2">已结束</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div class="feoperation">
+                            <button>查&nbsp;&nbsp;&nbsp;询</button>
+                            <button>清&nbsp;&nbsp;&nbsp;空</button>
+                        </div>
+                    </div>
+                    <div class="fecontent">
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">课程名称</div>
+                            <div class="span1">学科</div>
+                            <div class="span1">状态</div>
+                            <div class="span2">直播开始时间</div>
+                            <div class="span2">直播结束时间</div>
+                            <div class="span2">操作</div>
+                        </div>
+                        <div class="felist" v-cloak v-for="(item,index) in livecourse">
+                            <div class="span1">{{(current-1)*pageSize + index+1}}</div>
+                            <div class="span3"><a v-bind:title="item.courseName" class="textoverflow">{{item.courseName}}</a></div>
+                            <div class="span1">{{item.subjectName}}</div>
+                            <div class="span1">{{item.playState}}</div>
+                            <div class="span2">{{item.playBeginTime}}</div>
+                            <div class="span2">{{item.playEndTime}}</div>
+                            <div class="span2">
+                                <!--<a v-bind:href="item.channelId,item.channelProgramId|goToLive" target="_blank">进入课程</a>-->
+                                <!--<span>|</span>-->
+                                <a v-bind:href="item.courseId|addCourseRoot" class="bulecolor" target="_blank">查看详情</a>
+                                <span>|</span>
+                                <a @click="pingjia(item.courseId,item.courseKind)">评价</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--录播-->
+                <div id="recordedcourse"  style="display: none">
+                    <!--筛选框-->
+                    <div class="feselect">
+                        <ul>
+                            <li>
+                                <span>学科 :</span>
+                                <input type="text" placeholder="请输入关键字" name="suject" id="subject2">
+                            </li>
+                            <li>
+                                <span>课程 :</span>
+                                <input type="text" placeholder="请输入关键字" name="coursename" id="courseName2">
+                            </li>
+                            <!--<li>-->
+                                <!--<span>状态 :</span>-->
+                                <!--<select name="state" id="playState2">-->
+                                    <!--<option value="">全部</option>-->
+                                    <!--<option value="0">未开始</option>-->
+                                    <!--<option value="1">进行中</option>-->
+                                <!--</select>-->
+                            <!--</li>-->
+                        </ul>
+                        <div class="feoperation">
+                            <button >查&nbsp;&nbsp;&nbsp;询</button>
+                            <button >清&nbsp;&nbsp;&nbsp;空</button>
+                        </div>
+                    </div>
+                    <div class="fecontent" >
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">课程名称</div>
+                            <div class="span1">学科</div>
+                            <div class="span2">教师</div>
+                            <div class="span1">课时</div>
+                            <div class="span2">状态</div>
+                            <div class="span2">操作</div>
+                        </div>
+                        <div class="felist" v-cloak v-for="(item,index) in recordedcourse">
+                            <div class="span1">{{(current-1)*pageSize + index+1}}</div>
+                            <div class="span3"><a class="textoverflow" v-bind:title="item.courseName">{{item.courseName}}</a></div>
+                            <div class="span1">{{item.subjectName}}</div>
+                            <div class="span2">{{item.teacherName}}</div>
+                            <div class="span1" style="white-space:nowrap;">{{item.classHour}}</div>
+                            <div class="span2">{{item.playState}}</div>
+                            <div class="span2">
+                                <a v-bind:href="item.courseId,item.courseKind|goToCourse" class="bulecolor" target="_blank">上课</a>
+                                <!--<span>|</span>-->
+                                <!--<a href="" class="bulecolor">作业</a>-->
+                                <!--<span>|</span>-->
+                                <!--<a href="">考试</a>-->
+                                <span>|</span>
+                                <a @click="pingjia(item.courseId,item.courseKind)">评价</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        mycourse();
+    })
+</script>
+</body>
+
+</html>

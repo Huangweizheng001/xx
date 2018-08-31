@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米在线快捷登录-注册</title>
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/uikit.min.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101414399" data-redirecturi='http://www.bomizx.net/ycedu/back.html' charset="utf-8"></script>
+
+		<style>
+			#qqLoginBtn a {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+			}
+			
+			#qqLoginBtn a img {
+				display: none;
+			}
+			
+			.dyclogin .login-wrap .dyclogin-box{
+				width: 700px;
+			}
+			
+			.dyclogin .login-wrap .dyclogin-box form{
+				width: 310px;
+			    margin-left: 320px;
+			    padding-left: 20px;
+			    border-left: 1px dotted #999;
+			}
+			
+			.bmquickLogin{
+				position: absolute;
+				margin-top: 40px;
+				width: 320px;
+				text-align: center;
+			}
+			
+			.dyclogin .login-wrap .dycform-box {
+			    background-color: rgba(255,255,255,.6);
+			}
+			
+			#bmvisiterTips{
+				display: none;
+				font-size: 20px;
+				color: #f00;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="dyclogin">
+			<div class="container">
+				<div class="login-wrap">
+					<div class="dycslogan" style="display: none;">
+						<!--<img src="images/login_bg.png" />-->
+					</div>
+					<div class="dyclogin-box">
+						<div class="dycform-box">
+							<div class="yctitle">播米在线登录</div>
+							<div class="bmquickLogin">
+								<p id="jweixinTips" style="text-align: center; font-size: 18px; color: #f00;">推荐使用扫码登录</p>
+								<p id="jweixinTips2" style="text-align: center;">微信扫描二维码安全登录！</p>
+								<img id="jbmloginImg" src="">
+								<p id="bmvisiterTips">注册观赏高清视频</p>
+							</div>
+							<!--账号登入-->
+							<form id="jloginForm" class="yclogin-form" method="post">
+								<span style="margin-top: 10px; top: 10px; position: relative;">登录方式2</span>
+								<a class="dycchange-type" data-index="1">手机号快速登录</a>
+								<label class="dyclogin-name">
+                                <input class="dyclogin-name-input" name="name" type="text" placeholder="请输入手机/用户名" />
+                                <span class="error">用户名不能为空！</span>
+                            </label>
+								<label class="dyclogin-pwd">
+                                <input class="dyclogin-pwd-input" name="password" type="password" placeholder="请输入密码" />
+                                <span class="error">密码不能为空！</span>
+                            </label>
+								<label class="dylogin-auto">
+                                <input id="jautologin" type="checkbox" name="autologin" value="checkbox" checked="checked" />自动登录
+                                <a class="dycpwd-forget">忘记密码</a>
+                            </label>
+								<a id="jloginForm-btn" class="dyclogin-btn">登录</a>
+							</form>
+							<!--手机登入-->
+							<form id="jphoneLoginForm" class="ycloginphone-form" method="post">
+								<a class="dycchange-type" data-index="2">账号密码登录</a>
+								<label class="dycloginphone-name">
+                                <input id="jloginphone" name="name" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空！</span>
+                            </label>
+								<label class="dycregphone-vc dycloginphone-vc">
+                                <input id="jloginIMgVC" name="imageCode" type="text" placeholder="请输入图形验证码" />
+                                <a id="jgetPhoneRegImgVC" href="#this" style="font-size: 0;"><img class="imageVC" style="height: 98%; width: 98%;" src="ycedu/images/vcode.png" /></a>
+                                <span class="error" style="top: 20px; left: 30px;">图片验证码不能为空</span>
+                            </label>
+								<label class="dycloginphone-vc">
+                                <input id="jloginphonevc" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneLoginVC" >获取短信验证码</a>
+                                <span class="error" style="top: 75%; left: 0;">验证码不能为空！</span>
+                            </label>
+								<a id="jloginquickphone" class="dyclogin-btn" href="#this">登录</a>
+								<div class="dycloginphone-tip">验证即登录，未注册将自动创建播米在线帐号</div>
+							</form>
+							<!--手机注册-->
+							<form id="jphoneRegForm" class="ycregphone-form" method="post">
+								<span style="margin-top: 10px; top: 10px; position: relative;">注册方式2</span>
+								
+								<a class="dycchange-type" data-index="3" href="#this">已有账号登录</a>
+								<label class="dycregphone-name ok">
+                                <input id="jregMoblie" name="mobile" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+								<label class="dycregphone-vc">
+                                <input id="jregIMgVC" name="imageCode" type="text" placeholder="请输入图形验证码" />
+                                <a id="jgetPhoneRegImgVC" href="#this" style="font-size: 0; border: 1px solid #f00;"><img class="imageVC" style="height: 100%;" src="ycedu/images/vcode.png" /></a>
+                                <span class="error" style="top: 20px; left: 30px;">图片验证码不能为空</span>
+                            </label>
+								<label class="dycregphone-vc">
+                                <input id="jregVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneRegVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycreguser-name" style="display: none;">
+                                <input id="jregName" name="name" type="text" placeholder="请输入用户名(4-16位)"/>
+                                <span class="error">用户名不能为空</span>
+                            </label>
+								<label class="dycreguser-name" style="display: none;">
+                                <input id="jregnickName" name="nickName" type="text" placeholder="请输入昵称(4-16位)"/>
+                                <span class="error">昵称不能为空</span>
+                            </label>
+								<label class="dycreguser-pwd" style="display: none;">
+                                <input id="jregPwd" name="password" type="password" placeholder="请设置密码(4-8位)" value="123456" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<label class="dycreguser-invite" style="display: none;">
+                                <input id="jregIvc" name="inviteCode" type="text" placeholder="请输入邀请码（可选项）" />
+                                <span class="error"></span>
+                            </label>
+								<label class="dyreg-agree">
+                                <input id="jagreement" class="jreg-agree" type="checkbox" name="" value="checkbox" checked="checked" />我已阅读并同意
+                                <a class="dycpwd-forget" target="_blank" href="ycedu/pact.html">播米在线注册条款</a>
+                            </label>
+								<a id="jsubRegForm" class="dycreg-btn">立即注册</a>
+							</form>
+							<!--忘记密码-->
+							<form id="jforgetFrom" class="ycforget-form" method="post">
+								<a class="dycchange-type" data-index="4" href="#this">已有账号登录</a>
+								<label class="dycforgetphone-name">
+                                <input id="jforgetPhone" name="name" type="text" placeholder="请输入您的手机号" />
+                                <span class="error">手机号不能为空</span>
+                            </label>
+
+								<label class="dycforgetphone-vc">
+                                <input id="jforgetImgVC" name="validateImgCode" type="text" placeholder="请输入图形验证码" />
+                               <a href="#this" style="font-size: 0; border: 1px solid #f00;"><img class="imageVC" style="height: 100%;" src="ycedu/images/vcode.png" /></a>
+                            </label>
+
+								<label class="dycforgetphone-vc">
+                                <input id="jforgetVC" name="validateCode" type="text" placeholder="请输入手机验证码" />
+                                <a id="jgetPhoneForgetVC" href="#this">获取短信验证码</a>
+                                <span class="error" style="top: 20px; left: 30px;">验证码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwd">
+                                <input id="jforgetPwd" name="password" type="password" placeholder="请设置新密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<label class="dycforgetuser-pwdnew">
+                                <input id="jforgetPwd2" name="forgetpwd" type="password" placeholder="请再次输入密码" />
+                                <span class="error">密码不能为空</span>
+                            </label>
+								<a id="jforgetSubBtn" class="dyclogin-btn" href="#this">提交</a>
+							</form>
+							<div class="dycotherlogin-bar">
+								<!--<span>使用合作方账号登录</span>-->
+								<!--<a class="dycqq" id="qqLoginBtn" href="#this"></a>-->
+								<!--<a class="dycweixin" id="weixinLoginBtn" href="#this"></a>-->
+								<!--<a class="dycsina" href="#this"></a>-->
+							</div>
+						</div>
+						<div class="dyccurrentreg-box">
+							<a>立即注册</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/uikit.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/socket.io.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer.js"></script>
+		<script type="text/javascript" src="ycedu/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js?1"></script>
+		<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/loginclient.js?2"></script>
+		
+		<script>
+			$(function() {
+				//判断显示内容
+				$.loginshow($(this).getUrlParam("login"));
+				var invitecode = $(this).getUrlParam("inviteCode");
+				if(invitecode != '') {
+					$('#jregIvc').val(invitecode);
+				}
+				$.enterKey(); //enter事件
+				
+				/*document.getElementById("weixinLoginBtn").addEventListener("click", function() {
+					
+				window.open("https://open.weixin.qq.com/connect/qrconnect?" +
+                "appid=wx554d4850ae066122&redirect_uri=http://www.bomizx.net&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect"); */
+				/*window.location.href='https://open.weixin.qq.com/connect/qrconnect?' +
+                'appid=wx554d4850ae066122&redirect_uri=http://www.bomizx.net&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect';
+                
+				})*/
+				
+				if($(this).getUrlParam("useType") =="reg"){
+					$(".dycform-box").css("height","444px");
+					$(".bmquickLogin").css("right","0px")
+					$("#jphoneRegForm").css("display","none");
+				}
+				
+				if($(this).getUrlParam("visiter") == "0" || $(this).getUrlParam("visiter") == 0){
+					$("#bmvisiterTips").css("display","block");
+				}
+
+				if($(this).getUrlParam("pageType") == "live") {
+					$("body").css("padding-top", 0);
+					$("#header").css("display", "none");
+					$(".dyclogin .login-wrap .dyclogin-box").css("right", "-4px");
+					$.qqLogin('pageType=live'); //qq登录
+				} else {
+					$.qqLogin(); //qq登录
+				}
+				
+				
+
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>云课堂—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+
+		<!--特殊页面类型-->
+		<style>
+			#fe-clound-page .fe-header-nav-bar {
+				box-sizing: border-box;
+				padding-left: 230px;
+			}
+			#fe-clound-page .new-fe-header-nav-bar>div{
+				box-sizing: border-box;
+				padding-left: 230px;
+			}
+		</style>
+
+	</head>
+
+	<body id="fe-clound-page">
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<aside class="fe-side-nav-wrap" id="jcloundNavApp">
+			<div class="container">
+				<!--左侧导航-->
+				<section class="fe-left-nav-inner" @mouseleave="closeShow">
+					<ul>
+						<h4 @click="toggleLeftShow">全部课程分类</h4>
+						<li v-cloak v-for="(item, index) in leftNavArr" @mouseenter="mousechangeShow(item.educationalLevel[0].educationalLevelId)" v-show="isShowFlag">
+							<a href="#this" target="_blank" v-cloak v-bind:href="item.educationalLevel[0].educationalLevelId |addFirNavParent">{{item.educationalLevel[0].educationalLevelName}}</a>
+							<a href="#this" v-for="subitem in item.subject" target="_blank" v-bind:href="item.educationalLevel[0].educationalLevelId,subitem.subjectId | addFirNav">{{subitem.subjectName}}</a>
+						</li>
+						<p class="toggleLeftHide" @click="toggleLeftShow" ><i :class="isShowFlag ? 'uk-icon-angle-up':''" ></i></p>
+					</ul>
+				</section>
+				<!--左侧二级导航区-->
+				<ul v-cloak class="fe-left-second-nav-inner" v-show="secondFlag" v-show="isShowFlag" @mouseenter="openShow" @mouseleave="secondCloseShow">
+					<li v-cloak v-for="item in secondNavArr" @mouseenter="getGrade(item.educationalLevel[0].gradeId)">
+						<a target="_blank" v-bind:href="item.educationalLevel[0].gradeId,parentNavId | addSecNavGrade">{{item.educationalLevel[0].gradeName}}</a>
+						<a href="#this" v-for="subitem in item.subject" v-bind:href="subitem.subjectId,parentNavId,gradeNavId | addSecNav">{{subitem.subjectName}}</a>
+					</li>
+				</ul>
+
+				<!--右侧预告区-->
+				<!--<aside class="fe-right-nav-inner">-->
+					<!--<div class="fe-nav-header-title">-->
+						<!--<a href="#this" :class={"active":todayFlag} @click="changeList(1)">今天</a>-->
+						<!--<a href="#this" :class={"active":tomorrowFlag} @click="changeList(2)">明天</a>-->
+						<!--<a href="#this" :class={"active":afterTomorrowFlag} @click="changeList(3)">后天</a>-->
+					<!--</div>-->
+
+					<!--<ul class="fe-nav-content">-->
+						<!--<div v-show="todayFlag">-->
+							<!--<li v-cloak v-for="item in todayArr">-->
+								<!--<a href="#this">-->
+									<!--<span>{{item.playBeginTime}} 开始</span>-->
+									<!--<span>{{item.name}}</span>-->
+								<!--</a>-->
+							<!--</li>-->
+						<!--</div>-->
+						<!--<div v-show="tomorrowFlag">-->
+							<!--<li v-cloak v-for="item in tomorrowArr">-->
+								<!--<a href="#this">-->
+									<!--<span>{{item.playBeginTime}} 开始</span>-->
+									<!--<span>{{item.name}}</span>-->
+								<!--</a>-->
+							<!--</li>-->
+						<!--</div>-->
+						<!--<div v-show="afterTomorrowFlag">-->
+							<!--<li v-cloak v-for="item in afterTomorrowArr">-->
+								<!--<a href="#this">-->
+									<!--<span>{{item.playBeginTime}} 开始</span>-->
+									<!--<span>{{item.name}}</span>-->
+								<!--</a>-->
+							<!--</li>-->
+						<!--</div>-->
+
+					<!--</ul>-->
+					<!--<div class="fe-toggle-right-nav-box" @click="toggleOpen">-->
+						<!--<i :class="toggleDire ? 'uk-icon-angle-up':'uk-icon-angle-down'"></i>-->
+					<!--</div>-->
+				<!--</aside>-->
+
+			</div>
+		</aside>
+
+		<!--banner model-->
+		<section class="fe-clound-banner-wrap" id="jcloundBannerApp">
+			<div class="container full">
+				<a class="fe-goto-ad" v-for="(item,index) in cloundBannerArr" v-if="index == 0" v-bind:href="item.href"  :style="{backgroundImage: 'url(' + cloundImg + ')'}"></a>
+			</div>
+		</section>
+
+		<!--&lt;!&ndash;最新直播&ndash;&gt;-->
+		<!--<section class="fe-clound-live-wrap">-->
+			<!--<div class="container">-->
+				<!--<div class="fe-clound-play-title">-->
+					<!--<h5>最新直播</h5>-->
+					<!--<div class="swiper-button-prev fe-clound-live-swiper-prev"></div>-->
+					<!--<div class="swiper-button-next fe-clound-live-swiper-next"></div>-->
+				<!--</div>-->
+				<!--<div class="fe-clound-live-inner" id="jcloundLiveApp">-->
+					<!--<div class="swiper-container fe-clound-live-container">-->
+						<!--<div class="swiper-wrapper">-->
+
+							<!--<div class="swiper-slide"  v-cloak v-for="(item, index) in liveData" v-if=" index % 8 == 0">-->
+								<!--<div class="fe-slide-li">-->
+									<!--<div class="span3" v-for="(itemsub, indexsub) in liveData" v-if="indexsub >= index && (index+7) >= indexsub">-->
+										<!--<div class="fe-play-li">-->
+											<!--<a v-bind:href="itemsub.courseId | addRoot" class="feimage">-->
+												<!--<img v-bind:src="itemsub.iconPath | addRootFile" />-->
+											<!--</a>-->
+											<!--<div class="fe-desc-box">-->
+												<!--<a v-bind:href="itemsub.courseId | addRoot" target="_blank">-->
+													<!--<div class="fe-desc-title">-->
+														<!--<span>{{itemsub.gradeName}}{{itemsub.subjectName}}</span>-->
+														<!--<span>{{itemsub.playBeginTime}}</span>-->
+													<!--</div>-->
+												<!--</a>-->
+												<!--<div class="fe-desc-content">-->
+													<!--<h5>{{itemsub.courseName}}</h5> -->
+													<!--<span v-if="1 == itemsub.isFree">免费</span>-->
+													<!--<span v-if="1 != itemsub.isFree" style="color:#ff6c00;">-->
+														<!--￥{{itemsub.preferentialPrice}}-->
+													<!--</span>-->
+													<!--<a class="fe-teacher-name" v-bind:href="itemsub.teacherId | addRootTeacher">{{itemsub.teacherName}}</a>-->
+													<!--<a class="fe-school-name" v-bind:href="itemsub.organId | addRootOrg">{{itemsub.organName}}</a>-->
+												<!--</div>-->
+												<!--<a v-bind:href="itemsub.liveId | addRoot" class="fe-desc-btn">-->
+													<!--立即报名-->
+												<!--</a>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</section>-->
+		<!---->
+		<!--&lt;!&ndash;热门课程&ndash;&gt;-->
+		<!--<section class="fe-clound-live-wrap fe-clound-hot-wrap">-->
+			<!--<div class="container">-->
+				<!--<div class="fe-clound-play-title">-->
+					<!--<h5>热门课程</h5>-->
+					<!--<div class="swiper-button-prev fe-clound-hot-swiper-prev"></div>-->
+					<!--<div class="swiper-button-next fe-clound-hot-swiper-next"></div>-->
+				<!--</div>-->
+				<!--<div class="fe-clound-live-inner" id="jcloundHotApp">-->
+					<!--<div class="swiper-container fe-clound-hot-container">-->
+						<!--<div class="swiper-wrapper">-->
+
+							<!--<div class="swiper-slide"  v-cloak v-for="(item, index) in liveData" v-if=" index % 8 == 0">-->
+								<!--<div class="fe-slide-li">-->
+									<!--<div class="span3" v-for="(itemsub, indexsub) in liveData" v-if="indexsub >= index && (index+7) >= indexsub">-->
+										<!--<div class="fe-play-li">-->
+											<!--<a v-bind:href="itemsub.courseId | addRoot" class="feimage" >-->
+												<!--<img v-bind:src="itemsub.iconPath | addRootFile" />-->
+											<!--</a>-->
+											<!--<div class="fe-desc-box">-->
+												<!--<a v-bind:href="itemsub.courseId | addRoot" target="_blank">-->
+													<!--<div class="fe-desc-title">-->
+														<!--<span>{{itemsub.gradeName}}{{item.subjectName}}</span>-->
+														<!--<span>{{itemsub.playBeginTime}}</span>-->
+													<!--</div>-->
+												<!--</a>-->
+												<!--<div class="fe-desc-content">-->
+													<!--<h5>{{itemsub.courseName}}</h5> -->
+													<!--<span v-if="1 == itemsub.isFree">免费</span>-->
+													<!--<span v-if="1 != itemsub.isFree" style="color:#ff6c00;">-->
+														<!--￥{{itemsub.preferentialPrice}}-->
+													<!--</span>-->
+													<!--<a class="fe-teacher-name" v-bind:href="itemsub.teacherId | addRootTeacher">{{itemsub.teacherName}}</a>-->
+													<!--<a class="fe-school-name" v-bind:href="itemsub.organId | addRootOrg">{{itemsub.organName}}</a>-->
+												<!--</div>-->
+												<!--<a v-bind:href="itemsub.liveId | addRoot" class="fe-desc-btn">-->
+													<!--立即报名-->
+												<!--</a>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</section>-->
+		<!---->
+		<!--&lt;!&ndash;往期直播&ndash;&gt;-->
+		<!--<section class="fe-clound-live-wrap fe-clound-past-wrap">-->
+			<!--<div class="container">-->
+				<!--<div class="fe-clound-play-title">-->
+					<!--<h5>往期直播</h5>-->
+					<!--<div class="swiper-button-prev fe-clound-past-swiper-prev"></div>-->
+					<!--<div class="swiper-button-next fe-clound-past-swiper-next"></div>-->
+				<!--</div>-->
+				<!--<div class="fe-clound-live-inner" id="jcloundPastApp">-->
+					<!--<div class="swiper-container fe-clound-past-container">-->
+						<!--<div class="swiper-wrapper">-->
+
+							<!--<div class="swiper-slide"  v-cloak v-for="(item, index) in liveData" v-if=" index % 4 == 0">-->
+								<!--<div class="fe-slide-li">-->
+									<!--<div class="span3" v-for="(itemsub, indexsub) in liveData" v-if="indexsub >= index && (index+3) >= indexsub">-->
+										<!--<div class="fe-play-li">-->
+											<!--<a v-bind:href="itemsub.courseId | addRoot" class="feimage">-->
+												<!--<img v-bind:src="itemsub.iconPath | addRootFile" />-->
+											<!--</a>-->
+											<!--<div class="fe-desc-box">-->
+												<!--<a v-bind:href="itemsub.courseId | addRoot" target="_blank">-->
+													<!--<div class="fe-desc-title">-->
+														<!--<span>{{itemsub.gradeName}}{{itemsub.subjectName}}</span>-->
+														<!--<span>{{itemsub.playBeginTime}}</span>-->
+													<!--</div>-->
+												<!--</a>-->
+												<!--<div class="fe-desc-content">-->
+													<!--<h5>{{itemsub.courseName}}</h5> -->
+													<!--<span v-if="1 == itemsub.isFree">免费</span>-->
+													<!--<span v-if="1 != itemsub.isFree" style="color:#ff6c00;">-->
+														<!--￥{{itemsub.preferentialPrice}}-->
+													<!--</span>-->
+													<!--<a class="fe-teacher-name" v-bind:href="itemsub.teacherId | addRootTeacher">{{itemsub.teacherName}}</a>-->
+													<!--<a class="fe-school-name" v-bind:href="itemsub.organId | addRootOrg">{{itemsub.organName}}</a>-->
+												<!--</div>-->
+												<!--<a v-bind:href="itemsub.courseId | addRoot" class="fe-desc-btn">-->
+													<!--立即报名-->
+												<!--</a>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</section>-->
+
+		<!--内容模块-->
+		<section id="fecoursedetail" style="background: #f4f4f4">
+			<div class="container clearfix">
+				<div class="fecoursedetailnav clearfix" style="margin-top: 30px">
+					<div class="span9">
+						<a href="#this" class="fesortall">综合</a>
+						<a href="#this" class="fesortprice">价格 <i class="uk-icon-long-arrow-up"></i></a>
+						<a href="#this" class="fesortrenqi">人气 <i class="uk-icon-long-arrow-up"></i></a>
+						<div class="febox">
+							<span v-cloak>{{current}}</span>/
+							<span v-cloak>{{allpage}}</span>页
+							<a href="#this" class="fenextpage uk-icon-angle-left" @click="current-- && goto(current--)"></a>
+							<a href="#this" class="fenextpage uk-icon-angle-right" @click="current++ && goto(current++)"></a>
+						</div>
+						<a href="#this" class="fesortlist"><i class="uk-icon-bars uk-icon-small"></i></a>
+						<a href="#this" class="fesortgrid"><i class="uk-icon-small uk-icon-th-large"></i></a>
+					</div>
+					<div class="span3">
+						<div class="fesousuo">
+							<input type="text" placeholder="请输入搜索内容">
+							<button ><span></span></button>
+						</div>
+					</div>
+				</div>
+				<div class="fecoursedetailcontent-list clearfix span9" id="coursecontent">
+					<div class="fenodata" v-if="courselist.length<1" style="width: 100%"></div>
+					<div v-cloak v-for="item in courselist">
+						<div class="fepanel clearfix" >
+							<div class="feleft">
+								<a v-bind:href="item.courseId| addRoot" target="_blank"><img v-bind:src="item.iconPath|addRootFile" alt=""></a>
+							</div>
+							<div class="fecenter">
+								<!--<h2 :class="item.isFree==0 ? 'fehidden':''">-->
+									<!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo"  target="_blank"><i></i>免费试听</a>-->
+								<!--</h2>-->
+								<h1>{{item.courseName}}
+									<!--<a v-bind:href="item.courseId,item.videoId,item.recordType|goToVideo" :class="item.isFree==0 ? 'fehidden':''" target="_blank"><i></i>免费试听</a>-->
+								</h1>
+								<p>{{item.note}}</p>
+								<h6 v-if="item.isFree=='1'"><span>免费</span></h6>
+								<h6 v-else ><span class="femoney">¥{{item.preferentialPrice}}</span><s>¥{{item.price}}</s></h6>
+								<ul class="febox">
+									<li>随到随学</li>
+									<li>有效期{{item.validDays}}天 <span>|</span></li>
+									<li class="fegreen">总<span>{{item.classHour}}</span></li>
+									<li class="fetoggle">
+										<span>老师:&nbsp;&nbsp;{{item.teacherName}}</span>
+										<span><a v-bind:href="item.organId|addSchoolRoot" target="_blank">{{item.organName}}</a></span>
+									</li>
+								</ul>
+								<div class="fegrid-teacher">
+									<span>{{item.teacherName}}</span>
+									<span><a v-bind:href="item.organId|addSchoolRoot" target="_blank">{{item.organName}}</a></span>
+								</div>
+							</div>
+							<div class="feright">
+								<a v-bind:href="item.courseId|addRoot" target="_blank">查看详情</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--右侧-->
+				<div class="span3">
+					<div class="fehotcoursemodule " style="background: #fff;box-shadow: 0 0 2px 1px #efefef;">
+						<div class="fetitle" style="margin-top: 0">热门教程榜</div>
+						<div class="fetabs clearfix">
+							<a href="#this" class="active" data-id="1">免费排行</a>
+							<a href="#this" data-id="0">付费排行</a>
+						</div>
+						<!--<transition-group tag="ul" class="fecontent "-->
+						<!--enter-active-class="animated fadeInUp duration">-->
+						<ul class="fecontent">
+							<li v-cloak v-for="(item,index) in hotcourseArr" :key="item">
+								<!--<span v-bind:style="{backgroundPosition:'-584px '+rankingPosition[index]+'px'}"></span>-->
+								<h1>{{index+1}}. {{item.courseName}}</h1>
+								<div class="fepanel">
+									<a v-bind:href="item.courseId| addRoot" class="fecontent" target="_blank">
+										<div class="feimage">
+											<img v-bind:src="item.iconPath|addRootFile" alt="">
+										</div>
+										<div class="febox">
+											<h2>老师: {{item.teacherName}}</h2>
+											<h2>报名数:{{item.enrollmentCount}}</h2>
+										</div>
+									</a>
+								</div>
+							</li>
+						</ul>
+						<!--</transition-group>-->
+					</div>
+					<div class="fehotcoursemodule ">
+						<div class="fetitle">推荐课程</div>
+						<a v-bind:href="item.courseId|addRoot" class="febox" v-for="item in recommendedcourses" target="_blank">
+							<div class="feimage">
+								<img v-bind:src="item.iconPath|addRootFile" alt="">
+							</div>
+							<h6>{{item.title}}</h6>
+						</a>
+					</div>
+				</div>
+				<!--枫叶-->
+				<div class="span9">
+					<ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+						<li v-show="current != 1" @click="current-- && goto(current--)">
+							<a href="#this">上一页</a>
+						</li>
+						<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+							<a href="#this">{{index}}</a>
+						</li>
+						<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+							<a href="#this">下一页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script>
+			$(function() {
+				cloundRoomData();
+
+				var period=$(this).getUrlParam("period")==undefined ? "":$(this).getUrlParam("period");
+				var grade=$(this).getUrlParam("grade")==undefined ? "":$(this).getUrlParam("grade");
+				var subject=$(this).getUrlParam("subject")==undefined ? "":$(this).getUrlParam("subject");
+				var obj={"period":period,"grade":grade,"subject":subject};
+				var recordType = $(this).getUrlParam("recordType");
+				if(recordType == undefined || recordType == "" || recordType == null){
+					recordType = 0;
+				}
+				coursedetail(obj,1);
+			})
+		</script>
+
+	</body>
+
+</html>

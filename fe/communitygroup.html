@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>社圈小组—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="container">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href=""><img src="images/temp/community-banner.png" alt=""></a>
+						</div>
+						<div class="swiper-slide">
+							<a href=""><img src="images/temp/community-banner.png" alt=""></a>
+						</div>
+						<div class="swiper-slide">
+							<a href=""><img src="images/temp/community-banner.png" alt=""></a>
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="container clearfix fe-communitygroup-box">
+				<div class="span9">
+					<div class="fe-communitygroup clearfix">
+						<div class="span1">
+							<aside class="fe-communitygroup-left-nav">
+								<p>话题小组</p>
+								<a href="" class="active">推荐</a>
+								<a href="">学校</a>
+								<a href="">家庭</a>
+								<a href="">社会</a>
+							</aside>
+						</div>
+						<div class="span11" id="jcommunityGroup">
+							<div class="fe-communitygroup-wrap clearfix" >
+								<a href="#this" target="_blank" class="fe-communitygroup-wrap-inner span4" v-cloak v-for="item in communitygroupArr" v-bind:href="item.liveId">
+									<div class="feimage">
+										<img v-bind:src="item.img | addRootFile" alt="" />
+									</div>
+									<h2>{{item.courseName}}</h2>
+									<p>
+										<span>发帖数: {{item.postnum}}</span>
+										<span>收藏: {{item.price}}</span>
+									</p>
+								</a>
+								<!--<a href="communitydetail.html" target="_blank" class="fe-communitygroup-wrap-inner span3">
+									<div class="feimage">
+										<img src="http://localhost:8080/images/temp/community2.png" alt="" />
+									</div>
+									<h2>15个最为真实的动画概念</h2>
+									<p>
+										<span>发帖数: 110</span>
+										<span>收藏: 45</span>
+									</p>
+								</a>
+								<a href="communitydetail.html" target="_blank" class="fe-communitygroup-wrap-inner span3">
+									<div class="feimage">
+										<img src="http://localhost:8080/images/temp/community2.png" alt="" />
+									</div>
+									<h2>15个最为真实的动画概念</h2>
+									<p>
+										<span>发帖数: 110</span>
+										<span>收藏: 45</span>
+									</p>
+								</a>
+								<a href="communitydetail.html" target="_blank" class="fe-communitygroup-wrap-inner span3">
+									<div class="feimage">
+										<img src="http://localhost:8080/images/temp/community2.png" alt="" />
+									</div>
+									<h2>15个最为真实的动画概念</h2>
+									<p>
+										<span>发帖数: 110</span>
+										<span>收藏: 45</span>
+									</p>
+								</a>
+								<a href="" class="fe-communitygroup-wrap-inner span3">
+									<div class="feimage">
+										<img src="http://localhost:8080/images/temp/community2.png" alt="" />
+									</div>
+									<h2>15个最为真实的动画概念</h2>
+									<p>
+										<span>发帖数: 110</span>
+										<span>收藏: 45</span>
+									</p>
+								</a>-->
+
+							</div>
+							<a class="fe-communitygroup-loadmore" @click="movieloadMore()">加载更多。。。</a>
+						</div>
+					</div>
+				</div>
+				<div class="span3" id="jgroupRight">
+					<div class="fe-communitygroup-topwrap">
+						<h2 class="fe-communitygroup-title">热门小组榜</h2>
+						<div class="fe-communitygroup-tab clearfix" id="jhottab">
+							<a href="#this" data-id="1" class="span6 active">发帖榜</a>
+							<a href="#this" data-id="2" class="span6">成员榜</a>
+						</div>
+						<div class="fe-communitygroup-contain">
+							<a href="" class="fe-communitygroup-list-wrap" v-cloak v-for="(item,index) in postArr" v-if="index<5">
+								<div class="fe-communitygroup-list clearfix">
+									<div class="span5">
+										<div class="fecomgroupimage">
+											<img v-bind:src="item.img | addRootFile" />
+										</div>
+									</div>
+									<p>{{item.courseName}}</p>
+									<p class="fe-communitygroup-list-number">发帖数：{{item.postnum}}<br/> 成员数：{{item.price}}
+									</p>
+								</div>
+							</a>
+							<!--<a class="fe-communitygroup-list-wrap fe-communitygroup-list-second">
+								<div class="fe-communitygroup-list clearfix">
+									<div class="span5">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<p>最真实的动画概念</p>
+									<p class="fe-communitygroup-list-number">发帖数：500<br/> 成员数：3000
+									</p>
+								</div>
+							</a>
+							<a class="fe-communitygroup-list-wrap fe-communitygroup-list-third">
+								<div class="fe-communitygroup-list clearfix">
+									<div class="span5">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<p>最真实的动画概念</p>
+									<p class="fe-communitygroup-list-number">发帖数：500<br/> 成员数：3000
+									</p>
+								</div>
+							</a>
+							<a class="fe-communitygroup-list-wrap">
+								<div class="fe-communitygroup-list clearfix">
+									<div class="span5">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<p>最真实的动画概念</p>
+									<p class="fe-communitygroup-list-number">发帖数：500<br/> 成员数：3000
+									</p>
+								</div>
+							</a>
+							<a class="fe-communitygroup-list-wrap">
+								<div class="fe-communitygroup-list clearfix">
+									<div class="span5">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<p>最真实的动画概念</p>
+									<p class="fe-communitygroup-list-number">发帖数：500<br/> 成员数：3000
+									</p>
+								</div>
+							</a>-->
+						</div>
+					</div>
+					<div class="fe-communitygroup-newwrap">
+						<h2 class="fe-communitygroup-title">最新动态</h2>
+						<div class="fe-communitygroup-contain">
+							<a class="fe-communitygroup-list" v-cloak v-for="(item,index) in rightNewArr" v-if="index<5">
+								<div class="fe-communitygroup-list-box clearfix">
+									<div class="span4">
+										<div class="fecomgroupimage">
+											<img v-bind:src="item.img |addRootFile" />
+										</div>
+									</div>
+									<div class="span8">
+										<p class="fe-communitygroup-list-person clearfix">{{item.courseName}}<span class="fe-communitygroup-list-time">{{item.time}}</span></p>
+									</div>
+								</div>
+								<p class="fe-communitygroup-list-newpost">发表帖子<span>{{item.postName}}</span></p>
+							</a>
+							<!--<div class="fe-communitygroup-list">
+								<div class="fe-communitygroup-list-box clearfix">
+									<div class="span4">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<div class="span8">
+										<p class="fe-communitygroup-list-person clearfix">林笑笑 <span class="fe-communitygroup-list-time">08-01 14:52</span></p>
+									</div>
+								</div>
+								<p class="fe-communitygroup-list-newpost">发表帖子<span>动画概念</span></p>
+							</div>
+							<div class="fe-communitygroup-list">
+								<div class="fe-communitygroup-list-box clearfix">
+									<div class="span4">
+										<div class="fecomgroupimage">
+											<img src="images/temp/commounitygroup.jpg" />
+										</div>
+									</div>
+									<div class="span8">
+										<p class="fe-communitygroup-list-person clearfix">林笑笑 <span class="fe-communitygroup-list-time">08-01 14:52</span></p>
+									</div>
+								</div>
+								<p class="fe-communitygroup-list-newpost">发表帖子<span>动画概念</span></p>
+							</div>-->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				autoplay: 2000
+			});
+			$(function() {
+				communityGrounp();//小组
+				communityGrounpRight();//右边部分
+			})
+		</script>
+	</body>
+
+</html>

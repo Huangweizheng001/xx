@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-我的笔记</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>学习中心 <i class="uk-icon-angle-right"></i></span>
+                <span>学习笔记</span>
+                <!--<a href="coursecenter.html" style="color: #e55e2a;margin-left: 20px;font-size: 16px">进入选课中心</a>-->
+            </div>
+            <!--我的课程-->
+            <div class="festudentlearningnote" id="learningnote">
+                <div >
+                    <!--筛选框-->
+                    <div class="feselect">
+                        <span>学科:</span>
+                        <input type="text" placeholder="输入关键字" id="subjectname">
+                        <span>课程:</span>
+                        <input type="text" placeholder="输入关键字" id="coursename">
+                        <button>搜索</button>
+                        <!--<p><button><i class="uk-icon-plus-circle"></i>添加笔记</button></p>-->
+                    </div>
+                    <div class="fecontent">
+                        <div class="fetitle">
+                            <div class="span1">序号</div>
+                            <div class="span3">课程名称</div>
+                            <div class="span2">学科</div>
+                            <div class="span3">添加时间</div>
+                            <div class="span3">操作</div>
+                        </div>
+                        <div class="felist" v-cloak v-for="(item,index) in learningnote">
+                            <div class="span1">{{(current-1)*pageSize + index+1}}</div>
+                            <div class="span3"><a v-bind:title="item.courseName" class="textoverflow">{{item.courseName}}</a></div>
+                            <div class="span2">{{item.subjectName}}</div>
+                            <div class="span3">{{item.noteTime}}</div>
+                            <div class="span3">
+                                <a class="bulecolor" @click="editNote(item.noteId)">编辑</a>
+                                <span>|</span>
+                                <a @click="deleteNote(item.noteId)">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--枫叶-->
+                    <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                        <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--添加笔记-->
+                <div id="addlearningnote">
+                    <p>
+                        <input type="hidden" id="clickCount" value="0" />
+                        <input type="hidden" id="clickCount1" value="0" />
+                        <span>学科:</span>
+                        <select name="subject" id="subject">
+                            <option value="">未选择</option>
+                            <option v-bind:value="item.subjectId" v-cloak v-for="item in subjectArr">{{item.subjectName}}</option>
+                        </select>
+                        <span>课程:</span>
+                        <select name="course" id="course">
+                            <option v-bind:value="item.courseId" v-cloak v-for="item in courseArr">{{item.courseName}}</option>
+                        </select>
+                        <!--<span>章节:</span>-->
+                        <!--<select name="" id="chapter">-->
+                            <!--<option value="">第一章</option>-->
+                        <!--</select>-->
+                    </p>
+                    <span>内容:</span>
+                    <textarea name="" id="content"></textarea>
+                    <div class="feoperation">
+                        <button @click="saveNote()">保存</button>
+                    </div>
+                </div>
+                <!--编辑笔记-->
+                <div id="editlearningnote">
+                    <p>
+                        <span>学科:</span>
+                        <b>{{currentNote.subjectName}}</b>
+                        <span>课程:</span>
+                        <b>{{currentNote.courseName}}</b>
+                        <span style="width: 70px">添加时间:</span>
+                        <b>{{currentNote.noteTime}}</b>
+                    </p>
+                    <span>内容:</span>
+                    <textarea name="" id="editcontent" v-bind:value="currentNote.content"></textarea>
+                    <div class="feoperation">
+                        <button @click="updateNote(currentNote.noteId,currentNote.subjectId,currentNote.courseId)">保存</button>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        learningnote();
+    })
+</script>
+</body>
+
+</html>

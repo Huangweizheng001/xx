@@ -1,0 +1,31 @@
+{
+	"list": [
+		{
+			"pid": 1,
+			"titile": "title",
+			"brief": "描述",
+			"oldPrice": "155",
+			"price": "100",
+			"src":"http://localhost/web/ycedu/images/spkc01.jpg",
+			"url":"coursedetail.html"
+		},
+		{
+			"pid": 2,
+			"titile": "title00",
+			"brief": "描述02",
+			"oldPrice": "1552",
+			"price": "1001",
+			"src":"http://localhost/web/ycedu/images/spkc01.jpg",
+			"url":"coursedetail.html"
+		},
+		{
+			"pid": 3,
+			"titile": "title3",
+			"brief": "描述02",
+			"oldPrice": "15",
+			"price": "10",
+			"src":"http://localhost/web/ycedu/images/spkc01.jpg",
+			"url":"#this3"
+		}
+	]
+}

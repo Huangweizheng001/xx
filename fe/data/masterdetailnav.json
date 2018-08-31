@@ -1,0 +1,22 @@
+[
+  {
+    "title":"主页",
+    "typeid":"1"
+  },
+  {
+    "title":"课程",
+    "typeid":"2"
+  },
+  {
+    "title":"资源",
+    "typeid":"3"
+  },
+  {
+    "title":"视频/照片",
+    "typeid":"4"
+  },
+  {
+    "title":"履历",
+    "typeid":"5"
+  }
+]

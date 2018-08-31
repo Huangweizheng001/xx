@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,外汇投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+    <meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+    <title>嘉宾主页</title>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/ycstyle.css" />
+    <link rel="stylesheet" href="css/cyqstyle.css" />
+    <link rel="stylesheet" href="css/hwzstyle.css" />
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="" id="guest">
+    <div class="dycguestcommonhead">
+        <div class="dycimage" v-cloak>
+            <img v-bind:src="teachermsg.iconPath|addRoute" alt="">
+        </div>
+        <div class="dycbox">
+            <h3 v-cloak>{{teachermsg.name}}</h3>
+            <h4 v-cloak>{{teachermsg.teacherTypeName}}</h4>
+        </div>
+    </div>
+    <!--<div v-html="banner.iconPath" class="guestbanner"></div>-->
+    <!--<img src="images/distinguishedguest.jpg" alt="">-->
+    <!--<div class="container dycdistinguishedguest">-->
+        <!--<div class="dycpastreview">-->
+            <!--<div class="swiper-container aa">-->
+                <!--<div class="swiper-wrapper">-->
+                    <!--<div class="swiper-slide" v-cloak v-for="item in specialArr">-->
+                        <!--<a v-bind:href="item.courseId|addCourseRoute" class="febox">-->
+                            <!--<img v-bind:src="item.iconPath|addRoute" alt="">-->
+                            <!--<p><span>{{item.name}}</span></p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; Add Arrows &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="swiper-button-next"></div>-->
+            <!--<div class="swiper-button-prev"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+</section>
+<section class="clearfix dycgray-bg" id="guestindex">
+    <div class="container">
+        <ul class="dycdistinguishedguest-title clearfix">
+            <li class="active"><a href="#this">嘉宾主页</a><b></b></li>
+            <li><a v-bind:href="teacherId|addcourseRoute">课程</a><b></b></li>
+            <li><a v-bind:href="teacherId|addphotoRoute">相册/视频</a><b></b></li>
+            <li><a v-bind:href="teacherId|addpersonRoute">履历</a><b></b></li>
+        </ul>
+        <div class="span9">
+            <div class="dycdistinguishedguest-index">
+                <div class="dycnodata" v-show="nodata"></div>
+                <div class="dycguestsay clearfix" v-cloak v-for="item in sayArr">
+                    <div class="span2 ">
+                        <div class="dycdycguestsay-tx">
+                            <span :style="{background: 'url(' + item.iconPath + ')no-repeat top center'}"></span>
+                        </div>
+                    </div>
+                    <div class="span10">
+                        <div class="dycguestsay-name">{{item.teacherName}}</div>
+                        <div class="dycguestsay-time">{{item.publishDate}}</div>
+                        <div class="dycguestsay-content" v-html="item.context"></div>
+                        <!--<div class="dycguestsay-picture">-->
+                            <!--<div class="dycimg">-->
+                                <!--<img src="images/guest-1.jpg" alt="">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div style="clear: both"></div>
+                    <p class="clearfix" v-bind:data-id="item.saySomethingId">
+                        <s class="jiathis_style">
+                            <a class="jiathis_button_weixin"></a>
+                            <a class="jiathis_button_tsina"></a>
+                            <a class="jiathis_button_qzone"></a>
+                            <a class="jiathis_button_cqq"></a>
+                        </s>
+                        <b>丨</b>
+                        <span class="dianzang">{{item.thumbUpCount}}</span>
+                        <b>丨</b>
+                        <span class="pinglun" v-bind:data-count="item.recommendCount">{{item.recommendCount|addpinglun}}</span>
+                    </p>
+                    <div class="dycpinglunarea">
+                        <div class="dycliuyan-parent">
+                            <input type="text" v-bind:placeholder="item.teacherName|sendmsg"><button>评论</button>
+                        </div>
+                        <ul class="dycdiscuss">
+                            <div class="dyclookmore"><span>查看更多</span></div>
+                        </ul>
+                        <!--<ul class="dycdiscuss">-->
+                            <!--<li>-->
+                                <!--<div class="dyctop clearfix">-->
+                                    <!--<img src="" alt="">-->
+                                    <!--<h4>唐僧</h4>-->
+                                <!--</div>-->
+                                <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                                <!--<div class="dycbox">-->
+                                    <!--<button>回复</button> <span class="dianzang">点赞</span>-->
+                                <!--</div>-->
+                                <!--<ul class="dycdiscuss-chirld">-->
+                                    <!--<li>-->
+                                        <!--<div class="dyctop clearfix">-->
+                                            <!--<img src="" alt="">-->
+                                            <!--<h4><span>孙悟空</span><b>回复</b>唐僧</h4>-->
+                                            <!--<s>2017-03-3</s>-->
+                                        <!--</div>-->
+                                        <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                                        <!--<div class="dycbox">-->
+                                            <!--<button>回复</button> <span class="dianzang">点赞</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="dycliuyan">-->
+                                            <!--<input type="text"><button>评论</button>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="dyctop clearfix">-->
+                                            <!--<img src="" alt="">-->
+                                            <!--<h4><span>孙悟空</span><b>回复</b>唐僧</h4>-->
+                                        <!--</div>-->
+                                        <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                                        <!--<div class="dycbox">-->
+                                            <!--<button>回复</button> <span class="dianzang">点赞</span>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    </div>
+                </div>
+                <div class="dycloadmore" v-show="load"><span @click="loadmore()">查看更多 <i class="uk-icon-angle-down"></i></span></div>
+            </div>
+        </div>
+        <div class="span3">
+            <a v-bind:href="item.newsTypeId,item.teacherId|addExpertRoute" class="dycviewpoint-content" v-cloak v-for="item in expertopinion">
+                <div class="dyctitle"><span>策略解读</span></div>
+                <div class="dycimg">
+                    <img v-bind:src="item.iconPath|addRoute" alt="">
+                </div>
+                <p><span>{{item.name}}</span></p>
+                <p>{{item.note}}</p>
+            </a>
+            <div class="dycviewpoint-photo clearfix">
+                <div class="dyctitle">
+                    <span>相册/视频</span>
+                </div>
+                <div class="dycimg">
+                    <div v-bind:class="item.type=='photo' ? 'dycphoto':'dycvideo'" v-cloak v-for="item in resourse" v-bind:data-id="item.videoId">
+                        <img v-bind:src="item.iconPath|addRoute" alt="">
+                        <b></b>
+                    </div>
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-2.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-3.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-2.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-3.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-2.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-3.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-2.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class=" dycphoto">-->
+                        <!--<img src="images/guest-photo-3.jpg" alt="">-->
+                    <!--</div>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/uikit.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/ycswiper.js"></script>
+<script type="text/javascript" src="js/ycedu.js"></script>
+<script type="text/javascript" src="js/teacherswiper.js"></script>
+<script type="text/javascript" src="js/honoredguest.js"></script>
+<!--<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>-->
+<script>
+    $(function () {
+        var teacherId=$(this).getUrlParam("teacherId");
+        guesthead(teacherId);
+        guestindex(teacherId);
+
+    })
+
+</script>
+</body>
+</html>

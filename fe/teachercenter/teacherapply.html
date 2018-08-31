@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-布置作业</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>名师工作室 <i class="uk-icon-angle-right"></i></span>
+                <span>成员申请</span>
+                <!--<a href="coursecenter.html" style="color: #e55e2a;margin-left: 20px;font-size: 16px">进入选课中心</a>-->
+            </div>
+            <div class="femygroupdetail">
+                <ul>
+                    <!--<span>帖子来源:</span>-->
+                    <li class="active" data-id="1">我发出的申请</li>
+                    <li data-id="2">我收到的申请</li>
+                </ul>
+                <div class="fecontent">
+                    <!--我发出的申请-->
+                    <div class="mycreategrouppost" id="send" >
+                        <div class="feselect">
+                            <span>审核结果:</span>
+                            <select name="" id="group">
+                                <option value="">全部</option>
+                            </select>
+                            <input type="text" placeholder="请输入关键字" id="keyword">
+                        </div>
+                        <div class="fecommunitytable">
+                            <div class="fetitle">
+                                <div class="span2">头像</div>
+                                <div class="span4">工作室名称</div>
+                                <div class="span3">申请时间</div>
+                                <div class="span3">审核结果</div>
+                            </div>
+                            <div class="felist-big" v-cloak v-for="(item,index) in post">
+                                <div class="span2"><img v-bind:src="item.iconPath|addRootFile" alt=""></div>
+                                <div class="span4"><a class="textoverflow" v-bind:title="item.groupName">{{item.groupName}}</a></div>
+                                <div class="span3">{{item.postdatetime}}</div>
+                                <div class="span3">
+                                    <span>{{item.state}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--我收到的申请-->
+                    <div class="mycreategrouppost" id="receive" style="display: none">
+                        <div class="feselect">
+                            <span>申请时间:</span>
+                            <select name="" id="time">
+                                <option value="">全部</option>
+                            </select>
+                            <span style="margin-left: 20px">审核状态:</span>
+                            <select name="" id="state">
+                                <option value="">全部</option>
+                            </select>
+                        </div>
+                        <div class="fecommunitytable">
+                            <div class="fetitle">
+                                <div class="span2">头像</div>
+                                <div class="span2">用户名称</div>
+                                <div class="span3">工作室名称</div>
+                                <div class="span2">申请时间</div>
+                                <div class="span1">审核状态</div>
+                                <div class="span2">操作</div>
+                            </div>
+                            <div class="felist" v-cloak v-for="(item,index) in post">
+                                <div class="span2"><img v-bind:src="item.iconPath|addRootFile" alt=""></div>
+                                <div class="span2">{{item.name}}</div>
+                                <div class="span3"><a class="textoverflow" v-bind:title="item.groupname">{{item.groupname}}</a></div>
+                                <div class="span2">{{item.postdatetime}}</div>
+                                <div class="span1">{{item.state}}</div>
+                                <div class="span2">
+                                    <a class="orange" v-bind:data-id="item.tid">通过</a>
+                                    <span>|</span>
+                                    <a >拒绝</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        memberapply();
+    })
+</script>
+</body>
+
+</html>

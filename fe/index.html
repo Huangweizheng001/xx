@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css?2" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css" >
+		<link rel="stylesheet" href="css/fetv.css?484" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />	
+		<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101447287" data-redirecturi="http://www.fetv.cn/feweb/back.html" charset="utf-8" ></script>
+
+	</head>
+
+	<body class="indexpage">
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--<section class="feindex-news-bg-wrap" id="jindexNewBannerApp">-->
+			<!--<a class="fe-new-banner-link" v-cloak v-bind:href="currentNewsId" :style="{backgroundImage: 'url(' + currentImg + ')'}">-->
+				<!--<div class="container">-->
+					<!--<ul class="fe-news-banner-inner wow slideInRight">-->
+						<!--<template v-cloak v-for="(item,index) in dataArr">-->
+							<!--<li :class={"active":indexActive==[index]} v-on:mouseover="changeCurrentShow(item.iconPath, item.newsId , index)" v-on:mouseleave="leaveContinue">{{item.title}}</li>-->
+						<!--</template>-->
+						<!--&lt;!&ndash;<li class="active" data-src="./images/temp/indexBigNewBg.jpg" data-id="1">空中俯瞰美丽新世遗——鼓浪屿</li>&ndash;&gt;-->
+					<!--</ul>-->
+				<!--</div>-->
+			<!--</a>-->
+		<!--</section>-->
+		<div style="padding: 10px 0;background: #f4f4f4">
+			<div class="container">
+				<div class="feAdWrap" id="feAdApp">
+					<a class="feAdLi" v-for="(item,index) in adArr" v-if="index==1" :href="item.href" target="_blank">
+						<img :src="item.iconPath | addRootFile"/>
+					</a>
+				</div>
+				<section id="New_jindexNewBannerApp" class="fenewBanner">
+					<div class="swiper-container tt">
+						<div class="swiper-wrapper">
+							<a class="swiper-slide" :style="{background:'url('+ item.iconPath +') no-repeat center'}" v-cloak v-bind:href="item.newsId" v-for="item in dataArr" target="_blank">
+								<h1>{{item.title}}</h1>
+							</a>
+						</div>
+						<!--Add Pagination -->
+						<div class="swiper-pagination swiper-pagination-white"></div>
+						<!--Add Arrows -->
+						<div class="swiper-button-next swiper-button-white dd1"></div>
+						<div class="swiper-button-prev swiper-button-white dd2"></div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+
+
+		<section class="feindex-top-news-wrap container" id="jindexTopNewsApp">
+			<!--<div class="container">-->
+				<div class="feindexTopNewsLiOne" v-cloak v-for="(item,index) in dataArr.rows" v-if="index==0">
+					<a :href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+				</div>
+				<div class="feindexTopNewsLi clearfix">
+					<div class="span4" v-cloak v-for="(item,index) in dataArr.rows" v-if="index > 0 && index < 4">
+						<a :href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+					</div>
+				</div>
+			<!--</div>-->
+		</section>
+
+		<section class="">
+			<!--教育资讯-->
+			<section class="feindex-edu-infor-wrap" id="jindexEduApp">
+				<div class="container">
+					<div class="feindex-model-title-box wow bounceInDown">
+						<div class="feindex-model-title">要闻资讯</div>
+					</div>
+					<div class="feindex-news-inner clearfix">
+						<div class="span5">
+							<div class="span12 col-xm-12">
+								<div class="feindex-other-news-box wow slideInRight feheight">
+									<div class="fe-li-new-box clearfix">
+										<h4>教育<span>新闻</span>
+											<a v-for="(item, index) in dataEduArr.rows" v-if="index == 0" :href="'news.html?newsTypeId='+item.newsTypeId" target="_blank">更多></a>
+										</h4>
+										<!--<div class="span5">-->
+											<!--<div class="fe-image-box">-->
+												<!--<a v-for="(item, index) in dataEduArr.rows" v-if="index == 0" v-bind:href="item.newsId|addRoot">-->
+												<!--<span>-->
+												<!--<img v-bind:src="item.iconPath|addRootFile" />-->
+											<!--</span>-->
+													<!--&lt;!&ndash;<p v-cloak>{{firstBroadcastNewsTitle}}</p>&ndash;&gt;-->
+												<!--</a>-->
+											<!--</div>-->
+										<!--</div>-->
+										<div class="span12">
+											<ul style="margin-left:0">
+												<li v-cloak v-for="(item, index) in dataEduArr.rows" v-if="index < 20" style="margin-left: 15px">
+													<a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="span7">
+							<div class="span12 col-xm-12">
+								<div class="feindex-other-news-box wow slideInRight">
+									<div class="fe-li-new-box clearfix">
+										<h4>招生<span>考试</span>
+											<a v-for="(item, index) in dataExamArr.rows" v-if="index == 0" :href="'news.html?newsTypeId='+item.newsTypeId" target="_blank">更多></a>
+										</h4>
+										<!--<div class="span5">-->
+											<div class="fe-image-box">
+												<a v-for="(item, index) in dataExamArr.rows" v-if="index == 0" v-bind:href="item.newsId|addRoot" target="_blank">
+												<span>
+												<img v-bind:src="item.iconPath|addRootFile" />
+											</span>
+													<!--<p v-cloak>{{firstBroadcastNewsTitle}}</p>-->
+												</a>
+											</div>
+										<!--</div>-->
+										<!--<div class="span7">-->
+											<ul>
+												<li v-cloak v-for="(item, index) in dataExamArr.rows" v-if="index < 5">
+													<a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+												</li>
+											</ul>
+										<!--</div>-->
+									</div>
+								</div>
+							</div>
+							<div class="span12 col-xm-12">
+								<div class="feindex-other-news-box wow slideInRight">
+									<div class="fe-li-new-box clearfix">
+										<h4>校园<span>联播</span>
+											<a v-for="(item, index) in dataBroadcastArr.rows" v-if="index == 0" :href="'news.html?newsTypeId='+item.newsTypeId" target="_blank">更多></a>
+										</h4>
+										<!--<div class="span5">-->
+											<div class="fe-image-box">
+												<a v-for="(item, index) in dataBroadcastArr.rows" v-if="index == 0" v-bind:href="item.newsId|addRoot" target="_blank">
+												<span>
+												<img v-bind:src="item.iconPath|addRootFile" />
+											</span>
+													<!--<p v-cloak>{{firstBroadcastNewsTitle}}</p>-->
+												</a>
+
+											</div>
+										<!--</div>-->
+										<!--<div class="span7">-->
+											<ul>
+												<li v-cloak v-for="item in dataBroadcastArr.rows">
+													<a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+												</li>
+											</ul>
+										<!--</div>-->
+									</div>
+								</div>
+							</div>
+							<div class="span12 col-xm-12">
+								<div class="feindex-other-news-box wow slideInRight" style="margin-bottom: 0">
+									<div class="fe-li-new-box clearfix">
+										<h4>职场<span>就业</span>
+											<a v-for="(item, index) in dataWorkArr.rows" v-if="index == 0" :href="'news.html?newsTypeId='+item.newsTypeId" target="_blank">更多></a>
+										</h4>
+										<!--<div class="span5">-->
+											<div class="fe-image-box">
+												<a v-for="(item, index) in dataWorkArr.rows" v-if="index == 0" v-bind:href="item.newsId|addRoot" target="_blank">
+												<span>
+												<img v-bind:src="item.iconPath|addRootFile" />
+											</span>
+													<!--<p v-cloak>{{firstBroadcastNewsTitle}}</p>-->
+												</a>
+											</div>
+										<!--</div>-->
+										<!--<div class="span7">-->
+											<ul>
+												<li v-cloak v-for="(item, index) in dataWorkArr.rows" v-if="index < 5">
+													<a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{item.title}}</a>
+												</li>
+											</ul>
+										<!--</div>-->
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+			<!--<div class="feAdWrap" id="feAdApp2">-->
+				<!--<div class="container">-->
+					<!--<a class="feAdLi" v-for="(item,index) in adArr" v-if="index==1" :href="item.href" target="_blank" style="margin: 20px 0 -20px;">-->
+						<!--<img :src="item.iconPath | addRootFile" />-->
+					<!--</a>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<!--影视圈-->
+			<section class="feindex-video-hub-wrap" id="jindexVideoHubApp">
+				<div class="container">
+					
+					<div class="feindex-model-title-box wow bounceInDown">
+						<div class="feindex-model-title">电视节目</div>
+						<ul>
+							<li :class={"active":type} @click="changeType">直播</li>
+							<li :class={"active":!type} @click="changeType">栏目</li>
+						</ul>
+					</div>
+					<div class="feindex-video-hub-inner" v-show="type">
+						<div class="span7 wow slideInLeft">
+							<div class="fe-tv-player-box">
+								<div class="prism-player" id="J_prismPlayer"></div>
+							</div>
+						</div>
+						<div class="span5">
+							<div class="fe-tv-play-list wow slideInRight">
+								<h4>福建教育电视台节目单</h4>
+								<ul class="fe-tv-list-box">
+										<!--<li class="active">
+									<p>绝对故事</p>
+									<p>08:35-09:18</p>
+								</li>-->
+										<li v-for="item in dataPlayListArr" :class={"active":item.active}  v-bind:data-id="item.channelProgramId">
+											<span></span>
+											<p>{{item.playTime}}</p>
+											<p>{{item.name}}</p>
+										</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="fe-wei-movie-inner" v-show="!type">
+						<div class="span3 col-xm-4" v-for="item in dataWeiPlayArr">
+							<a @click="openBackPlayer(item.microVideoId,item.videoId)" >
+								<div class="fe-wei-movie-inner-img">
+								<img v-bind:src="item.iconPath|addRootFile" />
+								<p>{{item.title}}</p>
+								</div>
+								<p>{{item.videoName}}</p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+			<!--云课堂-->
+			<section class="feindex-cloud-wrap" id="jindexCloudApp" style="background: #fff">
+				<div class="container">
+					<div class="span5-4" style="width:100%;">
+						<div class="feindex-model-title-box wow bounceInDown">
+							<div class="feindex-model-title">云课堂</div>
+							<ul>
+								<li v-for="(item,index) in dataCloudTypeArr" :class={"active":index==tempActiveIndex} @click="changeType(item.educationalLevelId, index)">{{item.educationalLevelName}}</li>
+							</ul>
+							<a href="courselist.html?recordType=1&period=&grade=&subject=" target="_blank" id="cloud">更多></a>
+						</div>
+					</div>
+
+					<div class="feindex-cloud-inner clearfix">
+						<div class="span5-4" id="fe-course-box" style="width: 100%">
+							<div>
+								<a class="fe-course-ad wow slideInRight" href="#this">
+									<!--<div :style="{ height:adHeight +'px'}">-->
+									<div style="height: 416px;">
+										<div class="feimage">
+											<img src="images/temp/index-cloud-logo.png" alt="">
+										</div>
+										<div class="febox">
+											<h4>精品课程</h4>
+											<h4>暑我先行 赢在今夏</h4>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div  v-for="(item,index) in dataCloudCourse" v-if="index < 8">
+								<div class="fepanel">
+									<a class="feimage" target="_blank" v-bind:href="item.courseId|addRoot">
+										<img v-bind:src="item.iconPath|addRootFile" />
+										<p style="height: 21px;"><span>{{item.educationLevelName}}</span>{{item.playBeginTime}}</p>
+									</a>
+									<div class="febox clearfix">
+										<h4 style="font-weight: normal; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{item.courseName}}</h4>
+										<h5>
+											<b v-if="item.isFree == 1">免费</b>
+											<b v-if="item.isFree != 1" style="color:#ff6c00;">￥{{item.preferentialPrice}}</b>
+											<!--<b>{{item.preferentialPrice|changePrice}}</b>-->
+											<div>
+												<span>{{item.teacherName}}</span>
+												<a v-bind:href="'schoolindex.html?organId='+item.organId" target="_blank">{{item.organName}}</a>
+											</div>
+										</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<div class="span5-1" style="overflow: hidden;">-->
+							<!--&lt;!&ndash;<ul class="fe-clound-play-list wow slideInRight" id="fe-clound-play-list" :style="{ height:adHeight +'px'}">&ndash;&gt;-->
+							<!--<ul class="fe-clound-play-list wow slideInRight" id="fe-clound-play-list" style="height: 416px;">-->
+								<!--<h5>今日直播</h5>-->
+								<!--<ul class="fe-today-box">-->
+									<!--<li v-cloak v-for="item in dataCloudTodayArr">-->
+										<!--<a href="#this">-->
+											<!--<img v-bind:src="item.iconPath|addRootFile" />-->
+											<!--&lt;!&ndash;<span class="fe-time">{{item.playBeginTime}}-{{item.playEndTime}}</span>&ndash;&gt;-->
+											<!--<span class="fe-time">{{item.playBeginTime}}</span>-->
+											<!--<p class="fe-title">{{item.name}}</p>-->
+										<!--</a>-->
+									<!--</li>-->
+								<!--</ul>-->
+								<!--<h5>明日直播</h5>-->
+								<!--<ul class="fe-tomorrow-box">-->
+									<!--<li v-cloak v-for="item in dataCloudTomorrowArr">-->
+										<!--<a href="#this">-->
+											<!--<img v-bind:src="item.iconPath|addRootFile" />-->
+											<!--<span class="fe-time">{{item.playBeginTime}}</span>-->
+											<!--<p class="fe-title">{{item.name}}</p>-->
+										<!--</a>-->
+									<!--</li>-->
+								<!--</ul>-->
+							<!--</ul>-->
+						<!--</div>-->
+					</div>
+				</div>
+			</section>
+
+			<!--ad--->
+			<section class="feIndex-ad-wrap" style="padding: 40px 0 0;background: #fff">
+				<div class="container">
+					<a href="#this" id="Survey">
+						<img src="images/temp/indexAd.jpg" alt="福建教育网" />
+					</a>
+				</div>
+			</section>
+
+			<!--选课中心-->
+			<section class="feindex-selection-center-wrap clearfix" id="jindexSelectionApp" style="background: #fff;padding-bottom: 20px">
+				<div class="container">
+					<div class="feindex-model-title-box wow bounceInDown">
+						<div class="feindex-model-title">选课中心</div>
+						<ul>
+							<li v-cloak v-for="(item,index) in dataSeletionTypeArr" :class={"active":index==tempActiveIndex} @click="changeType(item.educationalLevelId, index)">{{item.educationalLevelName}}</li>
+						</ul>
+						<a href="courselist.html?recordType=0&period=&grade=&subject=" target="_blank" id="xuanke">更多></a>
+					</div>
+					<div class="feindex-selection-inner">
+						<div class="span5-3" style="width: 59.5%">
+							<div v-for="item in dataSeletionArr">
+								<div  class="fepanel">
+									<a class="feimage" v-bind:href="item.courseId,item.courseKind|addRoot" target="_blank">
+										<img v-bind:src="item.iconPath|addRootFile" alt="" />
+										<!--<p><span>{{item.subjectName}}复习</span>19:30</p>-->
+									</a>
+									<div class="febox clearfix">
+										<h4>{{item.courseName}}</h4>
+										<h5>
+											<b v-if="item.isFree == 1">免费</b>
+											<b v-if="item.isFree != 1" style="color:#ff6c00;">￥{{item.preferentialPrice}}</b>
+											
+											<!--<b>{{item.preferentialPrice|changePrice}}</b>-->
+											<div>
+												<span>{{item.teacherName}}</span>
+												<a v-bind:href="'schoolindex.html?organId='+item.organId" target="_blank" target="_blank">{{item.organName}}</a>
+											</div>
+										</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="span5-2" style="width: 40.5%">
+							<div class="fe-wei-course-box wow slideInRight">
+								<a v-for="item in dataSeletionWeiArr" v-bind:href="item.microLectureId,item.courseKind|addRoot"  target="_blank" class="fepanel">
+									<span>微课</span>
+									<img v-bind:src="item.iconPath|addRootFile" alt="选课中心" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!--名师在线-->
+			<section class="feindex-teacher-wrap" id="jindexTeacherApp">
+				<div class="container">
+					<!--<div class="feindex-model-title-box wow bounceInDown">-->
+						<!--<div class="feindex-model-title">名师在线</div>-->
+					<!--</div>-->
+					<h1><span>名师在线</span> </h1>
+					<div class="feindex-teacher-inner wow flipInX">
+						<div class="swiper-container fe-teacher-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" v-cloak v-for="item in teacherArr">
+									<a v-bind:href="item.teacherId | addHref" target="_blank">
+										<div class="fe-image">
+											<img src="images/temp/indexTeacher.jpg" v-bind:src="item.iconPath | addRoute" v-bind:alt="item.name" />
+										</div>
+										<p class="fe-teacher-name">{{item.teacherName}}</p>
+										<p class="fe-teacher-good"><span>擅长科目 : {{item.subjectName}}</span></p>
+										<p class="fe-teacher-brief">{{item.note}}</p>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- Add Arrows -->
+						<div class="swiper-button-prev cc1"></div>
+						<div class="swiper-button-next cc2"></div>
+					</div>
+				</div>
+			</section>
+
+			<!--ad--->
+			<!--<section class="feIndex-ad-wrap">-->
+				<!--<div class="container">-->
+					<!--<a href="#this">-->
+						<!--<img src="images/temp/indexAd2.jpg" alt="福建教育网" />-->
+					<!--</a>-->
+				<!--</div>-->
+			<!--</section>-->
+
+			<!--活动快讯-->
+			<section class="feindex-activity-wrap clearfix" id="jindexActivityApp" style="padding-bottom: 50px;background: #fff">
+				<div class="container">
+					<div class="feindex-model-title-box">
+						<div class="feindex-model-title">活动专题</div>
+						<ul>							
+							<li v-cloak v-for="(item,index) in activeTypeArr" :class={"active":index==tempActiveIndex} @click="changeType(item.activityTypeId, index)">{{item.activityTypeName}}</li>
+						</ul>
+						<a href="activitymore.html" target="_blank">更多></a>
+					</div>
+					<div class="feindex-activity-inner">
+						<!--<h1  v-cloak v-for="item in activityTitleArr">{{item.activityTypeName}}</h1>-->
+
+
+						<div class="span3">
+							<ul class="feleft-news">
+								<li v-for="(item,index) in activityCaseArr">
+									<a :href="'activedetail.html?activeId='+item.activityId+'&activityTypeId='+currentTypeId" target="_blank" :title="item.activityName"><span>{{index + 1}}</span>{{item.activityName}}</a>
+								</li>
+							</ul>
+						</div>
+						<div class="span9">
+							<ul class="feright-news">
+								<li v-for="(item,index) in activityIconArr" v-if="index < 6 && item.activityId">
+									<a :href="'activedetail.html?activeId='+item.activityId+'&activityTypeId='+currentTypeId" target="_blank" :title="item.activityName">
+										<img :src="item.iconPath | addRootFile" alt="">
+										<h4>{{item.activityName}}</h4>
+									</a>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!--左侧导航栏-->
+			<section class="feindexSideNavWrap">
+				<div class="container">
+					<aside id="fe-left-nav-box">
+						<a href="#jindexEduApp" class="active">要闻资讯</a>
+						<a href="#jindexVideoHubApp">电视节目</a>
+						<a href="#jindexCloudApp">云课堂</a>
+						<a href="#jindexSelectionApp">选课中心</a>
+						<a href="#jindexTeacherApp">名师在线</a>
+						<a href="#jindexActivityApp">活动专题</a>
+					</aside>
+				</div>
+			</section>
+		</section>
+
+		<!--临时footer-->
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		
+		<script>
+			
+			$(function() {
+				indexData();
+
+			})
+		</script>
+	</body>
+
+</html>

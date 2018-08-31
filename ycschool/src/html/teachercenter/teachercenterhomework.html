@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-作业</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #fff;">
+
+<section class="personCenterRight">
+    <div id="homework" class="teacherCenterHomework">
+        <!--筛选框-->
+        <div class="thead">
+            <button class="btnStyle" @click="paperWork()"><i class="uk-icon-plus-circle"></i>布置作业</button>
+            <button class="btnStyle" @click="photoWork()"><i class="uk-icon-plus-circle"></i>图片作业</button>
+            <!--<button class="btnStyle" @click="batchQuestion()"><i class="uk-icon-plus-circle"></i>批量导题</button>-->
+            <div class="selectBox">
+                <span>布置时间:</span>
+                <select name="" id="time">
+                    <option value="4">全部</option>
+                    <option value="0">今天</option>
+                    <option value="1">近3天</option>
+                    <option value="2">近1周</option>
+                    <option value="3">近1月</option>
+                </select>
+            </div>
+            <div class="selectBox">
+                <span>班级:</span>
+                <select name="" id="classes">
+                    <option value="0">全部</option>
+                    <option v-bind:value="item.classId" v-cloak v-for="item in classArray">{{item.classname}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="tbody">
+            <div class="title">
+                <div class="small">序号</div>
+                <div class="big">作业名称</div>
+                <div class="big">课程名称</div>
+                <div class="middle">班级</div>
+                <div class="big">布置时间</div>
+                <div class="middle">完成人数</div>
+                <div class="middle">操作</div>
+            </div>
+            <div class="list" v-cloak v-for="(item,index) in homework">
+                <div class="small">{{index+1}}</div>
+                <div class="big"><a v-bind:title="item.title" class="text">{{item.title}}</a></div>
+                <div class="big"><a v-bind:title="item.courseName" class="text">{{item.syllabusName}}</a></div>
+                <div class="middle">{{item.classname}}</div>
+                <div class="big"><a class="text">{{item.Times}}</a></div>
+                <div class="middle"><a class="btn" >{{item.execution}}</a></div>
+                <div class="middle">
+                    <a v-bind:href="item.paperId|lookpaper" class="btn">查看</a>
+                </div>
+            </div>
+            <!--<div class="list">-->
+                <!--<div class="small">1</div>-->
+                <!--<div class="big"><a  class="text">新概念英语课后练习1 新概念英语课后练习1 新概念英语课后练习1 新概念英语课后练习1 </a></div>-->
+                <!--<div class="big"><a  class="text">新概念英语课后练习1 新概念英语课后练习1 </a></div>-->
+                <!--<div class="middle">高一（10）班</div>-->
+                <!--<div class="big"><a class="text">2018-04-23 10:41:36</a></div>-->
+                <!--<div class="middle" ><a class="btn">26/60</a></div>-->
+                <!--<div class="middle">-->
+                    <!--<a class="btn">查看</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <!--枫叶-->
+        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                <a href="#this">上一页</a>
+            </li>
+            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                <a href="#this">{{index}}</a>
+            </li>
+            <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                <a href="#this">下一页</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

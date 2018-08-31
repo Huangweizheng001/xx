@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>社圈小组</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+    <link rel="stylesheet" href="../css/swiper,animate.min.css" />
+
+</head>
+
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section>
+    <div class="container" id="communitygroupdetail">
+        <div class="fegrouphead clearfix" v-for="item in groupInfo"  v-cloak>
+            <div class="feimage">
+                <img v-bind:src="item.icon|addRootFile" alt="" >
+            </div>
+            <div class="febox" style="padding-top: 20px;">
+                    <span>{{item.groupName}}</span>
+                    <h3 style="padding: 20px 0;">创组人：<span>{{item.username}} <span> &nbsp;&nbsp;&nbsp;&nbsp;成员: <span>{{item.memberNum}}</span> | 总帖量: <span>{{item.topicNum}}</span></h3>
+                    <p>{{item.Introduction}}</p>
+            </div>
+            <button v-bind:data-id="item.groupId" class="addgroup" v-if="isaddGroup==0 && isCanAdd==1" ><i class="uk-icon-plus"></i>加入群组</button>
+            <button v-bind:data-id="item.groupId" class="addgroup" v-if="isaddGroup==1 && isCanAdd==1" >已加入群组</button>
+             <button class="creatnewpost" v-if='isCanAdd==1' ><a href="#this"><i></i>发表新帖</a></button>
+        </div>
+
+        <!--中间部分-->
+        <div class="clearfix">
+            <div class="span4-5">
+                <div class="fegroupmanager">
+                    <h2 class="vertical-line-title"><span>管理员</span></h2>
+                    <div class="fenodata" v-show="adminListnodata" style="height: 130px;"></div>
+                    <ul class="clearfix">
+                        <li v-cloak v-for="(item,index) in adminList">
+                        	<template v-if="index<3">
+	                        	<a v-bind:href="item.userId">
+	                           <img v-bind:src="item.avatar|addAvarFile" alt="">
+	                           <p>{{item.userName}}</p>
+	                        	</a>
+                        	</template>
+                        </li>
+                        <!--<li>-->
+                            <!--<img src="../images/temp/mr-tx.png" alt="">-->
+                            <!--<a href="">admin</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<img src="../images/temp/teacherdetail-tx.png" alt="">-->
+                            <!--<a href="">小雨</a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span7-5">
+                <div class="fegroupnotice">
+                    <h2 class="vertical-line-title"><span>群组公告</span></h2>
+                    <div class="fenodata" v-show="noticenodata" style="height: 130px;"></div>
+                    <ul>
+                        <li v-cloak v-for="(item,index) in notice" @click='seeDetail(item.message)'>{{index+1}}. {{item.title}}</li>
+                        <!--<li>2.本版只限Discuz!应用中心及应用的沟通交流，其他无关内容将直接删帖；本版只限Discuz!应用中心及应用的沟通交流，其他无关内容将直接删帖</li>-->
+                        <!--<li>3.本版只限Discuz!应用中心及应用的沟通交流，其他无关内容将直接删帖；</li>-->
+                        <!--<li>4.本版只限Discuz!应用中心及应用的沟通交流，其他无关内容将直接删帖；</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span4-5">
+                <div class="fegrouptheme">
+                    <h2 class="icon-title"><span class="newtheme"></span>最新帖子  <!--<a v-bind:href="newpostHref">More</a>--></h2>
+                    <div class="fenodata" v-show="newthemenodata" style="height: 210px;"></div>
+                    <ul>
+                        <li v-cloak v-for="item in newtheme"><a  v-bind:href='item.postId' target="_blank">{{item.title}} <span>{{item.postTime}}</span></a></li>
+                        <!--<li>我的帖子测试在这里  <span>2016-11-29</span></li>-->
+                        <!--<li>我的帖子测试在这里  <span>2016-11-29</span></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span4-5">
+                <div class="fegrouptheme">
+                    <h2 class="icon-title"><span class="essencetheme"></span>精华帖子<!--<a v-bind:href="essencepostHref">More</a>--></h2>
+                     <div class="fenodata" v-show="essencethemenodata" style="height: 210px;"></div>
+                    <ul>
+                    	<li v-cloak v-for="item in essencetheme"><a  v-bind:href='item.postId' target="_blank">{{item.title}} <span>{{item.postTime}}</span></a></li>
+                        <!--<li><a>我的帖子测试在这里 <span>2016-11-29</span></a></li>
+                        <li>我的帖子测试在这里  <span>2016-11-29</span></li>
+                        <li>我的帖子测试在这里  <span>2016-11-29</span></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="span3-0">
+                <div class="feactivemember">
+                    <h2 class="icon-title"><span class="activeicon"></span>活跃会员 <!--<a href="">More</a>--></h2>
+                     <div class="fenodata" v-show="activeMembernodata" style="height: 210px;"></div>
+                    <ul>
+                        <li v-cloak v-for="(item,index) in activeMember">
+                        	<a v-bind:href="item.userId"> 
+                            <img v-bind:src="item.avatar | addAvarFile" alt="">
+                            <p>{{item.username}}</p>
+                        	</a>
+                        </li>
+                        <!--<li>
+                            <img src="../images/temp/mr-tx.png" alt="">
+                            <a href="">admin</a>
+                        </li>
+                        <li>
+                            <img src="../images/temp/teacherdetail-tx.png" alt="">
+                            <a href="">小雨</a>
+                        </li>
+                        <li>
+                            <img src="../images/temp/coursedetailteachericon.png" alt="">
+                            <a href="">小小粒</a>
+                        </li>
+                        <li>
+                            <img src="../images/temp/mr-tx.png" alt="">
+                            <a href="">admin</a>
+                        </li>
+                        <li>
+                            <img src="../images/temp/teacherdetail-tx.png" alt="">
+                            <a href="">小雨</a>
+                        </li>-->
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <!--内容区-->
+        <div class="fegroupnotearea">
+            <div class="fehead clearfix">
+                <ul class="span8">
+                    <li>
+                        <span class="todaynote"></span>今日帖子: {{todayAddArr.topicCount}}
+                    </li>
+                    <li>
+                        <b>|</b>
+                    </li>
+                    <li>
+                        <span class="todaymember"></span>今日新增会员: {{todayAddArr.memberCount}}
+                    </li>
+                </ul>
+                <div class="span4" style="text-align: right;font-size: 16px;">
+                	欢迎您，<a class="turntomember" v-bind:href="memberHref">{{memberName}}</a>
+                   <!--  筛选:
+                   <select name="" id="theme">
+                        <option value="0">全部主题</option>
+                    </select>
+                    <select name="" id="time">
+                        <option value="0">全部时间</option>
+                    </select>-->
+                </div>
+            </div>
+            <div class="feselect clearfix">
+                <ul id="fetheme">
+                    <li class="active" @click="selectTheme('',0)">全部</li>
+                    <li v-cloak v-for="(item,index) in themeArr"  @click="selectTheme(item.typeId,index+1)" >{{item.name}}</li>
+                </ul>
+                 <a v-bind:href="themepostMore">More</a>
+               <!-- <a href="communitypost.html?groupId=21"><button><i>发表新帖</i></button></a>-->
+            </div>
+            <div class="fecontent clearfix">
+            	<div class="fenodata" v-show="postListArrnodata"></div>
+                <div class="span3" v-cloak v-for="item in postListArr">
+                    <a class="fenotedetail" v-bind:href='item.postId' target="_blank">
+                        <div class="feimage">
+                            <img v-bind:src="item.icon|addRootFile" alt="">
+                        </div>
+                        <div class="febox">
+                            <h1>{{item.title}}</h1>
+                            <div>
+                                <span>{{item.lastposter}}</span>
+                                <p>查看:<span>{{item.views}}</span> 回复:<span>{{item.replies}}</span></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+               <!-- <div class="span3">
+                    <div class="fenotedetail">
+                        <div class="feimage">
+                            <img src="../images/temp/community3.png" alt="">
+                        </div>
+                        <div class="febox">
+                            <h1>胜任野外摄影？</h1>
+                            <div>
+                                <a href="">小小李</a>
+                                <p>查看:<span>9</span> 回复:<span>66</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="fenotedetail">
+                        <div class="feimage">
+                            <img src="../images/temp/community4.png" alt="">
+                        </div>
+                        <div class="febox">
+                            <h1>胜任野外摄影？</h1>
+                            <div>
+                                <a href="">小小李</a>
+                                <p>查看:<span>9</span> 回复:<span>66</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="fenotedetail">
+                        <div class="feimage">
+                            <img src="../images/temp/community5.png" alt="">
+                        </div>
+                        <div class="febox">
+                            <h1>胜任野外摄影？</h1>
+                            <div>
+                                <a href="">小小李</a>
+                                <p>查看:<span>9</span> 回复:<span>66</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+<script>
+    $(function() {
+        communitygroupdetail($(this).getUrlParam("groupId"),$(this).getUrlParam("groupTypeId"));
+    })
+</script>
+</body>
+
+</html>

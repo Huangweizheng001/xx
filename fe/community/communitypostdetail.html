@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>帖子详情页</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/fetvcommunity.css" />
+		<link rel="stylesheet" href="../css/swiper,animate.min.css" />
+	</head>
+
+	<body >
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="communitypostlist communitypostdetail" id="communitypostdetail" >
+			<div class="container">
+
+				<div class="fecommunity clearfix" >
+					<div class="fecommunity-left span9">
+						<div class="fecommunity-left-content">
+							<h2 v-cloak>{{postContenArr.title}}</h2>
+							<div class="note" v-cloak>
+								{{postContenArr.username}}<span class="time" v-cloak>发表于&nbsp;&nbsp;{{postContenArr.postdatetime}}</span>
+								<span class="right">
+								<em class="see" v-cloak>{{postContenArr.views}}</em>
+						<!--		<em class="comment">{{postContenArr.replies}}</em>-->
+								<em class="zan" v-cloak>{{postContenArr.praise}}</em>
+							</span>
+							</div>
+							<div class="content">
+								<div v-cloak v-if="isLogin==1" v-html='postContenArr.message'></div>
+								<div class="nologin" v-else>
+									<p>本帖子中包含更多资源</p>
+									<p class="islogin">您需要<a href="../login.html">登录</a>才可以下载或查看，没有账号？
+										<a href="../login.html?login=3">立即注册</a>
+									</p>
+								</div>
+								
+								<div class="sharebox">
+									<a class="collection">收藏</a>
+									<a class="zan" @click="contentLike(postContenArr.pid)">点赞</a>
+									<a class="share" @click='shareTo()'>分享</a>
+									<div class="bdsharebuttonbox" data-tag="share_1" id="share" style="margin-top: 20px;display: none;">
+										<span>分享到:</span>
+										<a class="qqplay" data-cmd="sqq"></a>
+										<a class="qzone"  data-cmd="qzone"></a>
+										<a class="weixin" data-cmd="weixin"></a>
+										<a class="weibo" data-cmd="tsina"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="fecommunity-left-comment fepinglun" v-if="isClose==0"> 
+							<!--评论区-->
+							<!--课程评论区包含点赞-->
+							<div class="fepinglun-inner clearfix" id="feleaveword">
+								<h5>全部评论<span>(累计评论<b v-cloak>{{allCount}}</b>条)</span></h5>
+								<div class="fepinglunarea">
+
+									<ul class="feleaveword">
+										<li v-cloak v-for="list in leavewordList" v-bind:data-courseevaluationid="list.pid" v-bind:data-leveloneevaluationid="list.pid">
+											<div class="fetop clearfix">
+												<img v-bind:src="list.avatar|addAvarRootFile" alt="">
+												<h4><span v-bind:data-id="list.posterid">{{list.username}}</span></h4>
+												<s>{{list.postdatetime}}</s>
+											</div>
+											<div class="febox">
+												<p>{{list.message}}</p>
+												<button>回复</button> <span class="dianzang">{{list.praise}}</span>
+												<span class="lookup" @click='getCount(list.replies,$event)' v-if='list.replies != ""'>查看({{list.replies}})</span>
+												<span class="lookup" @click='getCount(list.replies,$event)' v-else>查看(0)</span>
+											</div>
+											<ul class="feleaveword-chirld" :class="list.children.length<1 ? '':'feleaveword-chirld-border'" style="display: none;">
+												<li v-cloak v-for="item in list.children" v-bind:data-courseevaluationid="item.pid" v-bind:data-leveloneevaluationid="item.parentid" v-bind:data-topvaluationid='item.fid'>
+													<div class="fetop clearfix">
+														<img v-bind:src="item.avatar|addAvarRootFile" alt="">
+														<h4><span v-bind:data-id="item.posterid">{{item.username}}</span><b v-bind:data-id="item.byReplyId">回复</b>{{item.byReplyName}}</h4>
+														<s>{{item.postdatetime}}</s>
+													</div>
+													<div class="febox">
+														<p>{{item.message}}</p>
+														<button>回复</button><span class="dianzang">{{item.praise}}</span>
+													</div>
+													<!--<div class="feliuyan">-->
+													<!--<input type="text"><button>评论</button>-->
+													<!--</div>-->
+												</li>
+											</ul>
+										</li>
+									</ul>
+									<!--枫叶-->
+									<ul class="pagenationbox clearfix">
+										<li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+									<div class="feliuyan-parent" >
+										<span class="avar" :style="{backgroundImage: 'url(\''+uavar+'\')'}" v-cloak></span>
+										<span class="islogin" v-if="isLogin==0">您需登录后才可以回帖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../login.html">登录</a>|<a href="../login.html?login=3">立即注册</a></span>
+										<textarea class="content" type="text" v-else></textarea>
+										<div class="btn" v-if="isLogin==1"><button>评论</button></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="fecommunity-right span3">
+						<div class="fecommunitypostdetail-member">
+							<div class="top">
+								<a v-bind:href="newPostHref">
+								<div class="avar" :style="{backgroundImage: 'url(\''+memberArr.avatar+'\')'}" v-cloak ></div>
+								<p>{{memberArr.username}}</p></a>
+								<div class="membernum clearfix">
+									<span class="span4">
+									<a href="#this" v-cloak >{{memberArr.groupNum}}</a>
+									<p>群组</p>
+								</span>
+									<span class="span4">
+									<a href="#this" v-cloak >{{memberArr.fansNum}}</a>
+									<p>粉丝</p>
+								</span>
+									<span class="span4">
+									<a href="#this" v-cloak>{{memberArr.topicNum}}</a>
+									<p>帖子</p>
+								</span>
+								</div>
+							</div>
+							<div class="bottom clearfix" v-if="isMe==0" >
+								<a   v-if="isAttention==1 && isLogin==1">已关注</a>
+								<a id="cancelattention" class="cancelattention" v-if="isAttention==1 && isLogin==1">取消关注</a>
+								<a id="attention" class="attention"  v-else style="margin:0 50px">加关注</a>
+								
+								<!--
+								<a id="cancelattention" class="cancelattention" v-if="isAttention==1">取消关注</a>
+								<a id="attention" class="attention"  v-else >加关注</a>
+								<a class="chat">发私信</a>-->
+							</div>
+						</div>
+						<div class="fecommunitypostlist-essencelist">
+							<div class=" fecommunitypostlist-title">楼主新帖
+								<a title="更多" v-bind:href="newPostHref" v-cloak>更多></a>
+							</div>
+							<ul class="fecommunity-hotlist-wrap clearfix">
+								<!--<li>
+									<a href="communitypostdetail.html"><span>1</span>奥斯卡积分哈金士顿发哈闪电发货案例集刷卡的发哈利啥借口打发化技术的浪费啊乐山大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>2</span>奥斯的发哈利啥借口打发化技术的浪费啊乐山大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>3</span>奥斯卡积大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>4</span>奥斯卡积分哈金士顿发哈闪电发货案例集大佛</a>
+								</li>-->
+								<li v-for="(item,index) in newPostArr" v-cloak><a v-bind:href='item.postId' target="_blank"><span>{{(index+1)}}</span>{{item.title}}</a></li>
+							</ul>
+						</div>
+
+						<div class="fecommunitypostlist-recommendlist">
+							<div class="fecommunitypostlist-title">所属群组<a title="更多" v-bind:href="recommendPostHref" v-cloak >更多></a> </div>
+							<div class="fecommunity-hotlist-wrap clearfix">
+								<!--<a href="communitypostdetail.html" class="clearfix">
+									<div class="span5">
+										<div class="feimage">
+											<img src="../images/temp/commounitygroup2.jpg" alt="">
+										</div>
+									</div>
+									<div class="feright-box span7">
+										<h3>fskldfajskldhfajlksdfh al啊施蒂利克返回阿萨</h3>
+										<p>阿达介绍点阿里斯顿呼啦回复的阿拉斯加的画风拉闪电发货老师接口动画弗利萨动画来得及</p>
+									</div>
+								</a>
+								<a href="communitypostdetail.html" class="clearfix">
+									<div class="span5">
+										<div class="feimage">
+											<img src="../images/temp/commounitygroup2.jpg" alt="">
+										</div>
+									</div>
+									<div class="feright-box span7">
+										<h3>fskldfajskldhfajlksdfh al啊施蒂利克返回阿萨</h3>
+										<p>阿达介绍点阿里斯顿呼啦回复的阿拉斯加的画风拉闪电发货老师接口动画弗利萨动画来得及</p>
+									</div>
+								</a>-->
+								<a class="clearfix" v-bind:href="item.groupId" v-cloak v-for="item in groupArr">
+								<div class="span5">
+									<div class="feimage">
+										<img v-bind:src="item.icon|addRootFile" alt="">
+									</div>
+								</div>
+								<div class="feright-box span7">
+									<h3>{{item.groupName}}</h3>
+									<p>{{item.Introduction}}</p>
+								</div>
+							</a>
+							</div>
+						</div>
+						<div class="fecommunitypostlist-essencelist">
+							<div class="fepanel-title fecommunitypostlist-title-nomore">相关推荐
+								<!--<a title="更多" v-bind:href="recommendPostHref" v-cloak >More</a>-->
+							</div>
+							<ul class="fecommunity-hotlist-wrap clearfix">
+								<!--<li>
+									<a href="communitypostdetail.html"><span>1</span>奥斯卡积分哈金士顿发哈闪电发货案例集刷卡的发哈利啥借口打发化技术的浪费啊乐山大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>2</span>奥斯的发哈利啥借口打发化技术的浪费啊乐山大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>3</span>奥斯卡积大佛</a>
+								</li>
+								<li>
+									<a href="communitypostdetail.html"><span>4</span>奥斯卡积分哈金士顿发哈闪电发货案例集大佛</a>
+								</li>-->
+								<li v-for="(item,index) in recommendPostArr"  v-cloak><a v-bind:href='item.postId' target="_blank"><span>{{(index+1)}}</span>{{item.title}}</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/fetvAppend.js"></script>
+		<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+		<script>
+			$(function() {
+				var postId = $(this).getUrlParam("postId");
+				communityPostDetail(postId);//帖子详情
+				setTimeout(function () {
+					with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+				},1000);
+			})
+		</script>
+	</body>
+
+</html>

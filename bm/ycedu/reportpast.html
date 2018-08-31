@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+
+		<style>
+			.dycEiaTheme{
+				text-align: center;padding: 20px 20px 30px;position: relative;
+			}
+			.dycEiaTheme .dycEiaTheme-title >p{
+ position: absolute;top:23px;left:55%;color: #00aaff;font-size: 14px;
+}
+			.dycEiaTheme-con {
+				margin: 50px 0;
+			}
+			
+			.dycEiaTheme-con .title {
+				margin: 40px auto 60px;
+				background: #00aaff;
+				color: #fff;
+				font-size: 18px;
+				text-align: center;
+				border-radius: 8px;
+				width: 40%;
+				height: 40px;
+				line-height: 40px;
+			}
+		</style>
+	</head>
+
+	<body style="padding-top: 0;">
+
+		<section class="bmbackPlayerModel">
+			<div id="jreportpast" class="dycEiaTheme">
+				<!--<img src="images/report/EIA3.png" />-->
+			</div>
+		</section>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+	</body>
+
+	<script>
+		$(function() {
+			var id = $(this).getUrlParam("technologyId");
+			var tId = $(this).getUrlParam("technologyTypeId");
+
+			reportPast(id, tId);
+
+			function reportPast(id, tId) {
+				$.ajax({
+					type: "GET",
+					url: ROUTE + "Technology.ashx?action=getCurrentTechnology",
+					dataType: "json",
+					data: {
+						"technologyTypeId": tId,
+						"technologyId": id,
+						"memberId": $mid
+					},
+					async: false,
+					success: function(result) {
+						if((result.length < 1) || (result[0].length < 1)) {
+							return false;
+						} else {
+							if(tId == 3) {
+								htmlStr = "<div class='dycEiaTheme-title'><img src='images/short.jpg' /><p>[ " + result[0][0].title + " ]</p></div><div class ='dycEiaThemeConWrap'><div class='dycEiaTheme-con'><p class='title'>本期基本面分析 </p>" + result[0][0].yesterday_technology + "</div><div class='dycEiaTheme-con'><p class='title'>本期技术面分析 </p>" + result[0][0].focus + "</div></div>";
+
+								$('#jreportpast').html(htmlStr);
+							} else {
+								$('#jreportpast').html(result[0][0].focus);
+							}
+
+							/*if(result[0][0].isFree == '1') {
+								$('#jreportpast').html(result[0][0].focus);
+							} else {
+								if(id == '3') {
+									layer.confirm('黄金会员才可以查看,确定前往升级会员？', {
+										btn: ['确定', '取消'] //按钮
+									}, function() {
+										location.href = "recharge.html";
+									});
+								} else if(id == '4') {
+									layer.confirm('铂金会员才可以查看,确定前往升级会员？', {
+										btn: ['确定', '取消'] //按钮
+									}, function() {
+										location.href = "recharge.html";
+									});
+								} else {
+									layer.confirm('白银会员才可以查看,确定前往升级会员？', {
+										btn: ['确定', '取消'] //按钮
+									}, function() {
+										location.href = "recharge.html";
+									});
+								}
+
+							}*/
+
+						}
+
+					},
+					error: function(err) {
+						console.log(err);
+					}
+				});
+			}
+
+		})
+	</script>
+
+</html>

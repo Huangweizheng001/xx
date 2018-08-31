@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米公开课-实时演练/数据抢先看/投资快人一步</title>
+
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+		<style>
+			.dyczbselect .dyclpsg-wrap {
+				/*height: 522px;*/
+			}
+			
+			.dyczbselect-schedule {
+				height: 524px;
+			}
+			
+			#openClassLivePlayer{
+				background: url(ycedu/images/live/bglw01.jpg) no-repeat center right;
+				background-size: cover;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--播米直播模块-->
+		<section class="bmindexLiveModel bmopenClassModel" id="jopenLiveApp" v-cloak>
+			<div class="container">
+				<a class="bmindexGoToLive" id="bmindexGoToLive" :href="'ycedu/bmliveroom.html?channelId=6&channelProgramId='+currentChannelProgramId" >进入公开课</a>
+				<div class="bmindexLiveTeacherInf" style="display: none;">
+					<div class="container">
+						<a class="bnindexTeacherBox" :href="'ycedu/guestindex.html?teacherId=' + teacherInfArr.teacherId">
+							<img v-bind:src="iconPathPre + teacherInfArr.iconPath" />
+						</a>
+						<div class="bmindexLiveTeacherContent">
+							<h5>{{teacherInfArr.name}}</h5>
+							<p><span class="bmindexLiveTeacher">主讲嘉宾:</span>{{teacherInfArr.teacherName}} <span class="bmindexCouter">开课时间:{{teacherInfArr.playTime}}</span></p>
+						</div>
+					</div>
+				</div>
+				<div id="openClassLivePlayer" class="prism-player"></div>
+			</div>
+		</section>
+
+		<!--直播选择页-->
+		<section class="dyczbselect">
+			<div class="container">
+				<div class="dyclpstab-box" style="display: none;">
+					<!--<div class="swiper-container dycgkcourse-container">
+						<div class="swiper-wrapper" id="jliveselecttab">
+							<div class="swiper-slide active" data-id="1">嘉宾做客</div>
+							<div class="swiper-slide" data-id="2">课程抢鲜</div>
+							<div class="swiper-slide" data-id="3">实时播报</div>
+							<div class="swiper-slide" data-id="4">主播在线</div>
+						</div>
+					</div>-->
+					<div class="bmopenClassTitle" id="jliveselecttab">
+						<div class="swiper-slide active" data-id="1">嘉宾做客</div>
+						<!--<div class="swiper-slide" data-id="2">课程抢鲜</div>
+						<div class="swiper-slide" data-id="3">实时播报</div>-->
+						<div class="swiper-slide" data-id="4">主播在线</div>
+					</div>
+					<div class="dyczbselect-schedule">
+						<div id="jliveselectcon"></div>
+						<div class="dychotzbadv">
+							<h3><span></span>嘉宾公开课排班表</h3>
+							<p class="dychotzbadv-limit" id="jScheduleLimit"></p>
+							<div class="dychotzb-schedule" id="jSchedule"></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="clearfix">
+					<div class="bmBackCourseTitle">
+						<p class="title"><span>往期</span>课程</p>
+						<a href="ycedu/backcourselist.html" >更多课程</a>
+					</div>
+
+					<div class="bmbackCourseModel" id="jbackCourseApp">
+						<div class="container">
+							<div class="bmbackCourseInner">
+								<div class="span3 col-sm-6" v-for="item in backCourseArr" v-cloak>
+									<div class="bmbackCourseLi">
+										<a @click="openBackPlayer(item.courseId,item.videoId)" class="bmimage" target="_blank">
+											<img v-bind:src="item.iconPath" alt="" />
+										</a>
+										<div class="bmbackCourseInf">
+											<a @click="openBackPlayer(item.courseId,item.videoId)" class="title">{{item.name}}</a>
+											<a :href="'ycedu/guestindex.html?teacherId='+item.teacherId" target="_blank" class="teacher">嘉宾：{{item.teacherName}}</a>
+											<span class="tips">会员观看</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				
+				<!--广告：广而告之-->
+				<a class="dycadv-wrap dyc-bottom" href="ycedu/memberrule.html" target="_blank">
+					<img src="ycedu/images/temp/adTemp01.jpg" />
+				</a>
+			</div>
+		</section>
+
+		<section class="bmopenClassViewModel" id="jopenClassViewApp">
+			<div class="container">
+				<div class="bmBackCourseTitle">
+					<p class="title"><span>策略</span>解读</p>
+					<!--<a href="courselist.html">更多课程</a>-->
+				</div>
+
+				<div class="bmopenClassViewContent clearfix">
+					<div class="span8 col-sm-12">
+						<a :href="viewHref" class="bmopenClassViewImg">
+							<img v-bind:src="viewImg" />
+						</a>
+					</div>
+					<div class="span4 col-sm-12">
+						<ul class="bmopenClassNewsLi">
+							<li v-for="item in viewArr" v-cloak>
+								<a :href="'ycedu/strategynewsdetail.html?newsId='+item.newsId +'&newsTypeId='+item.newsTypeId">
+									{{item.title}}
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="ycedu/js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+		<script type="text/javascript" src="ycedu/js/teacherswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/bomi.js?1"></script>
+
+		<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+		<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<!--<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>-->
+
+		<script>
+			$(function() {
+				$.jSchedule(); //课程表
+				lphotTab();		
+
+				//是否开启广告
+				//adFunc();
+				initOpenClass();
+			});
+		</script>
+
+	</body>
+
+</html>

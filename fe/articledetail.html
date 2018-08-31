@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>文章详情</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+
+</head>
+
+<body>
+
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<!--文章详情-->
+<section class="feschool-news-detail-wrap" id="articleDetail">
+    <div class="container">
+        <div class="fe-news-detail-inner">
+            <h4 class="fe-news-title" v-cloak>{{currentArticleArr.title}}</h4>
+            <div class="fe-news-other-inf clearfix">
+                <span v-cloak>发布者:{{currentArticleArr.publisher}}</span>
+                <span v-cloak>发布时间:{{currentArticleArr.publishDate}}</span>
+            </div>
+            <div class="fe-news-content" v-cloak v-html="currentArticleArr.content"></div>
+
+            <div class="fe-news-go-box">
+                <a href="#this" v-cloak @click="openArticle(preArticleArr.articleId)" >
+                    上一篇: <span>{{preArticleArr.title}}</span>
+                </a>
+                <a  href="#this" v-cloak @click="openArticle(nextArticleArr.articleId)" >
+                    下一篇: <span>{{nextArticleArr.title}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="./js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+<script>
+	var teacherId = $(this).getUrlParam("teacherId");
+	var teachingStudioId = $(this).getUrlParam("teachingStudioId");
+	
+    articleDetail($(this).getUrlParam("articleId"),teacherId,teachingStudioId);
+</script>
+
+</body>
+
+</html>

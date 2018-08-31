@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>庆祝改革开放40周年</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/xwzt.css" />
+	</head>
+
+	<body>
+
+		<!--内容模块-->
+		<section class="fexwztWrap" id="jxwApp">
+			<div class="container">
+				<div class="fexwztInner">
+					<div class="fexwztTopInner clearfix">
+						<div class="span7">
+							<div class="feleft">
+								<h4 class="fexwztTitle">教育成就 <a href="xwztlist.html?activityId=37">更多>></a></h4>
+								<ul>
+									<li v-for="item in eduAch" v-cloak>
+										<a :href="item.activityId,36 |addRootHref" target="_blank">{{item.name}}</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="span5">
+							<div class="fexwztBanner">
+								<div class="swiper-container  xwzt-container">
+									<div class="swiper-wrapper">
+										<div class="swiper-slide" v-for="item in bannerArr" v-cloak>
+											<a :href="item.href" target="_blank" :style="{backgroundImage: 'url('+item.iconPath+')'}">
+												<p>{{item.note}}</p>
+											</a>
+										</div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="fexwztVideo">
+								<h4 class="fexwztTitle">视频播报 <a href="xwztlist.html?activityId=38">更多>></a></h4>
+								<div class="fexwztVideoBox">
+									<div class="span4" v-for="item in videoArr" v-cloak>
+										<a :href="item.activityId,38 |addRootHref" target="_blank">
+											<img :src="item.iconPath" />
+											<p>{{item.name}}</p>
+										</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<h3 class="fewxztBigTitle">在习近平新时代中国特色社会主义思想指引下
+						<a href="xwztlist.html?activityId=36">更多>></a>
+					</h3>
+
+					<div class="fexwztList">
+						<a class="fexwztLi" target="_blank" v-for="item in activeArr" v-cloak :href="item.activityId,36 |addRootHref">
+							<div class="feimage">
+								<img :src="item.iconPath" alt="">
+							</div>
+							<div class="feright">
+								<h3>{{item.name}}</h3>
+								<p>{{item.note}}</p>
+								<h6>更新时间: {{item.beginTime}} &nbsp;&nbsp;&nbsp;阅读: {{item.clickCount}}</h6>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/xwzt.js"></script>
+
+		<script>
+			$(function() {
+				 xwztApp();
+			})
+			
+		</script>
+
+	</body>
+
+</html>

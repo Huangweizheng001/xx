@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+		<link rel="stylesheet" href="css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="css/bm.css">
+		<title></title>
+
+		<style>
+			.bmindexLiveBannerWrap .bmindexLiveImg{
+				display: block;
+			}
+			.bmindexStrategyWrap .modeltitle i {
+				display: inline-block;
+				width: 2.85rem;
+				height: 2.85rem;
+				margin-right: .5rem;
+				vertical-align: middle;
+				background: url(../images/public/new-icon.png) no-repeat center center;
+				background-size: contain;
+			}
+			
+			.bmindexStrategyWrap .bmindexStrategySwiper {
+				padding: 0 1.5rem;
+			}
+			
+			.bmindexStrategyWrap .swiper-slide {
+				box-sizing: border-box;
+				padding: 0 .6rem;
+			}
+			
+			.bmindexStrategyWrap .swiper-slide a {
+				display: block;
+			}
+			
+			.bmindexStrategyWrap .imageBox {
+				border-radius: .6rem;
+				font-size: 0;
+				overflow: hidden;
+			}
+			
+			.bmindexStrategyWrap .imageBox img {
+				height: 300px;
+				width: 100%;
+			}
+			
+			.bmindexStrategyWrap .bmname {
+				margin: 6px 0;
+				font-size: 16px;
+				color: #333;
+			}
+			
+			.bmindexStrategyWrap .bmnote {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				margin: 6px 0;
+				font-size: 14px;
+				color: #666;
+			}
+			@media only screen and (max-width: 768px) {
+				.bmindexStrategyWrap .imageBox img {
+					height: 200px;
+				}
+			}
+			
+			@media only screen and (max-width: 468px) {
+				.bmindexStrategyWrap .imageBox img {
+					height: 100px;
+				}
+			}
+			
+			/*特殊处理*/
+			
+			/*#indexfooter .fixedfooter {
+				height: 4rem;
+				line-height: 4rem;
+				padding-bottom: 0.35rem;
+				padding-top: 0.8rem;
+			}
+			
+			#indexfooter ul li.active,
+			#indexfooter ul li.active a,
+			#indexfooter ul li a {
+				font-size: 1.3rem;
+			}
+			
+			#indexfooter ul li {
+				background-size: auto 1.69rem;
+			}
+			
+			#indexfooter ul li a {
+				padding-top: 0.58rem;
+			}
+			#indexfooter span {
+				width: 3.5rem;
+				height: 3.5rem;
+				line-height: 3.5rem;
+			}
+			.quickBox{
+				bottom: 4rem;
+			}
+			.quickBox a:first-child {
+			
+				background-size: auto 6rem;
+			}
+			.quickBox a:nth-child(2) {
+				
+				background-size: auto 5.57rem;
+			}
+			.quickBox a:nth-child(3) {
+				
+				background-size: auto 5.57rem;
+			}
+			.quickBox a:last-child {
+				
+				background-size: auto 5.57rem;
+			}*/
+			/*特殊处理结束*/
+		</style>
+	</head>
+
+	<body>
+		<div class="mainwrap">
+			<section class="bmindexLiveBannerWrap">
+				<span class="search" style="z-index: 999;" id='search'></span>
+				<a class="bmindexLiveImg" href="liveplayer.html"><span class="liveType">直播</span> 
+					 <img id="bmliveEntrance" src="./images/temp/indexlive.jpg"></a>
+			</section>
+			<div class="swiper-container bmbroadcastSwiper">
+				<div class="swiper-wrapper" id='bmbroadcastSwiper'>
+					<div class="swiper-slide" id="EURUSD" data-id="0" data-name='EURUSD'>
+						<!--<p class="title">欧元</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+					<div class="swiper-slide" id="USDJPY" data-id="1" data-name='USDJPY'>
+						<!--<p class="title">日元</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+					<div class="swiper-slide" id="AUDUSD" data-id="2" data-name='AUDUSD'>
+						<!--<p class="title">欧元2</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+					<div class="swiper-slide" id="XAUUSD" data-id="3" data-name='XAUUSD'>
+						<!--<p class="title">欧元3</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+					<div class="swiper-slide" id="XAGUSD" data-id="4" data-name='XAGUSD'>
+						<!--<p class="title">欧元4</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+					<div class="swiper-slide" id="USOIL" data-id="5" data-name='USOIL'>
+						<!--<p class="title">欧元5</p>
+						<p class="index">1.16</p>
+						<p class="float">0.002</p>-->
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<section class="bmindexZTwrap">
+				<div class="row">
+					<a href="html/ztdetail0.html"><img src="./images/public/dz-icon01.png"> <span>股票</span> </a>
+					<a href="html/ztdetail1.html"><img src="./images/public/dz-icon02.png"> <span>商品</span> </a>
+					<a href="html/ztdetail2.html"><img src="./images/public/dz-icon03.png"> <span>汇市</span> </a>
+					<a href="html/ztdetail3.html"><img src="./images/public/dz-icon06.png"> <span>从业</span></a>
+				</div>
+			</section>
+			<section class="ad">
+				<div class="swiper-ad-container swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<a href="html/teachertopic/teachertopic.html"><img src="images/teachertopic/teacherindex.png"></a>
+						</div>
+						<div class="swiper-slide">
+							<a href="html/yh/yhzt02.html"><img src="images/temp/indexmember.png"></a>
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+				<!--<a href="html/yh/yhzt01.html"><img src="images/temp/indexactive.jpg"></a>-->
+			</section>
+			<section class="bmindexInformationWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>实时行情解读
+					<a href="html/informationlist.html?courseTypeId=20">更多</a>
+				</div>
+				<div class="swiper-container bmindexQuotesSwiper">
+					<div class="swiper-wrapper" id="bmIndexQuotesBox"></div>
+				</div>
+			</section>
+			<section class="bmindexInformationWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>每日新鲜快讯
+					<a href="html/informationlist.html?courseTypeId=18">更多</a>
+				</div>
+				<div class="swiper-container bmindexFreshSwiper">
+					<div class="swiper-wrapper" id="bmIndexFreshBox"></div>
+				</div>
+			</section>
+			<section class="bmindexInformationWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>每周大事件解读
+					<a href="html/informationlist.html?courseTypeId=17">更多</a>
+				</div>
+				<div class="swiper-container bmindexBigeventSwiper">
+					<div class="swiper-wrapper" id="bmIndexBigeventBox"></div>
+				</div>
+			</section>
+			<section class="bmindexInformationWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>嘉宾访谈
+					<a href="html/informationlist.html?courseTypeId=19">更多</a>
+				</div>
+				<div class="swiper-container bmindexGuestSwiper">
+					<div class="swiper-wrapper" id="bmIndexGuestBox"></div>
+				</div>
+			</section>
+			<section class="bmindexRecommendWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>推荐课程
+					<a href="courselist.html">更多</a>
+				</div>
+				<div class="swiper-container bmindexRecommendSwiper">
+					<div class="swiper-wrapper" id="bmIndexRecommendBox"></div>
+				</div>
+			</section>
+			<section class="bmindexKnowledgeWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>新手频道
+					<a href="html/newhand.html">更多</a>
+				</div>
+				<div class="swiper-container bmindexKnowledgeSwiper">
+					<div class="swiper-wrapper" id="bmIndexKnowledgeBox"></div>
+				</div>
+			</section>
+			<section class="bmindexTeacherWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>嘉宾介绍
+					<a href="html/teacherlist.html">更多</a>
+				</div>
+				<div class="swiper-container bmindexTeacherSwiper">
+					<div class="swiper-wrapper" id="bmIndexTeacherBox"></div>
+				</div>
+			</section>
+
+			<section class="bmindexStrategyWrap bmindexSwiperWrap">
+				<div class="modeltitle"><i></i>策略解读
+					<a href="html/strategylist.html">更多</a>
+				</div>
+				<div class="swiper-container bmindexStrategySwiper">
+					<div class="swiper-wrapper" id="bmIndexStrategyBox"></div>
+				</div>
+			</section>
+
+			<footer id="indexfooter">
+				<ul class="fixedfooter flex-wrap">
+					<li id="index" class="flex-con active">
+						<a href="index.html">首页</a>
+					</li>
+					<li id="course" class="flex-con">
+						<a href="courselist.html">课程</a>
+					</li>
+					<span id="toggleQuickBtns"></span>
+					<li id="live" class="flex-con">
+						<a href="liveplayer.html">直播</a>
+					</li>
+					<li id="me" class="flex-con">
+						<a href="member.html">我的</a>
+					</li>
+				</ul>
+			</footer>
+
+			<div class="quickBoxWrap">
+				<div class="quickBox">
+					<a href="html/strategylist.html"></a>
+					<a href="html/teacherlist.html"></a>
+					<a href="html/lecturecourselist.html"></a>
+					<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+				</div>
+			</div>
+		</div>
+		<script src="js/zepto.js"></script>
+		<script src="js/zepto.picLazyLoad.min.js"></script>
+		<script src="js/swiper.jquery.min.js"></script>
+		<script src="js/layer.js"></script>
+		<script src="http://www.bmzx.tv/ycedu/js/socket.io.js"></script>
+		
+		<script src="js/bm.js"></script>
+		
+		<script>
+			$(function() {
+				initIndexFunc();
+				var swiper = new Swiper('.swiper-ad-container', {
+						pagination: '.swiper-pagination',
+						paginationClickable: true,
+						autoplay: 3000
+					});
+					$('#search').on('click',function(){
+						
+					window.location.href = 'html/search.html'
+					});
+			})
+		</script>
+		<script src="js/dataindex.js"></script>
+	</body>
+
+</html>

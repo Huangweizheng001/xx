@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="keywords" content="福建教育网">
+    <meta name="description" content="福建教育网">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+</head>
+
+<body>
+    <div id="modelWrap">Hello Jabo</div>
+    <script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/libs/vue.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+    <script type="text/javascript" src="../js/femoblie.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        new Vue({
+            el: '#modelWrap',
+            data: {
+                key: 'value'
+            },
+            mounted: function mounted() {
+                //1.0ready --> 2.0
+                this.$nextTick(function() {
+                    this.ajaxFunc();
+                });
+            },
+            methods: {
+                ajaxFunc: function() {
+                    // 传统写法
+                    this.$http.get('http://www.fetv.cn/fe/website/ashx/Teacher.ashx?action=getOnlineTeacher&pageSize=8&organId=', {}).then(function(response) {
+                        // 响应成功回调
+                        console.log(response);
+                    }, function(response) {
+                        console.log(response);
+                        // 响应错误回调
+                    });
+
+                    // 传统写法
+                    this.$http.post('http://www.fetv.cn/fe/website/ashx/Teacher.ashx?action=getOnlineTeacher', {
+                        pageSize:8,
+                        organId:''
+                    }, {
+                        emulateJSON: true
+                    }).then(function(response) {
+                        // 响应成功回调
+                        console.log(response);
+                    }, function(response) {
+                        console.log(response);
+                        // 响应错误回调
+                    });
+
+                    
+                }
+            }
+        })
+
+    })
+    </script>
+</body>
+
+</html>

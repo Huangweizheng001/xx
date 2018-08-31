@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>题库</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--题库头部模块-->
+		<section>
+			<div class="dyctestsystem-head" id="jtesthead">题库</div>
+		</section>
+
+		<!--题库试题模块-->
+		<section>
+			<div class="container clearfix">
+				<div class="span10">
+					<div class="dyctestsystem-body">
+						<div id="jtestsystembox"></div>
+						<!--分页-->
+
+						<ul id='jsubjectlistpage' class="pagenationbox clearfix"></ul>
+
+						<div class="dyctest-post">
+							<a class="dyctest-post-btn" id="jtestpost">提交</a>
+						</div>
+
+					</div>
+				</div>
+				<div class="span2" style="float: right;">
+					<div class="dyctestcard">
+						<div class="dyctestcard-title">试题卡</div>
+						<div class="dyctestcard-box">
+							<p id="jtestcard"></p>
+							<div class="clearfix">
+								<div class="dyctesttips clearfix">
+									<div class="span6">
+										<div class="dyctestcorrect">
+											<span></span>正确题
+										</div>
+									</div>
+									<div class="span6">
+										<div class="dyctesterror">
+											<span></span>错误题
+										</div>
+									</div>
+								</div>
+								<div class="span6">
+									<div class="dyctestnoanswered">
+										<span></span>未答题
+									</div>
+								</div>
+							</div>
+							<ul class="dyctestnums clearfix" id="jtestnums"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+
+				var pId = $(this).getUrlParam("paperTypeId");
+				var eId = $(this).getUrlParam("examPaperId");
+				var qbId = $(this).getUrlParam("questionBankId");
+				var ac = new Array();
+
+				if(eId == undefined) {
+					ac = $.jmachineTest(pId, 1, ac); //默认，点击提交出答案
+					//$.jmachineTesttime(pId,1);实时
+
+				} else {
+					if(qbId == undefined) {
+						ac = $.jtestBox(eId, 1, ac);
+					} else {
+						ac = $.jquestionTest(eId, 1, ac);
+					}
+
+				}
+				
+				$.clickTestpost(pId,eId,ac);//点击提交
+
+			})
+		</script>
+	</body>
+
+</html>

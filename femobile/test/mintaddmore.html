@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="keywords" content="福建教育网">
+    <meta name="description" content="福建教育网">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/plugins/style.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded">
+            <ul>
+            	<li>1</li>
+            	<li>2</li>
+            	<li>3</li>
+            	<li>4</li>
+            	<li>5</li>
+            	<li>6</li>
+            	<li>7</li>
+            	<li>8</li>
+            	<li>9</li>
+            	<li>10</li>
+            	<li>11</li>
+            	<li>12</li>
+            	<li>13</li>
+            	<li>14</li>
+            	<li>15</li>
+            	<li>16</li>
+            	<li>17</li>
+            	<li>18</li>
+            	<li>19</li>
+            	<li>20</li>
+                <li v-for="item in list">{{ item }}</li>
+            </ul>
+            <div slot="top" class="mint-loadmore-top">
+                <span v-show="topStatus !== 'loading'" :class="{ 'rotate':topStatus === 'drop' }">↓</span>
+                <span v-show="topStatus === 'loading'">Loading...</span>
+            </div>
+        </mt-loadmore>
+    </div>
+    <script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/libs/vue.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/axios.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/index.js"></script>
+    <script type="text/javascript" src="../js/femoblie.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        new Vue({
+            el: '#app',
+            data: {
+                list: [],
+                topStatus:'loading'
+            },
+            filters: {
+
+            },
+            mounted: function mounted() {
+                //1.0ready --> 2.0
+                this.$nextTick(function() {
+                    this.getInitData();
+                });
+            },
+            methods: {
+                getInitData: function() {
+                    for (var i = 0; i < 100; i++) {
+                    	this.list[i] = i;
+                    }
+                },
+                loadTop:function(){
+                	this.getInitData();
+                },
+                loadBottom:function(){
+                	
+                },
+                allLoaded:function(){
+                	
+                }
+           
+            },
+
+        })
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+[
+  {
+    "imgsrc":"temp/master-1.png",
+    "newsId":"1",
+    "title":"零基础:法语语音全教程详解",
+    "starttime":"1月16日",
+    "endtime":"2月27日",
+    "course":"12",
+    "number":"20",
+    "cprice":"3888",
+    "yprice":"4999",
+    "begintime":"2017年1月16日 19:00",
+    "teacher":"刘春红"
+  },
+  {
+    "imgsrc":"temp/master-2.png",
+    "newsId":"1",
+    "title":"零基础:法语语音全教程详解",
+    "starttime":"1月16日",
+    "endtime":"2月27日",
+    "course":"12",
+    "number":"20",
+    "cprice":"免费",
+    "yprice":"4999",
+    "begintime":"2017年1月16日 19:00",
+    "teacher":"刘春红"
+  },
+  {
+    "imgsrc":"temp/master-3.png",
+    "newsId":"1",
+    "title":"零基础:法语语音全教程详解",
+    "starttime":"1月16日",
+    "endtime":"2月27日",
+    "course":"12",
+    "number":"20",
+    "cprice":"免费",
+    "yprice":"4999",
+    "begintime":"2017年1月16日 19:00",
+    "teacher":"刘春红"
+  },
+  {
+    "imgsrc":"temp/master-4.png",
+    "newsId":"1",
+    "title":"零基础:法语语音全教程详解",
+    "starttime":"1月16日",
+    "endtime":"2月27日",
+    "course":"12",
+    "number":"20",
+    "cprice":"3888",
+    "yprice":"4999",
+    "begintime":"2017年1月16日 19:00",
+    "teacher":"刘春红"
+  }
+]

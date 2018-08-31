@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-我的回答</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative" id="QAmyreply">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>问答社区 <i class="uk-icon-angle-right"></i></span>
+                <span>我的回答</span>
+            </div>
+            <!--我的回答-->
+            <div class="feQAmyreply">
+                <ul class="fenav clearfix">
+                    <li>
+                        <span class="active" @click="bindSelect($event,0,true)">免费回答</span>
+                    </li>
+                    <li>
+                        <span @click="bindSelect($event,1,false)">收费回答</span>
+                    </li>
+                </ul>
+                <ul class="fecontent " v-if="isFree" v-cloak>
+                    <div class="fenodata" v-cloak v-if="replyList.length<1"></div>
+                    <li v-for="item in replyList" v-cloak>
+                        <a :href="item.KPQuestionId,item.Qtype|addRoot">{{item.Question}}</a>
+                        <h3>{{item.Answer}}</h3>
+                        <span class="festate2" v-if="item.Qstates==0">未采纳</span>
+                        <span class="festate3" v-if="item.Qstates==1">已采纳</span>
+                        <!--<span class="festate3">未采纳</span>-->
+                    </li>
+                    <!--<li>-->
+                        <!--<a>简宝玉分享会︱写作新手如何玩转自媒体，快速跟别人拉开差距脱颖而出？</a>-->
+                        <!--<h3>后来我成为了简书大学堂最年轻的签约作者和讲师，并成功地开了三次写作课，参著简书出版的《爱上写作》一书，并有两本关于时间管理-->
+                            <!--和写作方面的书，正与中信出版社和人民邮电出版社协商出版。</h3>-->
+                        <!--<span class="festate3">已采纳</span>-->
+                        <!--&lt;!&ndash;<span class="festate2">已采纳</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="festate3">未采纳</span>&ndash;&gt;-->
+                    <!--</li>-->
+                </ul>
+                <ul class="fecontent fepay" v-if="!isFree" v-cloak>
+                    <div class="fenodata" v-cloak v-if="replyList.length<1"></div>
+                    <li v-for="item in replyList" v-cloak>
+                        <a >{{item.Question}}</a>
+                        <div class="fenote">
+                            <span style="color: #ff6c00"><i></i>{{item.userName}}</span>
+                            <span>&nbsp;&nbsp;{{item.insertTime|showTime}} 提问</span>
+                            <b>￥{{item.offerMoney}}元 提问 </b>
+                        </div>
+                        <div class="feoperation">
+                            <button v-if="item.Qstates==0" @click="answer(item.KPQuestionId)">回答</button>
+                            <button v-if="item.Qstates==1" class="active">已回答</button>
+                        </div>
+                    </li>
+                    <!--<li>-->
+                        <!--<a >增强雅思写作语言表现力，细节题出题逻辑助力提分。增强雅思写作语言表现力，细节题出题逻辑助力提分。</a>-->
+                        <!--<div class="fenote">-->
+                            <!--<span style="color: #ff6c00"><i></i>王大力</span>-->
+                            <!--<span>&nbsp;&nbsp;2018.01.02  11:21 提问</span>-->
+                            <!--<b>￥12元 提问 </b>-->
+                        <!--</div>-->
+                        <!--<div class="feoperation">-->
+                            <!--<button class="active">已回答</button>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        teacherQAmyreply();
+    })
+</script>
+</body>
+
+</html>

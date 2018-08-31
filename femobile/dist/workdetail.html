@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/plugins/layermobile.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>作业题目</title>
+	</head>
+
+	<body>
+		<header id="feHeaderOrange">
+        <header-orange-template title="00:20" openright=true rightname=""></header-orange-template>
+    </header>
+
+		<section class="feWorkDetailWrap" id="feWorkDetailApp">
+			<div class="container flex flex-v">
+				<div class="feWorkDetailBg" v-show=topOpen @click='closeTop()'></div>
+				<div class="" v-bind:class="{'topWrap-active':topOpen}">
+					<div class='topSeclect ' >
+						<div class="titlenum" >
+							<span  v-for="(item,index) in titleArr" v-bind:class="{'active':item.myanswer}">{{index+1}}</span>
+						</div>
+						<div class="feSubMitBtn">
+							<a @click="subMit()">提交解答</a>
+						</div>
+					</div>
+				</div>
+				<p class="feSubMit"><span></span></p>
+				<div class="feActiveInner flex-1">
+				<div class="swiper-container feWorkDetailContainer">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for='(item,index) in titleArr' v-cloak>
+							<div class="questionTitle">
+								<h5><span>1.</span>{{item.stem}}（）</h5>
+								<p v-for="(childItem,childIndex) in item.items" v-bind:class="{'active':childItem.answer}" @click="answerSelect(childIndex,childItem.label)" ><span>{{childItem.label}}</span>{{childItem.title}}</p>
+							</div>
+						</div>
+						<!--<div class="swiper-slide">
+							<div class="title">
+								<h5><span>2.</span>对好的撒较好的垃圾是否会接待来访222六点十分阿萨返回()</h5>
+								<p class="active"><span>A</span>大屏幕后续圣诞快乐就算了</p>
+								<p><span>B</span>大屏幕后续圣诞快乐就算了</p>
+								<p><span>C</span>大屏幕后续圣诞快乐就算了</p>
+								<p><span>D</span>大屏幕后续圣诞快乐就算了</p>
+							</div>
+						</div>-->
+					</div>
+				</div>
+				</div>
+				<div class="flex flex-v ">
+				<div class="feSelectBottom clearfix">
+					<div class="span6">
+						<a class="" @click="goPrev()">上一题</a>
+					</div>
+					<div class="span6">
+						<a class="active right" @click="goNext()">下一题</a>
+					</div>
+				</div>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/alloy_finger.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/layermobile.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js?1"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				workDetailApp();
+			})
+		</script>
+	</body>
+
+</html>

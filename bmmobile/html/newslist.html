@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>播米资讯列表</title>
+
+		<style>
+			body {
+				background: #fff;
+				/*padding-top: 14rem;*/
+			}
+			
+			a {
+				display: block;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			.swiper-container {
+				margin-left: auto;
+				margin-right: auto;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+			}
+			
+			.swiper-container-android .swiper-slide,
+			.swiper-container .swiper-wrapper {
+				-webkit-transform: translate3d(0, 0, 0);
+				-moz-transform: translate3d(0, 0, 0);
+				-o-transform: translate(0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+			}
+			
+			.swiper-container .swiper-wrapper {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-transition-property: -webkit-transform;
+				-moz-transition-property: -moz-transform;
+				-o-transition-property: -o-transform;
+				-ms-transition-property: -ms-transform;
+				transition-property: transform;
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+			
+			.swiper-container .swiper-slide {
+				-webkit-flex-shrink: 0;
+				-ms-flex: 0 0 auto;
+				flex-shrink: 0;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			.nav-swiper-container .swiper-container-horizontal>.swiper-pagination-bullets,
+			.nav-swiper-container.swiper-pagination-custom,
+			.nav-swiper-containerr .swiper-pagination-fraction {
+				bottom: 10px;
+				left: 0;
+				width: 100%;
+			}
+			
+			.swiper-container .swiper-pagination {
+				position: absolute;
+				text-align: center;
+				-webkit-transition: .3s;
+				-moz-transition: .3s;
+				-o-transition: .3s;
+				transition: .3s;
+				-webkit-transform: translate3d(0, 0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				-o-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				z-index: 10;
+			}
+			
+			.nav-swiper-container .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+				margin: 0 5px;
+			}
+			
+			.swiper-container .swiper-pagination-bullet {
+				width: 8px;
+				height: 8px;
+				display: inline-block;
+				border-radius: 100%;
+				background: #000;
+				opacity: .2;
+			}
+			
+			.swiper-container .swiper-pagination-bullet-active {
+				opacity: 1;
+				background: #007aff;
+			}
+			
+			#navBox {
+				position: fixed;
+				top: 8.9rem;
+				left: 0;
+				width: 100%;
+				z-index: 99;
+				font-size: 2.285rem;
+				text-align: center;
+				border-bottom: 1px solid #eee;
+				background-color: #fff;
+			}
+			
+			#navBox .swiper-slide {
+				position: relative;
+				color: #3b3b3b;
+				font-weight: 500;
+				padding: 1.2rem 0 0;
+			}
+			
+			#navBox .swiper-slide.slideSelected {
+				color: #1473e6;
+			}
+			
+			#navBox .swiper-slide.slideSelected:after {
+				position: absolute;
+				content: "";
+				width: 9rem;
+				height: .1rem;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #1473e6;
+			}
+			
+			#newsBanner .swiper-slide {
+				position: relative;
+				display: block;
+				width: 100%;
+				height: 23.857rem;
+				background: url(../../image/news/newsBanner.jpg) no-repeat center;
+				/*background: no-repeat center;*/
+				background-size: cover;
+			}
+			
+			#newsBanner .swiper-slide a {
+				height: 100%;
+			}
+			
+			#newsBanner .swiper-slide span {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				padding: 0 13.2rem 0 2.28rem;
+				z-index: 1;
+				height: 4.14rem;
+				line-height: 4.14rem;
+				width: 100%;
+				box-sizing: border-box;
+				font-size: 2rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .5);
+			}
+			
+			#newsBannerBox .swiper-pagination {
+				padding: 0 2.28rem;
+				box-sizing: border-box;
+				text-align: right;
+				bottom: 0;
+				height: 4.14rem;
+				right: 0;
+			}
+			
+			#newsBannerBox .swiper-pagination-bullet {
+				width: 2rem;
+				height: .3rem;
+				opacity: 1;
+				border-radius: 0;
+				background-color: #fff;
+				margin: 2rem 0.357rem;
+			}
+			
+			#newsBannerBox .swiper-pagination-bullet-active {
+				background-color: #007aff;
+			}
+			
+			#listbox li {
+				padding: 1.85rem 2.28rem;
+				border-bottom: 1px solid #eee;
+				box-sizing: border-box;
+				overflow: hidden;
+			}
+			
+			#listbox .left {
+				float: left;
+				width: 10.7rem;
+				/*height: 10.7rem;*/
+				height: 3.57rem;
+				min-height: 2rem;
+			}
+			
+			#listbox .left img {
+				width: 100%;
+				height: 6.5rem;
+			}
+			
+			#listbox .right {
+				box-sizing: border-box;
+				padding-left: 11.8rem;
+				/*float: left;*/
+				/*width: calc(100% - 18.35rem);*/
+			}
+			
+			#listbox .title {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #282828;
+				font-size: 2.3rem;
+			}
+			
+			#listbox .brief {
+				line-height: 1.3;
+				margin: 0.7rem 0;
+				color: #3b3b3b;
+				font-size: 1.8rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+			}
+			
+			.newsBanner-swiper-container .swiper-container-horizontal>.swiper-pagination-bullets,
+			.newsBanner-swiper-container .swiper-pagination-custom,
+			.newsBanner-swiper-container .swiper-pagination-fraction {
+				bottom: 10px;
+				left: 0;
+				width: 100%;
+			}
+			
+			.newsBanner-swiper-container .swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+				margin: 0 5px;
+			}
+			
+			.newsBanner-swiper-container .swiper-pagination-bullet {
+				width: 8px;
+				height: 8px;
+				display: inline-block;
+				border-radius: 100%;
+				background: #000;
+				opacity: .2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header id="header" class="blue flex-con">
+				<span onclick="goBack()">返回</span>
+				<p>播米资讯</p>
+			</header>
+
+			<div class="swiper-container nav-swiper-container flex-con" id="navBox">
+				<ul class="swiper-wrapper" id="box">
+					<!--<li class="swiper-slide" onclick="currentType(this,0,0)">财经快讯</li>-->
+				</ul>
+			</div>
+
+			<div class="swiper-container newsBanner-swiper-container" id="newsBannerBox" style="margin-top: 14rem;">
+				<ul class="swiper-wrapper" id="newsBanner">
+					<!-- <li class="swiper-slide">
+                <span>港交所正考虑通过“新股通”</span>
+            </li> -->
+				</ul>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<section class="flex-con overAuto">
+				<div id="wrapper">
+					<div id="scroller">
+						<div id="pullDown">
+							<span class="pullDownIcon"></span><span class="pullDownLabel">Pull down to refresh...</span>
+						</div>
+						<ul id="listbox">
+							<!--<li onclick="opendetail(0)">
+								<div class="left">
+									<<img src="../../image/news/newthumb.jpg" /> 
+								</div>
+								<div class="right">
+									<<p class="title">港交所正考虑通过“新股通”</p>
+                <p class="brief">据香港东方日报，拉伯国营石油拉伯国营石油公司沙特阿美来港上市，港交所正考虑通过“新股通”来吸。</p> 
+								</div>
+							</li>-->
+						</ul>
+						<div id="pullUp">
+							<span class="pullUpIcon"></span><span class="pullUpLabel">Pull up to load more...</span>
+						</div>
+					</div>
+				</div>
+				</setion>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/iscroll.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				setTimeout(loaded, 200);
+			}, false);
+			$(function() {
+				var isfirst = true;
+				var page = 1; //默认首页
+
+				getNewsType();
+				getBanner();
+
+				//获取新闻类型
+				function getNewsType() {
+					var box = $('#box'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'NewsType.ashx?action=getNewsType',
+						dataType: "json",
+						data: {},
+						success: function(result) {
+							if(result.length < 1) {
+								return false;
+							}
+							result.forEach(function(value, index) {
+								$htmlStr += '<li class="swiper-slide" data-id=' + value.newsTypeId + ' data-isCharge=' + value.isCharge + '>' + value.name + '</li>';
+							});
+							box.html($htmlStr);
+							navBar();
+							$($(".swiper-slide")[0]).addClass('slideSelected');
+							var type = $('.slideSelected').attr('data-id');
+							var ischarge = $('.slideSelected').attr('data-ischarge');
+							getListData(type, 1, ischarge); //默认第一页
+							currentType(); //切换类型
+
+							$.pullDownAction = function() {
+								var type = $('.slideSelected').attr('data-id');
+								var ischarge = $('.slideSelected').attr('data-ischarge');
+								setTimeout(function() {
+									
+									getListData(type, 1, ischarge);
+									page = 1;
+								}, 1000); // <-- Simulate network congestion, remove setTimeout from production!
+							};
+
+							$.pullUpAction = function() {
+								page++;
+								var type = $('.slideSelected').attr('data-id');
+								var ischarge = $('.slideSelected').attr('data-ischarge');
+								setTimeout(function() {
+									getListData(type, page, ischarge);
+								}, 1000); // <-- Simulate network congestion, remove setTimeout from production!
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				//新闻banner
+				function getBanner() {
+					var box = $('#newsBanner'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'News.ashx?action=getNewsBanner',
+						dataType: "json",
+						data: {},
+						success: function(result) {
+							if(result.length < 1) {
+								return false;
+							}
+							result.forEach(function(value, index) {
+								$htmlStr += '<li class="swiper-slide" style="background-image:url(' + SERVEROOTFILE + value.iconPath + ')"><a href="newsdetail.html?newsId=' + value.newsId + '">' + '<span>' + value.title + '</span></a></li>';
+							});
+							box.html($htmlStr);
+							newListBanner();
+
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+				//列表数据
+				function getListData(type, page, ischarge) {
+					var box = $('#listbox'),
+						$htmlStr = "";
+					loadingTips();
+					//$(".overAuto").scrollTop(0);
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'News.ashx?action=getNewsByType',
+						dataType: "json",
+						data: {
+							"newsTypeId": type,
+							"pageSize": 6,
+							"pageIndex": page
+						},
+						success: function(result) {
+							closeLoadingTips();
+
+							if(result.length < 1) {
+								return false;
+							} else {
+								if(page > result.totalPageCount) {
+									$('#pullUp').css('display', 'none');
+									layer.open({
+										content: '没有更多数据啦~',
+										skin: 'msg',
+										time: 2 //2秒后自动关闭
+									});
+								} else {
+									result.rows.forEach(function(value, index) {
+										$htmlStr += '<li><a href="newsdetail.html?newsId=' + value.newsId + '&ischarge=' + ischarge + '">' + '<div class="left">' + '<img src="' + SERVEROOTFILE + value.iconPath + '" />' + '</div><div class="right">' + '<p class="title">' + value.title + '</p>' + '<p class="brief">' + value.introduce + '</p></div></a></li>';
+									});
+									if(page == '1') {
+										box.html($htmlStr);
+									} else {
+										box.append($htmlStr);
+									}
+									if(!isfirst) {
+										setTimeout(function() {
+											myScroll.refresh();
+										}, 200);
+									}
+									isfirst = false;
+								}
+
+							}
+
+						},
+						error: function(err) {
+							loadingErrorTips();
+						}
+					});
+				}
+
+				function navBar() {
+					navSwiper = new Swiper('.nav-swiper-container', {
+						slidesPerView: 3,
+					})
+
+					window.navSwiper = navSwiper;
+				}
+
+				function newListBanner() {
+					var newlistSwiper = new Swiper('.newsBanner-swiper-container', {
+						pagination: '.swiper-pagination',
+						loop: true,
+						autoplay: 6000,
+						paginationClickable: true
+					});
+				}
+
+				//change news type
+				function currentType() {
+					$('#box li').click(function() {
+						if($(this).hasClass('slideSelected')) {
+							return false;
+						} else {
+							$(this).addClass('slideSelected');
+							$(this).siblings().removeClass('slideSelected');
+							var type = $(this).attr('data-id');
+							var ischarge = $(this).attr('data-ischarge');
+							/*if((ischarge == '1') || (ischarge == 1)) {
+								layer.open({
+									content: '购买才可以查看该观点，0.99/条，28/月，请选择购买方式',
+									btn: ['购买当条', '包月购买'],
+									yes: function(index) {
+										buyView(id);
+										layer.closeAll();
+									}, 
+									no:function(index) {
+									buyView(0); //0为包月
+									layer.closeAll();}
+									
+								});
+							}*/
+							myScroll.scrollTo(0, 0);
+							//$('.overAuto').scrollTop(0);
+							window.navSwiper.slideTo(type, 300, false);
+							getListData(type, 1, ischarge); //默认第一页
+							page = 1;
+							$('#listbox').html("");
+						}
+					});
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

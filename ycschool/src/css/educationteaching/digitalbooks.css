@@ -1,0 +1,123 @@
+.digitalBooks  .digitalBooksInner{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+.digitalBooks .listLeftContent{
+    margin-left: 16px;
+    margin-top: 17px;
+    height: 168px;
+    transition: all .3s;
+}
+.digitalBooks .listLeftContent:hover{
+    background-color: #f5f5f5;
+    /*上浮效果*/
+    /*transform:translateZ(30px) scale(1.1);*/
+}
+.digitalBooks .listRightText h1:hover{
+    color: #ff6c00;
+}
+.digitalBooks .listRightText p:hover{
+    color: #ff6c00;
+}
+.digitalBooks .listLeftImageBox{
+    float: left;
+    width: 148px;
+    height: 148px;
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+.digitalBooks .listLeftImageBox img{
+	height: 100%;
+}
+
+.digitalBooks .listContentBox{
+     padding-left: 187px;
+     padding-top: 10px;
+}
+.digitalBooks .listContentBox h1{
+    font-size: 16px;
+    color: #333333;
+}
+.digitalBooks .listContentBox .listDescribe{
+    margin-top: 10px;
+    height: 20px;
+    overflow: hidden;
+    font-size: 14px;
+    color: #666666;
+}
+.digitalBooks .listContentBox .listContent{
+    margin-top: 10px;
+    height: 80px;
+    overflow: hidden;
+    font-size: 14px;
+    color: #999999;
+}
+.digitalBooks .bookSearch {
+    background: #fff;
+    margin: 20px 26px 0 50px;
+    padding-bottom: 20px;
+    box-shadow: 0 0 6px #eee;
+}
+.digitalBooks .bookSearch h1 {
+    background: #ff8d39;
+    font-size: 20px;
+    color: #fff;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+}
+.digitalBooks .bookSearch p {
+    font-size: 14px;
+    color: #333333;
+    margin: 30px 0px 0px 30px;
+
+}
+/*搜索框样式*/
+.digitalBooks .SearchBar input {
+    border: 1px  #ff8d39;
+    border-radius: 2px;
+    background: #f4f4f4;
+    color: #9E9C9C;
+}
+.digitalBooks .SearchBar button {
+    top: 1px;
+    right: 1px;
+    background: #ff8d39;
+    border-radius: 0 2px 2px 0;
+}
+.digitalBooks .SearchBar button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 18px;
+    color: #f4f4f4;
+}
+
+.digitalBooks form {
+    position: relative;
+    width: 245px;
+    margin-top: 10px;
+    margin-left: 25px;
+
+}
+
+.digitalBooks input, button {
+    border: none;
+    outline: none;
+}
+
+.digitalBooks input {
+    cursor: text;
+    width: 67%;
+    height: 30px;
+    padding-left: 13px;
+}
+
+.digitalBooks button {
+    height: 28px;
+    width: 70px;
+    cursor: pointer;
+    position: absolute;
+}

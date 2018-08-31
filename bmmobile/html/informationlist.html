@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<!--<link rel="stylesheet" href="../css/bmmobilescroll.css" />-->
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>实时行情解读</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+			
+			#navBox {
+				font-size: 1.662rem;
+				text-align: center;
+				background-color: #fff;
+				position: fixed;
+				top: 8rem;
+				left: 0;
+				width: 100%;
+			}
+			
+			#navBox .swiper-slide {
+				position: relative;
+				color: #282828;
+				padding: 1.2rem 0 .8rem;
+			}
+			
+			#navBox .swiper-slide.slideSelected {
+				color: #065ebf;
+			}
+			
+			#navBox .swiper-slide.slideSelected:after {
+				position: absolute;
+				content: "";
+				width: 9rem;
+				height: 2px;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				margin: auto;
+				background-color: #065ebf;
+			}
+			
+			.bmpediaListBox {
+				padding: 0 10px 1.5rem;
+			}
+			
+			.bmpediaListBox li {
+				width: 50%;
+				float: left;
+				box-sizing: border-box;
+				padding: 10px 5px 0;
+			}
+			
+			.bmpediaListBox li a {
+				display: block;
+				background: #fff;
+				border-radius: 0.6rem;
+			}
+			
+			.bmpediaListBox li .img {
+				height: 280px;
+				overflow: hidden;
+				border-radius: 0.6rem 0.6rem 0 0;
+			}
+			
+			.bmpediaListBox li img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.bmpediaListBox li p {
+				line-height: 2;
+				padding: 0 2rem;
+			}
+			
+			.bmpediaListBox .title {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				color: #282828;
+				font-size: 1.556rem;
+			}
+			
+			.bmpediaListBox .playnum {
+				color: #d0d0d0;
+				font-size: 1.455rem;
+				position: relative;
+				padding-left: 35px;
+			}
+			
+			.bmpediaListBox .playnum:before {
+				content: "";
+				display: block;
+				position: absolute;
+				width: 24px;
+				height: 24px;
+				background: url(../images/public/play.png) no-repeat;
+				bottom: -1px;
+				left: 13px;
+				background-size: 18px 18px;
+			}
+			
+			@media screen and (max-width: 476px) {
+				.bmpediaListBox li .img {
+					height: 100px;
+				}
+			}
+			
+			@media screen and (max-width: 760px) {
+				.bmpediaListBox li .img {
+					height: 120px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header class="blue flex-con">
+				<span onclick="goBack()" style="display: none;">返回</span>
+				<p id='informationTitle'></p>
+			</header>
+			<section class="flex-con overAuto" style="margin-top: 8rem; ">
+				<div id="content">
+					<ul class="bmpediaListBox clearfix"></ul>
+				</div>
+			</section>
+
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/zepto.picLazyLoad.min.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				var tabTypeId = $.getUrlParam("courseTypeId");
+				getTitle(tabTypeId);
+
+				function getTitle(index) {
+					switch(index) {
+						case '20':
+							name = '实时行情解读';
+							break;
+						case '18':
+							name = '每日新鲜快讯';
+							break;
+						case '17':
+							name = '每周大事件解读';
+							break;
+						case '19':
+							name = '嘉宾访谈';
+							break;
+						default:
+							name = '';
+					}
+					$('#informationTitle').html(name);
+					document.title = name;
+				}
+
+				var LoadEnd_tab = false;
+
+				var pageCount = 0;
+
+				// 每页展示6个
+				var num = 6;
+				var nownum = 0; //当前数据在第几条
+
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							pageCount++;
+							exeCourselist(me, pageCount, tabTypeId); //默认首页
+						}, 200);
+					}
+				});
+
+				function exeCourselist(me, page, typeNav) { //获取数据
+					var box = $('.bmpediaListBox'),
+						htmlStr = "";
+
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getFinancialKnowledge',
+						dataType: "json",
+						data: {
+							"type": 'uptodate',
+							"courseTypeId": typeNav,
+							"pageSize": num,
+							"pageIndex": page
+						},
+						success: function(result) {
+							if(result.length < 1) {
+								LoadEnd_tab = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+								return false;
+							}
+							if(page <= result.totalPageCount) {
+
+								result.rows.forEach(function(value, index) {
+									var imgSrc = value.mobileIconPath;
+									if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+										imgSrc = '../images/public/default.png';
+									} else {
+										imgSrc = SERVEROOTFILE + imgSrc;
+									}
+
+									htmlStr += "<li><a href='pediaPlayer.html?ecId=" + value.courseId + "'><div class='img'><img class='lazyload' src='../images/public/default.png' data-original=" + imgSrc + " /></div><p class='title'>" + value.name + "</p><p class='playnum' style='display:none'>1235</p></a></li>";
+									nownum = (page - 1) * num + index + 1;
+									if((nownum) >= result.totalCount) {
+										console.log('到底啦')
+										// 数据加载完
+										//LoadEnd = true;
+										LoadEnd_tab = true;
+										// 锁定
+										me.lock();
+										// 无数据
+										me.noData();
+										//break;
+									}
+								});
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									box.append(htmlStr);
+									$("#content .lazyload").picLazyLoad({
+										threshold: 10
+									});
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+
+							}
+
+						},
+						error: function(err) {
+							console.log('服务器出错了~');
+							// 加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

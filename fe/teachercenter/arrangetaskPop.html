@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-布置作业弹框</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/Ecalendar.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<section>
+    <div class="container">
+        <!--<div class=""  style="position: relative;width: 880px;margin: auto;background: #fff" id="homeworkdetail">-->
+            <!--布置作业1级页面-->
+            <div class="fe-arrangetask-pop" id="basicTask" >
+                <ul>
+                    <li>
+                        <span>作业名称</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>作业类型</span>
+                        <input type="radio" id="static" name="examtype"><label for="static">固定作业</label>
+                        <input type="radio" id="random" name="examtype"><label for="random">随机作业</label>
+                    </li>
+                    <li class="fe-random">
+                        <span>组卷规则</span>
+                        <button><i class="uk-icon-plus-circle"></i>增加题目</button>
+                        <!--子类触发父类隐藏添加方法-->
+                        <b style="display: none" id="hidden-btn"></b>
+                        <input type="hidden" id="knowledgeName">
+                        <input type="hidden" id="count">
+                        <!--<div class="fe-add-new-timu">-->
+                            <!--<span>计算机</span>-->
+                            <!--<select name="" id=""></select>-->
+                            <!--<select name="" id=""></select>-->
+                            <!--&nbsp;&nbsp;题数: <input type="text" style="width: 80px"> /0 &nbsp;&nbsp;单题分数: <input type="text" style="width: 80px">-->
+                            <!--<b class="uk-icon-trash"></b>-->
+                        <!--</div>-->
+                    </li>
+                    <li>
+                        <span>班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级</span>
+                        <select name="" id="teacherClass"></select>
+                    </li>
+                    <li>
+                        <span>课&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程</span>
+                        <select name="" id="teacherCourse"></select>
+                    </li>
+                    <li>
+                        <span>课程大纲</span>
+                        <select name="" id="teacherOutline"></select>
+                    </li>
+                    <li>
+                        <span>上交时间</span>
+                        <input type="text" id="endTime">
+                    </li>
+                </ul>
+                <div class="fe-save">
+                    <button>保存</button>
+                </div>
+                <!--<div >-->
+                    <!--<button id="hh">测试</button>-->
+                <!--</div>-->
+            </div>
+        <!--</div>-->
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        arrangeTaskPop();
+    })
+</script>
+</body>
+
+</html>

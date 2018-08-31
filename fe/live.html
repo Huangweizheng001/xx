@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>直播</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/2.5.0/skins/default/aliplayer-min.css" />
+    <!--<script type="text/javascript" src="//g.alicdn.com/de/prismplayer/2.4.0/aliplayer-min.js"></script>-->
+
+    <!--<link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />-->
+</head>
+
+<body>
+<!--视频模块-->
+<section class="container">
+    <div class="fe-live-body">
+        <!--<div style="padding: 10px" class="clearfix">-->
+            <div class="fe-live-left-panel">
+                <div class="fe-live-left-panel-top">
+                    <div class="feimage">
+                        <span></span>
+                    </div>
+                    <div class="febox">
+                        <h3>课  题：2017-2018年高一暑期点睛班（起步高二）</h3>
+                        <h6>老  师：黄小明</h6>
+                    </div>
+                </div>
+                <div class="fe-live-left-panel-video" >
+                    <img src="images/temp/liveBg.jpg" alt="" width="100%" height="100%">
+                </div>
+            </div>
+            <div class="fe-live-right-panel">
+                <div class="fe-live-right-panel-nav">
+                    <div class="span4">
+                        <a class="active" data-id="0"><span class="course"></span>课程</a>
+                    </div>
+                    <div class="span4">
+                        <a data-id="1"><span class="note"></span>笔记</a>
+                    </div>
+                    <div class="span4">
+                        <a data-id="2"><span class="chatIcon"></span>聊天室</a>
+                    </div>
+                </div>
+                <div class="fe-live-right-panel-con fe-live-right-panel-course">
+                    <a class="active">考研数学基础班免费试听课（一）<span></span></a>
+                    <a >考研数学基础班免费试听课（二）<span></span></a>
+                </div>
+                <div class="fe-live-right-panel-con fe-live-right-panel-note" style="display: none">
+                    <textarea class="fe-note-con" placeholder="记录您此刻的想法..." @keyup="checkLen()" v-model="inputValue" id="notetextarea"></textarea>
+                    <div class="fe-word-num"><span id="count">0</span> /1000</div>
+                    <a class="fe-note-save">保存</a>
+                    <ul class="fe-note-analysis">
+                        <li>
+                            <p>题型解析1</p>
+                            <span>2017-06-15  05:12</span>
+                            <div class="fe-note-delete" >
+                                <a >编辑</a>|
+                                <a >删除</a>
+                            </div>
+                        </li>
+                        <li>
+                            <p>题型解析2</p>
+                            <span>2017-06-15  05:12</span>
+                            <div class="fe-note-delete" >
+                                <a >编辑</a>|
+                                <a >删除</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fe-live-right-panel-con fe-live-right-panel-chat" style="display: none">
+
+                </div>
+            </div>
+        <!--</div>-->
+
+    </div>
+</section>
+
+
+
+
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.5.0/aliplayer-min.js"></script>
+<!--<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>-->
+
+
+<script>
+    $(function() {
+        // coursePlayBox($(this).getUrlParam("cid"), $(this).getUrlParam("vid"), $(this).getUrlParam("courseType"),$(this).getUrlParam("courseKind"));
+        // courseOtherFn($(this).getUrlParam("courseType"));
+        // leaveword($(this).getUrlParam("cid"),$(this).getUrlParam("courseKind"));
+        live();
+    })
+</script>
+
+</body>
+
+</html>

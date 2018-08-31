@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>登录注册—福建教育网</title>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css?1" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+    <!--<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101447287" data-redirecturi="http://www.fetv.cn/feweb/back.html" charset="utf-8"></script>-->
+</head>
+
+<body>
+
+<header class="felogin-header-wrap">
+    <div class="container">
+        <div class="fepanel-box">
+            <a href="./index.html">
+                <img src="images/public/logo-icon-medium.png" alt="福建教育网" />
+            </a>
+            <span class="fepanel-brief">欢迎访问</span>
+        </div>
+    </div>
+</header>
+
+<!--注册-->
+<section class="feorgan-register" id="organRegister">
+    <div class="container">
+        <h1>培训机构入驻 <span>已经注册,现在<a href="mechanismLogin.html">登录</a></span></h1>
+        <div class="feorgan-register-con">
+            <form id="registerForm">
+                <div class="feorgan-register-basic">
+                    <div class="fetitle">
+                        <i></i>
+                        基本信息
+                    </div>
+                    <ul>
+                        <li>
+                            <label><b>*</b>用户名:</label><input type="text" @blur="checkUname()" name="username" v-model="username">
+                            <span v-cloak v-bind:class="UerrStyle">{{usernamePrompt}} </span>
+                        </li>
+                        <li>
+                            <label><b>*</b>密码:</label><input type="password" v-model="password" name="password" @blur="passwordCheck()">
+                            <span v-cloak v-bind:class="PerrStyle">{{passwordPrompt}}</span>
+                        </li>
+                        <li>
+                            <label><b>*</b>确认密码:</label><input type="password" v-model="confirmpassword">
+                            <span></span>
+                        </li>
+                        <li>
+                            <label><b>*</b>联系人:</label><input type="text" name="contact" v-model="contact">
+                            <span></span>
+                        </li>
+                        <li>
+                            <label><b>*</b>手机号码:</label><input type="text" v-model="phone" name="phone">
+                            <span></span>
+                        </li>
+                        <li class="femobileCode">
+                            <label><b>*</b>校验码:</label><input type="text" v-model="verificationCode">
+                            <s class="feverificationCode" @click="getImageVC">
+                                <img :src="imageCodeImg" style="height:24px;width:93px;margin-top: -5px"/></s>
+                        </li>
+                        <li class="femobileCode">
+                            <label><b>*</b>手机验证码:</label><input type="text" v-model="checkCode" name="checkCode">
+                            <a @click="vcTimeCount" v-cloak>{{VCLabel}}</a>
+                        </li>
+                        <li>
+                            <label><b>*</b>邮箱:</label><input type="text" name="email" v-model="email">
+                            <span></span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="feorgan-register-auth">
+                    <div class="fetitle">
+                        <i></i>
+                        认证信息
+                    </div>
+                    <ul>
+                        <li>
+                            <label><b>*</b>机构全称:</label><input type="text" name="mechanismname" v-model="mechanismname" @blur="checkOrganUname()">
+                            <span v-cloak v-bind:class="OerrStyle">{{mechanismnamePrompt}}</span>
+                        </li>
+                        <li>
+                            <label><b>*</b>机构简称:</label><input type="text" name="mechanismshort" v-model="mechanismshort">
+                            <span></span>
+                        </li>
+                        <li>
+                            <label><b>*</b>授课地区:</label>
+                            <select name="city" id="city" v-model="city">
+                                <option value="" data-id="">— 市 —</option>
+                                <option v-for="item in cityArr" v-cloak v-bind:data-id="item.cityId" v-bind:value="item.cityId">{{item.cityName}}</option>
+                            </select>
+                            <select name="district" id="district" v-model="district">
+                                <option value="" data-id="">— 区 —</option>
+                                <option v-for="item in districtArr" v-cloak  v-bind:data-id="item.districtId" v-bind:value="item.districtId">{{item.districtName}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            <label><b>*</b>详细地址:</label><input type="text" name="address" v-model="address">
+                        </li>
+                        <li>
+                            <label style="float: left"><b>*</b>机构LOGO:</label>
+                            <div class="feorgan-logo">
+                                <div class="fepanel">
+                                    <div class="feleft">
+                                        <img src="images/temp/o-l-f.png" alt="">
+                                        <input type="file" id="pcLogo" name="pcLogo">
+                                    </div>
+                                    <div class="feright">
+                                        <img src="images/temp/o-r-f.png" alt="">
+                                        <input type="file" id="mobileLogo" name="mobileLogo">
+                                    </div>
+                                </div>
+                                <p style="margin-left: 0">为更好展示机构形象，请上传清晰机构LOGO图片。</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <label style="float: left"><b>*</b>机构证书:</label>
+                            <a id="zwb_upload" style="overflow: hidden;top: 0">
+                                <input type="file" class="add" multiple>点击上传图片
+                            </a>
+                            <div class="feorgan-certificate" style="position:relative;">
+
+                            </div>
+                            <p>请提交机构办学许可证、民办非企业登记证以及消防许可证等清晰照片，审核成功后方可展示在福建 教育网上。</p>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+            <div class="feoperation">
+                <a >提交注册</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="felogin-footer-wrap" style="margin-bottom: 40px">
+    <div class="container">
+        <p>&copy; 2015 fetv.cn 福建省教育电视台 版权所有</p>
+    </div>
+</footer>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.storage.js"></script>
+<script type="text/javascript" src="./js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./js/vue.min.js"></script>
+<script type="text/javascript" src="./js/upload.js"></script>
+<script type="text/javascript" src="./js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/fetv.js?3"></script>
+<script type="text/javascript" src="./js/fetvAppend.js"></script>
+
+<script>
+    $(function() {
+        organRegister()
+    })
+</script>
+
+</body>
+
+</html>

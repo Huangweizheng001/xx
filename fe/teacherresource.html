@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师主页</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+
+</head>
+
+<body>
+
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<!--内容模块-->
+<section class="femasterdetail clearfix" id="femasterdetail_resource">
+    <div class="container">
+        <!--头部老师信息-->
+        <div class="femasterdetail-head clearfix" v-cloak v-for="item in teacher">
+            <div class="feimage">
+                <img v-bind:src="item.iconPath|addRootFile" alt="">
+            </div>
+            <h1>{{item.teacherName}}</h1>
+            <p>
+                <span><a v-bind:href="item.organId|goToSchool" target="_blank">{{item.organName}}</a></span>
+                <span>{{item.subjectName}}</span>
+            </p>
+            <div class="fefollow">
+                <button><i class="uk-icon-plus"></i>关注</button>
+                <button class="cancel">取消关注</button>
+            </div>
+        </div>
+        <!--导航栏-->
+        <div class="femasterdetail-nav ">
+            <a v-bind:href="item.teacherInfoTypeId|addRootNav" v-cloak v-for="item in masterdetailnav"><span>{{item.name}}</span></a>
+        </div>
+        <div class="span9">
+            <div class="femasterdetail-content">
+                <!--课件-->
+                <div class="fenodata" v-show="nodata"></div>
+                <!--v-bind:href="item.resourcePath|downRoot"-->
+                <a class="clearfix" v-cloak v-for="(item,index) in leftresource" v-if="item.resourceType=='courseware'"  @click="addDownloadRecord(item.studioResourceId,item.resourcePath)">
+                    <div class="feimage">
+                        <img  v-bind:src="item.iconPath|addRootFile" alt="">
+                    </div>
+                    <div class="febox">
+                        <h3 >{{item.title}}</h3>
+                        <!--<h4><span v-bind:style="{backgroundPosition:position[index]+'px 0px'}"></span>{{movie.score}}</h4>-->
+                        <p >{{item.note}}</p>
+                        <h6>{{item.publishDate}}</h6>
+                    </div>
+                </a>
+                <!--文章-->
+                <a class="clearfix" v-bind:href="item.articleId|addRoot" v-cloak v-for="(item,index) in leftresource" @click="addReadCount(item.studioResourceId)" v-if="item.resourceType=='article'" target="_blank">
+                    <div class="feimage">
+                        <img  v-bind:src="item.iconPath|addRootFile" alt="">
+                    </div>
+                    <div class="febox">
+                        <h3 >{{item.title}}</h3>
+                        <!--<h4><span v-bind:style="{backgroundPosition:position[index]+'px 0px'}"></span>{{movie.score}}</h4>-->
+                        <p >{{item.note}}</p>
+                        <h6>{{item.publishDate}}<span></span></h6>
+                    </div>
+                </a>
+                <div class="feloadmore" @click="resourceLoadMore()" v-show="load">
+                    <span>查看更多</span>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="femasterdetail-allresource">
+                <ul>
+                    <li v-cloak v-for="item in rightnav" v-bind:data-id="item.resourceType"><i></i>{{item.name}} <span>{{item.resourceCount}}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        var teacherId=$(this).getUrlParam("teacherId");
+        teacherindex_resource(teacherId);
+    })
+</script>
+</body>
+
+</html>

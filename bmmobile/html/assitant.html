@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.9/skins/default/index-min.css" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<link rel="stylesheet" href="../css/bm.css">
+		<title>助理专题</title>
+		<style>
+			.dycassistant-title {
+				padding: 20px 0;
+				text-align: center;
+			}
+			
+			.dycassistant-title h1 {
+				display: inline-block;
+				width: 90%;
+				height: 2px;
+				background: #c9a61a;
+				position: relative;
+			}
+			
+			.dycassistant-title h1>b:first-child,
+			.dycassistant-title h1>b:last-child {
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				background: #c9a61a;
+				position: absolute;
+				top: -2px;
+			}
+			
+			.dycassistant-title h1>b:first-child {
+				left: 0;
+			}
+			
+			.dycassistant-title h1>b:last-child {
+				right: 0;
+			}
+			
+			.dycassistant-title h1>span {
+				display: inline-block;
+				width: 45%;
+				height: 40px;
+				background: #fff;
+				left: 28%;
+				position: absolute;
+				top: -17px;
+				font-size: 2.25rem;
+				color: #c9a61a;
+			}
+			
+			.dycgoldassistant,
+			.dycnewbieguide-lunbo,
+			.dycbomiencyclopedias-lunbo {
+				padding: 30px 20px 0;
+				position: relative;
+			}
+			
+			.dycgoldassistant .dycpanel {
+				display: block;
+			}
+			
+			.dycgoldassistant .dycpanel img {
+				width: 100%;
+				height:180px;
+			}
+			
+			.dycgoldassistant .dycpanel .dycbox {
+				width: 100%;
+				border: 1px solid #ccc;
+				box-sizing: border-box;
+				height: 120px;
+			}
+			
+			.dycgoldassistant .dycpanel:hover {
+				text-decoration: none;
+			}
+			
+			.dycgoldassistant .dycpanel .dycbox>h4 {
+				font-size: 1.375rem;
+				padding: 20px 0 0;
+				margin: 0;
+				color: #5d596f;
+			}
+			
+			.dycgoldassistant .dycpanel .dycbox>p {
+				font-size: 1.125rem;
+				padding: 0 8px 20px;
+				text-align: left;
+				color: #5d596f;
+			}
+			
+			.dycgoldassistant .swiper-wrapper>div:nth-child(2n+1) .dycpanel .dycbox {
+				background: #2b2d46;
+			}
+			
+			.dycgoldassistant .swiper-wrapper>div:nth-child(2n+1) .dycpanel .dycbox>h4 {
+				color: #fff;
+			}
+			
+			.dycgoldassistant .swiper-wrapper>div:nth-child(2n+1) .dycpanel .dycbox>p {
+				color: #fff;
+			}
+			
+			.dycnewbieguide {
+				background: url("../images/assitant/newbieguide.png") center;
+			}
+			
+			.dycnewbieguide p {
+				color: #fff;
+				font-size: 1.5rem;
+				line-height: 2;
+				padding: 20px 0 0;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel:hover {
+				text-decoration: none;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel h4 {
+				color: #fff;
+				font-size: 1.25rem;
+				padding:5px 10px;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel .dycimg {
+				position: relative;
+				overflow: hidden;
+				height: 220px;
+				border-radius: 5px;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel .dycimg img {
+				height: 100%;
+				width: 100%;
+				transition: all .3s linear;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel .dycimg b {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, .3);
+				transition: all .3s linear;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel .dycimg i {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 97px;
+				height: 97px;
+				margin-left: -48.5px;
+				margin-top: -48.5px;
+				background: url("../images/assitant/video-play-big.png")no-repeat center;
+				transition: all .3s linear;
+				background-size: 45px 45px;
+			}
+			
+			.dycnewbieguide-lunbo .dycpanel:hover img {
+				transform: scale(1.1);
+			}
+			
+			.dycmt4 {
+				background: url("../images/assitant/mt4.png");
+			}
+			
+			.dycmt4 p {
+				color: #fff;
+				font-size: 1.5rem;
+				line-height: 2;
+				padding: 20px;
+			}
+			
+			
+			.dycbomiencyclopedias {
+				background: #23233d;
+			}
+			
+			.dycbomiencyclopedias p {
+				text-align: center;
+				color: #fff;
+				font-size: 1.5rem;
+				line-height: 2;
+				padding: 20px 0 0;
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel {
+				background: #fff;
+				color: #000;
+				border-radius:5px;
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel:hover {
+				text-decoration: none;
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel .dycimg {
+				position: relative;
+				overflow: hidden;
+				height: 220px;
+				border-radius:5px 5px 0 0;
+				
+			}
+			
+			@media screen and (max-width: 476px) {
+				.dycnewbieguide-lunbo .dycpanel .dycimg {
+					height: 100px;
+				}
+				.dycbomiencyclopedias-lunbo .dycpanel .dycimg {
+					height: 80px;
+				}
+			}
+			
+			@media screen and (max-width: 760px) {
+				.dycnewbieguide-lunbo .dycpanel .dycimg {
+					height: 120px;
+				}
+				.dycbomiencyclopedias-lunbo .dycpanel .dycimg {
+					height: 100px;
+				}
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel .dycimg img {
+				width: 100%;
+				height: 100%;
+				transition: all .3s linear;
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel .dycimg b {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, .3);
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel .dycimg i {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 97px;
+				height: 97px;
+				margin-left: -48.5px;
+				margin-top: -48.5px;
+				background: url("../images/assitant/video-play-big.png")no-repeat center;
+				background-size:50px 50px ;
+			}
+			
+			
+			.dycbomiencyclopedias-lunbo .dycpanel:hover img {
+				transform: scale(1.1);
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel h4 {
+				text-align: left;
+				padding:5px 10px;
+				background: #fff;
+				margin: 0;
+				font-size: 1.125rem;
+				line-height: 2;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			.dycbomiencyclopedias-lunbo .dycpanel h6 {
+				text-align: left;
+				padding: 10px;
+				background: #fff;
+				margin: 0;
+				font-size: 1rem;
+				line-height: 2;
+			}
+			
+			.dycpop {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, .7);
+				z-index: 1;
+			}
+			
+			.dycpop b {
+				position: fixed;
+				top: 90px;
+				right: 80px;
+				font-size: 60px;
+				color: #000;
+				z-index: 100;
+				background: #fff;
+				line-height: 52px;
+				height: 60px;
+				width: 60px;
+				border-radius: 50%;
+				text-align: center;
+			}
+			
+			.dycpop b:hover {
+				cursor: pointer;
+				background: #e45e2a;
+				color: #fff;
+			}
+			
+			.dycpop i {
+				font-size: 60px;
+				position: fixed;
+				bottom: 80px;
+				left: 40%;
+				z-index: 100;
+				color: #fff;
+			}
+			
+			.dycpop s {
+				font-size: 60px;
+				position: fixed;
+				bottom: 80px;
+				left: 60%;
+				z-index: 100;
+				color: #fff;
+			}
+			
+			.dycpop img {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+			}
+			
+			#videoPlay {
+				position: fixed;
+				top: 100px;
+				width: 100%;
+				height: 600px;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<section>
+				<img src="../images/assitant/assistant-banner.jpg" alt="" width="100%">
+				<div class="dycassistant-title">
+					<h1><b></b><span>金牌助理</span><b></b></h1>
+					<div class="container">
+						<div class="dycgoldassistant">
+							<div class="swiper-container aa">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-1.png" alt="">
+											<div class="dycbox">
+												<h4>小袁助理</h4>
+												<p>对K线形态深有研究，并且能熟练的运用到行情分析中，专业耐心的服务为客户解决各种投资上的问题。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-2.png" alt="">
+											<div class="dycbox">
+												<h4>李助理</h4>
+												<p>金融行业从事经验丰富，拥有扎实的实战操作经验，擅长将各位嘉宾的战法应用到行情市场中。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-3.png" alt="">
+											<div class="dycbox">
+												<h4>小李助理</h4>
+												<p>从事金融行业多年，拥有证券、期货、从业资格证，可以熟练运用各位老师的交易战法。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-4.png" alt="">
+											<div class="dycbox">
+												<h4>蔡助理</h4>
+												<p>多年实战操盘指导经验，熟悉各大经济事件与数据，具有扎实的基本面分析。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-5.png" alt="">
+											<div class="dycbox">
+												<h4>文静助理</h4>
+												<p>不仅在宏观经济和地缘政治上有独特的见解，盘面分析能力也是格外出众。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-6.png" alt="">
+											<div class="dycbox">
+												<h4>邓助理</h4>
+												<p>工作上扎实的专业功底、耐心的态度，多年以来指导服务客户满意也是极高的。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-8.png" alt="">
+											<div class="dycbox">
+												<h4>小苏助理</h4>
+												<p>擅长运用各位老师的交易战法，对各位分析师的布局以及中长线把握娴熟，对操作心态上也是特别有研究。</p>
+											</div>
+										</a>
+									</div>
+									<div class="swiper-slide">
+										<a class="dycpanel">
+											<img src="../images/assitant/assistant-people-7.png" alt="">
+											<div class="dycbox">
+												<h4>娇娇助理</h4>
+												<p>至今为止有三年的金融现货，汇市实盘操作指导经验，指导客户人数约900多人。</p>
+											</div>
+										</a>
+									</div>
+								</div>
+								<!-- Add Arrows -->
+							</div>
+							<!--<div class="swiper-button-next aa1"></div>
+							<div class="swiper-button-prev aa2"></div>-->
+						</div>
+					</div>
+				</div>
+				<div class="dycnewbieguide">
+					<div class="dycassistant-title">
+						<h1><b></b><span style="background: #2b2d46">新手指南</span><b></b></h1>
+						<p>金牌助理精心录制课程 为初入金融市场的投资爱好者<br>答疑解惑 更走心 更贴近更符合新手观看</p>
+						<div class="container">
+							<div class="dycnewbieguide-lunbo">
+								<div class="swiper-container bb">
+									<div class="swiper-wrapper" id="jnewGuide"></div>
+								</div>
+								<!--<div class="swiper-button-next bb1"></div>
+								<div class="swiper-button-prev bb2"></div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="dycmt4">
+					<div class="dycassistant-title">
+						<h1><b></b><span style="background: url('../images/assitant/mt4.png')no-repeat center">MT4操作视频</span><b></b></h1>
+						<div class="container">
+							<p>MT4是市场行情接收软件，由迈达克软件公司发布，提供免费试用，有中文界面。它包括先前系统所有的特点，并且对这些功能和组成部分进行了进一步的介绍和重组。 它适用于外汇， CFD 以及期货市场。</p>
+							<a href="pediaPlayer.html?ecId=1189" style="display: inline-block"><img src="../images/assitant/mt4-video.jpg"></a>
+						</div>
+					</div>
+				</div>
+				<div class="dycbomiencyclopedias">
+					<div class="dycassistant-title">
+						<h1><b></b><span style="background:#23233d">金融小知识</span><b></b></h1>
+						<div class="container">
+							<p>什么是EIA?什么是API?还有什么是非农？还有什么是。。。。。。</p>
+							<div class="dycbomiencyclopedias-lunbo">
+								<div class="swiper-container cc">
+									<div class="swiper-wrapper" id="jbomiencyclopedias"></div>
+								</div>
+								<!--<div class="swiper-button-next cc1"></div>
+								<div class="swiper-button-prev cc2"></div>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/iscroll.js"></script>
+		<script type="text/javascript" src="../js/prism-h5-min.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script>
+			$(function() {
+
+				function indexSwiper() {
+					var swiper1 = new Swiper('.aa', {
+						nextButton: '.aa1',
+						prevButton: '.aa2',
+						slidesPerView: 2,
+						spaceBetween: 5,
+						autoplay: 3000,
+						loop: true
+					});
+					var swiper2 = new Swiper('.bb', {
+						nextButton: '.bb1',
+						prevButton: '.bb2',
+						slidesPerView: 2,
+						spaceBetween: 10,
+						autoplay: 3000,
+						loop: true
+					});
+					var swiper3 = new Swiper('.cc', {
+						nextButton: '.cc1',
+						prevButton: '.cc2',
+						slidesPerView: 2,
+						spaceBetween: 10,
+						autoplay: 5000,
+						loop: true
+					});
+				}
+
+				getNewGuide();
+				//获取新手指南
+				function getNewGuide() {
+					var jnewGuide = $('#jnewGuide'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + "Course.ashx?action=getFinancialKnowledge",
+						dataType: "json",
+						data: {
+							"type": 'uptodate',
+							"pageIndex": 1,
+							"pageSize": 10,
+							"courseTypeId": 16
+						},
+						success: function(result) {
+							var obj = result.rows;
+							if(obj.length < 1) {
+								return false;
+							}
+							obj.forEach(function(value, index) {
+								var imgSrc = value.mobileIconPath;
+								if(imgSrc == "") {
+									imgSrc = '../images/public/default.png';
+								} else {
+									imgSrc = SERVEROOTFILE + imgSrc;
+								}
+								$htmlStr += "<div class='swiper-slide'><a href='pediaPlayer.html?ecId=" + value.courseId + "' class='dycpanel'><div class='dycimg'><img src=" + imgSrc + " ><b></b><i></i></div><h4>" + value.name + "</h4></a></div>";
+							})
+
+							jnewGuide.html($htmlStr);
+							indexSwiper(); //new swiper
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				getEncyclopedias();
+				//获取金融小知识
+				function getEncyclopedias() {
+					var jbomiencyclopedias = $('#jbomiencyclopedias'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + "Course.ashx?action=getFinancialKnowledge",
+						dataType: "json",
+						data: {
+							"type": 'uptodate',
+							"pageIndex": 1,
+							"pageSize": 10,
+							"courseTypeId": 15
+						},
+						success: function(result) {
+							var obj = result.rows;
+							if(obj.length < 1) {
+								return false;
+							}
+							obj.forEach(function(value, index) {
+								var imgSrc = value.mobileIconPath;
+								if(imgSrc == "") {
+									imgSrc = '../images/public/default.png';
+								} else {
+									imgSrc = SERVEROOTFILE + imgSrc;
+								}
+
+								$htmlStr += "<div class='swiper-slide'><a href='pediaPlayer.html?ecId=" + value.courseId + "' class='dycpanel'><div class='dycimg'><img src=" + imgSrc + " ><b></b><i></i></div><h4>" + value.name + "</h4></a></div>";
+							})
+
+							jbomiencyclopedias.html($htmlStr);
+							indexSwiper(); //new swiper
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+			})
+		</script>
+	</body>
+
+</html>

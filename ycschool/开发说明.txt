@@ -1,0 +1,26 @@
+
+------->>亿策智慧校园前端结构说明<<---------
+
+1、data： 本地数据
+2、dist: 生成目录
+3、doc: 备注文档
+4、librarycss：公共css库
+5、libraryjs：公共js库
+
+6、src：开发目录
+   --》css文件 --》config.less 公共配置文件
+   --》css文件 --》模块文件-》具体css
+
+   --》html文件 --》模块文件 --》具体页面
+   
+   --》images文件：public：公用文件、static：静态页面资源文件、 temp：临时页面文件 [请勿私自添加文件夹、或者自己存放到当前目录下]
+
+   --》js文件 --》模块文件 --》具体js文件
+
+7、webpack.config.js  ：webpack配置文件
+   entry：配置多入口
+   plugins：下new 对应页面
+
+
+------->>css 命名 参考k12 前端编码规范<<---------
+ 类Class    模块名   eg： modelWrap

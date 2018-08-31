@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>实战2</title>
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+	</head>
+	<body>
+		<h2>一位数组巩固练习</h2>
+		用户名:<input type="text" id="username" name="username" value="" /><br  />
+		密   码:<input type="password" id="password" name="password" /><br  />
+		
+		<h2>多位数组巩固练习</h2>
+		<textarea id="members"></textarea>
+		
+		<h2>对象的转换</h2>
+		<textarea id="address"></textarea>
+		
+		
+		<script>
+			$(function(){
+				var url = "server2.php";
+				var data={"do":"first"};
+				
+				$.getJSON(url, data, function(res){
+					$("#username").val(res.username);
+					$("#password").val(res.password);
+				})
+				
+				var data2 ={"do":"second"};
+				$.getJSON(url, data2, function(res){
+					$("#members").val(res[1].username);
+				})
+				
+				var data3 ={"do":"third"};
+				$.getJSON(url, data3, function(res){
+					$("#address").val(res.address[1].username);
+				})
+				
+			})
+		</script>
+	</body>
+</html>

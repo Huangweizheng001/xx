@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>社圈—福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcommunity.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+<body style="background: #F4F4F4;">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section class="fecommunity-banner" ></section>
+<section>
+	<div class="fecommunity-navi">
+		<div class="fecommunity-navi-title">
+			<p class="container">社圈导航</p>
+		</div>
+		<div class="container" id='communityNavi'>
+			<div class="fecommunity-navi-sort clearfix">
+				
+					<a v-for="item in naviSortArr" v-bind:href="item.id|addRoot" v-cloak >
+						<img v-bind:src="item.icon|addRootFile" />
+						<p class="name">{{item.typeName}}</p>
+						<p>主题：{{item.topicTypeCount}}&nbsp;&nbsp;&nbsp;&nbsp;贴数：{{item.topicCount}}</p>
+					</a>
+				
+				
+				<!--	<a>
+					<img src="images/static/community/transaction.png" />
+					<p class="name">交易专区</p>
+					<p>主题：0&nbsp;&nbsp;&nbsp;&nbsp;贴数：0</p>
+				</a>-->
+			
+			</div>
+			<div class="fecommunity-navi-contain clearfix">
+				<span class="member span3" v-cloak>会员总数：{{naviMemberArr.userCount}}</span>
+				<span class="online span3" v-cloak>今日上线：{{naviMemberArr.dayOnlineCount}}</span>
+				<span class="post span3" v-cloak>今日帖子：{{naviMemberArr.topicCount}}</span>
+				<span class="add-member span3" v-cloak>今日新增会员：{{naviMemberArr.dayAddCount}}</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="fecommunity" id="fecommunity">
+    <div class="container  clearfix">
+        <div class="fecommunity-left span9" >
+            <div class="fecommunity-left-content">
+            	<div class="fepanel-title">精华帖子</div>
+            		 
+            		<div class="fepanel" >
+            			<div class="fenodata" v-show="communityListArrNodata" style="height: 150px;"></div>
+                    <a v-bind:href="item.postId" class="clearfix" v-cloak v-for="item in communityListArr" target="_blank">
+                        <!--<div class="span5">-->
+                            <div class="feimage">
+                                <img  v-bind:src="item.icon|addRootFile" alt="">
+                            </div>
+                        <!--</div>
+                        <div class="feright-box span7">-->
+                        <div class="feright-box">	
+                            <h3 v-cloak>{{item.title}}</h3>
+                            <p v-cloak>{{item.message}}</p>
+                            <h6 v-cloak>浏览次数：{{item.views}}&nbsp;&nbsp;&nbsp;&nbsp;评论数：{{item.replies}}<span><img v-bind:src="item.ptx">{{item.lastposter}}</span><span class="time">{{item.lastpost}}</span></h6>
+                        </div>
+                    </a>
+                    <div class="span12">
+                            <ul class="pagenationbox clearfix">
+                                <li v-show="current != 1" @click="current-- && goto(current--)">
+                                    <a href="#this">上一页</a>
+                                </li>
+                                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                    <a href="#this">{{index}}</a>
+                                </li>
+                                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                    <a href="#this">下一页</a>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="fecommunity-right span3">
+        	<div class="fecommunity-personal">
+        		<div class="fecommunity-personal-box clearfix">
+        			<a class="avar span4" v-if="this.islogin == 1" href="community/centeralreadygroup.html" target="_blank">
+        				<img v-bind:src="memberIcon" />
+        			</a>
+        			<a class="avar span4" v-else href="login.html">
+        				<img v-bind:src="memberIcon" />
+        			</a>
+        			<div class="content span8">
+        				<h3 v-cloak>{{memberName}}</h3>
+        				<p v-cloak>用户组：{{memberGroup}}</p>
+        				<p v-cloak>帖子：<em>{{memberPost}}</em><span>积分：<em>{{memberScope}}</em></span>好友：<em>{{memberFriend}}</em></p>
+        			</div>
+        			<div class="nologin span8"  style="display: none;">
+        				<a href='login.html'>登录</a>
+        				<a href="login.html?login=3">注册</a>
+        			</div>
+        		</div>
+        		<div class="fecommunity-personal-btn clearfix">
+        			<a class="post" href="community/centeralreadygroup.html" target="_blank">我的群组</a>
+        			<a class="group" v-on:click="ceateGroup()">创建群组</a>
+        		</div>
+        	</div>
+            <div class="fecommunity-newhand">
+                <div class="fepanel-title">新手攻略<a title="更多"></a></div>
+                <ul class="fepanel-ul">
+                    <li v-cloak v-for="item in newHandArr" v-cloak>
+                        <a v-bind:href="item.postId" target="_blank">
+                            <div class="fepanel-image">
+                                <img v-bind:src="item.icon|addRootFile" alt="">
+                            </div>
+                            <h1>{{item.title}}</h1>
+                            <p>{{item.remark}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="fecommunity-star">
+            	<div class="fepanel-title">社圈之星</div>
+            	<div class="fecommunity-star-wrap clearfix">
+            		<div class="fenodata" v-show="communitStarArrNodata" style="height: 150px;"></div>
+            	<a class="avar span4" v-for='item in communitStarArr' v-bind:href='item.userId' v-cloak>
+            		<img v-bind:src="item.avatar|addAvarFile">
+            		<p>{{item.username}}</p>
+            	</a>
+            	<!--<a class="avar span4">
+            		<img src="images/static/community/avar.png">
+            		<p>小小丽</p>
+            	</a>-->
+            	</div>
+            </div>
+            <div class="fecommunity-hotlist">
+            	<div class="fepanel-title">热帖排行<span class='fecommunity-hotlist-tab'><a class="active" data-id='0'>周榜</a><a data-id='1'>月榜</a></span></div>
+            	<div class="fenodata" v-if="hotsWeekListArrNodata" ></div>
+            	<ul class="fecommunity-hotlist-wrap clearfix" v-else>
+            		
+            		<li v-for="(item,index) in hotsWeekListArr" v-cloak><a v-bind:href="item.postId" target="_blank"><span>{{(index+1)}}</span>{{item.title}}</a></li>
+            	</ul>
+            	<div class="fenodata" v-if="hotsMonthListArrNodata" ></div>
+            	<ul class="fecommunity-hotlist-wrap clearfix" style="display: none;" v-else>
+            		
+            		<li v-for="(item,index) in hotsMonthListArr" v-cloak><a v-bind:href="item.postId" target="_blank"><span>{{(index+1)}}</span>{{item.title}}</a></li>
+            	</ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer" class="clearfix">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/fetvcommunity.js"></script>
+<script>
+   
+    $(function () {
+    	communityNavi();//社圈导航
+        community();//社圈首页
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师主页</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #f4f4f4;">
+<header id="header">
+    <header-template></header-template>
+</header>
+<div id="teacherqzone">
+    <teacherqzone-template></teacherqzone-template>
+</div>
+<section class="container clearfix" id="teacherIndex">
+    <div class="teacherIndex  clearfix">
+        <div class="span9 ">
+            <div class="teacherIntro">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Teacher introduction </span>
+                    <h1 class="title">老师简介</h1>
+                </div>
+                <ul class="content">
+                    <li v-cloak>
+                        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+                        {{teacherInfo.teacherName}}
+                    </li>
+                    <li v-cloak>
+                        <span>性&nbsp;&nbsp;&nbsp;&nbsp;别:</span>
+                        {{teacherInfo.sex}}
+                    </li>
+                    <li v-cloak>
+                        <span>教&nbsp;&nbsp;&nbsp;&nbsp;龄:</span>
+                        {{teacherInfo.ofSchoolAge}}年教龄
+                    </li>
+                    <li v-cloak>
+                        <span>自我介绍:</span>
+                        {{teacherInfo.introduce}}
+                    </li>
+                </ul>
+            </div>
+            <div class="teacherCourse">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Teacher course </span>
+                    <h1 class="title">老师课程 <span class="count" v-cloak>（共 {{allCount}} 门课）</span></h1>
+                </div>
+                <div class="courseList">
+                    <div class="fenodata" v-cloak v-show="nodata"></div>
+                    <div class="courseItem" v-cloak v-for="item in microCourse">
+                        <a class="image" :href="item.courseId,item.videoId|goToplay" target="_blank">
+                            <img :src="item.iconPath|addRootFile" alt="">
+                            <div class="mask"><span class="play-icon"></span></div>
+                        </a>
+                        <div class="boxRight">
+                            <h1 class="courseName">{{item.courseName}}</h1>
+                            <h4 class="intro">{{item.gradeName}} {{item.subjectName}} {{item.syllabusName}}</h4>
+                            <div class="bottom">
+                                <h4 class="duration">时长：{{item.timeLen|timeType}}</h4>
+                                <h4 class="time">时间：{{item.beginDate}}</h4>
+                            </div>
+                            <a class="btn" :href="item.courseId,item.videoId|goToplay" target="_blank">开始学习</a>
+                        </div>
+                    </div>
+                    <!--<div class="courseItem">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                            <!--<div class="mask"><span class="play-icon"></span></div>-->
+                        <!--</div>-->
+                        <!--<div class="boxRight">-->
+                            <!--<h1 class="courseName">国际市场营销学第三节课程</h1>-->
+                            <!--<h4 class="intro">初三（下）数学/第一单元/几何</h4>-->
+                            <!--<div class="bottom">-->
+                                <!--<h4 class="duration">时长：15分钟</h4>-->
+                                <!--<h4 class="time">时间：2018.3.20  19：30</h4>-->
+                            <!--</div>-->
+                            <!--<button class="btn">开始学习</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="courseItem">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                            <!--<div class="mask"><span class="play-icon"></span></div>-->
+                        <!--</div>-->
+                        <!--<div class="boxRight">-->
+                            <!--<h1 class="courseName">国际市场营销学第三节课程</h1>-->
+                            <!--<h4 class="intro">初三（下）数学/第一单元/几何</h4>-->
+                            <!--<div class="bottom">-->
+                                <!--<h4 class="duration">时长：15分钟</h4>-->
+                                <!--<h4 class="time">时间：2018.3.20  19：30</h4>-->
+                            <!--</div>-->
+                            <!--<button class="btn">开始学习</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="courseItem">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                            <!--<div class="mask"><span class="play-icon"></span></div>-->
+                        <!--</div>-->
+                        <!--<div class="boxRight">-->
+                            <!--<h1 class="courseName">国际市场营销学第三节课程</h1>-->
+                            <!--<h4 class="intro">初三（下）数学/第一单元/几何</h4>-->
+                            <!--<div class="bottom">-->
+                                <!--<h4 class="duration">时长：15分钟</h4>-->
+                                <!--<h4 class="time">时间：2018.3.20  19：30</h4>-->
+                            <!--</div>-->
+                            <!--<button class="btn">开始学习</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="loadmore" v-show="load" v-cloak>
+                    <a @click="loadMore">查看更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="rightNav">
+                <a v-cloak v-for="item in rightNav" :href="item.statType|addStatType">
+                    <span>{{item.statCount}}</span>
+                    <h5>{{item.statTypeName}}</h5>
+                </a>
+                <!--<a>-->
+                    <!--<span>4</span>-->
+                    <!--<h5>资源</h5>-->
+                <!--</a>-->
+                <!--<a>-->
+                    <!--<span>5</span>-->
+                    <!--<h5>视频/照片</h5>-->
+                <!--</a>-->
+            </div>
+            <div class="teachingResearch">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Teaching and research </span>
+                    <h1 class="title">教研 <a :href="'teacheractivity.html?teacherId='+ tId" class="more">more></a></h1>
+                </div>
+                <div class="content">
+                    <a class="item" v-cloak v-for="item in researchArr" :href="item.resultId|addActivity">
+                        <div class="image">
+                            <img :src="item.coverUrl|addRootFile" alt="">
+                        </div>
+                        <h1>{{item.title}}</h1>
+                    </a>
+                    <!--<a class="item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<h1>国际市场营销学第三节课程</h1>-->
+                    <!--</a>-->
+                </div>
+            </div>
+            <div class="teachingResearch">
+                <div class="moduleTitleWrapper">
+                    <span class="titleTip">Resources </span>
+                    <h1 class="title">资源 <a :href="'teacherresource.html?teacherId='+ tId" class="more">more></a></h1>
+                </div>
+                <div class="content">
+                    <a class="item" v-cloak v-for="item in resource" @click="addDownloadRecord(item.resourceId,item.downloadPath)" v-bind:download="item.downloadPath">
+                        <div class="image">
+                            <img :src="item.iconPath|addRootFile" alt="">
+                        </div>
+                        <h1>{{item.title}}</h1>
+                    </a>
+                    <!--<a class="item">-->
+                        <!--<div class="image">-->
+                            <!--<img src="../../images/temp/course@230-150.jpg" alt="">-->
+                        <!--</div>-->
+                        <!--<h1>国际市场营销学第三节课程</h1>-->
+                    <!--</a>-->
+                </div>
+            </div>
+            <!--<div class="rightPhoto">-->
+                <!--<div class="moduleTitleWrapper">-->
+                    <!--<span class="titleTip">Video and Photo </span>-->
+                    <!--<h1 class="title">视频/照片 <a href="" class="more">more></a></h1>-->
+                <!--</div>-->
+                <!--<div class="content">-->
+                    <!--<div class="span6">-->
+                        <!--<img src="../../images/temp/article_2@225-148.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="span6">-->
+                        <!--<img src="../../images/temp/article_1@225-148.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="span6">-->
+                        <!--<img src="../../images/temp/article_3@225-148.jpg" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="span6">-->
+                        <!--<img src="../../images/temp/article_4@225-148.jpg" alt="">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

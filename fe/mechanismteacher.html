@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>机构名师</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body>
+<header id="organheader">
+    <organ-header-template></organ-header-template>
+</header>
+
+<section class="clearfix" style="background: #f4f4f4;">
+    <div class="container" id="jshoolTeacher" >
+        <div class="fe-schoolteacher-head">
+            <!--<div class="fe-schoolteacher-head-title">
+                <a href="#this">首页</a>><a href="#this">名师推荐</a>><a href="#this" class="active">不限</a>><a href="#this" class="active"></a>
+            </div>-->
+            <div class="fe-schoolteacher-head-select fe-schoolteacher-head-grade" id="grade">
+                <span>年段：</span>
+                <a class="active" data-id="">不限</a>
+                <a v-cloak v-bind:data-id="item.gradeId" v-for="item in gradeArr">{{item.gradeName}}</a>
+            </div>
+            <div class="fe-schoolteacher-head-select" id="subject">
+                <span>学科：</span>
+                <a class="active"  @click="getsubject('')">不限</a>
+                <a v-cloak  v-for="item in subjectArr" @click="getsubject(item.subjectId)">{{item.subjectName}}</a>
+            </div>
+        </div>
+        <div class="fe-schoolteacher-wrap clearfix" >
+            <div class="span9">
+                <div class="fe-schoolteacher-list">
+                    <div class="fenodata" v-show="nodata"></div>
+                    <div class="fe-schoolteacher-list-wrap" v-cloak v-for="item in teacherListArr" >
+                        <div class="span3">
+                            <a class="fe-schoolteacher-list-img" target="_blank" v-bind:href="item.liveId">
+                                <img v-bind:src="item.iconPath | addRootFile" />
+                            </a>
+                        </div>
+                        <div class="span9">
+                            <a class="fe-schoolteacher-list-box" target="_blank" v-bind:href="item.liveId">
+                                <div class="fe-schoolteacher-list-name">{{item.teacherName}}</div>
+                                <p class="fe-schoolteacher-list-brief" >{{item.note}}</p>
+                                <div class="fe-schoolteacher-list-advantage">
+                                    <!--<span v-for="itemChildren in item.liveIdArr" >{{itemChildren}}</span>-->
+                                    <span>{{item.ofSchoolAge}}年教龄</span>
+                                    <span>{{item.subjectName}}</span>
+                                    <span>{{item.teacherGradeName}}</span>
+                                </div>
+
+                            </a>
+                            <a class="fe-schoolteacher-list-course" target="_blank" v-if='item.recordType==1' v-bind:href="item.courseId | addCloundRoot" >视频课：{{item.courseName}}</a>
+                            <a class="fe-schoolteacher-list-course" target="_blank" v-if='item.recordType==0' v-bind:href="item.courseId | addCourseRoot" >视频课：{{item.courseName}}</a>
+                        </div>
+                    </div>
+
+                    <!--<a href="#this" class="fe-schoolteacher-more" @click="teacherloadMore()" v-show="load">加载更多...</a>-->
+                    <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                        <li v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="span3">
+                <div class="fe-schoolteacher-dynamic">
+                    <p class="fe-schoolteacher-dynamic-title">名师动态<p>
+                    <div class="fe-schoolteacher-dynamic-wrap">
+                        <div class="fe-schoolteacher-dynamic-list clear" v-cloak v-for="item in dynamicListArr" >
+                            <div class="clearfix">
+                                <div class="span4">
+                                    <a class="fe-schoolteacher-dynamic-img" target="_blank" v-bind:href="item.liveId" v-bind:title="item.operatorName">
+                                        <img v-bind:src="item.iconPath | addRootFile" />
+                                    </a>
+                                </div>
+                                <div class="span8">
+                                    <div class="fe-schoolteacher-dynamic-box">
+                                        <div class="fe-schoolteacher-dynamic-name">
+                                            <a target="_blank" v-bind:href="item.liveId" v-bind:title="item.operatorName">{{item.operatorName}}</a><span>{{item.operateTime|getTime}}</span>
+                                        </div>
+                                        <div class="fe-schoolteacher-dynamic-brief">
+                                            {{item.operateTypeName}}了{{item.resourceType|changeType}}：
+                                            <a  target="_blank" v-bind:title="item.title" v-if="item.resourceType=='courseware'" @click="addDownloadRecord(item.studioResourceId,item.resourcePath)">{{item.title}}</a>
+                                            <a  target="_blank" v-bind:href="item.briefId" v-bind:title="item.title" v-else>{{item.title}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fe-schoolteacher-recommendcourse">
+                    <p class="fe-schoolteacher-recommendcourse-title">推荐课程
+                    </p>
+                    <div class="fe-schoolteacher-recommendcourse-wrap">
+                        <a class="fe-recommendcourse-box" target="_blank" v-cloak v-for="(item,index) in courseListArr" v-bind:href="item.liveId" v-if="index<2">
+                            <div class="fe-recommendcourse-img">
+                                <img v-bind:src="item.iconPath | addRootFile" />
+                                <!--<span>{{item.gradeName}}{{item.subjectName}}</span>-->
+                            </div>
+                            <p class="fe-recommendcourse-box-title">{{item.courseName}}</p>
+                            <!--<p class="fe-recommendcourse-box-price" v-if="item.isFree == 0">￥{{item.preferentialPrice}}<span>￥{{item.price}}</span></p>
+                            <p class="fe-recommendcourse-box-price" v-else style="color:#53b316">免费</p>-->
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="js/fetvcyq.js"></script>
+<script>
+    $(function() {
+        var organId=$(this).getUrlParam("organId");
+        shoolTeacher(organId); //小组
+    })
+</script>
+
+</body>
+
+</html>

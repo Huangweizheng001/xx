@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="dycloading" style="width:100px;height: 100px;margin:400px auto;">
+			<img src="images/loading.gif" />
+		</div>
+		<section>
+			<iframe id="jtiaozhuan" style="display:none;border:0;width:100%;height:100%;position: fixed;top:0px;left:0px;" src="">
+				
+			</iframe>
+		</section>
+	</body>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script>
+			var mid = $(this).getUrlParam("memberId");
+			var rechargeAmount = $(this).getUrlParam("rechargeAmount");
+			var rechargeList = $(this).getUrlParam("rechargeList");
+			var memberGradeId = $(this).getUrlParam("memberGradeId");
+			$('#jtiaozhuan').attr('src',ROUTE + "MemberGrade.ashx?action=purchaseMemberGrade&purchaseAmount="+rechargeAmount+"&payTypeId=0&purchaseList="+rechargeList+"&memberId="+mid +"&memberGradeId="+memberGradeId);
+		</script>
+</html>

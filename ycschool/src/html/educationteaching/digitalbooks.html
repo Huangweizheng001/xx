@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>亿策数字校园-数字图书</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body>
+<!--头部-->
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<!--数字图书-->
+<section id="digitalBooks" class="digitalBooks">
+    <div class="container">
+        <div class="digitalBooksInner clearfix">
+            <div class="topLink">
+                <h1>教育教学 > <span>数字图书</span></h1>
+            </div>
+            <!--列表内容-->
+            <div class="bookLeft" >
+                <div class="bookLeftList">
+                    <div class="span8" >
+                        <div class="moduleTitleWrapper">
+                            <span class="titleTip">Digital books</span>
+                            <h1 class="title">数字图书</h1>
+                        </div>
+                        <a v-for="info in data" :href="info.bookId |gotoDetail" target="_blank" v-cloak>
+                            <div class="listLeftContent" >
+                                <div  class="listLeftImageBox">
+                                    <img class="listLeftImage" v-bind:src="info.iconPath | addRootFile">
+                                </div>
+                                <div class="listRightText">
+                                    <div class="listContentBox">
+                                        <h1 class="listTitle">{{info.bookName}}</h1>
+                                        <p class="listDescribe">{{info.author}}&nbsp;&nbsp;{{info.press}}&nbsp;&nbsp;{{info.publishDate}}</p>
+                                        <p class="listContent" v-text="info.description"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="fenodata" v-if="data.length == 0"></div>
+                        <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                            <li v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bookRight">
+                    <div class="span4">
+                        <div class="bookSearch">
+                            <h1>图书搜索</h1>
+                            <p>请输入名称：</p>
+                            <div class="SearchBar">
+                                <form>
+                                    <input type="text" placeholder="" v-model="searchName">
+                                    <button type="button" @click="searchList"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+
+</body>
+
+</html>

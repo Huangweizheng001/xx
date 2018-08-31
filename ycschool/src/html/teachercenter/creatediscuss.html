@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>老师个人中心-发起教研讨论</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="./librarycss/Ecalendar.css" />
+</head>
+<body style="background: #fff;">
+<section  id="creatediscuss">
+    <div class="creatediscuss">
+        <div class="title"><span>发起教研讨论</span><a href="teachercenteractivity.html">返回</a></div>
+        <ul class="content">
+            <li class="li-style">
+                <b class="caption">主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题:</b>
+                <input type="text" class="inputText" v-model="title" style="width: 200px">
+            </li>
+            <li class="li-style">
+                <b class="caption">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间:</b>
+                <input type="text" class="inputText" id="time">
+            </li>
+            <li class="li-style">
+                <b class="caption">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点:</b>
+                <select name="" id="address"  v-cloak v-model="boardroomApplyId">
+                    <option :value="item.boardroomApplyId" v-for="item in addressArr">{{item.applyName}}</option>
+                </select>
+            </li>
+            <li class="li-style">
+                <b class="caption">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容:</b>
+                <textarea name="" v-model="content"></textarea>
+            </li>
+            <li class="li-style">
+                <b class="caption">形&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;式:</b>
+                <select name="" id="type"  v-cloak v-model="modeId">
+                    <option :value="item.mode" v-for="item in typeArr">{{item.name}}</option>
+                </select>
+            </li>
+            <li class="li-style">
+                <b class="caption">成&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;员:</b>
+                <select name="" id="grade"  v-cloak v-model="gradeId">
+                    <option :value="item.gradeId" v-for="item in gradeArr">{{item.name}}</option>
+                </select>
+                <select name="" id="subject"  v-cloak v-model="subjectId">
+                    <option :value="item.subjectId" v-for="item in subjectArr">{{item.name}}</option>
+                </select>
+                <div  id="teacher"  v-cloak class="teacherList">
+                    <span>请选择</span><i class="uk-icon-caret-down"></i>
+                    <ul>
+                        <li :value="item.teacherId" v-for="item in menberArr">{{item.teacherName}}</li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <div class="menberList">
+
+        </div>
+        <div class="operation">
+            <a @click="saveFirstStep()">确定</a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/Ecalendar.jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+
+</body>
+</html>

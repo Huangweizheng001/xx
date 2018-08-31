@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>知识付费-名师列表</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/fetv.css" />
+    <link rel="stylesheet" href="./css/fetvAppend.css" />
+    <link rel="stylesheet" href="./css/fetvcyq.css" />
+    <link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section class="clearfix" style="background: #f4f4f4;">
+    <div class="container" id="teacherQuestionList" class="feteacherQuestionList">
+        <!--筛选-->
+        <div class="fe-schoolteacher-head" style="box-shadow: 0 0 6px #ccc;">
+            <div class="fe-schoolteacher-head-select fe-schoolteacher-head-grade" id="grade">
+                <span>学段：</span>
+                <a class="active" data-id="">不限</a>
+                <a v-cloak v-bind:data-id="item.educationalLevelId" v-for="item in gradeArr">{{item.educationalLevelName}}</a>
+            </div>
+            <div class="fe-schoolteacher-head-select" id="subject">
+                <span>学科：</span>
+                <a class="active"  @click="getsubject('')">不限</a>
+                <a v-cloak  v-for="item in subjectArr" @click="getsubject(item.subjectId)">{{item.subjectName}}</a>
+            </div>
+        </div>
+        <div class="span9">
+            <div class="feteacherQuestionList-left">
+                <div class="fenodata" v-cloak v-if="nodata"></div>
+                <div class="fepanel" v-cloak v-for="item in teacherList">
+                    <div class="feimage">
+                        <img :src="item.headIconPath|addRootFile" alt="">
+                    </div>
+                    <div class="fecenter">
+                        <h2>{{item.name}}</h2>
+                        <p>{{item.introduce}}</p>
+                        <a class="feschool">{{item.organ}}</a>
+                        <a class="fejob">{{item.subject}}老师</a>
+                        <a class="feanswernum">{{item.QAnum}}个回答</a>
+                    </div>
+                    <div class="febtn">
+                        <button @click="putQuestion(item.teacherId)">¥{{item.answerPrice}}提问</button>
+                    </div>
+                </div>
+                <!--<div class="fepanel">-->
+                    <!--<div class="feimage">-->
+                        <!--<img src="images/temp/mr-tx.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="fecenter">-->
+                        <!--<h2>王铮亮</h2>-->
+                        <!--<p>先后获得县、市、全国语文教师基本功大赛（好教法、好文章、好论著、好书法、好-->
+                            <!--朗诵）五项全能一等奖和三个单项一等奖。</p>-->
+                        <!--<a class="feschool">福州一中</a>-->
+                        <!--<a class="fejob">数学老师</a>-->
+                        <!--<a class="feanswernum">166个回答</a>-->
+                    <!--</div>-->
+                    <!--<div class="febtn">-->
+                        <!--<button>¥66提问</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                    <li v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="feteacherQuestionList-right">
+                <h1>名师问答榜</h1>
+                <ul>
+                    <li v-cloak v-for="(item,index) in ranking">
+                        <span :style="{background:'url('+ item.iconPath +') no-repeat center'}"><b></b></span>
+                        <div class="febox">
+                            <h1><a :href="item.teacherId|addRoot" target="_blank">{{item.name}}</a></h1>
+                            <h3>回答数:{{item.QAnum}}</h3>
+                        </div>
+                        <i>{{index+1}}</i>
+                    </li>
+                    <!--<li>-->
+                        <!--<span><b></b></span>-->
+                        <!--<div class="febox">-->
+                            <!--<h1>桃子先生</h1>-->
+                            <!--<h3>采纳数:166</h3>-->
+                        <!--</div>-->
+                        <!--<i>2</i>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function() {
+        // var organId=$(this).getUrlParam("organId");
+        teacherQuestionList(); //小组
+    })
+</script>
+
+</body>
+
+</html>

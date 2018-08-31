@@ -1,0 +1,53 @@
+
+.learningActivitiesetails .learningEtailsStencil{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.learningActivitiesetails .etailsTitle{
+    margin-top: 52px;
+    height: 60px;
+    font-size: 32px;
+    text-align: center;
+    /*border-bottom: 1px solid #e6e6e6;*/
+}
+.learningActivitiesetails .etailsDate{
+    color: #a1a1a1;
+    margin-left: 27px;
+    margin-right: 27px;
+    margin-top: 40px;
+    height: 26px;
+    font-size: 12px;
+    text-align: right;
+    border-bottom: 1px solid #e6e6e6;
+}
+.learningActivitiesetails .etailsContent{
+    width:920px;
+    margin:0  auto;
+    margin-top: 27px;
+}
+/*分页样式*/
+.learningActivitiesetails  .pagenationbox{
+    padding-left: 0;
+    padding: 50px 0;
+    text-align: center;
+}
+.learningActivitiesetails  .pagenationbox li {
+    display: inline-block;
+    margin: 0 70px;
+}
+.learningActivitiesetails  .pagenationbox li a {
+    padding: .5rem 1.5rem;
+    display: inline-block;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #ff6c00;
+}
+.learningActivitiesetails  .pagenationbox li.active a {
+    background: #ff6c00;
+    color: #fff;
+}
+.learningActivitiesetails  .pagenationbox li a:hover {
+    background: #eee;
+}

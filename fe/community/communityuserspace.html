@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>社圈个人空间</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/fetvcommunity.css" />
+		<link rel="stylesheet" href="../css/swiper,animate.min.css" />
+
+	</head>
+
+	<body style="background: #f4f4f4">
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section id="fecommunityuserspace">
+			<div class="container communityuserspace">
+				<div class="feuserspace-head fegrouphead clearfix" >
+					<template v-if='!userInfoNodata'>
+						<div class="feimage">
+							<img v-bind:src="userMainInfo.icon|addAvarFile" alt="">
+						</div>
+						<div class="febox">
+							<button class="addattention" v-if="isAttention==0 && isMe==0" @click="addAttention()"><i class="uk-icon-plus"></i>关注</button>
+							<button class="attentioned" v-if="isAttention==1 && isMe==0">已关注</button>
+							<button class="cancelattention" v-if="isAttention==1 && isMe==0" @click="cancelAttention()">取消关注</button>
+							<h3 v-cloak>{{userMainInfo.userName}}</h3>
+							<p v-cloak> 帖子: <span >{{userInfo.topicCount}}</span> | 创建群组: <span>{{userInfo.groupLeaderCount}}</span> | 加入群组: <span>{{userInfo.groupNoLeaderCount}}</span></p>
+							<!--<button class="sendmessage" v-if='isMe==0'>发私信</button>-->
+						</div>	
+					</template>
+						<div class="fenodata" v-show='userInfoNodata'></div>
+				
+				</div>
+				
+
+				<!--内容区-->
+				<div class="feuserspace-contain clearfix fecommunity">
+
+					<div class="fecommunity-left span8">
+						<div class="fecommunity-left-content feuserspace-left-content">
+							<div class="feselect clearfix">
+								<div class="tab-head">
+									<a class="active" @click="headSelect($event,0)">帖子</a>
+									<a class="" @click="headSelect($event,1)" >群组</a>
+									<div class="search">
+										<input type="text" value="" placeholder="请输入关键字" />
+										<a class="searchbtn" @click='onSearch($event)'><i class="uk-icon-search"></i></a>
+									</div>
+								</div>
+								<ul>
+									<li class="active" @click="selectSort($event,0)">全部</li>
+									<li @click="selectSort($event,1)">热门</li>
+									<li @click="selectSort($event,2)">精华</li>
+									<li @click="selectSort($event,3)">推荐</li>
+								</ul>
+							</div>
+							<div class="fepanel">
+								<template v-if="isPost==1">
+									<a class="clearfix" v-bind:href="item.postId" v-cloak v-for="item in postListArr" target="_blank"  v-if='!postListArrNodata'>
+									<!--<div class="span5">-->
+										<div class="feimage">
+											<img v-bind:src="item.titleIcon|addRootFile" alt="">
+										</div>
+									</div>
+									<!--<div class="feright-box span7">-->
+										<div class="feright-box">
+										<h3>{{item.title}}</h3>
+										<p>{{item.message}}</p>
+										<h6>浏览次数：{{item.view}}&nbsp;&nbsp;&nbsp;&nbsp;评论数：{{item.replies}}<span><img v-bind:src="item.UserIcon|addAvarFile">{{item.poster}}</span><span class="time">{{item.postdatetime}}</span></h6>
+									</div>
+								</a>
+								<div class="fenodata" v-show='postListArrNodata'></div>
+
+								</template>
+								
+								<template v-else>
+									<a v-bind:href="item.groupId" v-cloak v-for="item in groupListArr" target="_blank" v-if='!groupListArrNodata'>
+									<!--<div class="span5">-->
+										<div class="feimage">
+											<img v-bind:src="item.groupIcon|addRootFile" alt="">
+										</div>
+									<!--</div>
+									<div class="feright-box span7">-->
+									<div class="feright-box">	
+										<h3>{{item.groupName}}</h3>
+										<p>{{item.Introduction}}</p>
+										<h6>帖子：{{item.topicNum}}&nbsp;&nbsp;&nbsp;&nbsp;成员：{{item.memberNum}}<span><img v-bind:src="item.userIcon|addAvarFile">{{item.inserterName }}</span><span class="time">{{item.insertTime}}</span></h6>
+									</div>
+								</a>
+								<div class="fenodata" v-show='groupListArrNodata'></div>
+								</template>
+								
+								<div class="span12">
+									<ul class="pagenationbox clearfix" >
+										<li v-show="current != 1" @click="current-- && goto(current--)">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+									
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="span4 right">
+						<div class="fecommunity-star">
+							<div class="fecommunitypostlist-title-nomore">他关注的人<span class="number" v-cloak> ( {{userInfo.myFocusCount}} ) </span></div>
+							<div class="fecommunity-star-wrap clearfix" v-if='!attentionArrNodata'>
+								<a class="avar span3" v-for='item in attentionArr' v-bind:href='item.userId' v-cloak >
+									<img v-bind:src="item.icon|addAvarFile">
+									<p>{{item.userName}}</p>
+								</a>
+								<!--<a class="avar span4">
+			            		<img src="images/static/community/avar.png">
+			            		<p>小小丽</p>
+			            	</a>-->
+							</div>
+							<div class="fenodata" v-show='attentionArrNodata'></div>
+						</div>
+						<div class="fecommunity-star">
+							<div class="fecommunitypostlist-title-nomore">关注他的人<span class="number" v-cloak> ( {{userInfo.UserFansCount}} ) </span></div>
+							<div class="fenodata" v-show='followedArrNodata'></div>
+							<div class="fecommunity-star-wrap clearfix" v-if='!followedArrNodata'>
+								<a class="avar span3" v-for='item in followedArr' v-bind:href='item.userId' v-cloak>
+									<img v-bind:src="item.icon|addAvarFile">
+									<p>{{item.userName}}</p>
+								</a>
+								<!--<a class="avar span4">
+			            		<img src="images/static/community/avar.png">
+			            		<p>小小丽</p>
+			            	</a>-->
+							</div>
+						</div>
+						<div class="fecommunity-hotlist">
+							<div class="fecommunitypostlist-title-nomore">最新帖子</div>
+							<div class="fenodata" v-show='newPostArrNodata'></div>
+							<ul class="fecommunity-hotlist-wrap clearfix" v-if='!newPostArrNodata'>
+								<li v-for="(item,index) in newPostArr" v-cloak>
+									<a v-bind:href="item.postId" target="_blank"><span>{{(index+1)}}</span>{{item.title}}</a>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/fetvAppend.js"></script>
+		<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+		<script>
+			$(function() {
+				communityuserspace($(this).getUrlParam("userId"));
+			/*	communityuserspacetest(9);*/
+			})
+		</script>
+	</body>
+
+</html>

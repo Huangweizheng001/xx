@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>性别</title>
+
+		<style>
+			input {
+				-webkit-appearance: none;
+				outline: none
+			}
+			
+			body {
+				background: #f2f2f2;
+				padding-top: 9rem;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			section input {
+				width: 100%;
+				height: 6.258rem;
+				line-height: 2.6rem;
+				text-indent: 2.14rem;
+				padding-right: 2.14rem;
+				font-size: 1.857rem;
+				box-sizing: border-box;
+				;
+				border-radius: 0;
+				background-color: #fff;
+			}
+			
+			#mask {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				background-color: rgba(0, 0, 0, .2);
+			}
+			
+			#mask.show {
+				bottom: 0;
+			}
+			
+			#genderSelectBox {
+				position: fixed;
+				bottom: 1.285rem;
+				width: 100%;
+				left: 0;
+				height: 34.14rem;
+				padding: 0 1.214rem;
+				box-sizing: border-box;
+				text-align: center;
+				z-index: 2;
+				-webkit-transform: translateY(40rem);
+				transform: translateY(40rem);
+				-webkit-transition: all .3s;
+				transition: all .3s
+			}
+			
+			#genderSelectBox.show {
+				-webkit-transform: translateY(0);
+				transform: translateY(0);
+			}
+			
+			#genderSelectBox a {
+				display: block;
+				height: 8.214rem;
+				line-height: 8.214rem;
+				font-size: 2.57rem;
+				color: #1473e6;
+				background-color: #fff;
+			}
+			
+			#genderSelectBox #genderbox a:first-child {
+				border-top-left-radius: 1.6rem;
+				border-top-right-radius: 1.6rem;
+			}
+			
+			#genderSelectBox #genderbox a:nth-child(2) {
+				border-top: 1px solid #eee;
+				border-bottom: 1px solid #eee;
+			}
+			
+			#genderSelectBox #genderbox a:last-child {
+				border-bottom-left-radius: 1.6rem;
+				border-bottom-right-radius: 1.6rem;
+			}
+			
+			#cancel {
+				margin-top: 0.857rem;
+				border-radius: 1.6rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack()">返回</span>
+				<p>个人信息</p>
+				<span id='saveGender'>保存</span>
+			</header>
+			<section id="selectGender">
+				<input id="gender" type="search" name="" value="保密" required="required" placeholder="请选择性别" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="zh-CN" disabled="">
+				<input id="genderVal" type="text" value="2" style="opacity:0" />
+			</section>
+
+			<div id="mask"></div>
+			<div id="genderSelectBox">
+				<div id="genderbox">
+					<a href="#this" data-id='0'>男</a>
+					<a href="#this" data-id='1'>女</a>
+					<a href="#this" data-id='2'>保密</a>
+				</div>
+				<a href="#this" id="cancel">取消</a>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+
+		<script>
+			$(function() {
+
+				var genderText = $("#gender"),
+					genderVal = $("#genderVal"),
+					gender = localStorage.getItem('$ycgender');
+				genderText.val(gender);
+				if("男" == gender) {
+					genderVal.val(0);
+				} else if("女" == gender) {
+					genderVal.val(1);
+				} else {
+					genderVal.val(2);
+				}
+
+				//public
+				var mask = $('#mask'),
+					genderSelectBox = $('#genderSelectBox');
+
+				selectGender();
+				//选择性别
+				function selectGender() {
+					$('#selectGender').click(function() {
+						mask.addClass('show');
+						genderSelectBox.addClass('show');
+					})
+
+				}
+
+				$('#mask').click(function() {
+					closeSelect();
+				});
+				$('#cancel').click(function() {
+					closeSelect();
+				});
+
+				//关闭选择
+				function closeSelect() {
+					mask.removeClass('show');
+					genderSelectBox.removeClass('show');
+				}
+
+				$('#genderbox a').click(function() {
+					if($(this).attr('data-id') == 0) {
+						selectGenderVal('0', '男')
+					} else if($(this).attr('data-id') == 1) {
+						selectGenderVal('1', '女')
+					} else if($(this).attr('data-id') == 2) {
+						selectGenderVal('2', '保密')
+					}
+				})
+				//选择性别
+				function selectGenderVal(val, txt) {
+					$("#gender").val(txt);
+					$("#genderVal").val(val);
+					closeSelect();
+				}
+
+				saveGender();
+
+				function saveGender() {
+					$('#saveGender').click(function() {
+						var obj = $("#gender").val(),
+							objVal = $("#genderVal").val();
+
+						$.ajax({
+							type: "GET",
+							url: SERVEROOTDATA + 'Member.ashx?action=updateSex',
+							dataType: "text",
+							data: {
+								"sexTxt": obj,
+								"sex": objVal,
+								"memberId": localStorage.getItem('$ycuid')
+							},
+							success: function(result) {
+								localStorage.setItem('$ycgender', obj);
+								layer.open({
+									content: '保存成功',
+									skin: 'msg',
+									time: 2 //2秒后自动关闭
+								});
+								setTimeout(function() {
+									goBack2();
+								}, 1000)
+							},
+							error: function(err) {
+								console.log(err);
+							}
+						});
+
+					});
+
+				}
+			});
+		</script>
+	</body>
+
+</html>

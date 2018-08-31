@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>论坛中心-已创建的群组</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <community-header-template></community-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <community-left-template></community-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right " id="" style="position: relative">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>我的群组 <i class="uk-icon-angle-right"></i></span>
+                <span>已创建</span>
+            </div>
+            <!--已创建的群组-->
+            <div class="femystudio" id="femygroup">
+                <div class="feteacherindex-photo" style="box-shadow: none">
+                    <!--群组-->
+                    <div class="fevediodetail">
+                        <div class="span4" v-cloak v-for="item in mystudio">
+                            <div  class="fepanel" v-bind:data-id="item.id">
+                                <div class="feimage">
+                                    <img v-bind:src="item.icon|addRootFile" alt="">
+                                </div>
+                                <div class="febox" style="background: #fff">
+                                    <h3>{{item.groupName}}</h3>
+                                </div>
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            </div>
+                        </div>
+                        <!--枫叶-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/fecommunitycenter.js"></script>
+<script>
+    $(function () {
+        mygroup();
+    })
+</script>
+</body>
+
+</html>

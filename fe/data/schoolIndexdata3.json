@@ -1,0 +1,46 @@
+[
+    [
+        {
+        "creattime":"1991年7月1日",
+		"webaddress": "http://www.bomizx.net/index.html",
+		"address":"福州市台江区升龙汇金",
+		"phone":"0591-122223232",
+		"brief":"建筑是石头的史书”，也是古人留下的艺术作品。建筑中还包含着哲学、政治、宗教、文学艺术、生活方式等等各种精神的、物质的文化内容。遍布全国各地的古建筑不仅是弥足 珍贵的中华民族的优秀文化遗产，也是我们今天旅游观光，丰富的文化生活中不可或缺的一部分。在旅游观光的时候我们怎样看懂古建筑，欣赏古建筑，这就要求我们具有一定的相 关知识。此课程主要以图片的形式介绍了中国古建筑的一般特点，分门别类解说了宫殿、园林、寺庙、书院、祠堂、会馆、民居等等各类古建筑。"
+        }
+    ],
+    [
+        {
+        "liveId":1,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        },{
+        "liveId":2,
+		"img": "temp/teacher2.jpg",
+		"brief":"福州一中 初三数学老师"
+        },{
+         "liveId":1,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        },{
+        "liveId":2,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        },{
+        "liveId":1,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        },{
+        "liveId":2,
+		"img": "temp/teacher2.jpg",
+		"brief":"福州一中 初三数学老师"
+        },{
+         "liveId":1,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        },{
+        "liveId":2,
+		"img": "temp/teacher1.jpg",
+		"brief":"福州一中 初二语文老师"
+        }
+    ]
+]

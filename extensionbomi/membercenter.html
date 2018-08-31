@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米会员中心-VIP会员/至尊服务/您的贴心管家</title>
+
+		<link rel="stylesheet" href="ycedu/css/base.css" />
+		<link rel="stylesheet" href="ycedu/css/uikit.min.css" />
+		<link rel="stylesheet" href="ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="ycedu/css/Ecalendar.css" />
+		<link rel="stylesheet" href="ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		
+		<style>
+			.dycnodata {
+			    width: 100%;
+			    height: 260px;
+			    background: url(./ycedu/images/nodata.png) no-repeat center #fff;
+			    background-size: contain;
+			}
+		</style>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--membercenter Banner-->
+		<section class="dycmbbanner-model">
+			<div class="container">
+				<div class="dycmbbanner-container">
+					<i class="uk-icon-times-circle-o" id="jclosembBanner"></i>
+					<a href="#this">
+						<img src="ycedu/images/hybanner01.jpg" />
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!--会员中心内容-->
+		<section class="dycmembercenter-wrap" id="jmembercenter">
+			<div class="container">
+				<aside class="dycmemberleft-wrap span2">
+					<div class="dycmemberinf">
+						<div class="dycpersonlogo">
+							<a href="#this" @click="toggleLeftMenu" :style="{backgroundImage: 'url(\''+userArr.iconPath+'\')'}" v-if="userArr.iconPath != userImg.iconPath" data-show="kc08"></a>
+
+							<a href="#this" @click="toggleLeftMenu" style="background-image: url('ycedu/images/sz01.jpg')" v-else data-show="kc08">
+							</a>
+						</div>
+						<div class="dycpersonInf">
+							<p v-cloak @click="toggleLeftMenu" class="dycpersonName">{{userArr.nickName}}</p>
+							<p v-cloak>{{userArr.memberlevel}}</p>
+							<a href="ycedu/recharge.html" class="dycpersoncost" target="_blank">播米充值中心</a>
+							<p class="dycpersonBrief">
+								<span @click="toggleLeftMenu" data-show="kc08" class="jmblistChange" v-cloak>资料修改</span>
+								<a href="#this" class="uk-icon-edit jmblistChange" data-show="kc08" @click="toggleLeftMenu"></a>
+							</p>
+						</div>
+					</div>
+
+					<ul class="dycmemberleft-list">
+
+						<li>
+							<span class="dycleft-list-title jmblistChange" data-show="kc01" @click="toggleLeftMenu">我的课程</span>
+							<i class="uk-icon-angle-down jmblistToggle" @click="toggleCourseBox($event)"></i>
+							<!--这里走外部swiper 切换：关联我的课程-->
+							<div class="dycsublist" id="jtabCourseList">
+								<template v-for="item in courseTypeArr" v-cloak>
+									<a href="#this" v-bind:data-id="item.courseTypeId">{{item.name}}</a>
+								</template>
+							</div>
+						</li>
+
+						<!--<li >
+							<span class="dycleft-list-title jmblistChange" data-show="kc02" @click="toggleLeftMenu">我的收藏</span>
+						</li>-->
+						<!--<li>
+							<span class="dycleft-list-title jmblistChange" data-show="kc03" @click="toggleLeftMenu">我的题库</span>
+						</li>-->
+						<!--<li>
+							<span class="dycleft-list-title jmblistChange" data-show="kc04" @click="toggleLeftMenu">我的优惠券</span>
+						</li>
+						<li>
+							<span class="dycleft-list-title jmblistChange" data-show="kc05" @click="toggleLeftMenu">我的邀请码</span>
+						</li>-->
+						<li>
+							<span class="dycleft-list-title jmblistChange" data-show="kc06" @click="toggleLeftMenu">我的消息</span>
+						</li>
+						<li>
+							<span class="dycleft-list-title jmblistChange active" data-show="kc07" @click="toggleLeftMenu">我的订单</span>
+						</li>
+					</ul>
+				</aside>
+				<!--会员内容区域-->
+				<div class="dycmembercontent-wrap span10">
+					<!--我的订单-->
+					<div class="dycmborder-panel jmbpanel jmb-order-panel" v-show="orderFlag">
+						<div class="swiper-container dycorder-container">
+							<div class="dyctitlebar">
+								<span class="dyctitle">我的订单</span>
+								<ul class="ycmborder-swiper-pagination" id="jtabOrder" @click="tabOrder"></ul>
+							</div>
+
+							<div class="swiper-wrapper swiper-no-swiping" id="jorder">
+								<div class="swiper-slide">
+									<!--全部订单-->
+									<div class="dycall-order-box">
+										<div class="dycnodata" v-if="orderArr.length==0"></div>
+										<div class="dycorderli-box" v-for="item in orderArr" v-cloak>
+											<div class="dycorder-header">
+												<span class="dyctime">{{item.orderTime}}</span>
+												<span class="dycorder-number">订单号:{{item.orderNumber}}</span>
+												<a class="dycorder-delete" v-bind:data-number="item.orderId" style="float: right;margin-right:40px">删除</a>
+
+											</div>
+											<div class="dycorder-body clearfix" v-for="itemsub in item.list" v-cloak>
+												<a class="ycimage" v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank">
+													<img src="ycedu/images/order01.jpg" v-bind:src="itemsub.iconPath | addRoute" alt="课程" />
+												</a>
+												<div class="dycorderbox">
+													<a v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank" class="dyorderli-title">{{itemsub.CourseName}}</a>
+													<p class="dycordertype">{{itemsub.note}}</p>
+												</div>
+											</div>
+											<div class="orderBox">
+												<a href="#this" class="dycopenorder jopenorder" @click="toggleOrderDetail">订单详情<i class="uk-icon-angle-down"></i></a>
+											</div>
+											<div class="dycorder-detail-box">
+												<span class="dycpayorder-time">付款时间:{{item.salesTime}}</span>
+												<span class="dycordernumber">数量:{{item.quantity}}</span>
+												<span class="dycorder-price">商品总价:<span class="dycoldprice">{{item.totalPrice}}</span>{{item.preferentialTotalPrice}}</span>
+											</div>
+										</div>
+
+									</div>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && goto(current--)">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+
+								</div>
+								<div class="swiper-slide">
+									<!--待付款-->
+									<div class="dycall-order-box  dycwait-pay-box">
+										<div class="dycorderli-box" v-for="item in orderWaitPayArr" v-cloak>
+											<div class="dycorder-header">
+												<span class="dyctime">{{item.orderTime}}</span>
+												<span class="dycorder-number">订单号:{{item.orderNumber}}</span>
+												<a class="dycorder-delete" v-bind:data-number="item.orderId" style="float: right;margin-right:40px">删除</a>
+											</div>
+											<div class="dycorder-body clearfix" v-for="itemsub in item.list" v-cloak>
+												<a class="ycimage" v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank">
+													<img src="ycedu/images/order01.jpg" v-bind:src="itemsub.iconPath | addRoute" alt="课程" />
+												</a>
+												<div class="dycorderbox">
+													<a v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank" class="dyorderli-title">{{itemsub.CourseName}}</a>
+													<p class="dycordertype">{{itemsub.note}}</p>
+												</div>
+											</div>
+											<div class="orderBox">
+												<a href="#this" class="dycopenorder jopenorder" @click="toggleOrderDetail">订单详情<i class="uk-icon-angle-down"></i></a>
+											</div>
+
+											<a v-bind:href="['ycedu/pay.html?orderId=' + item.orderId]" target="_blank" class="dycwait-pay-btn">付款</a>
+											<div class="dycorder-detail-box">
+												<span class="dycpayorder-time">下单时间:{{item.orderTime}}</span>
+												<span class="dycordernumber">数量:{{item.quantity}}</span>
+												<span class="dycorder-price">商品总价:<span class="dycoldprice">{{item.totalPrice}}</span>{{item.preferentialTotalPrice}}</span>
+											</div>
+										</div>
+
+									</div>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && goto(current--)">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+
+								</div>
+								<div class="swiper-slide">
+									<!--待评价-->
+									<div class="dycall-order-box  dycwait-evaluate-box">
+										<div class="dycorderli-box" v-for="item in orderWaitPayArr" v-cloak>
+											<div class="dycorder-header">
+												<span class="dyctime">{{item.orderTime}}</span>
+												<span class="dycorder-number">订单号:{{item.orderNumber}}</span>
+												<a class="dycorder-delete" v-bind:data-number="item.orderId" style="float: right;margin-right:40px">删除</a>
+											</div>
+											<div class="dycorder-body clearfix" v-for="itemsub in item.list" v-cloak>
+												<a class="ycimage" v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank">
+													<img src="ycedu/images/order01.jpg" v-bind:src="itemsub.iconPath | addRoute" alt="课程" />
+												</a>
+												<div class="dycorderbox">
+													<a v-bind:href="['ycedu/coursedetail.html?courseId=' + itemsub.courseId]" target="_blank" class="dyorderli-title">{{itemsub.CourseName}}</a>
+													<p class="dycordertype">{{itemsub.note}}</p>
+												</div>
+												<!--<a class="dycwait-evaluate-btn">评价</a>
+												<div class="dycpaycommentBox">
+													<textarea class="jpaycomment" placeholder="订单课程评论"></textarea>
+												</div>-->
+											</div>
+											<div class="orderBox">
+												<a href="#this" class="dycopenorder jopenorder" @click="toggleOrderDetail">订单详情<i class="uk-icon-angle-down"></i></a>
+											</div>
+											<div class="dycorder-detail-box">
+												<span class="dycpayorder-time">付款时间:{{item.payTime}}</span>
+												<span class="dycordernumber">数量:{{item.quantity}}</span>
+												<span class="dycorder-price">商品总价:<span class="dycoldprice">{{item.totalPrice}}</span>{{item.preferentialTotalPrice}}</span>
+											</div>
+										</div>
+
+									</div>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && goto(current--)">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<!--我的消息-->
+					<div class="dycmbmessage-panel jmbpanel jmb-message-panel" v-show="messageFlag">
+						<div class="dyctitlebar">
+							<span class="dyctitle">我的消息</span>
+						</div>
+						<div class="dycmessage-box-list" id="jmessage">
+							<div class="dycnodata" v-if="messageArr.length==0"></div>
+							<div class="dycmessage-box-li" v-for="(item , index) in messageArr" v-cloak>
+								<p v-bind:data-id="index">{{item.name}}</p>
+							</div>
+						</div>
+					</div>
+
+					<!--我的邀请码-->
+					<div class="dycmbinvitationcode-panel jmbpanel jmb-invitation-panel" v-show="invitationFlag">
+						<div class="swiper-container dycinvitation-code-container">
+							<div class="dyctitlebar">
+								<span class="dyctitle">我的邀请码</span>
+								<ul id="jinvitation" class="ycmbinvitation-swiper-pagination"></ul>
+							</div>
+
+							<div class="swiper-wrapper swiper-no-swiping">
+								<div class="swiper-slide">
+									<div class="dycinvitation-box">
+										<p>邀请您的小伙伴：</p>
+										<p class="dyctips" v-cloak>{{invitationrulesArr.invitePresent}}</p>
+										<p class="dyctips" v-cloak>{{invitationrulesArr.invitedPresent}}</p>
+										<p>我的邀请码</p>
+										<div class="dycQRcode">
+											<img src="ycedu/images/QRcode-invitation.jpg" v-bind:src="invitationArr.invitePath | addRoute" />
+										</div>
+
+										<p>邀请链接</p>
+										<input class="dycinvitation-link" id="jinvitationLink" type="text" value="http://survice.yice.com/shareLinkCode/GH239" v-bind:value="invitationArr.inviteCode" />
+
+										<div class="dycinvitation-btn bdsharebuttonbox" data-tag="share_1">
+											<span class="dyccopy-btn" @click="invitationCopy">复制链接</span> 分享到
+											<a class="dycshareQQ" data-cmd="sqq"></a>
+											<a class="dycshareWeixin" data-cmd="weixin"></a>
+											<a class="dycshareSina" data-cmd="tsina"></a>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="dycinvitation-record">
+										<div class="dycinvitation-head">我的邀请记录：</div>
+										<ul v-for="item in invitationrecordArr" v-cloak>
+											<li>{{item.inviteDate}} 成功邀请：{{item.invitedMemberName}}</li>
+										</ul>
+									</div>
+									<div class="dycinvitation-award">
+										<div class="dycinvitation-head">获奖记录</div>
+										<ul v-for="item in invitationawardArr" v-cloak>
+											<li>获奖人：{{item.memberName}}<span>获奖时间：{{item.presentTime}}</span><span>获奖总额：{{invitationrewardsArr.presentSum}}</span></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--我的优惠券-->
+					<div class="dycmbcoupon-panel  jmbpanel jmb-coupon-panel" v-show="couponFlag">
+						<div class="dyctitlebar">
+							<span class="dyctitle">我的优惠券</span>
+						</div>
+						<div class="dyccoupon-box-list">
+							<div class="dyccoupon-box-li" v-for="item in couponArr" v-cloak>
+								<div class="dyccouponnumber">
+									<span>￥</span>
+									<span class="dyccoupon-price">{{item.amount}}</span>
+								</div>
+								<div class="dycoupondetail">
+									<p class="dyccoupon-condition">满<span>{{item.satisfactionAmount}}</span>使用</p>
+									<p class="dyccoupon-use-time">有效期: {{item.useStartDate}} 到 {{item.useEndDate}}</p>
+									<a class="dyccoupon-use-btn" href="courselist.html">立即使用</a>
+								</div>
+							</div>
+							<ul class="pagenationbox clearfix">
+								<li v-show="current != 1" @click="current-- && couponGoto(current--)">
+									<a href="#this">上一页</a>
+								</li>
+								<li v-cloak v-for="index in pages" @click="couponGoto(index)" :class="{'active':current == index}" :key="index">
+									<a href="#this">{{index}}</a>
+								</li>
+								<li v-show="allpage != current && allpage != 0 " @click="current++ && couponGoto(current++)">
+									<a href="#this">下一页</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!--我的题库-->
+					<div class="dycmbquestions-panel jmbpanel jmb-questions-panel" v-show="questionFlag">
+						<div class="swiper-container dycquestions-container">
+							<div class="dyctitlebar">
+								<span class="dyctitle">我的题库</span>
+								<ul class="ycmbquestions-swiper-pagination" id="jtabquestionsList">
+									<li class="swiper-pagination-bullet" v-cloak v-for="item in questiontypeArr" v-bind:data-id="item.courseTypeId" v-if="item.isbuy != 0">{{item.name}}</li>
+									<li v-else></li>
+									<li class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="question">我的错题</li>
+									<li class="swiper-pagination-bullet" data-id="score">我的成绩</li>
+								</ul>
+							</div>
+
+							<div class="swiper-wrapper swiper-no-swiping">
+								<div class="swiper-slide">
+									<ul>
+										<li v-for="item in questionArr" v-cloak>
+											<a v-if="item.totalPageCountScore == undefined" v-bind:href="['ycedu/subjecttest.html?examPaperId=' + item.examPaperId +'&questionBankId=1']" target="_blank">{{item.name}}</a>
+											<a v-else v-bind:href="['ycedu/subjecttest.html?examPaperId=' + item.examPaperId]" target="_blank">{{item.name}}<span class="dycscore">{{item.totalPageCountScore}}</span><span class="dycmaxtime">{{item.maxtime}}</span></a>
+
+										</li>
+									</ul>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && questionGoto(current--)" style="line-height:1.5">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="questionGoto(index)" :class="{'active':current == index}" :key="index" style="line-height:1.5">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && questionGoto(current++)" style="line-height:1.5">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+								</div>
+								<!--<div class="swiper-slide">
+									<ul v-for="item in questionArr" v-cloak>
+										<li>
+											<a v-bind:href="['ycedu/subjecttest.html?examPaperId=' + item.examPaperId]" >{{item.name}}</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">大宗现货电子交易模式</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+									</ul>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && questionGoto(current--)" style="line-height:1.5">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="questionGoto(index)" :class="{'active':current == index}" :key="index" style="line-height:1.5">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && questionGoto(current++)" style="line-height:1.5">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+								</div>
+								<div class="swiper-slide">
+									<ul v-for="item in questionArr" v-cloak>
+										<li>
+											<a v-bind:href="['ycedu/subjecttest.html?examPaperId=' + item.examPaperId]" >{{item.name}}</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">大宗现货电子交易模式</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">大宗现货电子交易模式</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+									</ul>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && questionGoto(current--)" style="line-height:1.5">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="questionGoto(index)" :class="{'active':current == index}" :key="index" style="line-height:1.5">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && questionGoto(current++)" style="line-height:1.5">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+								</div>
+								<div class="swiper-slide">
+									<ul v-for="item in questionArr" v-cloak>
+										<li>
+											<a v-bind:href="['ycedu/subjecttest.html?examPaperId=' + item.examPaperId]" >{{item.name}}</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">大宗现货电子交易模式</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">大宗现货电子交易模式</a>
+										</li>
+										<li>
+											<a href="ycedu/subjecttest.html">风险控制制度</a>
+										</li>
+									</ul>
+									<ul class="pagenationbox clearfix">
+										<li v-show="current != 1" @click="current-- && questionGoto(current--)" style="line-height:1.5">
+											<a href="#this">上一页</a>
+										</li>
+										<li v-cloak v-for="index in pages" @click="questionGoto(index)" :class="{'active':current == index}" :key="index" style="line-height:1.5">
+											<a href="#this">{{index}}</a>
+										</li>
+										<li v-show="allpage != current && allpage != 0 " @click="current++ && questionGoto(current++)" style="line-height:1.5">
+											<a href="#this">下一页</a>
+										</li>
+									</ul>
+								</div>-->
+							</div>
+						</div>
+					</div>
+
+					<!--我的收藏-->
+					<div class="dycmbcollection-panel jmbpanel jmb-collection-panel" v-show="collectionFlag">
+						<div class="dyctitlebar">
+							<span class="dyctitle">我的收藏</span>
+						</div>
+						<div class="dyccollection-box-list">
+							<div class="span3">
+								<a href="#this" class="dyccollection-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccollection-title">零基础玩转七大理财</p>
+										<p class="dyccollection-type">【两年畅学班】</p>
+									</div>
+								</a>
+							</div>
+
+							<!--<div class="span3">
+								<a href="#this" class="dyccollection-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccollection-title">零基础玩转七大理财</p>
+										<p class="dyccollection-type">【两年畅学班】</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="span3">
+								<a href="#this" class="dyccollection-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccollection-title">零基础玩转七大理财</p>
+										<p class="dyccollection-type">【两年畅学班】</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="span3">
+								<a href="#this" class="dyccollection-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccollection-title">零基础玩转七大理财</p>
+										<p class="dyccollection-type">【两年畅学班】</p>
+									</div>
+								</a>
+							</div>
+
+							<div class="span3">
+								<a href="#this" class="dyccollection-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccollection-title">零基础玩转七大理财</p>
+										<p class="dyccollection-type">【两年畅学班】</p>
+									</div>
+								</a>
+							</div>-->
+
+						</div>
+					</div>
+
+					<!--我的课程-->
+					<div class="dycmbcourse-panel jmbpanel jmb-course-panel" v-show="courseFlag">
+						<div class="dyctitlebar">
+							<span class="dyctitle">我的课程</span>
+						</div>
+						<div class="dyccourse-box-list dyckcdz-box clearfix">
+							<div class="dycnodata" v-if="courseArr.length==0"></div>
+							<div class="span3" v-for="item in courseArr" v-cloak>
+								<a v-bind:href="['ycedu/player.html?courseId=' + item.courseId]" target="_blank" class="dyccourse-box-li">
+									<div class="ycimage">
+										<img src="ycedu/images/collection01.png" v-bind:src="item.iconPath | addRoute" alt="课程" />
+									</div>
+									<div class="ycbreif">
+										<p class="dyccourse-title">{{item.courseName}}</p>
+										<p class="dyccourse-type">{{item.note}}</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<ul class="pagenationbox clearfix">
+							<li v-show="current != 1" @click="current-- && goto(current--)">
+								<a href="#this">上一页</a>
+							</li>
+							<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+								<a href="#this">{{index}}</a>
+							</li>
+							<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+								<a href="#this">下一页</a>
+							</li>
+						</ul>
+					</div>
+
+					<!--我的资料-->
+					<div class="dycmbdata-panel  jmbpanel jmb-data-panel" v-show="dataFlag">
+						<div class="dyctitlebar">
+							<span class="dyctitle">我的资料</span>
+						</div>
+						<div class="dycdata-box-list">
+							<!--头像--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>头像</span>
+									<a class="dycdata-open-btn" href="#this">编辑</a>
+								</div>
+								<div class="dycdata-li-body clearfix">
+									<div class="clearfix dycavatar">
+
+										<a class="dycavataimg" v-for="item in avarArr">
+											<img v-bind:src="item.iconPath  | addRoute" v-bind:data-src="item.iconPath" />
+										</a>
+
+									</div>
+									<a class="dycdata-save-btn dycdata-default" href="#this" @click="uploadIconDefault">保存</a>
+									<p class="dycdefault"><span class="dycdata-tips">可选择以上图片当头像，也可选择以下自定义方式</span></p>
+									<div class="ycimage">
+										<img src="ycedu/images/mbheadIcon.png" v-bind:src="userArr.iconPath" v-if="userArr.iconPath !=userImg.iconPath" id="jpreIcon" />
+										<img src="ycedu/images/sz01.jpg" v-else id="jpreIcon" />
+									</div>
+
+									<div class="dycdata-right-content" id="javatar">
+										<form id="juploadIma">
+											<label>
+											<input type="file" name="iconPath" id="dycupmbicon" value="" accept="image/*"  @click="onFileChange"/>
+											<span class="dycdata-tips">请选择jpg、gif格式，小于2M的照片（提供高质量图片，可生成高清头像）大小为120*120之内</span>
+										</label>
+
+										</form>
+										<a class="dycdata-save-btn" href="#this" @click="uploadIcon">保存</a>
+									</div>
+
+								</div>
+							</div>
+
+							<!--昵称--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>昵称</span>
+									<a class="dycdata-open-btn" href="#this">编辑</a>
+								</div>
+								<div class="dycdata-li-body">
+									<div class="dycdata-nice-box">
+										<p><span>现昵称</span><span class="dycdata-current-nice">{{userArr.nickName}}</span></p>
+										<p><span>新昵称</span><input type="text" id="dycdata-new-nice" /></p>
+									</div>
+									<a class="dycdata-save-btn" href="#this" @click="updateNick">保存</a>
+								</div>
+							</div>
+
+							<!--个人资料--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>个人资料</span>
+									<a class="dycdata-open-btn" href="#this">编辑</a>
+								</div>
+								<div class="dycdata-li-body">
+									<div class="dycdata-person">
+										<label>
+											<span>姓名</span>   
+											<input id="dycdata-real-name" type="text" name="realname" v-bind:value="[userArr.name]" />  
+										</label>
+										<label>
+											<span>所在地</span>
+											<div id="dycdata-address">
+											  <select></select>
+											  <select></select>
+											  <select></select>
+											</div>
+										</label>
+										<label>
+											<span>性别</span> 
+											<input type="radio" name="gender" value="0" v-model="userArr.sex" checked="checked" />男   
+											<input  type="radio"  name="gender" value="1" v-model="userArr.sex"/>女
+										</label>
+
+										<label style="position: relative;width:283px">
+											<span>生日</span>
+											<input type="text" name="date" class='ECalendar' id="ECalendar_date" v-bind:value="[userArr.birthDay]"/>
+										</label>
+
+										<label>
+											<span>简介</span>
+											<textarea id="dycdata-intro" name="introduce" placeholder="把握趋势、顺应趋势、驾驭趋势" v-bind:value="[userArr.note]"></textarea>
+										</label>
+
+										<label>
+											<span>邮箱</span><input id="dycdata-email" type="text" v-bind:value="[userArr.email]"/>
+										</label>
+									</div>
+									<a class="dycdata-save-btn" href="#this" @click="updatePersonInf">保存</a>
+								</div>
+							</div>
+
+							<!--收货地址--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>收货地址</span>
+									<a class="dycdata-open-btn" href="#this">编辑</a>
+								</div>
+								<div class="dycdata-li-body">
+									<div class="dycrecaddr">
+										<span class="dycdata-tips">我们将按照您填写的地址给您邮寄教材，所以请填写真实的收货信息。</span>
+										<label><span>收货人姓名</span> <input id="dycrec-name" type="text" placeholder="请填写真实的姓名"  v-bind:value="[userArr.realName]" /></label>
+										<label><span>所在地</span>
+											<div id="dycrec-address">
+											  <select></select>
+											  <select></select>
+											  <select ></select>
+											</div>
+										</label>
+										<label><span>详情地址</span> <input id="dycrec-detail-addr" type="text" v-bind:value="[userArr.consigneeAddr]"  /></label>
+										<label><span>邮编编码</span> <input id="dycemail-code" type="text"  v-bind:value="[userArr.zipCode]" /></label>
+										<label><span>手机号码</span> <input id="dycdate-phone" type="text" v-bind:value="[userArr.tel]"  /></label>
+										<label class="dycdataset-default"><span>&nbsp;</span> <input id="dycset-default" type="checkbox" name="dycrecdefault" />设为默认</label>
+									</div>
+									<a class="dycdata-save-btn" href="#this" @click="updateDeliveryAddress">保存</a>
+								</div>
+							</div>
+
+							<!--手机号码--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>手机号码</span>
+									<a class="dycdata-open-btn" href="#this" @click="executeVCFunc">编辑</a>
+								</div>
+								<div class="dycdata-li-body">
+									<div class="dycdata-phone">
+										<label>
+											<span>图形验证码</span> 
+											<input id="imgaVCUpdate2" type="text" placeholder="请输入图形验证码" />
+											<a class="dycmodifyphone-btn" href="#this">
+												<img class="imageVC" style="height: 100%; border: 1px solid #f00;" v-bind:src="codeImg2" @click="getImageVC2" />
+											</a>
+										</label>
+										<label>
+											<span>现用号码</span> 
+											<span class="dyccurrentphone">{{userArr.mobile}}</span>
+											<a class="dycmodifyphone-btn" href="#this" @click="oldMobileVc" >获取验证码</a>
+										</label>
+										<label><span>验证码</span> <input id="dycver" type="text" placeholder="请输入验证码" /></label>
+										<label>
+											<span>图形验证码</span> 
+											<input id="imgaVCUpdate3" type="text" placeholder="请输入图形验证码" />
+											<a class="dycmodifyphone-btn" href="#this">
+												<img class="imageVC" style="height: 100%; border: 1px solid #f00;" v-bind:src="codeImg3" @click="getImageVC3" />
+											</a>
+										</label>
+										<label><span>变更号码</span> <input id="dycnew-phone" type="text" placeholder="请输入新的手机号"  />
+											<a class="dycmodifyphone-btn" href="#this" @click="newMobileVc" >获取验证码</a>
+										</label>
+										<label><span>变更手机验证</span> <input id="dycnew-vercode" type="text" placeholder="请输入验证码"  /></label>
+									</div>
+									<a class="dycdata-save-btn" href="#this" @click="updateMobile">保存</a>
+								</div>
+							</div>
+
+							<!--修改密码--->
+							<div class="dycdata-box-li">
+								<div class="dycdata-li-header">
+									<span>修改密码</span>
+									<a class="dycdata-open-btn" href="#this" @click="getImageVC">编辑</a>
+								</div>
+								<div class="dycdata-li-body">
+									<div class="dycdata-modify-pwd">
+										<label>
+											<span>图形验证码</span> 
+											<input id="imgaVCUpdate" type="text" placeholder="请输入图形验证码" />
+											<a class="dycmodifyphone-btn" href="#this">
+												<img class="imageVC" style="height: 100%; border: 1px solid #f00;" v-bind:src="codeImg" @click="getImageVC" />
+											</a>
+										</label>
+										<label>
+											<span>原密码</span> 
+											<input id="dycpwd" type="password" placeholder="请输入密码" />
+											<a class="dycmodifyphone-btn" href="#this" @click="changePWVc">获取手机验证码</a>
+										</label>
+										<label><span>验证码</span> <input id="dycpwdver" type="text" placeholder="请输入验证码" /></label>
+										<label><span>新密码</span> <input id="dycnewpwd" type="password" placeholder="请输入新密码" /></label>
+										<label><span>确认新密码</span> <input id="dycnewpwd-again" type="password" placeholder="请再次输入新密码" /></label>
+									</div>
+									<a class="dycdata-save-btn" href="#this" @click="updatePassword">保存</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="ycedu/js/jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/uikit.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/layer.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/template.js"></script>
+		<script type="text/javascript" src="ycedu/js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/wow.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/distpicker.data.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/distpicker.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/Ecalendar.jquery.min.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycswiper.js"></script>
+		<script type="text/javascript" src="ycedu/js/ycedu.js"></script>
+		<script type="text/javascript" src="ycedu/js/member.js?ss"></script>
+		<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+		<script>
+			$(function() {
+				var openType = $(this).getUrlParam("openType")
+				$.menbercenter(openType);
+			})
+		</script>
+	</body>
+
+</html>

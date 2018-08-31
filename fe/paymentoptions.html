@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>支付选择页面—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css?3" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--内容模块-->
+		<section class="fepaymentoptions-wrap" id="jpayOptionsApp">
+			<div class="container">
+				<div class="fepaymentoptions-inner" v-for="item in orderArrBoy" v-cloak>
+					<h4>确认支付信息</h4>
+					<div class="fepaymentoptions-pay-inf-box">
+						<div class="fepaymentoptions-title-box">
+							<span>支付时间:{{item.orderTime}}</span>
+							<span>订单号:{{item.orderNumber}}</span>
+							<span>老师</span>
+							<span>课节数</span>
+							<span>折扣</span>
+							<span>价格</span>
+						</div>
+						<div class="fepaymentoptions-course-list">
+							<div class="fe-course-left-box span6">
+								<a class="feimage">
+									<img :src="item.iconPath | addRootFile" />
+								</a>
+								<div class="fecourse-brief">
+									<p>{{item.courseName}}<span class="fe-course-type">{{item.recordTypeName}}</span></p>
+									<p>有效期120天</p>
+									<p>{{item.note}}</p>
+								</div>
+							</div>
+							<div class="fecourse-teacher fe-right-pay-inf">
+								{{item.teacherName}}
+							</div>
+							<div class="fecourse-course-count fe-right-pay-inf">
+								<span>{{item.classHour}}</span>节课
+							</div>
+							<div class="fecourse-discuct fe-right-pay-inf">
+								{{item.discount}}
+							</div>
+							<div class="fecourse-price fe-right-pay-inf">
+								￥{{item.preferentialPrice}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="fe-pay-type-select">
+					<h4>支付方式</h4>
+					<div class="fe-pay-options-list">
+						<a href="#this" @click="changeActive(0)" :class="{active: currentActiveIndex ==0}">
+							<img src="images/public/alipayicon.jpg" alt="支付宝" />
+						</a>
+						<a href="#this" @click="changeActive(1)" :class="{active: currentActiveIndex ==1}">
+							<img src="images/public/weixinicon.jpg" alt="微信" />
+						</a>
+						<a href="#this" @click="changeActive(2)" :class="{active: currentActiveIndex ==2}">
+							<img src="images/public/unionpayicon.jpg" alt="银联" />
+						</a>
+					</div>
+					<div class="fecourse-pay-time-tips">
+						<p>
+							请在半个小时以内支付完成，如未完成此订单将自动关闭。需要重新购买！
+							<span class="fe-sure-pay">应付金额: <span>￥{{allPrice}}</span></span>
+						</p>
+					</div>
+					<div class="fe-sure-pay-box">
+						<a class="payBtn" href="#this" @click="payFunc">立即付款</a>
+					</div>
+					<div class="fe-pay-doubt-box">
+						<a href="#this">我有疑问，需要反馈？</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+
+		<script>
+			$(function(){
+				//活动订单
+				getOrderDetail($(this).getUrlParam("cid"),$(this).getUrlParam("orderType"),$(this).getUrlParam("oid"));
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,724 @@
+@charset "UTF-8";
+body,
+html {
+	/*height: 100%;*/
+	font-size: 62.5%
+}
+
+html {
+	font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif
+}
+
+a,
+body,
+center,
+cite,
+code,
+dd,
+del,
+div,
+dl,
+dt,
+em,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hr,
+html,
+img,
+index,
+input,
+label,
+legend,
+li,
+mark,
+ol,
+p,
+section,
+span,
+strong,
+textarea,
+time,
+ul,
+var {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-style: normal
+}
+
+body,
+html {
+	-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	background-color: #fff
+}
+
+article,
+aside,
+details,
+fieldset,
+figcaption,
+figure,
+footer,
+header,
+index,
+main,
+nav,
+section {
+	display: block
+}
+
+a,
+button,
+cite,
+code,
+del,
+em,
+img,
+label,
+mark,
+small,
+strong,
+textarea,
+time,
+var {
+	display: inline-block
+}
+
+header,
+indexfooter,
+section {
+	position: relative
+}
+
+ol,
+ul {
+	list-style: none
+}
+
+button,
+input,
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	line-height: 1em;
+	background-color: transparent
+}
+
+span {
+	display: inline-block
+}
+
+a:active,
+a:hover {
+	outline: 0
+}
+
+a,
+a:visited {
+	text-decoration: none
+}
+
+.wordWrap,
+label {
+	word-wrap: break-word;
+	word-break: break-all
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0
+}
+
+td,
+th {
+	padding: 0
+}
+
+.clearfix:after {
+	content: ' ';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0
+}
+
+img {
+	max-width: 100%
+}
+
+.loading_more {
+	display: block;
+	height: 1.5em;
+	width: 100%
+}
+
+.loading_more:before {
+	display: inline-block;
+	vertical-align: text-bottom;
+	content: ' ';
+	height: 16px;
+	width: 16px;
+	margin-right: 6px;
+	background: url(../images/public/loading_more.gif) no-repeat center;
+	background-size: contain
+}
+
+.loading_more:after {
+	content: '加载更多'
+}
+
+.mainwrap {
+	max-width: 960px;
+	margin: auto
+}
+
+.swiper-container {
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	overflow: hidden;
+	z-index: 1
+}
+
+.swiper-container-android .swiper-slide,
+.swiper-wrapper {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-o-transform: translate(0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.swiper-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-transition-property: -webkit-transform;
+	-o-transition-property: -o-transform;
+	transition-property: -webkit-transform;
+	-o-transition-property: transform;
+	transition-property: transform;
+	transition-property: transform, -webkit-transform;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box
+}
+
+.swiper-slide {
+	-webkit-flex-shrink: 0;
+	-ms-flex: 0 0 auto;
+	-ms-flex-negative: 0;
+	flex-shrink: 0;
+	width: 100%;
+	height: 100%;
+	position: relative
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+	/*bottom: .714rem;*/
+	bottom: 10px;
+	left: 0;
+	width: 100%
+}
+
+.swiper-pagination {
+	position: absolute;
+	text-align: center;
+	-webkit-transition: .3s;
+	-o-transition: .3s;
+	transition: .3s;
+	-webkit-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	z-index: 10
+}
+
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+	/*margin: 0 .357rem*/
+	/*margin: 0 5px;*/
+}
+
+.swiper-pagination-bullet {
+	/*width: .571rem;
+	height: .571rem;*/
+	width: 8px;
+	height: 8px;
+	display: inline-block;
+	border-radius: 100%;
+	background: #fff;
+	opacity: .5
+}
+
+.swiper-pagination-bullet-active {
+	opacity: 1;
+	background: #007aff
+}
+
+.swiper-wrapper {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    -o-transform: translate(0,0);
+    -ms-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+.swiper-container-autoheight .swiper-wrapper {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-transition-property: -webkit-transform,height;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    -ms-transition-property: -ms-transform;
+    transition-property: transform,height;
+}
+.swiper-container-autoheight .swiper-slide {
+    height: auto;
+}
+.bmindexLiveBannerWrap .bmindexLiveImg {
+	position: relative;
+	min-height: 200px;
+	font-size: 0
+}
+
+.bmindexLiveBannerWrap .bmindexLiveImg img {
+	width: 100%
+}
+
+.bmindexLiveBannerWrap .liveType {
+	position: absolute;
+	top: 4rem;
+	left: 5rem;
+	padding: .3rem 1rem;
+	border-radius: 30px;
+	font-size: 12px;
+	color: #fff;
+	background-color: #1473e6
+}
+
+.bmindexLiveBannerWrap .search {
+	position: absolute;
+	top: 4rem;
+	right: 5rem;
+	width: 3rem;
+	height: 3rem;
+	background: url(../images/search-icon.png) no-repeat center;
+	background-size: cover
+}
+
+@media screen and (max-width:760px) {
+	.bmindexLiveBannerWrap .liveType {
+		top: 2rem;
+		left: 2rem
+	}
+	.bmindexLiveBannerWrap .search {
+		top: 2rem;
+		right: 2rem;
+		width: 2rem;
+		height: 2rem;
+		background-size: 90%
+	}
+}
+
+.bmbroadcastSwiper {
+	padding: 1.8rem 0 3.85rem;
+	line-height: 1.5;
+	text-align: center;
+	color: #fff;
+	background-color: #fff
+}
+
+.bmbroadcastSwiper>.swiper-pagination-bullets {
+	bottom: 1.5rem
+}
+
+.bmbroadcastSwiper>.swiper-pagination-bullets .swiper-pagination-bullet {
+	background-color: #5f5f5f
+}
+
+.bmbroadcastSwiper .swiper-slide {
+	position: relative;
+	text-align: center
+}
+
+.bmbroadcastSwiper .swiper-slide:not(:nth-child(3n)):after {
+	content: "";
+	position: absolute;
+	top: 10%;
+	right: 0;
+	height: 80%;
+	width: 1px;
+	background: #f4f4f4
+}
+
+.bmbroadcastSwiper .title {
+	color: #727272;
+	font-size: 1.857rem;
+	font-weight: bolder
+}
+
+.bmbroadcastSwiper .index {
+	font-size: 2.285rem;
+	font-weight: bolder;
+	color: #ff4d4b
+}
+
+.bmbroadcastSwiper .float {
+	font-size: 1rem;
+	color: #848484
+}
+
+@media screen and (max-width:760px) {
+	.bmbroadcastSwiper {
+		padding: 1.8rem 0 3rem
+	}
+	.bmbroadcastSwiper>.swiper-pagination-bullets {
+		bottom: 1.5rem
+	}
+	.bmbroadcastSwiper .title {
+		font-size: 1.6rem
+	}
+	.bmbroadcastSwiper .index {
+		font-size: 1.6rem
+	}
+	.bmbroadcastSwiper .float {
+		font-size: .8rem
+	}
+}
+
+.bmindexZTwrap {
+	-webkit-box-shadow: 0 9px 30px -12px rgba(0, 0, 0, .2) inset;
+	box-shadow: 0 9px 30px -12px rgba(0, 0, 0, .2) inset;
+	overflow: hidden;
+	background-color: #fff
+}
+
+.bmindexZTwrap .row {
+	margin: 3.85rem 1.2rem;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	text-align: center
+}
+
+.bmindexZTwrap .row a {
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	padding: 0 2.85rem;
+	text-align: center;
+	font-size: 1.857rem;
+	color: #3b3b3b
+}
+
+.bmindexZTwrap .row a span {
+	display: block;
+	margin-top: 2rem
+}
+
+@media screen and (max-width:760px) {
+	.bmindexZTwrap .row {
+		margin: 2.8rem 1rem
+	}
+	.bmindexZTwrap .row a {
+		padding: 0 1.2rem;
+		font-size: 1.4rem
+	}
+	.bmindexZTwrap .row a span {
+		margin-top: 1rem
+	}
+}
+
+.ad {
+	min-height: 2rem;
+	/*padding-bottom: .857rem;*/
+	font-size: 0
+}
+
+.ad a {
+	width: 100%
+}
+
+.ad img {
+	width: 100%;
+	height: 100%
+}
+
+.modeltitle {
+	position: relative;
+	font-size: 2rem;
+	padding: 2rem 5rem;
+	background-color: #fff
+}
+
+.modeltitle i {
+	display: inline-block;
+	width: 2.85rem;
+	height: 2.85rem;
+	margin-right: .5rem;
+	vertical-align: middle;
+	background: url(../images/public/ms-icon.png) no-repeat center center;
+	background-size: contain
+}
+
+.modeltitle a {
+	float: right;
+	margin-top: 4px;
+	text-decoration: underline;
+	color: #666
+}
+
+.bmindexSwiperWrap {
+	padding: 1rem 0;
+	border-bottom: .6rem solid #ededed
+}
+.bmindexInformationWrap .modeltitle i{
+	background-image: url(../images/public/information-icon.png);
+	background-size:85% 75%;
+}
+
+
+.bmindexRecommendWrap .modeltitle i {
+	background-image: url(../images/public/cs-icon.png)
+}
+
+.bmindexRecommendSwiper {
+	padding: 0 1.5rem
+}
+
+.bmindexRecommendSwiper .imageBox {
+	position: relative;
+	border-radius: 1rem;
+	height: 200px;
+	overflow: hidden
+}
+
+.bmindexRecommendSwiper .imageBox img {
+	width: 100%;
+	height: 100%
+}
+
+.bmindexRecommendSwiper .imageBox p {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	padding-left: 1rem;
+	line-height: 2.4rem;
+	font-size: 1.28rem;
+	text-align: left;
+	color: #fff;
+	background-color: rgba(0, 0, 0, .4);
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.bmindexRecommendSwiper .bmbrief {
+	margin-top: 1rem;
+	line-height: 1.6;
+	font-size: 1.6rem;
+	color: #858585;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.bmindexRecommendSwiper .bmprice {
+	line-height: 1.6;
+	font-size: 1.2rem;
+	color: #858585
+}
+
+.bmindexRecommendSwiper a {
+	display: block
+}
+
+.bmindexRecommendSwiper .swiper-slide {
+	padding: 0 .6rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+.bmindexInformationWrap .bmindexTeacherSwiper {
+	padding: 0 1.5rem
+}
+
+.bmindexInformationWrap .swiper-slide {
+	padding: 0 .6rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+.bmindexInformationWrap a {
+	display: block
+}
+
+.bmindexInformationWrap .imageBox {
+	height: 250px;
+	border-radius: 1rem;
+	overflow: hidden
+}
+
+.bmindexInformationWrap .imageBox img {
+	width: 100%;
+	height: 100%
+}
+
+.bmindexInformationWrap .bmbrief {
+	margin-top: 1rem;
+	line-height: 1.6;
+	font-size: 1.6rem;
+	color: #858585;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+@media screen and (max-width:760px) {
+	.bmindexInformationWrap .imageBox {
+		height: 200px
+	}
+}
+
+@media screen and (max-width:476px) {
+	.bmindexInformationWrap .imageBox {
+		height: 100px
+	}
+}
+
+.bmindexKnowledgeWrap .bmindexKnowledgeSwiper {
+	padding: 0 1.5rem
+}
+
+.bmindexKnowledgeWrap .bmindexKnowledgeSwiper .swiper-slide {
+	padding: 0 .6rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.bmindexKnowledgeWrap .modeltitle i {
+	background-image: url(../images/public/know-icon.png)
+}
+
+@media screen and (max-width:760px) {
+	.modeltitle {
+		padding: 1.2rem 2rem;
+		font-size: 1.6rem
+	}
+	.bmindexRecommendSwiper .imageBox {
+		height: 120px
+	}
+}
+
+@media screen and (max-width:476px) {
+	.bmindexRecommendSwiper .imageBox {
+		height: 100px
+	}
+}
+
+
+.bmindexKnowledgeWrap a {
+	display: block
+}
+
+.bmindexKnowledgeWrap .imageBox {
+	height: 250px;
+	border-radius: 1rem;
+	overflow: hidden
+}
+
+.bmindexKnowledgeWrap .imageBox img {
+	width: 100%;
+	height: 100%
+}
+
+.bmindexKnowledgeWrap .bmbrief {
+	margin-top: 1rem;
+	line-height: 1.6;
+	font-size: 1.6rem;
+	color: #858585;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+@media screen and (max-width:760px) {
+	.bmindexKnowledgeWrap .imageBox {
+		height: 250px
+	}
+}
+
+@media screen and (max-width:476px) {
+	.bmindexKnowledgeWrap .imageBox {
+		height: 160px
+	}
+}
+
+.bmindexTeacherWrap .bmindexTeacherSwiper {
+	padding: 0 1.5rem
+}
+
+.bmindexTeacherWrap .swiper-slide {
+	padding: 0 .6rem;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.bmindexTeacherWrap a {
+	display: block
+}
+
+.bmindexTeacherWrap .imageBox {
+	height: 300px
+}
+
+.bmindexTeacherWrap .imageBox img {
+	width: 100%;
+	height: 100%
+}
+
+.bmindexTeacherWrap p {
+	margin-top: 1rem;
+	line-height: 1.6;
+	font-size: 1.6rem;
+	color: #858585;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+@media screen and (max-width:760px) {
+	.bmindexTeacherWrap .imageBox {
+		height: 240px
+	}
+}
+
+@media screen and (max-width:476px) {
+	.bmindexTeacherWrap .imageBox {
+		height: 160px
+	}
+}

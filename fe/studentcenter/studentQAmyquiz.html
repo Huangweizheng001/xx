@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>学生个人中心-我的提问</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <student-header-template></student-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <student-left-template></student-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right"  style="position: relative" id="QAmyquiz">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>问答社区 <i class="uk-icon-angle-right"></i></span>
+                <span>我的提问</span>
+            </div>
+            <!--我的提问-->
+            <div class="feQAmyquiz">
+                <ul class="fenav clearfix">
+                    <li>
+                        <span class="active" @click="bindSelect($event,'','')">全部</span>
+                    </li>
+                    <li>
+                        <span @click="bindSelect($event,'',0)">待解答</span>
+                    </li>
+                    <li>
+                        <span @click="bindSelect($event,0,'')">未采纳</span>
+                    </li>
+                    <li>
+                        <span @click="bindSelect($event,1,'')">已采纳</span>
+                    </li>
+                </ul>
+                <ul class="fecontent">
+                    <div class="fenodata" v-if="quizList.length<1" v-cloak></div>
+                    <li v-cloak v-for="item in quizList">
+                        <a :href="item.KPQuestionId,item.qType|addRoot" target="_blank">{{item.content}}</a>
+                        <p>
+                            <span>{{item.insertTime|showTime}}之前 发布</span>
+                            <b v-if="item.qType==0">{{item.offerPoint}}</b>
+                            <u v-if="item.qType==1">{{item.offerMoney}}</u>
+                        </p>
+                        <span class="feanswernum">{{item.answerNum}}个回答</span>
+                        <span class="festate1" v-if="item.answerNum==0">待解答</span>
+                        <span class="festate3" v-if="item.answerNum>0 && item.Qstates==0">未采纳</span>
+                        <span class="festate2" v-if="item.answerNum>0 && item.Qstates!=0">已采纳</span>
+                        <!--<span class="festate2">已采纳</span>-->
+                        <!--<span class="festate3">未采纳</span>-->
+                    </li>
+                    <!--<li>-->
+                        <!--<a>简宝玉分享会︱写作新手如何玩转自媒体，快速跟别人拉开差距脱颖而出？</a>-->
+                        <!--<p><span>8秒之前 发布</span><b>20</b></p>-->
+                        <!--<span class="feanswernum">1个回答</span>-->
+                        <!--<span class="festate3">已采纳</span>-->
+                        <!--&lt;!&ndash;<span class="festate2">已采纳</span>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="festate3">未采纳</span>&ndash;&gt;-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <!--枫叶-->
+            <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                    <a href="#this">上一页</a>
+                </li>
+                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                    <a href="#this">{{index}}</a>
+                </li>
+                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                    <a href="#this">下一页</a>
+                </li>
+            </ul>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/festudentcenter.js"></script>
+<script>
+    $(function () {
+        QAmyquiz();
+    })
+</script>
+</body>
+
+</html>

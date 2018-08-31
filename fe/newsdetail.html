@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>新闻详情</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/fetv.css" />
+		<link rel="stylesheet" href="css/fetvAppend.css" />
+		<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--新闻详情-->
+		<section class="fe-news-detail-wrap clearfix" id="jnewsDetailApp">
+			<div class="container">
+				<div class="Newhead clearfix" v-for="item in currentNewsArr">
+					<div class="span9 ">
+						<h4 v-cloak>{{item.title}}</h4>
+						<div class="febox">
+							<span v-cloak>来源:{{item.source}}</span>
+							<span v-cloak>发布时间:{{item.reportDate}}</span>
+						</div>
+					</div>
+				</div>
+				<div class="span9">
+					<div class="fe-news-detail-inner">
+						<template v-for="item in currentNewsArr">
+							<div class="fe-news-content" v-html="item.newsDetail" v-cloak></div>
+						</template>
+						<div class="bdsharebuttonbox" data-tag="share_1" id="share" style="margin-top: 20px">
+							<span>分享到:</span>
+							<a class="qqplay" data-cmd="sqq"></a>
+							<a class="qzone"  data-cmd="qzone"></a>
+							<a class="weixin" data-cmd="weixin"></a>
+							<a class="weibo" data-cmd="tsina"></a>
+						</div>
+						<div class="fe-news-go-box">
+							<a href="#this" v-for="item in preNewsArr" @click="openNews(item.newsId)" v-cloak>
+								上一篇: <span>{{item.title}}</span>
+							</a>
+							<a href="#this" v-for="item in nextNewsArr" @click="openNews(item.newsId)" v-cloak>
+								下一篇: <span>{{item.title}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="fe-news-other-inner">
+						<div class="fe-news-hot-sort-box">
+							<h5 class="fe-news-other-title">热点排行</h5>
+							<ul>
+								<li v-for="item in hotNewsListArr" @click="openNews(item.newsId)" v-cloak>
+									<a href="#this">
+										{{item.title}}
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="fe-news-moment-box">
+							<h5 class="fe-news-other-title" style="margin-left: 0;">精彩时刻</h5>
+							<ul>
+								<li v-for="item in momentNewsListArr" @click="openNews(item.newsId)" v-cloak>
+									<a href="#this">
+										<img v-bind:src="item.iconPath|addRootFile" />
+										<span>{{item.title}}</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script>
+			$(function () {
+				newsDetail($(this).getUrlParam("newsId"));
+				setTimeout(function () {
+					with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+				},1000);
+			})
+
+		</script>
+
+	</body>
+
+</html>

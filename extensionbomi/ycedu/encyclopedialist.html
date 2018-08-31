@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="金融在线教育,金融培训,股票培训,股票知识,股票入门,股票学习,股票怎么玩,股票投资,汇市投资,大宗投资,贵金属投资,证券从业考试,投资理财,金融课程">
+		<meta name="description" content="播米在线教育，国内在线金融教育领导者。播米在线立足互联网金融教育领域，以普及金融知识，提供金融教育为己任，致力于为学员提供专业、系统的教学服务。不限地域时间，在家就能上课。首节课0元试听！免费咨询热线：400-6430-618。" />
+		<title>播米在线教育-全国金融教育领跑者/每个人都是潜力股</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../ycedu/css/base.css" />
+		<link rel="stylesheet" href="../ycedu/css/swiper.min.css" />
+		<link rel="stylesheet" href="../ycedu/css/animate.min.css" />
+		<link rel="stylesheet" href="../ycedu/css/ycstyle.css" />
+		<link rel="stylesheet" href="../ycedu/css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="bmencyclopediaListModel clearfix" id="jencyclopediaListApp">
+			<div class="container">
+				<div class="bmencyclopediaHeader">
+					<!--<h4>播米百科:</h4>-->
+					<p class="bmencyclopediaListType">
+						<a href="javascript:void(0);" @click="changeType('')">全部</a>
+						
+						<a href="javascript:void(0);" v-for="item in encyclopediaListTypeArr" @click="changeType(item.courseTypeId)" v-cloak v-bind:courseTypeId='item.courseTypeId'>{{item.name}}</a>
+					</p>
+				</div>
+				<div class="bmencyclopediaType">
+					<a href="javascript:void(0);" @click="changeSortType('uptodate')">最新</a>
+					<a href="javascript:void(0);" @click="changeSortType('hottest')">最热</a>
+				</div>
+
+				<div class="bmencyclopediaInner clearfix">
+					<div class="span3 col-sm-6" v-cloak v-for="item2 in encyclopediaListArr">
+						<a class="bmindexEncyclopediaLi" :href="'encyclopediadetail.html?ecId='+item2.courseId" target="_blank">
+							<div class="bmimageBox">
+								<img v-bind:src="item2.iconPath" />
+							</div>
+							<div class="bmindexEncyclopediaInf">
+								<h5><span style="font-size: 0;">xx</span>{{item2.name}}&nbsp;</h5>
+								<!--<p class="bmbrief">{{item.note}}</p>-->
+								<!--<p class="bmplayerCounter">3555</p>-->
+							</div>
+						</a>
+					</div>
+
+				</div>
+				<!--枫叶-->
+				<ul class="pagenationbox clearfix">
+					<li v-show="current != 1" @click="current-- && goto(current--)">
+						<a href="#this">上一页</a>
+					</li>
+					<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+						<a href="#this">{{index}}</a>
+					</li>
+					<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+						<a href="#this">下一页</a>
+					</li>
+				</ul>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+	</body>
+
+	<script type="text/javascript" src="../ycedu/js/jquery.min.js"></script>
+	<script type="text/javascript" src="../ycedu/js/vue.min.js"></script>
+	<script type="text/javascript" src="js/vue-resource.min.js"></script>
+	<script type="text/javascript" src="../ycedu/js/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="../ycedu/js/template.js"></script>
+	<script type="text/javascript" src="../ycedu/js/ycswiper.js"></script>
+	<script type="text/javascript" src="../ycedu/js/ycedu.js"></script>
+	<script type="text/javascript" src="../ycedu/js/bomi.js?6"></script>
+	
+	<!--推广使用：推广时请屏蔽页面加载的adFunc()-->
+	<script src="http://swtbdother.yicefin.com/include/js/swt_bomi.js"></script>
+		<div id="jCount" style="display: none;">
+			<script src="https://s13.cnzz.com/z_stat.php?id=1264479447&web_id=1264479447" language="JavaScript"></script>
+			<script src="https://s13.cnzz.com/z_stat.php?id=1263908207&web_id=1263908207" language="JavaScript"></script>
+		</div>
+
+	<script>
+		$(function() {
+//			
+//			BizQQWPA.addCustom({
+//				aty: '0',
+//				a: '1005',
+//				nameAccount: 4006430618,
+//				selector: 'dycadv-img'
+//			});
+//			$.indexBannerFunc();
+//			$.newsLive(); //首页直播
+//			$.bminformation();
+//			$.tzksSwiper(); //投资理财、从业考试tab
+//			$.NewsTop(); //首页专家观点
+//
+//			//$.jtzcourse();
+//			setTimeout(function() {
+//				$('#jadv').css('display', 'block');
+//			}, 2000);
+//			$('#jadv').click(function() {
+//				$(this).css('display', 'none');
+//			});
+
+			/*var code = $(this).getUrlParam("code");
+			if(code != undefined) {
+				
+				$.getwxUserInfo(code);
+			}*/
+			
+			
+			var courseTypeId = $(this).getUrlParam("courseTypeId");
+			var topTypeId = $(this).getUrlParam("topType");
+			if(courseTypeId != undefined) {
+				initEncyclopediaList(courseTypeId,topTypeId);
+			}else{
+				initEncyclopediaList();
+			}
+		})
+	</script>
+
+</html>

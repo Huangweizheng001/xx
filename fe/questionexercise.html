@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>模拟练习—福建教育网</title>
+		<link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="./css/base.css" />
+		<link rel="stylesheet" href="./css/fetv.css" />
+		<link rel="stylesheet" href="./css/fetvAppend.css" />
+		<link rel="stylesheet" href="./css/fetvcyq.css" />
+		<link rel="stylesheet" href="./css/swiper,animate.min.css" />
+
+	</head>
+
+	<body>
+		<header id="questionheader">
+			<header-template></header-template>
+		</header>
+		<section>
+			<div class="fe-questionexercise"  id="jQuestionExercise">
+				<div class="container clearfix">
+					<!--<div class="fe-questionexercise-head">-->
+						<!--<div class="fe-questionexercise-head-title">-->
+							<!--<a href="#this">首页</a>>-->
+							<!--<a href="#this">高中课题</a>>-->
+							<!--<a href="#this" class="active">一年级</a>>-->
+							<!--<a href="#this" class="active">数学</a>-->
+						<!--</div>-->
+						<!--<div class="fe-questionexercise-head-box">-->
+							<!--<p>快速查题-高中数学</p>-->
+							<!--<div class="fe-questionexercise-head-select" id="jSectionSelect">-->
+								<!--<span>学段：</span>-->
+								<!--<a class="active">不限</a>-->
+								<!--<a v-cloak v-for="item in sectionList" v-bind:data-id="item.totalPageCount">{{item.totalCount}}</a>-->
+								<!--&lt;!&ndash;<a>小学</a>-->
+								<!--<a>初中</a>-->
+								<!--<a>高中</a>&ndash;&gt;-->
+							<!--</div>-->
+							<!--<div class="fe-questionexercise-head-select" id="jYearSelect">-->
+								<!--<span>年段：</span>-->
+								<!--<a class="active">不限</a>-->
+								<!--<a v-cloak v-for="item in yearList" v-bind:data-id="item.rownum">{{item.title}}</a>-->
+								<!--&lt;!&ndash;<a>一年级</a>-->
+								<!--<a>二年级</a>-->
+								<!--<a>三年级</a>-->
+								<!--<a>四年级</a>-->
+								<!--<a>五年级</a>-->
+								<!--<a>六年级</a>&ndash;&gt;-->
+							<!--</div>-->
+							<!--<div class="fe-questionexercise-head-select" id="jSubjectSelect">-->
+								<!--<span>学科：</span>-->
+								<!--<a class="active">不限</a>-->
+								<!--<a v-cloak v-for="item in subjectList" v-bind:data-id="item.rownum">{{item.questionOption}}</a>-->
+								<!--&lt;!&ndash;<a>语文</a>-->
+								<!--<a>数学</a>-->
+								<!--<a>英语</a>-->
+								<!--<a>美术</a>-->
+								<!--<a>音乐</a>&ndash;&gt;-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<div class="fe-questionexercise-contain">
+						<p class="nodata" v-if="isNoData==0" class="fe-questionexercise-list-first">该类型没有数据，换个类型试试</p>
+						<ul class="fe-questionexercise-contain-box clearfix" v-else>
+							<li class="fe-questionexercise-list-first">
+								<span class="fe-questionexercise-list-name">练习名称</span>
+								<span class="fe-questionexercise-list-do">点击做题</span>
+								<!--<span class="fe-questionexercise-list-down">直接下载</span>-->
+							</li>
+							
+							<li v-cloak v-for="item in topicList">
+								<a class="fe-questionexercise-list-name" v-bind:href="item.examPaperId" target="_blank" @click="gettestname(item.name)">{{item.name}}</a>
+								<a class="fe-questionexercise-list-do" v-bind:href="item.examPaperId" target="_blank" @click="gettestname(item.name)"><i class="uk-icon-pencil"></i></a>
+								<!--<a class="fe-questionexercise-list-down"><i class="uk-icon-download"></i></a>-->
+							</li>
+						</ul>
+						<!--<div @click="questionMore()" class="fe-questionexercise-more"><a>查看更多<span><i class="uk-icon-angle-down"></i></span></a></div>-->
+						<ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+						<li v-show="current != 1" @click="current-- && goto(current--)">
+							<a href="#this">上一页</a>
+						</li>
+						<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+							<a href="#this">{{index}}</a>
+						</li>
+						<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+							<a href="#this">下一页</a>
+						</li>
+					</ul>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/fetv.js"></script>
+		<script type="text/javascript" src="js/fetvAppend.js"></script>
+		<script type="text/javascript" src="js/fetvcyq.js"></script>
+		<script>
+			questionExercise($(this).getUrlParam("pageType"));//模拟练习
+		</script>
+
+	</body>
+
+</html>

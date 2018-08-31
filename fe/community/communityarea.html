@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>专区</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvAppend.css" />
+		<link rel="stylesheet" href="../css/fetvcommunity.css" />
+		<link rel="stylesheet" href="../css/swiper,animate.min.css" />
+		<style>
+			
+		</style>
+	</head>
+
+	<body style="background: #f4f4f4;">
+		<header id="header">
+			<header-template></header-template>
+		</header>
+		<section class="communityarea" id="fecommunityArea" style="margin-top: 20px;">
+			<div class="container">
+			<div class="communityarea-head ">
+				<a href="#this"></a>><a v-cloak v-for="item in currentnaviSortArr" href="#this">{{item.typeName}}</a>
+			</div>
+			<div class="communityarea-top clearfix">
+				<div class="span8">
+					<div class="span5">
+						<img class="communityarea-top-left-img" src="../images/static/community/area.jpg" />
+					</div>
+					<div class="span7 communityarea-tab">
+						<div class="fenodata" v-show="topHotGroupArrnodata" style="height: 200px;"></div>
+						<a href="#this" v-cloak v-bind:href='currentGroupArr.groupId' target="_blank">
+							<h2 v-cloak >{{currentGroupArr.groupName}}</h2>
+							<p v-if='!topHotGroupArrnodata'>{{currentGroupArr.Introduction}}</p>
+						</a>
+						<div class="communityarea-tab-head clearfix">
+							
+							<a  v-for="(item,index) in topHotGroupArr" v-bind:href='item.groupId' target="_blank" class="span4" v-cloak v-bind:data-id = "index">
+								<img v-bind:src="item.icon | addRootFile" />
+							</a>
+							<!--<a href="#this" class="span4">
+								<img src="../images/static/community/area.jpg" />
+							</a>
+							<a href="#this" class="span4">
+								<img src="../images/static/community/area.jpg" />
+							</a>-->
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="communityarea-post">
+					<div class="tab-head clearfix">
+						<a class="span4 active" href="#this" data-id="0">最新发表</a>
+						<a class="span4" href="#this" data-id="1">热门帖子</a>
+						<a class="span4" href="#this" data-id="2">精华帖子</a>
+					</div>
+					<ul class="tab-list">
+						<div class="fenodata" v-show="tabPostArrnodata" style="height: 180px;"></div>
+						<li v-cloak v-for="(item,index) in tabPostArr"><a v-bind:href="item.postId" target="_blank"><span>{{index+1}}</span>{{item.title}}</a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+			<div class="communityarea-today clearfix">
+				<span class="post">今日帖子：{{addPost}}</span>|<span class="member">今日新增会员：{{addMember}}</span>
+				<em>欢迎您，<a v-bind:href="memberHref">{{memberName}}</a></em>
+			</div>
+			<div class="communityarea-group">
+				<p class="communityarea-group-head">热门群组</p>
+				<ul class="communityarea-group-list clearfix">
+					<div class="fenodata" v-show="areaHotArrnodata"></div>
+					<li class="span6" v-cloak v-for="item in areaHotArr">
+						 <a v-bind:href="item.groupId" target="_blank">
+	                        <div class="span5">
+	                            <div class="feimage">
+	                                <img  v-bind:src="item.icon|addRootFile" alt="">
+	                            </div>
+	                        </div>
+	                        <div class="feright-box span7">
+	                            <h3 v-cloak>{{item.groupName}}</h3>
+	                            <p v-cloak>{{item.Introduction}}</p>
+	                            <h6 v-cloak>帖子：{{item.topicNum}}&nbsp;&nbsp;&nbsp;&nbsp;成员：{{item.memberNum}}</h6>
+	                           <span class="more">了解详情>></span>
+	                        </div>
+                  		</a>
+					</li>
+					
+				</ul>
+			<!--	<div class="span12">-->
+                            <ul class="pagenationbox clearfix">
+                                <li v-show="current != 1" @click="current-- && goto(current--)">
+                                    <a href="#this">上一页</a>
+                                </li>
+                                <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                    <a href="#this">{{index}}</a>
+                                </li>
+                                <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                    <a href="#this">下一页</a>
+                                </li>
+                            </ul>
+                       <!-- </div>-->
+			</div>
+			<div class="communityarea-anothergroup clearfix">
+				<p class="communityarea-anothergroup-head">其他分区</p>
+				<div class="communityarea-anothergroup-box clearfix">
+					<a v-for="item in naviSortFiveArr" v-bind:href="item.groupTypeId" v-cloak >
+						<img v-bind:src="item.icon|addRootFile" />
+						<p class="name">{{item.typeName}}</p>
+						<p>主题：{{item.topicTypeCount}}&nbsp;&nbsp;&nbsp;&nbsp;贴数：{{item.topicCount}}</p>
+					</a>
+				</div>
+			</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/fetvAppend.js"></script>
+		<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+		<script>
+				
+			$(function() {
+				var groupTypeId=$(this).getUrlParam("groupTypeId");
+				communityArea(groupTypeId);//专区
+			})
+		</script>
+	</body>
+
+</html>

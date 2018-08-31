@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长答疑回复详情</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<div class="container">
+    <div class="answeringreplydetail" id="answeringreplydetail">
+        <h1><span v-cloak>老师: {{teachername}}</span><span v-cloak>相关课程: {{coursename}}</span> <span v-cloak>时间: {{time}}</span></h1>
+        <div class="fetitle">
+            <!--<span>提问内容:</span>-->
+            <!--<div>{{title}}</div>-->
+        </div>
+        <ul id="content">
+            <p><button @click="lookmore" v-show="nodata"><i class="uk-icon-clock-o"></i>查看更多...</button></p>
+            <li v-bind:class="item.replyOrQuestion==0 ? 'orange':'blue'" v-cloak v-for="item in pastanswer">
+                <span>{{item.replyOrQuestion|whosay}}</span>
+                <div>{{item.replyContent}}</div>
+            </li>
+        </ul>
+        <div class="fehuifu">
+            <input type="hidden" id="clickCount" value="0" />
+            <input type="hidden" id="clickCount1" value="0" />
+            <span>提问问题:</span>
+            <textarea name="" id="" ></textarea>
+        </div>
+        <div class="feoperation">
+            <button>追问</button>
+            <button>已解决</button>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        answeringreplydetail()
+    })
+</script>
+</body>
+
+</html>

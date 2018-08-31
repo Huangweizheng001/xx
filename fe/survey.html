@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>调查问卷</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+
+</head>
+
+<body>
+<section>
+    <div class="container">
+            <!--作业模板-->
+            <div class="fetaskTemplate" id="survey">
+                <div class="fe-survey-head">
+                    <h1 v-cloak>{{taskName}}</h1>
+                </div>
+                <div class="fepanel" v-cloak v-for="(modular,index) in questionList" v-bind:class="modular.questionType|getStyle">
+                    <h3>{{index+1|toChinese}}、{{modular.questionTypeName}}</h3>
+                    <div class="febox" v-for="(list,index1) in modular.questions" v-bind:class="'q'+ list.questionid + '-' + list.source" v-bind:data-id="list.questionid" v-bind:data-source="list.source">
+                        <input type="hidden" class="studentAnswer">
+                        <div class="fe-stems">
+                            <b>{{index1+1}}</b>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='文本'">{{item.text}}</span>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='输入框'"><input type="text" placeholder="请填写答案"></span>
+                            <span v-cloak v-for="item in list.stems" v-if="item.type=='图片'"><img v-bind:src="item.text" alt=""></span>
+                            <span style="color: #00aaff" v-show="showScore">[{{list.theValue}}分]</span>
+                        </div>
+                        <div class="fe-items">
+                            <div v-cloak v-for="m in list.items" v-if="list.type==1" class="i-select">
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-for="m in list.items" v-if="list.type==2" class="i-select">
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-for="m in list.items" v-if="list.type==3" class="i-select">
+                                <b>{{m.label}}</b>
+                                <span v-html="m.title"></span>
+                            </div>
+                            <div v-cloak v-if="list.type==4">
+                                <textarea name="" id="" placeholder="请填写答案..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feanswer-card" >
+                    <div class="fepanel" v-cloak v-for="(modular,index) in questionList">
+                        <h4 v-cloak>{{modular.questionTypeName}}</h4>
+                        <span v-bind:class="'w'+ list.questionid + '-' + list.source" v-for="(list,index1) in modular.questions" v-bind:data-id="list.questionid" v-bind:data-source="list.source">{{index1+1}}</span>
+                    </div>
+                    <div class="feoperation">
+                        <button>提交</button>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.zclip.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        survey(9);
+    })
+</script>
+</body>
+
+</html>

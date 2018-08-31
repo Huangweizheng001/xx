@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-我的工作室详细信息</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>主页管理 <i class="uk-icon-angle-right"></i></span>
+                <span>我的工作室</span>
+                <span><i class="uk-icon-angle-right"></i>基本信息</span>
+                <span></span>
+            </div>
+            <!--我的工作室详细页面-->
+            <div class="femystudiodetail">
+                <ul class="fetabs">
+                    <li><span class="active" data-id="1">基本信息</span></li>
+                    <li><span data-id="2">资讯</span></li>
+                    <li><span data-id="3">公告</span></li>
+                    <li><span data-id="4">我的成员</span></li>
+                </ul>
+                <div class="fecontent">
+                    <!--基本信息-->
+                    <div class="febasicinformation">
+                        <form action="" id="basicinformation">
+                            <div class="fepanel">
+                                <span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区&nbsp;:</span>
+                                <s>福州市</s>
+                                <select name="address" id="address" class="fehidden">
+                                    <option value="福州市">福州市</option>
+                                    <option value="厦门市">厦门市</option>
+                                    <option value="莆田市">莆田市</option>
+                                </select>
+                            </div>
+                            <div class="fepanel">
+                                <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;段&nbsp;:</span>
+                                <s>小学</s>
+                                <select name="period" id="period" class="fehidden">
+                                    <option value="小学">小学</option>
+                                    <option value="初中">初中</option>
+                                    <option value="高中">高中</option>
+                                </select>
+                            </div>
+                            <div class="fepanel">
+                                <span>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科&nbsp;:</span>
+                                <s>语文</s>
+                                <select name="subject" id="subject" class="fehidden">
+                                    <option value="语文">语文</option>
+                                    <option value="数学">数学</option>
+                                    <option value="英语">英语</option>
+                                </select>
+                            </div>
+                            <div class="fepanel">
+                                <span>工作室头像&nbsp;:</span>
+                                <div class="feimage">
+                                    <img src="../images/temp/createstudio.png" alt="">
+                                    <input type="file" name="photo" disabled>
+                                </div>
+                                <b class="fehidden">图片大小不超过5M</b>
+                            </div>
+                            <div class="fepanel">
+                                <span>工作室名称&nbsp;:</span>
+                                <input type="text" value="张小天小升初教学工作室" disabled maxlength="16" name="studioname">
+                            </div>
+                        </form>
+
+                        <p class="fehidden"><button>保存基本信息</button></p>
+                        <button><i class="uk-icon-edit"></i>编辑</button>
+                    </div>
+                    <!--资讯-->
+                    <div class="feconsultation" id="feinformation">
+                        <div class="span4">
+                            <div class="feaddconsultation">
+                            </div>
+                        </div>
+                        <div class="span4"  v-cloak v-for="item in information">
+                            <div class="fepanel">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.name}}</h3>
+                                </div>
+                                <ul v-bind:data-id="item.newsId">
+                                    <li><i class="uk-icon-edit"></i></li>
+                                    <li><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/joinedstudio2.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>王薇薇工作室</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="span4">-->
+                            <!--<div class="fepanel">-->
+                                <!--<div class="feimage">-->
+                                    <!--<img src="images/temp/joinedstudio3.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="febox">-->
+                                    <!--<h3>王薇薇工作室</h3>-->
+                                <!--</div>-->
+                                <!--<ul>-->
+                                    <!--<li><i class="uk-icon-edit"></i></li>-->
+                                    <!--<li><i class="uk-icon-trash"></i></li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div style="clear: both"></div>
+                    </div>
+                    <!--公告-->
+                    <div class="feannouncement" id="feannouncement">
+                        <p><button><i class="uk-icon-plus-circle"></i>发布公告</button></p>
+                        <div class="feannouncement-title">
+                            <div class="fetitle">公告标题</div>
+                            <div class="fepublisher">发布人</div>
+                            <div class="fetime">时间</div>
+                            <div class="feoperation">操作</div>
+                        </div>
+                        <div class="feannouncement-content" v-cloak v-for="item in notice">
+                            <div class="fetitle">{{item.title}}</div>
+                            <div class="fepublisher">{{item.publishName}}</div>
+                            <div class="fetime">{{item.publishDate}}</div>
+                            <div class="feoperation" v-bind:data-id="item.activityId">
+                                <button>编辑</button>
+                                <span>|</span>
+                                <button>删除</button>
+                            </div>
+                            <p class="fehidden">{{item.content}}</p>
+                        </div>
+                        <!--<div class="feannouncement-content">-->
+                            <!--<div class="fetitle">关于第一次模拟考试出卷安排公告</div>-->
+                            <!--<div class="fepublisher">张老师</div>-->
+                            <!--<div class="fetime">2017/08/20</div>-->
+                            <!--<div class="feoperation">-->
+                                <!--<button>编辑</button>-->
+                                <!--<span>|</span>-->
+                                <!--<button>删除</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="feannouncement-content">-->
+                            <!--<div class="fetitle">关于第一次模拟考试出卷安排公告</div>-->
+                            <!--<div class="fepublisher">张老师</div>-->
+                            <!--<div class="fetime">2017/08/20</div>-->
+                            <!--<div class="feoperation">-->
+                                <!--<button>编辑</button>-->
+                                <!--<span>|</span>-->
+                                <!--<button>删除</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="feannouncement-content">-->
+                            <!--<div class="fetitle">关于第一次模拟考试出卷安排公告</div>-->
+                            <!--<div class="fepublisher">张老师</div>-->
+                            <!--<div class="fetime">2017/08/20</div>-->
+                            <!--<div class="feoperation">-->
+                                <!--<button>编辑</button>-->
+                                <!--<span>|</span>-->
+                                <!--<button>删除</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <!--我的成员-->
+                    <div class="femymenber" id="femymenber">
+                        <div class="femenber">
+                            <!--<div class="span4">-->
+                                <!--<div class="feaddmender ">-->
+
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="span4" v-cloak v-for="item in menber" v-bind:data-id="item.teacherId">
+                                <div class="femenber-content ">
+                                    <div class="span5">
+                                        <div class="feimage">
+                                            <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                        </div>
+                                        <h5>{{item.teacherName}}</h5>
+                                    </div>
+                                    <div class="span7">
+                                        <h4>{{item.organName}}</h4>
+                                        <h6>{{item.gradeName}}</h6>
+                                        <h6>{{item.subjectName}}</h6>
+                                        <button><i class="uk-icon-trash"></i>删除成员</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="span4">-->
+                                <!--<div class="femenber-content ">-->
+                                    <!--<div class="span5">-->
+                                        <!--<div class="feimage">-->
+                                            <!--<img src="images/temp/teachercenter-tx.jpg" alt="">-->
+                                        <!--</div>-->
+                                        <!--<h5>张少天</h5>-->
+                                    <!--</div>-->
+                                    <!--<div class="span7">-->
+                                        <!--<h4>福州市第一中学</h4>-->
+                                        <!--<h6>初中二年级</h6>-->
+                                        <!--<h6>语文老师</h6>-->
+                                        <!--<button><i class="uk-icon-trash"></i>删除成员</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        //        console.log($(window).storager({ key: 'feUid' }).readStorage()==='undefined')
+//        if($(window).storager({ key: 'feUid' }).readStorage()=='undefined'){
+//            window.location.href = "http://www.fetv.cn/feweb/login.html";
+//            console.log(2);
+//        }else{
+//            personalsetting($(window).storager({ key: 'feUid' }).readStorage());
+//            console.log(3);
+//        }
+        var teachingStudioId=$(this).getUrlParam("teachingStudioId");
+        mystudiodetail(teacherId,teachingStudioId);
+    })
+</script>
+</body>
+
+</html>

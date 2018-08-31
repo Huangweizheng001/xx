@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>嘉宾简介-</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--Index Banner-->
+		<section>
+			<div class="dycteacherbanner"></div>
+		</section>
+
+		<!--名师-->
+		<section class="dycteacher">
+			<div class="container clearfix">
+				<div class="span3">
+					<div class="dycteacher-box-left">
+						<div id="jteacherdetail" class="dycdetailes"></div>
+						<a class="dycteacher-box-left-adv" id="jteacherLeftAdv">
+							<img src='images/teacheradv.jpg'>
+						</a>
+						
+						
+					</div>
+				</div>
+				<div class="span9">
+					<div class="dycteacher-box-right">
+						<div class="dycteacher-top clearfix">
+							<div class="span8">
+								<div class="dycperson">
+									<div class="dycperson-head">个人百科</div>
+									<div class="dycperson-contain" id="jteacherperson"></div>
+									
+								</div>
+							</div>
+							<div class="span3" style="float:right">
+								<div class="dycot-wrap">
+									<div class="swiper-container dycot-container">
+										<div class="swiper-wrapper" id="jteacherswiper"></div>
+									</div>
+									<!--<div id="swiper-button-prev"><i class="uk-icon-angle-up"></i></div>
+									<div id="swiper-button-next"><i class="uk-icon-angle-down"></i></div>-->
+								</div>
+							</div>
+						</div>
+						<div class="dycwrap clearfix">
+							<div class="dycwrap-title">课程</div>
+							<ul class="ycpanel" id="jpcourselist"></ul>
+						</div>
+						<!--<div class="dyccmt">
+							<div class="dycwrap-title">评价</div>
+							<ul class="dyccmt-list">
+								<li>
+									<a class="dycwy-name" href="#">柳***持</a>郑老师讲得非常好，很有收获~<span class="dycwy-time">2016.11.24</span></li>
+								<li>
+									<a class="dycwy-name" href="#">柳***持</a>郑老师讲得非常好，很有收获~<span class="dycwy-time">2016.11.24</span></li>
+								<li>
+									<a class="dycwy-name" href="#">柳***持</a> 报了郑老师的三天学会准确看盘，活动期间下的单隔了一个月才开始上课，老师很专业。客服态度还是很好的。<span class="dycwy-time">2016.11.24</span></li>
+								<li>
+									<a class="dycwy-name" href="#">柳***持</a>郑老师讲得非常好，很有收获~<span class="dycwy-time">2016.11.24</span></li>
+								<li>
+									<a class="dycwy-name" href="#">柳***持</a>郑老师讲得非常好，很有收获~<span class="dycwy-time">2016.11.24</span></li>
+							</ul>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			var cId = $(this).getUrlParam("teacherId");
+			$.teacherDetail(cId);
+			
+			setTimeout(function(){
+					var title = $('.dycdetailes-name').text();
+			   		document.title="嘉宾简介-"+title;
+				},300);
+				
+			setTimeout(function(){
+				$.teacherSwiper(cId);
+			},500)
+			
+			$.pcourseList(cId);
+			$.teacherLeftAdv();//左边广告图直播间
+		</script>
+	</body>
+
+</html>

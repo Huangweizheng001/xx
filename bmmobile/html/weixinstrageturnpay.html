@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/bm.css">
+		<title></title>
+
+	</head>
+
+	<body>
+		<div class="dycloading" style="width:100px;height: 100px;margin:400px auto;">
+			<img src="../images/public/loading.gif" />
+		</div>
+		<!--<section>
+			<iframe id="jtiaozhuan" style="display: none; border:0;width:100%;height:100%;position: fixed;top:0px;left:0px;" src="">
+				
+			</iframe>
+		</section>-->
+	</body>
+	<script type="text/javascript" src="../js/zepto.js"></script>
+	<script type="text/javascript" src="../js/bmmain.js"></script>
+	<script type="text/javascript" src="../js/layer.js"></script>
+	<script>
+		var code = $.getUrlParam("code");
+		var state = $.getUrlParam("state");
+		var amountArr = state.split("_");
+		var amount = amountArr[0]; //价格
+		var orderId = amountArr[1]; //订单号
+		var mid = localStorage.getItem("$ycuid");
+		var discount = 0;
+		var couponReceiveId = 0;
+		var orderTypeId = 1;//0是课程，1是策略解读
+
+
+		$.ajax({
+			type: "GET",
+			url: SERVEROOTDATA + 'Pay.ashx?action=directPay',
+			dataType: "text",
+			data: {
+				"memberId": mid,
+				"amount": amount,
+				"orderId": orderId,
+				"discount": discount,
+				"couponReceiveId": couponReceiveId,
+				"orderTypeId": orderTypeId,
+				"payTypeId": 4,
+				"code": code
+			},
+			success: function(result) {
+					if(result == 888){
+						layer.open({
+					    content: '授权异常，请重新购买'
+					    ,skin: 'msg'
+					    ,time: 2 //2秒后自动关闭
+					  });
+						return false;
+					}
+					window.location.href = result;
+			},
+			error: function(err) {
+				alert(err)
+				console.log(err)
+			}
+		});
+
+		/*console.log(SERVEROOTDATA + "Pay.ashx?action=directPay&amount=" + amount + "&orderId=" + orderId + "&memberId=" + mid + "&discount=" + discount + "&couponReceiveId=" + couponReceiveId + "&orderTypeId=" + orderTypeId + "&payTypeId=4" + "&code=" + code)*/
+		/*$('#jtiaozhuan').attr('src', SERVEROOTDATA + "Pay.ashx?action=directPay&amount=" + amount + "&orderId=" + orderId + "&memberId=" + mid + "&discount=" + discount + "&couponReceiveId=" + couponReceiveId + "&orderTypeId=" + orderTypeId + "&payTypeId=4" + "&code=" + code);
+		setTimeout(function() {
+			var hrefs = $(document.getElementById('jtiaozhuan').contentWindow.document.body);
+			alert(hrefs.html())
+		}, 3000)
+
+		//alert(hrefddd)
+		//window.location.href = 
+
+		setTimeout(function() {
+			$("#jtiaozhuan").css("display", "block");
+		}, 500)*/
+	</script>
+
+</html>

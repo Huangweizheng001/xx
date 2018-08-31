@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园-教学活动</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body>
+		<!--头部-->
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--教学活动-->
+		<section id="teachingActivities" class="teachingActivities">
+			<div class="container">
+				<div class="teachingStencil clearfix">
+					<div class="topLink">
+						<h1>学校活动 > <span>教研活动</span></h1>
+					</div>
+					<div id="teachingList" class="teachList">
+						<div class="moduleTitleWrapper">
+							<span class="titleTip">Research activities</span>
+							<h1 class="title">教研活动</h1>
+						</div>
+
+						<!--列表内容-->
+						<div class="teachingActivitiesBody">
+							<div class="teachingActivitiesInner clearfix">
+								<div class="span6" v-for="info in data">
+									<a class="teachingListLeftContent" :href="info.resultId|gotoDetail" >
+										<div class="teachingListLeftImage">
+											<img class="ListLeftImage" v-bind:src="info.coverUrl | addRootFile">
+										</div>
+										<div class="teachingListRightText">
+											<div class="teachingListContent">
+												<h1 class="teachingTitle" v-html="info.title"></h1>
+												<p class="teachingContent" v-html="info.describe"></p>
+											</div>
+											<div class="teachingListEtails">
+												<img class="teachingListIcon" :src="info.teacherIconPath | addRootFile">
+												<p class="teachingSponsor" v-html="'发起人：'+info.publishName"></p>
+												<p class="teachingDate" v-html="'时间：'+info.addTime"></p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<div class="fenodata" v-if="data.length == 0"></div>
+
+							<ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+								<li v-show="current != 1" @click="current-- && goto(current--)">
+									<a href="#this">上一页</a>
+								</li>
+								<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+									<a href="#this">{{index}}</a>
+								</li>
+								<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+									<a href="#this">下一页</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+
+	</body>
+
+</html>

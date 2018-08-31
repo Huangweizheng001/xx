@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>吴神算抄底的奥妙</title>
+
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="../css/ycstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+		<style>
+			.bmztPartOne {
+				min-height: 720px;
+				background: url(../images/temp/1122/01bg.jpg) no-repeat center bottom;
+				background-size: cover;
+			}
+			
+			.bmztpartOneHeader {
+				padding-top: 40px;
+			}
+			
+			.bmpartOneLeftBox {
+				display: block;
+				padding: 0 30px 0 0;
+			}
+			
+			.bmpartOneLeftBox img {
+				width: 100%;
+				box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+			}
+			
+			.bmztpartOneBrief {
+				color: #fff;
+			}
+			
+			.bmztPartOne .bmztpartOneBrief h4 {
+				font-size: 26px;
+			}
+			
+			.bmztPartOne .bmztpartOneBrief .bmbrief {
+				margin: 10px 0 15px;
+				color: #ccc;
+				text-indent: 24px;
+			}
+			
+			.bmztPartOne .bmteacherBrief,
+			.bmcourseBrief {
+				margin: 12px 0;
+				font-size: 16px;
+			}
+			
+			.bmztPartOne .bmprice {
+				margin-top: 25px;
+				color: #ddd;
+			}
+			
+			.bmztPartOne .bmprice .bmdiscount {
+				font-size: 18px;
+				color: #fff;
+			}
+			
+			.bmztPartOne .bmprice .bmdiscount b {
+				font-size: 28px;
+				color: #f00;
+			}
+			
+			.bmztPartOne .bmprice a {
+				color: #f00;
+			}
+			
+			.bmztpartOneBtns {
+				text-align: center;
+			}
+			
+			.bmztpartOneBtns a {
+				display: inline-block;
+				padding: 8px 80px;
+				border-radius: 6px;
+				color: #fff;
+				background-color: #f00;
+				margin: 40px 15px;
+			}
+			
+			.bmztpartOneBtns .bmconsultation {
+				background-color: #BC9871;
+			}
+			
+			.bmztpartOneBtns a:hover {
+				background-color: #c10b0b;
+			}
+			
+			.bmztpartOneBtns .bmconsultation:hover {
+				background-color: #92704c;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--part one-->
+		<section class="bmztPartOne">
+			<div class="container">
+				<div class="bmztpartOneHeader clearfix">
+					<div class="span6">
+						<a class="bmpartOneLeftBox" href="#this">
+							<img src="../images/temp/1122/01leftImg.jpg" />
+						</a>
+					</div>
+					<div class="span6">
+						<div class="bmztpartOneBrief">
+							<h4>抄底的奥妙-反弹三部曲</h4>
+							<p class="bmbrief">市场行情变幻莫测，行情价格起起伏伏，如何在市场上把握抄底机会，如何在行情大跌的过程单子，抄底成功，本次公开课，将通过技术指标及K线形态判断底部的反弹的机会，从而把握市场利润的最高点。</p>
+							<p class="bmteacherBrief">嘉宾：吴神算 &nbsp; &nbsp;&nbsp; &nbsp; 教程阶段：高级课程</p>
+							<p class="bmcourseBrief">教程时长：180分钟&nbsp; &nbsp;&nbsp; &nbsp;开播时间：2017.12.08 20 : 00 </p>
+							<p class="bmprice">
+								<span class="bmdiscount">优惠价：<b>88</b> 元</span> &nbsp; &nbsp;&nbsp;&nbsp; 原价：888元 &nbsp; &nbsp;&nbsp;&nbsp;
+								<a href="#this" id="jbmshowMemberLevel" style="display: none;">播米会员享1折优惠&nbsp; &gt;&gt;</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="bmztpartOneBtns clearfix">
+					<a class="bmcurrentBuy">立即购买</a>
+					<a class="bmconsultation" id="bmconsultation">点击咨询</a>
+				</div>
+			</div>
+		</section>
+
+		<!--part two-->
+		<section class="bmpartTwo">
+			<div class="container full">
+				<img style="width: 100%;" src="../images/temp/1122/02.jpg" />
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/template.js"></script>
+		<script type="text/javascript" src="../js/ycedu.js"></script>
+
+		<script>
+			BizQQWPA.addCustom({
+				aty: '0',
+				a: '1005',
+				nameAccount: 4006430618,
+				selector: 'bmconsultation'
+			});
+
+			$(function() {
+				$(".bmcurrentBuy").on("click", function() {
+					if($mid == null || $mid == undefined || $mid == "undefined" || $mid == "") 						{
+						layer.open({
+							type: 2,
+							title: false,
+							closeBtn: 1, //不显示关闭按钮
+							shade: [0],
+							shadeClose: true,
+							//scrollbar: false,
+							maxmin: true, //开启最大化最小化按钮
+							area: ['700px', '520px'],
+							content: './1122pay.html'
+						});
+					} else {
+						layer.open({
+							type: 2,
+							title: false,
+							closeBtn: 1, //不显示关闭按钮
+							shade: [0],
+							shadeClose: true,
+							maxmin: true, //开启最大化最小化按钮
+							area: ['700px', '520px'],
+							content: './1122pay.html'
+						});
+					}
+
+				})
+				
+				$("#jbmshowMemberLevel").on("click",function(){
+					layer.open({
+							type: 2,
+							title: false,
+							closeBtn: 1, //不显示关闭按钮
+							shade: [0],
+							shadeClose: true,
+							maxmin: true, //开启最大化最小化按钮
+							area: ['1200px', '730px'],
+							content: './memberlevel.html'
+						});
+				})
+			})
+			
+			function reloadWin() {
+				window.location.reload();
+			}
+		</script>
+	</body>
+
+</html>

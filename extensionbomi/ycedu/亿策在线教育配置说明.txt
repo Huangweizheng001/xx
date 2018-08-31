@@ -1,0 +1,9 @@
+jquery: 1.11.0
+
+uikit: 2.25.0
+
+swiper: 3.4.2
+
+wow: 1.0.1
+
+handlebars v4.0.5

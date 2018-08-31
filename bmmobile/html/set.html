@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>设置</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+				padding-top: 9rem;
+			}
+			
+			a {
+				color: #000;
+				display: block;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			.netbox,
+			.questionbox,
+			.systembox {
+				padding-left: 2.142rem;
+				margin-bottom: 2.142rem;
+				font-size: 2.14rem;
+				background-color: #fff;
+			}
+			
+			.netbox li,
+			.questionbox li,
+			.systembox li {
+				position: relative;
+				line-height: 6rem;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.questionbox li:after,
+			.systembox li:after {
+				content: "";
+				position: absolute;
+				width: 1.258rem;
+				height: 2.285rem;
+				top: 1.9rem;
+				right: 2.142rem;
+				background: url("../../image/public/gonextIcon.png") no-repeat center;
+				background-size: cover;
+			}
+			
+			.systembox li:first-child:after,
+			.systembox li:nth-child(2):after {
+				display: none;
+			}
+			
+			.systembox li:first-child span,
+			#version {
+				position: absolute;
+				display: inline-block;
+				top: 0;
+				right: 2.142rem;
+				color: #a7a7a7;
+			}
+			
+			.netbox input {
+				position: absolute;
+				top: 1.3rem;
+				right: 2.142rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack()">返回</span>
+				<p>设置</p>
+			</header>
+			<section>
+				<ul class="netbox">
+					<li tapmode="active">
+						<a href="commonproblem.html">常用问题</a>
+					</li>
+					<li tapmode="active">
+						<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'>意见反馈</a>
+					</li>
+					<li tapmode="active">
+						<a href="tel:4006430618">电话客服</a>
+					</li>
+					<li tapmode="active">
+						<a href="aboutus.html">关于我们</a>
+					</li>
+				</ul>
+
+			</section>
+		</div>
+
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+	</body>
+
+</html>

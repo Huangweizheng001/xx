@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>教育资讯-福建教育网</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<!--新闻头部图片-->
+    <section class="fepiclist clearfix" id="feheadnews" style="background: #f4f4f4">
+        <div class="container">
+            <!--左侧大图-->
+            <div class="fepiclist-left  clearfix" >
+                <a v-bind:href="item.newsId|addRoot" v-cloak v-for="item in headNewsBig" target="_blank">
+                    <div class="fepiclist-image imgcover" :style="{background: 'url(' + item.iconPath + ')no-repeat center'}">
+                        <p>{{item.title}}</p>
+                    </div>
+                </a>
+            </div>
+            <!--右侧2小图-->
+            <!--<div class="fepiclist-right span3">-->
+                <!--<a v-bind:href="item.newsId|addRoot" v-cloak v-for="item in headNewsSmall" target="_blank">-->
+                    <!--<div class="fepiclist-image imgcover" :style="{background:'url('+item.iconPath+')no-repeat'}">-->
+                        <!--<p>{{item.title}}</p>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        </div>
+    </section>
+<!--新闻列表-->
+    <section class="fenewslist clearfix">
+        <div class="container">
+            <!--左侧-->
+            <div id="fenewslist">
+                <!--列表标题栏-->
+                <div class="fenewslist-left-title">
+                    <div class="container">
+                        <a href="#this" v-cloak v-for="item in newsTypeArr" v-bind:data-id="item.newsTypeId">{{item.name}}</a>
+                    </div>
+
+                </div>
+                <div class="fenewslist-left span9" style="margin-top: 79px" >
+                    <!--列表内容-->
+                    <div class="fenewslist-left-content" id="newscontent">
+                        <div class="fepanel" >
+                            <div class="fenodata" v-show="nodata"></div>
+                            <a v-bind:href="items.newsId|addRoot" v-cloak v-for="items in newsArr"  target="_blank" v-bind:title="items.title">
+                                <div class="feimage">
+                                    <img  v-bind:src="items.iconPath|addRootFile" alt="">
+                                </div>
+                                <div class="feright-box">
+                                    <h3>{{items.title}}</h3>
+                                    <p>{{items.introduce}}</p>
+                                    <h6>更新时间: {{items.updateTime}} &nbsp;&nbsp;&nbsp;阅读: {{items.readCount}}</h6>
+                                </div>
+                            </a>
+                            <!--<div class="fenewslist-left-loadmore" @click="newsloadMore()" v-show="load">-->
+                            <!--加载更多...-->
+                            <!--</div>-->
+                            <!--枫叶-->
+                            <div class="span12">
+                                <ul class="pagenationbox clearfix">
+                                    <li v-show="current != 1" @click="current-- && goto(current--)">
+                                        <a href="#this">上一页</a>
+                                    </li>
+                                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                        <a href="#this">{{index}}</a>
+                                    </li>
+                                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                        <a href="#this">下一页</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--右侧-->
+            <div class="fenewslist-right span3" style="margin-top: 79px" >
+                <!--新鲜短讯-->
+                <div class="fenewslist-freshsms" id="fefreshsms">
+                    <div class="fepanel-title">新鲜短讯</div>
+                    <div class="fepanel-box" v-cloak v-for="(item,index) in msList">
+                        <p><a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">{{index+1}}. {{item.title}}</a></p>
+                        <!--<h6>{{item.updateTime}}</h6>-->
+                        <!--<b></b>用于表示下三角-->
+                    </div>
+                </div>
+                <!--热文推荐-->
+                <div class="fenewslist-hotarticle" id="fehotarticle">
+                    <div class="fepanel-title">热文推荐</div>
+                    <ul class="fepanel-ul">
+                        <li v-cloak v-for="(item,index) in msList">
+                            <a v-bind:href="item.newsId|addRoot" target="_blank" v-bind:title="item.title">
+                                <div class="fepanel-image" v-if="item.iconPath && index<2">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                </div>
+                                <h2>{{item.title}}</h2>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script>
+    $(function () {
+        headNews();
+        newslist();
+        freshSms();
+        hotarticle();
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.9/skins/default/index-min.css" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>微信登录</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+			
+			input {
+				outline: none;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .4);
+			}
+			
+			.loginWrap {
+				position: relative;
+				padding-top: 7.71rem;
+				/*70 + 20 */
+				box-sizing: border-box;
+			}
+			
+			.cancel {
+				position: absolute;
+				top: 4.2rem;
+				left: 2.14rem;
+				width: 2.57rem;
+				height: 2.57rem;
+				background: url(../images/public/cancel.png) no-repeat center;
+			}
+			
+			.loginImage {
+				width: 10.7rem;
+				height: 10.7rem;
+				margin: 0 auto 1.285rem;
+				border-radius: 50%;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			.loginFrom {
+				text-align: center;
+			}
+			
+			.loginFrom label {
+				display: block;
+			}
+			
+			.loginFrom input {
+				width: 100%;
+				color: #1473e6;
+				font-size: 2.16rem;
+				/*line-height: 80px;*/
+				height: 5.7rem;
+				line-height: 3rem;
+				text-align: center;
+				background: #fff;
+			}
+			
+			.loginFrom label:first-child {
+				padding-bottom: 2px;
+			}
+			
+			.loginBtnBox {
+				margin: 2.142rem;
+				font-size: 2.142rem;
+			}
+			
+			.loginBtnBox a {
+				display: block;
+				line-height: 5.7rem;
+				text-align: center;
+				border-radius: 3px;
+				color: #fff;
+				background-color: #1473e6;
+			}
+			
+			.login-other {
+				font-size: 0;
+				text-align: center;
+			}
+			
+			.login-other a {
+				display: inline-block;
+				width: 10.71rem;
+			}
+			
+			.login-other a:first-child {
+				font-size: 2.142rem;
+				position: relative;
+				text-align: right;
+				padding-right: 1.428rem;
+				color: #1473e6;
+			}
+			
+			.login-other a:first-child:after {
+				content: "";
+				position: absolute;
+				width: 1px;
+				height: 80%;
+				right: 0;
+				top: 10%;
+				background-color: #ccc;
+			}
+			
+			.login-other a:last-child {
+				font-size: 2.142rem;
+				text-align: left;
+				padding-left: 1.428rem;
+				color: #989898;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container loginWrap">
+			<!--内容区域-->
+			<div class="loginImage">
+				<a href="../index.html">
+					<img src="../images/public/login.png" />
+				</a>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+
+		<script>
+			$(function(){
+				var sid  = $.getUrlParam("sid");
+				
+				window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb06dca24d8b4f2f9&redirect_uri=http://m.bomizx.net/html/bindlogin.html&response_type=code&scope=snsapi_userinfo&state="+sid+"&connect_redirect=1#wechat_redirect";
+			})
+			
+		</script>
+	</body>
+
+</html>

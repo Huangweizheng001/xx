@@ -1,0 +1,203 @@
+[
+    {
+        "courseId": "1005",
+        "courseCatalogId": "1",
+        "code": "004",
+        "name": "目录1",
+        "allowListen": "1",
+        "listenUrl": "uploads/vedios/2017-04-21 15-36-57第一节ppt.mp4",
+        "children": [
+            {
+                "courseId": "1005",
+                "courseCatalogId": "44",
+                "code": "004.001",
+                "name": "0101目录",
+                "allowListen": "1",
+                "listenUrl": ""
+            }
+        ]
+    },{
+        "courseId": "1005",
+        "courseCatalogId": "2",
+        "code": "005",
+        "name": "第一章",
+        "allowListen": "0",
+        "listenUrl": "uploads/vedios/2017-04-21 14-43-56第一节片头.mp4"
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "3",
+        "code": "006",
+        "name": "第二章",
+        "allowListen": "0",
+        "listenUrl": "uploads/vedios/2017-04-18 15-26-37第一节全部.mp4",
+        "children": [
+            {
+                "courseId": "1005",
+                "courseCatalogId": "14",
+                "code": "006.001",
+                "name": "第2.1节",
+                "allowListen": "0",
+                "listenUrl": ""
+            }
+        ]
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "7",
+        "code": "007",
+        "name": "第三章",
+        "allowListen": "0",
+        "listenUrl": "",
+        "children": [
+            {
+                "courseId": "1005",
+                "courseCatalogId": "15",
+                "code": "007.001",
+                "name": "013第1节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "16",
+                "code": "007.002",
+                "name": "013第2节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "17",
+                "code": "007.003",
+                "name": "013第3节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "18",
+                "code": "007.004",
+                "name": "013第4节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "19",
+                "code": "007.005",
+                "name": "013第5节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "20",
+                "code": "007.006",
+                "name": "013第6节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "21",
+                "code": "007.007",
+                "name": "013第7节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "22",
+                "code": "007.008",
+                "name": "013第8节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "23",
+                "code": "007.009",
+                "name": "013第9节",
+                "allowListen": "0",
+                "listenUrl": ""
+            },
+            {
+                "courseId": "1005",
+                "courseCatalogId": "24",
+                "code": "007.010",
+                "name": "013第10节",
+                "allowListen": "0",
+                "listenUrl": ""
+            }
+        ]
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "8",
+        "code": "008",
+        "name": "第四章",
+        "allowListen": "0",
+        "listenUrl": ""
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "9",
+        "code": "009",
+        "name": "01第5章",
+        "allowListen": "0",
+        "listenUrl": ""
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "10",
+        "code": "010",
+        "name": "01第6章",
+        "allowListen": "0",
+        "listenUrl": ""
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "11",
+        "code": "011",
+        "name": "01第7章",
+        "allowListen": "0",
+        "listenUrl": ""
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "5",
+        "code": "016",
+        "name": "01第1节",
+        "allowListen": "0",
+        "listenUrl": "uploads/vedios/2017-04-20 10-54-30第一节ppt.mp4",
+        "children": [
+            {
+                "courseId": "1005",
+                "courseCatalogId": "29",
+                "code": "016.001",
+                "name": "001节",
+                "allowListen": "0",
+                "listenUrl": "",
+                "children": [
+                    {
+                        "courseId": "1005",
+                        "courseCatalogId": "30",
+                        "code": "016.001.001",
+                        "name": "0001节",
+                        "allowListen": "0",
+                        "listenUrl": ""
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "courseId": "1005",
+        "courseCatalogId": "33",
+        "code": "017",
+        "name": "目录2",
+        "allowListen": "0",
+        "listenUrl": ""
+    }
+]

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <title>助理专题</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/swiper.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/Ecalendar.css" />
+    <link rel="stylesheet" href="css/ycstyle.css" />
+    <link rel="stylesheet" href="css/cyqstyle.css" />
+    <link rel="stylesheet" href="css/hwzstyle.css" />
+    <script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+
+<section>
+    <img src="images/assistant-banner.jpg" alt="" width="100%">
+    <div class="dycassistant-title">
+        <h1><b></b><span>金牌助理</span><b></b></h1>
+        <div class="container">
+            <div class="dycgoldassistant">
+                <div class="swiper-container aa">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-1.png" alt="">
+                                <div class="dycbox">
+                                    <h4>小袁助理</h4>
+                                    <p>对K线形态深有研究，并且能熟练的运用到行情分析中，专业耐心的服务为客户解决各种投资上的问题。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-2.png" alt="">
+                                <div class="dycbox">
+                                    <h4>李助理</h4>
+                                    <p>金融行业从事经验丰富，拥有扎实的实战操作经验，擅长将各位嘉宾的战法应用到行情市场中。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-3.png" alt="">
+                                <div class="dycbox">
+                                    <h4>小李助理</h4>
+                                    <p>从事金融行业多年，拥有证券、期货、从业资格证，可以熟练运用各位老师的交易战法。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-4.png" alt="">
+                                <div class="dycbox">
+                                    <h4>蔡助理</h4>
+                                    <p>多年实战操盘指导经验，熟悉各大经济事件与数据，具有扎实的基本面分析。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-5.png" alt="">
+                                <div class="dycbox">
+                                    <h4>文静助理</h4>
+                                    <p>不仅在宏观经济和地缘政治上有独特的见解，盘面分析能力也是格外出众。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-6.png" alt="">
+                                <div class="dycbox">
+                                    <h4>邓助理</h4>
+                                    <p>工作上扎实的专业功底、耐心的态度，多年以来指导服务客户满意也是极高的。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-8.png" alt="">
+                                <div class="dycbox">
+                                    <h4>小苏助理</h4>
+                                    <p>擅长运用各位老师的交易战法，对各位分析师的布局以及中长线把握娴熟，对操作心态上也是特别有研究。</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a  class="dycpanel">
+                                <img src="images/assistant-people-7.png" alt="">
+                                <div class="dycbox">
+                                    <h4>娇娇助理</h4>
+                                    <p>至今为止有三年的金融现货，汇市实盘操作指导经验，指导客户人数约900多人。</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                </div>
+                <div class="swiper-button-next aa1"></div>
+                <div class="swiper-button-prev aa2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="dycnewbieguide" id="dycnewbieguide">
+        <div class="dycassistant-title">
+            <h1><b></b><span style="background: #2b2d46">新手指南</span><b></b></h1>
+            <p>金牌助理精心录制课程  为初入金融市场的投资爱好者<br>答疑解惑  更走心  更贴近更符合新手观看</p>
+            <div class="container">
+                <div class="dycnewbieguide-lunbo">
+                    <div class="swiper-container bb">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-cloak v-for="item in newbieguide">
+                                <a  v-bind:href="item.courseId|addVideoRoute" class="dycpanel" target="_blank">
+                                    <div class="dycimg">
+                                        <img v-bind:src="item.iconPath|addRoute" alt="">
+                                        <b></b><i></i>
+                                    </div>
+                                    <h4>{{item.name}}</h4>
+                                </a>
+                            </div>
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-2.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>基础交易买卖和基础技术精解</h4>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-3.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>K线基础知识讲解</h4>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-3.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>K线基础知识讲解</h4>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        </div>
+                        <!-- Add Arrows -->
+                    </div>
+                    <div class="swiper-button-next bb1"></div>
+                    <div class="swiper-button-prev bb2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dycmt4">
+        <div class="dycassistant-title">
+            <h1><b></b><span style="background: url('images/mt4.png')no-repeat center">MT4操作视频</span><b></b></h1>
+            <div class="container">
+                <p>MT4是市场行情接收软件，由迈达克软件公司发布，提供免费试用，有中文界面。它包括先前系统所有的特点，并且对这些功能和组成部分进行了进一步的介绍和重组。 它适用于外汇， CFD 以及期货市场。</p>
+                <a href="encyclopediadetail.html?ecId=1189" target="_blank" style="display: inline-block"><img src="images/mt4-video.jpg" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <div class="dycbomiencyclopedias" id="dycbomiencyclopedias">
+        <div class="dycassistant-title">
+            <h1><b></b><span style="background:#23233d">金融小知识</span><b></b></h1>
+            <div class="container">
+                <p>什么是EIA?什么是API?还有什么是非农？还有什么是。。。。。。</p>
+                <div class="dycbomiencyclopedias-lunbo">
+                    <div class="swiper-container cc">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" v-cloak v-for="item in bomiencyclopedias">
+                                <a  v-bind:href="item.courseId|addVideoRoute" class="dycpanel" target="_blank">
+                                    <div class="dycimg">
+                                        <img v-bind:src="item.iconPath|addRoute" alt="">
+                                        <b></b><i></i>
+                                    </div>
+                                    <h4>{{item.name}}</h4>
+                                    <h6>{{item.note}}</h6>
+                                </a>
+                            </div>
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-2.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>外汇</h4>-->
+                                    <!--<h6>外汇，英文缩写EXRATE,亦称“外汇行市”或 拷贝</h6>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-3.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>外汇</h4>-->
+                                    <!--<h6>外汇，英文缩写EXRATE,亦称“外汇行市”或 拷贝 2</h6>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<div class="swiper-slide">-->
+                                <!--<a  class="dycpanel">-->
+                                    <!--<div class="dycimg">-->
+                                        <!--<img src="images/assistant-video-3.png" alt="">-->
+                                        <!--<b></b><i></i>-->
+                                    <!--</div>-->
+                                    <!--<h4>外汇</h4>-->
+                                    <!--<h6>外汇，英文缩写EXRATE,亦称“外汇行市”或 拷贝 2</h6>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        </div>
+                        <!-- Add Arrows -->
+                    </div>
+                    <div class="swiper-button-next cc1"></div>
+                    <div class="swiper-button-prev cc2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/uikit.min.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="js/layer.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/wow.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/ycswiper.js"></script>
+<script type="text/javascript" src="js/ycedu.js"></script>
+<script type="text/javascript" src="js/teacherswiper.js"></script>
+<script type="text/javascript" src="js/honoredguest.js"></script>
+<script>
+    $(function () {
+        var swiper1 = new Swiper('.aa', {
+            nextButton: '.aa1',
+            prevButton: '.aa2',
+            slidesPerView: 6,
+            spaceBetween: 0
+        });
+        assistant()
+    })
+</script>
+</body>
+</html>

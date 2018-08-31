@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+	<!--	<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">-->
+		<link rel="stylesheet" href="../css/plugins/layermobile.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>学习笔记</title>
+	</head>
+
+	<body>
+		<header id="feHeaderWhite">
+			<header-white-template title="学习笔记"></header-white-template>
+		</header>
+		<section class="feMyNoteWrap" id="feMyNoteWrap">
+			<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore" v-cloak>
+			 <initempty-component label="暂无数据" :initflag=noData></initempty-component>
+			<div class="feMyNoteLi  clearfix" v-cloak v-for="item in listArr">
+				<div class="feImage">
+					<img v-lazy="item.iconPath">
+				</div>
+				<h5>{{item.courseName}}</h5>
+				<div class="feCourseType">
+					<span>学科</span>{{item.subjectName}}
+				</div>
+				<div class="feCourseNote">
+					<span>添加时间</span>{{item.noteTime}}
+				</div>
+				<div class="feNoteEdit">
+					<a class="active"  @click="editNote(item.noteId)">编辑 </a>|
+					<a @click="deleteNote(item.noteId)">删除</a>
+				</div>
+			</div>
+			<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'">Loading...</span> <span v-show="bottomStatus === 'drop'">{{bottomText}}</span></div>
+			</mt-loadmore>
+			<!--编辑笔记-->
+               	<div class="editNoteBg" v-if='!isShow' v-cloak>
+	               	<div class="editNote">
+	               		<h5>编辑信息</h5>
+	                	<div class="editText">
+		                    <textarea id='editcontent' @input="inputText()" v-model="commentContent"></textarea>
+		                    <span v-cloak>{{currentWordTips}}/{{allWordTips}} 字</span>
+		                  </div>
+		                    <div class="feoperation">
+		                        <button class="save" @click="updateNote(currentNote.noteId,currentNote.subjectId,currentNote.courseId)">保存</button>
+		                        <button class="close" @click="closeNote()">取消</button>
+		                    </div>
+		             </div>
+	             </div>
+		</section>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/layermobile.js"></script>
+		<script type="text/javascript"  src="../js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				myNoteApp();
+			})
+		</script>
+	</body>
+
+</html>

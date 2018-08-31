@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bm.css">
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>个人信息</title>
+
+		<style>
+			body {
+				padding-top: 9rem;
+			}
+			
+			.infbox,
+			.securitybox,
+			.accountbox {
+				padding: 0 2rem 0 2.5rem;
+				box-sizing: border-box;
+				/*margin-top: 2.2rem;*/
+				/*margin-bottom: 2rem;*/
+				font-size: 1.857rem;
+				background-color: #fff;
+			}
+			
+			.infbox a {
+				display: block;
+				color: #000;
+			}
+			
+			.infbox li,
+			.securitybox li{
+				position: relative;
+				line-height: 6rem;
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.accountbox li {
+				line-height: 6rem;
+				background: #eee;
+				margin-top: 5rem;
+				
+				text-align: center;
+			}
+			
+			.infbox li:first-child {
+				line-height: 12.57rem;
+			}
+			
+			.infbox li:first-child img {
+				float: right;
+				width: 9.285rem;
+				height: 9.285rem;
+				margin-top: 1.64rem;
+				margin-right: 4.4rem
+			}
+			
+			.infbox li:after,
+			.securitybox li:after {
+				content: "";
+				position: absolute;
+				width: 1.258rem;
+				height: 2.285rem;
+				top: 1.75rem;
+				right: 2.142rem;
+				background: url("../images/public/gonextIcon.png") no-repeat center;
+				background-size: cover;
+			}
+			
+			.infbox li:first-child::after {
+				top: 5rem;
+			}
+			
+			.infbox li span {
+				position: absolute;
+				display: inline-block;
+				top: 0;
+				right: 4.4rem;
+				height: 4.357rem;
+				text-align: right;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				width: calc(100% - 13rem);
+				color: #a7a7a7;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<!--<span onclick="goBack()">返回</span>-->
+				<p>个人信息</p>
+			</header>
+			<section>
+
+				<ul class="infbox">
+					<li tapmode="active">
+						<a href="./headerIcon.html">头像 <img id="jmemberHeaderIcon" src="../images/public/memberIcon.jpg" /></a>
+					</li>
+					<li tapmode="active">
+						<a href="./nick.html">昵称 <span id="nickName">播米在线</span></a>
+					</li>
+					<li tapmode="active">
+						<a href="./gender.html">性别 <span id="gender">保密</span></a>
+					</li>
+					<li tapmode="active">
+						<a href="./birthday.html">出生年月 <span id="birthday">1992-11-11</span></a>
+					</li>
+					<li tapmode="active">
+						<a href="./job.html">职业 <span id="job">教师</span></a>
+					</li>
+					<li tapmode="active">
+						<a href="./address.html">收货地址 <span id="address">福建省 福州市 台江区 收货</span></a>
+					</li>
+				</ul>
+
+				<!--<ul class="securitybox">
+					<li tapmode="active">账号与安全</li>
+					<li tapmode="active">隐私设置</li>
+				</ul>-->
+
+				<ul class="accountbox">
+					<li tapmode="active" id="logOut">退出登录</li>
+				</ul>
+
+			</section>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js?01"></script>
+
+		<script>
+			$(function() {
+
+				//init data
+				var nickName = $('#nickName'),
+					gender = $('#gender'),
+					birthday = $('#birthday'),
+					job = $('#job'),
+					address = $('#address');
+
+				headerInit();
+				logOut();
+
+				nickName.html(localStorage.getItem('$ycuname'));
+				gender.html(localStorage.getItem('$ycgender'));
+				birthday.html(localStorage.getItem('$ycbirthDay'));
+				job.html(localStorage.getItem('$ycjob'));
+				address.html(localStorage.getItem('$ycaddress'));
+
+				//header init
+				function headerInit() {
+					var jmemberHeaderIcon = $('#jmemberHeaderIcon');
+					if(jmemberHeaderIcon != "false") {
+						jmemberHeaderIcon.attr('src', localStorage.getItem('$ycuheader'));
+					}
+				}
+
+				//退出
+				function logOut() {
+					$('#logOut').click(function() {
+						layer.open({
+							content: '您确定要退出登录吗？',
+							btn: ['注销', '取消'],
+							yes: function() {
+								localStorage.removeItem('$ycuid');
+								localStorage.removeItem('$ycuname');
+								localStorage.removeItem('mUserType');
+								
+								localStorage.removeItem('$ycuheader');
+								localStorage.removeItem('mLever');
+								localStorage.removeItem('$bomimoney');
+							
+								localStorage.setItem('$ycgender', '保密');
+								localStorage.setItem('$ycbirthDay', '1993-01-06');
+								localStorage.setItem('$ycjob', '教师');
+								localStorage.setItem('$ycaddress', '福建省 福州市 台江区');
+								localStorage.setItem('$ycuheader', "false");
+
+								layer.open({
+									content: '注销成功'
+								});
+
+								setTimeout(function() {
+									goBack2();
+									/*window.location.reload; */
+								}, 1000);
+
+							}
+						});
+					});
+
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

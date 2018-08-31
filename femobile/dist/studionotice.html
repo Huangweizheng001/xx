@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<title>福建教育网--工作室详情</title>
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/femoblie.min.css">
+		<style type="text/css">
+			.feQuote #feHeaderWhiteShare {
+				display: none;
+			}
+			
+			.feQuote #jNewsDetailApp {
+				height: 100%;
+				padding-top: 0;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header id="feHeaderWhiteShare" class="feNoMarginRight">
+			<header-white-share-template></header-white-share-template>
+		</header>
+		<section class="feNewsDetailWrap" id="jNewsDetailApp">
+			<div class="container">
+				<template v-cloak v-for="item in newsDetailArr">
+					<div class="feTopInner">
+						<h4 v-if="!hiddenTitle">{{item.title}}</h4>
+						<div class="feNewsInfBox"><span>{{item.reportDate}}</span> <span>|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读：{{item.readCount}}</span>
+							<p>来源：{{item.source}}</p>
+						</div>
+					</div>
+					<div class="feNewsContent" v-html="item.content"></div>
+				</template>
+			</div>
+		</section>
+		<script src="../js/libs/jquery.min.js"></script>
+		<script src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/axios.min.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script src="../js/femoblie.min.js"></script>
+		<script src="../js/fescript.js"></script>
+		<script>
+			$(function() {
+				var a = $.getUrlParam("noticeId"),
+					eq = $.getUrlParam("eq");
+				if(eq == "android" || eq == "ios") {
+					$("body").addClass("feQuote");
+				}
+
+				noticeDetailApp(a)
+			})
+		</script>
+	</body>
+
+</html>

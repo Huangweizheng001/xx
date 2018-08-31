@@ -1,0 +1,21 @@
+{
+	"list": [
+		{
+			"pid": "1",
+			"titile": "title01",
+			"brief": "描述ID2",
+			"oldPrice": "155",
+			"price": "100",
+			"src": "http://localhost/web/ycedu/images/spkc01.jpg",
+			"url": "#this1"
+		}, {
+			"pid": "2",
+			"titile": "title06",
+			"brief": "描述ID2",
+			"oldPrice": "155",
+			"price": "100",
+			"src": "http://localhost/web/ycedu/images/spkc01.jpg",
+			"url": "#this1"
+		}
+	]
+}

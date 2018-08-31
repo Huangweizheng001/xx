@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="initial-scale=1, user-scalable=0" charset="UTF-8">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bm.css">
+			<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/dropload.css">
+		<title>策略解读列表</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header class="blue flex-con">
+				<span onclick="goBack()" style="display: none;">返回</span>
+				<p>策略解读</p>
+			</header>
+			<section class="flex-con overAuto" style="margin-top: 7.5rem; ">
+				<div class="content">
+					<ul id="box" class="bmstrategylist clearfix"></ul>
+				</div>
+
+			</section>
+
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				var LoadEnd = false;
+				// dropload
+				var page = 0;
+				// 每页展示6个
+				var num = 6;
+				var nownum = 0; //当前数据在第几条
+
+				// dropload
+				var dropload = $('.content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						// 加载菜单一的数据
+						page++;
+						$.ajax({
+							type: 'GET',
+							url: SERVEROOTDATA + 'Teacher.ashx?action=getGuestOpinion',
+							dataType: 'json',
+							data: {
+								"pageSize": num,
+								"pageIndex": page
+							},
+							success: function(data) {
+								var result = '';
+								if(page <= data.totalPageCount) {
+									for(var i = 0; i < data.rows.length; i++) {
+										var imgSrc = data.rows[i].mobileIconPath;
+										if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+											imgSrc = '../images/public/default.png';
+										} else {
+											imgSrc = SERVEROOTFILE + imgSrc;
+										}
+										result += "<li><a href='strategydetail.html?newsTypeId=" + data.rows[i].newsTypeId + "&teacherId=" + data.rows[i].teacherId + "'><div class='img'><img src=" + imgSrc + " /></div><p class='title'>" + data.rows[i].name + "</p><p class='note'>" + data.rows[i].note + "</p></a></li>";
+
+										nownum = (page - 1) * num + i + 1;
+										if((nownum) >= data.totalCount) {
+											// 数据加载完
+											LoadEnd = true;
+											// 锁定
+											me.lock();
+											// 无数据
+											me.noData();
+											break;
+										}
+
+									}
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										$('#box').append(result);
+										// 每次数据加载完，必须重置
+										me.resetload();
+									}, 1000);
+								} else {
+									LoadEnd = true;
+									// 锁定
+									me.lock();
+									// 无数据
+									me.noData();
+
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										// 每次数据加载完，必须重置
+										me.resetload();
+									}, 1000);
+									return false;
+								}
+							},
+							error: function(xhr, type) {
+								console.log('服务器出错了~');
+								// 加载出错，也得重置
+								me.resetload();
+							}
+						});
+
+					}
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

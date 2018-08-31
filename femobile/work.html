@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+		<link rel="stylesheet" href="./css/plugins/style.min.css">
+		<link rel="stylesheet" href="./css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="./css/femoblie.min.css">
+		<link rel="stylesheet" href="./css/festyle.css">
+		<title>福建教育网--作业</title>
+	</head>
+
+	<body style="background-color:#ebebeb">
+		<!--<header id="feHeaderOrange">
+			<header-orange-template title="作业" openright=true rightname=""></header-orange-template>
+		</header>-->
+
+		<section class="feWorkWrap feCourseCenterWrap" id="jWorkApp">
+				<div class="feCourseSelectWrap" v-bind:class="{'feCourseSelectWrapActive':isOpenLeft}"  @click="closeSelect()" >
+				<div class="feCourseSelectWrapBg" v-bind:class="{'feCourseSelectActive':isOpenLeft}" @click.stop="selects()">
+					<div class="feGrayLIne16"></div>
+					111
+					<!--<div class="swiper-container feCoursetypeContainer">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-cloak v-for="(item,index) in courseType"  v-bind:data-id='item.recordType' v-bind:class="{'active-nav':recordType==item.recordType}">
+								<a href="javascript:;"  @click="changeSlide(item.recordType,index)" >{{item.playTypeName}}</a>
+							</div>
+						</div>
+					</div>
+					<template  v-cloak v-for="(item,index) in courseTypeList">
+						<div class="feGrayLIne16"></div>
+						<div class="feCoursetypeList">
+							<a class="feCoursetypeListTitle" v-bind:class="['feCoursetypeList'+index,{'active':educationalLevelId==item.educationalLevelId}]"  @click="gotoList($event,item.educationalLevelId,'')">{{item.educationalLevelName}}</a>
+							<ul class="clearfix">
+								<li class="span6" v-for="(itemChild,index) in item.children">
+									<a @click="gotoList($event,item.educationalLevelId,itemChild.gradeId)" v-bind:class="{'active':gradeId==itemChild.gradeId}">{{itemChild.gradeName}}</a>
+								</li>
+								
+							</ul>
+						</div>
+					</template>-->
+				</div>
+			</div>
+			<div class="container flex flex-v">
+				<!--<div class="feNewsListInner">-->
+				<div>
+				<div class="swiper-container feTypeContainer">
+					<a href="javascript:;" class="showMenu"  @click="closeSelect()"><span></span></a>
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" v-for="(item, index) in newsTypeArr" v-bind:class="{'active-nav':currentIndex==index}" :data-typeid="item.subjectId" v-cloak >
+							<a href="javascript:;" @click="changeSlide(item.subjectId,index)">{{item.subjectName}}</a>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="feActiveInner flex-1">
+					<div class="feWorkList ">
+						<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore" v-cloak>
+							<div class="swiper-container feWorkListContainer">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide" v-cloak v-for="(item,index) in newsListArr">
+										<initempty-component label="暂无数据" :initflag=item.noData></initempty-component>
+										<template v-for="(itemChild,childIndex) in item">
+											<div class="feGrayLIne16"></div>
+											<div class="feWorkLiBox"  v-bind:class="{'active':itemChild.show}">
+												<div class="feWorkLi">语文文字运用<span class="num" @click="showMenu(index,childIndex)">共580题</span></div>
+												<ul>
+													<li class="clearfix">
+														<div class="span10">
+															<div class="title">字音
+																<p>0/15</p>
+															</div>
+															<span class="pecent"></span>
+														</div>
+														<div class="span2">
+															<a href='dist/workdetail.html'>练习</a>
+														</div>
+													</li>
+													<li class="clearfix">
+														<div class="span10">
+															<div class="title">字音
+																<p>0/15</p>
+															</div>
+															<div class="pecent">
+																<span style="width:30%"></span>
+															</div>
+
+														</div>
+														<div class="span2">
+															<a href='dist/workdetail.html'>练习</a>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</template>
+
+									</div>
+								</div>
+							</div>
+							<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'">Loading...</span> <span v-show="bottomStatus === 'drop'">{{bottomText}}</span></div>
+						</mt-loadmore>
+					</div>
+				</div>
+				<div class="flex flex-v ">
+					<div class="workTab clearfix">
+						<a class="span4" @click="workTab(0)"><span v-bind:class="{'active':bottomTab==0}">练习</span></a>
+						<a class="span4" @click="workTab(1)"><span v-bind:class="{'active':bottomTab==1}">试卷</span></a>
+						<a class="span4" href='classwork.html'><span v-bind:class="{'active':bottomTab==2}">班级作业</span></a>
+					</div>
+				</div>
+				<!--</div>-->
+			</div>
+		</section>
+		<footer id="feFooter">
+			<footer-template></footer-template>
+		</footer>
+
+		<script src="./js/libs/jquery.min.js"></script>
+		<script src="./js/libs/vue.min.js"></script>
+		<script src="./js/plugins/axios.min.js"></script>
+		<script src="./js/plugins/index.js"></script>
+		<script src="./js/plugins/swiper.min.js"></script>
+		<script src="./js/plugins/layer,wow,scroll.js"></script>
+		<script src="./js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="js/femoblie.min.js"></script>
+		<script type="text/javascript" src="js/fescript.js"></script>
+		<script>
+			$(function() {
+				workApp()
+			})
+		</script>
+	</body>
+
+</html>

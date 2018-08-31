@@ -1,0 +1,161 @@
+@import "../config";
+html{
+    height: initial;
+}
+
+.homeWorkWrap{
+    
+    .homeWorkInner{
+        padding: 60px 50px;
+        background-color: #fff;
+    }
+    
+    .homeWorkLi{
+        position: relative;
+        padding: 20px 0 0;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .deleteBtn{
+        position: absolute;
+        top: 20px;
+        right: 0;
+        width: 20px;
+        height: 20px;
+        background: url(../../images/public/icon.png) no-repeat;
+        background-position: -92px -114px;
+    }
+    
+    .homeWorkParent{
+        margin-bottom: 16px;
+        cursor: pointer;
+        .img{
+            float: left;
+            width: 90px;
+            height: 90px;
+             img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+        .left{
+            margin-left: 104px;
+            line-height: 22px;
+            color: #000;
+            
+            p{
+                font-size: 16px;
+            }
+            
+            .content{
+                margin: 0 0 4px;
+                color: #333; 
+            }
+            
+            span{
+                color: #666;
+            }
+        }
+    }
+    
+    .homeWorkSub{
+        padding: 0 70px 16px;
+    }
+    
+    .homeWorkSubInner{
+        padding: 0 16px;
+        background-color: #f7f7f7;
+    }
+    
+    .homeWorkSubLi{
+        position: relative;
+        padding: 16px 0;
+        border-bottom: 1px solid #c7c7c7;
+        .img{
+            float: left;
+            width: 70px;
+            height: 70px;
+            
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+        .left{
+            margin-left: 84px;
+            line-height: 22px;
+            color: #000;
+            
+            p{
+                font-size: 16px;
+                
+                span{
+                    margin: 0 6px;
+                    color: #ff6c00;
+                }
+            }
+            
+            .content{
+                margin: 6px 0 4px;
+                color: #333; 
+            }
+            
+            .replyTime{
+                position: absolute;
+                right: 0;
+                top: 17px;
+                color: #666;
+            }
+            
+        }
+    }
+    
+    .homeWorkTeatarea{
+        padding: 16px 0;
+        .img{
+            float: left;
+            width: 70px;
+            height: 70px;
+            
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+        .left{
+            margin-left: 84px;
+            line-height: 22px;
+        }
+        
+        textarea{
+            width: 100%;
+            height: 70px;
+            border-radius: 3px;
+            text-indent: 16px;
+            outline: none;
+            border:1px solid #c7c7c7;
+        }
+        
+        .replyBtn{
+            display: inline-block;
+            float: right;
+            margin:16px 140px 20px 0;
+            width: 120px;
+            line-height: 40px;
+            border-radius: 3px;
+            text-align: center;
+            color: #fff;
+            background-color: #ff8d39;
+            
+            &:hover{
+               background-color: darken(#ff8d39,20%); 
+            }
+        }
+    }
+}

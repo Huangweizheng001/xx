@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园-教学素材</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+	</head>
+
+	<body>
+		<!--头部-->
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="onlineClassWrap materialWrap" id="jmaterialApp">
+			<div class="container">
+				<div class="onlineClassHeader">
+					<div class="onlineLine">
+						学科:
+						<a href="javascript:;" v-for="(item,index) in subjectArr" v-cloak :class="{active: subjectIndex == index}" @click="changeFilter(item.subjectId,index,gradeId,gradeIndex,semesterId,semesterIndex,typeId,typeIndex)">{{item.subjectName}}</a>
+					</div>
+					<div class="onlineLine">
+						年级:
+						<a href="javascript:;" v-for="(item,index) in gradeArr" v-cloak :class="{active: gradeIndex == index}" @click="changeFilter(subjectId,subjectIndex,item.gradeId,index,semesterId,semesterIndex,typeId,typeIndex,item.gradeName)">{{item.gradeName}}</a>
+					</div>
+					<div class="onlineLine">
+						学期:
+						<a href="javascript:;" v-for="(item,index) in semesterArr" v-cloak :class="{active: semesterIndex == index}" @click="changeFilter(subjectId,subjectIndex,gradeId,gradeIndex,item.termId,index,typeId,typeIndex)">{{item.termName}}</a>
+					</div>
+					<!--<div class="onlineLine noBorder">
+						类别:
+						<a href="javascript:;" v-for="(item,index) in typeArr" v-cloak :class="{active: typeIndex == index}" @click="changeFilter(subjectId,subjectIndex,gradeId,gradeIndex,semesterId,semesterIndex,item.courseTypeId,index,'',item.courseTypeName)">{{item.courseTypeName}}</a>
+
+					</div>-->
+				</div>
+
+				<div class="onlineContent">
+					<div class="onlineContentTitle" v-cloak>
+						<!--<span>全部课程</span>>{{typeLabel}}-->
+						<span>教学素材</span>
+					</div>
+					<div class="onlineContentBox clearfix">
+						<div class="onlineLeft">
+							<div class="navBox">
+								<h3 v-cloak>{{gradeLabel}}必修-目录</h3>
+								<div class="navLi" v-for="item in outLineArr" v-cloak>
+									<h5 :class="{opening: item.openFlag}" @click="toggleOpen(item,item.openFlag)">{{item.title}}</h5>
+									<div class="navSubLi" v-for="subItem in item.children" v-if="item.openFlag">
+										<a href="javasrcipt:;" @click="changeSyId(subItem.syllabusId)" :class="{active: currentSyllabusId == subItem.syllabusId}">{{subItem.title}}</a>
+									</div>
+								</div> 
+							</div>
+						</div>
+						<div class="onlineRight">
+							<div class="onlineMain clearfix">
+								<!--<div class="span4" v-for="item in courseArr" v-cloak>
+									<div class="onlineLi">
+										<a class="img" href="javascript:;">
+											<img :src="item.iconPath" alt="" />
+										</a>
+										<h5>{{item.courseName}}</h5>
+										<div class="otherInf">
+											<img :src="item.teacherIconPath" alt="" /> {{item.teacherName}}
+											<span>{{item.readCount}}次播放</span>
+										</div>
+									</div>
+								</div>-->
+								<a  class="materialLi" v-for="item in courseArr" :href="item.downLoadPath | addRootFile" download v-cloak>
+									<div class="img">
+										<img :src="item.iconPath | addRootFile" alt="" />
+									</div>
+									<div class="right">
+										<h5>{{item.title}}</h5>
+										<div class="brief">{{item.desc}}</div>
+										<span class="time">{{item.publishDate}}</span>
+									</div>
+								</a>
+								<div class="fenodata" v-if="courseArr.length == 0"></div>
+							</div>
+							<ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+								<li v-show="current != 1" @click="current-- && goto(current--)">
+									<a href="#this">上一页</a>
+								</li>
+								<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+									<a href="#this">{{index}}</a>
+								</li>
+								<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+									<a href="#this">下一页</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

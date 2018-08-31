@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="keywords" content="福建教育网">
+    <meta name="description" content="福建教育网">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/plugins/style.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/femoblie.min.css?rev=@@hash">
+
+    <title>福建教育网首页</title>
+
+    <style type="text/css">
+    image[lazy=loading] {
+        width: 40px;
+        height: 300px;
+        margin: auto;
+    }
+
+    #modelMintApp img {
+        display: inline-block;
+        width: 300px;
+        height: 260px;
+        margin-bottom: 15px;
+    }
+
+    .loading {
+        text-align: center;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="modelMintApp">
+        <p>{{sheetVisible}}<p>
+        <mt-button @click.native="handleClick">Toast</mt-button>
+        <ul>
+            <li v-for="item in list">
+                <img v-lazy="item.iconPath" />
+            </li>
+        </ul>
+        <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+            <li v-for="item in list[0]">{{ item.teacherName }}</li>
+        </ul>
+        <p>正在加载</p>
+        <mt-actionsheet :actions="actions" v-model="sheetVisible">
+        </mt-actionsheet>
+    </div>
+    <script type="text/javascript" src="./js/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/libs/vue.min.js"></script>
+    <script type="text/javascript" src="./js/plugins/axios.min.js"></script>
+    <script type="text/javascript" src="./js/plugins/index.js"></script>
+    <script type="text/javascript" src="./js/femoblie.min.js?rev=@@hash"></script>
+    <script type="text/javascript">
+    $(function() {
+        axios.defaults.baseURL = 'http://www.fetv.cn/fe/';
+        axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        // 发送请求前处理request的数据
+        axios.defaults.transformRequest = [function(data) {
+            // Do whatever you want to transform the data
+            var newData = '';
+            for (var k in data) {
+                newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&';
+            }
+            return newData
+        }]
+
+        // 为给定 ID 的 user 创建请求
+        axios.get('website/ashx/Teacher.ashx?action=getOnlineTeacher&pageSize=8&organId=')
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        //post 版
+        axios.post('website/ashx/Teacher.ashx?action=getOnlineTeacher', {
+                pageSize: 8,
+                organId: ''
+            })
+            .then(function(res) {
+                console.log(res);
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+
+        //终极版
+        axios({
+            method: 'post',
+            url: 'website/ashx/Teacher.ashx?action=getOnlineTeacher',
+            // headers: {
+            //     'Content-Type': 'application/x-www-form-urlencoded',
+            // },
+            data: {
+                pageSize: 8,
+                organId: ''
+            }
+        }).then(function(response) {
+            console.log(response);
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+        new Vue({
+            el: '#modelMintApp',
+            data: {
+                list: [],
+                list2: [0],
+                i: 1,
+                j: 10,
+                sheetVisible:true,
+                actions:[{name:"01",method:"test"}],
+            },
+            filters: {
+
+            },
+            mounted: function mounted() {
+                //1.0ready --> 2.0
+                this.$nextTick(function() {
+                    this.getInitData(this.i, this.j);
+                });
+            },
+            methods: {
+                handleClick: function() {
+                    this.$toast('Hello world');
+                },
+
+                getInitData: function(i, j) {
+                    var _this = this;
+                    axios.post('website/ashx/News.ashx?action=getHotDocRecommend', {
+                            organId: 1,
+                            pageIndex: i,
+                            pageSize: j
+                        })
+                        .then(function(res) {
+                            _this.list = _this.list.concat(res.data.rows);
+                            _this.list.forEach(function(item, index) {
+                                if (!item.had) {
+                                    //全局注册判断是否加载到底
+                                    Vue.set(item, "had", true);
+                                    //全局注册变量
+                                    Vue.set(item, "iconPath", 'http://www.fetv.cn/fe/' + item.iconPath);
+                                }
+
+                            });
+
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        });
+                },
+
+                test(){
+                    console.log("01");
+                },
+
+                loadMore() {
+
+                    this.loading = true;
+                    setTimeout(() => {
+                        this.i = this.i + 1;
+                        this.getInitData(this.i, this.j)
+
+                        this.loading = false;
+                    }, 2500);
+
+                }
+
+            },
+
+        })
+
+    })
+    </script>
+</body>
+
+</html>

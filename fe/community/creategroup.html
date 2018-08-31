@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="福建教育网">
+		<meta name="description" content="福建教育网" />
+		<title>创建群组</title>
+		<link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="../css/base.css" />
+		<link rel="stylesheet" href="../css/fetv.css" />
+		<link rel="stylesheet" href="../css/fetvcommunity.css" />
+		<link rel="stylesheet" href="../css/swiper,animate.min.css" />
+	</head>
+
+	<body>
+		
+		<div class="fecommunity-creategroup clearfix" id='fecreategroup'>
+				<div class="left span7">
+					<div class="name">
+						<label for="name">名称:</label>
+						<input type="text" name="name" id="name" placeholder="3-15个汉字及字母组合" />
+					</div>
+					<div class="sort">
+						<label for="sort">分类:</label>
+						<select name="sort" id="sort">
+							<option v-for='item in groupSortArr'  v-bind:value="item.groupTypeId"  v-cloak >{{item.typeName}}</option>
+							<!--<option value="">学生专区</option>
+							<option value="0">家长专区</option>
+							<option value="1">老师专区</option>
+							<option value="2">学校专区</option>-->
+						</select>
+					</div>
+					<div class="note">
+						<label for="note">简介:</label>
+						<textarea name="textarea" id='note' rows="5" placeholder="几句话简要介绍你的群组。。。。" onKeyDown="gbcount(this,$('#ownshow'),99)" onKeyDown="gbcount(this,$('#ownshow'),99)" ></textarea>
+						<p ><span id="ownshow">100</span>/100字</p>
+					</div>
+					<a class="btn" v-on:click='postGroup()'>创建群组</a>
+				</div>
+
+				<div class="right span5">
+					<div class="avar">
+						<img src="../images/static/community/avar.png" />
+					</div>
+					<div class="avarbtn clearfix">
+						<form id="membercenter">
+						<a class="select">选择图片<input name="file" id="file_upload" type="file" accept="image/jpeg,image/png,image/gif" v-on:click="changeTx()" /></a>
+						</form>
+						<!--<a class="upload" v-on:click = "savePic()">上传图片</a>-->
+					</div>
+				</div>
+		</div>
+		
+
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/fetv.js"></script>
+		<script type="text/javascript" src="../js/fetvcommunity.js"></script>
+		<script>
+			
+			$(function() {
+				createGroup();//创建群组
+			})
+		</script>
+	</body>
+
+</html>

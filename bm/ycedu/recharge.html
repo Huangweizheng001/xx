@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<title>播米充值中心</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/uikit.min.css" />
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/animate.min.css" />
+		<link rel="stylesheet" href="css/Ecalendar.css" />
+		<link rel="stylesheet" href="css/ycstyle.css" />
+		<link rel="stylesheet" href="css/cyqstyle.css" />
+		<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<!--会员中心logo-->
+		<section>
+			<div class="container">
+				<div class="span5">
+					<div class="dycrecharge-logo">
+						<img src="images/recharge-logo.png" />
+					</div>
+				</div>
+				<div class="span4" style="float: right;">
+					<div class="dycrecharge-logo" id="onlineService">
+						<a class="dycservicephone" href="http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes" target="_blank" title="联系客服"><img src="images/public-phone.png" /><span class="dycphone-num">400-6430-618</span></a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--会员中心内容-->
+		<section>
+			<div class="container clearfix">
+				<div class="span12">
+					<div class="span2">
+						<div class="dycrecharge-person">
+							<div class="clearfix dycrecharge-avar">
+								<div class="dycrecharge-avar-name clearfix" id="jpersonal">
+									<div class="span5">
+										<div class="dycrecharge-person-img">
+											<img src="images/mbheadIcon.png" />
+										</div>
+									</div>
+									<div class="span7">播米在线</div>
+								</div>
+								<div class="dycrecharge-person-over clearfix">
+									<div class="span12">播米币
+										<span class="dycrecharge-over" id="jrest">0</span>
+									</div>
+
+									<!--<div class="span3">
+										<p class="dycrecharge-person-re">充值</p>
+									</div>-->
+								</div>
+								<p id='jgrade'></p>
+							</div>
+
+							<div class="dycrecharge-safegrade">
+								<p>安全等级</p>
+								<p class="dycrecharge-safegrade-bar"></p>
+								<span class="dycrecharge-safegrade-name">高</span>
+							</div>
+						</div>
+						<div id="jselect" class="dycrecharge-record">
+							<div class="dycrecharge-record-head clearfix">
+								<div class="span4">
+									<div class="dycrecharge-record-img">
+										<img src="images/recharge-bomibi.png" />
+									</div>
+								</div>
+								<div class="span8">播米币</div>
+							</div>
+							<p class="active" data-id='0'><span></span>充 值</p>
+							<p data-id='1'><span></span>交易记录</p>
+						</div>
+					</div>
+					<div class="span10">
+						<div class="dycrecharge-right">
+							<div class="dycrecharge-recharge dycrecharge-right-box" style="display: block;">
+								<div id="jrechargeselect" class="dycrecharge-crecord-head dycrecharge-charge-head">
+									<span class="active" data-id='0'>开通会员</span><span data-id='1'>播米币充值</span>
+								</div>
+								<div class="recharge-style-box">
+									<div id="jmemberpayselect" class="dycrecharge-contain-head">
+										<p class="dycrecharge-title clearfix">【充值方式】
+											<a href="memberrule.html" target="_blank">会员特权 ></a>
+										</p>
+										<span class="active" data-id="0">
+											<img src="images/recharge-zhifubao.png" />
+										</span>
+										<span data-id="1">
+								<img src="images/recharge-weixin.png" />
+							</span>
+										<span data-id="2">
+								<img src="images/recharge-bomi.png" />
+							</span>
+									</div>
+									<div class="dycrecharge-contain-box">
+										<div class="dycrecharge-renums">
+											<p class="dycrecharge-title">【开通会员级别】</p>
+											<div id="jmembernums" class="clearfix"></div>
+											<p id="jmembercorrect" class="dycrecharge-correct"></p>
+											<div class="dycrechargebtn">
+												<a id="jmemberrecord" class="dycrecharge-correct-btn" href="#this">立即开通</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="recharge-style-box" style="display: none;">
+									<div id="jpayselect" class="dycrecharge-contain-head">
+										<p class="dycrecharge-title">【充值方式】</p>
+										<span class="active" data-id="0">
+								<img src="images/recharge-zhifubao.png" />
+							</span>
+										<span data-id="1">
+								<img src="images/recharge-weixin.png" />
+							</span>
+									</div>
+									<div class="dycrecharge-contain-box">
+										<div class="dycrecharge-renums">
+											<p class="dycrecharge-title">【充值金额】</p>
+											<div id="jmoneynums" class="clearfix">
+												<div class="clearfix">
+													<div class="span3">
+														<div class="dycrecharge-grade dycrecharge-bominum active clearfix" data-id='1'>
+															<div class="span3">
+																<i class="uk-icon-check-circle"></i>
+															</div>
+															<div class="span9">
+																1 播米币
+															</div>
+														</div>
+													</div>
+													<div class="span3">
+														<div class="dycrecharge-grade dycrecharge-bominum clearfix" data-id='10'>
+															<div class="span3">
+																<i class="uk-icon-circle-thin"></i>
+															</div>
+															<div class="span9">
+																10 播米币
+															</div>
+														</div>
+													</div>
+													<div class="span3">
+														<div class="dycrecharge-grade dycrecharge-bominum clearfix" data-id='20'>
+															<div class="span3">
+																<i class="uk-icon-circle-thin"></i>
+															</div>
+															<div class="span9">
+																20 播米币
+															</div>
+														</div>
+													</div>
+													<div class="span3">
+														<div class="dycrecharge-grade dycrecharge-bominum clearfix" data-id='30'>
+															<div class="span3">
+																<i class="uk-icon-circle-thin"></i>
+															</div>
+															<div class="span9">
+																30 播米币
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="span3">
+													<div class="dycrecharge-grade dycrecharge-bominum clearfix" data-id='50'>
+														<div class="span3">
+															<i class="uk-icon-circle-thin"></i>
+														</div>
+														<div class="span9">
+															50 播米币
+														</div>
+													</div>
+												</div>
+												<div class="span3">
+													<div class="dycrecharge-grade dycrecharge-bominum clearfix" data-id='100'>
+														<div class="span3">
+															<i class="uk-icon-circle-thin"></i>
+														</div>
+														<div class="span9">
+															100 播米币
+														</div>
+													</div>
+												</div>
+												<div class="span6">
+													<div class="dycrecharge-own">
+														<div class="span3">
+															<p class=" dycrecharge-own-text">自定义</p>
+														</div>
+														<div class="span9">
+															<div class="dycrecharge-grade dycrecharge-bominum clearfix">
+																<div class="span2">
+																	<i class="uk-icon-circle-thin"></i>
+																</div>
+																<div class="span10">
+																	<input id="jtext" type="text" class="span6" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" /> 播米币
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--临时活动告示-->
+											<p style="margin: 20px 0 -20px 46px;"><span style="color: #f00;">注:</span>活动期间充值播米币满2000送200播米币！</p>
+											<p id="jcorrect" class="dycrecharge-correct">请确认：充值<span id="jcorrectrmb">1</span>.00元，您将获得<span class="dyccorectnums">1 播米币</span></p>
+
+											<div class="dycrechargebtn">
+												<a id="jrecord" class="dycrecharge-correct-btn" href="#this">立即充值</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="dycrecharge-record-contain dycrecharge-right-box" style="display: none;">
+								<div id="jrecordselect" class="dycrecharge-crecord-head">
+									<span class="active" data-id='0'>消费记录</span><span data-id='1'>充值记录</span>
+								</div>
+
+								<div class="dycrecharge-crecord-box">
+									<div class="dycrecharge-crecord-time">
+										<p class="dycrecharge-crecord-title">消费时间</p>
+										<div class="dycrecharge-time">
+											<label class="dycrecharge-time-from">
+							    			<input id="cost_date_from" type="text" name="" value="2017-3-4" />
+							    		</label> 至
+											<label class="dycrecharge-time-to">
+							    			<input id="cost_date_to" type="text" name="" value="2017-3-4" />
+							    		</label>
+											<a id="jcostresult" class="rechargeresult-btn" href="#this">查询</a>
+										</div>
+									</div>
+									<div class="dycrecharge-crecord-result">
+										<div class="dycrecharge-crecord-title">查询结果</div>
+										<div class="dycrecharge-result-first clearfix">
+											<p class="span3">消费时间</p>
+											<!--<p class="span3">订单号</p>-->
+											<p class="span3">金额（元）</p>
+											<p class="span3">消费播米币</p>
+											<p class="span3">消费用途</p>
+										</div>
+										<ul id="jcostlist" class="dycrecharge-result-list clearfix"></ul>
+
+										<!--分页-->
+										<ul id='jcostlistpage' class="pagenationbox clearfix"></ul>
+									</div>
+								</div>
+								<div class="dycrecharge-crecord-box" style="display: none;">
+									<div class="dycrecharge-crecord-time">
+										<div class="dycrecharge-crecord-title">充值时间</div>
+										<div class="dycrecharge-time">
+											<label class="dycrecharge-time-from">
+							    			<input id="recharge_date_from" type="text" name="" value="2017-3-4" />
+							    		</label> 至
+											<label class="dycrecharge-time-to">
+							    			<input id="recharge_date_to" type="text" name="" value="2017-3-4" />
+							    		</label>
+											<a id="jrechargeresult" class="rechargeresult-btn" href="#this">查询</a>
+										</div>
+									</div>
+									<div class="dycrecharge-crecord-result">
+										<div class="dycrecharge-crecord-title">查询结果</div>
+										<div class="dycrecharge-result-first clearfix">
+											<p class="span3">充值时间</p>
+											<p class="span3">订单号</p>
+											<p class="span3">金额（元）</p>
+											<!--<p class="span2">充值</p>-->
+											<p class="span3">充值渠道</p>
+											<!--<p class="span2">支付状态</p>-->
+										</div>
+										<ul id="jrechargelist" class="dycrecharge-result-list clearfix"></ul>
+
+										<!--分页-->
+										<ul id='jrechargelistpage' class="pagenationbox clearfix"></ul>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/uikit.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/wow.min.js"></script>
+		<script type="text/javascript" src="js/template.js"></script>
+		<script type="text/javascript" src="js/ycswiper.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/Ecalendar.jquery.min.js"></script>
+		<script type="text/javascript" src="js/teacherswiper.js"></script>
+		<script>
+			$(function() {
+				var paramId = $(this).getUrlParam("type");
+				var rechargeId = $(this).getUrlParam("recharge");
+
+				if(($mid != undefined) && ($mid != '') && ($mid != null)) {
+					$.jPersonal();
+				}
+				
+				$.bomiRecharge(paramId,rechargeId);//会员充值-充值
+				$.rechargeRecord();//会员充值-交易记录查询
+				$.jmemberRecordselect();//会员充值-tab
+				
+	
+
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="亿策数字校园">
+    <meta name="description" content="亿策数字校园" />
+    <title>向老师提问</title>
+    <link rel="stylesheet" href="./librarycss/base.css" />
+    <link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+
+</head>
+<body style="background: #f4f4f4">
+<header id="header">
+    <header-template></header-template>
+</header>
+<section id="AskTeacherQuestion">
+    <div  class="feaskquestion">
+        <div class="container clearfix" style="background: #fff">
+            <div class="span9">
+                <div class="feaskquestion-left">
+                    <h1>“向 <span v-cloak>{{teacherInfo.name}}老师</span> 提问”</h1>
+                    <p>问题描述</p>
+                    <div class="textarea" @keyup="limitSize" contenteditable="true"></div>
+                    <h4 v-cloak>还可以输入{{limitsize}}字！</h4>
+                    <div class="feaddpicture">
+                        <i class="uk-icon-photo"></i>
+                        <a id="zwb_upload" style="overflow: hidden;top: 0">
+                            <input type="file" class="add" multiple>添加图片
+                        </a>
+                        <div class="feorgan-certificate">
+
+                        </div>
+                    </div>
+                    <div class="fepaybtn">
+                        <button @click="putQuestion()" v-cloak>10积分提问</button>
+                    </div>
+                    <ul class="fehistory-answer">
+                        <h1>最近回答</h1>
+                        <div class="fenodata" v-cloak v-if="nodata"></div>
+                        <li v-cloak v-for="item in historyAnswer">
+                            <div class="feimage">
+                                <img :src="item.userIconPath|addRootFile" alt="">
+                            </div>
+                            <div class="feright-box">
+                                <h1>{{item.user}}   <span>{{item.insertTime|showTime}} 提问</span></h1>
+                                <p><a :href="item.KPQuestionId|addRoot" target="_blank" v-html="item.content"></a></p>
+                                <!--<a class="feprice">价值{{item.offerMoney}}元</a>-->
+                                <a class="festudynum">{{item.clickCount}}人浏览过</a>
+                            </div>
+                        </li>
+                        <!--<li>-->
+                            <!--<div class="feimage">-->
+                                <!--<img src="../../images/temp/mr-tx.png" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="feright-box">-->
+                                <!--<h1>May-微言   <span>10分钟之前 提问</span></h1>-->
+                                <!--<p><a>当校外补课让学生、家长疲于奔命、怨声载道的时候 ，确实应该由政府重拳出击整治，“最严禁补令”恰逢其时。要让校外-->
+                                <!--补课真正回归“补充”的作用，不能代替学校教育这道“主食”。</a></p>-->
+                                <!--&lt;!&ndash;<a class="feprice">价值12元</a>&ndash;&gt;-->
+                                <!--<a class="festudynum">1人浏览过</a>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                    <ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+                        <li v-show="current != 1" @click="current-- && goto(current--)">
+                            <a href="#this">上一页</a>
+                        </li>
+                        <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                            <a href="#this">{{index}}</a>
+                        </li>
+                        <li v-cloak v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                            <a href="#this">下一页</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="feaskquestion-right">
+                    <div class="fetitle">提问的正确姿势</div>
+                    <ul>
+                        <li>
+                            <span></span>
+                            问题要具体、语句通顺，不寻求模糊空 洞的答案。
+                        </li>
+                        <li>
+                            <span></span>
+                            问题要具体、语句通顺，不寻求模糊空 洞的答案。
+                        </li>
+                        <li>
+                            <span></span>
+                            问题要具体、语句通顺。
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+<script type="text/javascript" src="./libraryjs/config.js"></script>
+</body>
+</html>

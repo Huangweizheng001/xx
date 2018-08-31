@@ -1,0 +1,213 @@
+@import "../config";
+header {
+    height: 80px;
+    line-height: 80px;
+    background-color: @mainColor;
+    .container {
+        position: relative;
+    }
+    .headerLeft {
+        position: absolute;
+        width: 270px;
+        top: 0;
+        left: 0;
+        img {
+            height: 45px;
+        }
+    }
+    .headerContent {
+        padding: 0 160px 0 270px;
+    }
+    .headerUser {
+        position: absolute;
+        width: 160px;
+        right: 0;
+        top: 0;
+        .searchIcon,
+        .userIcon {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            vertical-align: top;
+            text-align: center;
+            font-weight: bold;
+        }
+        .searchIcon {
+            z-index: 102;
+            &:before {
+                content: "";
+                position: absolute;
+                width: 24px;
+                height: 24px;
+                top: 30px;
+                left: 20px;
+                background: url(../../images/public/icon.png) no-repeat;
+                background-position: 3px 3px;
+            }
+            &:hover {
+                background-color: #474747;
+                &:before {
+                    background-position: -31px 3px;
+                }
+            }
+        }
+        .userIcon {
+            width: 76px;
+            img {
+                display: inline-block;
+                width: 42px;
+                height: 42px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+        }
+    }
+    .headerNavList {
+        text-align: right;
+        font-size: 0;
+        .firstNav {
+            position: relative;
+            display: inline-block;
+            width: 138px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 18px;
+            &:hover {
+                &>a {
+                    color: @headerColor;
+                    background-color: #474747;
+                }
+            }
+            &>a {
+                display: block;
+                color: @darkBlackColor;
+                &.active {
+                    color: @headerColor;
+                    background-color: #474747;
+                }
+            }
+            &:hover {
+                .subNavList {
+                    top: 80px;
+                }
+            }
+        }
+    }
+    .subNavList {
+        position: absolute;
+        width: 138px;
+        top: -600px;
+        z-index: 100;
+        background-color: #fff;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
+        a {
+            display: block;
+            line-height: 44px;
+            &:hover,
+            &.active {
+                color: #fff;
+                background-color: @mainColor;
+            }
+        }
+    }
+    .searchBox {
+        display: none;
+        position: absolute;
+        width: 640px;
+        top: 0;
+        right: 100px;
+        z-index: 101;
+        background-color: #fff;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
+        input {
+            height: 36px;
+            width: 100%;
+            border: none;
+            text-indent: 24px;
+        }
+         ::-webkit-input-placeholder {
+            color: #999;
+        }
+         :-moz-placeholder {
+            color: #999;
+        }
+         ::-moz-placeholder {
+            color: #999;
+        }
+         :-ms-input-placeholder {
+            color: #999;
+        }
+        .tips {
+            height: 42px;
+            line-height: 42px;
+            padding-left: 26px;
+            color: #999;
+        }
+    }
+    .searchLi {
+        a {
+            display: block;
+            padding: 0 26px;
+            line-height: 44px;
+            font-size: 18px;
+            color: #000;
+            &:hover {
+                background-color: #f4f4f4;
+            }
+        }
+    }
+    .opening {
+        .searchBox {
+            display: block
+        }
+        .searchIcon {
+            background-color: #474747;
+            &:before {
+                background-position: -31px 3px;
+            }
+        }
+    }
+    .headerMask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+    .loginUserBar {
+        position: absolute;
+        right: 0;
+        top: 80px;
+        width: 106px;
+        z-index: 102;
+        background-color: #fff;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
+        a {
+            position: relative;
+            display: block;
+            line-height: 44px;
+            padding-left: 35px;
+            color: #333;
+            border-bottom: 1px solid #dedede;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 35px;
+                height: 44px;
+                background: url(../../images/public/icon.png) no-repeat;
+                background-position: 14px -114px;
+            }
+            &.quiteOut {
+                &:before {
+                    background-position: 14px -162px;
+                }
+            }
+            &:hover {
+                background-color: @headerColor;
+            }
+        }
+    }
+}

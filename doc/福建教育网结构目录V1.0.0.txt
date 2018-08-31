@@ -1,0 +1,32 @@
+/****************************************************/
+ Autor:Jabo
+ Time:2017/07/18
+ Desc:福建教育网目录结构V1.0.0
+/****************************************************/
+
+福建教育网前端目录结构
+fetv
+├─app :本地应用文件目录不动
+├─css :样式目录
+│  ├─base.css  :基础配置文件不动
+│  ├─fetv.css  :主样式表
+│  ├─fetvAppend.css  :追加样式表
+│  └─第三方css库
+│
+├─data ：本地数据
+├─fonts ：字体库不动
+├─images 
+│  ├─public ：公共素材库：Icon、logo
+│  ├─static ：静态素材：backgroundImage、widget 等
+│  └─temp ：临时素材文件：temp source
+│
+├─js
+│  ├─gulpfile.js  :基础配置文件不动
+│  ├─fetv.js : 主脚本
+│  ├─fetvAppend.js : 追加脚本
+│  └─第三方js库
+│
+├─*.html :主结构文件
+├─html : 专题等特殊页面类型（待定）
+│
+└─ package.json ：程序包文件不动

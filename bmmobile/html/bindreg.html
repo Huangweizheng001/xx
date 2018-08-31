@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.9/skins/default/index-min.css" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>注册</title>
+
+		<style>
+			body {
+				background: #f2f2f2;
+			}
+			
+			input {
+				outline: none;
+			}
+			
+			.active {
+				color: #fff !important;
+				background: #1473e6 !important;
+			}
+			
+			.regSetPwdWrap {
+				margin-top: 6rem;
+				font-size: 2.16rem;
+			}
+			
+			label {
+				position: relative;
+				display: block;
+				width: 100%;
+				margin-bottom: 12px;
+			}
+			
+			label:after {
+				content: "昵称";
+				position: absolute;
+				top: 0;
+				left: 2.14rem;
+				line-height: 5.7rem;
+				color: #282828;
+			}
+			
+			.password:after {
+				content: "密码";
+			}
+			
+			label.inviteCode:after {
+				content: "邀请码";
+				position: absolute;
+				top: 0;
+				left: 2.14rem;
+				line-height: 5.7rem;
+				color: #282828;
+			}
+			
+			label.phonebox:after {
+				content: "手机号";
+				position: absolute;
+				top: 0;
+				left: 24px;
+				line-height: 48px;
+				color: #282828;
+			}
+			
+			input {
+				width: 100%;
+				color: #1473e6;
+				/*line-height: 80px;*/
+				height: 48px;
+				line-height: 48px;
+				text-indent: 80px;
+				background: #fff;
+			}
+			
+			.compelate {
+				display: block;
+				margin: 2.14rem;
+				line-height: 50px;
+				text-align: center;
+				border-radius: 3px;
+				color: #fff;
+				background: #1473e6;
+			}
+			
+			.protocolBox {
+				margin: 2.14rem;
+				font-size: 1.857rem;
+				color: #989898;
+			}
+			
+			.protocolBox .agreebox {
+				position: relative;
+				top: 4px;
+			}
+			
+			.protocolBox a {
+				color: #1473e6;
+			}
+			
+			.protocolBox .agree {
+				position: absolute;
+				display: inline-block;
+				width: 2.14rem;
+				height: 2.14rem;
+				top: 0;
+				left: 0;
+				z-index: 0;
+				background: url(../images/public/agree1.png) no-repeat;
+				background-size: cover;
+			}
+			
+			.protocolBox input {
+				position: relative;
+				width: 2.14rem;
+				height: 2.14rem;
+				z-index: 1;
+				opacity: 0;
+			}
+			
+			.protocolBox input:checked~.agree {
+				background-image: url(../images/public/agree.png);
+			}
+			
+			label.phonebox2:after {
+				display: none;
+			}
+			
+			.phonebox2 {
+				position: relative;
+				width: 100%;
+				font-size: 2.16rem;
+			}
+			
+			.phonebox2 input {
+				width: 100%;
+				color: #1473e6;
+				/*line-height: 80px;*/
+				height: 48px;
+				line-height: 48px;
+				text-indent: 24px;
+				background: #fff;
+			}
+			
+			.phonebox2 .sendVCCode {
+				position: absolute;
+				width: 150px;
+				top: 0;
+				right: 0;
+				height: 100%;
+				text-align: center;
+				line-height: 42px;
+				color: #989898;
+			}
+			
+			.phonebox2 .sendVCCode:before {
+				content: "";
+				position: absolute;
+				width: 1px;
+				height: 100%;
+				top: 0;
+				left: 0;
+				background: #ddd;
+			}
+			
+			.phonebox2 .sendVCCode span {
+				text-indent: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container loginWrap">
+			<header class="gray">
+				<span id="gobindBack">返回</span>
+				<p>注册</p>
+			</header>
+
+			<section class="regSetPwdWrap">
+				<label class="phonebox">
+          			<input id="jphone" type="tel"  placeholder="手机号" autofocus="" required=""></input>
+       			</label>
+
+				<label class="nick" style="display: none;">
+        			<input type="text" name="nick" id="nick"  placeholder="2-8个字符" required="" autofocus="" />
+        		</label>
+				<label class="password" style="display: none;">
+        			<input type="password" name="password" id="password" value="123456"  placeholder="4-8个字符，区分大小写" required="" />
+        		</label>
+
+				<label class="phonebox2">
+         	 <input id="jimageVC" type="text"  placeholder="请输入图片验证码" autofocus="" required=""></input>
+         	 <input id="jimageVCKey" type="text" style="display: none;" />
+          			<span class="sendVCCode" id="getImageVC" style="vertical-align: middle; overflow: hidden; text-indent: 0;"><img src="../images/temp/vcode.png" style="height: 100%; display: block;" /></span>
+        </label>
+
+				<label class="phonebox2">
+         	 <input id="jmessageVC" type="number"  placeholder="请输入短信验证码" autofocus="" required=""></input>
+          	<span class="sendVCCode" id="getVCCode">立即发送 <span id="jtimecount"></span></span>
+        </label>
+
+				<label class="inviteCode" style="display: none;">
+		        	<input type="number" name="inviteCode" id="inviteCode"  placeholder="邀请码(选填)"/>
+		        </label>
+
+				<a class="compelate" href="#this">完成</a>
+
+				<div class="protocolBox">
+					<span class="agreebox">
+						<input id="jagree" type="checkbox" name="agree" checked="checked" />
+						<span class="agree"></span>
+					</span>
+					我已阅读并同意
+					<a href="#this" onclick="openAgreement()">使用条款</a>
+					<!-- 和<a href="#this">隐私政策</a> -->
+				</div>
+			</section>
+		</div>
+
+		<script type="text/javascript" src="../js/jquery.min.js" ></script>
+		<script type="text/javascript" src="http://api.bmizx.tv/ycedu/js/socket.io.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layerpc.js"></script>
+
+		<script>
+			$(function() {
+				var code = $.getUrlParam("code");
+				var sid = $.getUrlParam("state");
+				var opi = $.getUrlParam("opi");
+
+				var imgVCKey = ""; //图片验证码key
+
+				localStorage.setItem("messageCouterFlag", true);
+
+				function getImageVCCode() {
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Member.ashx?action=GetVerifyCode",
+						dataType: "json",
+						success: function(result) {
+							$("#getImageVC img").attr("src", SERVEROOTFILE + result[0].codeImg);
+							imgVCKey = result[0].codeKey;
+						}
+					});
+				}
+				getImageVCCode();
+				$("#getImageVC").on("click", function() {
+					getImageVCCode();
+				})
+
+				function getMessageCode() {
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Member.ashx?action=getRegisterValidCode",
+						dataType: "json",
+						data: {
+							name: $("#jphone").val(),
+							codeKey: imgVCKey,
+							codeValue: $("#jimageVC").val()
+						},
+						success: function(result) {
+							if(result == 805 || result == "805") {
+								layer.msg("验证码错误！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+								
+								return false;
+							}
+							if(result == 808 || result == "808") {
+								layer.msg("该手机已注册！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+								return false;
+							}
+							if(result == 809 || result == "809") {
+								layer.msg("该用户已注册！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+	
+								return false;
+							}
+							if(result == 810 || result == "810") {
+								layer.msg("图形验证码错误！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+								getImageVCCode();
+								return false;
+							}
+
+							if(result == 815 || result == "819") {
+								layer.msg("请勿请求短信验证码！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+								
+								return false;
+							}
+
+							showVCLabel();
+						}
+					});
+
+				}
+
+				function sendMessageCounter() {
+					if(localStorage.getItem("messageCouterFlag") == undefined || localStorage.getItem("messageCouterFlag") == "undefined") {
+						localStorage.setItem("messageCouterFlag", true);
+					}
+
+					if(localStorage.getItem("messageCouterFlag") == false || localStorage.getItem("messageCouterFlag") == "false") {
+						return false;
+					}
+
+					getMessageCode();
+				}
+
+				function showVCLabel() {
+					localStorage.setItem("messageCouterFlag", false);
+					var i = 120;
+					var messageCounter = setInterval(function() {
+						$("#getVCCode").text(i-- + "s");
+
+						if(i < 1) {
+							clearInterval(messageCounter);
+							$("#getVCCode").text("重新发送");
+							localStorage.setItem("messageCouterFlag", true);
+						}
+					}, 1000)
+				}
+
+				$("#getVCCode").on("click", function() {
+					if(!isEmpty($("#jphone").val(), "手机号不能为空")) {
+						return false;
+					}
+
+					if(!checkPhoneFormat($("#jphone").val())) {
+						return false;
+					}
+
+					if(!isEmpty($("#jimageVC").val(), "图形验证码不能为空")) {
+						return false;
+					}
+
+					sendMessageCounter();
+				})
+
+				$("#gobindBack").on("click", function() {
+					window.location.href = "bindlogin.html?state=" + sid + "&code=" + code + "&fType=1&opi=" + opi;
+				});
+
+				$(".compelate").on("click", function() {
+					var phone = $("#jphone").val(),
+						nickName = $("#nick").val(),
+						password = $("#password").val(),
+						codeKey = $("#jimageVCKey").val(),
+						imageVC = $("#jimageVC").val(),
+						vcCode = $("#jmessageVC").val(),
+						inviteCode = $("#inviteCode").val();
+
+					if(!isEmpty(phone, "手机号不能为空")) {
+						return false;
+					}
+
+					if(!checkPhoneFormat(phone)) {
+						return false;
+					}
+
+					//					if(!nickFormat(nickName)) {
+					//						return false;
+					//					}
+
+					//					if(!pwdFormat(password)) {
+					//						return false;
+					//					}
+
+					//					if(!isEmpty(password, "密码不能为空")) {
+					//						return false;
+					//					}
+
+					if(!isEmpty(imageVC, "图形验证码不能为空")) {
+						return false;
+					}
+
+					if(!isEmpty(vcCode, "短信验证码不能为空")) {
+						return false;
+					}
+
+					if(!$("#jagree").is(":checked")) {
+						layer.msg("请勾选同意条款", {
+								offset: 'm',
+								// anim: 6,
+								time: 4000, //2秒后自动关闭
+						});
+						return false;
+					}
+
+					$.ajax({
+						type: "post",
+						url: SERVEROOTDATA + "Member.ashx?action=thirdRegister",
+						dataType: "json",
+						data: {
+							OpenId: opi,
+							mobile: phone,
+							nickName: "",
+							password: "123456",
+							codeKey: codeKey,
+							imageVC: imageVC,
+							validateCode: vcCode,
+							inviteCode: inviteCode,
+							boundType: 1
+						},
+						success: function(ret) {
+							if(ret == 805 || ret == "805") {
+								layer.msg("验证码错误", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+								return false;
+							}
+
+							if(ret == 808 || ret == "808") {
+								layer.msg("该用户已注册", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+								});
+		
+								return false;
+							}
+
+							ret = ret[0];
+							CHAT2.submit(sid, ret);
+
+							//绝对路径
+							var headerIcon = ret.iconPath;
+							if(headerIcon == "" || headerIcon == null || headerIcon == undefined) {
+								var absolutePathIcon = "false";
+							} else {
+								var absolutePathIcon = ROOTFILE + headerIcon;
+							}
+
+							var gender = ret.sex;
+							if(gender == 0 || gender == "0") {
+								gender = "男";
+							} else if(gender == 1 || gender == "1") {
+								gender = "女";
+							} else {
+								gender = "保密";
+							}
+
+							//存储用户信息
+							localStorage.setItem('$ycuid', ret.memberId); //模拟 uid
+							localStorage.setItem('$ycuname', ret.nickName); //模拟uName
+							localStorage.setItem('$ycuheader', absolutePathIcon); //模拟uHeader
+							localStorage.setItem('$ycgender', gender);
+							localStorage.setItem('$ycbirthDay', ret.birthDay);
+							localStorage.setItem('$ycjob', ret.job);
+							localStorage.setItem('$ycaddress', ret.address);
+
+							localStorage.setItem('$bomimoney', ret.sowingCoin); //播米币
+							localStorage.setItem('$bomiamount', ret.amount); //账户余额
+							
+							layer.msg("注册成功！", {
+									offset: 'm',
+									// anim: 6,
+									time: 4000, //2秒后自动关闭
+							});
+
+
+							setTimeout(function() {
+								window.location.href = ROOTLOGIN + "/index.html";
+							}, 300)
+						}
+					});
+
+				})
+			});
+		</script>
+	</body>
+
+</html>

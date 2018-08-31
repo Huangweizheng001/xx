@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>影视圈-详情</title>
+    <link rel="shortcut icon" href="./images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="css/fetv.css" />
+    <link rel="stylesheet" href="css/fetvAppend.css" />
+    <link rel="stylesheet" href="css/jquery.emoji.css" />
+    <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />
+</head>
+<body>
+<header id="header">
+    <header-template></header-template>
+</header>
+<section>
+    <div class="container">
+        <!--<div class="femoviedetail-title">-->
+            <!--<div class="febox">-->
+                <!--<span>【微影视】</span>-->
+                <!--<p>国图公开课 汉字与中华文化：世界上唯一没有中断的表意...</p>-->
+                <!--<b>123456</b>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="" id="videoPlay"></div>
+        <!--<div class="femoviedetail-share">-->
+            <!--分享到:-->
+            <!--<span class="feweixin"></span>-->
+            <!--<span class="feqzone"></span>-->
+            <!--<span class="fexina"></span>-->
+            <!--<span class="feqq"></span>-->
+        <!--</div>-->
+    </div>
+</section>
+<section>
+    <div class="container" id="ferelevant">
+        <!--简介-->
+        <div class="femoviebrief">
+            <h2>节目信息</h2>
+            <h4 v-cloak>所属频道: </h4>
+            <div v-cloak >
+                这是简介大大大大大阿达大大大大大爱的大大大啊
+            </div>
+        </div>
+        <div class="ferelevantrecommend" style="padding-bottom: 50px">
+            <div class="fetitle">相关推荐</div>
+            <div class="swiper-container ">
+                <div class="swiper-wrapper femoviepast">
+                    <div class="swiper-slide" v-cloak v-for="item in relevantArr">
+                        <a v-bind:href="item.courseId|addCourseRoot" class="febox" target="_blank">
+                            <img v-bind:src="item.iconPath|addRootFile" alt="">
+                            <!--<p><b>{{item.time}}</b>{{item.title}}</p>-->
+                            <p>{{item.courseName}}</p>
+                        </a>
+                    </div>
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant2.png" alt="">-->
+                            <!--<p><b>30:00</b>福建农林大学： 坚持实践育人 引领青年成长</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant3.png" alt="">-->
+                            <!--<p><b>20:45</b>全省高校思想政治 工作会议在榕召开</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant4.png" alt="">-->
+                            <!--<p><b>25:10</b>福州大学：“三位一 体”打造“青椒”成长乐园</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant5.png" alt="">-->
+                            <!--<p><b>60:00</b>福建省教育厅 组织反腐倡廉警示教育</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant1.png" alt="">-->
+                            <!--<p><b>30:00</b>省政协领导视察 今年闽高校招生录取工作</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="swiper-slide">-->
+                        <!--<a href="" class="febox">-->
+                            <!--<img src="images/temp/relevant2.png" alt="">-->
+                            <!--<p><b>20:45</b>福建农林大学： 坚持实践育人 引领青年成长</p>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                </div>
+                <!-- Add Arrows -->
+            </div>
+            <div class="swiper-button-prev" ></div>
+            <div class="swiper-button-next" ></div>
+        </div>
+    </div>
+</section>
+<!--<section>-->
+    <!--<div class="container" id="femoviedetail">-->
+        <!--<div class="fepersonsay" >-->
+            <!--<span></span>-->
+            <!--<div class="fepersonsay-right">-->
+                <!--<div class="content" contenteditable="true"></div>-->
+                <!--<div class="febox">-->
+                    <!--<a  href="#this"></a>-->
+                    <!--<div>-->
+                        <!--还可以输入<b>600</b>字-->
+                        <!--<button>发表评论</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<ul class="fediscuss">-->
+            <!--<li>-->
+                <!--<span></span>-->
+                <!--<div class="fediscuss-right">-->
+                    <!--<h4>猪八戒</h4>-->
+                    <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                    <!--<div class="febox">-->
+                        <!--<span>7月12日 14:63</span>-->
+                        <!--<div>-->
+                            <!--<b>回复</b>-->
+                            <!--<span>4563</span>-->
+                            <!--<h3><span>查看回复</span>(2)</h3>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="fereply">-->
+                        <!--<div  contenteditable="true"></div>-->
+                        <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<ul class="fediscuss-chirld">-->
+                    <!--<li>-->
+                        <!--<span></span>-->
+                        <!--<div class="fediscuss-right">-->
+                            <!--<h4>唐僧<span>回复</span>孙悟空</h4>-->
+                            <!--<p>我的弄啥类~</p>-->
+                            <!--<div class="febox">-->
+                                <!--<span>7月14日 14:63</span>-->
+                                <!--<div>-->
+                                    <!--<b>回复</b>-->
+                                    <!--<span>4563</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="fereply">-->
+                                <!--<div  contenteditable="true"></div>-->
+                                <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span></span>-->
+                        <!--<div class="fediscuss-right">-->
+                            <!--<h4>孙悟空</h4>-->
+                            <!--<p>没用过那个灯~</p>-->
+                            <!--<div class="febox">-->
+                                <!--<span>7月14日 14:63</span>-->
+                                <!--<div>-->
+                                    <!--<b>回复</b>-->
+                                    <!--<span>4563</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="fereply">-->
+                                <!--<div  contenteditable="true"></div>-->
+                                <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span></span>-->
+                <!--<div class="fediscuss-right">-->
+                    <!--<h4>猪八戒</h4>-->
+                    <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                    <!--<div class="febox">-->
+                        <!--<span>7月12日 14:63</span>-->
+                        <!--<div>-->
+                            <!--<b>回复</b>-->
+                            <!--<span>4563</span>-->
+                            <!--<h3><span>查看回复</span>(0)</h3>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="fereply">-->
+                        <!--<div  contenteditable="true"></div>-->
+                        <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span></span>-->
+                <!--<div class="fediscuss-right">-->
+                    <!--<h4>猪八戒</h4>-->
+                    <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                    <!--<div class="febox">-->
+                        <!--<span>7月12日 14:63</span>-->
+                        <!--<div>-->
+                            <!--<b>回复</b>-->
+                            <!--<span>4563</span>-->
+                            <!--<h3><span>查看回复</span>(0)</h3>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="fereply">-->
+                        <!--<div  contenteditable="true"></div>-->
+                        <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<span></span>-->
+                <!--<div class="fediscuss-right">-->
+                    <!--<h4>猪八戒</h4>-->
+                    <!--<p>老师讲得很棒,受益匪浅~</p>-->
+                    <!--<div class="febox">-->
+                        <!--<span>7月12日 14:63</span>-->
+                        <!--<div>-->
+                            <!--<b>回复</b>-->
+                            <!--<span>4563</span>-->
+                            <!--<h3><span>查看回复</span>(0)</h3>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="fereply">-->
+                        <!--<div  contenteditable="true"></div>-->
+                        <!--<p><a  href="#this"></a><button>回复</button></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</section>-->
+<footer id="footer">
+    <footer-template></footer-template>
+</footer>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.storage.js"></script>
+<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="js/vue.min.js"></script>
+<script type="text/javascript" src="js/vue-resource.min.js"></script>
+<script type="text/javascript" src="./js/jquery.emoji.js"></script>
+<script type="text/javascript" src="js/fetv.js"></script>
+<script type="text/javascript" src="js/fetvAppend.js"></script>
+<script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.7.6/prism-min.js"></script>
+<script>
+    $(function () {
+        var vId=$(this).getUrlParam("videoId");
+        moviedetail(vId);
+        moviedetail_liuyan();
+    })
+</script>
+</body>
+</html>

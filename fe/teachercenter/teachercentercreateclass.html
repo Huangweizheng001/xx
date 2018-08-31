@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-班级管理</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../themes/default/css/ueditor.css" />
+    <link rel="stylesheet" href="../themes/iframe.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>主页管理 <i class="uk-icon-angle-right"></i></span>
+                <span>班级管理 > 基本信息</span>
+
+            </div>
+            <!--班级管理-->
+            <div class="feupdatedata">
+                <div class="febox">
+                    <h1><b>我的资源:</b><span data-id="1" class="active">全日制学校</span><span data-id="2">培训机构</span></h1>
+                    <p>
+                        <button><i class="uk-icon-plus-circle"></i>添加班级</button>
+                    </p>
+                </div>
+                <div class="feteacherindex-photo">
+                    <!--全日制-->
+                    <div class="fevediodetail" id="allschool" style="position: relative">
+                        <a class="span4" v-cloak v-for="item in allschoolArr" v-bind:href="item.classId|addRoot">
+                            <div class="fepanel">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.title}}</h3>
+                                </div>
+                                <ul v-bind:data-id="item.classId">
+                                    <li ><i class="uk-icon-edit"></i></li>
+                                    <li ><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <div style="clear: both"></div>
+                        <!--分页-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--培训机构-->
+                    <div class="fevediodetail fehidden" id="trainschool" style="position: relative">
+                        <a class="span4" v-cloak v-for="item in trainschoolArr" v-bind:href="item.classId|addRoot">
+                            <div class="fepanel">
+                                <div class="feimage">
+                                    <img v-bind:src="item.iconPath|addRootFile" alt="">
+                                </div>
+                                <div class="febox">
+                                    <h3>{{item.title}}</h3>
+                                </div>
+                                <ul v-bind:data-id="item.classId">
+                                    <li><i class="uk-icon-edit"></i></li>
+                                    <li><i class="uk-icon-trash"></i></li>
+                                </ul>
+                            </div>
+                        </a>
+                        <div style="clear: both"></div>
+                        <!--分页-->
+                        <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                            <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                                <a href="#this">上一页</a>
+                            </li>
+                            <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                                <a href="#this">{{index}}</a>
+                            </li>
+                            <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                                <a href="#this">下一页</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--创建全日制班级弹框-->
+            <div id="addallschool" style="display: none">
+                <h1>选择班级:</h1>
+                <ul>
+                    <li>
+                        <span>地区:</span>
+                        <select name="" id="address">
+                            <option value="1">福州市</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>学段:</span>
+                        <select name="" id="period">
+                            <option value="1">小学</option>
+                        </select>
+                    </li>
+                    <li>
+                        <span>学科:</span>
+                        <select name="" id="suject">
+                            <option value="1">语文</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="feoperation">
+                    <button>保存</button>
+                    <button>取消</button>
+                </div>
+            </div>
+            <!--创建培训机构班级弹框-->
+            <div id="addtrainschool" style="display: none">
+                <h1>填写班级:</h1>
+                <ul>
+                    <li>
+                        <span>地区:</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>学段:</span>
+                        <input type="text">
+                    </li>
+                    <li>
+                        <span>学科:</span>
+                        <input type="text">
+                    </li>
+                </ul>
+                <div class="feoperation">
+                    <button>保存</button>
+                    <button>取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        createclass(teacherId);
+    })
+</script>
+</body>
+
+</html>

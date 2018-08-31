@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<title>聊天管理</title>
+
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="css/dbliveroom.css" />
+
+		<style>
+			.yc-manage-wrap {
+				min-width: 500px;
+			}
+			
+			.yc-manage-wrap #jmanageBox {
+				max-height: 250px;
+				position: relative;
+				left: 0;
+				padding: 3px 2rem;
+			}
+			
+			.yc-manage-wrap #jmanageBox .bmonlieuser {
+				margin-bottom: 6px;
+				font-size: 16px;
+				font-weight: 600;
+			}
+			
+			.yc-manage-wrap #jmanageBox .bmonlieuser span {
+				color: #f00;
+			}
+			
+			.yc-manage-wrap #jmanageBox li {
+				border-bottom: 1px solid #ddd;
+			}
+			
+			.yc-manage-wrap #jmanageBox .bmuser {
+				padding: 2px 10px;
+				text-decoration: underline;
+				color: #fff;
+				background-color: #D49806;
+			}
+			
+			.yc-manage-wrap #jmanageBox .bmuser:hover {
+				background-color: #C79D3B;
+			}
+			
+			.yc-manage-wrap #jmanageBox li p:first-child {
+				margin-bottom: .6rem;
+				padding: 8px;
+				font-size: 1.1rem;
+				color: #fff;
+				background-color: #62adb5;
+			}
+			
+			.yc-manage-wrap #jmanageBox li p:not(:first-child) {
+				margin: 6px;
+				line-height: 28px;
+			}
+			
+			.bmorderLi {
+				float: right;
+				color: #497DCC;
+				margin-right: 15px;
+			}
+			
+			.yc-manage-wrap #jmanageBox .bmuser.bmvisitor {
+				background: #f00;
+			}
+			
+			.bmformSource {
+				display: inline-block;
+				padding: 2px 13px;
+				line-height: normal;
+				color: #fff;
+				background: #00e993;
+			}
+			
+			.bmformUrl {
+				display: inline-block;
+				max-width: 160px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				vertical-align: bottom;
+			}
+			
+			.bmoutmodel{
+				margin-left:15px;
+				color: #497DCC !important;
+			}
+			
+			.bmloginout{
+				background-color: #999 !important;
+			}
+
+		</style>
+
+	</head>
+
+	<body style="padding-top: 0;">
+		<section class="yc-manage-wrap">
+			<ul class="yc-manage-box" id="jmanageBox"></ul>
+		</section>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/vue.min.js"></script>
+		<script type="text/javascript" src="js/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="js/vue-resource.min.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/ycedu.js"></script>
+		<script type="text/javascript" src="js/chatmanager.js"></script>
+	</body>
+
+</html>

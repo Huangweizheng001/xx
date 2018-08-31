@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/femoblie.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/festyle.css">
+		<title>选课分类</title>
+	</head>
+
+	<body>
+		<header id="feHeaderWhiteSearch">
+        <header-white-search-template title="选课分类"></header-white-search-template>
+    	</header>
+		<div class="feCourseCenterWrap" id="feCourseCenterWrap">
+			<div class="feCourseSelectWrap" @click="closeSelect()" v-bind:class="{'feCourseSelectWrapActive':isOpenLeft}">
+				<div class="feCourseSelectWrapBg" @click="closeSelect($event)" v-bind:class="{'feCourseSelectActive':isOpenLeft}">
+					<div class="feGrayLIne16"></div>
+					<div class="swiper-container feCoursetypeContainer">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-cloak v-for="(item,index) in courseType"  v-bind:data-id='item.recordType' v-bind:class="{'active-nav':recordType==item.recordType}">
+								<a href="javascript:;"  @click="changeSlide(item.recordType,index)" >{{item.playTypeName}}</a>
+							</div>
+						</div>
+					</div>
+					<template  v-cloak v-for="(item,index) in courseTypeList">
+						<div class="feGrayLIne16"></div>
+						<div class="feCoursetypeList">
+							<a class="feCoursetypeListTitle" v-bind:class="['feCoursetypeList'+index,{'active':educationalLevelId==item.educationalLevelId}]"  @click="gotoList($event,item.educationalLevelId,'')">{{item.educationalLevelName}}</a>
+							<ul class="clearfix">
+								<li class="span6" v-for="(itemChild,index) in item.children">
+									<a @click="gotoList($event,item.educationalLevelId,itemChild.gradeId)" v-bind:class="{'active':gradeId==itemChild.gradeId}">{{itemChild.gradeName}}</a>
+								</li>
+								
+							</ul>
+						</div>
+					</template>
+				</div>
+			</div>
+			
+				
+				<div class="feCourseCenterTitle">
+					<span @click="closeSelect($event)" v-cloak>{{courseTypeName}}/{{courseElevelName}}</span> 
+					<a  @click="openFiter()" v-bind:class="{'active':isOpenFilter}" v-cloak>筛选</a>
+				</div>
+				<div class="feCourseFilter" v-show="isOpenFilter">
+						<div class="feCourseFilterBox" v-bind:class="{'feCourseFilterBoxActive':isOpenFilter}">
+							<div class="feCourseFilterLi">
+								<h3>学科</h3>
+								<ul class="clearfix">
+									<li v-for="item in subjectArr"  @click='addActive(1,item.subjectId)' v-bind:class="{'active':subjectId==item.subjectId}">{{item.subjectName}}</li>
+								</ul>
+							</div>
+							<div class="feCourseFilterLi">
+								<h3>综合排序</h3>
+								<ul class="clearfix">
+									<li v-for="item in complexArr"  @click='addActive(2,item.sortType)' v-bind:class="{'active':complexId==item.sortType}">{{item.sortName}}</li>
+								</ul>
+							</div>
+							<div class="feCourseFilterLi">
+								<h3>课程内容包含（可多选）</h3>
+								<ul class="clearfix">
+									<template v-for="item in fiterCourseArr">
+										<li  @click='addActive(3,item.containType)' v-if='item.containType=="courseKind"' v-bind:class="{'active':courseKind}">{{item.containContent}}</li>
+										<li  @click='addActive(3,item.containType)' v-if='item.containType=="allowListen"' v-bind:class="{'active':isListen}">{{item.containContent}}</li>
+										<li   @click='addActive(3,item.containType)' v-if='item.containType=="isFree"' v-bind:class="{'active':isFree}">{{item.containContent}}</li>
+									</template>
+								</ul>
+							</div>
+						</div>
+						<div class="feSure">
+							<p @click="clearSelect()">清空筛选</p>
+							<div class="feSureBtn" @click="gotoCourse()">确&nbsp;认</div>
+						</div>
+				</div>
+				
+				<div class="feCourseCenterList">
+					
+					<p class="feboxpadding" v-cloak>共找到{{courseTotal}}门课程</p>
+					<mt-loadmore :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" :max-distance="150" @bottom-status-change="handleBottomChange" ref="loadmore" v-cloak>
+					<initempty-component label="暂无数据" :initflag=noData></initempty-component>
+					<a class="feCourseList" v-cloak v-for='item in courseArr' v-bind:href='item.cId' v-cloak>
+						<div class="feImage">
+							<img v-bind:src="item.iconPath" lazy="loaded">
+						</div>
+						<div class="feRight">
+							<h5>{{item.courseName}}</h5>
+							<p class="feSchoolName">{{item.organName}}</p>
+							<p class="fePrice" v-if='item.isFree==0'>￥{{item.preferentialPrice}}</p>
+							<p class="fePrice fePriceFree" v-else>免费</p>
+							<span class="fePublishTime">共{{item.classHour}} 随到随学</span>
+							<span class="feCount">{{item.enrolledCount}}人已报名</span>
+						</div>
+					</a>
+					<div slot="bottom" class="mint-loadmore-bottom"><span v-show="bottomStatus === 'pull'" :class="{ 'rotate': bottomStatus === 'drop' }">↓</span> <span v-show="bottomStatus === 'loading'">Loading...</span> <span v-show="bottomStatus === 'drop'">{{bottomText}}</span></div>
+					</mt-loadmore>
+			</div>
+
+		</div>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+	
+		<script src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				courseCenterApp($.getUrlParam("educationalLevelId"),$.getUrlParam("gradeId"),$.getUrlParam("recordType"));
+			})
+		</script>
+	</body>
+
+</html>

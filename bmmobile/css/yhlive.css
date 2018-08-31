@@ -1,0 +1,172 @@
+
+
+/*
+ * 悦华直播
+ */
+body,
+			html {
+				height: 100%;
+			}
+			
+			#chatContent {
+				-webkit-user-select: initial;
+			}
+			
+			#livePlanBox .title {
+				padding: 0 1.92rem;
+				font-size: 2.14rem;
+				color: #272828;
+				line-height: 5.857rem;
+				background-color: #f2f2f2;
+			}
+			
+			#livePlanBox .title a {
+				float: right;
+				display: inline-block;
+				margin: .75rem 0;
+				padding: 1rem;
+				line-height: normal;
+				box-sizing: border-box;
+				border-radius: 0.7rem;
+				color: #fff;
+				font-size: 1.71rem;
+				background-color: #f06600;
+			}
+			
+			#chatbox {
+				/*margin-bottom: 50px;*/
+				padding: 1rem 1rem 5rem;
+				overflow: auto;
+			}
+			
+			.inflibox {
+				margin-bottom: 1rem;
+				font-size: 12px;
+			}
+			
+			.adminUserInf .userIcon {
+				float: left;
+				width: 32px;
+				margin-right: 8px;
+			}
+			
+			.sendContent {
+				margin-left: 40px;
+			}
+			
+			.adminUserBox .sendContent {
+				margin-top: .5rem;
+			}
+			
+			.userLevel {
+				display: inline-block;
+				display: inline-block;
+				padding: .1rem .3rem;
+				margin-right: .6rem;
+				border-radius: 10px;
+				color: #fff;
+				background-color: #00c4ff;
+			}
+			
+			.adminUserBox .userLevel {
+				background-color: #f00;
+			}
+			
+			.sendContent {
+				word-break: break-all;
+			}
+			
+			.sendContent .userName {
+				vertical-align: top;
+			}
+			
+			.inflibox.reward .userInf {
+				display: inline-block;
+				vertical-align: middle;
+			}
+			
+			.inflibox.reward .sendContent {
+				display: inline-block;
+				margin-left: 10px;
+				vertical-align: middle;
+			}
+			
+			.inflibox.reward .sendContent img {
+				max-width: 40px;
+				vertical-align: middle;
+			}
+			
+			.inflibox.reward .rewardObj {
+				font-size: 1.85rem;
+			}
+			
+			.inflibox.reward .rewardNumber {
+				font-style: italic;
+				margin: 0 1rem;
+			}
+			
+			.userLevel0 {
+				background-color: #bcbcbc;
+			}
+			
+			.userLevel1 {
+				background-color: #48de6c;
+			}
+			
+			.userLevel2 {
+				background-color: #fd8c39;
+			}
+			
+			.userLevel3 {
+				background-color: #d5dde6;
+			}
+			
+			.userLevel4 {
+				background-color: #ecb83d;
+			}
+			
+			.userLevel5 {
+				background-color: #9b74ff;
+			}
+			
+			.userLevel6 {
+				background-color: #e1292e;
+			}
+			
+			header {
+				position: absolute;
+				top: 1.57rem;
+				z-index: 999;
+			}
+			
+			.goBack {
+				position: absolute;
+				left: 2.14rem;
+				width: 3.42rem;
+				height: 3.42rem;
+				top: 1.4rem;
+				border-radius: 50%;
+				background: url(../images/public/goBack2.png) no-repeat center;
+				background-color: rgba(255, 255, 255, .3);
+				background-position: 40% center;
+				background-size: 1.285rem 2.285rem;
+			}
+			
+			#J_prismPlayer {
+				height: 24.92rem;
+			}
+			
+			#J_prismPlayer.mask:after {
+				content: "请登录或购买悦华沙龙会员！";
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding-top: 25%;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				text-align: center;
+				font-size: 20px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .5);
+			}

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<!--<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/1.9.9/skins/default/index-min.css" />
+		<link rel="stylesheet" href="../css/dropload.css">
+		<link rel="stylesheet" href="../css/bmmobile_cyq.css">
+		<link rel="stylesheet" href="../css/bm.css">
+		<title>播放页</title>
+
+		<style>
+			body,
+			html {
+				background: #ebebeb;
+				height: 100%;
+			}
+			
+			#livePlanBox .title {
+				padding: 0 1.92rem;
+				font-size: 1.455rem;
+				color: #272828;
+				line-height: 3.857rem;
+			}
+			
+			#J_prismPlayer {
+				width: 100%;
+				height: 25.92rem;
+			}
+			
+			.goBack {
+				position: absolute;
+				left: 2.14rem;
+				width: 3.42rem;
+				height: 3.42rem;
+				top: 2.4rem;
+				border-radius: 50%;
+				background: url(../images/public/goBack2.png) no-repeat center;
+				background-color: rgba(255, 255, 255, .3);
+				background-position: 40% center;
+				background-size: 1.285rem 2.285rem;
+			}
+			
+			#sendBox {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 6.428rem;
+				width: 100%;
+				background-color: #1473e6;
+			}
+			
+			#sendBox label {
+				width: 100%;
+				height: 100%;
+				padding: 1.14rem 8.58rem 1.14rem 1.64rem;
+				box-sizing: border-box;
+			}
+			
+			#sendBox input {
+				width: 100%;
+				height: 3.8rem;
+				line-height: 4rem;
+				text-indent: 1rem;
+				font-size: 1.363rem;
+				border-radius: 0.6rem;
+				background-color: #fff;
+			}
+			
+			#sendBox i {
+				position: absolute;
+				width: 3.57rem;
+				height: 3.57rem;
+				right: 3.14rem;
+				top: 1.5rem;
+				background: url(../images/public/send.png) no-repeat center;
+				background-size: contain;
+			}
+			
+			.dianzan {
+				padding: 1rem 2rem;
+				background: #Fff;
+			}
+			
+			.like {
+				position: relative;
+				padding-left: 25px;
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				line-height: 2;
+				color: #cdcdcd;
+				font-size: 1rem;
+			}
+			
+			.like:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 20px;
+				height: 20px;
+				display: block;
+				background: url(../images/public/zan.png) no-repeat;
+				background-size: 20px 20px;
+			}
+			
+			.collection,
+			.turn {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+			}
+			
+			.collection,
+			.turn {
+				float: right;
+			}
+			
+			.turn {
+				margin-right: 2rem;
+			}
+			
+			#playBox {
+				position: relative;
+				overflow: hidden;
+			}
+			
+			#playBox.visited:after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.05);
+			}
+			
+			.relatedVideo {
+				background: #fff;
+				margin-bottom: 2rem;
+			}
+			
+			.relatedVideo ul li {
+				border-bottom: 1px solid #ebebeb;
+				box-sizing: border-box;
+				padding: 1.5rem 1rem;
+				position: relative;
+			}
+			
+			.relatedVideo .relatedVideoImg {
+				float: left;
+				width: 40%;
+				margin-right: 5%;
+				box-sizing: border-box;
+				overflow: hidden;
+				border-radius: 2rem;
+				height: 100px;
+			}
+			
+			.relatedVideo .relatedVideoImg img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.relatedVideo .relatedVideoCon {
+				float: left;
+				width: 40%;
+				box-sizing: border-box;
+				color: #858585;
+				font-size: 1.455rem
+			}
+			
+			.relatedVideo .relatedVideoCon h3 {
+				color: #000;
+				font-size: 1.455rem;
+				line-height: 2;
+				font-weight: normal;
+				position: absolute;
+				top: 1.5rem;
+				left: 45%;
+			}
+			
+			.relatedVideo .relatedVideoCon .playnum {
+				color: #d0d0d0;
+				position: absolute;
+				line-height: 2;
+				bottom: 1.2rem;
+				left: 45%;
+			}
+			
+			.relatedVideo .relatedVideoCon .playnum>span {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background: url(../images/public/play.png) no-repeat;
+				background-size: 16px 16px;
+				vertical-align: middle;
+			}
+			
+			.relatedVideo {
+				background: #fff;
+				margin-bottom: 2rem;
+			}
+			
+			.relatedVideo ul li {
+				border-bottom: 1px solid #ebebeb;
+				box-sizing: border-box;
+				padding: 1.2rem 1.6rem;
+				position: relative;
+			}
+			
+			.relatedVideo ul li a {
+				display: block;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+			
+			.relatedVideo .relatedVideoImg {
+				float: left;
+				width: 45%;
+				margin-right: 5%;
+				box-sizing: border-box;
+				overflow: hidden;
+				border-radius: 0.5rem;
+				height: 245px;
+			}
+			
+			.relatedVideo .relatedVideoImg img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.relatedVideo .relatedVideoCon {
+				float: left;
+				left: 50%;
+				width: 50%;
+				box-sizing: border-box;
+				color: #858585;
+				font-size: 1.2rem;
+				height: 100%;
+			}
+			
+			.relatedVideo .relatedVideoCon h3 {
+				color: #000;
+				font-size: 1.5rem;
+				line-height: 2;
+				font-weight: normal;
+				position: absolute;
+				top: 1.5rem;
+				left: 50%;
+				padding-right: 10px;
+			}
+			
+			.relatedVideo .relatedVideoCon .playnum {
+				color: #d0d0d0;
+				position: absolute;
+				line-height: 2;
+				bottom: 1.2rem;
+				left: 50%;
+			}
+			
+			.relatedVideo .relatedVideoCon .playnum>span {
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				background: url(../images/public/play.png) no-repeat;
+				background-size: 16px 16px;
+				vertical-align: middle;
+			}
+			/*推荐课程*/
+			
+			.courseRecommend {
+				padding: 1rem 0 2rem;
+				background: #fff;
+				margin-bottom: 2rem;
+			}
+			
+			.courseRecommendSwiper {
+				box-sizing: border-box;
+				padding: 0 2rem;
+			}
+			
+			.courseRecommend .relatedVideoImg {
+				width: 100%;
+				overflow: hidden;
+				border-radius: 0.5rem;
+				height: 280px;
+			}
+			
+			.courseRecommend .relatedVideoImg img {
+				width: 100%;
+				height: 100%;
+			}
+			
+			.courseRecommend .courseRecommendSwiper a {
+				color: #858585;
+				font-size: 1.5rem;
+			}
+			
+			.courseRecommend .courseRecommendSwiper p {
+				line-height: 2;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			
+			@media screen and (max-width: 476px) {
+				.relatedVideo .relatedVideoImg {
+					height: 80px;
+				}
+				.courseRecommend .relatedVideoImg {
+					height: 70px;
+				}
+			}
+			
+			@media screen and (max-width: 760px) {
+				.relatedVideo .relatedVideoImg {
+					height: 120px;
+				}
+				.courseRecommend .relatedVideoImg {
+					height: 110px;
+				}
+			}
+			/*评论部分*/
+			
+			.commentBox {
+				padding: 1rem 0 4rem;
+				background: #fff;
+			}
+			
+			#commentBox {
+				/*padding: 2.14rem 2.14rem 7.14rem;
+				margin-bottom: 30px;*/
+				color: #282828;
+				font-size: 1.42rem;
+			}
+			
+			#commentBox li {
+				padding: 0.5rem 1.5rem 1rem;
+			}
+			
+			#commentBox .top * {
+				vertical-align: middle;
+			}
+			
+			#commentBox .top img {
+				margin-right: 1rem;
+				width: 3.42rem;
+				height: 3.42rem;
+				border-radius: 50%;
+			}
+			
+			#commentBox .top .time {
+				float: right;
+				margin-top: 1rem;
+			}
+			
+			#commentBox .content {
+				font-size: 1rem;
+				line-height: 3;
+			}
+			
+			#inputField {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<header>
+				<span class="goBack" onclick="goBack()" style="display: none;"></span>
+			</header>
+
+			<!-- 直播box -->
+			<section id="playBox">
+				<div id="J_prismPlayer" class="prism-player flex-con"></div>
+
+			</section>
+
+			<section id="livePlanBox" class="flex-con" style="overflow: auto;">
+				<p class="dianzan"><span class="like">
+					111
+				</span><span class="collection"><img src="../images/public/collection.png" /></span><span class="turn"><img src="../images/public/turn.png" /></span></p>
+				<div class="relatedVideo">
+					<p class="title">相关视频</p>
+					<ul id="jrelatedVideo"></ul>
+				</div>
+				<div class="courseRecommend">
+					<p class="title">课程推荐</p>
+					<div class="swiper-container courseRecommendSwiper">
+						<div class="swiper-wrapper" id="jcourseRecommend">
+
+							<!--<div class="swiper-slide">
+								<a href="coursedetail.html?courseId=">
+									<div class="relatedVideoImg">
+										<img src="../images/public/default.png" />
+									</div>
+									<p class="name">新手投资</p>
+									<p>￥1888.00</p>
+								</a>
+							</div>
+							<div class="swiper-slide">
+								<div class="relatedVideoImg">
+									<img src="../images/public/default.png" />
+								</div>
+								<p class="name">新手投资</p>
+								<p>￥1888.00</p>
+							</div>
+							<div class="swiper-slide">
+								<div class="relatedVideoImg">
+									<img src="../images/public/default.png" />
+								</div>
+								<p class="name">新手投资</p>
+								<p>￥1888.00</p>
+							</div>-->
+						</div>
+					</div>
+				</div>
+				<div class="commentBox">
+					<div class="title">
+						评论
+					</div>
+					<div id="content">
+						<ul id="commentBox"></ul>
+					</div>
+				</div>
+
+			</section>
+			<section id="inputField">
+				<div class="chatbox-wrap">
+					<div class="chatbox-inner"></div>
+					<div class="chat-input-box">
+						<input id="chatContent" contenteditable="true" placeholder='请输入文字' style="border:none;width:80%;background: #fff;"></input>
+						<a class="chat-submit" id='chatsend' href="#this">发送</a>
+					</div>
+				</div>
+		</div>
+
+		</section>
+		</div>
+
+		<script type="text/javascript" src="../js/zepto.min.js"></script>
+		<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bmmain.js"></script>
+		<script type="text/javascript" src="../js/layer.js"></script>
+		<script type="text/javascript" src="../js/prism-h5-min.js"></script>
+		<script type="text/javascript" src="../js/dropload.min.js"></script>
+
+		<script>
+			$(function() {
+				var itemIndex = 0,
+					LoadEnd_tab = false,
+					pageCount = 0;
+
+				// 每页展示6个
+				var num = 3;
+				var nownum = 0; //当前数据在第几条
+				var tabTypeId = ""; //默认类型为1
+
+				var ecId = $.getUrlParam("ecId");
+				var isload = true;
+				getVideoId(ecId);
+
+				// dropload
+				var dropload = $('#content').dropload({
+					scrollArea: window,
+					loadDownFn: function(me) {
+						//获取类型
+						setTimeout(function() {
+							pageCount++;
+							comment(me, pageCount, ecId, itemIndex); //评论
+						}, 200);
+
+					}
+				});
+
+				function getVideoId(ecId) {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getCourseDetailById',
+						data: {
+							"courseId": ecId
+						},
+						dataType: "json",
+						success: function(result) {
+							getVideoSource(result[1][0].videoId);
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+				function getVideoSource(videoId) {
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseCatalog.ashx?action=getPlayUrlByVideoId',
+						data: {
+							"videoid": videoId
+						},
+						success: function(result) {
+							newPlay(videoId, result);
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+
+				}
+
+				function newPlay(vid, url) {
+					window.courseplayer = new prismplayer({
+						id: "J_prismPlayer", // 容器id
+						// source: 'http://live.bmizx.net/yicelive/streamyice.m3u8', // 视频地址
+						//source: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+						// source:url,
+						autoplay: true, //自动播放：否
+						width: "100%", // 播放器宽度
+						height: "25.92rem", // 播放器高度
+						preload: true,
+						playsinline: true,
+						vid: vid,
+						playauth: url,
+						skinLayout: [{
+							"name": "bigPlayButton",
+							"align": "cc",
+							"x": 30,
+							"y": 80
+						}, {
+							"name": "controlBar",
+							"align": "blabs",
+							"x": 0,
+							"y": 0,
+							"children": [{
+								"name": "playButton",
+								"align": "tlabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "fullScreenButton",
+								"align": "trabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "volume",
+								"align": "trabs",
+								"x": 50,
+								"y": 25
+							}]
+						}],
+
+						// isLive: true,
+						cover: '../images/public/playIcon.jpg'
+					});
+
+				}
+
+				getRelatedVideo();
+				//获取相关视频
+				function getRelatedVideo() {
+					var jrelatedVideo = $('#jrelatedVideo'),
+						htmlStr = "";
+					$.ajax({ //发送消息
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getRelativeFinancialKnowledge',
+						data: {
+							"pageIndex": 1,
+							"pageSize": 4,
+						},
+						dataType: "json",
+						success: function(result) {
+							if(result.length < 1) {
+								console.log("数据出错~");
+								return false;
+							}
+							result.rows.forEach(function(value, index) {
+								var imgSrc = value.mobileIconPath;
+								if(imgSrc == "") {
+									imgSrc = '../images/public/default.png';
+								} else {
+									imgSrc = SERVEROOTFILE + imgSrc;
+								}
+								htmlStr += "<li><a class='clearfix' href='pediaPlayer.html?ecId=" + value.courseId + "'><div class='relatedVideoImg'><img src=" + imgSrc + " /></div><div class='relatedVideoCon'><h3>" + value.name + "</h3><p class='playnum'><span></span>1235</p></div></a></li>";
+							});
+							jrelatedVideo.html(htmlStr);
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				getCourseRecommend();
+				//获取课程推荐
+				function getCourseRecommend() {
+					var jcourseRecommend = $('#jcourseRecommend'),
+						htmlStr = "";
+					$.ajax({ //发送消息
+						type: "GET",
+						url: SERVEROOTDATA + 'Course.ashx?action=getRecommendCourse',
+						data: {
+							"pageIndex": 1,
+							"pageSize": 8,
+						},
+						dataType: "json",
+						success: function(result) {
+							if(result.length < 1) {
+								console.log("数据出错~");
+								return false;
+							}
+							result.rows.forEach(function(value, index) {
+								var imgSrc = value.mobileIconPath;
+								if((imgSrc == "") || (imgSrc == undefined) || (imgSrc == "undefined")) {
+									imgSrc = '../images/public/default.png';
+								} else {
+									imgSrc = SERVEROOTFILE + imgSrc;
+								}
+								htmlStr += "<div class='swiper-slide'><a href='coursedetail.html?courseId=" + value.courseId + "' style='display:block'><div class='relatedVideoImg'><img src=" + imgSrc + " /></div><p class='name'>" + value.name + "</p><p>￥" + value.preferentialPrice + "</p></a></div>";
+							});
+							jcourseRecommend.html(htmlStr);
+							var swiper = new Swiper('.courseRecommendSwiper', {
+								slidesPerView: 2,
+								spaceBetween: 15,
+							});
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+				}
+
+				sendComment();
+				//open commentFrame
+				function sendComment() {
+					$('#chatsend').click(function() {
+						//判断是否登入
+						if(!isLogined()) {
+							layer.open({
+								content: "非会员用户暂无法评论！",
+								skin: 'msg',
+								time: 2 //2秒后自动关闭
+							});
+
+							setTimeout(function() {
+								window.location.href = 'login.html';
+							}, 1500);
+
+						} else {
+							insertComment($('#chatContent').val(), ecId);
+						}
+					})
+
+				}
+
+				//插入评论
+				function insertComment(txt, id) {
+					$.ajax({ //发送消息
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseEvaluation.ashx?action=evaluation',
+						data: {
+							"memberId": localStorage.getItem('$ycuid'),
+							"courseId": id,
+							"evaluation": txt
+						},
+						success: function(result) {
+							if(result) {
+								layer.open({
+									content: "评论成功！",
+									skin: 'msg',
+									time: 2 //2秒后自动关闭
+
+								});
+								$('#chatContent').val('');
+							}
+						},
+						error: function(err) {
+							console.log(err);
+						}
+					});
+					localInsert(txt);
+				}
+
+				function localInsert(txt) {
+					var htmlStr = "",
+						headerIcon = localStorage.getItem('$ycuheader');
+
+					//判断用户头像是否存在
+					if(headerIcon == "false" || headerIcon == "" || headerIcon == undefined) {
+						headerIcon = "../images/public/login.png";
+					}
+
+					htmlStr = '<li><div class="top"><img src="' + headerIcon + '" />' +
+						'<span class="name">' + localStorage.getItem("$ycuname") + '</span>' +
+						'<span class="time">' + getNowFormatDate() + '</span>' +
+						'</div><div class="content">' + txt + '</div></li>';
+
+					$("#commentBox").prepend(htmlStr);
+				}
+
+				function getNowFormatDate() {
+					var date = new Date();
+					var seperator1 = "/";
+					var seperator2 = ":";
+					var month = date.getMonth() + 1;
+					var strDate = date.getDate();
+					if(month >= 1 && month <= 9) {
+						month = "0" + month;
+					}
+					if(strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+					}
+					var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+						" " + date.getHours() + seperator2 + date.getMinutes() +
+						seperator2 + date.getSeconds();
+					return currentdate;
+				}
+				//评论
+				function comment(me, page, courseId, numIndex) {
+					// loadingData();
+					var commentBox = $('#commentBox'),
+						$htmlStr = "";
+					$.ajax({
+						type: "GET",
+						url: SERVEROOTDATA + 'CourseEvaluation.ashx?action=getEvaluation',
+						dataType: "json",
+						data: {
+							"courseId": courseId,
+							"pageIndex": page,
+							"pageSize": num
+						},
+						success: function(result) {
+							var obj = result.rows;
+
+							if(obj.length < 1) {
+								LoadEnd_tab = true;
+								// 锁定
+								me.lock();
+								// 无数据
+								me.noData();
+
+								// 为了测试，延迟1秒加载
+								setTimeout(function() {
+									// 每次数据加载完，必须重置
+									me.resetload();
+								}, 1000);
+
+								return false;
+							} else {
+								if(page > result.totalPageCount) {
+									LoadEnd_tab = true;
+									// 锁定
+									me.lock();
+									// 无数据
+									me.noData();
+
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										// 每次数据加载完，必须重置
+										me.resetload();
+									}, 1000);
+
+								} else {
+									obj.forEach(function(value, index) {
+										if(value.iconPath == "") {
+											value.iconPath = '../images/public/login.png';
+										} else {
+											value.iconPath = SERVEROOTFILE + value.iconPath;
+										}
+										$htmlStr += "<li><div class='top'><img src='" + value.iconPath + "' /><span class='name'>" + value.nickName + "</span><span class='time'>" + value.evaluationDate + "</span></div><div class='content'>" + value.evaluation + "</div></li>";
+
+										nownum = (page - 1) * num + index + 1;
+										if((nownum) >= result.totalCount) {
+											console.log('到底啦')
+											LoadEnd_tab = true;
+											// 锁定
+											me.lock();
+											// 无数据
+											me.noData();
+											//break;
+										}
+
+									});
+									// 为了测试，延迟1秒加载
+									setTimeout(function() {
+										commentBox.eq(numIndex).append($htmlStr);
+										// 每次数据加载完，必须重置
+										me.resetload();
+									}, 1000);
+								}
+							}
+
+							//openInput();
+						},
+						error: function(err) {
+							console.log('服务器出错了~');
+							// 加载出错，也得重置
+							me.resetload();
+						}
+					});
+				}
+
+				/*loadedssss();
+
+				function loadedssss() {
+					var page = 1;
+					//isload = true;
+
+					$('#livePlanBox').scroll(function(event) {
+						var boxHeight = $('#livePlanBox').height();
+
+						var toTop = $('#livePlanBox').scrollTop() + 100;
+						if(isload) {
+							if(toTop >= boxHeight) {
+								page++;
+								comment(ecId, page);
+								isload = false;
+
+							}
+						}
+
+					});
+
+				}*/
+
+			});
+		</script>
+	</body>
+
+</html>

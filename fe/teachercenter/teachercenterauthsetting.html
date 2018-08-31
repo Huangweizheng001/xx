@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>老师个人中心-认证设置</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <teacher-header-template></teacher-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <teacher-left-template></teacher-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人设置 <i class="uk-icon-angle-right"></i></span>
+                <span>认证设置</span>
+                <span><a href="">预览主页</a></span>
+            </div>
+            <!--认证设置-->
+            <div class="feauthsetting">
+                <div class="fepanel">
+                    <h1>身份认证<span>(*必须)</span></h1>
+                    <div class="fetitle">
+                        <i class="identity"></i>
+                        <span>个人身份认证 <b>(尚未认证)</b></span>
+                        认证完成后才可以成为平台老师
+                        <button>认证</button>
+                    </div>
+                    <div class="feauth ">
+                        <form action="" method="post" id="identity-auth">
+                            <div class="febox">
+                                <span><b>*</b>姓 名 :</span>
+                                <input type="text" name="username" id="username">
+                            </div>
+                            <div class="febox">
+                                <span><b>*</b>身份证号码 :</span>
+                                <input type="text" name="idcard" id="idcard">
+                            </div>
+                            <div class="febox">
+                                <span><b>*</b>手持身份证照片 :</span>
+                                <div class="feupdatephoto">
+                                    <img src="" alt="">
+                                    <input type="file" name="handheldphoto" id="handheldphoto">
+                                    <h3>上传照片</h3>
+                                </div>
+                                <s>示例</s>
+                                <i></i>
+                            </div>
+                            <div class="febox">
+                                <span>身份证正面 :</span>
+                                <div class="feupdatephoto">
+                                    <img src="" alt="">
+                                    <input type="file" name="idface" id="idface">
+                                    <h3>上传照片</h3>
+                                </div>
+                                <s>示例</s>
+                                <i class="back"></i>
+                            </div>
+                            <h2><a>保存</a><a>取消</a></h2>
+                        </form>
+                    </div>
+                </div>
+                <div class="fepanel">
+                    <h1>教师认证<span>(*必须)</span></h1>
+                    <div class="fetitle">
+                        <i class="teacher"></i>
+                        <span>教师证认证 <b>(尚未认证)</b></span>
+                        认证完成后学生才能看到老师发布的内容
+                        <button>认证</button>
+                    </div>
+                    <div class="feauth ">
+                        <form action="" method="post" id="teacher-auth">
+                            <div class="febox">
+                                <div class="feupdatephoto">
+                                    <img src="" alt="">
+                                    <input type="file" name="teachercard" id="teachercard">
+                                    <h3>上传照片</h3>
+                                </div>
+                                <b>请提交在有效期内的教师证照片，需保证头像及文字清晰可见。</b>
+                            </div>
+                            <h2><a >保存</a><a >取消</a></h2>
+                        </form>
+                    </div>
+                </div>
+                <div class="fepanel">
+                    <h1>其他资质认证<span class="normal">(可选)</span></h1>
+                    <div class="fetitle">
+                        <i class="education"></i>
+                        <span>学历认证 <b>(尚未认证)</b></span>
+                        认证完成后能够增加学生对老师个人背景的信任度
+                        <button>认证</button>
+                    </div>
+                    <div class="feauth ">
+                        <form action="" method="post" id="education-auth">
+                            <div class="febox">
+                                <div class="feupdatephoto">
+                                    <img src="" alt="">
+                                    <input type="file" name="educationcard" id="educationcard">
+                                    <h3>上传照片</h3>
+                                </div>
+                                <b>请提交能证明你学历水平的证件照片，如：学生证、在读证明、毕业证等（需包含照片、 姓名、专业、校方印章等有效信息）</b>
+                            </div>
+                            <h2><a >保存</a><a t>取消</a></h2>
+                        </form>
+                    </div>
+                    <div class="fetitle">
+                        <i class="major"></i>
+                        <span>专业资质认证 <b>(尚未认证)</b></span>
+                        认证完成后能够增加学生对老师专业技能的认可度
+                        <button>认证</button>
+                    </div>
+                    <div class="feauth ">
+                        <form action="" method="post" id="aptitude-auth">
+                            <div class="febox">
+                                <div class="feupdatephoto">
+                                    <img src="" alt="">
+                                    <input type="file" name="aptitudecard" id="aptitudecard">
+                                    <h3>上传照片</h3>
+                                </div>
+                                <b>请提交你教学能力或专业能力的证明，如：职称证书、考级证书等。</b>
+                            </div>
+                            <h2><a >保存</a><a >取消</a></h2>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feteachercenter.js"></script>
+<script>
+    $(function () {
+        authsetting(teacherId);
+    })
+</script>
+</body>
+
+</html>

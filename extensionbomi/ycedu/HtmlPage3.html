@@ -1,0 +1,40 @@
+﻿<!DOCTiYPE HTML>
+<html>
+    <head>
+     <meta charset="UTF-8">
+     <meta name="viewport"   content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+     <title>用户测试用例</title>
+     <link rel="stylesheet" href="//g.alicdn.com/de/prismplayer/1.7.2/skins/default/index.css" />
+     <script type="text/javascript" src="//g.alicdn.com/de/prismplayer/1.7.2/prism-min.js"></script>
+        <script src="jsp/jquery-1.8.2.min.js"></script>
+    </head>
+    <body>
+        <div  class="prism-player" id="J_prismPlayer" style="position: absolute"></div>
+       
+        <script>
+            $.ajax({
+                async: false,
+                type: "post",
+                url: "../website/ashx/GetVideoPlay.ashx",
+                data: { videoid: "e17a08de564e478482464a1c91a5bd42"}, //提交表单，vistor.ashx?ID=XXX
+                success: function (msg) {
+                    var player = new prismplayer({
+                        id: 'J_prismPlayer',
+                        width: '100%',
+                        autoplay: false,
+                        //播放方式一：推荐
+                        vid: 'e17a08de564e478482464a1c91a5bd42',//videoId
+                        playauth: msg,
+
+                        cover: 'http://liveroom-img.oss-cn-qingdao.aliyuncs.com/logo.png'
+
+                    });
+                } //操作成功后的操作！msg是后台传过来的值
+                , error: function (ex) {
+                    alert(ex);
+                }
+            });
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="css/bm.css">
+		<title>直播页</title>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			
+			.layui-m-layershade {
+				background-color: rgba(0, 0, 0, .08) !important;
+			}
+			
+			.layui-m-layer2 .layui-m-layerchild {
+				padding: 10px 10px 0 !important;
+				box-sizing: border-box;
+				max-width: 260px;
+				min-width: 100px !important;
+				height: 80px !important;
+				background-color: #928e87 !important;
+			}
+			
+			.active {
+				background: rgba(0, 0, 0, .2);
+			}
+			
+			.bmmain-container {
+				max-width: 750px;
+				margin: 0 auto;
+				height: 100%;
+			}
+			
+			.flex-wrap {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				width: 100%;
+			}
+			
+			.flex-con {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			
+			.flexwrap {
+				-webkit-flex-wrap: wrap;
+				flex-wrap: wrap;
+			}
+			
+			.flex-vertical {
+				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+			}
+			
+			.bmlivehead {
+				line-height: 4.5rem;
+				background: #f6f6f6;
+				color: #000;
+				text-align: center;
+				font-size: 1.66rem
+			}
+			
+			header.grayold {
+				height: 3.5rem;
+				line-height: 3.5rem;
+				z-index: 99;
+				box-sizing: border-box;
+				font-size: 1.57rem;
+				text-align: center;
+				color: #000;
+				background: #f6f6f6;
+			}
+			
+			header.grayold span {
+				width: 40%;
+			}
+			
+			header.grayold span.selected {
+				color: #1473e6;
+			}
+			
+			#livePlanBox .title,
+			#dblivePlanBox .title {
+				padding: 0 1.52rem;
+				font-size: 1.40rem;
+				color: #272828;
+				line-height: 4rem;
+				background-color: #f2f2f2;
+			}
+			
+			#livePlanBox .title a,
+			#dblivePlanBox .title a {
+				float: right;
+				display: inline-block;
+				margin: .3rem 0;
+				padding: 0.75rem;
+				line-height: normal;
+				box-sizing: border-box;
+				border-radius: 0.7rem;
+				color: #fff;
+				font-size: 1.2rem;
+				background-color: #f06600;
+			}
+			
+			.planBox {
+				margin-top: 1.11rem;
+				padding: 0 1.82rem;
+				margin-bottom: 1rem;
+			}
+			
+			.planBox li {
+				margin-bottom: 1rem;
+				padding: .5rem 0;
+				border-radius: 0.7rem;
+				font-size: 1.456rem;
+				color: #272828;
+				background-color: #f2f2f2;
+			}
+			
+			.planBox li .time {
+				display: inline-block;
+				width: 15rem;
+				line-height: 1.4;
+				margin: 0.8rem 0;
+				text-align: center;
+			}
+			
+			.planBox li .brief {
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 1.4;
+			}
+			
+			.planBox li .speaker {
+				font-size: 1.25rem;
+				color: #7a7b7b;
+			}
+			
+			.planBox li .plan {
+				display: none;
+				float: right;
+				width: 40px;
+				height: 5.285rem;
+				margin-right: 1.71rem;
+				box-sizing: border-box;
+				background: url("./images/public/liveicon2.png") no-repeat center;
+			}
+			
+			.planBox li.planing {
+				color: #fff;
+				background-color: #1473e6;
+			}
+			
+			.planBox li.planing .speaker {
+				color: #fff;
+			}
+			
+			.planBox li.planing .plan {
+				display: block;
+			}
+			
+			#J_prismPlayer,
+			#db_prismPlayer {
+				min-height: 20rem;
+				position: relative;
+			}
+			
+			#J_prismPlayer.mask:after {
+				content: "请登录或购买悦华沙龙会员！";
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding-top: 25%;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				text-align: center;
+				font-size: 20px;
+				color: #fff;
+				background-color: rgba(0, 0, 0, .5);
+			}
+			
+			@media only screen and (max-width: 640px) {
+				.planBox li .plan {
+					height: 4.285rem;
+					background-size: 85%;
+				}
+			}
+			
+			@media only screen and (max-width: 476px) {
+				.planBox li .plan {
+					height: 3.6rem;
+					background-size: 80%;
+				}
+			}
+			
+			.flexcenter {
+				/*老版本语法*/
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				/*混合版本语法*/
+				-ms-flex-align: center;
+				/*新版本语法*/
+				-webkit-align-items: center;
+				align-items: center;
+			}
+			
+			#indexfooter {
+				height: 4.14rem;
+				width: 100%;
+			}
+			
+			#indexfooter .fixedfooter {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 100;
+				padding-top: 0.8rem;
+				font-size: 1.857rem;
+				background-color: #f2f2f2;
+				height: 4rem;
+				line-height: 4rem;
+				padding-bottom: 0.35rem;
+			}
+			
+			#indexfooter ul li {
+				padding-top: 0.85rem;
+				padding-bottom: 1rem;
+				background: url() no-repeat center 0.142rem;
+				background-size: auto 1.69rem;
+				text-align: center;
+			}
+			
+			#indexfooter ul li a {
+				/*	padding-top: 2.57rem;*/
+				color: #333;
+				font-size: 1.3rem
+			}
+			
+			#indexfooter ul li.active,
+			#indexfooter ul li.active a {
+				padding-top: 0.58rem;
+				color: #1473e6;
+				font-size: 1.3rem;
+			}
+			
+			#indexfooter ul li:nth-of-type(1) {
+				background-image: url(../images/public/bottombtn0101.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(2) {
+				background-image: url(../images/public/bottombtn0201.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(3) {
+				background-image: url(../images/public/bottombtn0301.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(4) {
+				background-image: url(../images/public/bottombtn0401.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(1).active {
+				background-image: url(../images/public/bottombtn0102.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(2).active {
+				background-image: url(../images/public/bottombtn0202.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(3).active {
+				background-image: url(../images/public/bottombtn0302.png);
+			}
+			
+			#indexfooter ul li:nth-of-type(4).active {
+				background-image: url(../images/public/bottombtn0402.png);
+			}
+			
+			#indexfooter span {
+				display: inline-block;
+				margin-top: 0px;
+				width: 3.5rem;
+				height: 3.5rem;
+				line-height: 3.5rem;
+				text-align: center;
+				font-size: 2.57rem;
+				color: #fff;
+				border-radius: 50%;
+				background: #282828 url(../images/public/bottombtn-open.png) no-repeat center;
+				background-size: 46%;
+				-webkit-transform: rotate(-45deg);
+				transform: rotate(-45deg);
+				-webkit-transition: all .1s;
+				transition: all .1s;
+			}
+			
+			#indexfooter span.active {
+				-webkit-transform: rotate(0);
+				transform: rotate(0);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container flex-wrap flex-vertical">
+			<div class="bmlivehead">直播室</div>
+			<header class="grayold" id="header">
+				<span class="selected" data-id='1'>大讲堂</span>
+				<span data-id='2'>播米公开课</span>
+			</header>
+
+			<!--内容区域-->
+
+			<div class="liveRoomWrap flex-wrap flex-vertical">
+				<!-- 叠报直播box -->
+				<div id="db_prismPlayer" class="prism-player flex-con"></div>
+				<div id="dblivePlanBox">
+					<div class="title">
+						大讲堂
+						<a href="html/dbliveroom.html" id="goToDbLive">进入大讲堂</a>
+					</div>
+				</div>
+			</div>
+			<section id="dblivePlanBox" class="liveRoomList liveRoomList flex-con" style="overflow: auto;">
+				<ul class="planBox" id="dbplanBox"></ul>
+			</section>
+
+			<div class="liveRoomWrap flex-wrap flex-vertical" style="display: none;">
+				<!-- 叠报直播box -->
+				<div id="J_prismPlayer" class="prism-player"></div>
+				<div id="livePlanBox">
+					<div class="title">
+						播米公开课
+						<a href="html/liveroom.html" id="goToLive">进入播米公开课</a>
+					</div>
+				</div>
+			</div>
+			<section id="livePlanBox" class="liveRoomList flex-con" style="overflow: auto;display: none;">
+				<ul class="planBox flex-con" id="planBox"></ul>
+			</section>
+
+			<footer id="indexfooter">
+				<ul class="fixedfooter flex-wrap">
+					<li id="index" class="flex-con">
+						<a href="index.html">首页</a>
+					</li>
+					<li id="course" class="flex-con">
+						<a href="courselist.html">课程</a>
+					</li>
+					<span id="toggleQuickBtns"></span>
+					<li id="live" class="flex-con active">
+						<a href="liveplayer.html">直播</a>
+					</li>
+					<li id="me" class="flex-con">
+						<a href="member.html">我的</a>
+					</li>
+				</ul>
+			</footer>
+			<div class="quickBoxWrap">
+				<div class="quickBox">
+					<a href="html/strategylist.html"></a>
+					<a href="html/teacherlist.html"></a>
+					<a href="html/lecturecourselist.html"></a>
+					<a href='http://wpa.qq.com/msgrd?v=3&amp;uin=2841949698&amp;site=qq&amp;menu=yes'></a>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/zepto.js"></script>
+		<script type="text/javascript" src="js/swiper.jquery.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/bmmain.js"></script>
+		<script type="text/javascript" src="js/bmscroll.js"></script>
+		<!--<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/1.9.9/prism-min.js"></script>-->
+		<script type="text/javascript" src="http://cdn.aodianyun.com/lss/aodianplay/player.js"></script>
+
+		<script>
+			$(function() {
+
+				loadingTips();
+
+				getPlayURL(8); //默认是叠报
+
+				var isfirst = true;
+				var isplay = 0;
+
+				//直播间切换
+				function headTab() {
+					$('#header span').click(function() {
+						$(this).addClass('selected');
+						$(this).siblings().removeClass('selected');
+						var id = $(this).attr('data-id') - 1;
+
+						$('.liveRoomWrap').css('display', 'none');
+						$('.liveRoomWrap').eq(id).css('display', 'flex');
+						$('.liveRoomList').css('display', 'none');
+						$('.liveRoomList').eq(id).css('display', 'block');
+						//$.liveplayer.stop();
+						if(isfirst) {
+							$.dbliveplayer.pausePlay();
+
+							if(id == '0') {
+								getPlayURL(8); //默认是叠报
+							} else {
+								getPlayURL(6);
+								
+
+							}
+							isfirst = false;
+						} else {
+							if(id == '0') {
+								$.liveplayer.pausePlay();
+								//$.dbliveplayer.resumePlay();
+							} else if(id == '1') {
+								$.dbliveplayer.pausePlay();
+								//$.liveplayer.resumePlay();
+							}
+
+						}
+
+					});
+				}
+				//init 
+				function initPlayerData() {
+					var todayIndex = (new Date()).getDay() - 1;
+					var currentHour = (new Date()).getHours();
+					var currentMin = (new Date()).getMinutes();
+					var timeArr, hourArr1, hourArr2, min1, min2;
+					var xinqi = new Array();
+					xinqi[0] = '周一';
+					xinqi[1] = '周二';
+					xinqi[2] = '周三';
+					xinqi[3] = '周四';
+					xinqi[4] = '周五';
+					xinqi[5] = '周六';
+					xinqi[6] = '周日';
+
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "ChannelProgram.ashx?action=getCurrLiveChannelProgram",
+						timeout: 300,
+						dataType: 'json',
+						success: function(res) {
+							var itemLen = res.length,
+								dbstrHtml = "",
+								strHTML = "";
+							if(res.length < 1) {
+								return false;
+							}
+
+							for(var i = 0; i < itemLen; i++) {
+								if(res[i].channelId == '6') {
+									if(res[i].weekDay == xinqi[todayIndex]) {
+										strHTML += '<li class="planing" >' +
+											'<span class="time">' + res[i].weekDay + '</span>' +
+											'<div class="brief">' +
+											'<p>时间:' + res[i].playTime + '</p>' +
+											'<p class="speaker">特约嘉宾:' + res[i].teacherName + '、' + res[i].anchorName + '</p>' +
+											'</div><span class="plan"></span></li>';
+									} else {
+										strHTML += '<li>' +
+											'<span class="time">' + res[i].weekDay + '</span>' +
+											'<div class="brief">' +
+											'<p>时间:' + res[i].playTime + '</p>' +
+											'<p class="speaker">特约嘉宾:' + res[i].teacherName + '、' + res[i].anchorName + '</p>' +
+											'</div><span class="plan"></span></li>';
+									}
+								} else if(res[i].channelId == '8') {
+									timeArr = res[i].playTime.split("-");
+									hourArr1 = timeArr[0].split(":");
+									hourArr2 = timeArr[1].split(":");
+									console.log(currentHour * 60 + currentMin)
+
+									if((res[i].weekDay == xinqi[todayIndex]) && (((hourArr1[0] * 60 + parseInt(hourArr1[1])) <= (currentHour * 60 + currentMin) && (hourArr2[0] * 60 + parseInt(hourArr2[1])) >= (currentHour * 60 + currentMin)))) {
+										dbstrHtml += '<li class="planing" >' +
+											'<span class="time">' + res[i].playTime + '</span>' +
+											'<div class="brief">' +
+											'<p>' + res[i].name + '</p>' +
+											'<p class="speaker">特约嘉宾:' + res[i].teacherName + '</p>' +
+											'</div><span class="plan"></span></li>';
+									} else {
+										dbstrHtml += '<li>' +
+											'<span class="time">' + res[i].playTime + '</span>' +
+											'<div class="brief">' +
+											'<p>' + res[i].name + '</p>' +
+											'<p class="speaker">特约嘉宾:' + res[i].teacherName + '</p>' +
+											'</div><span class="plan"></span></li>';
+									}
+								}
+							}
+
+							$("#planBox").html(strHTML);
+							$("#dbplanBox").html(dbstrHtml);
+						},
+						error: function() {
+							loadingErrorTips();
+						}
+					});
+				}
+
+				initPlayerData();
+
+				//get user inf
+				function getUserInf(mid) {
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Member.ashx?action=getSowingCoinByMemberId",
+						dataType: 'json',
+						data: {
+							memberId: mid
+						},
+						success: function(res) {
+							if(res.length < 1) {
+								return false;
+							}
+							isplay = res[0].isSaLong; //有权限观看直播为1，没权限为0
+						},
+						error: function(err) {
+							console.log(err)
+						}
+					});
+				}
+
+				getUserInf(localStorage.getItem("$ycuid"));
+
+				headTab();
+				//get player url
+				function getPlayURL(chId) {
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Channel.ashx?action=getLiveAddrByChannelId",
+						dataType: 'json',
+						data: {
+							channelId: chId
+						},
+						success: function(res) {
+
+							var u = navigator.userAgent;
+							var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+							var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+							if(chId == '6') {
+								if(isplay != 1) {
+									console.log(isplay)
+									$('#J_prismPlayer').addClass('mask');
+									setTimeout(function() {
+										if((localStorage.getItem("$ycuid") != undefined) && (localStorage.getItem("$ycuid") != "") && (localStorage.getItem("$ycuid") != null)) {
+									layer.open({
+											content: '您暂无改直播权限,要前去充值吗？',
+											btn: ['要', '不要'],
+											yes: function(index) {
+												layer.close(index);
+												window.location.href = "html/yh/yhpay.html";
+											}
+										});
+										$('.mask').on('click', function() {
+										layer.open({
+											content: '您暂无改直播权限,要前去充值吗？',
+											btn: ['要', '不要'],
+											yes: function(index) {
+												layer.close(index);
+												window.location.href = "html/yh/yhpay.html";
+											}
+										});
+									});
+
+								} else {
+									layer.open({
+										content: '未登录暂无直播权限,是否前往登录？',
+										btn: ['前往', '不要'],
+										yes: function(index) {
+											location.href = 'html/login.html';
+										}
+									});
+									$('.mask').on('click', function() {
+										layer.open({
+											content: '未登录暂无直播权限,是否前往登录？',
+										btn: ['前往', '不要'],
+										yes: function(index) {
+											location.href = 'html/login.html';
+										}
+										});
+									});
+									
+
+								}
+										
+									}, 500);
+									$('.mask').on('click', function() {
+										layer.open({
+											content: '您暂无改直播权限,要前去充值吗？',
+											btn: ['要', '不要'],
+											yes: function(index) {
+												layer.close(index);
+												window.location.href = "html/yh/yhpay.html";
+											}
+										});
+									});
+
+								}
+								createPlayer(res[0].hlsUrl, res[0].rtmpUrl2);
+							} else if(chId == '8') {
+								createdbPlayer(res[0].hlsUrl, res[0].rtmpUrl2);
+
+							}
+
+						},
+						error: function(res) {
+							console.log("request error");
+						}
+					});
+				}
+
+				var grade;
+				//get user type
+				function returnUserLevel(userLevelName) {
+					var userLevel = ['普通会员', '白银会员', '黄金会员', '钻石会员', '专属会员(一对一)', '专属会员(二对一)', '专属会员(三对一)'];
+
+					for(var i = 0; i < userLevel.length; i++) {
+						if(userLevel[i] == userLevelName) {
+							return i;
+						}
+					}
+					return -1
+				}
+
+				//get user inf
+				/*function getUserInf() {
+					$.ajax({
+						type: "get",
+						url: SERVEROOTDATA + "Member.ashx?action=getSowingCoinByMemberId",
+						dataType: 'json',
+						data: {
+							memberId: localStorage.getItem("$ycuid")
+						},
+						success: function(res) {
+							if(res.length < 1) {
+								grade = -1;
+								return false;
+							}
+							grade = res[0].level;
+							console.log(grade)
+							//grade = returnUserLevel(res[0].memberlevel);
+						},
+						error: function() {}
+					});
+				}
+
+				getUserInf();
+
+				function setPlay() {
+					if(grade > 0) {
+						return false;
+					}
+					var timestamp = (new Date()).valueOf(),
+						oneDayTamp = 86400000;
+					if(localStorage.getItem("firstPlayFlag") == "undefined" || localStorage.getItem("firstPlayFlag") == undefined) {
+						localStorage.setItem("firstPlayFlag", timestamp);
+
+						var i = 0;
+						var timeCount = setInterval(function() {
+							localStorage.setItem("playTimeCount", i++);
+
+							if(grade == -1 && i > 900) { //游客
+								clearInterval(timeCount);
+								getPlayTime();
+							}
+
+							if(grade == 0 && i > 1800) { //普通会员
+								clearInterval(timeCount);
+								getPlayTime();
+							}
+
+						}, 1000);
+
+					} else {
+						var numberItem = parseFloat(localStorage.getItem("firstPlayFlag")),
+							diffStamp = "";
+						diffStamp = timestamp - numberItem;
+						if(diffStamp > oneDayTamp) {
+							localStorage.removeItem('firstPlayFlag');
+							localStorage.removeItem("playTimeCount");
+						} else {
+							var playCount = parseInt(localStorage.getItem("playTimeCount"));
+							var timeCount = setInterval(function() {
+								localStorage.setItem("playTimeCount", ++playCount);
+								if(grade == -1 && playCount > 100) { //游客
+									clearInterval(timeCount);
+									getPlayTime();
+								}
+
+								if(grade == 0 && playCount > 1800) { //普通会员
+									clearInterval(timeCount);
+									getPlayTime();
+								}
+							}, 1000)
+						}
+					}
+				}
+
+				function getPlayTime() {
+					if(grade < 1) {
+						if(grade == -1) {
+							$.liveplayer.pause();
+							$("#J_prismPlayer").addClass("mask");
+							layer.open({
+								content: '您当前是游客身份,只能观看15分钟',
+								btn: ['逛逛', '升级'],
+								no: function(index) {
+									//location.reload();
+									window.location.href = ROOT + "html/login.html"
+									layer.close(index);
+								}
+							});
+						} else if(grade == 0) {
+							$.liveplayer.pause();
+							$("#J_prismPlayer").addClass("mask");
+							layer.open({
+								content: '您当前是普通会员,只能观看30分钟',
+								btn: ['逛逛', '升级'],
+								no: function(index) {
+									//location.reload();
+									window.location.href = ROOT + "html/login.html"
+									layer.close(index);
+								}
+							});
+						}
+					}
+
+				}*/
+				//create player
+				function createdbPlayer(URL1, URL2) {
+					$("#db_prismPlayer").html("");
+					/* dbliveplayer = new prismplayer({
+						id: "db_prismPlayer", // 容器id
+						//source: "http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8", // 视频地址
+						// source: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+						source: URL,
+						autoplay: false, //自动播放：否
+						width: "100%", // 播放器宽度
+						height: "24.92rem", // 播放器高度
+						playsinline: true,
+						preload: false,
+						// isLive: true,
+						skinLayout: [{
+							"name": "bigPlayButton",
+							"align": "cc",
+							"x": 30,
+							"y": 80
+						}, {
+							"name": "controlBar",
+							"align": "blabs",
+							"x": 0,
+							"y": 0,
+							"children": [{
+								"name": "playButton",
+								"align": "tlabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "fullScreenButton",
+								"align": "trabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "volume",
+								"align": "trabs",
+								"x": 50,
+								"y": 25
+							}]
+						}],
+						cover: './images/public/playIcon.jpg'
+					});*/
+					$.dbliveplayer = new aodianPlayer({
+						container: 'db_prismPlayer', //播放器容器ID，必要参数
+						rtmpUrl: URL2, //控制台开通的APP rtmp地址，必要参数
+						hlsUrl: URL1, //控制台开通的APP hls地址，必要参数
+						/* 以下为可选参数*/
+						width: '100%', //播放器宽度，可用数字、百分比等
+						height: '100%', //播放器高度，可用数字、百分比等
+						autostart: true, //是否自动播放，默认为false
+						bufferlength: '1', //视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+						maxbufferlength: '2', //最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+						stretching: '1', //设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+						controlbardisplay: 'enable', //是否显示控制栏，值为：disable、enable默认为disable。
+						adveDeAddr: '../images/live/dbplayerbg.jpg', //封面图片链接
+						//adveWidth: 320,//封面图宽度
+						//adveHeight: 240,//封面图高度
+						//adveReAddr: '',//封面图点击链接
+						//isclickplay: false,//是否单击播放，默认为false
+						isfullscreen: true //是否双击全屏，默认为true
+					});
+
+					closeLoadingTips();
+				}
+
+				//create player
+				function createPlayer(URL1, URL2) {
+
+					$("#J_prismPlayer").html("");
+					/*liveplayer = new prismplayer({
+						id: "J_prismPlayer", // 容器id
+						source: URL,
+						autoplay: false, //自动播放：否
+						width: "100%", // 播放器宽度
+						height: "24.92rem", // 播放器高度
+						playsinline: true,
+						preload: false,
+						// isLive: true,
+						skinLayout: [{
+							"name": "bigPlayButton",
+							"align": "cc",
+							"x": 30,
+							"y": 80
+						}, {
+							"name": "controlBar",
+							"align": "blabs",
+							"x": 0,
+							"y": 0,
+							"children": [{
+								"name": "playButton",
+								"align": "tlabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "fullScreenButton",
+								"align": "trabs",
+								"x": 10,
+								"y": 25
+							}, {
+								"name": "volume",
+								"align": "trabs",
+								"x": 50,
+								"y": 25
+							}]
+						}],
+						cover: './images/public/playIcon.jpg'
+					});*/
+					$.liveplayer = new aodianPlayer({
+						container: 'J_prismPlayer', //播放器容器ID，必要参数
+						rtmpUrl: URL2, //控制台开通的APP rtmp地址，必要参数
+						hlsUrl: URL1, //控制台开通的APP hls地址，必要参数
+						/* 以下为可选参数*/
+						width: '100%', //播放器宽度，可用数字、百分比等
+						height: '100%', //播放器高度，可用数字、百分比等
+						autostart: false, //是否自动播放，默认为false
+						bufferlength: '1', //视频缓冲时间，默认为3秒。hls不支持！手机端不支持
+						maxbufferlength: '2', //最大视频缓冲时间，默认为2秒。hls不支持！手机端不支持
+						stretching: '1', //设置全屏模式,1代表按比例撑满至全屏,2代表铺满全屏,3代表视频原始大小,默认值为1。hls初始设置不支持，手机端不支持
+						controlbardisplay: 'enable', //是否显示控制栏，值为：disable、enable默认为disable。
+						adveDeAddr: '../images/yh/yhplayerbg.png', //封面图片链接
+						//adveWidth: 320,//封面图宽度
+						//adveHeight: 240,//封面图高度
+						//adveReAddr: '',//封面图点击链接
+						//isclickplay: false,//是否单击播放，默认为false
+						isfullscreen: true //是否双击全屏，默认为true
+					});
+
+					closeLoadingTips();
+				}
+
+			});
+		</script>
+	</body>
+
+</html>

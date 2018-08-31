@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="Keywords" content="亿策数字校园">
+		<meta name="description" content="亿策数字校园" />
+		<title>亿策数字校园--播放器</title>
+		<link rel="stylesheet" href="./librarycss/base.css" />
+		<link rel="stylesheet" href="./librarycss/swiper,animate,scroll.min.css" />
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.6.0/skins/default/aliplayer-min.css" />
+
+	</head>
+
+	<body>
+
+		<header id="header">
+			<header-template></header-template>
+		</header>
+
+		<section class="playerWrap" id="jplayerApp">
+			<div class="container">
+				<div class="playerInner">
+					<div class="prism-player" id="jcoursePlayer"></div>
+					<div class="collectionCourse" :title="collectTitle" :class="{active:hasCollected == 1}" @click="collectionCourse" v-text="collectLabel"></div>
+				</div>
+			</div>
+
+			<div class="container">
+				<div class="playerRelevant clearfix">
+					<div class="span8">
+						<div class="left">
+							<h5 class="title" v-cloak>评论({{evalCount}})</h5>
+							<div class="relevantBox clearfix">
+								<div class="img">
+									<img src="../../images/static/header.png" v-if="!userIcon" />
+									<img v-else :src="userIcon | addRootFile" />
+								</div>
+								<div class="relevantSentBox">
+									<textarea placeholder="喜欢这位老师的讲课吗？来发表你的看法吧！" maxlength="300" v-model="eval"></textarea>
+									<span v-cloak>{{evalLen}}/300</span>
+								</div>
+								<a class="submitRelevantBtn" href="javascript:;" @click="subEval">发表评论</a>
+							</div>
+
+							<div class="relevantList">
+								<div class="relevantLi clearfix" v-for="item in evaluationList" v-cloak>
+									<div class="img">
+										<img :src="item.iconPath | addRootFile" />
+									</div>
+									<div class="relevantContent">
+										<span class="name">{{item.userName}}</span>
+										<span class="time">{{item.evaluationDate}}</span>
+										<p class="content">
+											{{item.evaluation}}
+										</p>
+									</div>
+								</div>
+								<div class="fenodata" v-if="evaluationList.length == 0"></div>
+								<ul class="pagenationbox clearfix" style="padding: 30px 0 50px">
+									<li v-show="current != 1" @click="current-- && goto(current--)">
+										<a href="#this">上一页</a>
+									</li>
+									<li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+										<a href="#this">{{index}}</a>
+									</li>
+									<li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+										<a href="#this">下一页</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="relatedCourseBox">
+							<div class="moduleTitleWrapper">
+								<span class="titleTip">Related courses</span>
+								<h1 class="title">相关课程<a class="more" href="onlineclassmore.html">more></a></h1>
+							</div>
+							<a class="relatedCourseLi clearfix" href="javascript:;" v-for="item in relativeCourse" :href="item.courseId,item.videoId |gotoPlayer" v-cloak>
+								<div class="img">
+									<img :src="item.iconPath | addRootFile" />
+								</div>
+								<div class="right">
+									<h5>{{item.courseName}}</h5>
+									<div class="other">
+										<img :src="item.teacherIconPath" alt="" @click="gotoTeacher(item.teacherId)">
+										<p class="name">{{item.teacherName}}</p>
+										<p class="count">{{item.readCount}}次播放</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer id="footer">
+			<footer-template></footer-template>
+		</footer>
+
+		<script type="text/javascript" src="./libraryjs/jquery.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/jquery.storage.js"></script>
+		<script type="text/javascript" src="./libraryjs/swiper.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/layer,wow,scroll.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue.min.js"></script>
+		<script type="text/javascript" src="./libraryjs/vue-resource.min.js"></script>
+		<script type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.6.0/aliplayer-min.js"></script>
+		<script type="text/javascript" src="./libraryjs/config.js"></script>
+	</body>
+
+</html>

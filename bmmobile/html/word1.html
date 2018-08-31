@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=
+			yes">
+		<!--<meta name="full-screen" content="yes">-->
+		<!--<meta name="x5-fullscreen" content="true">-->
+		<meta name="keywords" content="播米在线">
+		<meta name="description" content="播米在线">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+		<link rel="stylesheet" href="../css/bmmobile.css" />
+		<title>汇市思路</title>
+
+		<style>
+			body {
+				background: #ffff2f2f2;
+				padding-top: 9rem;
+			}
+			
+			.aboutus {
+				padding: 2.14rem;
+				line-height: 24px;
+				font-size: 14px;
+			}
+			
+			.aboutus h3 {
+				text-align: center;
+				line-height: 2;
+				font-size: 3rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="bmmain-container">
+			<header class="blue">
+				<span onclick="goBack2()">&nbsp;</span>
+				<p class="bmTitle">日内短线思路</p>
+			</header>
+			<section class="aboutus">
+
+			</section>
+		</div>
+		<script type="text/javascript" src="../js/zepto.js"></script>
+		<script src="../js/bmmain.js"></script>
+
+		<script>
+			$(function() {
+				$.ajax({
+					type: "get",
+					url: SERVEROOTDATA + "Technology.ashx?action=getAword",
+					timeout: 300,
+					dataType: 'json',
+					success: function(res) {
+						var obj = res[0];
+//						$(".bmTitle").text(obj.title);
+						$(".aboutus").html(obj.content);
+					},
+					error: function() {
+						
+					}
+				});
+			})
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">-->
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="Keywords" content="福建教育网">
+    <meta name="description" content="福建教育网" />
+    <title>家长个人中心-提问</title>
+    <link rel="shortcut icon" href="../images/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/swiper,animate,scroll.min.css" />
+    <link rel="stylesheet" href="../css/fetv.css" />
+    <link rel="stylesheet" href="../css/fetvAppend.css" />
+
+</head>
+
+<body>
+<header id="header">
+    <parent-header-template></parent-header-template>
+</header>
+<section class="feteachercenter">
+    <div class="container">
+        <div id="leftaside">
+            <parent-left-template></parent-left-template>
+        </div>
+        <div class="feteacherpersonalcenter-right" id="answerquestion" style="position:relative;">
+            <div class="feteacherpersonalcenter-right-head ">
+                <span>个人中心 <i class="uk-icon-angle-right"></i></span>
+                <span>我的老师 > 提问</span>
+                <a style="float: right;color: #ff6c00;font-size: 16px;padding-right: 20px" onclick="window.history.go(-1)">返回</a>
+            </div>
+            <!--我的提问-->
+            <div class="feanswerquestion">
+                <h1>老师:  {{teacherName}}</h1>
+                <div class="addquestion">
+                    <span> <i class="uk-icon-plus-circle"></i>添加提问</span>
+                </div>
+                <!--往期回复-->
+                <div class="pastanswer">
+                    <p>往期回复</p>
+                    <div class="fenodata" v-show="nodata" v-cloak></div>
+                    <div class="fepanel"  v-cloak v-for="(item,index) in pastanswer">
+                        <h4><b>{{index+1}}.</b><span>问题:</span>{{item.title}}</h4>
+                        <h5><span>回复:</span>{{item.replycontent}}</h5>
+                        <p>
+                            <span>课程 : {{item.coursename}}</span>
+                            <span>提问时间 : {{item.time}}</span>
+                        </p>
+                        <a @click="lookdetail(item.questionId,item.title,item.coursename,item.time,item.teachername)">查看</a>
+                        <span v-bind:class="item.states=='未解决' ? '':'bulebg'">{{item.states}}</span>
+                    </div>
+                </div>
+                <!--枫叶-->
+                <ul class="pagenationbox" style="position: absolute;bottom: 0;left: 0;right: 0">
+                    <li v-cloak v-show="current != 1" @click="current-- && goto(current--)">
+                        <a href="#this">上一页</a>
+                    </li>
+                    <li v-cloak v-for="index in pages" @click="goto(index)" :class="{'active':current == index}" :key="index">
+                        <a href="#this">{{index}}</a>
+                    </li>
+                    <li v-show="allpage != current && allpage != 0 " @click="current++ && goto(current++)">
+                        <a href="#this">下一页</a>
+                    </li>
+                </ul>
+                <div id="answerview" style="display: none">
+                    <ul>
+                        <li>
+                            <input type="hidden" id="clickCount" value="0" />
+                            <span>课程:</span>
+                            <select name="" id="answerview-course">
+                                <option v-bind:value="item.courseId" v-cloak v-for="item in courseArr">{{item.name}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>提问:</span>
+                            <textarea name="" id="answerview-content"></textarea>
+                        </li>
+                    </ul>
+                    <p><button>提交问题</button></p>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+    </div>
+</section>
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.zclip.js"></script>
+<script type="text/javascript" src="../js/jquery.storage.js"></script>
+<script type="text/javascript" src="../js/swiper.jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer,wow,scroll.js"></script>
+<script type="text/javascript" src="../js/vue.min.js"></script>
+<script type="text/javascript" src="../js/vue-resource.min.js"></script>
+<script type="text/javascript" src="../js/fetv.js"></script>
+<script type="text/javascript" src="../js/fetvAppend.js"></script>
+<script type="text/javascript" src="../js/feparentcenter.js"></script>
+<script>
+    $(function () {
+        answerquestion();
+    })
+</script>
+</body>
+
+</html>

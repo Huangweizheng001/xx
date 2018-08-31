@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<meta http-equiv="Cache-Control" content="no-siteapp">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<meta name="format-detection" content="telephone=yes">
+		<meta name="full-screen" content="yes">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="keywords" content="福建教育网">
+		<meta name="description" content="福建教育网">
+		<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-57x57-precomposed.png">
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png">
+		<link rel="stylesheet" href="../css/plugins/style.min.css">
+		<link rel="stylesheet" href="../css/libs/swiper,animate,scroll.min.css">
+		<link rel="stylesheet" href="../css/femoblie.min.css">
+		<link rel="stylesheet" href="../css/festyle.css">
+		<title>福建教育网--学校主页</title>
+	</head>
+
+	<body>
+		<header id="feHeaderTransparentShare">
+			<header-transparent-share-template></header-transparent-share-template>
+		</header>
+		<div class="feSchoolWrap" id="schoolApp">
+			<div class="container flex flex-v">
+				<initempty-component label="暂无数据" :initflag=noHeadData v-cloak></initempty-component>
+				<template v-for="item in headArr" v-cloak>
+					<div class="feSchoolHeader" v-bind:style="{backgroundImage: 'url('+item.bgiconPath+')'}">
+						<a href="javascript:;" class="feSchoolIcon"><img v-lazy="item.iconPath" /> </a>
+						<p class="feSchoolName">{{item.bannerName}}</p>
+					</div>
+					<div>
+						<div class="feSchoolNote" v-bind:class="{'feSchoolNoteActive':showNote}">
+							<p>{{item.note}}</p><span class="feshow" @click="noteClick()">{{note}}</span>
+						</div>
+					</div>
+				</template>
+				<div class="flex flex-v feSchoolListWrap">
+					<div class="swiper-pagination"></div>
+					<div class="feSchoolList feStudioCenterWrap  flex-1">
+						<div class="swiper-container feSchoolContainer">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="feStudioCourseList clearfix">
+										<initempty-component label="暂无数据" :initflag=noCourseData v-cloak></initempty-component>
+										<div class="span6" v-for="item in courseArr" v-cloak>
+											<a :href="item.courseId,item.courseKind|addCoursePre">
+												<div class="feImage">
+													<span class="type">{{item.recordTypeName}}</span>
+													<img v-lazy="item.iconPath" />
+													<span class="time" v-if='item.recordType==1'>{{item.curriculaTime}} 开课</span>
+												</div>
+												<p class="title">{{item.courseName}}</p>
+												<div class="price" v-if='item.isFree==0'>
+													￥{{item.preferentialPrice}}<span class="nums">{{item.studyCount}}人学过</span>
+												</div>
+												<div class="price free" v-else>
+													免费<span class="nums">{{item.studyCount}}人学过</span>
+												</div>
+											</a>
+										</div>
+
+									</div>
+									<a class='feListMore feStudioCourseMore' href='javascript:;' v-show="!noCourseMore" @click="getCourse(++courseIndex)">查看更多</a>
+								</div>
+								<div class="swiper-slide">
+									<div class="feSchoolTeacherList clearfix">
+										<initempty-component label="暂无数据" :initflag=noTeacherData v-cloak></initempty-component>
+										<div class="span6" v-for="item in teacherArr" v-cloak>
+											<a :href="item.teacherId|addTeacherPre">
+												<div class="feImage">
+													<img v-lazy="item.iconPath" />
+												</div>
+												<p class="title">{{item.teacherName}}</p>
+												<p class="note">{{item.subjectName}}{{item.teacherGradeName}}</p>
+											</a>
+										</div>
+
+									</div>
+									<a class='feListMore feStudioCourseMore' href='javascript:;' v-show="!noTeacherMore" @click="getTeacher(++teacherIndex)">查看更多</a>
+								</div>
+								<div class="swiper-slide">
+									<div class="feSchoolNewsList">
+										<initempty-component label="暂无数据" :initflag=noNewsData v-cloak></initempty-component>
+										<template v-for="item in newsArr" v-cloak>
+											<a :href="item.newsId|addNewsPre">
+												<p class="title">{{item.title}}</p>
+												<p class="note">{{item.introduce}}</p>
+												<div class="feImage">
+													<img v-lazy="item.iconPath" />
+												</div>
+												<p class="clearfix"><span class="time">更新时间：{{item.modifyTime}}</span><span class="see">{{item.readCount}}</span></p>
+											</a>
+											<div class="feGrayLIne16"></div>
+										</template>
+									</div>
+									<a class='feListMore feStudioCourseMore' href='javascript:;' v-show="!noNewsMore" @click="getNews(++newsIndex)">查看更多</a>
+								</div>
+								<div class="swiper-slide">
+									<div class="feSchoolStyleHead">微<span></span>光</div>
+									<initempty-component label="暂无数据" :initflag=noSlightData v-cloak></initempty-component>
+									<div class="feSchoolSLightList clearfix">
+										<div class="span6" v-for="item in slightArr" v-cloak>
+											<a href='javascript:;'>
+												<div class="feImage">
+													<img v-lazy="item.iconPath" />
+													<span>视频</span>
+												</div>
+												<p class="title">{{item.title}}</p>
+											</a>
+										</div>
+									</div>
+									<a class='feListMore feStudioCourseMore' href='javascript:;' v-show="!noSlightMore" @click="getSlight(++slightIndex)">查看更多</a>
+									<div class="feGrayLIne16"></div>
+									<div class="feSchoolStyleHead">热<span></span>图</div>
+									<initempty-component label="暂无数据" :initflag=noHotData v-cloak></initempty-component>
+									<div class="feSchoolHotList clearfix">
+										<div class="span4" v-for="item in hotArr" v-cloak>
+											<a href='javascript:;'>
+												<div class="feImage">
+													<img v-lazy="item.iconPath" />
+													<p class="title">{{item.title}}</p>
+												</div>
+											</a>
+										</div>
+									</div>
+									<a class='feListMore feStudioCourseMore' href='javascript:;' v-show="!noHotMore" @click="getHot(++hotIndex)">查看更多</a>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/libs/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/libs/vue.min.js"></script>
+		<script src="../js/plugins/index.js"></script>
+		<script type="text/javascript" src="../js/plugins/vue-resource.min.js"></script>
+		<script type="text/javascript" src="../js/femoblie.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/swiper.min.js"></script>
+		<script type="text/javascript" src="../js/plugins/jquery.storage.js"></script>
+		<script type="text/javascript" src="../js/fescript.js"></script>
+		<script>
+			$(function() {
+				var e = $.getUrlParam("schoolId");
+				schoolcenterApp(e)
+			})
+		</script>
+	</body>
+
+</html>
